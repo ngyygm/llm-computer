@@ -1,0 +1,290 @@
+\section{The Intelligent Computing Architecture Model (ICAM)}
+\label{sec:icam}
+
+The analogy framework developed in the preceding four sections provides valuable intuition, but intuition alone cannot discipline engineering design. The enduring strength of classical computer architecture rests on its possession of \textbf{formal models}: from the hardware--software contract embodied in the instruction set architecture (ISA), to the locality theory governing memory hierarchies, to the quantitative analysis framework of Amdahl's Law. These models give architects a shared, precise vocabulary for reasoning about trade-offs.
+
+This section \textbf{formalizes} the analogies above into the \textit{Intelligent Computing Architecture Model} (ICAM), comprising a six-layer functional hierarchy, inter-layer interface contracts, and six design axioms. Together, they provide the conceptual foundation for the quantitative laws developed in Section~\ref{sec:laws}.
+
+% ---------------------------------------------------------
+\subsection{Six-Layer Hierarchy}
+\label{sec:icam-layers}
+% ---------------------------------------------------------
+
+The central organizing principle of classical computer architecture is \textbf{layered abstraction}: hardware is hidden behind the ISA, the operating system exposes services through system calls, and user applications need only invoke library functions. Each layer interacts solely with its immediate neighbors and remains oblivious to the implementation details of distant layers. This separation of concerns keeps system complexity tractable and enables independent evolution at every level.
+
+ICAM transfers this principle to the model-native computing domain by defining six functional layers.
+
+\begin{definition}[Intelligent Computing Architecture Model --- ICAM]
+The Intelligent Computing Architecture Model (ICAM) organizes a model-native computing system into six functional layers, each interacting with adjacent layers through well-defined interface contracts:
+\begin{enumerate}[nosep]
+\item \textbf{L1~--- Physical Execution Layer.}
+GPU, TPU, ASIC, and compute-in-memory hardware that execute matrix multiplications and attention computations. This layer is the analog of the ALU and floating-point unit in classical architecture: it carries out compute instructions without regard for their semantic meaning. The Transformer Engine in the NVIDIA H100, which accelerates FP8 matrix multiplication at the hardware level, is a representative L1 component\cite{wolters2024computeinmemory}.
+
+\item \textbf{L2~--- Inference Serving Layer.}
+Model weight loading, KV cache management, continuous batching, and prefill--decode scheduling. This layer parallels the microarchitecture and cache hierarchy in classical systems: it manages compute resources and hot data so that invocations from upper layers execute as efficiently as possible. vLLM's PagedAttention, which enables on-demand KV cache allocation and sharing\cite{kwon2023pagedattention}, and SGLang's RadixAttention, which reuses cached prefixes across requests\cite{sglang2024}, are both representative L2 implementations.
+
+\item \textbf{L3~--- Context Management Layer.}
+Hot/warm/cold memory tiering, context compilation, summarization and retrieval, and semantic virtual memory. This layer is the analog of the virtual memory subsystem in classical operating systems: it virtualizes the limited physical context window into a larger logical working space. MemGPT's \textit{virtual context management} treats the context window as main memory and external storage as disk, enabling the model to autonomously manage memory swap-in and swap-out\cite{memgpt2023}; MemoryOS borrows OS memory-management mechanisms to design a tiered memory architecture\cite{memoryos2025}. Both are representative L3 implementations.
+
+\item \textbf{L4~--- Semantic Interface Layer.}
+Tool schemas (the Tool ABI), Memory APIs, and Trace APIs. This layer parallels the system-call interface and ABI in classical architecture: it defines the uniform protocols through which an intelligent system accesses external capabilities. The Model Context Protocol (MCP) standardizes communication between models and tools\cite{mcp_intro_2026}, while the Agent-to-Agent (A2A) protocol defines interoperability between agents\cite{agentprotocols2025}. Both are representative L4 implementations.
+
+\item \textbf{L5~--- Orchestration Layer.}
+Task planning, agent scheduling, permission enforcement, failure recovery, and state commitment. This layer is the analog of the operating system kernel: it is responsible for scheduling tasks, allocating resources, enforcing isolation, and providing fault tolerance. OpenAI Codex submits agent tasks to sandboxes for execution and supports the creation and coordination of sub-agents\cite{openai_codex_overview_2026,openai_codex_subagents_2026}; Claude Code extends agent capabilities through a skill mechanism and connects to external tools via MCP\cite{anthropic_claudecode_overview_2026,anthropic_claudecode_skills_2026}. Both are representative L5 implementations.
+
+\item \textbf{L6~--- Application Layer.}
+User tasks, agent applications, and workflow automation. This layer parallels the user-space application layer in classical systems: it carries end-user intent. SWE-agent autonomously resolves GitHub issues\cite{sweagent2024}; OpenHands serves as a general-purpose software-development agent\cite{openhands_paper_2025}. It is worth noting that the L6 user base is rapidly expanding from professional engineers to domain experts: Anthropic's legal team used Claude to reduce marketing-review turnaround from two to three days to under 24~hours; Zapier achieved 89\% organization-wide AI adoption and deployed over 800 internal agents\cite{anthropic2026agenticreport}. This trend underscores the need for richer interaction modes and stronger built-in guardrails at L6.
+\end{enumerate}
+\end{definition}
+
+The ICAM layering is not an arbitrary decomposition. It obeys a single organizing principle: each layer provides services to the layer above and depends solely on the interface of the layer below---precisely the philosophy underlying network protocol stacks and operating-system hierarchies. The resulting benefit is \textbf{separation of concerns}: an L2 engineer optimizing KV cache policies need not understand agent orchestration logic, and an L5 developer designing task schedulers need not comprehend the hardware details of attention computation.
+
+Table~\ref{tab:icam} maps each ICAM layer to its classical counterpart, summarizes its responsibilities, highlights the core difference, and lists representative implementations.
+
+\begin{table}[t]
+\centering
+\footnotesize
+\caption{ICAM layers mapped to classical computer architecture.}
+\label{tab:icam}
+\begin{tabularx}{\textwidth}{p{0.08\textwidth}p{0.12\textwidth}p{0.22\textwidth}p{0.24\textwidth}p{0.22\textwidth}}
+\toprule
+ICAM Layer & Classical Analog & Responsibility & Core Difference & Representative Implementations \\
+\midrule
+L1 & Hardware / ISA & Execute basic compute operations & Probabilistic matrix operations, not deterministic logic gates & GPU, TPU, Compute-in-Memory\cite{wolters2024computeinmemory} \\
+L2 & Microarchitecture / Cache & Manage compute resources and hot data & KV cache grows with semantic sequence, not address-indexed & vLLM, SGLang\cite{kwon2023pagedattention,sglang2024} \\
+L3 & Virtual Memory & Expand the addressable working set & Semantic summarization is lossy, not lossless paging & MemGPT, MemoryOS\cite{memgpt2023,memoryos2025} \\
+L4 & Syscall / ABI & Uniform interface to external capabilities & Tool semantics carry natural-language ambiguity & MCP, A2A\cite{mcp_intro_2026,agentprotocols2025} \\
+L5 & Operating System & Scheduling, permissions, fault tolerance & Agents themselves contain non-deterministic reasoning & Codex, Claude Code\cite{openai_codex_overview_2026,anthropic_claudecode_overview_2026} \\
+L6 & User Application & Carry end-user tasks & Tasks may have open-ended goals and fuzzy constraints & SWE-agent, OpenHands\cite{sweagent2024,openhands_paper_2025} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ---------------------------------------------------------
+\subsection{Inter-Layer Interface Contracts}
+\label{sec:icam-interfaces}
+% ---------------------------------------------------------
+
+The sustained evolution of classical computer architecture hinges on the \textbf{stability of inter-layer interfaces}. The ISA defines the contract between hardware and software: Intel's processors evolved from the 8086 to today's Core Ultra with sweeping microarchitectural changes, yet the x86 ISA maintained backward compatibility throughout. POSIX defines the contract between applications and the operating system: the Linux kernel progressed from 2.0 to 6.x, yet user applications required virtually no modification. The principle of ``stable interfaces, mutable implementations'' allows each layer to be optimized independently.
+
+ICAM similarly defines an interface contract for each pair of adjacent layers. The following subsections specify the operations, invariants, and metrics for each interface.
+
+\subsubsection{L1--L2 Interface: Tensor Operation Contract}
+
+L2 requests tensor operations from L1. In plain terms, this interface resembles an application invoking a GPU driver: the upper layer says ``compute this matrix multiplication,'' and the lower layer executes it efficiently and returns the result.
+
+\begin{itemize}[nosep]
+\item \textbf{Operations.}
+\texttt{forward(batch\_tokens) $\to$ logits}.
+Input a batch of token embedding vectors; receive the corresponding logit probability distributions.
+\item \textbf{Invariants.}
+Compute precision must not fall below the configured minimum (e.g., FP16/BF16).
+\item \textbf{Metrics.}
+FLOPS utilization, memory-bandwidth utilization, TTFT (Time to First Token), and TPOT (Time Per Output Token).
+\end{itemize}
+
+\subsubsection{L2--L3 Interface: KV Block Management Contract}
+
+L3 requests allocation, loading, and eviction of KV blocks from L2. This interface is analogous to an application calling \texttt{malloc}/\texttt{free}: the upper layer says ``I need a block of memory to store KV cache,'' and the lower layer allocates physical space, handles fragmentation, and reclaims capacity when it runs short.
+
+\begin{itemize}[nosep]
+\item \textbf{Operations.}
+\texttt{alloc}, \texttt{load(prefix\_hash)}, \texttt{evict(policy)}.
+Allocate a new KV block, load an existing block by prefix hash, and reclaim inactive blocks according to a replacement policy.
+\item \textbf{Invariants.}
+KV blocks required by the current inference step must not be lost---analogous to the operating-system guarantee that a memory page actively referenced by a process will not be swapped out.
+\item \textbf{Metrics.}
+KV hit rate $H$ (the core parameter in Law~I, Section~\ref{sec:law1}), peak GPU memory usage, and page-replacement count.
+\end{itemize}
+
+\subsubsection{L3--L4 Interface: Context Loading Contract}
+
+L4 requests context loading from L3. This interface resembles an application memory-mapping a file via \texttt{mmap}: the upper layer says ``I need information about X,'' and the lower layer retrieves, compresses, and loads the relevant content from external storage into the context window.
+
+\begin{itemize}[nosep]
+\item \textbf{Operations.}
+\texttt{read(query)}, \texttt{prefetch(hint)}, \texttt{compact}, \texttt{evict}.
+Retrieve context by query, prefetch based on a hint, compress context, and evict inactive context.
+\item \textbf{Invariants.}
+Returned content must carry provenance tracking and freshness annotations---analogous to a file system guaranteeing that reads return the most recent committed version.
+\item \textbf{Metrics.}
+Retrieval recall, context compression ratio, and loading latency.
+\end{itemize}
+
+\subsubsection{L4--L5 Interface: Capability Invocation Contract}
+
+L5 requests tool invocations and memory reads/writes through L4. This interface is analogous to an application issuing system calls to the operating system: the upper layer says ``I need to read/write a file'' (corresponding to memory access) or ``I need network access'' (corresponding to tool invocation), and the lower layer enforces permission checks and audit logging.
+
+\begin{itemize}[nosep]
+\item \textbf{Operations.}
+\texttt{call(tool, args, capability\_token)}, \texttt{query(memory)}.
+Invoke a tool with a capability token; query memory.
+\item \textbf{Invariants.}
+Tool invocations without a valid capability token are rejected (analogous to a process lacking file-open permissions); side-effecting operations are auditable\cite{debenedetti2025camel}.
+\item \textbf{Metrics.}
+Tool-call success rate and permission-denial rate.
+\end{itemize}
+
+\subsubsection{L5--L6 Interface: Task Submission Contract}
+
+L6 submits tasks to L5. This interface resembles a user launching a program from the command line: the upper layer says ``please complete this task,'' and the lower layer handles queuing, execution, monitoring, and result delivery.
+
+\begin{itemize}[nosep]
+\item \textbf{Operations.}
+\texttt{submit(task\_spec)}, \texttt{poll}, \texttt{cancel}.
+Submit a task specification, poll for status, and cancel a running task.
+\item \textbf{Invariants.}
+Task execution produces a traceable audit trail; on failure, side effects are rolled back---analogous to database transaction atomicity.
+\item \textbf{Metrics.}
+Task completion rate and human-takeover rate.
+\end{itemize}
+
+\paragraph{An empirical constraint worth noting.}
+Anthropic's internal research reveals that engineers use AI for approximately 60\% of their work, yet can ``fully delegate'' only 0--20\% of tasks\cite{anthropic2026agenticreport}.
+This \textit{collaboration paradox} implies that the L5--L6 task submission contract cannot be modeled as a binary decision (delegate or not); it must instead reflect a spectrum of \textit{delegation confidence}. The more verifiable a task and the less it depends on organizational context, the higher the delegation confidence.
+This observation connects directly to the dual-plane architecture: the deterministic control plane provides the auditable traces that increase verifiability and, in turn, raise delegation confidence.
+
+% ---------------------------------------------------------
+\subsection{Dual-Plane Cross-Mapping with ICAM}
+\label{sec:dual-plane-icam}
+% ---------------------------------------------------------
+
+Section~\ref{sec:framework} introduced the dual-plane architecture comprising a probabilistic execution plane (the non-deterministic reasoning of LLMs) and a deterministic control plane (auditable, programmatic control). A natural question arises: how do the two planes relate to the six ICAM layers?
+
+The answer is that they are \textbf{orthogonal dimensions}. ICAM decomposes the system \textit{vertically} (from hardware to application), while the dual-plane architecture partitions it \textit{horizontally} (from probabilistic to deterministic). Their intersection forms a $6 \times 2$ matrix.
+
+Table~\ref{tab:dual-plane-icam} presents this cross-mapping.
+
+\begin{table}[t]
+\centering
+\footnotesize
+\caption{Cross-mapping of the dual-plane architecture onto ICAM layers.}
+\label{tab:dual-plane-icam}
+\begin{tabularx}{\textwidth}{p{0.10\textwidth}p{0.40\textwidth}p{0.40\textwidth}}
+\toprule
+ICAM Layer & Probabilistic Execution Plane & Deterministic Control Plane \\
+\midrule
+L1 & Matrix operations, attention computation (probabilistic output) & Precision verification, hardware error detection \\
+L2 & Semantic KV-cache matching, prefix sharing & Cache capacity management, eviction policy \\
+L3 & Semantic retrieval, context compilation, summarization & Memory retention policy, version stamps, state persistence \\
+L4 & Semantic understanding of tool results & Tool schemas, protocol specifications, permission enforcement, auditing \\
+L5 & Agent reasoning and decision-making (probabilistic) & Task scheduling, access control, failure recovery, trace logging \\
+L6 & \multicolumn{2}{c}{Consumer of both planes: users receive intelligent output \textit{and} an auditable trace} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Two structural features emerge from this mapping.
+
+\paragraph{The probabilistic plane is weighted toward the bottom.}
+It primarily spans L1 (physical execution) and L2 (inference serving) and permeates into L3 (semantic retrieval and context compilation). This is unsurprising: the core capabilities of LLMs---language understanding and generation---are concentrated in these layers.
+
+\paragraph{The deterministic plane is weighted toward the top.}
+It primarily covers L5 (orchestration) and the interface-contract portions of L4 (permission enforcement, auditing, capability annotations), extending into the state-management portions of L3 (memory retention policies, version stamps). System-level requirements for safety, reliability, and auditability demand deterministic guarantees.
+
+L4 occupies a distinctive role as a \textit{transition layer}: tool schemas and protocol specifications belong to the deterministic plane (they are formalized interface definitions), while the semantic interpretation of tool results belongs to the probabilistic plane (the LLM must understand natural-language return values). L6 (application layer) is a consumer of both planes: end users simultaneously receive intelligent output from the probabilistic plane and an auditable trace from the deterministic plane.
+
+This cross-mapping resolves an apparent contradiction in the literature. Researchers focused on inference optimization regard the LLM as a compute engine at L1--L2\cite{kwon2023pagedattention,zhou2024efficientinference}; those focused on agent systems see it as an intelligent kernel at L5--L6\cite{openai_codex_overview_2026,anthropic_claudecode_overview_2026}; those focused on context management treat it as a memory processor at L3\cite{memgpt2023,memoryos2025}. These perspectives are not mutually contradictory---they are observing different layers of the same ICAM stack through different planes.
+
+% ---------------------------------------------------------
+\subsection{Design Axioms}
+\label{sec:icam-axioms}
+% ---------------------------------------------------------
+
+Eight decades of classical computer architecture have distilled a set of enduring \textbf{design principles}: the principle of locality guides cache design, layered abstraction guides interface specification, and least privilege guides security architecture. We now transplant these principles into the model-native computing domain and, informed by its distinctive characteristics, propose six design axioms. For each axiom we identify its classical source, its embodiment within ICAM, and its concrete design implication.
+
+\begin{axiom}[Locality Axiom]
+Model-native computation exhibits both \textbf{temporal locality} (recently accessed context fragments are likely to be accessed again) and \textbf{semantic locality} (semantically similar queries access similar context).
+\end{axiom}
+
+\paragraph{Intuition.}
+Just as running programs tend to revisit the same set of memory pages---motivating LRU cache replacement---LLMs in multi-turn conversations tend to re-reference the same context fragments. A user who first asks ``how do Python decorators work?'' will typically follow up with questions on the same topic. This is semantic locality in action.
+
+\paragraph{Classical source.}
+The theoretical foundations of cache design\cite{drepper2007memory}.
+
+\paragraph{ICAM embodiment.}
+KV cache reuse at L2 (identical prefixes share KV cache entries), prefix caching at L2 (multiple requests share the KV cache of a common system prompt), and semantic caching at L3 (semantically similar queries reuse previously generated results).
+
+\paragraph{Design implication.}
+Every ICAM layer should employ locality-aware caching and prefetching. Law~I (Section~\ref{sec:law1}) quantifies this axiom into a computable formula.
+
+\begin{axiom}[Layered Abstraction Axiom]
+Complexity should be managed through layering: each layer depends only on the interface contract of the layer below, never on its implementation details.
+\end{axiom}
+
+\paragraph{Intuition.}
+Just as a user application need not know whether the CPU is RISC or CISC, or whether the cache is 4-way or 8-way set-associative, an agent's orchestration logic need not know which inference engine serves the underlying model.
+
+\paragraph{Classical source.}
+ISA--microarchitecture separation; kernel--user-space separation\cite{hennessy2017quantitative,ostep_2023}.
+
+\paragraph{ICAM embodiment.}
+A model upgrade (a change in L2's implementation) must not break agent logic at L5; a tool-schema revision (an interface adjustment at L4) must not corrupt memory data at L3.
+
+\paragraph{Design implication.}
+Interface contracts between adjacent layers must be defined with sufficient formality to enable independent evolution. Breaking changes at any layer should be detectable through contract-compatibility tests rather than through end-to-end regressions.
+
+\begin{axiom}[Probabilistic Execution Axiom]
+The core execution in model-native computing---the model's forward pass---is probabilistic: identical inputs do not guarantee identical outputs.
+\end{axiom}
+
+\paragraph{Intuition.}
+This is the \textbf{most fundamental difference} between model-native and classical computing. In classical systems, \texttt{2+2} always yields 4; in an LLM, posing the same question twice may produce different answers---this is not a bug but a feature. This inherent non-determinism invalidates traditional testing methodologies: we cannot verify system correctness by replaying an identical input sequence; instead, we must define \textit{semantic equivalence} as the acceptance criterion.
+
+\paragraph{Classical source.}
+No direct classical counterpart. This axiom is unique to model-native computing.
+
+\paragraph{ICAM embodiment.}
+The entire ICAM hierarchy must accommodate probabilistic behavior. Interface contracts at L4--L5 cannot demand fully deterministic tool-call outcomes; they must tolerate semantic-level variation. Failure-recovery mechanisms at L5 cannot rely on exact input replay; they require semantic-level checkpoints.
+
+\paragraph{Design implication.}
+Every interface contract, testing procedure, and reliability mechanism in the ICAM stack must be designed for a world where the primary compute substrate is stochastic. Deterministic verification must be replaced (or supplemented) by statistical quality bounds and semantic acceptance tests.
+
+\begin{axiom}[Virtualization Axiom]
+Limited physical resources should be virtualized to present a larger logical resource, while preserving isolation and protection.
+\end{axiom}
+
+\paragraph{Intuition.}
+Just as a 32-bit operating system uses virtual memory to give each process the illusion of a 4\,GB address space (even when physical RAM is only 1\,GB), a model-native system must give each agent the illusion of an unbounded context window (even when the physical context window is only 128\,K tokens).
+
+\paragraph{Classical source.}
+Virtual memory and process isolation\cite{ostep_2023}.
+
+\paragraph{ICAM embodiment.}
+MemGPT's virtual context management\cite{memgpt2023}; PagedAttention's page-based KV management\cite{kwon2023pagedattention}, which organizes KV cache into ``pages,'' allocates them on demand, and reclaims inactive pages---a design identical in structure to the operating system's virtual memory manager; agent sandboxing\cite{openai_codex_sandbox_2026}, which isolates an agent's execution environment from the host system, much as a process's address space is isolated from other processes.
+
+\paragraph{Design implication.}
+Every bounded resource at every ICAM layer should be wrapped in a virtualization layer that (a)~presents an apparently unbounded interface to the consumer above, and (b)~enforces isolation between concurrent consumers.
+
+\begin{axiom}[Least Privilege Axiom]
+Every execution unit should be granted only the minimal set of permissions required to complete its assigned task.
+\end{axiom}
+
+\paragraph{Intuition.}
+Just as a text editor does not need administrator privileges to edit a file, a code-generation agent should not have the authority to delete the entire repository.
+
+\paragraph{Classical source.}
+Operating-system security principles\cite{ostep_2023}.
+
+\paragraph{ICAM embodiment.}
+CaMeL's capability-security mechanism\cite{debenedetti2025camel}, which assigns fine-grained capability tokens to each agent operation; Codex's OS-level sandbox\cite{openai_codex_security_2026}, which restricts an agent's file-system and network access permissions.
+
+\paragraph{Design implication.}
+The L4--L5 interface must enforce per-operation permission checks via capability tokens (Section~\ref{sec:icam-interfaces}), and every L5 orchestration layer must support configurable permission policies that can be tightened or relaxed without modifying agent logic.
+
+\begin{axiom}[Observability Axiom]
+Every side-effecting operation must produce a traceable, auditable event record.
+\end{axiom}
+
+\paragraph{Intuition.}
+Just as a database writes a Write-Ahead Log (WAL) for every write operation, every tool invocation and file modification made by an agent should be recorded so that the rationale for each action can be reconstructed after the fact.
+
+\paragraph{Classical source.}
+System logging and performance monitoring\cite{linux_cgroup_2026}.
+
+\paragraph{ICAM embodiment.}
+The tracing mechanism in the OpenAI Agents SDK\cite{openai_codex_agentsdk_2026}, which logs each agent decision and tool invocation; the trace-grading methodology in agent-security research\cite{agenticsecurity2025}, which evaluates the safety of an agent's action trajectory.
+
+\paragraph{Design implication.}
+The deterministic control plane must capture a complete, tamper-evident log of all operations that pass through the L4--L5 interface. This log serves dual purposes: it enables post-hoc debugging and compliance auditing, and it provides the delegation-confidence signal (Section~\ref{sec:icam-interfaces}) that determines which tasks can be safely delegated at the L5--L6 boundary.

@@ -1,0 +1,854 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{brown2020gpt3}
+\citation{llama2023}
+\citation{schick2023toolformer}
+\citation{lewis2020rag}
+\citation{yao2023react}
+\citation{openhands_paper_2025}
+\citation{sweagent2024}
+\citation{anthropic2026agenticreport}
+\citation{gholami2024memorywall}
+\citation{kwon2023pagedattention}
+\citation{memgpt2023}
+\citation{orca2022}
+\citation{ironclaw2025}
+\@writefile{toc}{\contentsline {section}{\numberline {1}引言：模型原生计算需要体系结构}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{引言：模型原生计算需要体系结构}{section.1}{}}
+\citation{anthropic2026agenticreport}
+\citation{kwon2023pagedattention}
+\citation{memgpt2023}
+\citation{openai_codex_overview_2026}
+\citation{anthropic_claudecode_overview_2026}
+\citation{openhands_paper_2025}
+\citation{mcp_intro_2026}
+\citation{google_a2a_2025}
+\citation{agentprotocols2025}
+\citation{karpathy2023llmos}
+\citation{mei2024aios}
+\citation{memgpt2023}
+\citation{mi2025llmagentscomputersystems}
+\citation{ge2023llmos}
+\citation{holt2024l2mac}
+\citation{arbiteros2025}
+\citation{agentos2025}
+\citation{memos2025}
+\citation{contextengineer_survey2025}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}一个直接的类比}{2}{subsection.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}从直觉到问题}{2}{subsection.1.2}\protected@file@percent }
+\citation{anthropic2026agenticreport}
+\citation{hennessy2017quantitative}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces 计算机体系结构与模型原生计算系统的类比映射总览}}{3}{figure.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig_analogy_map}{{1}{3}{计算机体系结构与模型原生计算系统的类比映射总览}{figure.caption.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}本文的贡献}{3}{subsection.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}背景：经典计算栈与模型原生系统栈}{3}{section.2}\protected@file@percent }
+\newlabel{sec:background}{{2}{3}{背景：经典计算栈与模型原生系统栈}{section.2}{}}
+\citation{intel_sdm_2026}
+\citation{riscv_spec_2026}
+\citation{drepper2007memory}
+\citation{ostep_2023}
+\citation{linux_cfs_2026}
+\citation{ostep_2023}
+\citation{xv6_2022}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}经典计算机体系结构的分层逻辑}{4}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.1}指令集架构（ISA）：软硬件之间的契约}{4}{subsubsection.2.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.2}微架构：同一契约下的不同实现}{4}{subsubsection.2.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.3}缓存层次：利用局部性加速数据访问}{4}{subsubsection.2.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.4}虚拟内存：有限的物理资源，无限的地址幻觉}{4}{subsubsection.2.1.4}\protected@file@percent }
+\citation{cap2002}
+\citation{raft2014}
+\citation{spanner2012}
+\citation{cap2002}
+\citation{malekar2024amdahlllm}
+\citation{hennessy2017quantitative}
+\citation{yuan2024llminference}
+\citation{drepper2007memory}
+\citation{vaswani2017attention}
+\citation{su2021roformer}
+\citation{switch2022}
+\citation{mixtral2024}
+\citation{yarn2024}
+\citation{longrope2024}
+\citation{gu2024mamba}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.5}操作系统：调度、保护与资源管理}{5}{subsubsection.2.1.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.6}分布式系统：从单节点到多节点的扩展}{5}{subsubsection.2.1.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.7}可计算的设计原则}{5}{subsubsection.2.1.7}\protected@file@percent }
+\newlabel{eq:amdahl}{{1}{5}{可计算的设计原则}{equation.2.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}大模型系统的分层雏形}{5}{subsection.2.2}\protected@file@percent }
+\citation{dao2022flashattention}
+\citation{dao2023flashattention2}
+\citation{kwon2023pagedattention}
+\citation{orca2022}
+\citation{zhong2024distserve}
+\citation{agrawal2024sarathi}
+\citation{gemini2024}
+\citation{yarn2024}
+\citation{lewis2020rag}
+\citation{memgpt2023}
+\citation{longmem2023}
+\citation{park2023generativeagents}
+\citation{longmemeval2024}
+\citation{letta_stateful_2026}
+\citation{memos2025}
+\citation{memoryos2025}
+\citation{contextengineer_survey2025}
+\citation{yao2023react}
+\citation{schick2023toolformer}
+\citation{sweagent2024}
+\citation{openhands_paper_2025}
+\citation{openai_codex_overview_2026}
+\citation{anthropic_claudecode_overview_2026}
+\citation{openai_codex_subagents_2026}
+\citation{anthropic_claudecode_subagents_2026}
+\citation{openai_codex_sandbox_2026}
+\citation{anthropic_claudecode_sandbox_2026}
+\citation{openai_codex_approvals_2026}
+\citation{anthropic_claudecode_security_2026}
+\citation{wu2023autogen}
+\citation{metagpt2023}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}模型层：推理核心的演进}{6}{subsubsection.2.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}推理层：系统化的服务优化}{6}{subsubsection.2.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.3}记忆层：有限窗口与持久状态的协同}{6}{subsubsection.2.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.4}Agent层：从单轮推理到复杂运行时}{6}{subsubsection.2.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}缺少统一的系统语言}{6}{subsection.2.3}\protected@file@percent }
+\citation{ge2023llmos}
+\citation{karpathy2023llmos}
+\citation{mei2024aios}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces 经典计算栈与模型原生计算栈的分层对比}}{7}{figure.caption.2}\protected@file@percent }
+\newlabel{fig_dual_stack}{{2}{7}{经典计算栈与模型原生计算栈的分层对比}{figure.caption.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}相关工作}{7}{section.3}\protected@file@percent }
+\newlabel{sec:related}{{3}{7}{相关工作}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}LLM-as-OS / Agent Kernel：将大语言模型视为操作系统内核}{7}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:related-llmos}{{3.1}{7}{LLM-as-OS / Agent Kernel：将大语言模型视为操作系统内核}{subsection.3.1}{}}
+\citation{agentos2025}
+\citation{ufo2_2025}
+\citation{aura2025}
+\citation{gemini2024}
+\citation{memgpt2023}
+\citation{lewis2020rag}
+\citation{memos2025}
+\citation{memoryos2025}
+\citation{hiagent2024}
+\citation{amem2025}
+\citation{longmemeval2024}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}记忆层级与虚拟上下文管理}{8}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:related-memory}{{3.2}{8}{记忆层级与虚拟上下文管理}{subsection.3.2}{}}
+\citation{yao2023react}
+\citation{schick2023toolformer}
+\citation{openai_codex_overview_2026}
+\citation{openai_codex_sandbox_2026}
+\citation{openai_codex_subagents_2026}
+\citation{openai_codex_agents_md_2026}
+\citation{openai_codex_skills_2026}
+\citation{anthropic_claudecode_overview_2026}
+\citation{dive_claudecode_2026}
+\citation{anthropic_claudecode_subagents_2026}
+\citation{anthropic_claudecode_skills_2026}
+\citation{anthropic_claudecode_memory_2026}
+\citation{anthropic2026agenticreport}
+\citation{openhands_paper_2025}
+\citation{swebench2023}
+\citation{sweagent2024}
+\citation{hugginggpt2023}
+\citation{patil2024gorilla}
+\citation{mcp_intro_2026}
+\citation{anthropic_claudecode_mcp_2026}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Agent框架与运行时}{9}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:related-agent-framework}{{3.3}{9}{Agent框架与运行时}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}工具调用与I/O协议}{9}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:related-io}{{3.4}{9}{工具调用与I/O协议}{subsection.3.4}{}}
+\citation{google_a2a_2025}
+\citation{wu2023autogen}
+\citation{metagpt2023}
+\citation{anthropic2026agenticreport}
+\citation{wu2023autogen}
+\citation{metagpt2023}
+\citation{ioa2024}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}多Agent协作与分布式视角}{10}{subsection.3.5}\protected@file@percent }
+\newlabel{sec:related-multiagent}{{3.5}{10}{多Agent协作与分布式视角}{subsection.3.5}{}}
+\citation{sumers2024coala}
+\citation{holt2024l2mac}
+\citation{mi2025llmagentscomputersystems}
+\citation{arbiteros2025}
+\citation{debenedetti2025camel}
+\citation{ironclaw2025}
+\citation{ge2023llmos}
+\citation{mei2024aios}
+\citation{arbiteros2025}
+\citation{agentos2025}
+\citation{holt2024l2mac}
+\citation{mi2025llmagentscomputersystems}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}认知架构与安全治理}{11}{subsection.3.6}\protected@file@percent }
+\newlabel{sec:related-cognition-security}{{3.6}{11}{认知架构与安全治理}{subsection.3.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}现有工作的共同边界与未解决问题}{11}{subsection.3.7}\protected@file@percent }
+\newlabel{sec:related-gap}{{3.7}{11}{现有工作的共同边界与未解决问题}{subsection.3.7}{}}
+\citation{arbiteros2025}
+\citation{debenedetti2025camel}
+\citation{ironclaw2025}
+\citation{anthropic2026agenticreport}
+\citation{drepper2007memory}
+\citation{kwon2023pagedattention}
+\citation{kwon2023pagedattention}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces 现有工作对各系统层次的覆盖情况}}{12}{figure.caption.3}\protected@file@percent }
+\newlabel{fig_coverage_map}{{3}{12}{现有工作对各系统层次的覆盖情况}{figure.caption.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}类比框架：把智能系统看作一台分层计算机}{12}{section.4}\protected@file@percent }
+\newlabel{sec:framework}{{4}{12}{类比框架：把智能系统看作一台分层计算机}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}类比的基本原则}{12}{subsection.4.1}\protected@file@percent }
+\citation{riscv_spec_2026}
+\citation{mcp_intro_2026}
+\citation{vaswani2017attention}
+\citation{brown2020gpt3}
+\citation{dao2022flashattention}
+\citation{leviathan2023speculative}
+\citation{kwon2023pagedattention}
+\citation{vllm_prefix_2026}
+\citation{memgpt2023}
+\citation{linux_cgroup_2026}
+\citation{openai_codex_sandbox_2026}
+\citation{mcp_intro_2026}
+\citation{lewis2020rag}
+\citation{openai_codex_subagents_2026}
+\citation{ge2023llmos}
+\citation{mei2024aios}
+\citation{agentos2025}
+\citation{arbiteros2025}
+\citation{anthropic_claudecode_security_2026}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}隐喻冲突与双平面架构}{13}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}概率执行平面（Probabilistic Execution Plane）}{13}{subsubsection.4.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.2}确定性控制平面（Deterministic Control Plane）}{13}{subsubsection.4.2.2}\protected@file@percent }
+\citation{openai_codex_approvals_2026}
+\citation{anthropic_claudecode_security_2026}
+\citation{debenedetti2025camel}
+\citation{praetorian2025deterministic}
+\citation{towardsai2025deterministicshell}
+\citation{blueprintfirst2025}
+\citation{anthropic2026agenticreport}
+\citation{ostep_2023}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces 双平面架构：概率执行平面（蓝，L1--L3）与确定性控制平面（橙，L4--L5）的分离}}{14}{figure.caption.5}\protected@file@percent }
+\newlabel{fig_dual_plane}{{4}{14}{双平面架构：概率执行平面（蓝，L1--L3）与确定性控制平面（橙，L4--L5）的分离}{figure.caption.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.3}为什么需要分开？}{14}{subsubsection.4.2.3}\protected@file@percent }
+\citation{riscv_spec_2026}
+\citation{vaswani2017attention}
+\citation{brown2020gpt3}
+\citation{llama2023}
+\citation{openai_codex_agents_md_2026}
+\citation{openai_codex_skills_2026}
+\citation{anthropic_claudecode_memory_2026}
+\citation{sglang2024}
+\citation{sglang_docs_2026}
+\citation{dao2022flashattention}
+\citation{leviathan2023speculative}
+\@writefile{toc}{\contentsline {section}{\numberline {5}关键组件详析}{15}{section.5}\protected@file@percent }
+\newlabel{sec:components}{{5}{15}{关键组件详析}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}基础模型：概率式模型计算核}{15}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:model}{{5.1}{15}{基础模型：概率式模型计算核}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.1}经典计算机中的CPU}{15}{subsubsection.5.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.2}大模型系统中的对应物}{15}{subsubsection.5.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.3}为什么相似}{15}{subsubsection.5.1.3}\protected@file@percent }
+\citation{mi2025llmagentscomputersystems}
+\citation{drepper2007memory}
+\citation{drepper2007memory}
+\citation{kwon2023pagedattention}
+\citation{vllm_prefix_2026}
+\citation{sglang_docs_2026}
+\citation{gim2024promptcache}
+\citation{kwon2023pagedattention}
+\citation{h2o2023}
+\citation{xiao2024streamingllm}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.4}本质差异}{16}{subsubsection.5.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}KV缓存：智能系统的缓存层次}{16}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:kv}{{5.2}{16}{KV缓存：智能系统的缓存层次}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}经典计算机中的缓存层次}{16}{subsubsection.5.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.2}大模型系统中的对应物}{16}{subsubsection.5.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.3}为什么相似}{16}{subsubsection.5.2.3}\protected@file@percent }
+\citation{gholami2024memorywall}
+\citation{yuan2024llminference}
+\citation{likvcache2024survey}
+\citation{hooper2024kvquant}
+\citation{liu2024kivi}
+\citation{lpc2025}
+\citation{multilevelcache2025}
+\citation{ostep_2023}
+\citation{gemini2024}
+\citation{liu2024ringattention}
+\citation{su2021roformer}
+\citation{yarn2024}
+\citation{longrope2024}
+\citation{ruler2024}
+\citation{longbenchv2_2024}
+\citation{loft2024}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.4}本质差异}{17}{subsubsection.5.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}上下文管理：语义版虚拟内存}{17}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:memory}{{5.3}{17}{上下文管理：语义版虚拟内存}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1}经典计算机中的虚拟内存}{17}{subsubsection.5.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.2}大模型系统中的对应物}{17}{subsubsection.5.3.2}\protected@file@percent }
+\citation{memgpt2023}
+\citation{longmem2023}
+\citation{lewis2020rag}
+\citation{memoryos2025}
+\citation{memos2025}
+\citation{hiagent2024}
+\citation{amem2025}
+\citation{contextcompiler2025}
+\citation{jetbrains2025context}
+\citation{ostep_2023}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.3}为什么相似}{18}{subsubsection.5.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.4}本质差异}{18}{subsubsection.5.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Agent运行时：智能操作系统}{18}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:agent}{{5.4}{18}{Agent运行时：智能操作系统}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.1}经典计算机中的操作系统}{18}{subsubsection.5.4.1}\protected@file@percent }
+\citation{ge2023llmos}
+\citation{mei2024aios}
+\citation{mi2025llmagentscomputersystems}
+\citation{karpathy2023llmos}
+\citation{anthropic2026agenticreport}
+\citation{openai_codex_overview_2026}
+\citation{anthropic_claudecode_overview_2026}
+\citation{ostep_2023}
+\citation{openai_codex_sandbox_2026}
+\citation{anthropic_claudecode_sandbox_2026}
+\citation{mcp_intro_2026}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.2}大模型系统中的对应物}{19}{subsubsection.5.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.3}为什么相似}{19}{subsubsection.5.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.4}本质差异}{19}{subsubsection.5.4.4}\protected@file@percent }
+\citation{wu2023autogen}
+\citation{mcp_intro_2026}
+\citation{debenedetti2025camel}
+\citation{openai_codex_approvals_2026}
+\citation{debenedetti2025camel}
+\citation{ironclaw2025}
+\citation{agenticsecurity2025}
+\citation{yao2023react}
+\citation{schick2023toolformer}
+\citation{hugginggpt2023}
+\citation{patil2024gorilla}
+\citation{mcp_intro_2026}
+\citation{google_a2a_2025}
+\citation{agentprotocols2025}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}工具总线与Agent互联}{20}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:io}{{5.5}{20}{工具总线与Agent互联}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.1}经典计算机中的I/O系统}{20}{subsubsection.5.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.2}大模型系统中的对应物}{20}{subsubsection.5.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.3}为什么相似}{20}{subsubsection.5.5.3}\protected@file@percent }
+\citation{hennessy2017quantitative}
+\citation{wu2023autogen}
+\citation{metagpt2023}
+\citation{ioa2024}
+\citation{wu2023autogen}
+\citation{anthropic2026agenticreport}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.4}本质差异}{21}{subsubsection.5.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}多Agent协作：语义版分布式系统}{21}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:distributed}{{5.6}{21}{多Agent协作：语义版分布式系统}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.1}经典计算机中的分布式系统}{21}{subsubsection.5.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.2}大模型系统中的对应物}{21}{subsubsection.5.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.3}为什么相似}{21}{subsubsection.5.6.3}\protected@file@percent }
+\citation{raft2014}
+\citation{cap2002}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces 面向未来模型原生计算的分层架构示意图。自上而下：应用层、Agent/OS层、模型核心与KV缓存层、内存层、I/O层、分布式底座。旁路箭头表示确定性控制平面直接管理内存层和I/O层}}{22}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:arch}{{5}{22}{面向未来模型原生计算的分层架构示意图。自上而下：应用层、Agent/OS层、模型核心与KV缓存层、内存层、I/O层、分布式底座。旁路箭头表示确定性控制平面直接管理内存层和I/O层}{figure.caption.6}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.4}本质差异}{22}{subsubsection.5.6.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}智能计算体系结构模型：ICAM}{22}{section.6}\protected@file@percent }
+\newlabel{sec:icam}{{6}{22}{智能计算体系结构模型：ICAM}{section.6}{}}
+\citation{kwon2023pagedattention}
+\citation{sglang2024}
+\citation{memgpt2023}
+\citation{memoryos2025}
+\citation{mcp_intro_2026}
+\citation{agentprotocols2025}
+\citation{openai_codex_overview_2026}
+\citation{openai_codex_subagents_2026}
+\citation{anthropic_claudecode_overview_2026}
+\citation{anthropic_claudecode_skills_2026}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces 模型原生计算请求的交互流程图。菱形为确定性控制平面决策，矩形交替包含概率执行与确定性控制}}{23}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:flow}{{6}{23}{模型原生计算请求的交互流程图。菱形为确定性控制平面决策，矩形交替包含概率执行与确定性控制}{figure.caption.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}ICAM六层定义}{23}{subsection.6.1}\protected@file@percent }
+\newlabel{sec:icam-layers}{{6.1}{23}{ICAM六层定义}{subsection.6.1}{}}
+\citation{sweagent2024}
+\citation{openhands_paper_2025}
+\citation{anthropic2026agenticreport}
+\citation{wolters2024computeinmemory}
+\citation{kwon2023pagedattention}
+\citation{sglang2024}
+\citation{memgpt2023}
+\citation{memoryos2025}
+\citation{mcp_intro_2026}
+\citation{agentprotocols2025}
+\citation{openai_codex_overview_2026}
+\citation{anthropic_claudecode_overview_2026}
+\citation{sweagent2024}
+\citation{openhands_paper_2025}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}层间接口契约}{24}{subsection.6.2}\protected@file@percent }
+\newlabel{sec:icam-interfaces}{{6.2}{24}{层间接口契约}{subsection.6.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.1}L1--L2接口：张量运算契约}{24}{subsubsection.6.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.2}L2--L3接口：KV块管理契约}{24}{subsubsection.6.2.2}\protected@file@percent }
+\citation{debenedetti2025camel}
+\citation{anthropic2026agenticreport}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.3}L3--L4接口：上下文装载契约}{25}{subsubsection.6.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.4}L4--L5接口：能力调用契约}{25}{subsubsection.6.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.5}L5--L6接口：任务提交契约}{25}{subsubsection.6.2.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}双平面与ICAM的交叉映射}{25}{subsection.6.3}\protected@file@percent }
+\newlabel{sec:dual-plane-icam}{{6.3}{25}{双平面与ICAM的交叉映射}{subsection.6.3}{}}
+\citation{kwon2023pagedattention}
+\citation{zhou2024efficientinference}
+\citation{openai_codex_overview_2026}
+\citation{anthropic_claudecode_overview_2026}
+\citation{memgpt2023}
+\citation{memoryos2025}
+\citation{drepper2007memory}
+\citation{hennessy2017quantitative}
+\citation{ostep_2023}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}设计公理体系}{26}{subsection.6.4}\protected@file@percent }
+\newlabel{sec:icam-axioms}{{6.4}{26}{设计公理体系}{subsection.6.4}{}}
+\citation{ostep_2023}
+\citation{memgpt2023}
+\citation{kwon2023pagedattention}
+\citation{openai_codex_sandbox_2026}
+\citation{ostep_2023}
+\citation{debenedetti2025camel}
+\citation{openai_codex_security_2026}
+\citation{linux_cgroup_2026}
+\citation{openai_codex_agentsdk_2026}
+\citation{agenticsecurity2025}
+\citation{hennessy2017quantitative}
+\citation{hennessy2017quantitative}
+\@writefile{toc}{\contentsline {section}{\numberline {7}量化定律}{28}{section.7}\protected@file@percent }
+\newlabel{sec:laws}{{7}{28}{量化定律}{section.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}定律I：语义局部性定律}{28}{subsection.7.1}\protected@file@percent }
+\newlabel{sec:law1}{{7.1}{28}{定律I：语义局部性定律}{subsection.7.1}{}}
+\newlabel{eq:locality}{{2}{28}{语义局部性定律}{equation.7.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.1}参数的直观含义}{28}{subsubsection.7.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.2}完整推导}{28}{subsubsection.7.1.2}\protected@file@percent }
+\citation{gim2024promptcache}
+\citation{kwon2023pagedattention}
+\citation{hooper2024kvquant}
+\citation{kwon2023pagedattention}
+\citation{gim2024promptcache}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.3}极限行为与直觉}{29}{subsubsection.7.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.4}数值示例}{29}{subsubsection.7.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.5}与Amdahl定律的对应}{29}{subsubsection.7.1.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.6}实证验证}{29}{subsubsection.7.1.6}\protected@file@percent }
+\citation{liu2023lostmiddle}
+\citation{ruler2024}
+\citation{longbenchv2_2024}
+\citation{loft2024}
+\citation{ruler2024}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}定律II：上下文预算定律}{30}{subsection.7.2}\protected@file@percent }
+\newlabel{sec:law2}{{7.2}{30}{定律II：上下文预算定律}{subsection.7.2}{}}
+\newlabel{eq:context}{{8}{30}{上下文预算定律}{equation.7.8}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2.1}参数的直观含义}{30}{subsubsection.7.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2.2}为什么$\beta (L)$会衰减——"中间丢失"现象}{30}{subsubsection.7.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2.3}为什么使用指数衰减模型}{30}{subsubsection.7.2.3}\protected@file@percent }
+\citation{denning1968thrashing}
+\citation{denning1968thrashing}
+\citation{denning2020workingset}
+\citation{memgpt2023}
+\citation{memoryos2025}
+\citation{ruler2024}
+\citation{longbenchv2_2024}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2.4}与经典"工作集理论"的对应}{31}{subsubsection.7.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2.5}设计含义}{31}{subsubsection.7.2.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2.6}实证验证}{31}{subsubsection.7.2.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}定律III：Agent加速比定律}{31}{subsection.7.3}\protected@file@percent }
+\newlabel{sec:law3}{{7.3}{31}{定律III：Agent加速比定律}{subsection.7.3}{}}
+\newlabel{eq:agent}{{10}{31}{Agent加速比定律}{equation.7.10}{}}
+\citation{openai_codex_subagents_2026}
+\citation{anthropic_claudecode_subagents_2026}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.1}参数的直观含义}{32}{subsubsection.7.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.2}完整推导}{32}{subsubsection.7.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.3}极限行为与直觉}{32}{subsubsection.7.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.4}数值示例}{32}{subsubsection.7.3.4}\protected@file@percent }
+\citation{anthropic2026agenticreport}
+\citation{agentprotocols2025}
+\citation{wu2023autogen}
+\citation{gta2_2025}
+\citation{langmodelteams2026}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.5}与经典Amdahl定律的对比}{33}{subsubsection.7.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.6}设计含义}{33}{subsubsection.7.3.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.7}实证验证}{33}{subsubsection.7.3.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}三条定律的统一视角}{33}{subsection.7.4}\protected@file@percent }
+\newlabel{sec:laws-summary}{{7.4}{33}{三条定律的统一视角}{subsection.7.4}{}}
+\citation{kwon2023pagedattention}
+\citation{gim2024promptcache}
+\citation{ruler2024}
+\citation{longbenchv2_2024}
+\citation{wu2023autogen}
+\citation{gta2_2025}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces 三条量化定律的特征曲线。（a）语义局部性定律：$S=1/((1-H)+H/\alpha )$。（b）上下文预算定律：$W_{\mathrm  {eff}}=C\cdot \beta _0 e^{-\lambda C_0/C}$。（c）Agent加速比定律：$S=1/((1-F)+F/(NE))$，取$F=0.8$。阴影区域为典型工作范围。}}{34}{figure.caption.10}\protected@file@percent }
+\newlabel{fig_law_curves}{{7}{34}{三条量化定律的特征曲线。（a）语义局部性定律：$S=1/((1-H)+H/\alpha )$。（b）上下文预算定律：$W_{\mathrm {eff}}=C\cdot \beta _0 e^{-\lambda C_0/C}$。（c）Agent加速比定律：$S=1/((1-F)+F/(NE))$，取$F=0.8$。阴影区域为典型工作范围。}{figure.caption.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Agent框架的五代演进时间线（2023--2026）}}{34}{figure.caption.12}\protected@file@percent }
+\newlabel{fig_agent_timeline}{{8}{34}{Agent框架的五代演进时间线（2023--2026）}{figure.caption.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Agent框架演进：从ReAct到智能操作系统}{34}{section.8}\protected@file@percent }
+\newlabel{sec:agentevolution}{{8}{34}{Agent框架演进：从ReAct到智能操作系统}{section.8}{}}
+\citation{yao2023react}
+\citation{schick2023toolformer}
+\citation{autogpt_repo_2026}
+\citation{wang2023voyager}
+\citation{mei2024aios}
+\citation{openai_codex_agentsdk_2026}
+\citation{wu2023autogen}
+\citation{openai_codex_overview_2026}
+\citation{openai_codex_subagents_2026}
+\citation{openai_codex_skills_2026}
+\citation{openai_codex_agents_md_2026}
+\citation{anthropic_claudecode_overview_2026}
+\citation{mcp_intro_2026}
+\citation{anthropic_claudecode_security_2026}
+\citation{anthropic_claudecode_memory_2026}
+\citation{openhands_paper_2025}
+\citation{osworld2024}
+\citation{devin2024cognition}
+\citation{linux_cfs_2026}
+\citation{ostep_2023}
+\citation{arbiteros2025}
+\citation{agentos2025}
+\citation{ufo2_2025}
+\citation{aura2025}
+\citation{debenedetti2025camel}
+\citation{ironclaw2025}
+\citation{owasp_agentic2026}
+\citation{ostep_2023}
+\citation{anthropic2026agenticreport}
+\citation{gaia2023}
+\citation{taubench2024}
+\citation{swebench2023}
+\citation{gholami2024memorywall}
+\citation{gholami2024memorywall}
+\newlabel{eq:agent_law_review}{{14}{38}{从定律III看五代演进}{equation.8.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}设计挑战：性能、状态、一致性与安全}{38}{section.9}\protected@file@percent }
+\newlabel{sec:challenges}{{9}{38}{设计挑战：性能、状态、一致性与安全}{section.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.1}延迟、吞吐与成本的三元约束}{38}{subsection.9.1}\protected@file@percent }
+\citation{orca2022}
+\citation{zhong2024distserve}
+\citation{agrawal2024sarathi}
+\citation{kwon2023pagedattention}
+\citation{vllm_docs_2026}
+\citation{sglang2024}
+\citation{sglang_docs_2026}
+\citation{tgi_docs_2026}
+\citation{tensorrtllm_docs_2026}
+\citation{prabhu2024vattention}
+\citation{hennessy2017quantitative}
+\citation{ostep_2023}
+\citation{longmemeval2024}
+\citation{memgpt2023}
+\citation{memoryos2025}
+\citation{amem2025}
+\citation{letta_stateful_2026}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.2}状态管理与跨会话一致性}{39}{subsection.9.2}\protected@file@percent }
+\citation{raft2014}
+\citation{spanner2012}
+\citation{cap2002}
+\citation{raft2014}
+\citation{spanner2012}
+\citation{anthropic2026agenticreport}
+\citation{spanner2012}
+\citation{raft2014}
+\citation{cap2002}
+\citation{ostep_2023}
+\citation{mcp_intro_2026}
+\citation{agentprotocols2025}
+\citation{google_a2a_2025}
+\citation{openai_codex_agents_md_2026}
+\citation{openai_codex_skills_2026}
+\citation{anthropic_claudecode_memory_2026}
+\citation{mcp_intro_2026}
+\citation{google_a2a_2025}
+\citation{google_a2a_2025}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3}接口漂移与版本兼容}{40}{subsection.9.3}\protected@file@percent }
+\citation{debenedetti2025camel}
+\citation{owasp_agentic2026}
+\citation{aura2025}
+\citation{openai_codex_sandbox_2026}
+\citation{anthropic_claudecode_security_2026}
+\citation{aura2025}
+\citation{debenedetti2025camel}
+\citation{openai_codex_approvals_2026}
+\citation{openai_codex_agentsdk_2026}
+\citation{ironclaw2025}
+\citation{agenticsecurity2025}
+\citation{ostep_2023}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.4}安全、隐私与最小权限}{41}{subsection.9.4}\protected@file@percent }
+\citation{anthropic2026agenticreport}
+\citation{anthropic2026agenticreport}
+\citation{arbiteros2025}
+\citation{aura2025}
+\citation{ostep_2023}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces 基于ICAM分层的安全防护架构}}{42}{figure.caption.19}\protected@file@percent }
+\newlabel{fig_security_layers}{{9}{42}{基于ICAM分层的安全防护架构}{figure.caption.19}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.5}治理层：体系结构的第一性重点}{42}{subsection.9.5}\protected@file@percent }
+\citation{mcp_intro_2026}
+\citation{debenedetti2025camel}
+\citation{openai_codex_approvals_2026}
+\citation{anthropic_claudecode_security_2026}
+\citation{ostep_2023}
+\citation{arbiteros2025}
+\citation{ironclaw2025}
+\citation{kwon2023pagedattention}
+\citation{vllm_docs_2026}
+\citation{vllm_prefix_2026}
+\citation{sglang2024}
+\citation{sglang_docs_2026}
+\citation{sglang2024}
+\@writefile{toc}{\contentsline {section}{\numberline {10}开源实现与工程实践}{43}{section.10}\protected@file@percent }
+\newlabel{sec:implementation}{{10}{43}{开源实现与工程实践}{section.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.1}服务层（L2）：推理服务与KV缓存管理}{43}{subsection.10.1}\protected@file@percent }
+\citation{tgi_docs_2026}
+\citation{tensorrtllm_docs_2026}
+\citation{openhands_paper_2025}
+\citation{sweagent2024}
+\citation{autogpt_platform_2026}
+\citation{letta_stateful_2026}
+\citation{arbiteros2025}
+\citation{agentos2025}
+\citation{ufo2_2025}
+\citation{aura2025}
+\citation{openai_codex_overview_2026}
+\citation{openai_codex_subagents_2026}
+\citation{openai_codex_skills_2026}
+\citation{openai_codex_sandbox_2026}
+\citation{openai_codex_approvals_2026}
+\citation{anthropic_claudecode_overview_2026}
+\citation{anthropic_claudecode_security_2026}
+\citation{mcp_intro_2026}
+\citation{mcpadoption2026}
+\citation{google_a2a_2025}
+\citation{agentprotocols2025}
+\citation{a2alinux2025}
+\citation{openai_codex_approvals_2026}
+\citation{anthropic_claudecode_security_2026}
+\citation{memgpt2023}
+\citation{anthropic2026agenticreport}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.2}Agent层（L5）：Agent运行时与操作系统}{44}{subsection.10.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.3}协议层（L4）：标准化工具连接与Agent互联}{44}{subsection.10.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.4}五条实现建议}{44}{subsection.10.4}\protected@file@percent }
+\citation{mcp_intro_2026}
+\citation{agentprotocols2025}
+\citation{linux_cgroup_2026}
+\citation{raft2014}
+\citation{spanner2012}
+\citation{anthropic2026agenticreport}
+\gdef \LT@i {\LT@entry 
+    {1}{39.17696pt}\LT@entry 
+    {1}{39.17696pt}\LT@entry 
+    {1}{75.41522pt}\LT@entry 
+    {1}{138.83044pt}\LT@entry 
+    {1}{102.5922pt}\LT@entry 
+    {1}{84.47652pt}}
+\@writefile{toc}{\contentsline {section}{\numberline {11}研究路线图}{45}{section.11}\protected@file@percent }
+\newlabel{sec:roadmap}{{11}{45}{研究路线图}{section.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces 基于ICAM的研究议题清单}}{45}{table.5}\protected@file@percent }
+\newlabel{tab:roadmap}{{5}{45}{基于ICAM的研究议题清单}{table.5}{}}
+\citation{gholami2024memorywall}
+\citation{h2o2023}
+\citation{hooper2024kvquant}
+\citation{liu2024kivi}
+\citation{kwon2023pagedattention}
+\citation{sglang2024}
+\citation{memgpt2023}
+\citation{letta_stateful_2026}
+\citation{hiagent2024}
+\citation{mcp_intro_2026}
+\citation{agentprotocols2025}
+\citation{swebench2023}
+\citation{sweagent2024}
+\citation{raft2014}
+\citation{cap2002}
+\citation{leviathan2023speculative}
+\citation{switch2022}
+\citation{mixtral2024}
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.1}短期议题}{46}{subsection.11.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.2}中期议题}{46}{subsection.11.2}\protected@file@percent }
+\citation{debenedetti2025camel}
+\citation{ironclaw2025}
+\citation{agenticsecurity2025}
+\citation{amem2025}
+\citation{agentmemorysurvey2025}
+\citation{spanner2012}
+\citation{raft2014}
+\citation{arbiteros2025}
+\citation{ironclaw2025}
+\citation{openai_codex_approvals_2026}
+\citation{openai_codex_sandbox_2026}
+\citation{anthropic_claudecode_security_2026}
+\citation{anthropic_claudecode_sandbox_2026}
+\citation{debenedetti2025camel}
+\citation{ironclaw2025}
+\citation{openai_codex_agents_md_2026}
+\citation{anthropic_claudecode_security_2026}
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.3}长期议题}{47}{subsection.11.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {12}伦理、安全与可解释性}{47}{section.12}\protected@file@percent }
+\newlabel{sec:ethics}{{12}{47}{伦理、安全与可解释性}{section.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.1}权限与隔离（对应L5编排层）}{47}{subsection.12.1}\protected@file@percent }
+\citation{debenedetti2025camel}
+\citation{openai_codex_sandbox_2026}
+\citation{euaiact2026}
+\citation{gdpr_righttoforget}
+\citation{longmemeval2024}
+\citation{navaie2025privacy}
+\citation{linux_cgroup_2026}
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.2}隐私与记忆治理（对应L3记忆层）}{48}{subsection.12.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.3}可解释性：从"解释模型"到"解释系统"（对应全栈）}{48}{subsection.12.3}\protected@file@percent }
+\citation{mei2024aios}
+\citation{memgpt2023}
+\citation{mcp_intro_2026}
+\citation{kwon2023pagedattention}
+\citation{arbiteros2025}
+\citation{mei2024aios}
+\citation{agentos2025}
+\citation{ge2023llmos}
+\citation{holt2024l2mac}
+\citation{mi2025llmagentscomputersystems}
+\citation{memgpt2023}
+\citation{memos2025}
+\citation{anthropic2026agenticreport}
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.4}公平性与资源分配（对应L2推理服务层与L5编排层）}{49}{subsection.12.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {13}结论与展望}{49}{section.13}\protected@file@percent }
+\newlabel{sec:conclusion}{{13}{49}{结论与展望}{section.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {13.1}核心贡献}{49}{subsection.13.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {13.2}定位与边界}{49}{subsection.13.2}\protected@file@percent }
+\citation{anthropic2026agenticreport}
+\bibstyle{plainurl}
+\bibdata{refs}
+\bibcite{amem2025}{1}
+\bibcite{agentprotocols2025}{2}
+\bibcite{agrawal2024sarathi}{3}
+\bibcite{anthropic2026agenticreport}{4}
+\bibcite{anthropic_claudecode_sandbox_2026}{5}
+\bibcite{anthropic_claudecode_mcp_2026}{6}
+\bibcite{anthropic_claudecode_subagents_2026}{7}
+\bibcite{anthropic_claudecode_skills_2026}{8}
+\bibcite{anthropic_claudecode_memory_2026}{9}
+\bibcite{anthropic_claudecode_overview_2026}{10}
+\@writefile{toc}{\contentsline {subsection}{\numberline {13.3}未来方向}{50}{subsection.13.3}\protected@file@percent }
+\bibcite{anthropic_claudecode_security_2026}{11}
+\bibcite{ostep_2023}{12}
+\bibcite{autogpt_platform_2026}{13}
+\bibcite{longbenchv2_2024}{14}
+\bibcite{blueprintfirst2025}{15}
+\bibcite{brown2020gpt3}{16}
+\bibcite{ioa2024}{17}
+\bibcite{agenticsecurity2025}{18}
+\bibcite{gdpr_righttoforget}{19}
+\bibcite{devin2024cognition}{20}
+\bibcite{spanner2012}{21}
+\bibcite{xv6_2022}{22}
+\bibcite{dao2023flashattention2}{23}
+\bibcite{dao2022flashattention}{24}
+\bibcite{debenedetti2025camel}{25}
+\bibcite{denning1968thrashing}{26}
+\bibcite{denning2020workingset}{27}
+\bibcite{mcpadoption2026}{28}
+\bibcite{longrope2024}{29}
+\bibcite{drepper2007memory}{30}
+\bibcite{euaiact2026}{31}
+\bibcite{switch2022}{32}
+\bibcite{ge2023llmos}{33}
+\bibcite{gholami2024memorywall}{34}
+\bibcite{cap2002}{35}
+\bibcite{gim2024promptcache}{36}
+\bibcite{google_a2a_2025}{37}
+\bibcite{a2alinux2025}{38}
+\bibcite{gemini2024}{39}
+\bibcite{gu2024mamba}{40}
+\bibcite{hennessy2017quantitative}{41}
+\bibcite{hiagent2024}{42}
+\bibcite{holt2024l2mac}{43}
+\bibcite{metagpt2023}{44}
+\bibcite{hooper2024kvquant}{45}
+\bibcite{ruler2024}{46}
+\bibcite{tgi_docs_2026}{47}
+\bibcite{intel_sdm_2026}{48}
+\bibcite{jetbrains2025context}{49}
+\bibcite{mixtral2024}{50}
+\bibcite{swebench2023}{51}
+\bibcite{memoryos2025}{52}
+\bibcite{karpathy2023llmos}{53}
+\bibcite{kwon2023pagedattention}{54}
+\bibcite{loft2024}{55}
+\bibcite{letta_stateful_2026}{56}
+\bibcite{leviathan2023speculative}{57}
+\bibcite{lewis2020rag}{58}
+\bibcite{agentos2025}{59}
+\bibcite{likvcache2024survey}{60}
+\bibcite{memos2025}{61}
+\bibcite{linux_cfs_2026}{62}
+\bibcite{linux_cgroup_2026}{63}
+\bibcite{liu2024ringattention}{64}
+\bibcite{dive_claudecode_2026}{65}
+\bibcite{liu2023lostmiddle}{66}
+\bibcite{liu2024kivi}{67}
+\bibcite{lpc2025}{68}
+\bibcite{malekar2024amdahlllm}{69}
+\bibcite{mei2024aios}{70}
+\bibcite{contextengineer_survey2025}{71}
+\bibcite{agentmemorysurvey2025}{72}
+\bibcite{mi2025llmagentscomputersystems}{73}
+\bibcite{gaia2023}{74}
+\bibcite{mcp_intro_2026}{75}
+\bibcite{multilevelcache2025}{76}
+\bibcite{navaie2025privacy}{77}
+\bibcite{tensorrtllm_docs_2026}{78}
+\bibcite{raft2014}{79}
+\bibcite{openai_codex_approvals_2026}{80}
+\bibcite{openai_codex_skills_2026}{81}
+\bibcite{openai_codex_overview_2026}{82}
+\bibcite{openai_codex_security_2026}{83}
+\bibcite{openai_codex_agents_md_2026}{84}
+\bibcite{openai_codex_sandbox_2026}{85}
+\bibcite{openai_codex_subagents_2026}{86}
+\bibcite{openai_codex_agentsdk_2026}{87}
+\bibcite{owasp_agentic2026}{88}
+\bibcite{memgpt2023}{89}
+\bibcite{park2023generativeagents}{90}
+\bibcite{patil2024gorilla}{91}
+\bibcite{yarn2024}{92}
+\bibcite{ironclaw2025}{93}
+\bibcite{prabhu2024vattention}{94}
+\bibcite{praetorian2025deterministic}{95}
+\bibcite{riscv_spec_2026}{96}
+\bibcite{schick2023toolformer}{97}
+\bibcite{sglang_docs_2026}{98}
+\bibcite{hugginggpt2023}{99}
+\bibcite{autogpt_repo_2026}{100}
+\bibcite{su2021roformer}{101}
+\bibcite{sumers2024coala}{102}
+\bibcite{contextcompiler2025}{103}
+\bibcite{llama2023}{104}
+\bibcite{towardsai2025deterministicshell}{105}
+\bibcite{langmodelteams2026}{106}
+\bibcite{vaswani2017attention}{107}
+\bibcite{vllm_prefix_2026}{108}
+\bibcite{vllm_docs_2026}{109}
+\bibcite{wang2023voyager}{110}
+\bibcite{gta2_2025}{111}
+\bibcite{longmem2023}{112}
+\bibcite{openhands_paper_2025}{113}
+\bibcite{wolters2024computeinmemory}{114}
+\bibcite{longmemeval2024}{115}
+\bibcite{wu2023autogen}{116}
+\bibcite{xiao2024streamingllm}{117}
+\bibcite{arbiteros2025}{118}
+\bibcite{osworld2024}{119}
+\bibcite{sweagent2024}{120}
+\bibcite{taubench2024}{121}
+\bibcite{yao2023react}{122}
+\bibcite{orca2022}{123}
+\bibcite{yuan2024llminference}{124}
+\bibcite{ufo2_2025}{125}
+\bibcite{h2o2023}{126}
+\bibcite{sglang2024}{127}
+\bibcite{zhong2024distserve}{128}
+\bibcite{zhou2024efficientinference}{129}
+\bibcite{aura2025}{130}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces 计算机体系结构与大模型模型原生系统栈的类比映射。每行将一个经典计算机概念与模型原生计算中的对应物进行对照，并给出具体示例、核心相似性、本质差异与由此产生的研究方向}}{60}{table.caption.4}\protected@file@percent }
+\newlabel{tab:mapping}{{1}{60}{计算机体系结构与大模型模型原生系统栈的类比映射。每行将一个经典计算机概念与模型原生计算中的对应物进行对照，并给出具体示例、核心相似性、本质差异与由此产生的研究方向}{table.caption.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces ICAM各层与经典计算机体系结构的对应关系}}{61}{table.caption.8}\protected@file@percent }
+\newlabel{tab:icam}{{2}{61}{ICAM各层与经典计算机体系结构的对应关系}{table.caption.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces 双平面与ICAM的交叉映射}}{61}{table.caption.9}\protected@file@percent }
+\newlabel{tab:dual-plane-icam}{{3}{61}{双平面与ICAM的交叉映射}{table.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces 三条量化定律的实证数据汇总}}{61}{table.caption.11}\protected@file@percent }
+\newlabel{tab:empirical}{{4}{61}{三条量化定律的实证数据汇总}{table.caption.11}{}}
+\gdef \@abspage@last{61}

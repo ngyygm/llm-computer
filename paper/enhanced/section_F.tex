@@ -1,0 +1,318 @@
+%% ============================================================
+\section{开源实现与工程实践}
+\label{sec:implementation}
+
+从工程实现看，当前生态已经出现了若干可作为"未来智能计算架构原型"的项目。
+本节按照ICAM的层次结构，从服务层（L2）、Agent层（L5）和协议层（L4）三个维度，逐一介绍代表性系统的核心特点及其在ICAM中的定位。
+
+\subsection{服务层（L2）：推理服务与KV缓存管理}
+
+推理服务层对应ICAM的L2层，负责模型权重加载、KV缓存管理、连续批处理和预填充/解码调度。
+目前这一层已形成较为成熟的工程生态。
+
+\textbf{vLLM}以PagedAttention为核心，将KV缓存组织为固定大小的页（block），通过block table映射到非连续物理显存空间，实现了类似操作系统虚拟内存的显存管理\cite{kwon2023pagedattention,vllm_docs_2026}。
+其自动前缀缓存（Automatic Prefix Caching）功能进一步支持了跨请求的共享前缀复用，相当于L2缓存中的共享只读代码页\cite{vllm_prefix_2026}。
+
+\textbf{SGLang}强调结构化程序执行与RadixAttention\cite{sglang2024,sglang_docs_2026}。
+RadixAttention用基数树（radix tree）索引所有历史请求的token前缀，自动发现和复用最大公共前缀的KV缓存，在多轮对话和批量推理场景下展现出更高的缓存命中率。
+实测表明，SGLang在某些工作负载下吞吐量比vLLM高出约29\%\cite{sglang2024}。
+
+\textbf{TGI}（Text Generation Inference）与\textbf{TensorRT-LLM}分别由Hugging Face和NVIDIA提供，展示了面向生产环境的部署能力\cite{tgi_docs_2026,tensorrtllm_docs_2026}。
+前者侧重多模型统一接口和易用性，后者利用NVIDIA GPU的深度优化（如FP8量化、Tensor Core加速）追求极致吞吐。
+这三类系统（vLLM、SGLang、TGI/TensorRT-LLM）分别代表了"类虚拟内存管理""结构化缓存复用"和"硬件深度优化"三种工程路线，共同构成了L2层的实现谱系。
+
+\subsection{Agent层（L5）：Agent运行时与操作系统}
+
+Agent层对应ICAM的L5层，负责任务规划、Agent调度、权限审批、失败恢复和状态提交。
+这一层的开源生态最为活跃，方向也最为多样。
+
+在通用Agent方向，\textbf{OpenHands}提供了一个开放的Agent平台，支持多种LLM后端、沙箱执行和可扩展的工具接口\cite{openhands_paper_2025}；
+\textbf{SWE-agent}专注于软件工程任务，通过Agent-Computer Interface（ACI）将代码编辑、测试和调试统一为结构化操作\cite{sweagent2024}；
+\textbf{AutoGPT}从自主持续工作流出发，探索了Agent的自动目标分解和长期执行能力\cite{autogpt_platform_2026}；
+\textbf{Letta}（原MemGPT团队）则聚焦于"有状态Agent"，将长期记忆作为Agent的一等公民来管理\cite{letta_stateful_2026}。
+
+在Agent OS方向，\textbf{ArbiterOS}引入了治理层概念，提出"governor治理概率CPU"的分层架构\cite{arbiteros2025}；
+\textbf{AgentOS}提出了受结构化操作系统逻辑约束的"reasoning kernel"\cite{agentos2025}；
+\textbf{UFO$^2$}展示了桌面级AgentOS的可行性，将HostAgent、AppAgent和GUI--API操作层组织为层次结构\cite{ufo2_2025}；
+\textbf{Aura}则在移动端探索了安全优先的Agent架构，包含System Agent、沙箱化的App Agents和Agent Kernel\cite{aura2025}。
+
+在工业系统方向，\textbf{OpenAI Codex}明确将子Agent（subagents）、技能（skills）、MCP服务器接入、沙箱执行和审批策略（approval policies）作为一等公民\cite{openai_codex_overview_2026,openai_codex_subagents_2026,openai_codex_skills_2026,openai_codex_sandbox_2026,openai_codex_approvals_2026}；
+\textbf{Anthropic Claude Code}提供子Agent、技能、hooks、MCP连接和项目记忆文件，并默认采用只读权限与审批机制\cite{anthropic_claudecode_overview_2026,anthropic_claudecode_security_2026}。
+这两个系统说明，工业界已经开始把Agent运行时当作操作系统来构建。
+
+\subsection{协议层（L4）：标准化工具连接与Agent互联}
+
+协议层对应ICAM的L4层，负责统一外部能力的访问接口。
+这一层正在从"点对点工具调用"向"标准化总线协议"转变。
+
+\textbf{MCP}（Model Context Protocol）提供了标准化的工具连接协议\cite{mcp_intro_2026}。
+截至2025年底，Anthropic报告已有超过10{,}000个活跃的公开MCP服务器\cite{mcpadoption2026}。
+MCP将连接AI应用与外部数据源、工具、工作流统一为JSON-RPC规范，扮演类似PCIe总线或USB在传统计算机中的角色。
+
+\textbf{A2A}（Agent-to-Agent Protocol）由Google于2025年4月推出，定位为Agent间通信标准\cite{google_a2a_2025,agentprotocols2025}。
+它支持能力发现（capability discovery）、任务生命周期管理和多模态协同，已被捐赠给Linux基金会进行中立治理\cite{a2alinux2025}。
+A2A扮演类似网络协议栈中TCP/IP的角色，与MCP互补：MCP是Agent到工具的\textbf{纵向总线}，A2A是Agent到Agent的\textbf{横向互联}。
+
+\subsection{五条实现建议}
+
+基于上述工程实践和本文提出的六条设计公理，本文给出五条可直接指导工程落地的实现建议：
+
+\textbf{第一，控制面与数据面分离。}
+将确定性控制逻辑（权限审批、日志审计、失败恢复）从概率式推理路径中剥离，分别对应双平面架构中的确定性控制平面和概率执行平面。
+例如，Codex的approval policies和Claude Code的hooks就是这一分离的具体实现\cite{openai_codex_approvals_2026,anthropic_claudecode_security_2026}。
+
+\textbf{第二，短期上下文与长期记忆分离。}
+将高频使用的"热上下文"（当前对话窗口）与低频访问的"冷记忆"（历史摘要、知识库索引）分到不同的存储介质和管理策略中。
+这对应ICAM L3层的冷热分层设计，MemGPT的虚拟上下文管理就是这一原则的典型实践\cite{memgpt2023}。
+
+\textbf{第三，所有可影响行为的对象都要版本化。}
+提示模板、工具schema、技能包、记忆文件、MCP服务器能力描述都应附带版本号和变更日志\cite{mcp_intro_2026,agentprotocols2025}。
+传统计算机通过ISA和ABI的稳定性保证向后兼容；智能计算系统同样需要这种"接口契约"来应对快速演化。
+
+\textbf{第四，像OS一样实施资源配额。}
+对每个Agent或任务设定显式的资源预算：上下文窗口上限、工具调用次数上限、推理时间上限和成本上限\cite{linux_cgroup_2026}。
+这对应公理5（最小权限公理）和公理6（可观测性公理）在资源管理层面的具体化。
+
+\textbf{第五，像分布式系统一样设计故障恢复。}
+Agent执行的长任务可能因模型超时、工具失败或上下文溢出而中断。
+系统应像分布式数据库一样提供检查点（checkpoint）、重试（retry）和回滚（rollback）机制，确保副作用操作可审计、可撤销\cite{raft2014,spanner2012}。
+
+%% ============================================================
+\section{研究路线图}
+\label{sec:roadmap}
+
+表~\ref{tab:roadmap}给出一个基于ICAM六层模型的研究路线图，按短期（1--2年）、中期（2--4年）和长期（4--8年）三个阶段组织。
+每个议题明确说明（1）要解决什么问题、（2）用什么方法、（3）期望的结果。
+
+\begin{longtable}{p{0.07\textwidth}p{0.08\textwidth}p{0.13\textwidth}p{0.18\textwidth}p{0.14\textwidth}p{0.14\textwidth}}
+\caption{基于ICAM的研究议题清单}
+\label{tab:roadmap}\\
+\toprule
+阶段 & ICAM层 & 议题 & 方法 & 度量指标 & 相关定律/公理 \\
+\midrule
+\endfirsthead
+\toprule
+阶段 & ICAM层 & 议题 & 方法 & 度量指标 & 相关定律/公理 \\
+\midrule
+\endhead
+短期 & L2 & KV缓存命中率优化 & 语义驱逐、KV量化、前缀共享 & $H$, $S$, TTFT & 定律I \\
+短期 & L3 & 统一上下文编译器 & 热/温/冷分层，版本戳 & $W_{\mathrm{eff}}$, 压缩比 & 定律II \\
+短期 & L4 & Tool ABI标准化 & schema版本化、capability标注 & 成功率、安全违规率 & 公理5 \\
+短期 & L5 & 软件工程Agent内核 & ACI统一，子Agent分工 & 任务完成率、$E$ & 定律III \\
+中期 & L3 & 语义页置换策略 & 学习型eviction、摘要回写 & $\beta(L)$曲线 & 定律II \\
+中期 & L5 & 一致性可控共享记忆 & 事件日志、冲突检测 & 记忆正确率 & 公理4 \\
+中期 & L2 & 异构模型协同 & 草稿模型、MoE路由 & 端到端时延、$H$ & 定律I \\
+中期 & L4 & Agent安全架构 & 沙箱、审计、能力安全 & 审计完整性 & 公理5,6 \\
+长期 & L1--L6 & 智能ISA与可编程技能层 & 任务DSL、受控输出 & 泛化能力 & 公理2,3 \\
+长期 & L3--L5 & 状态化个体Agent & 长期记忆、经验抽象 & 经验利用率 & 定律II,III \\
+长期 & L1--L6 & 分布式智能计算织构 & 记忆复制、一致性层 & 集群利用率 & 定律I,III \\
+长期 & L5 & 治理层原语 & 概率/确定性双平面、审计日志、权限声明 & 治理覆盖率 & 公理3,5,6 \\
+\bottomrule
+\end{longtable}
+
+\subsection{短期议题（1--2年）}
+
+短期议题聚焦于已有工程原型的优化和标准化，目标是让现有系统的性能和可靠性达到生产级别。
+
+\textbf{KV缓存命中率优化（L2）。}
+当前问题：大模型推理的解码阶段是典型的内存带宽受限问题\cite{gholami2024memorywall}，KV缓存的命中率$H$直接决定了推理加速比$S$。
+方法：通过语义驱逐策略（如H2O的重击者识别\cite{h2o2023}）、KV量化压缩（如KVQuant的8倍压缩\cite{hooper2024kvquant}、KIVI的非对称2-bit量化\cite{liu2024kivi}）和前缀共享（如PagedAttention\cite{kwon2023pagedattention}、RadixAttention\cite{sglang2024}）来提升$H$。
+期望结果：在典型Agent工作负载下将$H$从当前的0.5--0.7提升至0.85以上，使定律I预测的加速比$S$达到5--10倍。
+
+\textbf{统一上下文编译器（L3）。}
+当前问题：不同Agent框架各有自己的上下文管理策略（MemGPT的虚拟上下文、Letta的有状态Agent、HiAgent的层次化工作记忆\cite{memgpt2023,letta_stateful_2026,hiagent2024}），缺少统一的"上下文编译器"来决定哪些信息以原文加载、哪些以摘要加载、哪些只保留索引。
+方法：借鉴操作系统的页置换和编译优化，设计热/温/冷三层的上下文管理策略，并为每层附带的上下文块加上版本戳（version stamp）和时效标注（TTL）。
+期望结果：在保持任务完成率不降的前提下，将有效上下文利用率$W_{\mathrm{eff}}/C$提升至少50\%，验证定律II的预测。
+
+\textbf{Tool ABI标准化（L4）。}
+当前问题：不同Agent框架的工具调用接口各异，MCP和A2A提供了协议层面的标准化，但工具schema本身仍缺少版本化、向后兼容和capability标注的统一规范\cite{mcp_intro_2026,agentprotocols2025}。
+方法：为工具schema引入语义版本号（如MCP的schema versioning）、输入输出类型约束、副作用声明和capability标注，使L4层真正成为可编程的"应用二进制接口"（ABI）。
+期望结果：工具调用成功率提升，安全违规率下降，为公理5（最小权限）的落地提供接口基础。
+
+\textbf{软件工程Agent内核（L5）。}
+当前问题：SWE-bench和SWE-agent表明，当前代码Agent在真实GitHub问题上的解决率仍然有限\cite{swebench2023,sweagent2024}。
+Agent-Computer Interface（ACI）的设计缺乏统一标准，不同框架的子Agent分工策略各异。
+方法：统一ACI规范，设计专门的子Agent分工策略（如代码搜索Agent、编辑Agent、测试Agent），并通过定律III的$E$（编排效率）来量化评估。
+期望结果：在SWE-bench等基准上将任务完成率提升，同时将$E$从当前的约0.3--0.5提升至0.6以上。
+
+\subsection{中期议题（2--4年）}
+
+中期议题聚焦于跨层协同和系统级安全，目标是让智能计算系统从"单点优化"走向"全栈协同"。
+
+\textbf{语义页置换策略（L3）。}
+当前问题：传统操作系统的页置换（如LRU、CLOCK）基于确定性地址访问模式，而智能系统的"页置换"需要基于语义相关性来决定驱逐哪些上下文块。
+方法：设计学习型eviction策略，根据上下文块与当前任务的语义相关度来决定保留或驱逐，对被驱逐的块生成摘要以便回写检索。
+期望结果：绘制出$\beta(L)$曲线的精确形状，为定律II提供定量参数。
+
+\textbf{一致性可控共享记忆（L5）。}
+当前问题：多Agent协作时共享记忆的一致性管理缺乏统一框架。
+不同Agent可能同时修改同一记忆块，导致冲突和信息丢失。
+方法：引入事件日志（event sourcing）和冲突检测机制，设计可调节一致性级别（从最终一致到强一致）的记忆访问协议\cite{raft2014,cap2002}。
+期望结果：在多Agent基准上实现记忆正确率不低于单Agent基线，为公理4（虚拟化公理）在记忆层面的落地提供实证。
+
+\textbf{异构模型协同（L2）。}
+当前问题：不同规模的模型在延迟、成本和能力上各有优劣，但当前系统通常只使用单一模型。
+方法：通过草稿模型（speculative decoding\cite{leviathan2023speculative}）和MoE路由\cite{switch2022,mixtral2024}实现异构模型协同，让简单任务用小模型、复杂任务路由到大模型。
+期望结果：在保持输出质量的前提下降低端到端时延，同时提升KV缓存命中率$H$。
+
+\textbf{Agent安全架构（L4）。}
+当前问题：随着Agent获得越来越多的外部行动能力（读写文件、运行命令、联网），安全边界变得模糊。
+方法：为Agent运行时内建沙箱、审计和能力安全机制\cite{debenedetti2025camel,ironclaw2025,agenticsecurity2025}，确保每个有副作用的操作都经过显式审批并产生可审计的事件记录。
+期望结果：实现审计完整性100\%（所有副作用操作均可追溯），为公理5和公理6的落地提供安全基础设施。
+
+\subsection{长期议题（4--8年）}
+
+长期议题聚焦于架构层面的根本性创新，目标是构建真正的"智能计算机"。
+
+\textbf{智能ISA与可编程技能层（L1--L6）。}
+当前问题：提示词、工具描述和技能包构成了智能计算的"软指令"，但它们缺少形式化语义和稳定性。
+方法：发展任务DSL（Domain-Specific Language）、受控输出格式和可复用技能包，建立类似传统ISA的稳定接口层。
+期望结果：Agent的泛化能力显著提升，使得同一技能包可以在不同模型和运行时之间无缝迁移。
+
+\textbf{状态化个体Agent（L3--L5）。}
+当前问题：大多数Agent是无状态的——每次会话从零开始，无法积累和复用经验。
+方法：为Agent引入长期记忆和经验抽象机制，使其能从历史执行中学习策略、总结模式并主动优化行为\cite{amem2025,agentmemorysurvey2025}。
+期望结果：经验利用率（历史经验对当前任务的贡献比例）显著提升，为定律II和定律III提供新的验证维度。
+
+\textbf{分布式智能计算织构（L1--L6）。}
+当前问题：当多个Agent集群跨节点协作时，记忆复制、状态一致性和负载均衡等分布式系统问题尚未被系统化地解决。
+方法：借鉴分布式数据库的记忆复制和一致性层设计\cite{spanner2012,raft2014}，为多节点Agent集群提供统一的资源调度和状态管理。
+期望结果：集群利用率随节点数线性增长（或至少亚线性增长），验证定律I和定律III在分布式场景下的适用性。
+
+\textbf{治理层原语（L5）。}
+当前问题：现有Agent系统的治理机制（权限、审计、合规）大多是事后添加的补丁，而非体系结构的一等公民。
+方法：将概率/确定性双平面、审计日志和权限声明设计为体系结构的核心原语\cite{arbiteros2025,ironclaw2025}，确保每一层都有对应的治理机制。
+期望结果：治理覆盖率100\%（每一层的每个有副作用的操作都受到治理约束），实现公理3、5、6的全栈落地。
+
+值得强调的是，这些议题并不要求新模型先行。
+许多问题完全可以在现有模型之上开展研究——例如上下文编译器、Tool ABI标准化和Agent安全架构都是系统层面的工程问题，与基础模型的能力提升解耦。
+这与传统计算机史相似：架构突破往往不只来自晶体管更强，也来自接口和运行时更成熟。
+ISA的稳定性让软件生态繁荣，虚拟内存的发明让程序不再受物理内存限制，POSIX的标准化让应用可以跨平台迁移。
+智能计算系统同样需要这些"系统层面的突破"。
+
+%% ============================================================
+\section{伦理、安全与可解释性}
+\label{sec:ethics}
+
+把大模型系统视为计算机，并不意味着伦理问题会自动消失；相反，体系结构的视角让某些伦理问题更加清晰——因为它为每个问题指定了具体的ICAM层次和对应的治理机制。
+
+\subsection{权限与隔离（对应L5编排层）}
+
+如果Agent相当于进程，那么它拥有哪些权限、能看到哪些秘密、是否能联网、是否能修改持久状态，就必须像操作系统安全策略那样被显式配置\cite{openai_codex_approvals_2026,openai_codex_sandbox_2026,anthropic_claudecode_security_2026,anthropic_claudecode_sandbox_2026,debenedetti2025camel,ironclaw2025}。
+
+具体而言，ICAM L5层的治理机制需要回答以下问题：
+\begin{itemize}[nosep]
+\item \textbf{谁能创建Agent？}——对应进程创建权限。Codex要求用户通过AGENTS.md显式声明Agent行为边界\cite{openai_codex_agents_md_2026}。
+\item \textbf{Agent能访问哪些资源？}——对应文件系统权限。Claude Code默认只读，写操作需显式审批\cite{anthropic_claudecode_security_2026}。
+\item \textbf{Agent的权限如何粒度化？}——对应capability-based安全。CaMeL用能力令牌（capability token）控制每个工具调用的权限边界\cite{debenedetti2025camel}。
+\item \textbf{Agent越权时如何终止？}——对应进程信号和沙箱隔离。Codex使用OS级沙箱，Agent的所有写操作都被隔离在受控环境中\cite{openai_codex_sandbox_2026}。
+\end{itemize}
+
+从双平面架构的视角看，这些权限控制属于确定性控制平面的核心职责：概率执行平面负责"能做什么"（推理和生成），确定性控制平面负责"允许做什么"（审批和隔离）。
+
+\subsection{隐私与记忆治理（对应L3记忆层）}
+
+隐私问题集中在L3（记忆层）。
+一旦引入长期状态，系统必须回答四个核心问题——这些问题在传统计算机的内存管理中也有对应，但在语义系统中变得更加复杂：
+
+\textbf{什么应保存？}
+不是所有交互都应被长期记忆。
+传统操作系统通过页面保护位（protection bits）区分可读、可写、可执行页面；L3记忆层同样需要区分"可持久化"和"仅会话级"的信息。
+例如，用户的代码编辑偏好可以持久化，但临时密码或敏感对话内容应标记为"仅会话级"，会话结束后自动清除。
+
+\textbf{保存多久？}
+这涉及记忆的保留策略（retention policy）。
+传统文件系统通过TTL（Time-To-Live）管理临时文件；L3层同样需要为每个记忆块设定TTL和版本号。
+更复杂的是，欧盟《人工智能法案》（EU AI Act）要求高风险AI系统保留至少10年的操作日志\cite{euaiact2026}，而GDPR的"被遗忘权"（Right to Be Forgotten）则要求用户可以请求删除个人数据\cite{gdpr_righttoforget}——两者之间存在直接的政策冲突，需要L3层的保留策略设计者显式处理。
+
+\textbf{谁有权删除？}
+在多Agent共享记忆的场景下，一个Agent写入的记忆块可能被其他Agent引用。
+删除操作不能简单执行，而需要类似垃圾回收（garbage collection）的引用追踪机制——只有当所有引用者都同意或已失效时，记忆块才可被真正清除。
+这对应公理6（可观测性公理）的延伸：删除操作本身也必须是可审计的。
+
+\textbf{摘要能否反推出原始敏感信息？}
+L3层的上下文编译器经常将原始信息压缩为摘要以节省窗口空间。
+但摘要可能保留足够多的语义线索，使得敏感信息（如个人身份、财务数据）可以从摘要中推断出来。
+这要求L3层的语义地址契约包含最小保留（只保留任务必需的信息）、可追溯删除（删除时连同所有派生摘要一起清除）、访问隔离（不同用户的记忆不可交叉访问）和加密存储\cite{longmemeval2024,navaie2025privacy}。
+
+\subsection{可解释性：从"解释模型"到"解释系统"（对应全栈）}
+
+传统LLM可解释性研究的重点是解释模型的内部表征（如注意力头的作用、神经元的语义）。
+但ICAM认为，对于一个运行在完整智能计算架构上的Agent系统，更有操作性的解释单元不在模型内部，而在系统行为轨迹中——这正是可观测性公理（公理6）的核心。
+
+具体而言，ICAM建议将可解释性分解为以下几个可操作的层级：
+
+\begin{itemize}[nosep]
+\item \textbf{L2层}——缓存命中/未命中日志：哪些上下文被复用、哪些被驱逐、驱逐策略的依据是什么。
+\item \textbf{L3层}——上下文编译决策：哪些信息以原文加载、哪些以摘要加载、摘要的来源和压缩比是多少。
+\item \textbf{L4层}——工具调用参数与结果：调用了什么工具、传递了什么参数、工具返回了什么结果、是否触发了权限拒绝。
+\item \textbf{L5层}——审批决策与状态提交：哪个Agent在什么时刻请求了什么权限、审批是被批准还是被拒绝、最终提交了什么状态变更。
+\end{itemize}
+
+这种"系统级行为轨迹"的可解释性比"模型内部表征"的可解释性更直接有用：它不要求理解模型的黑盒，而是要求记录系统每一步做了什么、为什么做、结果是什么。
+从双平面架构的视角看，这恰好是确定性控制平面的核心产出——可审计、可回放的事件流。
+
+\subsection{公平性与资源分配（对应L2推理服务层与L5编排层）}
+
+当多个用户或多个Agent共享同一推理服务集群时，公平的资源分配成为伦理问题。
+传统操作系统通过cgroup（控制组）实现CPU、内存和I/O的公平分配\cite{linux_cgroup_2026}；
+智能计算系统同样需要为每个Agent或任务设定上下文窗口预算、推理时间预算和成本预算。
+
+具体问题包括：
+推理资源是否公平分配？大用户是否垄断了GPU资源？
+长任务的Agent是否占用了过多KV缓存，导致短任务饥饿？
+工具调用的副作用是否对所有用户一视同仁？
+这些公平性问题直接关联到公理5（最小权限公理）在资源管理层面的延伸。
+
+%% ============================================================
+\section{结论与展望}
+\label{sec:conclusion}
+
+本文的核心贡献可以概括为一个统一框架、一个架构解法和一组可计算原则。
+
+\subsection{核心贡献}
+
+\textbf{统一框架：ICAM六层模型。}
+本文提出智能计算体系结构模型（ICAM），将智能计算系统定义为六个功能层（L1--L6），每层有明确的接口契约、设计公理和度量指标。
+ICAM不是对经典计算机体系结构的机械复制，而是一套面向概率式执行的分层抽象。
+它的价值在于将AIOS\cite{mei2024aios}、MemGPT\cite{memgpt2023}、MCP\cite{mcp_intro_2026}、PagedAttention\cite{kwon2023pagedattention}、ArbiterOS\cite{arbiteros2025}、AgentOS\cite{agentos2025}、L2MAC\cite{holt2024l2mac}等分散工作统一到同一套分层模型中，使得不同层次的研究者可以用共同的语言讨论系统问题。
+
+\textbf{架构解法：双平面架构。}
+本文揭示了"LLM是CPU还是OS"的隐喻冲突根源，提出双平面架构作为统一解答。
+概率执行平面（模型推理）对应"能做什么"，确定性控制平面（Agent运行时中的调度器、审批器、日志系统）对应"应该做什么"。
+这一分离使得ArbiterOS的"Probabilistic CPU"\cite{arbiteros2025}、AIOS的"kernel"\cite{mei2024aios}和AgentOS的"reasoning kernel"\cite{agentos2025}不再互相矛盾，而是同一系统中不同平面的不同视角。
+
+\textbf{可计算原则：三条量化定律。}
+语义局部性定律（$S = 1/((1-H)+H\cdot\alpha^{-1})$）、上下文预算定律（$W_{\mathrm{eff}} \leq C \cdot \beta(L)$）和Agent加速比定律（$S_{\mathrm{agent}} = 1/((1-F)+F/(N\cdot E))$）为智能计算系统提供了类似Amdahl定律和Roofline模型对传统体系结构那样的可计算原则。
+这些定律在形式上与Amdahl定律同构，其价值不在于数学创新，而在于为智能计算的设计空间提供了可计算的决策依据。
+实证检验表明，这些定律与已发表的实验数据定性一致，但仍需更系统的定量验证。
+
+\subsection{定位与边界}
+
+本文明确承认以下边界：
+
+第一，这些类比并非严格同构。
+模型不是确定性CPU，语义检索不是精确寻址，长期记忆也不是无损分页，Agent运行时也不是成熟操作系统。
+但正是这些"不完全相同"，构成了未来研究最值得投入的空间：如何为语义系统设计新的ABI、如何为不确定推理设计新的OS、如何为长期状态设计新的虚拟内存、如何为多Agent协作设计新的提交协议。
+
+第二，本文的独特贡献不在于第一次把大模型与计算机体系结构进行类比——Ge等\cite{ge2023llmos}、L2MAC\cite{holt2024l2mac}、Mi等\cite{mi2025llmagentscomputersystems}已经覆盖了OS、stored-program computer和von Neumann inspired survey几条关键路线。
+也不在于第一次讨论KV缓存或记忆管理——MemGPT\cite{memgpt2023}与MemOS\cite{memos2025}已经把记忆子系统高度系统化。
+本文的贡献在于\textbf{第一次将这些互相独立、甚至互相冲突的类比整合为一套全栈LLM-native intelligent computing architecture}，包含统一的分层模型、双平面架构、层间接口契约、设计公理体系和可计算的量化定律。
+
+第三，本文是技术畅想型综述（visionary survey），为未来智能计算架构提供研究框架，而非最终方案。
+ICAM的六层划分和三条定律的参数化形式都可能在实践中被修正和细化。
+本文的目的是提出正确的问题和可验证的预测，而非给出终极答案。
+
+\subsection{未来方向}
+
+如果说过去十年的重点是"训练出更强的基础模型"，那么未来十年的一个核心问题，可能就是："如何把这些模型组织成真正可编程、可扩展、可治理的智能计算机。"
+
+这个问题的答案可能来自多个方向的交汇：
+L2层的推理服务优化（KV缓存、量化、speculative decoding）使模型服务更高效；
+L3层的上下文编译和记忆管理使Agent拥有真正的工作记忆；
+L4层的协议标准化（MCP、A2A）使工具和Agent的互联从"点对点"进化为"总线式"；
+L5层的Agent OS使任务分解、权限控制和失败恢复从"手工编码"进化为"平台原生"；
+L6层的工作流自动化使最终用户可以用自然语言定义复杂任务。
+
+本文为这个方向提供了一个系统化的研究框架：一个分层模型（ICAM）、一组设计公理、三条可计算定律和一个从短期到长期的研究路线图。
+希望这一框架能够帮助研究者和工程师在快速演化的智能计算生态中，找到系统层面的关键问题和可验证的设计原则。

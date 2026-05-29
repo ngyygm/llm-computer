@@ -1,0 +1,524 @@
+%% ============================================================
+\section{智能计算体系结构模型：ICAM}
+\label{sec:icam}
+
+前四节的类比框架提供了直觉，但直觉本身不足以指导工程设计。经典计算机体系结构之所以能持续演进八十余年，关键在于它拥有\textbf{形式化的模型}：从指令集架构（ISA）的软硬件契约，到存储层次的局部性理论，再到Amdahl定律的量化分析框架。
+本节将前文的类比\textbf{形式化}为智能计算体系结构模型（Intelligent Computing Architecture Model, ICAM），包含六个功能层的分层定义、层间接口契约和六条设计公理，为后续的量化分析奠定基础。
+
+% ---------------------------------------------------------
+\subsection{ICAM六层定义}
+\label{sec:icam-layers}
+% ---------------------------------------------------------
+
+经典计算机体系结构的核心思想是\textbf{分层抽象}：硬件隐藏在ISA之后，操作系统通过系统调用提供服务，应用程序只需调用库函数。
+每一层只关心相邻层的接口，无需了解远层的实现细节——这使得整个系统的复杂性可控、可组合。
+ICAM将这一思想迁移到智能计算领域，定义了六个功能层。
+
+\begin{definition}[智能计算体系结构模型 ICAM]
+智能计算体系结构模型（Intelligent Computing Architecture Model, ICAM）将智能计算系统定义为六个功能层，每层通过明确的接口契约与相邻层交互：
+\begin{enumerate}[nosep]
+\item \textbf{L1 物理执行层}：GPU/TPU/ASIC/存算一体硬件，执行矩阵运算和注意力计算。这一层相当于经典体系结构中的ALU和浮点单元——它只负责执行计算指令，不关心计算的语义含义。例如，NVIDIA H100的Transformer引擎在硬件层面加速FP8矩阵乘法，即属于L1的范畴。
+
+\item \textbf{L2 推理服务层}：模型权重加载、KV缓存管理、连续批处理（continuous batching）、预填充/解码调度。这一层相当于经典体系结构中的微架构和缓存层次——它管理计算资源与热点数据，使得上层的"调用"尽可能高效。vLLM通过PagedAttention实现KV缓存的按需分配与共享\cite{kwon2023pagedattention}，SGLang通过RadixAttention实现前缀缓存复用\cite{sglang2024}，它们都是L2的代表实现。
+
+\item \textbf{L3 上下文管理层}：热/温/冷记忆分层、上下文编译、摘要与检索、语义虚拟内存。这一层相当于经典体系结构中的虚拟内存子系统——它将有限的物理上下文窗口虚拟化为更大的逻辑工作空间。MemGPT提出"虚拟上下文管理"，将LLM的上下文窗口类比为主存、外部存储类比为磁盘，通过LLM自主管理记忆的换入换出\cite{memgpt2023}；MemoryOS借鉴操作系统的内存管理机制设计了分层记忆架构\cite{memoryos2025}——它们都是L3的代表实现。
+
+\item \textbf{L4 语义接口层}：工具schema（Tool ABI）、记忆API（Memory API）、追踪API（Trace API）。这一层相当于经典体系结构中的系统调用接口和ABI——它定义了智能系统访问外部能力的统一协议。MCP（Model Context Protocol）定义了模型与工具之间的标准化通信协议\cite{mcp_intro_2026}，A2A（Agent-to-Agent）定义了Agent之间的互操作协议\cite{agentprotocols2025}——它们是L4的代表实现。
+
+\item \textbf{L5 编排层}：任务规划、Agent调度、权限审批、失败恢复、状态提交。这一层相当于经典体系结构中的操作系统内核——它负责任务的调度、资源分配、安全隔离和容错。OpenAI Codex将Agent任务提交到沙箱中执行，支持子Agent的创建与协调\cite{openai_codex_overview_2026,openai_codex_subagents_2026}；Claude Code通过skill机制扩展Agent能力，通过MCP连接外部工具\cite{anthropic_claudecode_overview_2026,anthropic_claudecode_skills_2026}——它们是L5的代表实现。
+
+\item \textbf{L6 应用层}：用户任务、Agent应用、工作流自动化。这一层相当于经典体系结构中的用户应用——它承载最终用户的需求。SWE-agent自动化地解决GitHub issue\cite{sweagent2024}，OpenHands作为通用软件开发Agent\cite{openhands_paper_2025}——它们是L6的代表实现。
+\end{enumerate}
+\end{definition}
+
+ICAM的分层并非任意的拆分，而是遵循一个基本原则：每一层为上层提供服务，同时依赖下层的接口——恰如网络协议栈或操作系统层次结构的设计哲学。
+这种分层的好处是\textbf{关注点分离}：L2的工程师优化KV缓存策略时无需关心Agent的编排逻辑，L5的开发者设计任务调度时无需理解注意力计算的硬件实现。
+
+表~\ref{tab:icam}将ICAM各层与传统计算机体系结构做系统对比，并给出当前的代表实现。
+
+\begin{table}[t]
+\centering
+\footnotesize
+\caption{ICAM各层与经典计算机体系结构的对应关系}
+\label{tab:icam}
+\begin{tabularx}{\textwidth}{p{0.10\textwidth}p{0.12\textwidth}p{0.22\textwidth}p{0.22\textwidth}p{0.22\textwidth}}
+\toprule
+ICAM层 & 经典对应 & 职责 & 核心差异 & 代表实现 \\
+\midrule
+L1 & 硬件/ISA & 执行基本计算操作 & 概率式矩阵运算而非确定性逻辑门 & GPU, TPU, 存算一体\cite{wolters2024computeinmemory} \\
+L2 & 微架构/缓存 & 管理计算资源与热点数据 & KV缓存按语义序列增长而非地址寻址 & vLLM, SGLang\cite{kwon2023pagedattention,sglang2024} \\
+L3 & 虚拟内存 & 扩大可寻址工作集 & 语义摘要有损而非无损分页 & MemGPT, MemoryOS\cite{memgpt2023,memoryos2025} \\
+L4 & 系统调用/ABI & 统一外部能力访问接口 & 工具语义含自然语言歧义 & MCP, A2A\cite{mcp_intro_2026,agentprotocols2025} \\
+L5 & 操作系统 & 调度、权限、容错 & Agent自身含不确定推理 & Codex, Claude Code\cite{openai_codex_overview_2026,anthropic_claudecode_overview_2026} \\
+L6 & 用户应用 & 承载最终用户任务 & 任务可含开放式目标和模糊约束 & SWE-agent, OpenHands\cite{sweagent2024,openhands_paper_2025} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ---------------------------------------------------------
+\subsection{层间接口契约}
+\label{sec:icam-interfaces}
+% ---------------------------------------------------------
+
+经典计算机体系结构之所以能够持续演进，关键在于\textbf{层间接口的稳定性}。ISA定义了软硬件之间的契约——Intel的CPU从8086到今天的Core Ultra，微架构发生了翻天覆地的变化，但x86 ISA保持了向后兼容；POSIX定义了应用与操作系统之间的契约——Linux内核从2.0演进到6.x，应用程序几乎无需修改。这种"接口稳定、实现可变"的原则使得每一层可以独立优化。
+ICAM同样为每对相邻层定义接口契约。下文逐一说明每个接口的操作、不变量和度量指标。
+
+\subsubsection{L1--L2接口：张量运算契约}
+
+L2向L1请求张量运算。用通俗的话说，这个接口就像"应用程序调用GPU驱动程序"——上层说"请帮我计算这个矩阵乘法"，下层负责高效执行并返回结果。
+
+\begin{itemize}[nosep]
+\item \textbf{操作}：\texttt{forward(batch\_tokens) $\to$ logits}。输入一批token的嵌入向量，输出对应的logits概率分布。
+\item \textbf{不变量}：运算精度不低于配置的最低精度（如FP16/BF16）。
+\item \textbf{度量}：FLOPS利用率（衡量硬件算力被利用了多少）、内存带宽利用率、TTFT（Time To First Token，首token延迟）、TPOT（Time Per Output Token，每token延迟）。
+\end{itemize}
+
+\subsubsection{L2--L3接口：KV块管理契约}
+
+L3向L2请求KV块的分配、加载和释放。这个接口就像"应用程序调用\texttt{malloc}/\texttt{free}"——上层说"我需要一段内存来存储KV缓存"，下层负责分配物理空间、处理碎片、在容量不足时执行回收。
+
+\begin{itemize}[nosep]
+\item \textbf{操作}：\texttt{alloc / load(prefix\_hash) / evict(policy)}。分配新的KV块、按前缀哈希加载已有KV块、按策略回收不活跃的KV块。
+\item \textbf{不变量}：KV块不丢失当前推理步所需的状态——类似于操作系统保证不会换出正在被进程使用的内存页。
+\item \textbf{度量}：KV命中率（$H$，即定律I的核心参数）、显存峰值、页置换次数。
+\end{itemize}
+
+\subsubsection{L3--L4接口：上下文装载契约}
+
+L4向L3请求上下文装载。这个接口就像"应用程序通过内存映射（mmap）加载文件"——上层说"我需要关于X的信息"，下层负责从外部存储中检索、压缩、装载到上下文窗口中。
+
+\begin{itemize}[nosep]
+\item \textbf{操作}：\texttt{read(query) / prefetch(hint) / compact / evict}。按查询检索上下文、按提示预取、压缩上下文、回收不活跃上下文。
+\item \textbf{不变量}：返回内容附带来源追踪和时效标注——类似于文件系统保证返回的数据是最新版本。
+\item \textbf{度量}：检索召回率、上下文压缩比、加载延迟。
+\end{itemize}
+
+\subsubsection{L4--L5接口：能力调用契约}
+
+L5向L4请求工具调用和记忆读写。这个接口就像"应用程序通过系统调用请求操作系统服务"——上层说"我需要读写文件"（对应记忆读写）或"我需要访问网络"（对应工具调用），下层负责权限校验和审计。
+
+\begin{itemize}[nosep]
+\item \textbf{操作}：\texttt{call(tool, args, capability\_token) / query(memory)}。带权限令牌调用工具、查询记忆。
+\item \textbf{不变量}：无capability token的工具调用被拒绝（类比：无权限的进程不能打开文件）；副作用操作可审计\cite{debenedetti2025camel}。
+\item \textbf{度量}：工具调用成功率、权限拒绝率。
+\end{itemize}
+
+\subsubsection{L5--L6接口：任务提交契约}
+
+L6向L5提交任务。这个接口就像"用户通过命令行启动程序"——上层说"请帮我完成这个任务"，下层负责任务的排队、执行、监控和结果返回。
+
+\begin{itemize}[nosep]
+\item \textbf{操作}：\texttt{submit(task\_spec) / poll / cancel}。提交任务规格、轮询状态、取消任务。
+\item \textbf{不变量}：任务执行产生可追踪trace；失败时回滚副作用——类似于数据库的事务原子性保证。
+\item \textbf{度量}：任务完成率、人工接管率。
+\end{itemize}
+
+% ---------------------------------------------------------
+\subsection{双平面与ICAM的交叉映射}
+\label{sec:dual-plane-icam}
+% ---------------------------------------------------------
+
+第~\ref{sec:framework}节提出了双平面架构：概率执行平面（LLM的不确定性推理）和确定性控制平面（可审计的逻辑控制）。
+一个自然的问题是：双平面与ICAM六层模型是什么关系？
+答案是：它们是\textbf{正交的两个维度}。ICAM是纵向分层（从硬件到应用），双平面是横向切分（从概率到确定性）。它们的交叉形成了一个$6 \times 2$的矩阵。
+
+表~\ref{tab:dual-plane-icam}展示了这一交叉映射。
+
+\begin{table}[t]
+\centering
+\footnotesize
+\caption{双平面与ICAM的交叉映射}
+\label{tab:dual-plane-icam}
+\begin{tabularx}{\textwidth}{p{0.12\textwidth}p{0.38\textwidth}p{0.38\textwidth}}
+\toprule
+ICAM层 & 概率执行平面的成分 & 确定性控制平面的成分 \\
+\midrule
+L1 & 矩阵运算、注意力计算（概率性输出） & 精度校验、硬件错误检测 \\
+L2 & KV缓存的语义匹配、前缀共享 & 缓存容量管理、回收策略 \\
+L3 & 语义检索、上下文编译、摘要生成 & 记忆保留策略、版本戳、状态持久化 \\
+L4 & 工具结果的语义理解 & 工具schema、协议规范、权限审批、审计 \\
+L5 & Agent推理与决策（概率性） & 任务调度、权限控制、失败恢复、trace记录 \\
+L6 & \multicolumn{2}{c}{两个平面的消费者：同时获得智能输出和可审计轨迹} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+从表中可以看出两个关键特征：
+第一，\textbf{概率平面的重心偏下}，主要覆盖L1（物理执行）和L2（推理服务），并渗透到L3（语义检索与上下文编译）。这是因为LLM的核心能力——语言理解和生成——集中在这些层。
+第二，\textbf{确定性平面的重心偏上}，主要覆盖L5（编排层）和L4的接口契约部分（权限审批、审计、capability标注），并延伸到L3的状态管理部分（记忆保留策略、版本戳）。这是因为系统级的安全、可靠、可审计需求需要确定性保证。
+
+L4是一个特殊的"过渡层"：工具schema和协议规范属于确定性平面（它们是形式化的接口定义），而工具结果的语义理解属于概率平面（LLM需要理解自然语言描述的返回值）。
+L6（应用层）是两个平面的消费者：用户同时获得概率平面的智能输出和确定性平面的可审计轨迹。
+
+这一交叉映射解释了为什么不同文献对"LLM在哪一层"的判断不同——它们看到的是同一系统中不同平面的不同层。例如，聚焦推理优化的研究者认为LLM是L1-L2的计算引擎\cite{kwon2023pagedattention,zhou2024efficientinference}；聚焦Agent系统的研究者认为LLM是L5-L6的智能内核\cite{openai_codex_overview_2026,anthropic_claudecode_overview_2026}；聚焦上下文管理的研究者认为LLM是L3的记忆处理器\cite{memgpt2023,memoryos2025}——这些视角并不矛盾，而是观察到了ICAM模型的不同层面。
+
+% ---------------------------------------------------------
+\subsection{设计公理体系}
+\label{sec:icam-axioms}
+% ---------------------------------------------------------
+
+经典计算机体系结构八十年的设计经验可以提炼为一组\textbf{设计原则}：局部性原理指导缓存设计，抽象层次原则指导接口定义，最小权限原则指导安全设计。
+本文将这些原则迁移到智能计算领域，结合智能计算的特殊性，提出六条设计公理。每条公理指明其经典来源、在ICAM中的体现以及具体的设计含义。
+
+\begin{axiom}[局部性公理]
+智能计算呈现\textbf{时间局部性}（近期访问的上下文片段将再次被访问）和\textbf{语义局部性}（语义相近的查询访问相似的上下文）。
+\end{axiom}
+
+\textbf{直观解释}：正如程序在运行时倾向于反复访问同一组内存页（这催生了LRU缓存），LLM在多轮对话中也倾向于反复引用同一批上下文片段。用户先问"Python的装饰器怎么用"，后续的问题往往围绕同一主题展开——这就是语义局部性。
+
+\textbf{经典来源}：缓存设计的理论基础\cite{drepper2007memory}。
+
+\textbf{ICAM体现}：L2的KV缓存复用（相同前缀共享KV缓存）、L2的前缀缓存共享（多个请求共享公共system prompt的KV缓存）、L3的语义缓存（语义相似的查询复用之前的生成结果）。
+
+\textbf{设计含义}：ICAM的每一层都应基于局部性做缓存/预取。定律I（第~\ref{sec:laws}节）将这一公理量化为可计算的公式。
+
+\begin{axiom}[分层抽象公理]
+复杂性应通过分层来管理：每层只依赖下层的接口契约，而不依赖其实现细节。
+\end{axiom}
+
+\textbf{直观解释}：正如应用程序不需要知道CPU是RISC还是CISC、缓存是4-way还是8-way associative，Agent逻辑也不需要知道底层模型是通过什么推理引擎服务的。
+
+\textbf{经典来源}：ISA/微架构分离、OS内核/用户态分离\cite{hennessy2017quantitative,ostep_2023}。
+
+\textbf{ICAM体现}：模型升级（L2的实现变化）不应破坏Agent逻辑（L5的功能）；工具schema变更（L4的接口调整）不应导致记忆失效（L3的数据损坏）。
+
+\begin{axiom}[概率执行公理]
+智能计算的核心执行（模型前向推理）是概率式的：相同输入不保证相同输出。
+\end{axiom}
+
+\textbf{直观解释}：这是智能计算与经典计算\textbf{最根本的差异}。经典计算中，\texttt{2+2}永远等于4；但在LLM中，同一个问题问两次可能得到不同的回答——这不是bug，而是特性。这种概率性使得传统的确定性测试方法失效：我们不能通过"回放相同的输入序列"来验证系统正确性，而需要定义"语义等价性"作为验证标准。
+
+\textbf{经典来源}：无经典对应。
+
+\textbf{ICAM体现}：整个ICAM模型的分层设计需要为概率性"留出空间"。L4-L5的接口契约不能要求工具调用的结果完全确定，而必须容忍语义层面的变化。L5的失败恢复机制不能依赖精确的输入回放，而需要语义级别的检查点。
+
+\begin{axiom}[虚拟化公理]
+有限物理资源应通过虚拟化呈现为更大的逻辑资源，同时保持隔离与保护。
+\end{axiom}
+
+\textbf{直观解释}：正如32位操作系统通过虚拟内存让程序以为它有4GB内存（尽管物理内存可能只有1GB），智能计算系统需要让Agent以为它有无限长的上下文窗口（尽管物理上下文窗口只有128K token）。
+
+\textbf{经典来源}：虚拟内存、进程隔离\cite{ostep_2023}。
+
+\textbf{ICAM体现}：MemGPT的虚拟上下文管理\cite{memgpt2023}；PagedAttention的页式KV管理\cite{kwon2023pagedattention}——将KV缓存按"页"组织，按需分配，回收不活跃页，与操作系统的虚拟内存管理如出一辙；Agent沙箱\cite{openai_codex_sandbox_2026}——将Agent的执行环境与宿主系统隔离，正如进程的地址空间隔离。
+
+\begin{axiom}[最小权限公理]
+每个执行单元应只被授予完成任务所需的最小权限集合。
+\end{axiom}
+
+\textbf{直观解释}：正如文本编辑器不需要管理员权限就能编辑文件，一个负责代码生成的Agent也不应该拥有删除整个代码仓库的权限。
+
+\textbf{经典来源}：操作系统安全原则\cite{ostep_2023}。
+
+\textbf{ICAM体现}：CaMeL的能力安全机制\cite{debenedetti2025camel}——为每个Agent操作分配细粒度的capability token；Codex的OS级沙箱\cite{openai_codex_security_2026}——限制Agent的文件系统和网络访问权限。
+
+\begin{axiom}[可观测性公理]
+每个有副作用的操作都必须产生可追踪、可审计的事件记录。
+\end{axiom}
+
+\textbf{直观解释}：正如数据库记录每一次写操作的WAL（Write-Ahead Log），Agent的每一次工具调用、文件修改都应该被记录下来，使得事后可以追溯"为什么做了这个操作"。
+
+\textbf{经典来源}：系统日志、性能监控\cite{linux_cgroup_2026}。
+
+\textbf{ICAM体现}：OpenAI Agents SDK的tracing机制\cite{openai_codex_agentsdk_2026}——记录Agent的每一步决策和工具调用；Agent安全研究中的trace grading\cite{agenticsecurity2025}——评估Agent操作轨迹的安全性。
+
+%% ============================================================
+\section{量化定律}
+\label{sec:laws}
+%% ============================================================
+
+经典计算机体系结构的力量在于它有\textbf{可计算的原则}。
+Amdahl定律告诉我们：如果程序中串行部分占比例为$(1-f)$，即使把并行部分加速$p$倍，总体加速比也不会超过$1/(1-f)$——这为并行计算设定了理论上界\cite{hennessy2017quantitative}。
+Roofline模型告诉我们：每个计算核心的性能上限由其计算强度（Arithmetic Intensity）和内存带宽共同决定——这帮助工程师快速判断瓶颈在计算还是在访存\cite{hennessy2017quantitative}。
+这些定律的价值不在于它们的数学复杂度，而在于它们提供了\textbf{统一的量化语言}，使得工程师可以做出基于数据的决策。
+
+本节为智能计算提出三条量化定律。在形式上，它们与Amdahl定律同构；但在语义上，它们刻画了智能计算特有的性能约束。
+本文明确承认：定律I和定律III在数学形式上并非全新的发现，而是将Amdahl定律的分析框架\textbf{有意识地迁移}到智能计算场景，并用场景特有参数重新解释。
+这种迁移的价值不在于数学创新，而在于：为原本缺乏量化语言的设计空间提供可计算的决策依据，使得"该优先优化什么"从直觉判断变为定量分析。
+
+% ---------------------------------------------------------
+\subsection{定律I：语义局部性定律}
+\label{sec:law1}
+% ---------------------------------------------------------
+
+\begin{law}[语义局部性定律]
+在自回归推理中，推理加速比$S$由KV缓存命中率$H$和KV复用加速比$\alpha$决定：
+\begin{equation}
+\label{eq:locality}
+S = \frac{1}{(1-H) + H \cdot \alpha^{-1}}
+\end{equation}
+\end{law}
+
+\subsubsection{参数的直观含义}
+
+在展开推导之前，先理解两个核心参数的物理含义：
+
+\begin{itemize}[nosep]
+\item $H$（KV缓存命中率）：\textbf{有多少比例的KV可以直接复用而不需要重算}。想象一个客服系统，如果用户连续5轮对话都围绕同一主题，前4轮生成的KV缓存可以被第5轮直接复用，那么$H$就接近1。反之，如果每次对话都是全新话题，之前的KV缓存毫无用处，$H$就接近0。$H$的值域为$[0, 1]$。
+\item $\alpha$（KV复用加速比）：\textbf{命中比未命中快多少倍}。当KV缓存命中时，系统只需从内存中读取已有的KV向量（时间复杂度$O(1)$）；当未命中时，系统必须从头计算全部注意力（时间复杂度$O(n^2)$）。$\alpha$量化了这一差距。在典型场景下，$\alpha$的值在$10$到$100$之间。
+\end{itemize}
+
+\subsubsection{完整推导}
+
+推导从基本的时间分析开始。
+
+\textbf{第一步：定义时间分解。}
+设一次推理请求的总时间为$T$，它由两部分组成：
+\begin{equation}
+T = T_{\mathrm{miss}} + T_{\mathrm{hit}}
+\end{equation}
+其中$T_{\mathrm{miss}}$是KV缓存未命中部分的时间（需要从头计算），$T_{\mathrm{hit}}$是KV缓存命中部分的时间（直接复用已有KV）。
+
+\textbf{第二步：用命中率表达各部分时间。}
+设无缓存时完成同样推理的总时间为$T_{\mathrm{total}}$（即所有部分都需要重算）。
+当有缓存时，未命中比例为$(1-H)$，命中比例为$H$。由于命中部分可以直接复用KV，其时间为原来的$1/\alpha$（快了$\alpha$倍），因此：
+\begin{equation}
+T = T_{\mathrm{total}} \cdot (1-H) + T_{\mathrm{total}} \cdot H \cdot \frac{1}{\alpha}
+\end{equation}
+整理得：
+\begin{equation}
+T = T_{\mathrm{total}} \cdot \left[(1-H) + \frac{H}{\alpha}\right]
+\end{equation}
+
+\textbf{第三步：定义加速比。}
+加速比$S$是有缓存相比无缓存的性能提升倍数：
+\begin{equation}
+S = \frac{T_{\mathrm{total}}}{T} = \frac{T_{\mathrm{total}}}{T_{\mathrm{total}} \cdot \left[(1-H) + H/\alpha\right]} = \frac{1}{(1-H) + H/\alpha}
+\end{equation}
+这正是公式~(\ref{eq:locality})。
+
+\subsubsection{极限行为与直觉}
+
+\begin{itemize}[nosep]
+\item 当$H \to 1$（几乎全部命中）时：$S \to 1/(0 + 1/\alpha) = \alpha$。加速比上界由复用效率决定——即使100\%命中，最快也只能快$\alpha$倍。
+\item 当$H \to 0$（几乎全部未命中）时：$S \to 1/(1 + 0) = 1$。没有任何加速，退化为无缓存场景。
+\item 当$\alpha \to \infty$（命中瞬间完成）时：$S \to 1/(1-H)$。加速比上界由命中率决定——即使命中是"免费的"，未命中的部分仍然消耗时间。
+\end{itemize}
+
+\subsubsection{数值示例}
+
+假设一个LLM推理服务，$\alpha = 10$（命中比未命中快10倍），我们来观察$H$对$S$的影响：
+
+\begin{itemize}[nosep]
+\item $H = 0.5$（一半命中）：$S = 1/(0.5 + 0.05) = 1.82$倍加速
+\item $H = 0.8$（80\%命中）：$S = 1/(0.2 + 0.08) = 3.57$倍加速
+\item $H = 0.95$（95\%命中）：$S = 1/(0.05 + 0.0095) = 16.8$倍加速
+\end{itemize}
+
+可见，$H$从0.5提升到0.8带来约2倍加速，而从0.8提升到0.95带来约4.7倍加速——\textbf{边际收益递增}，这意味着在已有一定缓存基础时进一步提升命中率的回报特别大。
+
+\subsubsection{与Amdahl定律的对应}
+
+公式~(\ref{eq:locality})与Amdahl定律在数学形式上完全同构。Amdahl定律的原始形式为：
+\begin{equation}
+S_{\mathrm{Amdahl}} = \frac{1}{(1-f) + f/p}
+\end{equation}
+其中$f$是可加速部分的比例，$p$是加速倍数。对应关系为：$f \leftrightarrow H$（可加速比例即KV缓存命中比例），$p \leftrightarrow \alpha$（加速倍数即KV复用加速比）。
+
+\textbf{设计含义}：提升推理性能有两条路径——提高$H$（通过更好的缓存策略、前缀共享、语义缓存\cite{gim2024promptcache}）和提高$\alpha$（通过KV加载优化、PagedAttention\cite{kwon2023pagedattention}、KV量化\cite{hooper2024kvquant}）。根据公式，这两条路径具有\textbf{互补性}：当$H$已经很高时，进一步提升$H$的边际收益大；当$H$较低时，提高$\alpha$的效果有限，应先解决缓存策略问题。
+
+\subsubsection{实证验证}
+
+\textbf{数据来源}：定律I的验证需要两组数据——系统报告的加速比和可以反推出的$H$值。
+
+\begin{enumerate}[nosep]
+\item \textbf{vLLM/PagedAttention}：Kwon等人报告vLLM相比基线推理系统实现2--4$\times$的吞吐提升\cite{kwon2023pagedattention}。取$\alpha \approx 10$（KV加载比重新计算快约10倍，这是一个保守估计），代入公式可得$H \approx 0.56$--$0.83$。这意味着vLLM的PagedAttention机制使得56\%--83\%的KV缓存可以被复用，而非每次从头计算。
+
+\item \textbf{Prompt Cache}：Gim等人报告TTFT（首token延迟）降低至原来的$1/8$至$1/60$\cite{gim2024promptcache}，即$S$从8到60。取$\alpha \approx 60$（Prompt Cache的语义缓存允许直接跳过大量计算），对应$H$从$0.75$到接近$0.98$。这说明对于高度结构化的prompt（如system prompt + 用户模板），缓存命中率可以非常高。
+\end{enumerate}
+
+% ---------------------------------------------------------
+\subsection{定律II：上下文预算定律}
+\label{sec:law2}
+% ---------------------------------------------------------
+
+\begin{law}[上下文预算定律]
+模型的有效工作集$W_{\mathrm{eff}}$受上下文窗口大小$C$和注意力保持率$\beta(L)$的联合约束：
+\begin{equation}
+\label{eq:context}
+W_{\mathrm{eff}} \leq C \cdot \beta(L)
+\end{equation}
+其中$C$是模型声称的上下文窗口大小（如128K、1M token），$L$为信息在窗口中的位置距离，$\beta(L) \in [0,1]$衡量位置$L$处信息被有效利用的概率。
+\end{law}
+
+\subsubsection{参数的直观含义}
+
+\begin{itemize}[nosep]
+\item $C$（上下文窗口大小）：这是模型的"物理内存容量"。例如GPT-4-Turbo的$C = 128\mathrm{K}$，Gemini 1.5 Pro的$C = 1\mathrm{M}$。$C$决定了模型一次性能"看到"多少token。
+\item $\beta(L)$（注意力保持率）：这是定律II的核心创新。它衡量的是：\textbf{放在上下文窗口中位置$L$处的信息，模型真正能用到多少}。$\beta(L) = 1$表示该位置的信息被完美利用，$\beta(L) = 0$表示该位置的信息被完全忽略。
+\item $W_{\mathrm{eff}}$（有效工作集）：模型的"真正可用记忆容量"。即使$C = 1\mathrm{M}$，如果$\beta(L)$在某些位置很低，那么$W_{\mathrm{eff}}$可能远小于$C$——就像买了一台1TB硬盘但只能稳定使用100GB。
+\end{itemize}
+
+\subsubsection{为什么$\beta(L)$会衰减——"中间丢失"现象}
+
+$\beta(L)$不是常量，而是随位置$L$衰减的函数。这一事实来自一个被广泛观察到的现象：\textbf{"中间丢失"（Lost in the Middle）}。
+
+Liu等人的开创性工作系统地研究了这一问题\cite{liu2023lostmiddle}：他们在长上下文中不同位置放置关键信息，然后测试模型能否检索到该信息。结果发现模型呈现出\textbf{U形曲线}——位于上下文\textbf{开头}（类似primacy effect）和\textbf{末尾}（类似recency effect）的信息被很好地检索到，而位于\textbf{中间}的信息检索准确率显著下降。
+
+后续研究进一步量化了这一衰减：RULER基准表明，上下文从4K增长到128K时，检索准确率从$>$95\%降至$<$70\%\cite{ruler2024}；LongBench v2确认深度推理任务的衰减更为严重\cite{longbenchv2_2024}；LOFT的研究表明即使模型支持超长上下文，在实际利用效率上也存在显著不足\cite{loft2024}。近期的研究指出LLM实际有效利用的上下文长度可能仅为声称窗口的10\%--20\%。
+
+\subsubsection{为什么使用指数衰减模型}
+
+本文采用指数衰减形式来建模$\beta(L)$：
+\begin{equation}
+\beta(L) \approx \beta_0 \cdot e^{-\lambda L / C}
+\end{equation}
+
+选择指数衰减有三个理由：
+\textbf{第一}，它是最简单的单调衰减函数，参数$\lambda$有直观的物理含义——$\lambda$越大，衰减越快，有效上下文越短。
+\textbf{第二}，注意力权重本身是softmax的输出，天然具有指数形式，因此用指数函数建模其衰减在结构上是合理的。
+\textbf{第三}，RULER等基准的实验数据在log尺度上近似线性\cite{ruler2024}，与指数衰减模型一致。
+
+需要强调的是：$\lambda$的精确值取决于具体模型和任务类型，本文暂不对其做参数拟合。定律II的价值在于提供了一个\textbf{思考框架}——它告诉我们$W_{\mathrm{eff}} < C$，而这个差距有多大、如何缩小，是后续研究的问题。
+
+\subsubsection{与经典"工作集理论"的对应}
+
+定律II与Denning的工作集模型有深刻的对应关系\cite{denning1968thrashing}。
+
+1968年，Peter Denning提出了工作集模型：进程在时间窗口$\tau$内访问的内存页面的集合构成\textbf{工作集}$W(\tau)$。Denning的核心洞察是：如果物理内存小于$W(\tau)$，系统就会发生\textbf{thrashing}（颠簸）——CPU大部分时间在等待页面换入换出，而不是在做有用的工作\cite{denning1968thrashing,denning2020workingset}。
+
+公式~(\ref{eq:context})是工作集模型的语义版本：$C$对应物理内存大小，$W_{\mathrm{eff}}$对应进程的真正工作集。关键差异在于：经典工作集模型中，页面的"有用性"是二值的（进程要么访问该页面，要么不访问）；而在定律II中，$\beta(L)$是连续的——模型对上下文中不同位置的信息利用程度是一个渐变的谱。
+
+\subsubsection{设计含义}
+
+定律II有三条直接的设计含义：
+
+\textbf{（1）单纯增大$C$的边际收益递减。}增大上下文窗口（如从128K扩展到1M）确实增大了$C$，但如果$\beta(L)$随$L$快速衰减，那么$W_{\mathrm{eff}}$的增长远小于$C$的增长。这意味着单纯追求更大的上下文窗口不是解决"记忆不够用"的根本方案。
+
+\textbf{（2）关键信息应放在$\beta$高的位置。}由于$\beta(L)$在上下文开头和末尾较高，在设计提示词（prompt）时应将关键信息放在这些位置，而将辅助信息压缩或外移到RAG系统中。
+
+\textbf{（3）这为分层记忆（L3）提供了定量依据。}当$C$固定时，只能通过语义虚拟内存（L3的职责）来突破$W_{\mathrm{eff}}$的限制——将不活跃的上下文"换出"到外部存储，将活跃的上下文"换入"到$\beta$值高的位置。MemGPT的虚拟上下文管理\cite{memgpt2023}和MemoryOS的分层记忆\cite{memoryos2025}正是这一思路的体现。
+
+\subsubsection{实证验证}
+
+\textbf{数据来源}：定律II的验证依赖于"模型声称的上下文窗口$C$"与"实际可用的有效上下文$W_{\mathrm{eff}}$"之间的差距。
+
+\begin{enumerate}[nosep]
+\item \textbf{RULER基准}：Hsieh等人设计了RULER基准，通过在不同长度的上下文中放置needle-in-a-haystack式检索任务来测试模型的有效上下文\cite{ruler2024}。结果表明，即使模型声称支持128K上下文，在复杂检索任务上的准确率从4K时的$>$95\%下降到128K时的$<$70\%。这意味着$W_{\mathrm{eff}} \approx 0.7 \times 128\mathrm{K} \approx 90\mathrm{K}$，远小于声称的$C$。
+
+\item \textbf{LongBench v2}：Bai等人发现深度推理任务（如数学证明、多步逻辑）的衰减速度远快于简单检索任务\cite{longbenchv2_2024}。这说明$\lambda$（衰减系数）不是模型的固定属性，而是与任务类型相关的。
+\end{enumerate}
+
+% ---------------------------------------------------------
+\subsection{定律III：Agent加速比定律}
+\label{sec:law3}
+% ---------------------------------------------------------
+
+\begin{law}[Agent加速比定律]
+多Agent并行处理时，加速比$S_{\mathrm{agent}}$受可并行化比例$F$、子Agent数量$N$和编排效率$E$约束：
+\begin{equation}
+\label{eq:agent}
+S_{\mathrm{agent}} = \frac{1}{(1-F) + \frac{F}{N \cdot E}}
+\end{equation}
+\end{law}
+
+\subsubsection{参数的直观含义}
+
+\begin{itemize}[nosep]
+\item $F$（可并行化比例）：\textbf{任务中有多少比例可以分给多个Agent同时执行}。例如，一个"对比三篇论文"的任务，三篇论文的摘要可以分别由三个Agent同时提取（$F$较高）；而"按照严格的先后顺序编译、测试、部署"的任务，大部分步骤必须串行执行（$F$较低）。$F$的值域为$[0, 1]$。
+
+\item $N$（子Agent数量）：系统中可同时调度的Agent数量。类似于分布式系统中的处理器数量。例如，Codex支持为复杂任务创建多个子Agent\cite{openai_codex_subagents_2026}，Claude Code支持通过sub-agent机制并行处理子任务\cite{anthropic_claudecode_subagents_2026}。
+
+\item $E$（编排效率）：\textbf{协调多个Agent的开销因子}，$E \in (0, 1]$。$E$反映了Agent编排的额外成本：上下文同步（Agent之间需要共享中间结果）、结果合并（多个Agent的输出需要被整合）、冲突检测（多个Agent可能修改同一资源）和权限协调（每个Agent的权限需要独立审批）。$E = 1$表示无编排开销，$E < 1$表示存在开销。
+\end{itemize}
+
+\subsubsection{完整推导}
+
+推导过程与定律I类似，但引入了编排效率的概念。
+
+\textbf{第一步：定义时间分解。}
+设任务在单个Agent上的执行时间为$T_{\mathrm{total}}$。任务分为可并行部分（比例$F$）和串行部分（比例$1-F$）。
+
+\textbf{第二步：计算各部分时间。}
+\begin{itemize}[nosep]
+\item 串行部分的时间：$(1-F) \cdot T_{\mathrm{total}}$（无法加速）。
+\item 并行部分在$N$个Agent上执行，但存在编排开销$E$，因此实际加速倍数为$N \cdot E$而非$N$。时间：$F \cdot T_{\mathrm{total}} / (N \cdot E)$。
+\end{itemize}
+
+\textbf{第三步：汇总并计算加速比。}
+\begin{equation}
+T = (1-F) \cdot T_{\mathrm{total}} + \frac{F \cdot T_{\mathrm{total}}}{N \cdot E}
+\end{equation}
+\begin{equation}
+S_{\mathrm{agent}} = \frac{T_{\mathrm{total}}}{T} = \frac{1}{(1-F) + \frac{F}{N \cdot E}}
+\end{equation}
+
+\textbf{第四步：验证退化情况。}当$E = 1$（无编排开销）时，公式退化为标准Amdahl定律，验证了推导的一致性。
+
+\subsubsection{极限行为与直觉}
+
+\begin{itemize}[nosep]
+\item 当$N \to \infty$时：$S_{\mathrm{agent}} \to 1/(1-F)$。加速比上界由任务的串行比例决定——无论增加多少Agent，串行部分都无法被并行化。
+\item 当$F \to 1$（几乎全部可并行）时：$S_{\mathrm{agent}} \to N \cdot E$。加速比由Agent数量和编排效率决定。
+\item 当$E \to 0$（编排开销极大）时：$S_{\mathrm{agent}} \to 1/(1-F+F/\infty) \to 1/(1-F)$。即使有很多Agent，如果编排效率极低（Agent之间大部分时间花在协调上），最终效果接近于"每个Agent独立工作然后等串行部分完成"。
+\end{itemize}
+
+\subsubsection{数值示例}
+
+假设一个代码审查任务，$F = 0.6$（60\%的审查工作可以分配给多个Agent），$E = 0.7$（编排效率70\%，有30\%的开销用于协调）：
+
+\begin{itemize}[nosep]
+\item $N = 2$：$S = 1/(0.4 + 0.6/(2 \times 0.7)) = 1/(0.4 + 0.43) = 1.20$倍
+\item $N = 4$：$S = 1/(0.4 + 0.6/(4 \times 0.7)) = 1/(0.4 + 0.21) = 1.64$倍
+\item $N = 8$：$S = 1/(0.4 + 0.6/(8 \times 0.7)) = 1/(0.4 + 0.11) = 1.96$倍
+\item $N = 16$：$S = 1/(0.4 + 0.6/(16 \times 0.7)) = 1/(0.4 + 0.054) = 2.20$倍
+\end{itemize}
+
+可见，Agent数量从2增加到4带来约37\%的额外加速，而从8增加到16仅带来约12\%的额外加速——\textbf{收益逐渐收窄}，这正是Amdahl定律的核心特征。
+
+\subsubsection{与经典Amdahl定律的对比}
+
+定律III与Amdahl定律的区别在于引入了编排效率$E$：
+\begin{equation}
+S_{\mathrm{Amdahl}} = \frac{1}{(1-F) + F/N} \quad \text{vs.} \quad S_{\mathrm{agent}} = \frac{1}{(1-F) + F/(NE)}
+\end{equation}
+
+$E$的存在使得Agent系统的加速比\textbf{总是低于}经典Amdahl定律的预测。这是因为：在经典并行计算中，处理器间的通信开销通常可以通过硬件（如高速互联网络）和算法（如减少通信的算法设计）来控制；但在Agent系统中，编排开销不仅包含通信成本，还包含\textbf{LLM推理本身的概率性}——Agent之间需要用自然语言协调，而自然语言通信天生比二进制协议低效且容易产生误解。
+
+\subsubsection{设计含义}
+
+定律III有三条直接的设计含义：
+
+\textbf{（1）盲目增加Agent数量不一定提升效率。}根据公式，当$E$较低时（编排开销大），增加$N$的收益很小。这解释了为什么简单的"堆Agent"策略往往不如预期有效。
+
+\textbf{（2）应优先提高$F$和$E$。}提高$F$（更好的任务分解，将更多串行步骤转化为可并行的子任务）和提高$E$（更低的编排开销，通过标准化的Agent间通信协议如A2A\cite{agentprotocols2025}来减少协调成本）的投入回报率远高于单纯增加$N$。
+
+\textbf{（3）存在最优的Agent数量。}对于给定的$F$和$E$，存在一个$N^*$使得增加更多Agent的边际收益低于其边际成本（每个Agent都需要消耗LLM推理资源）。$N^*$的估计可以从公式导出：当$\partial S / \partial N$低于某个阈值时，不应再增加Agent。
+
+\subsubsection{实证验证}
+
+\textbf{数据来源}：定律III的验证需要多Agent系统的实际性能数据。
+
+\begin{enumerate}[nosep]
+\item \textbf{AutoGen}：Wu等人报告了多Agent系统的实验数据，Agent数量从2增加到8时，任务完成时间的减少幅度逐渐收窄\cite{wu2023autogen}——这与定律III的预测一致：随着$N$增加，$S_{\mathrm{agent}}$的增长率递减。
+
+\item \textbf{GTA-2基准}：Wang等人报告开放工作流基准GTA-2的测试结果，顶尖模型的开放工作流成功率仅14.39\%\cite{gta2_2025}。这暗示当前系统的$F$和$E$都较低：任务分解能力不足导致$F$小（大部分工作仍是串行的），Agent间协调效率低导致$E$小。
+
+\item \textbf{Language Model Teams}：近期的arXiv论文将多Agent LLM团队类比为分布式系统，并直接用Amdahl定律框架分析其加速比\cite{langmodelteams2026}，发现高度可并行化的任务（如独立文档摘要）能获得接近线性的加速，而强依赖型任务（如多步推理）的加速比接近1——这与定律III中$F$的作用完全一致。
+\end{enumerate}
+
+% ---------------------------------------------------------
+\subsection{三条定律的统一视角}
+\label{sec:laws-summary}
+% ---------------------------------------------------------
+
+表~\ref{tab:empirical}汇总了三条定律的核心公式、支持数据和待验证问题。
+
+\begin{table}[t]
+\centering
+\footnotesize
+\caption{三条量化定律的实证数据汇总}
+\label{tab:empirical}
+\begin{tabularx}{\textwidth}{lY Y Y}
+\toprule
+& 定律I（语义局部性） & 定律II（上下文预算） & 定律III（Agent加速比） \\
+\midrule
+核心公式 & $S = 1/((1-H)+H/\alpha)$ & $W_{\mathrm{eff}} \leq C \cdot \beta(L)$ & $S = 1/((1-F)+F/(NE))$ \\
+经典对应 & Amdahl定律（$f \leftrightarrow H$, $p \leftrightarrow \alpha$） & Denning工作集模型（$W(\tau) \leftrightarrow W_{\mathrm{eff}}$） & Amdahl定律 + 编排开销（$E < 1$） \\
+支持数据 & vLLM：2--4$\times$提升（$H \approx 0.56$--$0.83$）\cite{kwon2023pagedattention}；Prompt Cache：8--60$\times$ TTFT降低（$H \approx 0.75$--$0.98$）\cite{gim2024promptcache} & RULER：4K$\to$128K时准确率从$>$95\%降至$<$70\%\cite{ruler2024}；LongBench v2：深度推理衰减更快\cite{longbenchv2_2024} & AutoGen：Agent 2$\to$8时时间减少收窄\cite{wu2023autogen}；GTA-2：开放工作流仅14.39\%\cite{gta2_2025} \\
+待验证 & 语义缓存的$H$分布 & $\beta(L)$的精确函数形式 & $E$与任务复杂度的定量关系 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+三条定律的共同特征是：它们都揭示了智能计算系统中的\textbf{性能上界}，并指出了突破上界的方向。定律I告诉我们KV缓存策略的理论极限；定律II告诉我们扩大上下文窗口的实际收益；定律III告诉我们增加Agent数量的有效边界。这三条定律共同构成了ICAM模型的\textbf{量化骨架}，将第~\ref{sec:icam}节的定性设计原则转化为可计算的工程指标。

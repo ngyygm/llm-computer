@@ -1,0 +1,387 @@
+\section{Key Component Analysis}
+\label{sec:components}
+
+This section analyzes six key components in order from core to periphery:
+foundation model (corresponding to the CPU) $\to$ KV cache (corresponding to the cache hierarchy) $\to$ context management (corresponding to virtual memory) $\to$ agent runtime (corresponding to the operating system) $\to$ tool bus (corresponding to I/O) $\to$ multi-agent collaboration (corresponding to distributed systems).
+For each component, we follow a uniform four-part structure: (1)~the classical computer architecture counterpart, (2)~the corresponding construct in LLM-based systems, (3)~why the two are analogous at the mechanism level, and (4)~the essential differences that the analogy should not obscure.
+
+%% FIG_ARCH_HERE
+
+%% ---------- Foundation Model: Computing Core ----------
+\subsection{Foundation Model: Probabilistic Computing Core}
+\label{sec:model}
+
+\subsubsection{The CPU in Classical Computer Architecture}
+
+In a classical computer, the CPU (Central Processing Unit) serves as the system's execution core.
+Its responsibility can be stated concisely: \textbf{execute instructions in sequence, mapping input state to output state}.
+Internally, the CPU comprises an arithmetic logic unit (ALU) for computation, a register file for holding operands, and a control unit for instruction fetch and decode.
+The defining property is \textbf{determinism}: executing \texttt{ADD R1, R2, R3} one million times yields the identical result provided the input registers hold the same values.
+CPU behavior is precisely specified by the instruction set architecture (ISA); for instance, the RISC-V specification gives a mathematically rigorous description of every instruction's semantics~\cite{riscv_spec_2026}.
+
+\subsubsection{The Counterpart in LLM-Based Systems}
+
+In a model-native computing system, the foundation model (e.g., GPT-4, Claude, LLaMA) plays the role of a \textit{general-purpose execution core}.
+Given an input context---comprising a system prompt, user messages, tool results, and control constraints---the model produces the next action or output through a forward pass~\cite{vaswani2017attention,brown2020gpt3,llama2023}.
+
+Prompts, tool descriptions, skill files, and project memory files (such as \texttt{AGENTS.md} or \texttt{CLAUDE.md}) can be understood as a form of \textbf{soft instruction interface}: they do not alter the model's physical weights---just as software does not alter the CPU's circuitry---yet they significantly reshape the model's execution path~\cite{openai_codex_agents_md_2026,openai_codex_skills_2026,anthropic_claudecode_memory_2026}.
+For example, a carefully authored \texttt{CLAUDE.md} file can cause the same model to exhibit ``Python expert'' behavior in one project and ``Rust expert'' behavior in another---much as loading different programs onto the same CPU yields different behaviors.
+
+SGLang has already moved in this direction: it reformulates complex language-model programs as a collaboration between a structured front-end language and a high-performance runtime, analogous to the transition from assembly language to high-level languages~\cite{sglang2024,sglang_docs_2026}.
+
+\subsubsection{Why the Analogy Holds}
+
+The analogy between a CPU and a foundation model rests on three pillars.
+
+\textbf{First, generality.}
+A CPU is a general-purpose compute core---the same silicon can run a word processor or a scientific simulation.
+A foundation model is a general-purpose reasoning core---the same weights can write code, analyze data, translate languages, and plan tasks.
+In both cases, the substrate is fixed while behavior is customized through ``software'' (programs versus prompts).
+
+\textbf{Second, interface abstraction.}
+A CPU exposes operations to upper layers through the ISA (arithmetic, branching, memory access); a model exposes operations through prompt templates and tool schemas (reasoning, generation, tool invocation).
+Both adhere to the principle of ``stable interface, evolvable implementation.'' The x86 architecture has persisted for over four decades while its microarchitecture evolved from single-scalar to superscalar out-of-order execution; likewise, the GPT-4 API has remained stable across successive model updates.
+
+\textbf{Third, microarchitectural optimization space.}
+CPUs benefit from pipelining, branch prediction, and superscalar issue; models benefit from FlashAttention (I/O-aware attention computation~\cite{dao2022flashattention}), speculative decoding (using a small model to predict a larger model's output~\cite{leviathan2023speculative}), and continuous batching.
+Both face the engineering challenge of ``improving performance without changing the interface.''
+
+\subsubsection{Essential Differences}
+
+The crux of the difference is \textbf{determinism versus probability}.
+A CPU executes a formal instruction set in which every instruction has precisely defined, long-term-stable, fully reproducible semantics.
+A foundation model processes a mixture of natural language, code, and structured schemas, producing outputs drawn from a probability distribution.
+As Mi et al.\ have argued, drawing on the evolution of computer architecture to inform agent system design requires candid acknowledgment of this fundamental gap between probabilistic and deterministic execution~\cite{mi2025llmagentscomputersystems}.
+
+Consequently, the future ``intelligent ISA'' should not be understood as hard-coding prompts as fixed instructions. Rather, the research agenda should prioritize developing more stable interface layers: tool schemas, constrained output formats, reusable skill packages, task-specific DSLs, and explicit context declarations.
+From an architectural perspective, this means the community should evaluate models not only by parameter count but also by \textbf{model programmability}---the degree to which upper layers can reliably and predictably control model behavior.
+
+%% ---------- KV Cache: Cache Hierarchy ----------
+\subsection{KV Cache: Cache Hierarchy for Intelligent Systems}
+\label{sec:kv}
+
+\subsubsection{The Cache Hierarchy in Classical Computers}
+
+In a classical computer, caches resolve the fundamental tension between fast processors and slow memory~\cite{drepper2007memory}.
+A modern CPU typically has three cache levels: L1 ($\sim$1\,ns, 64\,KB) $\to$ L2 ($\sim$4\,ns, 512\,KB) $\to$ L3 ($\sim$12\,ns, several to tens of MB).
+Caches exploit \textbf{temporal locality}: data accessed recently is likely to be accessed again soon.
+When the CPU needs data, it checks L1 first, then L2, then L3, and finally fetches from main memory.
+Cache management revolves around three core questions: \textit{placement policy} (where to store data), \textit{replacement policy} (what to evict when full), and \textit{write policy} (how to propagate modifications).
+
+\subsubsection{The Counterpart in LLM-Based Systems}
+
+During autoregressive inference, generating each new token requires computing attention between that token's Query vector and the Key/Value vectors of \textit{all} preceding tokens.
+Recomputing the full prefix KV at every step would incur $O(n^2)$ cost in sequence length.
+The KV cache avoids this by storing previously computed Key and Value vectors, reducing each attention step to an $O(1)$ lookup and bringing overall inference cost from $O(n^2)$ to $O(n)$.
+This rationale mirrors that of classical caching: \textbf{trade capacity (GPU memory) for latency and bandwidth advantages}~\cite{drepper2007memory,kwon2023pagedattention}.
+
+\textbf{A KV cache hierarchy is emerging:}
+\begin{itemize}[nosep]
+\item \textbf{L1---Session-level KV cache:} KV vectors within a single session; lowest latency, capacity bounded by GPU memory.
+\item \textbf{L2---Prefix/shared cache:} KV blocks shared across requests for common system prompts or codebase indices, analogous to read-only code pages shared among processes in a CPU~\cite{vllm_prefix_2026,sglang_docs_2026,gim2024promptcache}.
+\item \textbf{L3---Semantic cache:} Reusable tool-call results for similar queries, or reusable indices for identical repository structures---``semantic-level'' cache hits.
+\end{itemize}
+
+When vLLM introduced PagedAttention---organizing KV vectors into fixed-size blocks mapped through a block table to non-contiguous physical memory---the analogy ceased to be merely heuristic and became a direct borrowing of virtual-memory page management~\cite{kwon2023pagedattention}.
+
+\subsubsection{Why the Analogy Holds}
+
+The similarity between KV caches and CPU caches operates at the level of engineering mechanisms.
+
+\textbf{First, both exploit temporal locality.}
+CPU caches retain recently accessed cache lines because ``data used recently will be used again soon''; KV caches retain recently computed KV vectors because ``generating the next token requires attending to all prior tokens.''
+Both keep frequently reused data in fast storage to avoid expensive recomputation or memory accesses.
+
+\textbf{Second, both face capacity pressure and replacement decisions.}
+L1 caches have limited capacity and employ LRU-style replacement policies; KV caches face analogous GPU memory pressure.
+H2O identifies ``heavy-hitter'' tokens (those receiving the highest attention weights) and implements intelligent eviction~\cite{h2o2023}, analogous to identifying ``hot data'' in CPU caches.
+StreamingLLM discovered that initial tokens receive disproportionately high attention (the ``attention sink'' phenomenon) and achieved unlimited-length streaming inference by pinning these sink tokens~\cite{xiao2024streamingllm}---directly analogous to cache \textit{pinning} in CPU caches.
+
+\textbf{Third, both encounter bandwidth bottlenecks.}
+Gholami et al.\ observe that LLM inference during the decode phase is fundamentally memory-bandwidth-bound, not compute-bound~\cite{gholami2024memorywall}.
+Yuan et al.\ systematically characterized this behavior using the Roofline model~\cite{yuan2024llminference}.
+Li et al.\ organized KV cache management strategies into three tiers---token-level (which KV entries participate in attention), model-level (architectural optimizations such as Grouped-Query Attention (GQA) and Multi-Query Attention (MQA)), and system-level (memory management and scheduling)~\cite{likvcache2024survey}---mirroring the multi-level approach taken in CPU cache optimization.
+
+\textbf{Fourth, compression is a shared optimization direction.}
+KVQuant achieved $8\times$ compression~\cite{hooper2024kvquant}; KIVI applied asymmetric 2-bit quantization with nearly lossless accuracy and dramatically reduced memory footprint~\cite{liu2024kivi}.
+This parallels data compression in CPU caches (e.g., IBM MXT) to increase effective capacity.
+
+\subsubsection{Essential Differences}
+
+\textbf{First, hit criteria differ fundamentally.}
+CPU cache hits are \textbf{Boolean}: the address matches or it does not.
+In the KV cache, prefix caching does involve exact matching (identical prefix token sequences are reused), but upper-level semantic cache hits are \textbf{continuous-valued}: a similarity score exceeding a threshold is treated as a hit, and different thresholds yield different precision--recall trade-offs.
+Classical cache hit-rate models therefore do not transfer directly to semantic caching.
+
+\textbf{Second, invalidation mechanisms differ.}
+CPU cache coherence is ensured by hardware protocols such as MESI---when data is modified, the corresponding cache lines are marked invalid.
+KV and semantic cache ``invalidation'' is far more subtle: tool version changes, code repository commits, and stale indices can all produce hits that return outdated answers---a phenomenon we might call \textit{semantic staleness}.
+Recent work has begun exploring learned eviction policies~\cite{lpc2025} and dependency-aware invalidation mechanisms~\cite{multilevelcache2025} to address this challenge.
+
+\textbf{Third, the capacity--latency trade-off is more severe.}
+In the CPU cache hierarchy, latency increases gradually from L1 to L2 to L3 to main memory on a nanosecond scale.
+In the KV cache hierarchy, the latency jump from GPU memory to CPU memory to disk or network spans milliseconds, with no smooth intermediate gradient.
+Future cache management will need to co-design traditional cache policies with provenance tracking, TTLs, and hash-based versioning.
+
+%% ---------- Context Management: Virtual Memory ----------
+\subsection{Context Management: Virtual Memory with Semantics}
+\label{sec:memory}
+
+\subsubsection{Virtual Memory in Classical Computers}
+
+Virtual memory resolves a core tension: ``programs need far more address space than physical memory provides.''
+The operating system creates the illusion of abundant space through \textbf{paging}: each process receives its own virtual address space (e.g., 48-bit addressing, 256\,TB), while physical memory may be only 16\,GB.
+When a process accesses a virtual page not yet mapped to physical memory, a page fault occurs, and the OS loads the required page from disk.
+The central advantage is \textbf{demand paging}---only data actually accessed occupies physical memory, and the entire process is transparent to the application.
+
+Key components of virtual memory management include: page tables (mapping virtual to physical addresses), TLBs (caches that accelerate address translation), page replacement policies (deciding which pages to evict to disk), and write-back policies (determining when dirty pages are flushed to disk)~\cite{ostep_2023}.
+
+\subsubsection{The Counterpart in LLM-Based Systems}
+
+The context window is to a foundation model what main memory is to a process: a high-bandwidth, low-latency, but capacity-limited \textbf{working set}.
+Anthropic defines the context window directly as the working memory available to the model during generation.
+
+Context window capacity is expanding rapidly: Gemini~1.5 Pro supports up to 10 million multimodal tokens~\cite{gemini2024}; Ring Attention distributes sequences across multiple devices to achieve nearly unlimited context length~\cite{liu2024ringattention}; positional encoding methods such as RoPE, YaRN, and LongRoPE aim to extend the addressable history range~\cite{su2021roformer,yarn2024,longrope2024}.
+
+Yet a growing body of evidence shows that ``declared support length'' and ``effective working-set capacity'' are not the same thing.
+RULER, LongBench~v2, and LOFT provide more realistic stress tests for long-context capability~\cite{ruler2024,longbenchv2_2024,loft2024}.
+A machine may advertise 256\,TB of virtual address space while having only 16\,GB of physical memory; true performance depends on whether the working set fits in physical memory at all times.
+
+The more principled design, therefore, should not aim to ``stuff everything into context at once,'' but rather adopt \textbf{tiered management} in the spirit of virtual memory.
+
+\textbf{An emerging tiered scheme:}
+\begin{itemize}[nosep]
+\item \textbf{Hot memory (within the context window):} Complete information for the current task, analogous to active pages in physical memory.
+\item \textbf{Warm memory (summaries and indices):} Compressed historical context, analogous to pages swapped out but retaining summary metadata.
+\item \textbf{Cold memory (external knowledge bases):} Persistent vector stores and document repositories, analogous to data on disk.
+\end{itemize}
+
+MemGPT formalizes this idea as \textit{virtual context management}, explicitly drawing the LLM-as-operating-system analogy and paging information between the context window (``main memory'') and external storage (``disk'')~\cite{memgpt2023}.
+LongMem decouples long-term memory from the backbone model entirely~\cite{longmem2023}.
+RAG functions as an \textbf{external page-in mechanism}---when the agent encounters a ``page fault,'' it retrieves relevant content from a knowledge base into the context window via semantic search~\cite{lewis2020rag}.
+MemoryOS applies OS memory management principles directly to agent memory systems~\cite{memoryos2025}.
+MemOS proposes a comprehensive memory operating system architecture~\cite{memos2025}.
+HiAgent, inspired by human problem-solving processes, uses sub-goals as memory blocks to hierarchically manage agent working memory~\cite{hiagent2024}.
+A-MEM enables agents to organize memory structures autonomously, without predefined schemas~\cite{amem2025}.
+
+\subsubsection{Why the Analogy Holds}
+
+The analogy between context management and virtual memory holds at the \textbf{mechanism level}.
+
+\textbf{First, both create the illusion of abundant space.}
+Virtual memory convinces each process that it has a contiguous, large address space, when physical memory is far smaller.
+Virtual context management convinces each agent that it possesses unlimited memory, when the actual context window spans only 128K--1M tokens.
+Both realize this illusion through \textbf{demand loading}: only information needed right now occupies ``physical memory'' (the context window); the rest resides in ``disk'' (external knowledge stores).
+
+\textbf{Second, both face an ``address translation'' problem.}
+Virtual memory uses page tables to map virtual addresses to physical addresses; virtual context uses semantic retrieval to map ``information needs'' to specific knowledge entries.
+The former is an exact match (page number to physical page number); the latter is an approximate match (query intent to top-$k$ relevant documents).
+
+\textbf{Third, both require ``paging policies.''}
+When physical memory runs low, the OS must decide which pages to swap out (LRU, Clock, and related policies); when the context window fills up, the agent must decide which information to evict (summarization, selective forgetting).
+This is precisely the function of the ``context compiler''---the system must determine which state is loaded verbatim, which as a summary, which retains only an index entry, and which is discarded entirely~\cite{contextcompiler2025}.
+
+\subsubsection{Essential Differences}
+
+\textbf{The key distinction: virtual memory is \textbf{lossless}; context management is \textbf{lossy}.}
+OS paging is fully transparent to the application---pages swapped in and out retain every byte unchanged.
+Agent context management, by contrast, involves \textbf{semantic compression}: summarization inevitably loses detail, and selection inevitably omits information.
+``Address translation'' is also imprecise: vector similarity search returns the ``most relevant'' results, not the ``exact match.''
+
+Semantic virtual memory can therefore never be a lossless paged system.
+It is better understood as ``paged memory augmented with semantic summarization and evidence backfill''---information may be distorted after compression, but provenance chains enable verification against original data.
+Research from JetBrains suggests that effective context management depends not on ``cramming in more tokens'' but on ``reducing noise and preserving signal''~\cite{jetbrains2025context}---further validating the necessity of lossy compression in this regime.
+
+%% ---------- Agent Runtime: Operating System ----------
+\subsection{Agent Runtime: The Intelligent Operating System}
+\label{sec:agent}
+
+\subsubsection{The Operating System in Classical Computers}
+
+In a classical computer, the operating system is the system software that ``manages hardware resources, isolates applications, and provides unified service interfaces''~\cite{ostep_2023}.
+Its core responsibilities can be summarized in three abstractions: \textbf{virtualization} (giving each process the illusion of exclusive CPU and memory access), \textbf{concurrency} (enabling multiple processes to run simultaneously and safely), and \textbf{persistence} (reliably storing and managing files).
+
+Concretely, the OS handles: responding to system calls (file reads and writes), scheduling processes (which runs first and for how long), isolating processes (one crash does not affect another), managing memory (allocation, reclamation, paging), enforcing permissions (who can access which resources), handling I/O (interacting with peripheral devices), and maintaining logs (auditing and fault recovery).
+
+\subsubsection{The Counterpart in LLM-Based Systems}
+
+If the foundation model is the CPU, then the agent framework increasingly resembles the OS.
+An agent runtime must:
+\begin{itemize}[nosep]
+\item \textbf{Parse objectives:} Decompose user requests into executable subtasks (analogous to program loading and parsing).
+\item \textbf{Decide whether to plan:} Route simple requests directly and decompose complex ones into multi-step plans (analogous to fast-path versus slow-path scheduling).
+\item \textbf{Load context:} Populate the context window with system prompts, project memory, and conversation history (analogous to loading a process memory image).
+\item \textbf{Execute tool calls:} Invoke external tools via protocols such as MCP (analogous to system calls).
+\item \textbf{Approve dangerous actions:} Perform permission checks on side-effecting operations such as file writes or code execution (analogous to capability-based access control).
+\item \textbf{Spawn sub-agents concurrently:} Dispatch subtasks to independent child agents (analogous to \texttt{fork}).
+\item \textbf{Merge intermediate results:} Aggregate sub-agent outputs into a final answer (analogous to inter-process communication and result aggregation).
+\item \textbf{Persist state:} Write important state to memory files or knowledge bases (analogous to filesystem writes).
+\item \textbf{Recover from failure:} Retry or roll back on errors to maintain task consistency (analogous to transaction recovery).
+\end{itemize}
+
+This analogy has already been articulated in the literature.
+Ge et al.\ proposed the vision of ``LLM as OS, Agents as Apps''~\cite{ge2023llmos}.
+Mei et al.\ built AIOS, a full LLM agent operating system kernel architecture~\cite{mei2024aios}.
+Mi et al.\ systematically applied the evolutionary experience of computer architecture to agent system design~\cite{mi2025llmagentscomputersystems}.
+Karpathy argued in 2023 that ``LLMs are not chatbots; they are the kernel process of a new operating system''~\cite{karpathy2023llmos}---the filesystem becomes a vector database, the browser becomes internet search.
+This vision is becoming an economic reality: an Augment Code enterprise customer completed a project in two weeks that their CTO had estimated would take four to eight months~\cite{anthropic2026agenticreport}, demonstrating that effective L3 context management combined with L5 orchestration can compress developer onboarding and project delivery from weeks to days.
+
+Industrial practice is evolving in the same direction.
+Codex provides subagents, skills, and sandbox-based control surfaces~\cite{openai_codex_overview_2026}; Claude Code offers hooks, MCP integration, memory files, and read-only approval flows~\cite{anthropic_claudecode_overview_2026}.
+
+\subsubsection{Why the Analogy Holds}
+
+Among all the analogies in this paper, the correspondence between the agent runtime and the OS is the deepest, because it operates at the level of \textbf{architectural responsibility}.
+
+\textbf{First, both are resource managers.}
+The OS manages CPU time slices, memory pages, disk space, and network bandwidth; the agent runtime manages model inference quota, context window space, tool-call rate limits, and sub-agent count.
+Both must answer: ``How should limited resources be allocated among competing demands?''
+
+\textbf{Second, both provide isolation and security.}
+The OS isolates processes through address spaces---one process crash does not affect others~\cite{ostep_2023}; the agent runtime isolates sub-agents through sandboxes---one sub-agent's erroneous operation does not compromise the main task~\cite{openai_codex_sandbox_2026,anthropic_claudecode_sandbox_2026}.
+Both face the same access-control question: ``Who is allowed to do what?''
+
+\textbf{Third, both define standard interfaces.}
+The OS standardizes application--hardware interaction through system calls (the POSIX interface); the agent runtime standardizes model--tool interaction through protocols such as MCP~\cite{mcp_intro_2026}.
+
+\subsubsection{Essential Differences}
+
+\textbf{First, agent ``process'' behavior is unpredictable.}
+A traditional OS schedules processes whose behavior is defined by deterministic code; the OS can accurately predict execution time and resource requirements.
+An agent's behavior is determined by probabilistic reasoning---the same task may follow entirely different execution paths across runs, succeeding once and falling into an infinite loop the next.
+This poses a fundamental challenge for scheduling and resource management.
+
+\textbf{Second, shared state is far more fragile.}
+When multiple processes share memory, consistency is ensured by hardware cache coherence protocols (e.g., MESI) and software locks---precise and verifiable.
+When multiple agents share semantic state (e.g., ``an understanding of the same document''), consistency can only be maintained through natural-language communication or external synchronization mechanisms---ambiguous and error-prone.
+
+\textbf{Third, interface specifications are not rigorous.}
+Every system call in the POSIX interface has precisely defined semantics, parameter types, error codes, and boundary conditions.
+An agent's tool-call interface can describe parameters via JSON Schema, but the ``semantic behavior'' of a tool---what it returns under which circumstances---is far from the level of precision expected of a system call.
+
+\textbf{The greatest value of this analogy} lies in reframing many agent problems as OS problems:
+\begin{itemize}[nosep]
+\item Does multi-agent collaboration resemble multithreading or multiprocessing?~\cite{wu2023autogen}
+\item Should tool invocations be treated as system calls?
+\item Is an MCP server analogous to a device driver or bus protocol?~\cite{mcp_intro_2026}
+\item Why do dangerous commands require capability-based permissions?~\cite{debenedetti2025camel}
+\item How can long-running tasks recover via logs and interrupts?~\cite{openai_codex_approvals_2026}
+\end{itemize}
+
+\textbf{Security: a particularly compelling analogy.}
+In the security domain, this correspondence is especially profound.
+CaMeL applies operating system capability-security principles to LLM agents, creating a protection layer independent of the LLM itself~\cite{debenedetti2025camel}.
+IronClaw argues for protecting AI agents the way an operating system protects its processes~\cite{ironclaw2025}.
+Systems security researchers have begun using the term ``agentic computing'' to define the foundational problems of agent security~\cite{agenticsecurity2025}.
+These efforts underscore a critical insight: \textbf{security boundaries are primarily a ``runtime structure'' problem and only secondarily a ``prompt'' problem}---just as OS security depends first on the permission model and isolation mechanisms, and only then on application code quality.
+
+%% ---------- Tool Bus: I/O System ----------
+\subsection{Tool Bus and Agent Interconnection}
+\label{sec:io}
+
+\subsubsection{The I/O System in Classical Computers}
+
+In a classical computer, the I/O system connects the CPU and memory to the external world.
+Its evolution is highly instructive:
+In the \textbf{early phase} (1960s--1970s), each peripheral required a dedicated interface and driver---graphics cards had their own bus, hard drives their own controller, printers their own parallel port.
+In the \textbf{standardization phase} (1990s--2000s), PCI/PCIe unified the motherboard-level bus and USB unified peripheral connectivity---hardware vendors needed only to follow a common protocol for plug-and-play operation.
+In the \textbf{networking phase} (2000s--present), the TCP/IP protocol stack unified network communication---any device could interoperate through standard protocols.
+
+The central lesson of this history is: \textbf{a standardized bus protocol is a prerequisite for ecosystem prosperity}.
+
+\subsubsection{The Counterpart in LLM-Based Systems}
+
+In model-native computing, the I/O layer is undergoing a similar transition from point-to-point connections to a standardized bus.
+
+\textbf{Early phase (method-level):}
+ReAct interleaved reasoning with acting~\cite{yao2023react}; Toolformer taught models when to call APIs~\cite{schick2023toolformer}; HuggingGPT placed an LLM in a ``controller'' role to orchestrate heterogeneous models~\cite{hugginggpt2023}; Gorilla focused on the accuracy and documentation-refresh resilience of API calls~\cite{patil2024gorilla}.
+These efforts correspond to the ``direct device manipulation'' phase of early computing: each tool required a bespoke interface and calling convention, with no unified protocol standard.
+
+\textbf{Standardization phase (protocol-level):}
+MCP (Model Context Protocol) standardizes the connection between AI applications and external data sources, tools, and workflows~\cite{mcp_intro_2026}, playing a role analogous to PCIe or USB in traditional computing---it defines unified discovery, connection, invocation, and error-handling mechanisms so that new tools can be ``plug-and-play.''
+Google's A2A (Agent-to-Agent) protocol targets agent-to-agent interoperation~\cite{google_a2a_2025}, supporting capability discovery, task lifecycle management, and multimodal collaboration---analogous to TCP/IP in the networking stack, enabling agents from different vendors to discover and cooperate with one another.
+
+Taken together, MCP serves as a \textbf{vertical bus} (agent$\to$tool) while A2A serves as a \textbf{horizontal interconnect} (agent$\to$agent).
+As one survey observes, MCP, A2A, and related protocols such as ACP are forming the infrastructure layer for agent interoperability~\cite{agentprotocols2025}.
+
+\subsubsection{Why the Analogy Holds}
+
+\textbf{First, both solve the ``interface diversity'' problem.}
+Before PCIe unified motherboard-level device interfaces, every device needed a dedicated driver; before MCP unified tool interfaces, every tool required bespoke API adapter code.
+Both reduce system integration costs by ``defining a standard protocol that hides implementation differences.''
+
+\textbf{Second, both exhibit a layered protocol stack.}
+Traditional I/O spans the physical layer (electrical signaling), the link layer (PCIe transaction layer), the protocol layer (NVMe/SCSI), and the application layer (filesystem).
+Agent I/O follows a similar stack: transport layer (HTTP/SSE), protocol layer (MCP/A2A message formats), semantic layer (tool schemas and agent capability descriptions), and application layer (concrete tool invocations or agent collaborations).
+
+\textbf{Third, both face discovery and negotiation challenges.}
+A USB device, upon insertion, must be ``enumerated''---the host queries the device type, capabilities, and driver requirements.
+An MCP server, upon connection, similarly undergoes ``capability discovery''---the agent queries which tools the server supports, along with each tool's parameter schema and side-effect description.
+
+\subsubsection{Essential Differences}
+
+\textbf{First, invocation determinacy differs.}
+A traditional system call such as \texttt{read(fd, buffer, size)} is fully predictable---identical parameters yield identical results.
+Tool invocations, by contrast, may be non-deterministic (search engine results change over time), asynchronous (long-running tasks require callbacks), and side-effecting (sending email, executing code).
+
+\textbf{Second, error handling is far more complex.}
+PCIe devices either respond correctly or return a well-defined error code; MCP tools may return semantically ambiguous errors (``the result is uncertain'') or---worse---results that appear correct but are in fact wrong.
+This compels the agent I/O layer to introduce \textbf{verification and redundancy} mechanisms: critical operations require result validation, analogous to quorum reads in distributed systems.
+
+%% FIG_FLOW_HERE
+
+%% ---------- Multi-Agent: Distributed System ----------
+\subsection{Multi-Agent Collaboration: Distributed Systems with Semantics}
+\label{sec:distributed}
+
+\subsubsection{Distributed Systems in Classical Computing}
+
+When a single computer lacks the compute power to complete a task, multiple machines must cooperate over a network---this is the domain of distributed systems.
+The core challenges include:
+\textbf{task decomposition and scheduling} (breaking a large task into smaller ones and assigning them to different nodes),
+\textbf{state synchronization and consistency} (how multiple nodes agree on shared state),
+\textbf{fault detection and recovery} (how the system continues when a node crashes),
+\textbf{deadlock avoidance} (breaking cyclic waits among nodes), and
+\textbf{load balancing} (keeping all nodes busy rather than overloading some while others idle)~\cite{hennessy2017quantitative}.
+
+\subsubsection{The Counterpart in LLM-Based Systems}
+
+When multiple agents collaborate on a complex task, the system exhibits characteristics of distributed computing.
+
+AutoGen treats multi-agent conversation as general infrastructure~\cite{wu2023autogen}---multiple agents cooperate through message passing, much like distributed nodes.
+MetaGPT uses pipeline-style Standard Operating Procedures to make multi-agent collaboration explicitly procedural~\cite{metagpt2023}---analogous to industrial-pipeline task decomposition, where each agent handles one stage (requirements analysis $\to$ design $\to$ coding $\to$ testing).
+Internet of Agents imagines the agent ecosystem as an ``internet'' rather than a single machine~\cite{ioa2024}---emphasizing agent integration protocols, dynamic team formation, and distributed environments.
+
+From an architectural perspective, clear correspondences emerge:
+a single agent maps to a single process, multi-agent collaboration to multithreading or multiprocessing, and a cross-node agent cluster to a distributed system.
+This immediately introduces the classical distributed-system challenges: task decomposition and scheduling, state synchronization and consistency, fault detection and recovery, deadlock avoidance, and load balancing.
+
+\subsubsection{Why the Analogy Holds}
+
+\textbf{First, both face the ``communication overhead versus parallelism benefit'' trade-off.}
+In distributed systems, Amdahl's law tells us that parallel speedup is limited by the serial fraction.
+In multi-agent systems, Law~III (the agent speedup law) predicts analogous behavior---when orchestration efficiency $E$ is insufficient, simply adding more agents yields diminishing returns.
+AutoGen's multi-agent experiments validate this prediction: increasing the agent count from 2 to 8 produced progressively smaller reductions in task completion time~\cite{wu2023autogen}.
+Industrial case studies further demonstrate that coordination topology significantly affects $E$: Fountain adopted a hub-and-spoke topology (a central Copilot coordinating sub-agents for screening, document generation, and sentiment analysis), achieving 50\% faster candidate screening and full configuration within 72 hours~\cite{anthropic2026agenticreport}; MetaGPT employs a pipeline topology (SOP-driven sequential collaboration); AutoGen uses a peer-to-peer topology (conversational coordination).
+Different topologies yield different $E$ values across task scenarios, implying that the $E$ in Law~III is not a fixed scalar but a design variable coupled to the coordination structure.
+
+\textbf{Second, both require coordination mechanisms.}
+Distributed systems use consensus protocols such as Raft~\cite{raft2014} to help multiple nodes agree on decisions; multi-agent systems need ``debate,'' ``voting,'' or ``hierarchical arbitration'' mechanisms for multiple agents to converge on a conclusion.
+
+\textbf{Third, both face a consistency--availability tension.}
+The CAP theorem states that a distributed system cannot simultaneously guarantee consistency, availability, and partition tolerance~\cite{cap2002}.
+In multi-agent systems, an analogous tension exists between ``semantic consistency'' (whether agents share the same understanding of a fact) and ``response speed'' (whether to wait for all agents to finish reasoning before producing a conclusion).
+
+\subsubsection{Essential Differences}
+
+\textbf{First, communication bandwidth and precision differ fundamentally.}
+Distributed nodes communicate through structured protocols (e.g., gRPC with Protocol Buffers), yielding precise, lossless message semantics.
+Agents communicate through natural language or semi-structured messages, where information may be misinterpreted, omitted, or distorted during transmission---\textit{semantic noise} is a challenge unique to agent-based distributed systems.
+
+\textbf{Second, failure modes differ.}
+Distributed-node failures are typically binary (online or offline); agent ``failures'' can be \textit{gradual}---the agent has not crashed, but its reasoning quality degrades, it drifts from the task objective, or it begins to hallucinate.
+Detecting ``whether an agent is executing the task correctly'' is far harder than detecting ``whether a node is alive.''
+
+\textbf{Third, combinatorial emergence introduces uncertainty.}
+The behavior of a distributed system is the deterministic composition of its nodes' behaviors; multi-agent systems may produce \textbf{emergent effects}---each agent executes correctly in isolation, yet the collective outcome is unpredictable.
+This places new demands on system debuggability and accountability.

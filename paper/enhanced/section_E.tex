@@ -1,0 +1,381 @@
+%% ============================================================
+\section{Agent框架演进：从ReAct到智能操作系统}
+\label{sec:agentevolution}
+
+Agent框架（Agent Framework）是指围绕大语言模型构建的、使其能够自主规划、调用工具、管理状态并完成复杂任务的软件系统。
+从2022年的研究原型到2025年的产品化运行时，Agent框架正在经历一次类似操作系统从单任务批处理到多任务分时、从无保护到有保护、从无治理到可信治理的系统性演进。
+本节梳理这一演进的五个阶段，每个阶段从\textbf{核心架构特征}、\textbf{代表性系统及其具体做法}、以及\textbf{与经典操作系统演进的对应关系}三个维度展开分析。
+
+%% ---------- 第一代 ----------
+\subsection*{第一代：执行范式确立（2022--2023）}
+
+\textbf{核心特征。}
+第一代Agent框架确立了``推理--行动--观察''交织循环（Thought--Action--Observation loop）的基本范式。
+在此之前，大语言模型的使用方式是``单轮问答''：用户给出提示，模型一次性返回回答，类似于向批处理系统提交一个作业并等待输出。
+第一代框架打破了这一限制：模型不再是被动回答者，而是在循环中主动\textbf{推理}（分析当前状态并决定下一步）、\textbf{行动}（调用工具或执行操作）、\textbf{观察}（读取工具返回的结果），然后进入下一轮循环。
+
+\textbf{代表工作。}
+ReAct\cite{yao2023react}是这一代的奠基工作。
+它的核心做法是在提示模板中引入``Thought''字段，要求模型在每次调用工具前先显式输出推理过程。
+例如，当用户问``莎士比亚最长的剧本是什么？''时，模型不是直接猜测答案，而是先输出``我需要搜索莎士比亚所有剧本的长度''，然后调用搜索工具，再根据搜索结果推理出最终答案。
+这种``先想再做''的模式看似简单，却解决了大模型直接生成工具调用时常见的``幻觉式工具调用''问题。
+Toolformer\cite{schick2023toolformer}则从另一个角度切入：让模型\textbf{自学}何时以及如何调用工具，通过在训练数据中注入工具调用示例来实现。
+
+\textbf{与OS演进的对应。}
+这一代框架类似于1950年代的\textbf{单任务批处理系统}（如IBM 704的Fortran Monitor System）：系统一次只处理一个任务，做完再做下一个，没有并发、没有中断、没有状态保持。
+ReAct的循环就是最简单的``取指--译码--执行''流水线，每次循环对应一个``指令周期''。
+系统没有任何资源管理能力：没有任务调度（只有一个任务）、没有内存管理（上下文窗口就是全部``内存''）、没有I/O抽象（工具调用是硬编码的）。
+
+%% ---------- 第二代 ----------
+\subsection*{第二代：持续多步代理（2023）}
+
+\textbf{核心特征。}
+第二代框架的核心突破是\textbf{持续性}（persistence）和\textbf{自主目标分解}（autonomous goal decomposition）。
+第一代框架中，每个用户提问触发一个独立的推理--行动循环；循环结束后，所有中间状态消失。
+第二代框架允许Agent持续运行，自主将高层目标分解为子任务序列，维护跨步骤的中间状态，并在子任务之间传递信息。
+这意味着Agent开始具备``工作记忆''的能力。
+
+\textbf{代表工作。}
+AutoGPT\cite{autogpt_repo_2026}是第二代最知名的尝试。
+用户给定一个高层目标（如``调研量子计算领域的最新进展并撰写报告''），AutoGPT自主将其分解为搜索论文、提取关键信息、组织大纲、撰写报告等子任务，并依次执行。
+它引入了长期记忆（基于向量数据库）来存储跨步骤的中间结果，使Agent能``记住''之前做过什么。
+然而，AutoGPT也暴露了第二代的核心问题：缺乏失败恢复机制，一旦某个子任务出错，整个链路容易陷入死循环或累积错误。
+Voyager\cite{wang2023voyager}在Minecraft环境中做出了关键改进：引入了\textbf{技能库}（skill library）---将成功完成的子任务封装为可复用的``技能''，类似函数定义；以及\textbf{自动课程}（automatic curriculum）---根据当前能力自动生成下一步应学习的任务，类似教学大纲。
+这使得Agent能够持续积累经验，而不是每次都从头开始。
+BabyAGI则实现了更简洁的任务队列管理：维护一个待办任务列表，按优先级排序执行，并根据执行结果动态生成新任务。
+
+\textbf{与OS演进的对应。}
+这一代框架类似于1960年代的\textbf{多道程序设计}（multiprogramming）：系统开始管理复杂的多步状态，任务之间可以共享和传递信息。
+AutoGPT的任务队列就是最原始的``作业调度器''；Voyager的技能库类似于``可执行程序库''；BabyAGI的优先级排序类似于早期的``作业调度策略''。
+但与成熟的OS相比，第二代框架缺少三个关键机制：\textbf{隔离}（不同任务之间可能相互干扰）、\textbf{调度}（没有抢占式调度，一个任务卡住会阻塞整个系统）、和\textbf{保护}（一个任务出错可能污染其他任务的状态）。
+
+%% ---------- 第三代 ----------
+\subsection*{第三代：通用运行时（2023--2024）}
+
+\textbf{核心特征。}
+第三代框架开始系统性地引入\textbf{调度}、\textbf{隔离}和\textbf{资源管理}能力，使Agent框架从``单脚本自动化工具''升级为``通用运行时平台''。
+关键标志是：Agent不再只是一个串行执行的循环，而是可以被调度、被暂停、被恢复的``进程''；多个Agent可以并发运行且互不干扰；系统开始显式管理计算资源（推理次数、上下文空间、工具调用频率）。
+
+\textbf{代表工作。}
+AIOS\cite{mei2024aios}构建了完整的Agent OS内核，其架构包含六个子系统：Agent Scheduler（负责多Agent的并发调度）、Context Manager（管理不同Agent的上下文隔离与共享）、Memory Manager（分层记忆管理）、 Tool Manager（工具注册与权限控制）、IO Manager（输入输出管理）和 Knowledge Manager（知识库管理）。
+每个Agent被封装为一个``进程''，拥有独立的状态空间和资源预算。
+OpenAI Agents SDK\cite{openai_codex_agentsdk_2026}则采取了更工程化的路线：将orchestration（编排）、state management（状态管理）、approvals（审批流）、handoffs（Agent间任务移交）与tracing（全链路追踪）做成代码优先（code-first）的运行时。
+开发者可以用Python代码定义Agent的行为规范、权限边界和协作流程，而不是用提示模板来隐式地``编程''。
+AutoGen\cite{wu2023autogen}提出了多Agent对话框架：多个Agent通过结构化的消息传递来协作完成复杂任务，每个Agent扮演不同角色（如程序员、测试员、项目经理），类似于多进程协作。
+
+\textbf{与OS演进的对应。}
+这一代框架类似于1960--70年代的\textbf{分时操作系统}（Time-Sharing OS，如Multics和Unix）。
+分时OS的核心突破是为每个用户（进程）提供独立的地址空间和公平的CPU时间片，使得多用户可以安全地共享同一台计算机。
+AIOS的Agent Scheduler对应分时OS的进程调度器；Context Manager对应内存管理单元（MMU）的地址隔离；Tool Manager的权限控制对应Unix的文件权限系统。
+Agents SDK的tracing机制则对应OS的\texttt{strace}/\texttt{auditd}系统调用追踪。
+
+%% ---------- 第四代 ----------
+\subsection*{第四代：工程化操作系统（2024--2025）}
+
+\textbf{核心特征。}
+第四代框架的核心标志是\textbf{面向真实软件工程环境的深度整合}。
+前三代框架主要在实验室环境或受限场景中验证概念；第四代框架直面真实的代码库、真实的终端环境、真实的文件系统和真实的外部服务。
+这意味着系统必须处理前几代可以回避的问题：大型代码仓库的上下文远超模型窗口、工具调用可能产生不可逆的副作用、并发编辑可能引发冲突、真实项目需要权限和审计。
+
+\textbf{代表工作。}
+OpenAI Codex\cite{openai_codex_overview_2026}是一个运行在隔离沙箱中的云端代码Agent：它在独立的容器中checkout代码仓库，执行读写和运行命令，完成后提交差异（diff）供人类审查。
+Codex引入了子Agent机制（subagents）\cite{openai_codex_subagents_2026}：主Agent可以将子任务分派给专门的子Agent执行，子Agent在独立的沙箱中运行，结果经审批后合并---类似于Unix的\texttt{fork()}创建子进程。
+Codex还支持技能包（skills）\cite{openai_codex_skills_2026}和项目级指令文件（AGENTS.md）\cite{openai_codex_agents_md_2026}，实现了跨项目的可复用配置。
+
+Claude Code\cite{anthropic_claudecode_overview_2026}采取了互补的设计哲学：它运行在开发者本地终端，通过MCP协议\cite{mcp_intro_2026}连接外部工具，默认只读（除非用户显式授权写入），并支持自定义hooks来拦截和审计每一次工具调用\cite{anthropic_claudecode_security_2026}。
+Claude Code的记忆系统\cite{anthropic_claudecode_memory_2026}区分了项目级记忆（\texttt{CLAUDE.md}，类似于系统配置文件）和用户级记忆（跨项目的个人偏好，类似于用户home目录下的点文件）。
+
+OpenHands\cite{openhands_paper_2025}提供了开放的Agent平台，支持多种模型后端和沙箱环境，其OpenHands Index已成为评估代码Agent能力的标准基准之一。
+OSWorld\cite{osworld2024}则从评估角度推动了这个方向：它构建了真实的操作系统环境（包含文件管理器、浏览器、终端等），要求Agent在真实的GUI环境中完成开放式任务，暴露了Agent在真实世界复杂性面前的局限性。
+Devin\cite{devin2024cognition}进一步展现了第四代的工程化特征：作为一个``AI软件工程师''，它集成了代码编辑器、浏览器和终端，能够自主规划、编码、调试和部署。
+
+\textbf{与OS演进的对应。}
+这一代框架类似于1980--90年代的\textbf{现代操作系统}（如Unix System V、Linux早期版本、Windows NT）。
+现代OS的核心特征是处理真实世界的复杂性：多任务调度（CFS调度器\cite{linux_cfs_2026}）、虚拟内存与按需分页、网络协议栈、设备驱动框架、安全审计。
+Codex的沙箱对应OS的进程隔离（每个子Agent在独立容器中运行，类似\texttt{chroot}或容器技术）；Claude Code的hooks对应Linux的LSM（Linux Security Modules）安全钩子；Codex的审批机制对应Unix的\texttt{sudo}权限提升；OpenHands的多模型后端对应OS的硬件抽象层（HAL）。
+
+%% ---------- 第五代 ----------
+\subsection*{第五代：治理化操作系统（2025--至今）}
+
+\textbf{核心特征。}
+第五代框架的核心突破是\textbf{将安全和治理从事后补丁升级为体系结构的第一性设计原则}。
+前四代框架的安全措施是``加法式''的：先让Agent能工作，再加沙箱、加审批、加日志。
+第五代框架反过来：先定义安全边界和治理规则，再在边界内赋予Agent行动能力。
+这种范式的转变类似于操作系统从``可用''到``可信''的转折---正如Multics在1960年代就引入了环保护（ring protection）和强制访问控制（mandatory access control），但直到SELinux和Capability-based Security普及后，安全才真正成为OS体系结构的有机组成部分\cite{ostep_2023}。
+
+\textbf{代表工作。}
+ArbiterOS\cite{arbiteros2025}明确提出了``Probabilistic CPU + Deterministic Governor/Kernel''的分层架构：底层的LLM是概率式处理器，负责``能做什么''；上层的governor是确定性控制器，负责``应该做什么''。
+governor通过策略文件（policy specification）定义Agent的行为边界，类似于OS内核通过系统调用表和权限位定义进程的能力范围。
+
+AgentOS\cite{agentos2025}引入了受结构化操作系统逻辑（structured operating system logic）约束的推理内核（reasoning kernel），从token级别的上下文管理出发，逐步构建出系统级的智能行为。
+其核心思想是：Agent的推理过程不应该是不可控的``黑箱循环''，而应该像OS内核一样，通过结构化的抽象和接口来管理。
+
+UFO$^2$\cite{ufo2_2025}面向桌面环境，将Desktop AgentOS组织为三层结构：HostAgent（顶层协调者，类似于init进程）、AppAgent（每个应用程序一个，类似于服务进程）、和GUI--API action layer（底层操作接口，类似于驱动层）。
+这种分层使得Agent对不同应用程序的操作可以被独立管理和审计。
+
+Aura\cite{aura2025}则在移动端实现了安全优先的Agent OS架构：System Agent（系统级Agent，拥有最高权限）、Sandboxed App Agents（每个应用一个，运行在沙箱中，类似于Android的应用沙箱）、和Agent Kernel（Agent内核，负责权限仲裁和资源分配）。
+Aura特别强调了移动端环境的独特风险：语义输入污染（通过恶意输入劫持Agent行为）、记忆taint传播（被污染的记忆影响后续所有操作）、以及跨应用权限泄露。
+
+CaMeL\cite{debenedetti2025camel}从安全原则出发，提出了基于能力（capability）的安全模型来防御提示注入攻击。
+其核心思想借鉴自操作系统中的capability-based security：Agent不能直接执行任何有副作用的操作，而必须通过一个确定性的capability manager来获取``临时通行证''。
+每个通行证只授权一个特定操作（如``只读文件X''），而不是授予全局权限。
+这类似于Unix从``root/非root''的粗粒度权限模型，向POSIX capability和SELinux的细粒度权限模型的演进。
+
+IronClaw\cite{ironclaw2025}系统性地论证了为什么AI Agent需要像操作系统一样被保护。
+它指出，传统软件安全假设``代码是确定性的、行为是可预测的''，但Agent的行为由概率式模型驱动，攻击面从``代码漏洞''扩展到了``语义漏洞''---攻击者可以通过自然语言提示来劫持Agent的行为，而不需要利用任何代码缺陷。
+
+OWASP在2025年底发布的\textbf{Agentic Applications Top 10}\cite{owasp_agentic2026}进一步系统化了这些威胁：Agent Goal Hijack（目标劫持）、Tool Misuse \& Exploitation（工具滥用）、Identity \& Privilege Abuse（身份与权限滥用）等十大风险类别，为第五代框架的安全设计提供了分类学基础。
+
+\textbf{与OS演进的对应。}
+这一代框架对应操作系统从``可用''到``可信''的转折期。
+在经典OS历史上，Unix V6（1975年）是一个``可用但不安全''的系统：没有内存保护，任何进程都可以读写任何内存地址；没有权限分离，root用户拥有不受限制的权力。
+随着网络和多用户环境的发展，安全性从``可选功能''变为``必要基础''，导致了Multics的环保护、SELinux的强制访问控制、以及现代微内核（如seL4）的形式化验证\cite{ostep_2023}。
+第五代Agent框架正在经历同样的转折：安全性不再只是``加个沙箱''，而是需要从体系结构层面重新设计Agent的权限模型、审计机制和失败恢复策略。
+
+%% ---------- 演进的量化视角 ----------
+\subsection*{从定律III看五代演进}
+
+从第~\ref{sec:laws}节提出的Agent加速比定律（定律III）的视角看，五代演进对应着$F$（可分解比例）和$E$（编排效率）的逐步提升。
+
+回顾定律III的形式：
+\begin{equation}
+\label{eq:agent_law_review}
+S_{\mathrm{agent}} = \frac{1}{(1-F) + \dfrac{F}{N \cdot E}}
+\end{equation}
+其中$F \in [0,1]$是任务中可以被并行分解的比例，$N$是可调度的Agent数量，$E \in (0,1]$是编排效率（1表示无开销，0表示开销吞噬全部并行收益）。
+
+\textbf{具体数值分析。}
+第一代（ReAct）：$F \approx 0$（任务不分解，单Agent串行执行），$N=1$，$E \approx 1$（无编排开销），$S_{\mathrm{agent}} \approx 1$。这对应``单处理器无并行''的状态。
+第二代（AutoGPT/Voyager）：$F \approx 0.1$--$0.2$（少量子任务可以被分离），$N=1$（仍然是单Agent），$E \approx 0.9$，$S_{\mathrm{agent}} \approx 1$。分解能力初现，但编排开销不大，因为只有一个Agent。
+第三代（AIOS/Agents SDK）：$F \approx 0.3$（中等分解能力），$N \approx 2$--$4$（开始支持多Agent），$E \approx 0.7$（调度和上下文切换引入显著开销），$S_{\mathrm{agent}} \approx 1/(0.7 + 0.3/2.8) \approx 1.27$。多Agent开始带来加速，但编排开销抵消了部分收益。
+第四代（Codex/Claude Code）：$F \approx 0.5$（面向真实软件工程的代码任务有较高的可分解性），$N \approx 4$--$8$（子Agent并发），$E \approx 0.5$（沙箱隔离、审批流程、状态同步带来显著开销），$S_{\mathrm{agent}} \approx 1/(0.5 + 0.5/4) \approx 1.6$。加速比显著提升，但编排开销仍是瓶颈。
+
+真正的``智能OS''需要$F > 0.8$且$E > 0.8$，此时$S_{\mathrm{agent}} > 1/(0.2 + 0.8/8) \approx 3.3$，这意味着既要有好的任务分解（高$F$），又要有低的编排开销（高$E$）。
+
+GAIA\cite{gaia2023}、$\tau$-bench\cite{taubench2024}和SWE-bench\cite{swebench2023}的最新结果提醒我们，当前系统离这个目标还有相当距离。
+以SWE-bench Verified为例，截至2025年末，最佳Agent系统在该基准上的通过率约为70--75\%---这意味着在四分之一的真实软件工程任务中，Agent仍然无法正确分解和执行。
+在$\tau$-bench中，Agent在与真实用户进行多轮交互时的表现更加不稳定，因为用户指令的歧义性和环境的动态性进一步降低了$F$和$E$。
+
+%% ============================================================
+\section{设计挑战：性能、状态、一致性与安全}
+\label{sec:challenges}
+
+Agent框架从第一代演进到第五代的过程中，每次能力提升都暴露了新的系统性问题。
+本节将每个设计挑战按四个步骤展开：（1）用具体场景描述问题是什么；（2）分析根本原因；（3）梳理当前的解决方案；（4）与经典计算机中类似问题进行对比。
+
+%% ---------- 延迟与吞吐 ----------
+\subsection{延迟、吞吐与成本的三元约束}
+
+\textbf{场景。}
+假设一个代码Agent正在帮助开发者修复一个跨10个文件的bug。
+Agent需要阅读多个文件（每次阅读触发模型推理）、理解代码结构、定位问题、修改代码、运行测试、查看结果、再修改。
+整个流程可能涉及20--50次模型调用，每次调用的延迟直接影响开发者的等待时间。
+如果单次调用延迟是2秒，总延迟可能超过1分钟。
+如果服务提供商为了降低延迟而增加GPU并行度，每次调用的成本会显著上升。
+这就是``延迟--吞吐--成本''三元约束：降低延迟需要更多资源（增加成本），提高吞吐需要更大的批处理（增加延迟），控制成本需要更少的资源（同时增加延迟和降低吞吐）。
+
+\textbf{根本原因。}
+大模型推理的解码阶段存在一个经典的结构性矛盾。
+预填充（prefill）阶段是\textbf{计算密集型}的：需要处理整个输入序列，GPU的计算单元满负荷工作，瓶颈在FLOPS。
+解码（decode）阶段是\textbf{内存带宽密集型}的：每生成一个新token，都需要读取全部模型权重和当前KV缓存---这本质上是``每个时钟周期都要从内存搬移一遍参数''\cite{gholami2024memorywall}。
+Gholami等人量化了这一结构性失衡：峰值FLOPS以每两年3.0倍的速度增长，而DRAM带宽仅以每两年1.6倍的速度增长\cite{gholami2024memorywall}。
+
+这意味着两个阶段对硬件资源的需求完全不同，将它们混合在同一个批处理中必然导致资源利用不均：预填充阶段抢占了计算资源，解码阶段等待内存带宽。
+此外，Agent场景下的请求模式更加复杂：多个子Agent并发发起请求，请求之间的上下文长度差异巨大（有的只读一个函数，有的需要理解整个仓库），这使得传统的静态批处理策略效率低下。
+
+\textbf{当前解决方案。}
+研究社区从多个层面应对这一约束：
+
+（1）\textbf{调度层优化。}
+ORCA\cite{orca2022}提出迭代级调度（iteration-level scheduling）：不等待整个序列生成完毕再调度新请求，而是每个解码步结束后检查是否可以加入新请求，显著提高了GPU利用率。
+DistServe\cite{zhong2024distserve}将预填充和解码彻底分离到不同的GPU组，使每组可以独立优化：预填充组用高FLOPS的GPU，解码组用高内存带宽的GPU。
+Sarathi-Serve\cite{agrawal2024sarathi}引入了stall-free scheduling：通过chunked prefill将长输入切分为固定大小的块，与解码任务混合调度，消除了解码阶段因等待预填充而产生的停顿。
+
+（2）\textbf{内存管理优化。}
+vLLM\cite{kwon2023pagedattention,vllm_docs_2026}通过PagedAttention将KV缓存组织为固定大小的页，通过block table映射到非连续物理空间，实现了KV缓存的按需分配和共享。
+SGLang\cite{sglang2024,sglang_docs_2026}通过RadixAttention将请求前缀组织为基数树（radix tree），自动识别和复用共享前缀的KV缓存。
+TGI\cite{tgi_docs_2026}和TensorRT-LLM\cite{tensorrtllm_docs_2026}则在工业级部署中实现了连续批处理和页式KV管理的工程优化。
+vAttention\cite{prabhu2024vattention}提供了另一种思路：利用OS级别的连续虚拟内存和动态增长，直接支持标准注意力内核，避免了对PagedAttention专用内核的依赖。
+
+\textbf{与经典计算机的类比。}
+这组问题与经典计算机体系结构中的``内存墙''（Memory Wall）问题高度类似。
+1980年代以来，CPU速度以每年约50\%的速度增长，而DRAM延迟仅以每年约7\%的速度改善\cite{hennessy2017quantitative}。
+体系结构的应对是多级缓存（L1/L2/L3）、预取（prefetching）和写缓冲（write buffer）---对应LLM推理中的KV缓存分层、前缀缓存和异步解码。
+分时OS中的``响应时间--吞吐量''权衡也与此对应：交互式任务需要低响应时间（低延迟），批处理任务需要高吞吐量（大batch），调度器需要在两者之间寻找平衡点\cite{ostep_2023}。
+
+%% ---------- 状态管理 ----------
+\subsection{状态管理与跨会话一致性}
+
+\textbf{场景。}
+假设一个用户连续三天使用同一个Agent来开发一个项目。
+第一天，Agent学会了用户偏好``使用TypeScript而不是JavaScript''。
+第二天，用户要求Agent重构代码，Agent需要在遵循第一天学到的偏好的同时，正确理解代码的当前状态。
+第三天，用户发现了一个新bug，Agent需要回忆前两天做过哪些修改（因为bug可能是前两天引入的），同时理解项目的最新状态。
+更进一步，如果用户在第二天同时运行了两个Agent实例（一个做重构，一个写测试），两个Agent可能同时修改同一个文件，产生冲突。
+
+\textbf{根本原因。}
+传统CPU是\textbf{无状态}执行器：给定相同的输入和寄存器状态，输出是确定且可重复的。
+而智能系统的核心挑战是必须跨会话\textbf{持久化}状态---包括用户偏好（``我喜欢TypeScript''）、历史任务记录（``昨天我做了重构''）、以及外部世界变化（``代码仓库新增了三个文件''）。
+一旦引入持久状态，至少三类问题必然出现：
+
+（1）\textbf{多Agent共享记忆的并发问题}：当多个Agent同时读写共享记忆时，如何保证一致性？
+这类似于多线程编程中的竞态条件（race condition）。
+
+（2）\textbf{延迟提交与冲突合并}：Agent A修改了文件，但尚未提交；Agent B基于旧版本开始修改同一文件。
+如何检测和解决冲突？
+这类似于分布式系统中的乐观并发控制（optimistic concurrency control）。
+
+（3）\textbf{记忆时效性}：三天前学到的``项目使用React''可能已经过时（项目迁移到了Vue）。
+如何判断记忆是否仍然有效？
+这类似于缓存一致性中的失效（invalidation）问题。
+
+\textbf{当前解决方案。}
+LongMemEval\cite{longmemeval2024}的评估说明，长期记忆并不是简单地``存更多聊天记录''，而是涉及四种能力：信息抽取（从对话中提取关键事实）、时序推理（理解事件的先后顺序）、知识更新（当新信息与旧记忆冲突时更新记忆）、和拒答能力（当记忆不足以支持回答时主动拒绝）。
+
+MemGPT\cite{memgpt2023}借鉴了OS虚拟内存的分页和换入换出机制来管理上下文，将上下文分为``主存''（当前活跃的对话窗口）和``外存''（向量数据库中的长期记忆），通过编辑和检索操作在两者之间移动信息。
+MemoryOS\cite{memoryos2025}将记忆管理抽象为操作系统的内存管理模块，实现了结构化的记忆编码、检索和更新。
+A-MEM\cite{amem2025}提出了Agent式的记忆管理：记忆不再是被动存储的字符串，而是由Agent自主决定何时写入、何时更新、何时删除的``活跃实体''。
+Letta\cite{letta_stateful_2026}（前身为MemGPT项目）进一步将``有状态Agent''作为核心抽象，显式区分了对话状态、核心记忆和归档记忆。
+
+从分布式系统角度看，至少需要区分三种状态类型\cite{raft2014,spanner2012,cap2002}：
+（1）\textbf{局部可丢弃状态}（ephemeral state）：当前推理步骤的中间结果，类似于CPU寄存器，不需要持久化。
+（2）\textbf{需因果有序的会话状态}（session state）：同一任务内Agent间的消息传递和状态传递，类似于分布式系统中的因果一致性强保证了操作间的先后顺序\cite{raft2014}。
+（3）\textbf{需要强可追溯和可回放的提交状态}（committed state）：对文件、数据库或外部系统的永久修改，类似于数据库事务的commit point，需要支持审计和回滚\cite{spanner2012}。
+
+\textbf{与经典计算机的类比。}
+这组问题对应经典计算机中的\textbf{虚拟内存与分布式一致性}问题。
+OS的虚拟内存通过页表将虚拟地址映射到物理地址，并提供换入换出机制来制造``内存无限大''的幻觉---对应Agent系统的上下文管理。
+分布式文件系统（如GFS/Spanner\cite{spanner2012}）通过Paxos/Raft\cite{raft2014}共识协议保证多副本的一致性---对应多Agent共享记忆的一致性。
+CAP定理\cite{cap2002}指出一致性、可用性和分区容错性三者不可兼得---Agent系统的记忆管理同样面临这一权衡：是选择强一致性（每次操作都等待所有副本同步）还是最终一致性（允许短暂的不一致以换取低延迟）。
+
+%% ---------- 接口漂移 ----------
+\subsection{接口漂移与版本兼容}
+
+\textbf{场景。}
+一个Agent被配置为使用GitHub API来管理代码仓库。
+某天GitHub更新了API，将\texttt{repos/:owner/:repo/pulls}的返回格式从v3改为v4，新增了分页参数，删除了部分字段。
+Agent的工具调用开始返回错误或解析失败。
+更复杂的情况：Agent使用的提示模板依赖模型的特定输出格式（如``always respond in JSON''），但模型升级后输出风格发生了微妙变化，导致下游解析器频繁崩溃。
+类似的问题还出现在MCP服务器的能力描述更新、技能包的接口变更、以及记忆文件格式的版本升级中。
+
+\textbf{根本原因。}
+传统计算机系统之所以可扩展，很大程度上源于ISA、ABI、系统调用接口与文件格式的\textbf{长期稳定性}。
+x86指令集从1978年的8086到2026年的最新处理器，核心指令集保持了向后兼容；POSIX标准自1988年确立以来，\texttt{read()}/\texttt{write()}/\texttt{fork()}等系统调用的语义几乎没有变化\cite{ostep_2023}。
+这种稳定性使得上层软件可以安心构建，而不必担心底层接口突然变化。
+
+相比之下，当前Agent生态存在严重的\textbf{接口漂移}（interface drift）问题。
+漂移的来源至少有四种：（1）\textbf{模型版本漂移}：模型升级后，对相同提示的输出格式可能变化；（2）\textbf{工具schema漂移}：外部API的接口描述和返回格式可能随时更新\cite{mcp_intro_2026}；（3）\textbf{协议漂移}：MCP、A2A等协议本身还在快速迭代\cite{agentprotocols2025,google_a2a_2025}；（4）\textbf{技能包漂移}：可复用的Agent技能在不同项目或不同模型版本上的表现可能不同。
+
+\textbf{当前解决方案。}
+OpenAI Codex通过AGENTS.md\cite{openai_codex_agents_md_2026}和Skills\cite{openai_codex_skills_2026}机制提供了项目级的接口稳定锚点：技能包有明确的版本号和兼容性声明。
+Claude Code通过CLAUDE.md\cite{anthropic_claudecode_memory_2026}实现类似的功能。
+Agent互操作性协议（MCP\cite{mcp_intro_2026}、A2A\cite{google_a2a_2025}）正在尝试建立Agent与工具之间、Agent与Agent之间的标准化接口。
+A2A协议特别关注Agent间通信的标准化：它基于JSON-RPC 2.0 over HTTP，定义了Agent发现、能力协商和任务委派的标准流程\cite{google_a2a_2025}。
+然而，这些协议本身也在快速迭代，尚未达到ISA或POSIX那样的稳定性。
+
+\textbf{与经典计算机的类比。}
+这对应经典计算机中的\textbf{ABI稳定性与版本管理}问题。
+Intel维持x86 ISA的向后兼容已经超过45年；Linux内核维持系统调用的向后兼容已经超过30年；甚至共享库的版本管理也有成熟的方案（如semantic versioning和symbol versioning）。
+智能计算架构需要建立自己的``版本控制学''：工具schema需要版本号，模型输出格式需要兼容性声明，技能包需要依赖管理（类似npm的\texttt{package.json}），记忆文件需要格式迁移工具（类似数据库的schema migration）。
+
+%% ---------- 安全隐私 ----------
+\subsection{安全、隐私与最小权限}
+
+\textbf{场景。}
+一个代码Agent正在帮助开发者处理用户数据。
+Agent需要读取包含用户隐私的数据库表结构（以理解数据模型）、修改处理用户数据的代码、运行测试（测试数据中可能包含真实用户信息）。
+在这个过程中，Agent可能：（1）将敏感数据写入日志文件或发送到远程API（数据泄露）；（2）被恶意的代码注释或文件内容``提示注入''，执行非预期的操作（目标劫持）；（3）在测试中使用真实用户数据而非模拟数据（隐私违规）。
+更危险的情况：Agent可以运行任意shell命令，一个精心构造的提示注入可能让Agent执行\texttt{rm -rf /}或上传敏感文件到外部服务器。
+
+\textbf{根本原因。}
+一旦Agent可以读写文件、运行命令、浏览网页、调用数据库，它就不再只是语言模型，而是具备外部行动能力的\textbf{主体}（agent in the security sense）。
+这带来了传统软件安全无法覆盖的新攻击面：
+
+（1）\textbf{提示注入}（prompt injection）：攻击者通过在工具返回的数据、文件内容、甚至网页中嵌入恶意指令，劫持Agent的行为。
+与传统的代码注入（如SQL注入）不同，提示注入利用的不是代码逻辑的缺陷，而是模型对自然语言的``误解''---模型无法区分``用户的指令''和``数据中嵌入的指令''\cite{debenedetti2025camel,owasp_agentic2026}。
+
+（2）\textbf{权限过度}（privilege overprovisioning）：当前大多数Agent在获得工具访问权限时，获得的是该工具的全量权限（如``可以读写整个文件系统''），而不是最小必要权限（如``只能读写项目目录下的特定文件''）。
+
+（3）\textbf{记忆污染传播}（memory taint propagation）：攻击者通过一次成功的提示注入，将恶意信息写入Agent的长期记忆，这些``被污染''的记忆会在后续所有会话中影响Agent的行为，形成持久的后门\cite{aura2025}。
+
+\textbf{当前解决方案。}
+工业界和学术界正在从多个维度构建防御体系：
+
+（1）\textbf{沙箱隔离}。Codex默认在OS强制沙箱内运行，每个任务在独立的容器中执行，无法访问宿主机的文件系统或网络\cite{openai_codex_sandbox_2026}。
+Claude Code默认只读，任何写操作都需要用户显式授权\cite{anthropic_claudecode_security_2026}。
+Aura在移动端为每个App Agent建立独立的沙箱，并限制Agent Kernel对系统资源的访问\cite{aura2025}。
+
+（2）\textbf{能力安全模型}。CaMeL\cite{debenedetti2025camel}用操作系统的capability安全原则防御提示注入：Agent不能直接执行有副作用的操作，而是通过一个确定性的capability manager获取``临时通行证''。
+每个通行证只授权一个特定操作（如``只读文件\texttt{src/main.py}''），用后即废。
+这从根本上消除了``提示注入导致权限提升''的可能，因为权限是由确定性代码而非概率式模型决定的。
+
+（3）\textbf{审批与审计}。Codex的approval policies\cite{openai_codex_approvals_2026}允许开发者定义哪些操作需要人工审批（如``任何\texttt{DELETE}操作都需要确认''）。
+Agents SDK的tracing机制\cite{openai_codex_agentsdk_2026}记录了每一次工具调用的完整上下文，支持事后审计和回放。
+
+（4）\textbf{安全形式化}。IronClaw\cite{ironclaw2025}提出了面向Agent安全的形式化框架，将Agent的行为空间和权限空间显式建模，通过静态分析和运行时监控来检测越界行为。
+Christodorescu等人\cite{agenticsecurity2025}进一步论证了Agent安全需要借鉴操作系统安全的全部经验：最小权限、隔离、审计、失败安全（fail-safe）。
+
+\textbf{与经典计算机的类比。}
+这对应经典计算机中的\textbf{进程安全与权限管理}。
+Unix的安全模型建立在三个核心概念上：（1）用户态/内核态分离---用户程序不能直接访问硬件，必须通过系统调用\cite{ostep_2023}；（2）文件权限（rwx）---每个文件有明确的读写执行权限；（3）root/非root分离---特权操作需要权限提升。
+Agent安全需要类似的三层模型：（1）概率平面/确定性平面分离---Agent不能直接执行有副作用的操作，必须通过确定性平面的审批通道；（2）工具capability标注---每个工具有明确的能力声明和权限要求；（3）治理层权限提升---高风险操作需要显式授权或人工确认。
+
+%% ---------- 治理层 ----------
+\subsection{治理层：体系结构的第一性重点}
+
+\textbf{问题的核心。}
+ArbiterOS\cite{arbiteros2025}指出，Agent工程的根本危机来自一个结构性矛盾：开发者习惯用\textbf{确定性软件思维}来驱动一个\textbf{概率式处理器}。
+传统软件工程中，代码的行为是确定性的：相同的输入必然产生相同的输出，测试可以覆盖所有分支，bug可以通过断言来检测。
+但Agent的行为由概率式模型驱动：相同的提示可能产生不同的输出，测试无法覆盖所有可能的推理路径，``bug''可能以模型产生幻觉或不遵循指令的形式出现，且难以通过传统的断言来检测。
+
+Aura\cite{aura2025}进一步说明，一旦Agent进入操作系统和移动端环境，权限管理（Agent是否有权访问联系人列表？）、身份验证（调用Agent的是真正的用户还是攻击者？）、语义输入污染（一条恶意短信是否可以劫持Agent？）、以及记忆taint传播（被污染的记忆如何清理？）都会变成\textbf{内核级}问题---不再是某个应用的安全漏洞，而是整个系统体系结构的安全基础。
+
+\textbf{治理不应是事后的补丁。}
+这说明，治理（governance）不应被当作事后的安全补丁或合规检查清单，而应被设计为体系结构的\textbf{第一性重点}。
+正如操作系统设计者不会先写完所有功能再加安全模块（这种做法已经被历史证明不可行\cite{ostep_2023}），Agent系统的治理也必须从第一天就融入体系结构设计。
+
+\textbf{ICAM各层的治理机制。}
+具体而言，ICAM（定义见第~\ref{sec:icam}节）的每一层都需要对应的治理机制：
+
+\begin{itemize}[nosep]
+\item \textbf{L1 物理执行层}的治理：硬件级的推理精度保证和能耗预算。
+类似于CPU的温度监控和频率调节（thermal throttling），L1需要确保推理精度不低于安全阈值（如量化不能导致关键判断出错），以及GPU/TPU的能耗在可控范围内。
+
+\item \textbf{L2 推理服务层}的治理：推理预算（inference budget）和精度治理。
+每个Agent的推理调用应该有预算上限（如``每个子任务最多10次推理调用''），超出预算应触发失败恢复而非无限重试。
+KV缓存管理需要保证关键状态不被意外驱逐。
+
+\item \textbf{L3 上下文管理层}的治理：记忆保留和删除策略（data retention policy）。
+用户的敏感信息（如密码、信用卡号）应有自动检测和及时删除机制（类似于GDPR的``被遗忘权''）。
+记忆的时效性应有明确的TTL（time-to-live）标注，过期记忆应自动降级或删除。
+
+\item \textbf{L4 语义接口层}的治理：工具能力标注（tool capability annotation）和调用审计（tool call audit）。
+每个外部工具应有标准化的能力声明（``这个工具能做什么、不能做什么、有什么副作用''），每次工具调用都应被记录在可审计的trace中。
+MCP协议\cite{mcp_intro_2026}正在朝这个方向发展。
+
+\item \textbf{L5 编排层}的治理：权限审批（permission approval）和失败恢复（failure recovery）。
+高风险操作（写入文件、发送邮件、执行shell命令）应通过确定性平面的审批流程。
+失败恢复应有明确的回滚策略（如git revert）和人工接管机制。
+
+\item \textbf{L6 应用层}的治理：用户意图确认（intent confirmation）和副作用声明（side-effect declaration）。
+在执行任何不可逆操作前，系统应向用户确认理解正确。
+每个用户任务执行完毕后，系统应生成副作用报告（``本次任务修改了哪些文件、发送了哪些邮件、访问了哪些外部服务''）。
+\end{itemize}
+
+\textbf{双平面架构中的治理定位。}
+从第~\ref{sec:framework}节提出的双平面架构视角看，治理层正是\textbf{确定性控制平面}中的核心组件。
+它的职责不是替代概率平面的推理能力，而是为推理结果设置边界、审计轨迹和回滚机制。
+具体来说：
+概率平面负责``理解用户意图、分解任务、生成工具调用参数''---这是LLM擅长的推理能力；
+确定性平面负责``检查权限是否满足、工具调用是否安全、结果是否合规、失败是否可恢复''---这是传统软件工程擅长的确定性逻辑。
+CaMeL\cite{debenedetti2025camel}的capability manager、Codex\cite{openai_codex_approvals_2026}的approval policies、Claude Code\cite{anthropic_claudecode_security_2026}的hooks都是这一原则的具体实现。
+
+这与传统操作系统中``内核不替用户程序做计算，但保证计算不会越界''的设计哲学完全一致\cite{ostep_2023}：内核不会帮你排序数组，但保证你的程序不会读写其他进程的内存。
+同样，治理层不会替Agent做推理，但保证Agent的推理结果不会导致越权操作、数据泄露或不可恢复的失败。
+
+\textbf{治理的形式化挑战。}
+将治理融入体系结构还面临一个根本性的形式化挑战：如何为概率式行为定义``安全边界''？
+传统OS的安全模型建立在确定性状态机上：每个系统调用都有明确的前置条件（如``文件描述符必须有效''）和后置条件（如``返回读取的字节数''）。
+但Agent的行为是概率式的：同一个操作在不同上下文中可能产生不同结果，且结果的好坏（``是否安全''）往往依赖语义判断而非形式化验证。
+ArbiterOS\cite{arbiteros2025}提出的``策略规范''（policy specification）和IronClaw\cite{ironclaw2025}提出的行为空间建模是朝这个方向迈出的第一步，但距实用的形式化治理框架还有相当距离。
+这恰恰是ICAM和双平面架构为未来研究划出的关键方向之一。

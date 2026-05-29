@@ -1,0 +1,68 @@
+\section{Open-Source Implementation and Engineering Practice}
+\label{sec:implementation}
+
+Viewed through an engineering lens, today's open-source ecosystem already contains several projects that serve as de facto prototypes for the model-native computing architecture envisioned in this paper. In this section, we survey representative systems along three dimensions of the ICAM stack---the serving layer (L2), the agent layer (L5), and the protocol layer (L4)---and distill five concrete implementation recommendations grounded in both industrial practice and the design axioms introduced earlier.
+
+\subsection{Serving Layer (L2): Inference Serving and KV Cache Management}
+\label{sec:impl-serving}
+
+The serving layer corresponds to ICAM's L2 and is responsible for model weight loading, KV cache management, continuous batching, and prefill--decode scheduling. This layer has reached a high degree of engineering maturity, with three distinct design philosophies emerging in production systems.
+
+\textbf{vLLM} centers on PagedAttention, which organizes the KV cache into fixed-size blocks and maps them to non-contiguous physical GPU memory through a block table, effectively replicating the virtual memory management of a conventional operating system~\cite{kwon2023pagedattention,vllm_docs_2026}. Its Automatic Prefix Caching feature extends this analogy by enabling cross-request reuse of shared prompt prefixes---functionally equivalent to shared read-only code pages in an L2 hardware cache~\cite{vllm_prefix_2026}.
+
+\textbf{SGLang} takes a complementary approach built around structured program execution and RadixAttention~\cite{sglang2024,sglang_docs_2026}. RadixAttention maintains a radix tree that indexes the token prefixes of all historical requests, automatically discovering and reusing the longest common prefix KV cache. This yields notably higher cache hit rates in multi-turn dialogue and batch inference workloads. Empirical evaluations show that SGLang achieves up to 29\% higher throughput than vLLM on certain workloads~\cite{sglang2024}.
+
+\textbf{TGI} (Text Generation Inference) from Hugging Face and \textbf{TensorRT-LLM} from NVIDIA represent production-oriented deployment paths~\cite{tgi_docs_2026,tensorrtllm_docs_2026}. TGI emphasizes a unified multi-model interface and operational simplicity, while TensorRT-LLM pursues maximum throughput through hardware-specific optimizations such as FP8 quantization and Tensor Core acceleration on NVIDIA GPUs.
+
+Together, these three families of systems---vLLM (virtual-memory-style management), SGLang (structured cache reuse), and TGI/TensorRT-LLM (hardware-deep optimization)---constitute the full engineering spectrum of the L2 serving layer.
+
+\subsection{Agent Layer (L5): Agent Runtimes and Operating Systems}
+\label{sec:impl-agent}
+
+The agent layer maps to ICAM's L5 and is responsible for task planning, agent scheduling, permission approval, failure recovery, and state commitment. This is the most active and diverse area of the current open-source ecosystem, spanning three sub-directions.
+
+\subsubsection{General-Purpose Agents}
+
+\textbf{OpenHands} provides an open agent platform supporting multiple LLM backends, sandboxed execution, and extensible tool interfaces~\cite{openhands_paper_2025}. \textbf{SWE-agent} targets software engineering tasks, unifying code editing, testing, and debugging through a structured Agent-Computer Interface (ACI)~\cite{sweagent2024}. \textbf{AutoGPT} explores autonomous, long-running workflows with automatic goal decomposition~\cite{autogpt_platform_2026}. \textbf{Letta} (built by the original MemGPT team) focuses on stateful agents that treat long-term memory as a first-class citizen~\cite{letta_stateful_2026}.
+
+\subsubsection{Agent Operating Systems}
+
+Several projects have begun to treat the agent runtime itself as an operating system. \textbf{ArbiterOS} introduces a governance layer and proposes a hierarchical architecture in which a governor manages the ``probabilistic CPU''~\cite{arbiteros2025}. \textbf{AgentOS} constrains agent behavior through a reasoning kernel governed by structured OS logic~\cite{agentos2025}. \textbf{UFO$^2$} demonstrates the feasibility of a desktop-scale agent OS, organizing a HostAgent, AppAgents, and a GUI--API operation layer into a hierarchy~\cite{ufo2_2025}. \textbf{Aura} brings a security-first agent architecture to mobile devices, comprising a System Agent, sandboxed App Agents, and an Agent Kernel~\cite{aura2025}.
+
+\subsubsection{Industrial Agent Systems}
+
+Two industrial systems merit particular attention because they explicitly adopt OS-building conventions. \textbf{OpenAI Codex} elevates sub-agents, skills, MCP server integration, sandboxed execution, and approval policies to first-class citizens in its runtime~\cite{openai_codex_overview_2026,openai_codex_subagents_2026,openai_codex_skills_2026,openai_codex_sandbox_2026,openai_codex_approvals_2026}. \textbf{Anthropic Claude Code} offers sub-agents, skills, hooks, MCP connections, and project memory files, defaulting to read-only permissions with explicit approval gates~\cite{anthropic_claudecode_overview_2026,anthropic_claudecode_security_2026}. Both systems signal that the industry has begun to construct agent runtimes as bona fide operating systems.
+
+\subsection{Protocol Layer (L4): Standardized Tool Connection and Agent Interconnection}
+\label{sec:impl-protocol}
+
+The protocol layer corresponds to ICAM's L4 and is undergoing a fundamental transition from point-to-point tool invocations to standardized bus protocols.
+
+\textbf{MCP} (Model Context Protocol) provides a standardized protocol for connecting AI applications to external data sources, tools, and workflows through a JSON-RPC specification~\cite{mcp_intro_2026}. By the end of 2025, Anthropic reported over 10{,}000 active public MCP servers~\cite{mcpadoption2026}. In the analogy to traditional computer architecture, MCP plays the role of a peripheral bus such as PCIe or USB---a universal connector between the compute core and external capabilities.
+
+\textbf{A2A} (Agent-to-Agent Protocol), introduced by Google in April 2025, targets inter-agent communication as a standardized protocol supporting capability discovery, task lifecycle management, and multimodal collaboration~\cite{google_a2a_2025,agentprotocols2025}. It has been donated to the Linux Foundation for vendor-neutral governance~\cite{a2alinux2025}. If MCP is the \textit{vertical bus} connecting an agent to its tools, A2A is the \textit{horizontal interconnect} linking agents to one another---analogous to TCP/IP in the traditional network stack. Together, MCP and A2A form complementary axes of the protocol layer.
+
+\subsection{Five Implementation Recommendations}
+\label{sec:impl-recommendations}
+
+Drawing on the engineering practices surveyed above and the six design axioms proposed in this paper, we offer five recommendations that can directly guide the construction of production model-native computing systems.
+
+\subsubsection{Separate the Control Plane from the Data Plane}
+
+Deterministic control logic---permission approval, audit logging, failure recovery---must be peeled away from the probabilistic inference path. These two paths correspond, respectively, to the deterministic control plane and the probabilistic execution plane in the dual-plane architecture introduced in Section~\ref{sec:framework}. Codex's approval policies and Claude Code's hooks are concrete instantiations of this principle~\cite{openai_codex_approvals_2026,anthropic_claudecode_security_2026}.
+
+\subsubsection{Separate Short-Term Context from Long-Term Memory}
+
+High-frequency ``hot context'' (the active dialogue window) and low-frequency ``cold memory'' (historical summaries, knowledge-base indices) should reside on different storage media with different management strategies. This maps directly to the hot/warm/cold tiering design of ICAM's L3 layer. MemGPT's virtual context management exemplifies this principle~\cite{memgpt2023}. The business impact is tangible: Augment Code reported that a project a CTO estimated would take 4--8 months was completed in just 2 weeks, demonstrating how effective context management accelerates developer onboarding and project delivery in enterprise settings~\cite{anthropic2026agenticreport}.
+
+\subsubsection{Version Every Behavior-Affecting Object}
+
+Prompt templates, tool schemas, skill packages, memory files, and MCP server capability descriptions should all carry version numbers and changelogs~\cite{mcp_intro_2026,agentprotocols2025}. Traditional computers guarantee backward compatibility through the stability of ISA and ABI boundaries; model-native computing systems require an analogous ``interface contract'' to accommodate rapid evolution.
+
+\subsubsection{Enforce Resource Quotas Like an Operating System}
+
+Every agent or task should operate under an explicit resource budget: an upper bound on context window size, tool call count, inference time, and monetary cost~\cite{linux_cgroup_2026}. This recommendation instantiates Axiom~5 (Least Privilege) and Axiom~6 (Observability) at the resource management layer, mirroring the role of cgroups in Linux.
+
+\subsubsection{Design Failure Recovery Like a Distributed System}
+
+Long-running agent tasks may fail due to model timeouts, tool errors, or context overflow. The system must provide checkpoint, retry, and rollback mechanisms---akin to those in distributed databases---ensuring that side-effect operations remain auditable and reversible~\cite{raft2014,spanner2012}. Rakuten's experience with Claude Code provides compelling evidence: an agent autonomously completed an activation-vector extraction task across 12.5 million lines of code in the vLLM project over 7 hours with 99.9\% numerical accuracy, demonstrating that long-running agents with implicit checkpoint and retry capabilities can already handle industrial-scale workloads~\cite{anthropic2026agenticreport}.

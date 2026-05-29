@@ -1,0 +1,120 @@
+\section{Research Roadmap}
+\label{sec:roadmap}
+
+Table~\ref{tab:roadmap} presents a research roadmap organized around the ICAM six-layer model, spanning three phases: short-term (1--2 years), mid-term (2--4 years), and long-term (4--8 years). Each entry specifies the problem to be solved, the proposed method, and the expected outcome, making every item a concrete, actionable research project.
+
+\begin{longtable}{p{0.07\textwidth}p{0.08\textwidth}p{0.13\textwidth}p{0.18\textwidth}p{0.14\textwidth}p{0.14\textwidth}}
+\caption{Research agenda organized by ICAM layer, phase, and associated law or axiom.}
+\label{tab:roadmap}\\
+\toprule
+\textbf{Phase} & \textbf{ICAM Layer} & \textbf{Topic} & \textbf{Method} & \textbf{Metrics} & \textbf{Related Law / Axiom} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Phase} & \textbf{ICAM Layer} & \textbf{Topic} & \textbf{Method} & \textbf{Metrics} & \textbf{Related Law / Axiom} \\
+\midrule
+\endhead
+
+Short-term & L2 & KV cache hit-rate optimization & Semantic eviction; KV quantization; prefix sharing & $H$, $S$, TTFT & Semantic Locality Law \\
+Short-term & L3 & Unified context compiler & Hot / warm / cold tiering; version stamps & $W_{\mathrm{eff}}$, compression ratio & Context Budget Law \\
+Short-term & L4 & Tool ABI standardization & Schema versioning; capability annotation & Invocation success rate; security violation rate & Axiom~5 (Least Privilege) \\
+Short-term & L5 & Software engineering agent kernel & Unified ACI; specialized sub-agents & Task completion rate; $E$ & Agent Speedup Law \\
+
+Mid-term & L3 & Semantic page replacement & Learned eviction; summary write-back & $\beta(L)$ curve & Context Budget Law \\
+Mid-term & L5 & Consistency-controlled shared memory & Event sourcing; conflict detection & Memory correctness rate & Axiom~4 (Virtualization) \\
+Mid-term & L2 & Heterogeneous model collaboration & Draft models; MoE routing & End-to-end latency; $H$ & Semantic Locality Law \\
+Mid-term & L4 & Agent security architecture & Sandboxing; auditing; capability security & Audit completeness & Axioms~5,~6 \\
+
+Long-term & L1--L6 & Intelligent ISA and programmable skill layer & Task DSL; controlled output formats & Generalization ability & Axioms~2,~3 \\
+Long-term & L3--L5 & Stateful individual agents & Long-term memory; experience abstraction & Experience utilization rate & Context Budget Law, Agent Speedup Law \\
+Long-term & L1--L6 & Distributed model-native compute fabric & Memory replication; consistency layers & Cluster utilization & Semantic Locality Law, Agent Speedup Law \\
+Long-term & L5 & Governance-layer primitives & Dual-plane separation; audit logs; permission declarations & Governance coverage & Axioms~3,~5,~6 \\
+
+\bottomrule
+\end{longtable}
+
+\subsection{Short-Term Research Topics (1--2 Years)}
+
+The short-term items focus on optimizing and standardizing existing engineering prototypes, with the goal of bringing current systems to production-grade performance and reliability.
+
+\textbf{KV cache hit-rate optimization (L2).}
+The decoding phase of LLM inference is a classic memory-bandwidth-bound problem~\cite{gholami2024memorywall}, and the KV cache hit rate $H$ directly governs the inference speedup ratio $S$ predicted by the Semantic Locality Law.
+Three complementary techniques can be brought to bear.
+First, \textit{semantic eviction} strategies---exemplified by H2O's heavy-hitter identification~\cite{h2o2023}---retain the KV entries most likely to be reused based on attention weight patterns rather than recency alone.
+Second, \textit{KV quantization} compresses the KV cache with minimal quality loss: KVQuant achieves up to $8\times$ compression~\cite{hooper2024kvquant}, while KIVI introduces asymmetric 2-bit quantization~\cite{liu2024kivi}.
+Third, \textit{prefix sharing} across requests---as implemented by PagedAttention~\cite{kwon2023pagedattention} and RadixAttention~\cite{sglang2024}---enables multiple requests with common system prompts to reuse the same KV blocks, directly increasing $H$.
+The target outcome is to raise $H$ from the current 0.5--0.7 range to above 0.85 under typical agent workloads, yielding the 5--10$\times$ speedup predicted by the Semantic Locality Law.
+
+\textbf{Unified context compiler (L3).}
+Different agent frameworks manage context in idiosyncratic ways: MemGPT uses virtual context management~\cite{memgpt2023}, Letta builds stateful agents with explicit memory tiers~\cite{letta_stateful_2026}, and HiAgent employs hierarchical working memory~\cite{hiagent2024}.
+What is missing is a unified \textit{context compiler}---analogous to an operating system's page replacement subsystem---that decides, for each piece of information, whether to load it verbatim, as a summary, or as a retrievable index entry.
+We propose a hot / warm / cold tiered context management strategy, where each context block carries a version stamp and a time-to-live (TTL) annotation.
+The expected result is a $\geq 50\%$ increase in the effective context utilization ratio $W_{\mathrm{eff}}/C$ without degrading task completion rates, thereby providing direct empirical validation of the Context Budget Law.
+
+\textbf{Tool ABI standardization (L4).}
+While MCP and A2A have made significant strides at the protocol level~\cite{mcp_intro_2026,agentprotocols2025}, tool schemas themselves still lack unified specifications for versioning, backward compatibility, and capability annotation.
+We propose enriching tool schemas with semantic version numbers, input/output type constraints, side-effect declarations, and capability annotations---transforming L4 into a genuine Application Binary Interface (ABI) for the model-native computing stack.
+The expected outcome is a measurable increase in tool invocation success rates and a decrease in security violations, providing the interface foundation required to operationalize Axiom~5 (Least Privilege).
+
+\textbf{Software engineering agent kernel (L5).}
+SWE-bench and SWE-agent have demonstrated that current code agents still achieve limited resolution rates on real-world GitHub issues~\cite{swebench2023,sweagent2024}.
+A key bottleneck is the lack of a unified Agent-Computer Interface (ACI) standard: different frameworks adopt inconsistent sub-agent delegation strategies.
+We propose standardizing the ACI specification and designing specialized sub-agents---a code-search agent, an edit agent, and a test agent---whose orchestration efficiency $E$ can be quantified through the Agent Speedup Law.
+The target is to increase task completion rates on SWE-bench-class benchmarks while raising $E$ from the current 0.3--0.5 range to above 0.6.
+
+\subsection{Mid-Term Research Topics (2--4 Years)}
+
+The mid-term items shift focus from per-layer optimization to cross-layer coordination and system-level security, moving model-native computing from ``point optimizations'' to ``full-stack co-design.''
+
+\textbf{Semantic page replacement (L3).}
+Classical operating systems replace pages using deterministic access patterns (LRU, CLOCK). In a model-native computing system, ``page replacement'' must be governed by \textit{semantic relevance}---deciding which context blocks to evict based on their pertinence to the current task.
+We propose a learned eviction policy that scores each context block against the active task and generates compressed summaries for evicted blocks, enabling later retrieval.
+The primary research output is an empirically measured $\beta(L)$ curve that characterizes how attention retention decays with position, providing the Context Budget Law with calibrated quantitative parameters.
+
+\textbf{Consistency-controlled shared memory (L5).}
+When multiple agents collaborate, shared memory consistency management lacks a unified framework.
+Concurrent modifications to the same memory block can cause conflicts and information loss---the analog of cache coherence problems in multiprocessor systems.
+We propose introducing event sourcing and conflict detection mechanisms, combined with tunable consistency levels ranging from eventual consistency to strong consistency~\cite{raft2014,cap2002}.
+The target is to ensure that multi-agent memory correctness rates match single-agent baselines, providing empirical grounding for Axiom~4 (Virtualization) at the memory layer.
+
+\textbf{Heterogeneous model collaboration (L2).}
+Models of different sizes offer distinct trade-offs among latency, cost, and capability, yet current systems typically deploy a single model.
+Heterogeneous model collaboration---using smaller draft models for speculative decoding~\cite{leviathan2023speculative} and mixture-of-experts (MoE) routing~\cite{switch2022,mixtral2024}---can direct simple queries to lightweight models and complex queries to large ones.
+The expected result is a reduction in end-to-end latency at equivalent output quality, with a secondary benefit of increased KV cache hit rates $H$.
+
+\textbf{Agent security architecture (L4).}
+As agents acquire increasingly powerful external capabilities---reading and writing files, executing commands, accessing the network---the security perimeter becomes dangerously blurred.
+We propose embedding sandboxing, auditing, and capability-based security directly into the agent runtime~\cite{debenedetti2025camel,ironclaw2025,agenticsecurity2025}, ensuring that every side-effecting operation undergoes explicit approval and produces an auditable event record.
+The target is 100\% audit completeness---every side-effecting operation across all ICAM layers must be traceable---establishing the security infrastructure required to enforce Axioms~5 and~6 in practice.
+
+\subsection{Long-Term Research Topics (4--8 Years)}
+
+The long-term items target fundamental architectural innovations, with the goal of constructing a truly native model-based computing architecture rather than incrementally improving today's systems.
+
+\textbf{Intelligent ISA and programmable skill layer (L1--L6).}
+Prompts, tool descriptions, and skill packages collectively form the ``soft instructions'' of model-native computing, yet they currently lack formal semantics and stability guarantees.
+We envision developing task-specific domain-specific languages (DSLs), controlled output formats, and reusable skill packages that together constitute a stable interface layer---the model-native analog of a classical Instruction Set Architecture.
+The expected outcome is significantly improved agent generalization, enabling the same skill package to migrate seamlessly across different models and runtimes, thereby operationalizing Axioms~2 (Layered Abstraction) and~3 (Probabilistic Execution).
+
+\textbf{Stateful individual agents (L3--L5).}
+Most agents today are stateless: each session starts from scratch, unable to accumulate or reuse experience.
+We propose equipping agents with long-term memory and experience abstraction mechanisms, enabling them to learn strategies from historical executions, distill recurring patterns, and proactively optimize their own behavior~\cite{amem2025,agentmemorysurvey2025}.
+The expected outcome is a measurable increase in \textit{experience utilization}---the fraction of current task performance attributable to distilled prior experience---which opens new validation dimensions for both the Context Budget Law and the Agent Speedup Law.
+
+\textbf{Distributed model-native compute fabric (L1--L6).}
+When multiple agent clusters collaborate across nodes, distributed systems problems---memory replication, state consistency, and load balancing---remain largely unsolved in the model-native computing context.
+Drawing on distributed database techniques for memory replication and consistency management~\cite{spanner2012,raft2014}, we propose a unified resource scheduling and state management substrate for multi-node agent clusters.
+The target is for cluster utilization to scale linearly (or at least near-linearly) with node count, empirically validating the Semantic Locality Law and the Agent Speedup Law in distributed settings.
+
+\textbf{Governance-layer primitives (L5).}
+Current governance mechanisms in agent systems---permissions, auditing, compliance---are retrofitted patches rather than first-class architectural primitives.
+We propose elevating the dual-plane separation (probabilistic execution plane and deterministic control plane), audit logging, and permission declarations to core architectural primitives~\cite{arbiteros2025,ironclaw2025}, ensuring that every ICAM layer has a corresponding governance mechanism.
+The target is 100\% governance coverage: every side-effecting operation at every layer falls under governance constraints, fully realizing Axioms~3,~5, and~6 across the entire stack.
+
+\subsection{A Note on Decoupling from Model Advances}
+
+It is worth emphasizing that these research topics do not require stronger foundation models as a prerequisite.
+Many of the problems---context compilation, Tool ABI standardization, agent security architecture---are fundamentally systems engineering challenges that are orthogonal to improvements in base model capability.
+This decoupling mirrors the history of classical computing: architectural breakthroughs have come not only from faster transistors but equally from more mature interfaces and runtimes.
+The stability of the ISA enabled a thriving software ecosystem; the invention of virtual memory freed programs from physical memory constraints; the POSIX standard allowed applications to migrate across platforms.
+Model-native computing systems stand in need of precisely the same kind of systems-level breakthroughs.

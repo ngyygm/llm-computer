@@ -1,0 +1,51 @@
+\section{Conclusion and Outlook}
+\label{sec:conclusion}
+
+The central contributions of this paper can be distilled into a unified framework, an architectural resolution, a set of computable laws, and a first-class treatment of governance.
+
+\subsection{Core Contributions}
+
+\textbf{Unified framework: the ICAM six-layer model.}
+We have proposed the Intelligent Computing Architecture Model (ICAM), which defines a model-native computing system as six functional layers (L1--L6), each equipped with explicit interface contracts, design axioms, and performance metrics. ICAM is not a mechanical transcription of classical computer architecture; rather, it is a layered abstraction purpose-built for probabilistic execution. Its primary value lies in unifying previously disparate efforts---from AIOS~\cite{mei2024aios} and MemGPT~\cite{memgpt2023} to MCP~\cite{mcp_intro_2026} and PagedAttention~\cite{kwon2023pagedattention}---under a single, shared vocabulary that makes their interdependencies visible and their design trade-offs explicit.
+
+\textbf{Architectural resolution: the dual-plane architecture.}
+We have identified the root cause of the enduring ``Is an LLM a CPU or an OS?'' metaphor clash and resolved it through the dual-plane architecture. The \textit{probabilistic execution plane} (model inference) captures what the system \emph{can} do; the \textit{deterministic control plane} (schedulers, approvers, audit logs within the agent runtime) governs what the system \emph{should} do. This separation reconciles ArbiterOS's ``Probabilistic CPU''~\cite{arbiteros2025}, AIOS's ``kernel''~\cite{mei2024aios}, and AgentOS's ``reasoning kernel''~\cite{agentos2025}: they are not contradictory claims about a single component but complementary perspectives on two distinct planes within the same system.
+
+\textbf{Computable principles: three quantitative laws.}
+The Semantic Locality Law ($S = 1/((1-H) + H \cdot \alpha^{-1})$), the Context Budget Law ($W_{\mathrm{eff}} \leq C \cdot \beta(L)$), and the Agent Speedup Law ($S_{\mathrm{agent}} = 1/((1-F) + F/(N \cdot E))$) provide model-native computing with the same kind of computable guardrails that Amdahl's Law and the Roofline model have long offered classical architecture. These laws are isomorphic to Amdahl's Law in form; their contribution is not mathematical novelty but rather the provision of a \emph{quantitative decision language} for a design space that has thus far relied primarily on intuition. Empirical validation against published experimental data shows qualitative agreement, though systematic quantitative verification remains an important next step.
+
+\textbf{Governance as a first-class concern.}
+Unlike prior architectural proposals that treat safety and auditability as afterthoughts, our framework elevates governance---permission boundaries, approval workflows, and verifiable audit trails---to a structural element woven into every layer from L3 through L6.
+
+\subsection{Positioning and Boundaries}
+
+We explicitly acknowledge the following limitations.
+
+\paragraph{Analogies are not isomorphisms.}
+A foundation model is not a deterministic CPU, semantic retrieval is not exact addressing, long-term memory is not lossless paging, and an agent runtime is not a mature operating system. Yet these very gaps---the places where the analogy breaks down---define the most fertile ground for future research: new ABIs for semantic systems, new operating system abstractions for uncertain reasoning, new virtual memory designs for persistent state, and new commit protocols for multi-agent coordination.
+
+\paragraph{Incremental, not inaugural.}
+This paper does not claim to be the first to draw parallels between large language models and computer architecture. Ge et al.~\cite{ge2023llmos}, L2MAC~\cite{holt2024l2mac}, and Mi et al.~\cite{mi2025llmagentscomputersystems} have mapped several key routes, and MemGPT~\cite{memgpt2023} and MemOS~\cite{memos2025} have already systematized memory subsystems to a high degree. Our contribution lies in being the \emph{first to integrate these independently developed---and sometimes mutually conflicting---analogies into a full-stack model-native computing architecture}, complete with a unified layered model, a dual-plane architecture, inter-layer interface contracts, an axiom system, and computable quantitative laws.
+
+\paragraph{Visionary survey, not final answer.}
+This paper is a visionary survey that aims to provide a research framework for future model-native computing architectures, not a definitive specification. The six-layer decomposition of ICAM and the parameterized forms of the three laws will almost certainly be revised and refined as the field matures. Our goal is to pose the right questions and offer falsifiable predictions, not to deliver the last word.
+
+\paragraph{The collaboration paradox remains uncaptured.}
+Our framework does not yet fully model the structural constraints of human--AI collaboration. Industry evidence reveals that engineers use AI for approximately 60\% of their work yet can fully delegate only 0--20\% of tasks~\cite{anthropic2026agenticreport}. This ``collaboration paradox'' suggests that the task-submission contracts at the L5--L6 interface must incorporate a \emph{delegation confidence} dimension---reflecting task verifiability and organizational context dependence---that lies beyond the current ICAM model's scope.
+
+\subsection{Future Directions}
+
+If the past decade focused on training stronger foundation models, the next decade's central question may be: how to organize foundation models, contextual memory, tool interfaces, and agent runtimes into a truly programmable, scalable, and governable model-native computing architecture.
+
+The answer is likely to emerge from the convergence of advances across multiple fronts simultaneously:
+\begin{itemize}[nosep]
+    \item At L2, inference serving optimizations---KV cache management, quantization, speculative decoding---are making model serving ever more efficient.
+    \item At L3, context compilation and memory management are beginning to give agents genuine working memory.
+    \item At L4, protocol standardization (MCP, A2A) is shifting tool and agent interconnection from point-to-point integration to a bus-based paradigm.
+    \item At L5, agent operating systems are moving task decomposition, permission control, and failure recovery from hand-coded scripts to platform-native primitives.
+    \item At L6, workflow automation is enabling end users to define complex tasks in natural language.
+\end{itemize}
+
+The economic evidence is already compelling. TELUS has created over 13,000 customized AI solutions, saved more than 500,000 hours, and accelerated engineering code delivery by 30\%. CRED has doubled execution speed by shifting developers to higher-value work. Approximately 27\% of AI-assisted tasks consist of work that would not have been done at all without AI~\cite{anthropic2026agenticreport}. These figures demonstrate that model-native computing does not merely accelerate existing work---it expands the frontier of economic feasibility.
+
+This paper offers a systematic research framework for the road ahead: a layered model (ICAM), a set of design axioms, three computable laws, and a research roadmap spanning near-term optimizations to long-term architectural vision. We hope this framework will help researchers and engineers identify system-level questions worth asking and discover verifiable design principles amid the rapidly evolving model-native computing ecosystem.

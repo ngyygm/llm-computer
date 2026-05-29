@@ -1,0 +1,72 @@
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+    scale=0.78,
+    transform shape,
+    classical/.style={fill=blue!8, draw=blue!60!black, thick, rounded corners=8pt, align=center, font=\small, inner sep=0pt},
+    modelnative/.style={fill=orange!8, draw=orange!70!black, thick, rounded corners=8pt, align=center, font=\small, inner sep=0pt},
+    arrowstyle/.style={-{Stealth[length=5pt]}, very thick, red!70!black},
+    govlabel/.style={font=\small\bfseries, red!70!black, align=center},
+    icamlabel/.style={font=\scriptsize, anchor=west},
+    tickmark/.style={thin, gray!60}
+]
+
+% Layer 5 (outermost): Network/Protocol — near-square
+\node[classical, minimum width=9.8cm, minimum height=7.6cm] (L5) at (0,0) {};
+\node[font=\small\bfseries, blue!60!black, anchor=north] at (L5.north)
+    {网络/协议层 (MCP/A2A)};
+
+% Layer 4: Application Sandbox
+\node[classical, minimum width=8.0cm, minimum height=6.0cm] (L4) at (0,0) {};
+\node[font=\small\bfseries, blue!60!black, anchor=north] at (L4.north)
+    {应用沙箱层};
+
+% Layer 3: Permission/Capability (CaMeL)
+\node[classical, minimum width=6.2cm, minimum height=4.5cm] (L3) at (0,0) {};
+\node[font=\small\bfseries, blue!60!black, anchor=north] at (L3.north)
+    {权限/能力层 (CaMeL)};
+
+% Layer 2: Memory Isolation
+\node[modelnative, minimum width=4.4cm, minimum height=3.0cm] (L2) at (0,0) {};
+\node[font=\small\bfseries, orange!70!black, anchor=north] at (L2.north)
+    {内存隔离层};
+
+% Layer 1 (innermost): Model Inference Safety
+\node[modelnative, minimum width=2.6cm, minimum height=1.6cm] (L1) at (0,0) {};
+\node[font=\small\bfseries, orange!70!black] at (0,0)
+    {模型推理};
+
+% ICAM labels on the right side — evenly spaced from L5 (top) to L1 (center)
+\node[icamlabel, blue!60!black] (il5) at (6.0, 3.4) {ICAM L5};
+\node[icamlabel, blue!60!black] (il4) at (6.0, 2.55) {ICAM L4};
+\node[icamlabel, blue!60!black] (il3) at (6.0, 1.7) {ICAM L3};
+\node[icamlabel, orange!70!black] (il2) at (6.0, 0.85) {ICAM L2};
+\node[icamlabel, orange!70!black] (il1) at (6.0, 0.0) {ICAM L1};
+
+% Tick marks connecting ICAM labels to their layer edges
+\draw[tickmark, blue!60!black] (il5.west) -- (L5.east |- il5);
+\draw[tickmark, blue!60!black] (il4.west) -- (L4.east |- il4);
+\draw[tickmark, blue!60!black] (il3.west) -- (L3.east |- il3);
+\draw[tickmark, orange!70!black] (il2.west) -- (L2.east |- il2);
+\draw[tickmark, orange!70!black] (il1.west) -- (L1.east |- il1);
+
+% Governor oversight arrow from the left side
+\draw[arrowstyle] (-6.5, 0) -- ([xshift=-1pt]L5.west);
+\node[govlabel, anchor=east] at (-6.6, 0) {治理监督\\(Governor)};
+
+% Small horizontal arrows pointing to each layer on the left
+\foreach \lnode in {L5, L4, L3, L2, L1} {
+    \draw[red!50!black, thin, -{Stealth[length=3pt]}]
+        ([xshift=-5mm]\lnode.west) -- ([xshift=-1pt]\lnode.west);
+}
+
+% Legend at bottom
+\node[font=\scriptsize, anchor=west] at (-4.5, -4.8) {%
+    \tikz\fill[blue!60!black] (0,0) rectangle (0.25,0.25);~经典安全层 \quad
+    \tikz\fill[orange!70!black] (0,0) rectangle (0.25,0.25);~模型原生安全层%
+};
+
+\end{tikzpicture}
+\caption{基于ICAM分层的安全防护架构}
+\label{fig_security_layers}
+\end{figure}

@@ -1,0 +1,93 @@
+\begin{figure}[t]
+\centering
+\resizebox{0.9\textwidth}{!}{%
+\begin{tikzpicture}[
+  font=\small,
+  >=stealth,
+  badge/.style={
+    circle, minimum size=10mm, inner sep=0pt,
+    draw, thick, font=\small\bfseries
+  },
+  bluebadge/.style={badge, fill=blue!15, draw=blue!60!black, text=blue!60!black},
+  orangebadge/.style={badge, fill=orange!20, draw=orange!70!black, text=orange!70!black},
+  worklabel/.style={
+    align=center, font=\small,
+    text width=28mm
+  },
+  oslabel/.style={
+    align=center, font=\scriptsize\itshape,
+    text width=28mm
+  },
+  yearnode/.style={
+    font=\small\bfseries, text=gray!70!black
+  },
+  evoarrow/.style={
+    ->, thick, gray!50, shorten >=2pt, shorten <=2pt
+  }
+]
+
+% Timeline axis
+\draw[thick, gray!50] (0,0) -- (13,0);
+
+% Year ticks and labels
+\foreach \x/\yr in {0.5/2023, 3.5/2024, 6.5/2025, 9.5/2026, 12.5/2027} {
+  \draw[thick, gray!50] (\x, -0.15) -- (\x, 0.15);
+  \node[yearnode, below] at (\x, -0.3) {\yr};
+}
+
+% Milestone positions
+\def\posA{0.5}
+\def\posB{3.5}
+\def\posC{6.5}
+\def\posD{9.5}
+\def\posE{12.5}
+
+% ===== Gen 1: ReAct — Batch =====
+\node[bluebadge] (g1) at (\posA, 1.4) {I};
+\node[worklabel, above=3mm of g1] {ReAct};
+\node[oslabel, below=3mm of g1, yshift=-2mm]
+  {批处理\\[-1pt]{\tiny Batch}};
+
+% ===== Gen 2: AutoGPT / Voyager — Multiprogramming =====
+\node[bluebadge] (g2) at (\posB, 1.4) {II};
+\node[worklabel, above=3mm of g2] {AutoGPT / Voyager};
+\node[oslabel, below=3mm of g2, yshift=-2mm]
+  {多道程序\\[-1pt]{\tiny Multiprogramming}};
+
+% ===== Gen 3: AIOS / Agents SDK — Time-sharing =====
+\node[orangebadge] (g3) at (\posC, 1.4) {III};
+\node[worklabel, above=3mm of g3] {AIOS / Agents SDK};
+\node[oslabel, below=3mm of g3, yshift=-2mm]
+  {分时系统\\[-1pt]{\tiny Time-sharing}};
+
+% ===== Gen 4: Codex / Claude Code — Modern OS =====
+\node[orangebadge] (g4) at (\posD, 1.4) {IV};
+\node[worklabel, above=3mm of g4] {Codex / Claude Code};
+\node[oslabel, below=3mm of g4, yshift=-2mm]
+  {现代操作系统\\[-1pt]{\tiny Modern OS}};
+
+% ===== Gen 5: ArbiterOS / AgentOS — Trusted OS =====
+\node[orangebadge] (g5) at (\posE, 1.4) {V};
+\node[worklabel, above=3mm of g5] {ArbiterOS / AgentOS};
+\node[oslabel, below=3mm of g5, yshift=-2mm]
+  {可信操作系统\\[-1pt]{\tiny Trusted OS}};
+
+% Evolution arrows between badges
+\draw[evoarrow] (g1) -- (g2);
+\draw[evoarrow] (g2) -- (g3);
+\draw[evoarrow] (g3) -- (g4);
+\draw[evoarrow] (g4) -- (g5);
+
+% Legend
+\node[anchor=north west, font=\scriptsize] at (-0.2, 4.0) {%
+  \tikz\node[bluebadge, minimum size=4mm, font=\tiny\bfseries]{};~经典架构%
+};
+\node[anchor=north west, font=\scriptsize] at (4.0, 4.0) {%
+  \tikz\node[orangebadge, minimum size=4mm, font=\tiny\bfseries]{};~模型原生架构%
+};
+
+\end{tikzpicture}%
+}% end resizebox
+\caption{Agent框架的五代演进时间线（2023--2026）}
+\label{fig_agent_timeline}
+\end{figure}

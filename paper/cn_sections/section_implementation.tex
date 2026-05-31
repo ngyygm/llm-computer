@@ -1,0 +1,81 @@
+\section{开源实现与工程实践}
+\label{sec:implementation}
+
+从工程实现看，当前生态已经出现了若干可作为"未来模型原生计算架构原型"的项目。
+本节按照ICA的层次结构，从服务层（L2）、Agent层（L5）和协议层（L4）三个维度，逐一介绍代表性系统的核心特点及其在ICA中的定位。
+
+\subsection{服务层（L2）：推理服务与KV缓存管理}
+
+推理服务层对应ICA的L2层，负责模型权重加载、KV缓存管理、连续批处理和预填充/解码调度。
+目前这一层已形成较为成熟的工程生态。
+
+\textbf{vLLM}以PagedAttention为核心，将KV缓存组织为固定大小的页（block），通过block table映射到非连续物理显存空间，实现了类似操作系统虚拟内存的显存管理\cite{kwon2023pagedattention,vllm_docs_2026}。
+其自动前缀缓存（Automatic Prefix Caching）功能进一步支持了跨请求的共享前缀复用，相当于L2缓存中的共享只读代码页\cite{vllm_prefix_2026}。
+
+\textbf{SGLang}强调结构化程序执行与RadixAttention\cite{sglang2024,sglang_docs_2026}。
+RadixAttention用基数树（radix tree）索引所有历史请求的token前缀，自动发现和复用最大公共前缀的KV缓存，在多轮对话和批量推理场景下展现出更高的缓存命中率。
+实测表明，SGLang在某些工作负载下吞吐量比vLLM高出约29\%\cite{sglang2024}。
+
+\textbf{TGI}（Text Generation Inference）与\textbf{TensorRT-LLM}分别由Hugging Face和NVIDIA提供，展示了面向生产环境的部署能力\cite{tgi_docs_2026,tensorrtllm_docs_2026}。
+前者侧重多模型统一接口和易用性，后者利用NVIDIA GPU的深度优化（如FP8量化、Tensor Core加速）追求极致吞吐。
+这三类系统（vLLM、SGLang、TGI/TensorRT-LLM）分别代表了"类虚拟内存管理""结构化缓存复用"和"硬件深度优化"三种工程路线，共同构成了L2层的实现谱系。
+
+\subsection{Agent层（L5）：Agent运行时与操作系统}
+
+Agent层对应ICA的L5层，负责任务规划、Agent调度、权限审批、失败恢复和状态提交。
+这一层的开源生态最为活跃，方向也最为多样。
+
+在通用Agent方向，\textbf{OpenHands}提供了一个开放的Agent平台，支持多种LLM后端、沙箱执行和可扩展的工具接口\cite{openhands_paper_2025}；
+\textbf{SWE-agent}专注于软件工程任务，通过Agent-Computer Interface（ACI）将代码编辑、测试和调试统一为结构化操作\cite{sweagent2024}；
+\textbf{AutoGPT}从自主持续工作流出发，探索了Agent的自动目标分解和长期执行能力\cite{autogpt_platform_2026}；
+\textbf{Letta}（原MemGPT团队）则聚焦于"有状态Agent"，将长期记忆作为Agent的一等公民来管理\cite{letta_stateful_2026}。
+
+在Agent OS方向，\textbf{ArbiterOS}引入了治理层概念，提出"governor治理概率CPU"的分层架构\cite{arbiteros2025}；
+\textbf{AgentOS}提出了受结构化操作系统逻辑约束的"reasoning kernel"\cite{agentos2025}；
+\textbf{UFO$^2$}展示了桌面级AgentOS的可行性，将HostAgent、AppAgent和GUI--API操作层组织为层次结构\cite{ufo2_2025}；
+\textbf{Aura}则在移动端探索了安全优先的Agent架构，包含System Agent、沙箱化的App Agents和Agent Kernel\cite{aura2025}。
+
+在工业系统方向，\textbf{OpenAI Codex}明确将子Agent（subagents）、技能（skills）、MCP服务器接入、沙箱执行和审批策略（approval policies）作为一等公民\cite{openai_codex_overview_2026,openai_codex_subagents_2026,openai_codex_skills_2026,openai_codex_sandbox_2026,openai_codex_approvals_2026}；
+\textbf{Anthropic Claude Code}提供子Agent、技能、hooks、MCP连接和项目记忆文件，并默认采用只读权限与审批机制\cite{anthropic_claudecode_overview_2026,anthropic_claudecode_security_2026}。
+这两个系统说明，工业界已经开始把Agent运行时当作操作系统来构建。
+
+\subsection{协议层（L4）：标准化工具连接与Agent互联}
+
+协议层对应ICA的L4层，负责统一外部能力的访问接口。
+这一层正在从"点对点工具调用"向"标准化总线协议"转变。
+
+\textbf{MCP}（Model Context Protocol）提供了标准化的工具连接协议\cite{mcp_intro_2026}。
+截至2025年底，Anthropic报告已有超过10{,}000个活跃的公开MCP服务器\cite{mcpadoption2026}。
+MCP将连接AI应用与外部数据源、工具、工作流统一为JSON-RPC规范，扮演类似PCIe总线或USB在传统计算机中的角色。
+
+\textbf{A2A}（Agent-to-Agent Protocol）由Google于2025年4月推出，定位为Agent间通信标准\cite{google_a2a_2025,agentprotocols2025}。
+它支持能力发现（capability discovery）、任务生命周期管理和多模态协同，已被捐赠给Linux基金会进行中立治理\cite{a2alinux2025}。
+A2A扮演类似网络协议栈中TCP/IP的角色，与MCP互补：MCP是Agent到工具的\textbf{纵向总线}，A2A是Agent到Agent的\textbf{横向互联}。
+
+\subsection{五条实现建议}
+
+基于上述工程实践和本文提出的六条设计公理，本文给出五条可直接指导工程落地的实现建议：
+
+\textbf{第一，控制面与数据面分离}
+将确定性控制逻辑（权限审批、日志审计、失败恢复）从概率式推理路径中剥离，分别对应双平面架构中的确定性控制平面和概率执行平面。
+例如，Codex的approval policies和Claude Code的hooks就是这一分离的具体实现\cite{openai_codex_approvals_2026,anthropic_claudecode_security_2026}。
+
+\textbf{第二，短期上下文与长期记忆分离}
+将高频使用的"热上下文"（当前对话窗口）与低频访问的"冷记忆"（历史摘要、知识库索引）分到不同的存储介质和管理策略中。
+这对应ICA L3层的冷热分层设计，MemGPT的虚拟上下文管理就是这一原则的典型实践\cite{memgpt2023}。
+Augment Code的企业案例——CTO预估4--8个月的项目在2周内完成\cite{anthropic2026agenticreport}——展示了有效的上下文管理对加速开发者入职和项目交付的实际影响。
+
+\textbf{第三，所有可影响行为的对象都要版本化}
+提示模板、工具schema、技能包、记忆文件、MCP服务器能力描述都应附带版本号和变更日志\cite{mcp_intro_2026,agentprotocols2025}。
+传统计算机通过ISA和ABI的稳定性保证向后兼容；模型原生计算系统同样需要这种"接口契约"来应对快速演化。
+
+\textbf{第四，像OS一样实施资源配额}
+对每个Agent或任务设定显式的资源预算：上下文窗口上限、工具调用次数上限、推理时间上限和成本上限\cite{linux_cgroup_2026}。
+这对应公理5（最小权限公理）和公理6（可观测性公理）在资源管理层面的具体化。
+
+\textbf{第五，像分布式系统一样设计故障恢复}
+Agent执行的长任务可能因模型超时、工具失败或上下文溢出而中断。
+系统应像分布式数据库一样提供检查点（checkpoint）、重试（retry）和回滚（rollback）机制，确保副作用操作可审计、可撤销\cite{raft2014,spanner2012}。
+Rakuten的Claude Code自主完成了vLLM项目中1250万行代码上的激活向量提取任务（7小时，99.9\%数值精度）\cite{anthropic2026agenticreport}，表明具备隐式检查点和重试机制的长时运行Agent已经能够处理工业级任务。
+
+%% ============================================================

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.3.14)  30 MAY 2026 00:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.3.14)  31 MAY 2026 09:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -977,6 +977,14 @@ Package: multicol 2023/03/30 v1.9f multicolumn formatting (FMi)
 \colbreak@box=\box121
 \mc@col@check@num=\count340
 )
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count341
+\float@exts=\toks55
+\float@box=\box122
+\@float@everytoks=\toks56
+\@floatcapt=\box123
+)
 (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2023/08/05 v3.6o Customizing captions (AR)
 
@@ -992,23 +1000,24 @@ Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
 \caption@hangindent=\dimen326
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count341
-\c@continuedfloat=\count342
+\c@caption@flags=\count342
+\c@continuedfloat=\count343
+Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: longtable package is loaded.
 
 (/usr/share/texlive/texmf-dist/tex/latex/caption/ltcaption.sty
 Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
 ))
-Package hyperref Info: Option `colorlinks' set `true' on input line 23.
+Package hyperref Info: Option `colorlinks' set `true' on input line 34.
 
 (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
 Package: tcolorbox 2024/01/10 version 6.2.0 text color boxes
 
 (/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty
 Package: verbatim 2023-11-06 v1.5v LaTeX2e package for verbatim enhancements
-\every@verbatim=\toks55
-\verbatim@line=\toks56
+\every@verbatim=\toks57
+\verbatim@line=\toks58
 \verbatim@in@stream=\read3
 )
 (/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty
@@ -1017,26 +1026,26 @@ Package: environ 2014/05/04 v0.3 A new way to define environments
 (/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty
 Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 ))
-\tcb@titlebox=\box122
-\tcb@upperbox=\box123
-\tcb@lowerbox=\box124
-\tcb@phantombox=\box125
-\c@tcbbreakpart=\count343
-\c@tcblayer=\count344
-\c@tcolorbox@number=\count345
-\l__tcobox_tmpa_box=\box126
+\tcb@titlebox=\box124
+\tcb@upperbox=\box125
+\tcb@lowerbox=\box126
+\tcb@phantombox=\box127
+\c@tcbbreakpart=\count344
+\c@tcblayer=\count345
+\c@tcolorbox@number=\count346
+\l__tcobox_tmpa_box=\box128
 \l__tcobox_tmpa_dim=\dimen327
-\tcb@temp=\box127
-\tcb@temp=\box128
 \tcb@temp=\box129
 \tcb@temp=\box130
+\tcb@temp=\box131
+\tcb@temp=\box132
 
 (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbraster.code.tex
 Library (tcolorbox): 'tcbraster.code.tex' version '6.2.0'
-\c@tcbrastercolumn=\count346
-\c@tcbrasterrow=\count347
-\c@tcbrasternum=\count348
-\c@tcbraster=\count349
+\c@tcbrastercolumn=\count347
+\c@tcbrasterrow=\count348
+\c@tcbrasternum=\count349
+\c@tcbraster=\count350
 ) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbskins.code.tex
 Library (tcolorbox): 'tcbskins.code.tex' version '6.2.0'
 (/usr/share/texlive/texmf-dist/tex/latex/tikzfill/tikzfill.image.sty
@@ -1048,7 +1057,7 @@ Package: tikzfill-common 2023/08/08 v1.0.1 Auxiliary code for tikzfill
 (/usr/share/texlive/texmf-dist/tex/latex/tikzfill/tikzlibraryfill.image.code.te
 x
 File: tikzlibraryfill.image.code.tex 2023/08/08 v1.0.1 Image filling library
-\l__tikzfill_img_box=\box131
+\l__tikzfill_img_box=\box133
 )) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbskinsjigsaw.code.tex
 Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '6.2.0'
 )) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbbreakable.code.tex
@@ -1057,9 +1066,9 @@ Library (tcolorbox): 'tcbbreakable.code.tex' version '6.2.0'
 Package: pdfcol 2022-09-21 v1.7 Handle new color stacks for pdfTeX (HO)
 )
 Package pdfcol Info: New color stack `tcb@breakable' = 1 on input line 23.
-\tcb@testbox=\box132
-\tcb@totalupperbox=\box133
-\tcb@totallowerbox=\box134
+\tcb@testbox=\box134
+\tcb@totalupperbox=\box135
+\tcb@totallowerbox=\box136
 )
 (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbhooks.code.tex
 Library (tcolorbox): 'tcbhooks.code.tex' version '6.2.0'
@@ -1070,30 +1079,30 @@ Library (tcolorbox): 'tcbfitting.code.tex' version '6.2.0'
 \tcbfitdim=\dimen328
 \tcb@lowerfitdim=\dimen329
 \tcb@upperfitdim=\dimen330
-\tcb@cur@hbadness=\count350
+\tcb@cur@hbadness=\count351
 ) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcblistingsutf8.code.tex
 Library (tcolorbox): 'tcblistingsutf8.code.tex' version '6.2.0'
 (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcblistings.code.tex
 Library (tcolorbox): 'tcblistings.code.tex' version '6.2.0'
 (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count351
-\lst@gtempboxa=\box135
-\lst@token=\toks57
-\lst@length=\count352
+\lst@mode=\count352
+\lst@gtempboxa=\box137
+\lst@token=\toks59
+\lst@length=\count353
 \lst@currlwidth=\dimen331
-\lst@column=\count353
-\lst@pos=\count354
+\lst@column=\count354
+\lst@pos=\count355
 \lst@lostspace=\dimen332
 \lst@width=\dimen333
-\lst@newlines=\count355
-\lst@lineno=\count356
+\lst@newlines=\count356
+\lst@lineno=\count357
 \lst@maxwidth=\dimen334
 
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
-\c@lstnumber=\count357
-\lst@skipnumbers=\count358
-\lst@framebox=\box136
+\c@lstnumber=\count358
+\lst@skipnumbers=\count359
+\lst@framebox=\box138
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2023/02/27 1.9 listings configuration
@@ -1105,7 +1114,7 @@ Library (tcolorbox): 'tcblistingscore.code.tex' version '6.2.0'
 (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbprocessing.code.tex
 Library (tcolorbox): 'tcbprocessing.code.tex' version '6.2.0'
 )
-\c@tcblisting=\count359
+\c@tcblisting=\count360
 )) (/usr/share/texlive/texmf-dist/tex/latex/listingsutf8/listingsutf8.sty
 Package: listingsutf8 2019-12-10 v1.5 Allow UTF-8 in listings input (HO)
 
@@ -1130,99 +1139,99 @@ File: pgflibraryfadings.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ))) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbposter.code.tex
 Library (tcolorbox): 'tcbposter.code.tex' version '6.2.0'
 ))
-\c@law=\count360
-\c@definition=\count361
-\c@axiom=\count362
+\c@law=\count361
+\c@definition=\count362
+\c@axiom=\count363
  (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count363
-\l__pdf_internal_box=\box137
+\l__color_backend_stack_int=\count364
+\l__pdf_internal_box=\box139
 )
 (./paper.aux)
 \openout1 = `paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for C00/song/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for C05/song/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for C09/song/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for C10/song/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for C20/song/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for C19/song/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for C40/song/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for C42/song/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for C43/song/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for C50/song/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for C52/song/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for C49/song/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for C60/mj/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for C61/mj/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for C63/mj/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for C64/mj/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for C65/mj/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for C70/song/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for C31/song/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for C32/song/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for C33/song/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for C34/song/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for C35/song/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for C36/song/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for C37/song/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for C80/song/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for C81/song/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for C01/song/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for C11/song/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for C21/song/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for C41/song/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for C62/song/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for C00/song/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for C05/song/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for C09/song/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for C10/song/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for C20/song/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for C19/song/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for C40/song/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for C42/song/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for C43/song/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for C50/song/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for C52/song/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for C49/song/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for C60/mj/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for C61/mj/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for C63/mj/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for C64/mj/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for C65/mj/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for C70/song/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for C31/song/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for C32/song/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for C33/song/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for C34/song/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for C35/song/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for C36/song/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for C37/song/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for C80/song/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for C81/song/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for C01/song/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for C11/song/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for C21/song/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for C41/song/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for C62/song/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1260,17 +1269,17 @@ LaTeX Font Info:    ... okay on input line 53.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count364
+\scratchcounter=\count365
 \scratchdimen=\dimen335
-\scratchbox=\box138
-\nofMPsegments=\count365
-\nofMParguments=\count366
-\everyMPshowfont=\toks58
-\MPscratchCnt=\count367
+\scratchbox=\box140
+\nofMPsegments=\count366
+\nofMParguments=\count367
+\everyMPshowfont=\toks60
+\MPscratchCnt=\count368
 \MPscratchDim=\dimen336
-\MPnumerator=\count368
-\makeMPintoPDFobject=\count369
-\everyMPtoPDFconversion=\toks59
+\MPnumerator=\count369
+\makeMPintoPDFobject=\count370
+\everyMPtoPDFconversion=\toks61
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -1283,7 +1292,7 @@ e
 Package pgfplots notification 'compat/show suggested version=true': document ha
 s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
-Package hyperref Info: Link coloring ON on input line 53.
+Package hyperref Info: Link coloring ON on input line 59.
 (./paper.out) (./paper.out)
 \@outlinefile=\write4
 \openout4 = `paper.out'.
@@ -1291,7 +1300,7 @@ Package hyperref Info: Link coloring ON on input line 53.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count370
+\c@lstlisting=\count371
  (/usr/share/texmf/tex/latex/CJK/UTF8/UTF8.bdg
 File: UTF8.bdg 2021/10/16 4.8.5
 )
@@ -1302,7 +1311,7 @@ File: UTF8.enc 2021/10/16 4.8.5
 File: UTF8.chr 2021/10/16 4.8.5
 )
 LaTeX Font Info:    Trying to load font information for C70+gbsn on input line 
-56.
+62.
 
 (/usr/share/texmf/tex/latex/CJK/UTF8/c70gbsn.fd
 File: c70gbsn.fd 2008/10/03 4.8.1
@@ -1310,54 +1319,56 @@ File: c70gbsn.fd 2008/10/03 4.8.1
 (/usr/share/texmf/tex/latex/CJK/UTF8/c70gbsn.fdx
 File: c70gbsn.fdx 2012/05/07 4.8.3
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 56.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 62.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 56.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 62.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 5
-6.
 
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
-)
+LaTeX Warning: No \author given.
+
+(./cn_sections/section_intro.tex
 
 LaTeX Font Warning: Font shape `C70/gbsn/m/it' undefined
-(Font)              using `C70/gbsn/m/n' instead on input line 82.
+(Font)              using `C70/gbsn/m/n' instead on input line 7.
 
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/enc/
-dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-su
-per-ts1.enc}]
-(/home/linkco/exa/llm-computer/paper/figures/fig_analogy_map_cn.tex)
-Underfull \hbox (badness 1742) in paragraph at lines 122--132
-\T1/cmr/m/n/10.95 as OS, Agents as Apps"\C70/gbsn/bx/n/10.95/76 Ñ \C70/gbsn/m/n
-/10.95/61 ? \C70/gbsn/m/n/10.95/66 o\T1/cmr/m/n/10.95 [[]]\C70/gbsn/m/n/10.95/3
-0 ^^B\T1/cmr/m/n/10.95 L2MAC\C70/gbsn/m/n/10.95/5c ^^F\T1/cmr/m/n/10.95 LLM\C70
-/gbsn/m/n/10.95/68 F \C70/gbsn/bx/n/10.95/67 ∂ \C70/gbsn/m/n/10.95/79  \C70/gb
-sn/m/n/10.95/4e :\T1/cmr/m/n/10.95 stored-program au-to-matic
+dvips/cm-super/cm-super-t1.enc}]
+Underfull \hbox (badness 10000) in alignment at lines 35--35
+[][][] 
  []
 
+<figures/fig_analogy_map.png, id=806, 1678.27pt x 944.52875pt>
+File: figures/fig_analogy_map.png Graphic file (type png)
+<use figures/fig_analogy_map.png>
+Package pdftex.def Info: figures/fig_analogy_map.png  used on input line 45.
+(pdftex.def)             Requested size: 443.9066pt x 249.82332pt.
 
-Overfull \hbox (5.05241pt too wide) in paragraph at lines 122--132
-\T1/cmr/m/n/10.95 computer[[]]\C70/gbsn/m/n/10.95/30 ^^B\T1/cmr/m/n/10.95 Arbit
-erOS\C70/gbsn/m/n/10.95/62 ä\T1/cmr/m/n/10.95 LLM\C70/gbsn/m/n/10.95/5b ö \C70/
-gbsn/m/n/10.95/4e I : \C70/gbsn/bx/n/10.95/53 ◊\T1/cmr/m/n/10.95 governor\C70/g
-bsn/m/n/10.95/6c ª \C70/gbsn/m/n/10.95/74 ^^F \C70/gbsn/bx/n/10.95/76 Ñ\T1/cmr/
-m/n/10.95 "Probabilistic CPU"[[]]\C70/gbsn/m/n/10.95/30 ^^B\T1/cmr/m/n/10.95 Ag
-entOS\C70/gbsn/m/n/10.95/5c ^^F
+Underfull \hbox (badness 1742) in paragraph at lines 55--65
+\T1/cmr/m/n/10.95 as OS, Agents as Apps"\C70/gbsn/m/n/10.95/76 Ñ \C70/gbsn/m/n/
+10.95/61 ? \C70/gbsn/m/n/10.95/66 o\T1/cmr/m/n/10.95 [[]]\C70/gbsn/m/n/10.95/30
+ ^^B\T1/cmr/m/n/10.95 L2MAC\C70/gbsn/m/n/10.95/5c ^^F\T1/cmr/m/n/10.95 LLM\C70/
+gbsn/m/n/10.95/68 F \C70/gbsn/m/n/10.95/67 ∂ \C70/gbsn/m/n/10.95/79  \C70/gbsn
+/m/n/10.95/4e :\T1/cmr/m/n/10.95 stored-program au-to-matic
  []
 
-[2] [3] [4] [5]
-Overfull \hbox (18.74643pt too wide) in paragraph at lines 254--263
+[2]) (./cn_sections/section_bg.tex [3 <./figures/fig_analogy_map.png (PNG copy)
+>]
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 4
+9.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
+) [4] [5]
+Overfull \hbox (18.74643pt too wide) in paragraph at lines 100--109
 \C70/gbsn/bx/n/10.95/57 ( \C70/gbsn/bx/n/10.95/63 ® \C70/gbsn/bx/n/10.95/74 ^^F
  \C70/gbsn/bx/n/10.95/4f ß \C70/gbsn/m/n/10.95/ff ^^L \C70/gbsn/m/it/10.95/4e ^
 ^@ \C70/gbsn/bx/n/10.95/7c ˚ \C70/gbsn/m/it/10.95/52 ^^W \C70/gbsn/m/n/10.95/5d
@@ -1369,27 +1380,27 @@ a ! \C70/gbsn/bx/n/10.95/57 ã \C70/gbsn/bx/n/10.95/63 ® \C70/gbsn/bx/n/10.95/74
 /n/10.95/91 Õ \C70/gbsn/bx/n/10.95/67 Ñ \C70/gbsn/m/it/10.95/4e : \C70/gbsn/bx/
 n/10.95/7c ˚ \C70/gbsn/bx/n/10.95/7e ﬂ \C70/gbsn/m/it/10.95/53 ^^V \C70/gbsn/bx
 /n/10.95/76 Ñ \C70/gbsn/m/n/10.95/5d Â \C70/gbsn/m/n/10.95/7a  \C70/gbsn/m/it/
-10.95/95 Ó \C70/gbsn/bx/n/10.95/98 ò \C70/gbsn/bx/n/10.95/30 ^^B\T1/cmr/m/n/10.
+10.95/95 Ó \C70/gbsn/m/it/10.95/98 ò \C70/gbsn/bx/n/10.95/30 ^^B\T1/cmr/m/n/10.
 95 FlashAttention[[],
  []
 
 
-Overfull \hbox (16.18376pt too wide) in paragraph at lines 290--292
+Overfull \hbox (16.18376pt too wide) in paragraph at lines 136--138
 \C70/gbsn/bx/n/10.95/59 Ç \C70/gbsn/m/n/10.95/ff ^^L\T1/cmr/m/it/10.95 prefix c
 aching\C70/gbsn/m/n/10.95/ff ^^H \C70/gbsn/m/it/10.95/52 M \C70/gbsn/bx/n/10.95
 /7f ^^@ ^^S \C70/gbsn/m/it/10.95/5b X \C70/gbsn/bx/n/10.95/59 ^^M \C70/gbsn/bx/
 n/10.95/75 ( \C70/gbsn/m/n/10.95/ff 	 \C70/gbsn/bx/n/10.95/30 ^^A\T1/cmr/m/it/1
 0.95 chunked pre-fill\C70/gbsn/m/n/10.95/ff ^^H \C70/gbsn/m/it/10.95/52 ^^F \C7
-0/gbsn/bx/n/10.95/57 W \C70/gbsn/bx/n/10.95/98 Ñ \C70/gbsn/m/n/10.95/58 k \C70/
+0/gbsn/bx/n/10.95/57 W \C70/gbsn/m/it/10.95/98 Ñ \C70/gbsn/m/n/10.95/58 k \C70/
 gbsn/m/it/10.95/51 E \C70/gbsn/bx/n/10.95/8c ^^C \C70/gbsn/bx/n/10.95/5e ¶ \C70
 /gbsn/m/n/10.95/ff 	 \C70/gbsn/bx/n/10.95/30 ^^A\T1/cmr/m/it/10.95 subagents\C7
 0/gbsn/m/n/10.95/ff ^^H \C70/gbsn/m/it/10.95/5b P\T1/cmr/m/n/10.95 Agent\C70/gb
 sn/bx/n/10.95/5e v
  []
 
-[6] (/home/linkco/exa/llm-computer/paper/figures/fig_dual_stack_cn.tex)
-[7]
-Underfull \hbox (badness 1902) in paragraph at lines 327--332
+[6] (/home/linkco/exa/llm-computer/paper/figures/fig_dual_stack.tex))
+(./cn_sections/section_related.tex [7]
+Underfull \hbox (badness 1902) in paragraph at lines 30--35
 []\C70/gbsn/m/it/10.95/52 0\T1/cmr/m/n/10.95 2025--2026\C70/gbsn/bx/n/10.95/5e 
 t \C70/gbsn/m/n/10.95/ff ^^L \C70/gbsn/bx/n/10.95/8f Ÿ \C70/gbsn/bx/n/10.95/67 
 a \C70/gbsn/bx/n/10.95/78 ^^T \C70/gbsn/bx/n/10.95/7a v \C70/gbsn/bx/n/10.95/7e
@@ -1403,7 +1414,7 @@ C70/gbsn/bx/n/10.95/63 ® \C70/gbsn/bx/n/10.95/8f € \C70/gbsn/bx/n/10.95/30 ^^B
  []
 
 [8]
-Overfull \hbox (24.96408pt too wide) in paragraph at lines 384--391
+Overfull \hbox (24.96408pt too wide) in paragraph at lines 87--94
 []\C70/gbsn/bx/n/10.95/7f ^^V[][] \C70/gbsn/bx/n/10.95/7a [][]\T1/cmr/bx/n/10.
 95 Agent\C70/gbsn/bx/n/10.95/76 Ñ[][] \C70/gbsn/m/it/10.95/51 t[][] \C70/gbsn/b
 x/n/10.95/8d w[][] \T1/cmr/m/n/10.95 2024--2026\C70/gbsn/bx/n/10.95/5e t \C70/g
@@ -1411,13 +1422,13 @@ bsn/bx/n/10.95/67 ^^@ \C70/gbsn/bx/n/10.95/5f ^^U \C70/gbsn/m/it/10.95/4e ∫ \C7
 0/gbsn/m/n/10.95/6c Ë \C70/gbsn/bx/n/10.95/76 Ó Ñ\T1/cmr/m/n/10.95 Agent\C70/gb
 sn/bx/n/10.95/8f € \C70/gbsn/m/it/10.95/5c U \C70/gbsn/m/it/10.95/96 ∆ \C70/gbs
 n/m/it/10.95/4e - \C70/gbsn/bx/n/10.95/57 ( \C70/gbsn/bx/n/10.95/8f o \C70/gbsn
-/m/it/10.95/4e ˆ \C70/gbsn/m/n/10.95/5d Â \C70/gbsn/bx/n/10.95/7a  \C70/gbsn/b
-x/n/10.95/98 Ü \C70/gbsn/bx/n/10.95/57 ﬂ \C70/gbsn/bx/n/10.95/30 ^^B\T1/cmr/m/n
+/m/it/10.95/4e ˆ \C70/gbsn/m/n/10.95/5d Â \C70/gbsn/bx/n/10.95/7a  \C70/gbsn/m
+/it/10.95/98 Ü \C70/gbsn/bx/n/10.95/57 ﬂ \C70/gbsn/bx/n/10.95/30 ^^B\T1/cmr/m/n
 /10.95 OpenAI\C70/gbsn/bx/n/10.95/76 Ñ\T1/cmr/m/n/10.95 Codex
  []
 
 [9]
-Underfull \hbox (badness 1824) in paragraph at lines 427--432
+Underfull \hbox (badness 1824) in paragraph at lines 130--135
 []\T1/cmr/bx/n/10.95 A2A\C70/gbsn/m/n/10.95/ff ^^Z[][]\T1/cmr/bx/n/10.95 Agent\
 C70/gbsn/m/it/10.95/52 0[][]\T1/cmr/bx/n/10.95 Agent\C70/gbsn/bx/n/10.95/76 Ñ[]
 [] \C70/gbsn/m/it/10.95/4e í[][] \C70/gbsn/bx/n/10.95/80 T[][] \C70/gbsn/m/it/1
@@ -1430,7 +1441,7 @@ ext '25\C70/gbsn/bx/n/10.95/59 ' \C70/gbsn/bx/n/10.95/4f ^^Z \C70/gbsn/m/it/10.
  []
 
 
-Underfull \hbox (badness 2005) in paragraph at lines 433--437
+Underfull \hbox (badness 2005) in paragraph at lines 136--140
 []\C70/gbsn/m/it/10.95/4e ^^N[][] \C70/gbsn/bx/n/10.95/67 ,[][] \C70/gbsn/bx/n/
 10.95/65 á[][] \C70/gbsn/bx/n/10.95/76 Ñ[][] \C70/gbsn/m/it/10.95/51 s[][] \C70
 /gbsn/bx/n/10.95/7c ˚[][] \C70/gbsn/m/it/10.95/5c ^^F \C70/gbsn/m/it/10.95/4e $
@@ -1444,72 +1455,150 @@ x/n/10.95/89 “ \C70/gbsn/bx/n/10.95/82 r \C70/gbsn/m/n/10.95/ff ^^H \C70/gbsn/b
 x/n/10.95/7c {
  []
 
-[10] (/home/linkco/exa/llm-computer/paper/figures/fig_coverage_map_cn.tex
+[10] (/home/linkco/exa/llm-computer/paper/figures/fig_coverage_map.tex
+Overfull \hbox (0.77661pt too wide) in paragraph at lines 18--18
+ []\T1/cmr/bx/n/10 Inference 
+ []
+
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 91.
-)
-[11] [12]
-Underfull \hbox (badness 10000) in paragraph at lines 571--571
-[]|\C70/gbsn/m/n/9/63 – \C70/gbsn/m/n/9/79 : \C70/gbsn/m/n/9/6a !
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 122.
+
+Overfull \hbox (2.69778pt too wide) in paragraph at lines 125--125
+ []\T1/cmr/bx/n/8 compiler[] 
  []
 
 
-Underfull \hbox (badness 6125) in paragraph at lines 571--571
-\C70/gbsn/m/n/9/67 ^^? \C70/gbsn/m/n/9/30 ^^A \C70/gbsn/m/n/9/5d Â \C70/gbsn/m/
-n/9/51 w \C70/gbsn/m/n/9/89 ƒ
+Overfull \hbox (1.06763pt too wide) in paragraph at lines 126--126
+ []\T1/cmr/bx/n/8 contract[] 
+ []
+
+) [11]) (./cn_sections/section_framework.tex [12]
+Overfull \hbox (14.69351pt too wide) in alignment at lines 23--28
+ [] [] [] [] [] 
  []
 
 
-Overfull \hbox (14.60959pt too wide) in paragraph at lines 571--571
-\C70/gbsn/m/n/9/83 ^^C \C70/gbsn/m/n/9/30 ^^A\T1/cmr/m/n/9 Skill/Agent\C70/gbsn
-/m/n/9/63 •
+Overfull \hbox (14.69351pt too wide) in alignment at lines 28--32
+ [] [] [] [] [] 
  []
 
 
-Overfull \hbox (24.3203pt too wide) in paragraph at lines 571--571
-\C70/gbsn/m/n/9/76 Ñ\T1/cmr/m/n/9 [[]]\C70/gbsn/m/n/9/ff ^^[\T1/cmr/m/n/9 MCP\C
-70/gbsn/m/n/9/76 Ñ\T1/cmtt/m/n/9 tools/call\C70/gbsn/m/n/9/63 • 
+Underfull \hbox (badness 10000) in paragraph at lines 34--34
+[]|\C70/gbsn/m/n/8/63 – \C70/gbsn/m/n/8/79 : \C70/gbsn/m/n/8/6a !
  []
 
 
-Overfull \hbox (28.55295pt too wide) in paragraph at lines 571--571
-\C70/gbsn/m/n/9/53 ^^V\T1/cmr/m/n/9 FlashAttention\C70/gbsn/m/n/9/30 ^^A\T1/cmr
-/m/n/9 speculative 
+Underfull \hbox (badness 10000) in paragraph at lines 34--34
+\C70/gbsn/m/n/8/67 ^^? \C70/gbsn/m/n/8/30 ^^A \C70/gbsn/m/n/8/5d Â \C70/gbsn/m/
+n/8/51 w \C70/gbsn/m/n/8/89 ƒ
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 571--571
-[]|\C70/gbsn/m/n/9/4f ^^Z \C70/gbsn/m/n/9/8b › \C70/gbsn/m/n/9/7e ß\T1/cmr/m/n/
-9 KV\C70/gbsn/m/n/9/7f ^^S
+Overfull \hbox (12.3634pt too wide) in paragraph at lines 34--34
+\C70/gbsn/m/n/8/83 ^^C \C70/gbsn/m/n/8/30 ^^A\T1/cmr/m/n/8 Skill/Agent\C70/gbsn
+/m/n/8/63 •
  []
 
 
-Overfull \hbox (14.51503pt too wide) in paragraph at lines 571--571
-\C70/gbsn/m/n/9/6e ê\T1/cmr/m/n/9 [[]]\C70/gbsn/m/n/9/ff ^^[\T1/cmr/m/n/9 Codex
-\C70/gbsn/m/n/9/76 Ñ\T1/cmr/m/n/9 sandbox\C70/gbsn/m/n/9/96 î 
+Underfull \hbox (badness 2088) in paragraph at lines 34--34
+\T1/cmr/m/n/8 V\C70/gbsn/m/n/8/76 Ñ\T1/cmtt/m/n/8 ECALL\C70/gbsn/m/n/8/63 ^^G \
+C70/gbsn/m/n/8/4e ‰ \C70/gbsn/m/n/8/8b Ì \C70/gbsn/m/n/8/4e I \C70/gbsn/m/n/8/7
+c æ \C70/gbsn/m/n/8/78 n \C70/gbsn/m/n/8/5b ö
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 571--571
-[]|\C70/gbsn/m/n/9/5d Â \C70/gbsn/m/n/9/51 w \C70/gbsn/m/n/9/8c ^^C
+Overfull \hbox (3.22589pt too wide) in paragraph at lines 34--34
+\C70/gbsn/m/n/8/4e I\T1/cmr/m/n/8 [[]]\C70/gbsn/m/n/8/ff ^^[\T1/cmr/m/n/8 MCP\C
+70/gbsn/m/n/8/76 Ñ\T1/cmtt/m/n/8 tools/call\C70/gbsn/m/n/8/89 ƒ
  []
 
 
-Overfull \hbox (9.93492pt too wide) in paragraph at lines 571--571
-\C70/gbsn/m/n/9/53 ^^V \C70/gbsn/m/n/9/ff ^^[\T1/cmr/m/n/9 MCP\C70/gbsn/m/n/9/7
-6 Ñ\T1/cmtt/m/n/9 tools/call\C70/gbsn/m/n/9/62 ä 
+Underfull \hbox (badness 2564) in paragraph at lines 34--34
+\C70/gbsn/m/n/8/83 ^^C \C70/gbsn/m/n/8/4e Ü \C70/gbsn/m/n/8/53 ¬ \C70/gbsn/m/n/
+8/65 p\T1/cmr/m/n/8 schema\C70/gbsn/m/n/8/54 å \C70/gbsn/m/n/8/8f ‘ \C70/gbsn/m
+/n/8/56 ﬁ \C70/gbsn/m/n/8/68 <
  []
 
 
-Underfull \hbox (badness 1270) in paragraph at lines 571--571
-\T1/cmr/m/n/9 agent / Task
+Underfull \hbox (badness 10000) in paragraph at lines 38--38
+[]|\C70/gbsn/m/n/8/80 T \C70/gbsn/m/n/8/54 ^^H \C70/gbsn/m/n/8/4f ^^X
  []
 
 
-LaTeX Warning: Float too large for page by 17.79626pt on input line 572.
+Overfull \hbox (22.15363pt too wide) in paragraph at lines 38--38
+\C70/gbsn/m/n/8/53 ^^V\T1/cmr/m/n/8 FlashAttention\C70/gbsn/m/n/8/30 ^^A\T1/cmr
+/m/n/8 speculative
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 40--40
+[]|\C70/gbsn/m/n/8/4f ^^Z \C70/gbsn/m/n/8/8b › \C70/gbsn/m/n/8/7e ß\T1/cmr/m/n/
+8 KV\C70/gbsn/m/n/8/7f ^^S
+ []
+
+
+Underfull \hbox (badness 4416) in paragraph at lines 44--44
+\C70/gbsn/m/n/8/59 1 \C70/gbsn/m/n/8/8d % \C70/gbsn/m/n/8/59 ^^D \C70/gbsn/m/n/
+8/74 ^^F \C70/gbsn/m/n/8/30 ^^B \C70/gbsn/m/n/8/4f ã \C70/gbsn/m/n/8/59 Ç \C70/
+gbsn/m/n/8/ff ^^Z\T1/cmr/m/n/8 Linux
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--44
+\T1/cmr/m/n/8 cgroup\C70/gbsn/m/n/8/96 î \C70/gbsn/m/n/8/79 ª \C70/gbsn/m/n/8/8
+f € \C70/gbsn/m/n/8/7a  \C70/gbsn/m/n/8/8d D
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--44
+\C70/gbsn/m/n/8/6e ê\T1/cmr/m/n/8 [[]]\C70/gbsn/m/n/8/ff ^^[\T1/cmr/m/n/8 Codex
+ sand-box\C70/gbsn/m/n/8/96 î
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--44
+[]|\C70/gbsn/m/n/8/97 ^^@ \C70/gbsn/m/n/8/89 Å \C70/gbsn/m/n/8/6c ô \C70/gbsn/m
+/n/8/7b ± \C70/gbsn/m/n/8/30 ^^A \C70/gbsn/m/n/8/5b ° \C70/gbsn/m/n/8/62 y \C70
+/gbsn/m/n/8/30 ^^A
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 46--46
+[]|\C70/gbsn/m/n/8/5d Â \C70/gbsn/m/n/8/51 w \C70/gbsn/m/n/8/8c ^^C
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 48--48
+[]|\C70/gbsn/m/n/8/8b Ì \C70/gbsn/m/n/8/4e I \C70/gbsn/m/n/8/68 ¿ \C70/gbsn/m/n
+/8/7d " \C70/gbsn/m/n/8/4e ^^M \C70/gbsn/m/n/8/66 / \C70/gbsn/m/n/8/7c æ \C70/g
+bsn/m/n/8/78 n \C70/gbsn/m/n/8/5b ˚
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 48--48
+\C70/gbsn/m/n/8/57 @ \C70/gbsn/m/n/8/30 ^^B$[]\OT1/cmr/m/n/8 ([])$\C70/gbsn/m/n
+/8/8f ‘ \C70/gbsn/m/n/8/56 ﬁ \C70/gbsn/m/n/8/55 / \C70/gbsn/m/n/8/4e ^^@
+ []
+
+
+Underfull \hbox (badness 1418) in paragraph at lines 50--50
+\T1/cmr/m/n/8 agent / Task
+ []
+
+
+Underfull \hbox (badness 2671) in paragraph at lines 50--50
+\C70/gbsn/m/n/8/67 , \C70/gbsn/m/n/8/53 U \C70/gbsn/m/n/8/4f M \C70/gbsn/m/n/8/
+30 ^^B \C70/gbsn/m/n/8/4f ã \C70/gbsn/m/n/8/59 Ç \C70/gbsn/m/n/8/ff ^^Z\T1/cmr/
+m/n/8 POSIX\C70/gbsn/m/n/8/7e ø
+ []
+
+
+Overfull \hbox (14.69351pt too wide) in alignment at lines 32--53
+ [] [] [] [] [] 
+ []
 
 [13]
-Overfull \hbox (0.147pt too wide) in paragraph at lines 618--619
+Overfull \hbox (0.147pt too wide) in paragraph at lines 101--102
 []\T1/cmr/m/n/10.95 Codex\C70/gbsn/bx/n/10.95/76 Ñ\T1/cmr/m/n/10.95 approval po
 licies[[]]\C70/gbsn/bx/n/10.95/30 ^^A\T1/cmr/m/n/10.95 Claude Code\C70/gbsn/bx/
 n/10.95/76 Ñ \C70/gbsn/m/it/10.95/53 Í \C70/gbsn/m/it/10.95/8b ˚ \C70/gbsn/m/n/
@@ -1518,8 +1607,8 @@ n/10.95/76 Ñ \C70/gbsn/m/it/10.95/53 Í \C70/gbsn/m/it/10.95/8b ˚ \C70/gbsn/m/n/
 .95/76 Ñ\T1/cmr/m/n/10.95 capability\C70/gbsn/m/it/10.95/5b â
  []
 
-
-Underfull \hbox (badness 1014) in paragraph at lines 622--626
+[14{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+Underfull \hbox (badness 1014) in paragraph at lines 105--109
 \C70/gbsn/m/it/10.95/60 ' \C70/gbsn/bx/n/10.95/7f ^^V \C70/gbsn/bx/n/10.95/63 í
  \C70/gbsn/m/it/10.95/5c B \C70/gbsn/m/n/10.95/ff ^^L \C70/gbsn/bx/n/10.95/66 >
  \C70/gbsn/m/n/10.95/84 W \C70/gbsn/bx/n/10.95/63 – \C70/gbsn/m/it/10.95/53 G \
@@ -1535,7 +1624,7 @@ n/bx/n/10.95/97 ` \C70/gbsn/m/it/10.95/60 '\T1/cmr/m/n/10.95 [[]]\C70/gbsn/bx/n
  []
 
 
-Underfull \hbox (badness 1590) in paragraph at lines 622--626
+Underfull \hbox (badness 1590) in paragraph at lines 105--109
 \C70/gbsn/bx/n/10.95/68 8 \C70/gbsn/m/it/10.95/5f √\T1/cmr/m/n/10.95 ''\C70/gbs
 n/m/n/10.95/ff ^^H\T1/cmr/m/n/10.95 Deterministic Shell, Prob-a-bilis-tic Core\
 C70/gbsn/m/n/10.95/ff 	 \C70/gbsn/bx/n/10.95/6a ! \C70/gbsn/m/it/10.95/5f ^^O \
@@ -1545,9 +1634,9 @@ gbsn/bx/n/10.95/76 Ñ \C70/gbsn/m/it/10.95/4e ã \C70/gbsn/m/it/10.95/5b û \C70/g
 bsn/bx/n/10.95/68 ^^G \C70/gbsn/m/it/10.95/51 ∆ \C70/gbsn/bx/n/10.95/67 ∂
  []
 
-(/home/linkco/exa/llm-computer/paper/figures/fig_dual_plane_cn.tex) [14]
-[15]
-Overfull \hbox (1.15462pt too wide) in paragraph at lines 722--726
+(/home/linkco/exa/llm-computer/paper/figures/fig_dual_plane.tex) [15])
+(./cn_sections/section_components.tex [16]
+Overfull \hbox (1.15462pt too wide) in paragraph at lines 72--76
 \C70/gbsn/bx/n/10.95/57 ( \C70/gbsn/m/n/10.95/81 Í \C70/gbsn/bx/n/10.95/56 ﬁ \C
 70/gbsn/m/it/10.95/5f R \C70/gbsn/bx/n/10.95/63 ® \C70/gbsn/bx/n/10.95/74 ^^F \
 C70/gbsn/m/it/10.95/4e - \C70/gbsn/m/n/10.95/ff ^^L \C70/gbsn/m/it/10.95/75 ^^_
@@ -1562,7 +1651,7 @@ n/10.95 token\C70/gbsn/bx/n/10.95/76 Ñ\T1/cmr/m/n/10.95 Key/Value\C70/gbsn/m/it
  []
 
 
-Underfull \hbox (badness 2042) in paragraph at lines 744--747
+Underfull \hbox (badness 2591) in paragraph at lines 94--97
 \C70/gbsn/bx/n/10.95/91 Õ \C70/gbsn/m/it/10.95/67 ^^@ \C70/gbsn/bx/n/10.95/59 '
  \C70/gbsn/bx/n/10.95/76 Ñ\T1/cmr/m/n/10.95 token\C70/gbsn/m/n/10.95/ff 	 \C70/
 gbsn/m/it/10.95/5b û \C70/gbsn/bx/n/10.95/73 ∞ \C70/gbsn/m/it/10.95/4e Ü \C70/g
@@ -1576,8 +1665,8 @@ sn/m/it/10.95/90 ^^P \C70/gbsn/m/it/10.95/7b V \C70/gbsn/m/it/10.95/75 e\T1/cmr
 sn/bx/n/10.95/76 Ñ \C70/gbsn/m/it/10.95/4f ^^X
  []
 
-[16] [17] [18]
-Underfull \hbox (badness 4531) in paragraph at lines 881--884
+[17] [18] [19]
+Underfull \hbox (badness 4531) in paragraph at lines 231--234
 []\C70/gbsn/bx/n/10.95/5d Â \C70/gbsn/m/it/10.95/4e ^^Z \C70/gbsn/m/it/10.95/5b
  û \C70/gbsn/bx/n/10.95/8d ı \C70/gbsn/m/it/10.95/4e _ \C70/gbsn/bx/n/10.95/57 
 ( \C70/gbsn/m/it/10.95/67 ^^] \C70/gbsn/m/it/10.95/8f Ÿ \C70/gbsn/m/it/10.95/4e
@@ -1589,8 +1678,8 @@ nts\C70/gbsn/bx/n/10.95/30 ^^A\T1/cmr/m/n/10.95 skills\C70/gbsn/bx/n/10.95/30 ^
 \C70/gbsn/m/it/10.95/52 6
  []
 
-[19]
-Overfull \hbox (10.33841pt too wide) in paragraph at lines 957--959
+[20]
+Overfull \hbox (10.33841pt too wide) in paragraph at lines 307--309
 []\C70/gbsn/m/it/10.95/62 ä \C70/gbsn/m/it/10.95/4e $ \C70/gbsn/bx/n/10.95/80 ^
 ^E \C70/gbsn/m/it/10.95/54 ^^H \C70/gbsn/bx/n/10.95/8d w \C70/gbsn/m/it/10.95/6
 7 e \C70/gbsn/bx/n/10.95/77  \C70/gbsn/m/n/10.95/ff ^^L\T1/cmr/m/n/10.95 MCP\C
@@ -1604,8 +1693,8 @@ mr/m/n/10.95 agent\C70/gbsn/m/it/10.95/52 0\T1/cmr/m/n/10.95 agent\C70/gbsn/bx/
 n/10.95/76 Ñ
  []
 
-[20] [21]
-Overfull \hbox (18.13597pt too wide) in paragraph at lines 1025--1027
+[21] [22]
+Overfull \hbox (18.13597pt too wide) in paragraph at lines 375--377
 \C70/gbsn/m/it/10.95/7b ,[][] \C70/gbsn/m/it/10.95/4e ^^@[][] \C70/gbsn/m/n/10.
 95/ff ^^L[][] \C70/gbsn/m/it/10.95/90 ^^Z[][] \C70/gbsn/m/it/10.95/4f ·[][] \C7
 0/gbsn/m/it/10.95/5e &[][] \C70/gbsn/m/it/10.95/5b Ω[][] \C70/gbsn/m/it/10.95/4
@@ -1621,13 +1710,15 @@ bsn/m/n/10.95/ff ^^H \C70/gbsn/bx/n/10.95/59 Ç\T1/cmr/m/n/10.95 gRPC\C70/gbsn/b
 x/n/10.95/76 Ñ\T1/cmr/m/n/10.95 protobuf\C70/gbsn/m/n/10.95/ff 	 ^^L
  []
 
-[22]
+(/home/linkco/exa/llm-computer/paper/figures/fig_arch.tex)
+(/home/linkco/exa/llm-computer/paper/figures/fig_flow.tex))
+(./cn_sections/section_icam.tex
 
 LaTeX Font Warning: Font shape `C70/gbsn/bx/it' undefined
-(Font)              using `C70/gbsn/bx/n' instead on input line 1126.
+(Font)              using `C70/gbsn/bx/n' instead on input line 19.
 
-
-Underfull \hbox (badness 3291) in paragraph at lines 1132--1133
+[23] [24] [25]
+Underfull \hbox (badness 3291) in paragraph at lines 25--26
 []\T1/cmr/bx/it/10.95 L4 \C70/gbsn/bx/it/10.95/8b Ì[][] \C70/gbsn/bx/it/10.95/4
 e I[][] \C70/gbsn/bx/it/10.95/63 •[][] \C70/gbsn/bx/it/10.95/53 „[][] \C70/gbsn
 /bx/it/10.95/5c B[][] \C70/gbsn/m/it/10.95/ff ^^Z \C70/gbsn/m/it/10.95/5d Â \C7
@@ -1638,53 +1729,39 @@ n/m/it/10.95/ff ^^H\T1/cmr/m/it/10.95 Memory API\C70/gbsn/m/it/10.95/ff 	 \C70/
 gbsn/m/it/10.95/30 ^^A \C70/gbsn/m/it/10.95/8f ˝
  []
 
-[23]
-Underfull \hbox (badness 1237) in paragraph at lines 1136--1137
-\C70/gbsn/bx/it/10.95/67 Ñ \C70/gbsn/bx/it/10.95/4e - \C70/gbsn/m/it/10.95/76 Ñ
- \C70/gbsn/bx/it/10.95/75 ( \C70/gbsn/bx/it/10.95/62 7 \C70/gbsn/bx/it/10.95/5e
- î \C70/gbsn/bx/it/10.95/75 (\T1/cmr/m/it/10.95 ^^V^^V\C70/gbsn/m/it/10.95/5b É
- \C70/gbsn/bx/it/10.95/62 ^^? \C70/gbsn/m/it/10.95/8f } \C70/gbsn/bx/it/10.95/6
-7 ^^@ \C70/gbsn/bx/n/10.95/7e » \C70/gbsn/bx/it/10.95/75 ( \C70/gbsn/bx/it/10.9
-5/62 7 \C70/gbsn/m/it/10.95/76 Ñ \C70/gbsn/m/it/10.95/97 ^^@ \C70/gbsn/m/it/10.
-95/6c B \C70/gbsn/m/it/10.95/30 ^^B\T1/cmr/m/it/10.95 SWE-agent\C70/gbsn/m/it/1
-0.95/81 Í \C70/gbsn/bx/it/10.95/52 ® \C70/gbsn/bx/it/10.95/53 ^^V \C70/gbsn/m/i
-t/10.95/57 0 \C70/gbsn/m/it/10.95/89 „ \C70/gbsn/m/it/10.95/51 ≥\T1/cmr/m/it/10
-.95 GitHub
- []
 
-
-Underfull \hbox (badness 8094) in paragraph at lines 1161--1161
+Underfull \hbox (badness 8094) in paragraph at lines 54--54
 []|\T1/cmr/m/n/9 GPU, TPU, \C70/gbsn/m/n/9/5b X \C70/gbsn/m/n/9/7b ó \C70/gbsn/
 m/n/9/4e ^^@
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1161--1161
+Underfull \hbox (badness 10000) in paragraph at lines 54--54
 []|\T1/cmr/m/n/9 MemGPT,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1161--1161
+Underfull \hbox (badness 10000) in paragraph at lines 54--54
 []|\C70/gbsn/m/n/9/7c ˚ \C70/gbsn/m/n/9/7e ﬂ \C70/gbsn/m/n/9/8c ^^C
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1161--1161
+Underfull \hbox (badness 10000) in paragraph at lines 54--54
 []|\T1/cmr/m/n/9 SWE-agent,
  []
 
 
-Overfull \hbox (5.64604pt too wide) in alignment at lines 1161--1161
+Overfull \hbox (5.64604pt too wide) in alignment at lines 54--54
 [][][][][] 
  []
 
-[24]
-Underfull \hbox (badness 10000) in alignment at lines 1254--1254
+[26] [27]
+Underfull \hbox (badness 10000) in alignment at lines 147--147
 [][][] 
  []
 
-[25]
-Underfull \hbox (badness 1221) in paragraph at lines 1290--1291
+[28]
+Underfull \hbox (badness 1221) in paragraph at lines 183--184
 \C70/gbsn/m/it/10.95/6b c \C70/gbsn/m/it/10.95/59 Ç \C70/gbsn/bx/it/10.95/5e î 
 \C70/gbsn/bx/it/10.95/75 ( \C70/gbsn/m/it/10.95/7a  \C70/gbsn/bx/it/10.95/5e è
  \C70/gbsn/bx/it/10.95/4e ^^M \C70/gbsn/m/it/10.95/97 ^^@ \C70/gbsn/m/it/10.95/
@@ -1696,8 +1773,8 @@ n/m/it/10.95/66 /\T1/cmr/m/n/10.95 CISC\C70/gbsn/m/it/10.95/30 ^^A \C70/gbsn/bx
 5 8-way as-so-cia-
  []
 
-[26]
-Underfull \hbox (badness 2269) in paragraph at lines 1312--1313
+[29]
+Underfull \hbox (badness 2269) in paragraph at lines 205--206
 \T1/cmr/m/n/10.95 MemGPT\C70/gbsn/m/it/10.95/76 Ñ \C70/gbsn/m/it/10.95/86 Z \C7
 0/gbsn/bx/it/10.95/62 ﬂ \C70/gbsn/bx/it/10.95/4e 
   \C70/gbsn/bx/it/10.95/65 á \C70/gbsn/bx/it/10.95/7b ° \C70/gbsn/bx/it/10.95/
@@ -1709,7 +1786,7 @@ V\C70/gbsn/bx/it/10.95/7f ^^S \C70/gbsn/m/it/10.95/5b X
  []
 
 
-Overfull \hbox (20.59163pt too wide) in paragraph at lines 1322--1323
+Overfull \hbox (20.59163pt too wide) in paragraph at lines 215--216
 \T1/cmr/m/n/10.95 CaMeL\C70/gbsn/m/it/10.95/76 Ñ \C70/gbsn/m/it/10.95/80 ˝ \C70
 /gbsn/bx/it/10.95/52 õ \C70/gbsn/m/it/10.95/5b â \C70/gbsn/m/it/10.95/51 h \C70
 /gbsn/bx/it/10.95/67 : \C70/gbsn/bx/it/10.95/52 6\T1/cmr/m/n/10.95 [[]]^^V^^V\C
@@ -1721,38 +1798,29 @@ mr/m/n/10.95 capability to-ken\C70/gbsn/m/it/10.95/ff ^^[\T1/cmr/m/n/10.95 Code
 x\C70/gbsn/m/it/10.95/76 Ñ\T1/cmr/m/n/10.95 OS\C70/gbsn/bx/n/10.95/7e ß
  []
 
-[27] [28] [29]
+) (./cn_sections/section_laws.tex [30] [31] [32]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1462.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\beta' on input line 1462.
+(hyperref)                removing `math shift' on input line 127.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1462.
+(hyperref)                removing `\beta' on input line 127.
 
-[30] [31] [32]
-(/home/linkco/exa/llm-computer/paper/figures/fig_law_curves_cn.tex) [33]
-(/home/linkco/exa/llm-computer/paper/figures/fig_agent_timeline_cn.tex)
-[34]
-Underfull \hbox (badness 1122) in paragraph at lines 1663--1669
-[]\C70/gbsn/bx/it/10.95/4e „[][] \C70/gbsn/bx/it/10.95/88 h[][] \C70/gbsn/m/it/
-10.95/5d Â[][] \C70/gbsn/m/it/10.95/4f \[][] \T1/cmr/m/n/10.95 ReAct[[]]\C70/gb
-sn/m/it/10.95/66 / \C70/gbsn/m/it/10.95/8f Ÿ \C70/gbsn/bx/it/10.95/4e ^^@ „ \C7
-0/gbsn/m/it/10.95/76 Ñ \C70/gbsn/m/it/10.95/59 ` \C70/gbsn/m/it/10.95/57 ˙ \C70
-/gbsn/m/it/10.95/5d Â \C70/gbsn/m/it/10.95/4f \ \C70/gbsn/m/it/10.95/30 ^^B \C7
-0/gbsn/m/it/10.95/5b É \C70/gbsn/m/it/10.95/76 Ñ \C70/gbsn/m/it/10.95/68 8 \C70
-/gbsn/m/it/10.95/5f √ \C70/gbsn/m/it/10.95/50 Z \C70/gbsn/m/it/10.95/6c ’ \C70/
-gbsn/m/it/10.95/66 / \C70/gbsn/m/it/10.95/57 ( \C70/gbsn/bx/it/10.95/63 – \C70/
-gbsn/m/it/10.95/79 : \C70/gbsn/m/it/10.95/6a ! \C70/gbsn/bx/it/10.95/67 ^^? \C7
-0/gbsn/bx/it/10.95/4e - \C70/gbsn/m/it/10.95/5f ^^U
- []
 
-[35]
-Underfull \hbox (badness 1377) in paragraph at lines 1738--1742
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 127.
+
+[33] [34] [35] (/home/linkco/exa/llm-computer/paper/figures/fig_law_curves.tex)
+) (./cn_sections/section_agent_evolution.tex [36]
+(/home/linkco/exa/llm-computer/paper/figures/fig_agent_timeline.tex
+LaTeX Font Info:    Trying to load font information for T1+cmss on input line 2
+62.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmss.fd
+File: t1cmss.fd 2023/04/13 v2.5m Standard LaTeX font definitions
+)) [37] [38]
+Underfull \hbox (badness 1377) in paragraph at lines 94--98
 \C70/gbsn/m/it/10.95/5b π \C70/gbsn/m/it/10.95/56 h \C70/gbsn/bx/it/10.95/62 Ä 
 \C70/gbsn/bx/it/10.95/67 / \C70/gbsn/m/it/10.95/ff 	 ^^[\T1/cmr/m/n/10.95 Claud
 e Code\C70/gbsn/m/it/10.95/76 Ñ\T1/cmr/m/n/10.95 hooks\C70/gbsn/m/it/10.95/5b ˘
@@ -1762,8 +1830,8 @@ Mod-ules\C70/gbsn/m/it/10.95/ff 	 \C70/gbsn/m/it/10.95/5b â \C70/gbsn/m/it/10.9
 5/51 h \C70/gbsn/m/n/10.95/94 ©
  []
 
-[36] [37]
-Underfull \hbox (badness 1314) in paragraph at lines 1793--1800
+[39] [40]
+Underfull \hbox (badness 1314) in paragraph at lines 149--156
 \C70/gbsn/m/it/10.95/ff ^^H\T1/cmr/m/n/10.95 AutoGPT/Voyager\C70/gbsn/m/it/10.9
 5/ff 	 ^^Z$\OML/cmm/m/it/10.95 F \OMS/cmsy/m/n/10.95 ^^Y \OT1/cmr/m/n/10.95 0\O
 ML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 1$\T1/cmr/m/n/10.95 --$\OT1/cmr/m/n/10.95
@@ -1777,7 +1845,7 @@ C70/gbsn/m/n/10.95/71 6
  []
 
 
-Underfull \hbox (badness 1028) in paragraph at lines 1793--1800
+Underfull \hbox (badness 1028) in paragraph at lines 149--156
 \C70/gbsn/bx/it/10.95/4e ^^@ *\T1/cmr/m/n/10.95 Agent\C70/gbsn/m/it/10.95/30 ^^
 B \C70/gbsn/bx/it/10.95/7b , \C70/gbsn/bx/it/10.95/4e 	 „ \C70/gbsn/m/it/10.95/
 ff ^^H\T1/cmr/m/n/10.95 AIOS/Agents SDK\C70/gbsn/m/it/10.95/ff 	 ^^Z$\OML/cmm/m
@@ -1789,10 +1857,107 @@ L$\OML/cmm/m/it/10.95 N \OMS/cmsy/m/n/10.95 ^^Y \OT1/cmr/m/n/10.95 2$\T1/cmr/m/
 n/10.95 --
  []
 
-[38] [39] [40] [41]
-(/home/linkco/exa/llm-computer/paper/figures/fig_security_layers_cn.tex)
-[42] [43]
-Overfull \hbox (3.40054pt too wide) in paragraph at lines 2082--2085
+) (./cn_sections/section_challenges.tex [41] [42] [43] [44]
+
+LaTeX Warning: Reference `fig_security_layers' on page 45 undefined on input li
+ne 186.
+
+(/home/linkco/exa/llm-computer/paper/figures/fig_security_layers.tex
+Underfull \hbox (badness 5475) in paragraph at lines 62--62
+ [][]\T1/cmr/bx/n/8 State
+ []
+
+
+Underfull \hbox (badness 2717) in paragraph at lines 64--64
+ [][]\T1/cmr/bx/n/8 Interface
+ []
+
+
+Underfull \hbox (badness 5741) in paragraph at lines 64--64
+ []\T1/cmr/bx/n/8 Drift
+ []
+
+
+Underfull \hbox (badness 1721) in paragraph at lines 66--66
+ [][]\T1/cmr/bx/n/8 Security &
+ []
+
+
+Underfull \hbox (badness 3536) in paragraph at lines 66--66
+ []\T1/cmr/bx/n/8 Privacy
+ []
+
+) [45]) (./cn_sections/section_paradigm.tex [46] [47] [48]
+Overfull \hbox (6.41724pt too wide) in paragraph at lines 62--63
+[]\C70/gbsn/bx/it/10.95/75 ^^_[][] \C70/gbsn/m/it/10.95/72 i[][] \C70/gbsn/bx/i
+t/10.95/8b °[][] \C70/gbsn/bx/it/10.95/7b ó[][] \C70/gbsn/m/it/10.95/ff ^^H[][]
+\T1/cmr/bx/n/10.95 Biological Computing\C70/gbsn/m/it/10.95/ff 	[][] \C70/gbsn/
+m/it/10.95/5d Ú \C70/gbsn/bx/it/10.95/4e Œ \C70/gbsn/m/it/10.95/78 ^^T \C70/gbs
+n/m/it/10.95/7a v \C70/gbsn/m/it/10.95/8d p \C70/gbsn/m/it/10.95/54 ^^Q \C70/gb
+sn/bx/it/10.95/4e ß \C70/gbsn/m/it/10.95/54 ¡ \C70/gbsn/m/it/10.95/30 ^^B\T1/cm
+r/m/n/10.95 Cortical Labs\C70/gbsn/m/it/10.95/76 Ñ\T1/cmr/m/n/10.95 CL1\C70/gbs
+n/bx/it/10.95/4e é\T1/cmr/m/n/10.95 2025\C70/gbsn/bx/it/10.95/5e t\T1/cmr/m/n/1
+0.95 3\C70/gbsn/bx/it/10.95/67 ^^H
+ []
+
+
+Overfull \hbox (42.57928pt too wide) in paragraph at lines 66--67
+[]\C70/gbsn/m/it/10.95/91 œ[][] \C70/gbsn/m/it/10.95/5b P[][] \C70/gbsn/bx/it/1
+0.95/8b °[][] \C70/gbsn/bx/it/10.95/7b ó[][] \C70/gbsn/m/it/10.95/ff ^^H[][]\T1
+/cmr/bx/n/10.95 Quantum Computing\C70/gbsn/m/it/10.95/ff 	[][] \C70/gbsn/bx/it/
+10.95/75 ( \C70/gbsn/bx/it/10.95/4e é\T1/cmr/m/n/10.95 LLM\C70/gbsn/bx/it/10.95
+/4e Õ \C70/gbsn/m/it/10.95/59 ^^D \C70/gbsn/bx/it/10.95/4e é \C70/gbsn/bx/it/10
+.95/65 È \C70/gbsn/bx/it/10.95/67 ^^_ \C70/gbsn/m/it/10.95/96 6 \C70/gbsn/m/it/
+10.95/6b µ \C70/gbsn/m/it/10.95/30 ^^B\T1/cmr/m/n/10.95 Quixer\C70/gbsn/m/it/10
+.95/ff ^^H\T1/cmr/m/n/10.95 Quantinuum\C70/gbsn/m/it/10.95/ff ^^L\T1/cmr/m/n/10
+.95 2024\C70/gbsn/bx/it/10.95/5e t \C70/gbsn/m/it/10.95/ff 	
+ []
+
+[49] [50] [51]) (./cn_sections/section_social.tex [52]
+Overfull \hbox (20.60434pt too wide) in paragraph at lines 13--14
+[]\C70/gbsn/bx/it/10.95/7b , \C70/gbsn/bx/it/10.95/4e ^^@ \C70/gbsn/m/it/10.95/
+6c ‚ \C70/gbsn/m/it/10.95/89 „ \C70/gbsn/m/it/10.95/80 & \C70/gbsn/m/it/10.95/5
+d Ú \C70/gbsn/bx/n/10.95/7e œ \C70/gbsn/m/it/10.95/6e ^^E \C70/gbsn/m/it/10.95/
+66 p \C70/gbsn/bx/it/10.95/53 Ô \C70/gbsn/m/it/10.95/89 ¡ \C70/gbsn/m/it/10.95/
+30 ^^B \C70/gbsn/bx/it/10.95/4e ë \C70/gbsn/m/it/10.95/5d Ë \C70/gbsn/m/it/10.9
+5/59 4 \C70/gbsn/bx/it/10.95/67 Ñ \C70/gbsn/bx/it/10.95/5e ˙ \C70/gbsn/m/it/10.
+95/81 Í \C70/gbsn/m/it/10.95/78 ^^T \C70/gbsn/bx/n/10.95/82 Ø \C70/gbsn/m/it/10
+.95/72 G \C70/gbsn/m/it/10.95/ff ^^H\T1/cmr/m/n/10.95 Google TPU\C70/gbsn/m/it/
+10.95/30 ^^A\T1/cmr/m/n/10.95 Amazon Trainium\C70/gbsn/m/it/10.95/30 ^^A\T1/cmr
+/m/n/10.95 Microsoft
+ []
+
+
+Overfull \hbox (44.89287pt too wide) in paragraph at lines 22--23
+\C70/gbsn/m/it/10.95/66 ˇ \C70/gbsn/bx/it/10.95/4e „ \C70/gbsn/bx/it/10.95/65 π
+ \C70/gbsn/m/it/10.95/68 H \C70/gbsn/bx/it/10.95/4e ^^M \C70/gbsn/bx/it/10.95/6
+5 ≠ \C70/gbsn/m/it/10.95/86 ï \C70/gbsn/bx/n/10.95/98 ﬂ \C70/gbsn/bx/it/10.95/5
+e ^^B \C70/gbsn/m/it/10.95/57 : \C70/gbsn/bx/it/10.95/4e ˝ \C70/gbsn/bx/n/10.95
+/98 ù \T1/cmr/m/n/10.95 [[]]\C70/gbsn/m/it/10.95/30 ^^B \C70/gbsn/m/it/10.95/8f
+ ﬁ \C70/gbsn/bx/it/10.95/63 •\T1/cmr/m/n/10.95 OpenAI\C70/gbsn/m/it/10.95/30 ^^
+A\T1/cmr/m/n/10.95 Anthropic\C70/gbsn/m/it/10.95/30 ^^A\T1/cmr/m/n/10.95 Micros
+oft\C70/gbsn/m/it/10.95/30 ^^A\T1/cmr/m/n/10.95 Google\C70/gbsn/m/it/10.95/30 ^
+^A\T1/cmr/m/n/10.95 NVIDIA\C70/gbsn/m/it/10.95/54 å\T1/cmr/m/n/10.95 Amazon\C70
+/gbsn/m/it/10.95/76 Ñ
+ []
+
+[53]
+Underfull \hbox (badness 1983) in paragraph at lines 40--41
+[]\C70/gbsn/m/it/10.95/5f Æ \C70/gbsn/m/it/10.95/8f o\T1/cmr/m/n/10.95 1990\C70
+/gbsn/bx/it/10.95/5e t \C70/gbsn/m/it/10.95/76 Ñ \C70/gbsn/m/it/10.95/51 s \C70
+/gbsn/m/it/10.95/95 . \C70/gbsn/bx/it/10.95/62 ^^P \C70/gbsn/bx/it/10.95/5c 1 \
+C70/gbsn/bx/it/10.95/53 Ô \C70/gbsn/bx/it/10.95/4e Â \C70/gbsn/bx/it/10.95/8b Ù
+ \C70/gbsn/m/it/10.95/66 ^^N \C70/gbsn/m/it/10.95/8f Ÿ \C70/gbsn/bx/it/10.95/4e
+ ^^@ \C70/gbsn/bx/it/10.95/52 ® \C70/gbsn/m/it/10.95/60 ^^A \C70/gbsn/m/it/10.9
+5/30 ^^B \C70/gbsn/m/it/10.95/90 ^^Z \C70/gbsn/m/it/10.95/8f « \C70/gbsn/bx/it/
+10.95/4e ^^N 	 \C70/gbsn/bx/it/10.95/53 A \C70/gbsn/m/it/10.95/5b ∂ \C70/gbsn/b
+x/it/10.95/4e ; \C70/gbsn/m/it/10.95/89 Å\T1/cmr/m/n/10.95 PC\C70/gbsn/bx/it/10
+.95/52 6 \C70/gbsn/m/it/10.95/90   \C70/gbsn/bx/n/10.95/55 F \C70/gbsn/m/it/10.
+95/8f æ
+ []
+
+[54]) (./cn_sections/section_implementation.tex
+Overfull \hbox (3.40054pt too wide) in paragraph at lines 38--41
 []\C70/gbsn/m/it/10.95/57 ( \C70/gbsn/m/it/10.95/5d Â \C70/gbsn/bx/it/10.95/4e 
 ^^Z \C70/gbsn/m/it/10.95/7c ˚ \C70/gbsn/bx/n/10.95/7e ﬂ \C70/gbsn/bx/it/10.95/6
 5 π \C70/gbsn/m/it/10.95/54 ^^Q \C70/gbsn/m/it/10.95/ff ^^L\T1/cmr/bx/n/10.95 O
@@ -1805,7 +1970,7 @@ t/10.95/ff ^^H\T1/cmr/m/n/10.95 skills\C70/gbsn/m/it/10.95/ff 	 \C70/gbsn/m/it/
  []
 
 
-Underfull \hbox (badness 1043) in paragraph at lines 2082--2085
+Underfull \hbox (badness 1043) in paragraph at lines 38--41
 \C70/gbsn/bx/it/10.95/52 ° \C70/gbsn/m/it/10.95/56 h \C70/gbsn/bx/it/10.95/63 •
  \C70/gbsn/m/it/10.95/51 e \C70/gbsn/m/it/10.95/30 ^^A \C70/gbsn/m/it/10.95/6c 
 ô \C70/gbsn/bx/it/10.95/7b ± \C70/gbsn/bx/it/10.95/62 g \C70/gbsn/bx/it/10.95/8
@@ -1817,68 +1982,157 @@ bsn/m/it/10.95/51 l \C70/gbsn/m/it/10.95/6c ^^Q\T1/cmr/m/n/10.95 [[], [], [], [
 ],
  []
 
-[44]
-Overfull \hbox (7.25014pt too wide) in paragraph at lines 2138--2138
-[]|\T1/cmr/m/n/9 ICAM\C70/gbsn/bx/n/9/5c B| 
+[55]) (./cn_sections/section_roadmap.tex
+Overfull \hbox (1.1519pt too wide) in paragraph at lines 13--13
+[]|\T1/cmr/m/n/10 ICA\C70/gbsn/m/n/10/5c B| 
  []
 
 
-Overfull \hbox (26.7004pt too wide) in alignment at lines 2134--2140
- [] [] [] [] [] [] 
+Underfull \hbox (badness 2486) in paragraph at lines 13--14
+[]|\C70/gbsn/m/n/10/76 ¯ \C70/gbsn/m/n/10/51 s \C70/gbsn/m/n/10/5b ö \C70/gbsn/
+m/n/10/5f ã\T1/cmr/m/n/10 /\C70/gbsn/m/n/10/51 l
  []
 
 
-Overfull \hbox (7.25014pt too wide) in paragraph at lines 2142--2142
-[]|\T1/cmr/m/n/9 ICAM\C70/gbsn/bx/n/9/5c B| 
+Overfull \hbox (1.1519pt too wide) in paragraph at lines 17--17
+[]|\T1/cmr/m/n/10 ICA\C70/gbsn/m/n/10/5c B| 
  []
 
 
-Overfull \hbox (26.7004pt too wide) in alignment at lines 2140--2144
- [] [] [] [] [] [] 
+Underfull \hbox (badness 2486) in paragraph at lines 17--18
+[]|\C70/gbsn/m/n/10/76 ¯ \C70/gbsn/m/n/10/51 s \C70/gbsn/m/n/10/5b ö \C70/gbsn/
+m/n/10/5f ã\T1/cmr/m/n/10 /\C70/gbsn/m/n/10/51 l
  []
 
 
-Underfull \hbox (badness 1831) in paragraph at lines 2146--2146
-[]|\C70/gbsn/m/n/9/70 Ì\T1/cmr/m/n/9 /\C70/gbsn/m/n/9/6e )\T1/cmr/m/n/9 /\C70/g
-bsn/m/n/9/51 ∑ \C70/gbsn/bx/n/9/52 ^^F \C70/gbsn/bx/n/9/5c B \C70/gbsn/bx/n/9/7
-b ° \C70/gbsn/m/n/9/74 ^^F \C70/gbsn/m/n/9/ff ^^L \C70/gbsn/m/n/9/72 H \C70/gbs
-n/m/n/9/67 , \C70/gbsn/m/n/9/62 3
+Underfull \hbox (badness 1237) in paragraph at lines 21--21
+[]|\C70/gbsn/bx/n/10/7e ﬂ \C70/gbsn/m/n/10/4e ^^@ 
+  \C70/gbsn/m/n/10/65 á
  []
 
 
-Underfull \hbox (badness 3000) in paragraph at lines 2147--2147
-[]|\T1/cmr/m/n/9 Tool ABI\C70/gbsn/m/n/9/68 ^^G \C70/gbsn/m/n/9/51 ∆
+Underfull \hbox (badness 10000) in paragraph at lines 22--22
+[]|\T1/cmr/m/n/10 Tool ABI\C70/gbsn/m/n/10/68 ^^G
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2147--2147
-[]|\T1/cmr/m/n/9 Schema\C70/gbsn/bx/n/9/8b Ì \C70/gbsn/bx/n/9/4e I \C70/gbsn/m/
-n/9/72 H \C70/gbsn/m/n/9/67 ,
+Underfull \hbox (badness 10000) in paragraph at lines 22--22
+[]|\T1/cmr/m/n/10 Schema\C70/gbsn/bx/n/10/8b Ì \C70/gbsn/m/n/10/4e I \C70/gbsn/
+m/n/10/72 H \C70/gbsn/bx/n/10/67 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2148--2148
-[]|\C70/gbsn/m/n/9/8f o \C70/gbsn/bx/n/9/4e ˆ \C70/gbsn/m/n/9/5d Â
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+[]|\C70/gbsn/m/n/10/8f o \C70/gbsn/m/n/10/4e ˆ \C70/gbsn/m/n/10/5d Â
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2148--2148
-\C70/gbsn/m/n/9/7a \T1/cmr/m/n/9 Agent\C70/gbsn/m/n/9/51 Ö
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+[]|\T1/cmr/m/n/10 ACI\C70/gbsn/m/n/10/63 • \C70/gbsn/bx/n/10/53 „ \C70/gbsn/bx/
+n/10/7e ﬂ \C70/gbsn/m/n/10/4e ^^@ \C70/gbsn/bx/n/10/ff ^^L
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2154--2154
-[]|\C70/gbsn/m/n/9/72 ∂ \C70/gbsn/bx/n/9/60 ^^A \C70/gbsn/m/n/9/53 ^^V \C70/gbs
-n/bx/n/9/4e *
+Underfull \hbox (badness 1237) in paragraph at lines 24--24
+[]|\C70/gbsn/bx/n/10/8b Ì \C70/gbsn/m/n/10/4e I \C70/gbsn/m/n/10/98 u \C70/gbsn
+/m/n/10/7f n \C70/gbsn/m/n/10/63 b
  []
 
 
-Overfull \hbox (26.7004pt too wide) in alignment at lines 2144--2158
- [] [] [] [] [] [] 
+Underfull \hbox (badness 1237) in paragraph at lines 25--25
+[]|\C70/gbsn/m/n/10/4e ^^@ \C70/gbsn/m/n/10/81 Ù \C70/gbsn/m/n/10/60 ' \C70/gbs
+n/bx/n/10/53 Ô \C70/gbsn/m/n/10/63 ß
  []
 
-[45] [46] [47]
-Underfull \hbox (badness 2556) in paragraph at lines 2256--2257
+
+Underfull \hbox (badness 1237) in paragraph at lines 26--26
+[]|\C70/gbsn/m/n/10/5f ^^B \C70/gbsn/bx/n/10/67 Ñ \C70/gbsn/m/n/10/6a ! \C70/gb
+sn/m/n/10/57 ã \C70/gbsn/bx/n/10/53 O
+ []
+
+
+Underfull \hbox (badness 4366) in paragraph at lines 26--26
+[]|\C70/gbsn/m/n/10/83 I \C70/gbsn/m/n/10/7a ? \C70/gbsn/m/n/10/6a ! \C70/gbsn/
+m/n/10/57 ã \C70/gbsn/bx/n/10/ff ^^H\T1/cmr/m/n/10 Speculative
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 28--28
+[]|\T1/cmr/m/n/10 L1--
+ []
+
+
+Underfull \hbox (badness 1371) in paragraph at lines 28--28
+[]|\C70/gbsn/m/n/10/4e ˚ \C70/gbsn/m/n/10/52 °\T1/cmr/m/n/10 DSL\C70/gbsn/m/n/1
+0/30 ^^A \C70/gbsn/bx/n/10/53 ◊ \C70/gbsn/m/n/10/63 ß \C70/gbsn/m/n/10/8f ì \C7
+0/gbsn/m/n/10/51 ˙ \C70/gbsn/m/n/10/68 <
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--29
+[]|\T1/cmr/m/n/10 L3--
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--29
+[]|\C70/gbsn/m/n/10/72 ∂ \C70/gbsn/m/n/10/60 ^^A \C70/gbsn/bx/n/10/53 ^^V \C70/
+gbsn/m/n/10/4e *
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 30--30
+[]|\T1/cmr/m/n/10 L1--
+ []
+
+
+Underfull \hbox (badness 1237) in paragraph at lines 30--30
+[]|\C70/gbsn/m/n/10/52 ^^F \C70/gbsn/bx/n/10/5e ^^C \C70/gbsn/m/n/10/5f ^^O \C7
+0/gbsn/m/n/10/6a ! \C70/gbsn/m/n/10/57 ã
+ []
+
+
+Underfull \hbox (badness 1237) in paragraph at lines 30--30
+\C70/gbsn/bx/n/10/53 ü \C70/gbsn/m/n/10/75 ^^_ \C70/gbsn/bx/n/10/8b ° \C70/gbsn
+/bx/n/10/7b ó \C70/gbsn/bx/n/10/7e «
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 32--32
+[]|\T1/cmr/m/n/10 L1--
+ []
+
+
+Underfull \hbox (badness 1237) in paragraph at lines 32--32
+[]|\C70/gbsn/m/n/10/57 ˙ \C70/gbsn/bx/n/10/5e ï \C70/gbsn/m/n/10/65 ‡ \C70/gbsn
+/m/n/10/51 s \C70/gbsn/m/n/10/76 Ñ
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 33--33
+[]|\T1/cmr/m/n/10 L4--
+ []
+
+
+Underfull \hbox (badness 1237) in paragraph at lines 33--33
+[]|\C70/gbsn/m/n/10/72 i \C70/gbsn/m/n/10/74 ^^F \C70/gbsn/m/n/10/4e ^^V \C70/g
+bsn/m/n/10/75 L \C70/gbsn/m/n/10/63 •
+ []
+
+
+Underfull \hbox (badness 1997) in paragraph at lines 33--33
+[]|\C70/gbsn/bx/n/10/4f   \C70/gbsn/m/n/10/61 ^^_ \C70/gbsn/m/n/10/56 h\T1/cmr/
+m/n/10 /\C70/gbsn/m/n/10/62 g \C70/gbsn/m/n/10/88 L \C70/gbsn/m/n/10/56 h \C70/
+gbsn/m/n/10/9a q \C70/gbsn/m/n/10/52 ® \C70/gbsn/m/n/10/62 Ω
+ []
+
+
+Underfull \hbox (badness 1237) in paragraph at lines 34--34
+[]|\C70/gbsn/bx/n/10/67 ^^@ \C70/gbsn/m/n/10/5f 1 \C70/gbsn/m/n/10/73 Ø \C70/gb
+sn/m/n/10/82 Ç \C70/gbsn/bx/n/10/8b ƒ
+ []
+
+[56] [57] [58]) (./cn_sections/section_ethics.tex [59]
+Underfull \hbox (badness 2556) in paragraph at lines 15--16
 []\T1/cmr/bx/n/10.95 Agent\C70/gbsn/m/it/10.95/76 Ñ[][] \C70/gbsn/bx/it/10.95/6
 7 C[][] \C70/gbsn/m/it/10.95/96 P[][] \C70/gbsn/m/it/10.95/59 Ç[][] \C70/gbsn/m
 /it/10.95/4f U[][] \C70/gbsn/m/it/10.95/7c í[][] \C70/gbsn/bx/it/10.95/5e ¶[][]
@@ -1891,7 +2145,7 @@ it/10.95/80 ˝ \C70/gbsn/bx/it/10.95/52 õ \C70/gbsn/bx/it/10.95/4e ‰ \C70/gbsn/m
  []
 
 
-Underfull \hbox (badness 2173) in paragraph at lines 2257--2258
+Underfull \hbox (badness 2173) in paragraph at lines 16--17
 []\T1/cmr/bx/n/10.95 Agent\C70/gbsn/m/it/10.95/8d ä[][] \C70/gbsn/bx/it/10.95/6
 7 C[][] \C70/gbsn/bx/it/10.95/65 ˆ[][] \C70/gbsn/m/it/10.95/59 Ç[][] \C70/gbsn/
 m/it/10.95/4f U[][] \C70/gbsn/bx/n/10.95/7e »[][] \C70/gbsn/m/it/10.95/6b b[][]
@@ -1904,8 +2158,8 @@ m/it/10.95/4f U[][] \C70/gbsn/bx/n/10.95/7e »[][] \C70/gbsn/m/it/10.95/6b b[][]
 gbsn/bx/n/10.95/7e ß \C70/gbsn/m/it/10.95/6c ô
  []
 
-[48]
-Underfull \hbox (badness 10000) in paragraph at lines 2330--2334
+[60]) (./cn_sections/section_conclusion.tex
+Underfull \hbox (badness 10000) in paragraph at lines 14--18
 \C70/gbsn/m/it/10.95/79 ª \C70/gbsn/m/it/10.95/4f ^^? \C70/gbsn/m/it/10.95/5f ó
 \T1/cmr/m/n/10.95 ArbiterOS\C70/gbsn/m/it/10.95/76 Ñ\T1/cmr/m/n/10.95 "Probabil
 istic CPU"[[]]\C70/gbsn/m/it/10.95/30 ^^A\T1/cmr/m/n/10.95 AIOS\C70/gbsn/m/it/1
@@ -1913,67 +2167,121 @@ istic CPU"[[]]\C70/gbsn/m/it/10.95/30 ^^A\T1/cmr/m/n/10.95 AIOS\C70/gbsn/m/it/1
 95 AgentOS\C70/gbsn/m/it/10.95/76 Ñ\T1/cmr/m/n/10.95 "reasoning
  []
 
-[49] (./paper.bbl
-Underfull \hbox (badness 2744) in paragraph at lines 4--8
-[]\T1/cmr/m/n/10.95 A-MEM Team.  A-MEM: Agen-tic mem-ory for LLM agents.  \T1/c
-mr/m/it/10.95 arXiv preprint
- []
-
-
-Underfull \hbox (badness 8038) in paragraph at lines 25--31
+[61]) (./paper.bbl [62]
+Underfull \hbox (badness 8038) in paragraph at lines 59--65
 []\T1/cmr/m/n/10.95 Anthropic.  2026 agen-tic cod-ing trends re-port: How cod-i
 ng agents are
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 25--31
+Underfull \hbox (badness 10000) in paragraph at lines 59--65
 \T1/cmr/m/n/10.95 re-shap-ing soft-ware de-vel-op-ment.  [][]$\T1/cmtt/m/n/10.9
 5 https : / / www . anthropic . com / research /
  []
 
-[50]
-Underfull \hbox (badness 1024) in paragraph at lines 119--124
+[63] [64] [65] [66]
+Underfull \hbox (badness 2744) in paragraph at lines 488--492
+[]\T1/cmr/m/n/10.95 A-MEM Team.  A-MEM: Agen-tic mem-ory for LLM agents.  \T1/c
+mr/m/it/10.95 arXiv preprint
+ []
+
+[67]
+Overfull \hbox (45.90363pt too wide) in paragraph at lines 592--598
+\T1/cmtt/m/n/10.95 deterministic-[]ai-[]orchestration-[]a-[]platform-[]architec
+ture-[]for-[]autonomous-[]development/$[][]\T1/cmr/m/n/10.95 . 
+ []
+
+[68] [69]
+Underfull \hbox (badness 4328) in paragraph at lines 723--728
+\T1/cmr/m/n/10.95 Ac-cessed: 2026-05-29.  URL: [][]$\T1/cmtt/m/n/10.95 https : 
+/ / blog . jetbrains . com / research / 2025 / 12 /
+ []
+
+
+Underfull \hbox (badness 1024) in paragraph at lines 730--735
 \T1/cmr/m/n/10.95 Re-hberger.  Sys-tems se-cu-rity foun-da-tions for agen-tic c
 om-put-ing.  \T1/cmr/m/it/10.95 arXiv preprint
  []
 
-[51]
-Underfull \hbox (badness 7722) in paragraph at lines 190--195
+[70]
+Underfull \hbox (badness 1448) in paragraph at lines 838--843
+[]\T1/cmr/m/n/10.95 Shunyu Yao, Noah Shinn, Pe-dram Razavi, and Karthik Narasim
+han.  $\OML/cmm/m/it/10.95 ^^\$\T1/cmr/m/n/10.95 -bench:
+ []
+
+
+Underfull \hbox (badness 2538) in paragraph at lines 871--877
+[]\T1/cmr/m/n/10.95 David A. Pat-ter-son and John L. Hen-nessy.  \T1/cmr/m/it/1
+0.95 Com-puter Or-ga-ni-za-tion and De-
+ []
+
+
+Underfull \hbox (badness 2762) in paragraph at lines 871--877
+\T1/cmr/m/it/10.95 sign: The Hard-ware/-Soft-ware In-ter-face\T1/cmr/m/n/10.95 
+.  Mor-gan Kauf-mann, 6 edi-tion, 2017.
+ []
+
+[71]
+Underfull \hbox (badness 1308) in paragraph at lines 990--994
+[]\T1/cmr/m/n/10.95 Qiang Wang et al.  HMoE: Het-ero-ge-neous mix-ture of ex-pe
+rts.  \T1/cmr/m/it/10.95 arXiv preprint
+ []
+
+[72]
+Underfull \hbox (badness 5652) in paragraph at lines 1018--1023
+[]\T1/cmr/m/n/10.95 Meta.  Llama 3.2: Open mod-els for edge and cloud, 2024.  R
+e-leased
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1018--1023
+\T1/cmr/m/n/10.95 Septem-ber 2024; ac-cessed 2026-05-29.  URL: [][]$\T1/cmtt/m/
+n/10.95 https : / / ai . meta . com / blog /
+ []
+
+[73] [74]
+Overfull \hbox (29.92851pt too wide) in paragraph at lines 1235--1242
+\T1/cmtt/m/n/10.95 two-[]ways-[]to-[]read-[]the-[]proliferating-[]complexity-[]
+activity-[]7465750967917887488-[]xfo-[]$[][]\T1/cmr/m/n/10.95 . 
+ []
+
+[75]
+Underfull \hbox (badness 3407) in paragraph at lines 1351--1357
+[]\T1/cmr/m/n/10.95 Computer & Com-mu-ni-ca-tions In-dus-try As-so-ci-a-tion (C
+CIA).  In-tense com-pe-ti-
+ []
+
+
+Underfull \hbox (badness 1194) in paragraph at lines 1351--1357
+\T1/cmr/m/n/10.95 tion across the AI stack.  Pol-icy Anal-y-sis, 2025.  Anal-y-
+sis of com-pe-ti-tion dy-
+ []
+
+
+Underfull \hbox (badness 1688) in paragraph at lines 1351--1357
+\T1/cmr/m/n/10.95 nam-ics across the AI tech-nol-ogy stack.  URL: [][]$\T1/cmtt
+/m/n/10.95 https : / / ccianet . org / articles /
+ []
+
+
+Underfull \hbox (badness 7722) in paragraph at lines 1381--1386
 []\T1/cmr/m/n/10.95 Digital Ap-plied.  Mcp adop-tion statis-tics 2026: Model co
 n-text pro-to-col,
  []
 
 
-Underfull \hbox (badness 3612) in paragraph at lines 190--195
+Underfull \hbox (badness 3612) in paragraph at lines 1381--1386
 \T1/cmr/m/n/10.95 2026.  Ac-cessed: 2026-05-29.  URL: [][]$\T1/cmtt/m/n/10.95 h
 ttps : / / www . digitalapplied . com / blog /
  []
 
 
-Underfull \hbox (badness 1122) in paragraph at lines 261--267
+Underfull \hbox (badness 1122) in paragraph at lines 1388--1394
 []\T1/cmr/m/n/10.95 Google Cloud.  Google do-nates agent2agent (a2a) pro-to-col
  to the linux foun-da-
  []
 
-[52]
-Underfull \hbox (badness 4328) in paragraph at lines 341--346
-\T1/cmr/m/n/10.95 Ac-cessed: 2026-05-29.  URL: [][]$\T1/cmtt/m/n/10.95 https : 
-/ / blog . jetbrains . com / research / 2025 / 12 /
- []
-
-[53] [54] [55]
-Overfull \hbox (45.90363pt too wide) in paragraph at lines 665--671
-\T1/cmtt/m/n/10.95 deterministic-[]ai-[]orchestration-[]a-[]platform-[]architec
-ture-[]for-[]autonomous-[]development/$[][]\T1/cmr/m/n/10.95 . 
- []
-
-[56] [57]
-Underfull \hbox (badness 1448) in paragraph at lines 845--850
-[]\T1/cmr/m/n/10.95 Shunyu Yao, Noah Shinn, Pe-dram Razavi, and Karthik Narasim
-han.  $\OML/cmm/m/it/10.95 ^^\$\T1/cmr/m/n/10.95 -bench:
- []
-
-[58]) [59] [60] [61] (./paper.aux)
+) [76] (./paper.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -1982,17 +2290,20 @@ L3 programming layer <2024-01-22>
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
+
+LaTeX Warning: There were undefined references.
+
 Package rerunfilecheck Info: File `paper.out' has not changed.
-(rerunfilecheck)             Checksum: 62DEBFAD496A3F434C8CB4CC90DB6196;17867.
+(rerunfilecheck)             Checksum: DC63F2A870CDB163E0F2B6D8380A6006;21718.
  ) 
 Here is how much of TeX's memory you used:
- 48690 strings out of 474222
- 1096317 string characters out of 5748733
- 2046975 words of memory out of 5000000
- 69182 multiletter control sequences out of 15000+600000
- 688490 words of font info for 472 fonts, out of 8000000 for 9000
+ 49826 strings out of 474222
+ 1118543 string characters out of 5748733
+ 2013975 words of memory out of 5000000
+ 70107 multiletter control sequences out of 15000+600000
+ 704733 words of font info for 518 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 88i,22n,96p,1710b,4313s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 88i,22n,96p,1748b,4382s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texli
@@ -2005,81 +2316,89 @@ fonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pf
 b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/
 share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texmf/fonts/type1/arp
-hic/gbsnu/gbsnu30.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu4e.pfb></
-usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu4f.pfb></usr/share/texmf/fonts/ty
-pe1/arphic/gbsnu/gbsnu50.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu51
-.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu52.pfb></usr/share/texmf/f
-onts/type1/arphic/gbsnu/gbsnu53.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/
-gbsnu54.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu55.pfb></usr/share/
-texmf/fonts/type1/arphic/gbsnu/gbsnu56.pfb></usr/share/texmf/fonts/type1/arphic
-/gbsnu/gbsnu57.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu58.pfb></usr
-/share/texmf/fonts/type1/arphic/gbsnu/gbsnu59.pfb></usr/share/texmf/fonts/type1
-/arphic/gbsnu/gbsnu5a.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu5b.pf
-b></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu5c.pfb></usr/share/texmf/font
-s/type1/arphic/gbsnu/gbsnu5d.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbs
-nu5e.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu5f.pfb></usr/share/tex
-mf/fonts/type1/arphic/gbsnu/gbsnu60.pfb></usr/share/texmf/fonts/type1/arphic/gb
-snu/gbsnu61.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu62.pfb></usr/sh
-are/texmf/fonts/type1/arphic/gbsnu/gbsnu63.pfb></usr/share/texmf/fonts/type1/ar
-phic/gbsnu/gbsnu64.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu65.pfb><
-/usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu66.pfb></usr/share/texmf/fonts/t
-ype1/arphic/gbsnu/gbsnu67.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu6
-8.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu69.pfb></usr/share/texmf/
-fonts/type1/arphic/gbsnu/gbsnu6a.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu
-/gbsnu6b.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu6c.pfb></usr/share
-/texmf/fonts/type1/arphic/gbsnu/gbsnu6d.pfb></usr/share/texmf/fonts/type1/arphi
-c/gbsnu/gbsnu6e.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu6f.pfb></us
-r/share/texmf/fonts/type1/arphic/gbsnu/gbsnu70.pfb></usr/share/texmf/fonts/type
-1/arphic/gbsnu/gbsnu71.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu72.p
-fb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu73.pfb></usr/share/texmf/fon
-ts/type1/arphic/gbsnu/gbsnu74.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gb
-snu75.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu76.pfb></usr/share/te
-xmf/fonts/type1/arphic/gbsnu/gbsnu77.pfb></usr/share/texmf/fonts/type1/arphic/g
-bsnu/gbsnu78.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu79.pfb></usr/s
-hare/texmf/fonts/type1/arphic/gbsnu/gbsnu7a.pfb></usr/share/texmf/fonts/type1/a
-rphic/gbsnu/gbsnu7b.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu7c.pfb>
-</usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu7d.pfb></usr/share/texmf/fonts/
-type1/arphic/gbsnu/gbsnu7e.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu
-7f.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu80.pfb></usr/share/texmf
-/fonts/type1/arphic/gbsnu/gbsnu81.pfb></usr/share/texmf/fonts/type1/arphic/gbsn
-u/gbsnu82.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu83.pfb></usr/shar
-e/texmf/fonts/type1/arphic/gbsnu/gbsnu84.pfb></usr/share/texmf/fonts/type1/arph
-ic/gbsnu/gbsnu85.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu86.pfb></u
-sr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu87.pfb></usr/share/texmf/fonts/typ
-e1/arphic/gbsnu/gbsnu88.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu89.
-pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu8a.pfb></usr/share/texmf/fo
-nts/type1/arphic/gbsnu/gbsnu8b.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/g
-bsnu8c.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu8d.pfb></usr/share/t
-exmf/fonts/type1/arphic/gbsnu/gbsnu8e.pfb></usr/share/texmf/fonts/type1/arphic/
-gbsnu/gbsnu8f.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu90.pfb></usr/
-share/texmf/fonts/type1/arphic/gbsnu/gbsnu91.pfb></usr/share/texmf/fonts/type1/
-arphic/gbsnu/gbsnu92.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu94.pfb
-></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu95.pfb></usr/share/texmf/fonts
-/type1/arphic/gbsnu/gbsnu96.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsn
-u97.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu98.pfb></usr/share/texm
-f/fonts/type1/arphic/gbsnu/gbsnu99.pfb></usr/share/texmf/fonts/type1/arphic/gbs
-nu/gbsnu9a.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu9c.pfb></usr/sha
-re/texmf/fonts/type1/arphic/gbsnu/gbsnu9e.pfb></usr/share/texmf/fonts/type1/arp
-hic/gbsnu/gbsnuff.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbi1095.pf
-b></usr/share/texmf/fonts/type1/public/cm-super/sfbx0900.pfb></usr/share/texmf/
-fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/c
-m-super/sfbx1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb
-></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/f
-onts/type1/public/cm-super/sfrm0600.pfb></usr/share/texmf/fonts/type1/public/cm
--super/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0900.pfb>
-</usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fo
-nts/type1/public/cm-super/sfrm1095.pfb></usr/share/texmf/fonts/type1/public/cm-
-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti0600.pfb><
-/usr/share/texmf/fonts/type1/public/cm-super/sfti1095.pfb></usr/share/texmf/fon
-ts/type1/public/cm-super/sftt0900.pfb></usr/share/texmf/fonts/type1/public/cm-s
-uper/sftt1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on paper.pdf (61 pages, 1802760 bytes).
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texmf/fonts/type1/arphic/gbs
+nu/gbsnu30.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu4e.pfb></usr/sha
+re/texmf/fonts/type1/arphic/gbsnu/gbsnu4f.pfb></usr/share/texmf/fonts/type1/arp
+hic/gbsnu/gbsnu50.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu51.pfb></
+usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu52.pfb></usr/share/texmf/fonts/ty
+pe1/arphic/gbsnu/gbsnu53.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu54
+.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu55.pfb></usr/share/texmf/f
+onts/type1/arphic/gbsnu/gbsnu56.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/
+gbsnu57.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu58.pfb></usr/share/
+texmf/fonts/type1/arphic/gbsnu/gbsnu59.pfb></usr/share/texmf/fonts/type1/arphic
+/gbsnu/gbsnu5a.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu5b.pfb></usr
+/share/texmf/fonts/type1/arphic/gbsnu/gbsnu5c.pfb></usr/share/texmf/fonts/type1
+/arphic/gbsnu/gbsnu5d.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu5e.pf
+b></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu5f.pfb></usr/share/texmf/font
+s/type1/arphic/gbsnu/gbsnu60.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbs
+nu61.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu62.pfb></usr/share/tex
+mf/fonts/type1/arphic/gbsnu/gbsnu63.pfb></usr/share/texmf/fonts/type1/arphic/gb
+snu/gbsnu64.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu65.pfb></usr/sh
+are/texmf/fonts/type1/arphic/gbsnu/gbsnu66.pfb></usr/share/texmf/fonts/type1/ar
+phic/gbsnu/gbsnu67.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu68.pfb><
+/usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu69.pfb></usr/share/texmf/fonts/t
+ype1/arphic/gbsnu/gbsnu6a.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu6
+b.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu6c.pfb></usr/share/texmf/
+fonts/type1/arphic/gbsnu/gbsnu6d.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu
+/gbsnu6e.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu6f.pfb></usr/share
+/texmf/fonts/type1/arphic/gbsnu/gbsnu70.pfb></usr/share/texmf/fonts/type1/arphi
+c/gbsnu/gbsnu71.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu72.pfb></us
+r/share/texmf/fonts/type1/arphic/gbsnu/gbsnu73.pfb></usr/share/texmf/fonts/type
+1/arphic/gbsnu/gbsnu74.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu75.p
+fb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu76.pfb></usr/share/texmf/fon
+ts/type1/arphic/gbsnu/gbsnu77.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gb
+snu78.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu79.pfb></usr/share/te
+xmf/fonts/type1/arphic/gbsnu/gbsnu7a.pfb></usr/share/texmf/fonts/type1/arphic/g
+bsnu/gbsnu7b.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu7c.pfb></usr/s
+hare/texmf/fonts/type1/arphic/gbsnu/gbsnu7d.pfb></usr/share/texmf/fonts/type1/a
+rphic/gbsnu/gbsnu7e.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu7f.pfb>
+</usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu80.pfb></usr/share/texmf/fonts/
+type1/arphic/gbsnu/gbsnu81.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu
+82.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu83.pfb></usr/share/texmf
+/fonts/type1/arphic/gbsnu/gbsnu84.pfb></usr/share/texmf/fonts/type1/arphic/gbsn
+u/gbsnu85.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu86.pfb></usr/shar
+e/texmf/fonts/type1/arphic/gbsnu/gbsnu87.pfb></usr/share/texmf/fonts/type1/arph
+ic/gbsnu/gbsnu88.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu89.pfb></u
+sr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu8a.pfb></usr/share/texmf/fonts/typ
+e1/arphic/gbsnu/gbsnu8b.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu8c.
+pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu8d.pfb></usr/share/texmf/fo
+nts/type1/arphic/gbsnu/gbsnu8e.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/g
+bsnu8f.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu90.pfb></usr/share/t
+exmf/fonts/type1/arphic/gbsnu/gbsnu91.pfb></usr/share/texmf/fonts/type1/arphic/
+gbsnu/gbsnu92.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu94.pfb></usr/
+share/texmf/fonts/type1/arphic/gbsnu/gbsnu95.pfb></usr/share/texmf/fonts/type1/
+arphic/gbsnu/gbsnu96.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu97.pfb
+></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu98.pfb></usr/share/texmf/fonts
+/type1/arphic/gbsnu/gbsnu99.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsn
+u9a.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu9c.pfb></usr/share/texm
+f/fonts/type1/arphic/gbsnu/gbsnu9e.pfb></usr/share/texmf/fonts/type1/arphic/gbs
+nu/gbsnu9f.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnuff.pfb></usr/sha
+re/texmf/fonts/type1/public/cm-super/sfbi1095.pfb></usr/share/texmf/fonts/type1
+/public/cm-super/sfbx0600.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfb
+x0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx0900.pfb></usr/shar
+e/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/
+public/cm-super/sfbx1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx
+1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share
+/texmf/fonts/type1/public/cm-super/sfrm0600.pfb></usr/share/texmf/fonts/type1/p
+ublic/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0
+900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/
+texmf/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texmf/fonts/type1/pu
+blic/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsi08
+00.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss0800.pfb></usr/share/t
+exmf/fonts/type1/public/cm-super/sfss1000.pfb></usr/share/texmf/fonts/type1/pub
+lic/cm-super/sfsx0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsx100
+0.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti0600.pfb></usr/share/te
+xmf/fonts/type1/public/cm-super/sfti0800.pfb></usr/share/texmf/fonts/type1/publ
+ic/cm-super/sfti1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt0800
+.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb></usr/share/tex
+mf/fonts/type1/public/cm-super/sftt1095.pfb>
+Output written on paper.pdf (76 pages, 3873202 bytes).
 PDF statistics:
- 2550 PDF objects out of 2984 (max. 8388607)
- 2070 compressed objects within 21 object streams
- 373 named destinations out of 1000 (max. 500000)
- 1461 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 3010 PDF objects out of 3580 (max. 8388607)
+ 2519 compressed objects within 26 object streams
+ 475 named destinations out of 1000 (max. 500000)
+ 1630 words of extra memory for PDF output out of 10000 (max. 10000000)
 

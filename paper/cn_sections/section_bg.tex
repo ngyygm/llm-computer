@@ -1,0 +1,143 @@
+\section{背景：经典计算栈与模型原生系统栈}
+\label{sec:background}
+
+本节先回顾经典计算机体系结构的分层逻辑及其背后的设计原则，再梳理当前大模型系统中正在自然出现的分层雏形，为后续的类比框架奠定基础。
+
+\subsection{经典计算机体系结构的分层逻辑}
+
+传统计算机体系结构的分层并非偶然的设计选择，而是处理复杂性的通用工程方法\cite{hennessy2017quantitative}。
+其核心思想是：每一层只依赖其下层的\emph{接口}（interface），而不依赖其\emph{实现}（implementation）。
+这使得任何一层可以在不改变接口的前提下独立优化，而无需通知其他层。
+以下逐一介绍各层的核心概念。
+
+\subsubsection{指令集架构（ISA）：软硬件之间的契约}
+
+\textbf{指令集架构}（Instruction Set Architecture, ISA）定义了软件可见的机器行为规范：有哪些指令（算术、访存、分支、跳转）、有多少寄存器、异常如何触发和处理、地址空间如何组织。
+ISA的重要性在于它是一份"契约"---只要CPU遵守这份契约，上层软件就可以正确运行，完全不需要知道CPU内部是如何实现的。
+Intel x86、ARM和RISC-V代表了三种截然不同的ISA设计哲学\cite{intel_sdm_2026,riscv_spec_2026}：x86追求向后兼容性（40年前的代码至今仍可运行），ARM追求能效比（在移动设备上表现优异），RISC-V追求开放与模块化（允许用户自定义扩展指令）。
+但它们服务于同一个目的：给上层软件一个稳定的编程目标。
+
+\subsubsection{微架构：同一契约下的不同实现}
+
+\textbf{微架构}（Microarchitecture）决定了同一个ISA下CPU的具体性能表现。
+它回答的问题是：一条指令到底需要几个时钟周期完成？可以同时执行多少条指令？猜错的分支要付出什么代价？
+具体来说，流水线（pipeline）将指令的执行分为取指、译码、执行、访存、写回等多个阶段，让不同指令的不同阶段可以重叠执行；超标量（superscalar）在每个时钟周期发射多条指令到不同的执行单元；分支预测器（branch predictor）根据历史模式猜测条件分支的走向，避免流水线气泡。
+同一个x86 ISA可以由Intel的Core微架构和AMD的Zen微架构分别实现，性能各异，但对软件透明。
+
+\subsubsection{缓存层次：利用局部性加速数据访问}
+
+\textbf{缓存层次}（Cache Hierarchy）解决的核心问题是CPU与主存之间的速度差距。
+CPU可以在1纳秒内完成一次操作，而访问DRAM需要约100纳秒---如果CPU每次需要数据都要等DRAM，性能将下降两个数量级。
+缓存的解决方案基于\emph{局部性原理}：时间局部性（temporal locality）指刚被访问的数据很可能很快再次被访问，空间局部性（spatial locality）指地址相邻的数据很可能很快被访问\cite{drepper2007memory}。
+因此，缓存把最近和附近的数据保存在速度更快但容量更小的SRAM中：L1缓存（约32--64 KB，4个周期延迟）最接近CPU核心，L2缓存（约256 KB--1 MB，约10个周期延迟）作为二级缓冲，L3缓存（数MB至数十MB，约40个周期延迟）被多核共享。
+当缓存未命中（cache miss）时，数据才需要从DRAM加载，代价约为200个周期。
+这种分层设计用SRAM的速度服务频繁访问，用DRAM的容量服务整体需求。
+
+\subsubsection{虚拟内存：有限的物理资源，无限的地址幻觉}
+
+\textbf{虚拟内存}（Virtual Memory）通过内存管理单元（MMU）和页表（page table），给每个进程提供一个独立的、远大于物理内存的地址空间。
+其核心机制是分页（paging）：将虚拟地址空间划分为固定大小的"页"（通常4 KB），将物理内存划分为同样大小的"页框"（page frame），通过页表记录"虚拟页号 $\to$ 物理页框号"的映射。
+当进程访问一个尚未映射到物理内存的虚拟页时，触发缺页异常（page fault），操作系统将该页从磁盘加载到物理内存，然后恢复进程执行\cite{ostep_2023}。
+这样，每个进程都以为自己拥有完整的地址空间，而操作系统在幕后管理着有限物理资源的分配和回收。
+虚拟内存还提供了进程间隔离：每个进程的页表独立，无法访问其他进程的内存。
+
+\subsubsection{操作系统：调度、保护与资源管理}
+
+\textbf{操作系统}（Operating System）是硬件之上的第一层软件，负责管理计算资源并提供统一的抽象。
+它的核心职责包括：进程调度（deciding which process runs next, e.g., Linux CFS\cite{linux_cfs_2026}）、内存管理（分配和回收物理页框）、I/O管理（提供统一的文件和设备接口）、权限控制（确保进程只能访问被授权的资源）和并发支持（信号量、锁、条件变量）\cite{ostep_2023,xv6_2022}。
+操作系统的设计原则是：向上提供简洁的抽象（进程、文件、套接字），向下管理复杂的硬件（CPU核心、内存条、磁盘、网卡）。
+用户程序只需调用 \texttt{open()}、\texttt{read()}、\texttt{fork()} 等系统调用，无需关心磁盘是SSD还是HDD、网卡是万兆还是千兆。
+
+\subsubsection{分布式系统：从单节点到多节点的扩展}
+
+\textbf{分布式系统}（Distributed Systems）进一步把多个节点组织成一个逻辑上统一的整体。
+它需要解决的核心问题是：当部分节点故障、网络延迟不确定、数据需要复制时，如何保证系统的正确性和可用性\cite{cap2002}。
+Raft共识算法\cite{raft2014}让多个节点就"日志中下一条命令是什么"达成一致，即使部分节点崩溃也不影响整体正确性。
+Google Spanner\cite{spanner2012}在全球多个数据中心之间提供强一致性的分布式数据库服务。
+CAP定理\cite{cap2002}则指出，在网络分区（Partition）发生时，系统无法同时保证一致性（Consistency）和可用性（Availability），必须在两者之间做出权衡。
+
+\subsubsection{可计算的设计原则}
+
+更关键的是，经典体系结构不仅有分层抽象，还有\textbf{可计算的原则}（quantitative principles）。
+这些原则使体系结构从"经验工程"上升为"定量科学"。
+
+\textbf{Amdahl定律}告诉我们并行加速比有理论上界。
+其公式为：
+\begin{equation}
+\label{eq:amdahl}
+S = \frac{1}{(1-f) + f/p}
+\end{equation}
+其中，$f$ 是可以被并行化的比例，$p$ 是处理器数量，$S$ 是加速比。
+例如，如果一个任务的80\%可以并行化（$f=0.8$），使用4个处理器（$p=4$），则最大加速比为 $S = 1/(0.2 + 0.8/4) = 1/0.4 = 2.5$ 倍，而非理想中的4倍。
+即使处理器数量趋于无穷，加速比也趋近于 $1/(1-f) = 5$ 倍。
+Amdahl定律的核心洞察是：\emph{串行部分决定了加速上限}。
+Malekar和Zand于2024年将Amdahl定律适配到LLM场景，提出了面向LLM吞吐量的分析框架\cite{malekar2024amdahlllm}。
+
+\textbf{Roofline模型}将一个算子的性能约束可视化\cite{hennessy2017quantitative}。
+对于给定硬件平台，一个算子的理论性能上界由两条线围成：水平线代表峰值计算能力（FLOP/s），斜线代表内存带宽乘以算术强度（$\text{Bandwidth} \times \text{Arithmetic Intensity}$）。
+两条线的交点称为"ridge point"。
+当算子的算术强度低于ridge point时，它是内存带宽受限的（memory-bound）；高于ridge point时，它是计算受限的（compute-bound）。
+Yuan等人将Roofline模型系统应用于LLM推理分析，揭示了不同推理优化策略在带宽与计算之间的权衡\cite{yuan2024llminference}。
+
+\textbf{局部性原理}指导缓存设计：时间局部性（刚被访问的数据将再次被访问）和空间局部性（相邻地址的数据将很快被访问）\cite{drepper2007memory}。
+这两个简单的经验法则催生了缓存行（cache line，通常64字节）、预取（prefetching）和缓存替换策略（如LRU）等一系列设计。
+
+正是这些可量化的原则，使得计算机体系结构在八十年间实现了从每秒数千次浮点运算到每秒超过$10^{18}$次运算的性能增长，而程序员无需理解每一层内部的物理细节。
+
+\subsection{大模型系统的分层雏形}
+
+当前大模型系统正在经历与经典计算栈相似的分化过程。
+以下按照从底层到上层的顺序，逐一介绍每一层的发展现状。
+
+\subsubsection{模型层：推理核心的演进}
+
+在模型侧，Transformer\cite{vaswani2017attention}仍是主流骨架，其自注意力机制通过计算序列中任意两个位置之间的相关性来捕获长距离依赖。
+开放模型沿着几个方向持续演化：RoPE旋转位置编码\cite{su2021roformer}改进了位置信息的表达方式，使得模型能更好地处理长序列；MoE（Mixture of Experts）\cite{switch2022,mixtral2024}通过稀疏激活（每次推理只使用部分参数）来扩大模型容量而不成比例增加计算量；长上下文扩展\cite{yarn2024,longrope2024}将模型的有效上下文窗口从数千token扩展到数十万甚至数百万token。
+同时，Mamba\cite{gu2024mamba}等选择性状态空间模型开辟了线性复杂度序列建模范式，不再依赖自注意力机制。
+
+\subsubsection{推理层：系统化的服务优化}
+
+在推理侧，一系列工作将模型推理从"单次前向传播"重构为系统化的工程问题。
+FlashAttention\cite{dao2022flashattention,dao2023flashattention2}将注意力计算重新表述为"I/O感知"问题：
+通过分块计算（tiling）减少对HBM的访问次数，将注意力内存复杂度从$O(N^2)$降低到$O(N)$。
+vLLM用PagedAttention\cite{kwon2023pagedattention}将KV缓存管理表述为分页问题：
+把KV缓存划分为固定大小的"页"，按需分配和回收，避免了为每个请求预分配最大内存的浪费。
+ORCA\cite{orca2022}系统化地处理连续批调度（continuous batching），允许新请求在旧请求的解码间隙加入批次。
+DistServe\cite{zhong2024distserve}将"预填充"（prefill，即处理输入prompt）和"解码"（decode，即逐token生成）解耦到不同的GPU上，避免两者的资源竞争。
+Sarathi-Serve\cite{agrawal2024sarathi}进一步优化了吞吐与延迟之间的折中。
+这些工作的共同特点是将经典系统优化技术（分页、批调度、资源隔离）应用于LLM推理引擎。
+
+\subsubsection{记忆层：有限窗口与持久状态的协同}
+
+在记忆侧，核心挑战是：上下文窗口有限（如128K token），但Agent需要访问的知识和历史交互可能远超此限制。
+多条技术路线正在并行探索。
+长上下文扩展\cite{gemini2024,yarn2024}试图直接增大窗口容量，但面临计算成本随长度二次增长的问题。
+RAG（Retrieval-Augmented Generation）\cite{lewis2020rag}在推理时从外部知识库检索相关片段注入上下文，相当于"按需加载"---类比操作系统中的demand paging。
+MemGPT\cite{memgpt2023}明确提出"虚拟上下文管理"，将上下文分为主上下文（working context，类比主存）和外部存储（external storage，类比磁盘），在两者之间自动移动信息。
+LongMem\cite{longmem2023}和Generative Agents\cite{park2023generativeagents}探索了不同形式的长期记忆机制。
+LongMemEval\cite{longmemeval2024}建立了长期交互记忆的评测基准。
+Letta\cite{letta_stateful_2026}将状态化Agent作为核心设计，使Agent能够跨会话保持记忆。
+MemOS\cite{memos2025}更进一步，将记忆视为操作系统级的一等资源，统一管理文本记忆、激活记忆等不同表示形式。
+MemoryOS\cite{memoryos2025}在EMNLP 2025上提出了面向AI Agent的记忆操作系统。
+上下文工程（Context Engineering）\cite{contextengineer_survey2025}作为一个新兴学科正在系统化这一领域。
+它被定义为"系统性地设计、选择和优化输入给LLM的全部信息"的工程实践，涵盖检索增强、记忆管理、工具使用scaffolding和多轮对话优化。
+
+\subsubsection{Agent层：从单轮推理到复杂运行时}
+
+在Agent侧，大模型已不再只是"单轮推理器"，而是复杂运行时中的控制器。
+ReAct\cite{yao2023react}将推理（Reasoning）与行动（Acting）交织，让模型在"思考--行动--观察"的循环中解决多步任务。
+Toolformer\cite{schick2023toolformer}让模型学会自主调用外部工具（如计算器、搜索引擎）。
+SWE-agent\cite{sweagent2024}和OpenHands\cite{openhands_paper_2025}是面向软件工程的自主Agent，能够浏览代码仓库、编写补丁、运行测试。
+Codex\cite{openai_codex_overview_2026}和Claude Code\cite{anthropic_claudecode_overview_2026}是工业级的代码Agent，具备子Agent调度\cite{openai_codex_subagents_2026,anthropic_claudecode_subagents_2026}、沙箱隔离\cite{openai_codex_sandbox_2026,anthropic_claudecode_sandbox_2026}和权限控制\cite{openai_codex_approvals_2026,anthropic_claudecode_security_2026}等类似操作系统内核的能力。
+多Agent协作框架（如AutoGen\cite{wu2023autogen}、MetaGPT\cite{metagpt2023}）进一步将多个专业化Agent组织成协作网络。
+
+\subsection{缺少统一的系统语言}
+
+问题在于，如果没有统一的系统语言，上述各层的研究很容易变成零散的技巧集合。
+例如，\emph{prefix caching}（前缀缓存复用）、\emph{chunked prefill}（分块预填充调度）、\emph{subagents}（子Agent并发执行）、\emph{MCP servers}（标准化工具接口）、\emph{persistent memory}（持久化记忆存储）---这些概念看起来分属不同方向，但在体系结构视角下，它们分别对应缓存复用、调度粒度、并发执行、I/O接口和分层存储。
+
+这正是本文采用计算机体系结构类比的原因：它并不试图证明两者"本质相同"，而是把相互独立的工程点，重新放回一个更大而统一的设计空间，使得不同层之间的优化可以被组合、被预测、被系统化地设计。
+
+图~\ref{fig_dual_stack}给出了经典计算栈与模型原生计算栈的分层对比。
+\input{/home/linkco/exa/llm-computer/paper/figures/fig_dual_stack.tex}
+

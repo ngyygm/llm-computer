@@ -1,0 +1,133 @@
+\section{类比框架：把智能系统看作一台分层计算机}
+\label{sec:framework}
+
+\subsection{类比的基本原则}
+
+本文采用的类比框架见表~\ref{tab:mapping}。
+在详细展开之前，有必要先阐明三条基本原则，以避免类比沦为牵强的修辞。
+
+\textbf{原则一：类比必须对应真实的工程机制}
+``KV缓存像缓存''之所以成立，不是因为名字相似，而是因为二者都服务于``时间局部性''（temporal locality）和``状态复用''的核心目标\cite{drepper2007memory,kwon2023pagedattention}。
+所谓时间局部性，是指``最近被访问过的数据，很可能在不久的将来再次被访问''——无论是一块CPU缓存行，还是一组刚刚被计算的KV向量，都遵循同一规律。
+``PagedAttention像虚拟内存''之所以成立，是因为vLLM确实把KV块组织成固定大小的页，通过block table映射到非连续物理空间，与操作系统管理虚拟页的机制在工程实现上高度一致\cite{kwon2023pagedattention}。
+
+\textbf{原则二：类比必须承认边界}
+模型不是确定性CPU——CPU执行\texttt{ADD R1, R2}每次结果完全相同，而模型对同一提示词可能产生不同回复；语义检索不是精确寻址——\texttt{MOV [0x7fff], EAX}总是写入同一地址，而向量相似度搜索返回的结果随嵌入模型和查询措辞而变化；Agent运行时也不是成熟OS——Linux内核有40年的形式化验证和回归测试，而当前Agent框架的安全机制仍在快速迭代中。
+这些``不完全相同''恰恰构成了未来研究最值得投入的空间。
+
+\textbf{原则三：类比的目标是生成研究问题}
+一个好的类比不仅帮助理解，更重要的是提示新的工程问题：哪些模块之间需要定义清晰的接口？哪些共享状态需要一致性保证？哪些执行路径需要权限控制和审计日志？表~\ref{tab:mapping}最后一列``工程意义''正是类比所生成的研究方向。
+
+\scriptsize
+\renewcommand{\arraystretch}{1.25}
+\begin{longtable}{p{0.12\textwidth}p{0.12\textwidth}p{0.23\textwidth}p{0.23\textwidth}p{0.20\textwidth}}
+\caption{计算机体系结构与大模型模型原生系统栈的类比映射。}\label{tab:mapping}\\
+\toprule
+\textbf{经典对象} & \textbf{模型原生对象} & \textbf{核心相似性与示例} & \textbf{本质差异} & \textbf{工程意义} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{经典对象} & \textbf{模型原生对象} & \textbf{核心相似性与示例} & \textbf{本质差异} & \textbf{工程意义} \\
+\midrule
+\endhead
+
+ISA / ABI & 提示模板、工具规范、Skill/Agent接口 & 都定义上层可见的调用契约与组合边界。例如：RISC-V的\texttt{ECALL}指令语义精确定义\cite{riscv_spec_2026}；MCP的\texttt{tools/call}规范了参数schema和返回格式\cite{mcp_intro_2026} & 提示不是严格形式语义，存在歧义与漂移。同一提示词在不同模型版本上行为可能不同 & 需要稳定schema、版本号与回放兼容 \\[3pt]
+
+CPU核心 & 基础模型前向计算 & 都是通用执行核心，把输入映射为输出。例如：CPU把指令序列映射为寄存器状态变化；模型把token序列映射为下一个token概率分布\cite{vaswani2017attention,brown2020gpt3} & 模型是概率式推断，不是确定性逻辑。同一输入可产生不同输出 & 应显式区分模型能力、推理策略与运行时 \\[3pt]
+
+微架构 & 注意力内核、解码算法、服务引擎 & 决定相同``接口''下的真实性能与成本。例如：超标量流水线 vs.\ FlashAttention的IO感知分块计算\cite{dao2022flashattention}；分支预测 vs.\ 推测解码\cite{leviathan2023speculative} & 大模型``微架构''跨软件/硬件边界 & 联合优化FlashAttention、speculative decoding与并行策略 \\[3pt]
+
+L1/L2缓存 & 会话级KV缓存、前缀缓存 & 都服务时序局部性与热点复用。例如：CPU L1缓存保存最近访问的缓存行；KV缓存保存最近计算的Key/Value向量\cite{kwon2023pagedattention,vllm_prefix_2026} & 语义缓存命中条件比地址缓存弱得多。地址相等是布尔判断，语义相似是连续值比较 & 需要块化分配、共享、失效与监控 \\[3pt]
+
+主存/虚拟内存 & 上下文窗口、外部记忆、虚拟上下文 & 都通过分层制造``大空间''幻觉。例如：虚拟内存让进程以为拥有连续大地址空间；虚拟上下文管理让Agent以为拥有无限记忆\cite{memgpt2023} & 语义摘要会损失信息，不是无损分页。OS页交换逐字节精确，摘要压缩不可逆 & 需要热/温/冷记忆分层、再检索与回填策略 \\[3pt]
+
+操作系统 & Agent运行时 & 都负责调度、权限、I/O与失败处理。例如：Linux cgroup隔离进程资源\cite{linux_cgroup_2026}；Codex sandbox隔离Agent文件访问\cite{openai_codex_sandbox_2026} & Agent自身含不确定推理与语言接口 & 需要沙箱、审批、子Agent、hooks与日志 \\[3pt]
+
+系统调用/驱动 & 工具调用、MCP服务器 & 都把外部能力纳入统一访问接口。例如：\texttt{open()}标准化文件操作；MCP \texttt{tools/call}标准化工具调用\cite{mcp_intro_2026} & 工具结果可能非确定、异步且副作用强 & 需要capability标注、鉴权、幂等设计 \\[3pt]
+
+文件系统/磁盘 & 向量库、对象存储、知识库 & 都承载大容量、持久化状态。例如：ext4按inode组织文件；Milvus按向量索引组织知识\cite{lewis2020rag} & 语义检索不是精确寻址。$\texttt{find}(\text{path})$返回唯一结果，向量搜索返回Top-K近似匹配 & 需引入provenance、版本快照和TTL \\[3pt]
+
+进程/线程 & Agent / Subagent / Task graph & 都是并发执行与隔离的基本单位。例如：POSIX线程共享地址空间但有独立栈；Codex子Agent共享项目上下文但独立执行\cite{openai_codex_subagents_2026} & 共享语义状态比共享内存更脆弱。``理解同一份文档''不等于``拥有相同理解'' & 需要预算、优先级与结果合并 \\
+
+\bottomrule
+\end{longtable}
+\renewcommand{\arraystretch}{1.0}
+\normalsize
+
+在这个框架下，未来模型原生计算架构可被理解为：``\textbf{以基础模型为计算核心，以KV和上下文层次为存储层，以Agent内核为控制层，以工具和外部世界为I/O层，以服务集群和共享记忆为分布式底座}''。
+接下来，我们将按照从核心到外设的顺序，逐一展开每个组件的类比分析。
+
+%% ---------- 双平面架构 ----------
+\subsection{隐喻冲突与双平面架构}
+
+在深入组件之前，需要先解决一个根本性的概念冲突。
+如第~\ref{sec:related}节所述，现有文献对``LLM在体系结构中占据哪一层''存在根本分歧：Ge等人把LLM放在OS kernel的位置\cite{ge2023llmos}；AIOS将其与资源管理、上下文管理、访问控制一起纳入kernel式服务\cite{mei2024aios}；AgentOS把LLM视为由structured operating system logic约束的``reasoning kernel''\cite{agentos2025}；ArbiterOS又把LLM下沉为受governor治理的``Probabilistic CPU''\cite{arbiteros2025}。
+
+这些定位看似矛盾，但实际上各自只看到了系统的一个侧面。
+本文认为，模型原生计算系统实际上同时包含\textbf{两个平面}，不同工作分别只看到了其中一个。
+
+\subsubsection{概率执行平面（Probabilistic Execution Plane）}
+
+\textbf{什么是概率执行平面？}
+简单来说，就是``大模型本身''——基础模型的前向推理过程。
+
+\textbf{具体例子：}当用户向GPT-4输入一段代码审查请求时，模型的注意力机制会在数十亿参数上进行矩阵运算，最终输出一个token概率分布，从中采样出回复。
+这个过程中，同样的输入可能产生不同的输出，输出的质量高度依赖于上下文的组织方式，且模型本身不持有任何持久状态——前一次对话的结果不会自动保留到下一次。
+
+\textbf{这一平面的特征：}
+\begin{itemize}[nosep]
+\item \textit{概率式输出}：输出服从概率分布，同一输入可产生不同结果
+\item \textit{上下文高度敏感}：提示词的微小变化可能显著改变输出质量
+\item \textit{无持久状态}：模型权重在请求之间不变，所有``记忆''都来自上下文窗口中的token
+\end{itemize}
+
+KV缓存、注意力机制、解码策略都属于这一平面的``微架构''——它们优化的是模型前向计算本身的效率和精度。
+
+\subsubsection{确定性控制平面（Deterministic Control Plane）}
+
+\textbf{什么是确定性控制平面？}
+简单来说，就是``围绕模型的程序化控制层''——调度器、权限审批器、状态机、日志系统、失败恢复逻辑。
+
+\textbf{具体例子：}当Claude Code收到``帮我重构这个函数''的请求时，确定性控制平面执行以下操作：检查当前目录权限（是否在允许的项目路径内）→ 加载项目记忆文件（\texttt{CLAUDE.md}）→ 解析请求并分解为子任务 → 对每个涉及文件写入的步骤，根据审批策略决定是否需要用户确认 → 执行完毕后将变更日志写入审计记录\cite{anthropic_claudecode_security_2026}。
+这些步骤全部由确定性代码执行，行为可预测、可审计、可回放。
+
+\textbf{这一平面的特征：}
+\begin{itemize}[nosep]
+\item \textit{确定性执行}：相同的输入和策略配置总是产生相同的控制决策
+\item \textit{形式化策略}：权限规则、审批策略以代码或配置文件明确定义
+\item \textit{可审计}：每个决策步骤都有日志记录，支持事后追溯
+\end{itemize}
+
+Codex的approval policies\cite{openai_codex_approvals_2026}、Claude Code的只读默认与hooks\cite{anthropic_claudecode_security_2026}、CaMeL的capability安全机制\cite{debenedetti2025camel}都属于这一平面。
+
+\subsubsection{为什么需要分开？}
+
+工业界的实践已经验证了这一分离的必要性。
+Praetorian的开发平台将LLM嵌入确定性编排层，显著提升了Agent在自主软件开发中的可靠性\cite{praetorian2025deterministic}。
+``确定性外壳、概率核心''（Deterministic Shell, Probabilistic Core）模式正成为Agent系统的事实标准架构\cite{towardsai2025deterministicshell}。
+``Blueprint First, Model Second''框架将运营逻辑编码为确定性源代码蓝图，约束LLM在明确定义的边界内行动\cite{blueprintfirst2025}。
+
+图~\ref{fig_dual_plane}展示了双平面架构中概率执行平面与确定性控制平面的分离。
+\input{/home/linkco/exa/llm-computer/paper/figures/fig_dual_plane.tex}
+
+\textbf{分离的核心理由是职责不同：}
+\begin{itemize}[nosep]
+\item 概率平面擅长\textit{理解和生成}——它``能做什么''
+\item 确定性平面擅长\textit{控制和保障}——它``应该做什么''
+\item 概率平面\textit{不应}直接执行有副作用的操作（如写入文件、调用外部API），而应通过确定性平面的审批和日志通道间接执行
+\end{itemize}
+
+这种分离得到了工业实践的有力验证。
+Anthropic的内部研究表明，工程师在工作中约60\%使用AI，但只能``完全委托''0--20\%的任务\cite{anthropic2026agenticreport}。
+这一``协作悖论''并非模型能力的暂时不足，而是双平面系统的结构性特征：确定性控制平面（包括通过权限策略和审批流程传递的人类判断）自然地约束了概率平面的行动空间。
+工程师倾向于委托``易于验证或低风险''的任务而保留``概念上困难或依赖设计决策''的任务，这恰恰是确定性平面作为概率平面``门控器''的行为表现。
+如果两个平面没有分离——即模型可以直接执行任何操作——则这种渐进式委托将不可能实现。
+
+这与传统计算机中``用户态不能直接访问硬件，必须通过系统调用陷入内核''的设计哲学完全一致\cite{ostep_2023}。
+用户程序（概率平面）可以发出任意请求，但内核（确定性平面）决定哪些请求被允许、以什么优先级执行、如何记录和恢复。
+
+\textbf{冲突因此消解：}
+当ArbiterOS把LLM称为``Probabilistic CPU''时，它看到的是概率执行平面；当AIOS把LLM纳入``kernel''时，它看到的是概率执行平面与部分控制逻辑的混合体；当AgentOS提出``reasoning kernel''时，它在尝试用控制平面的结构来约束概率平面。
+这些工作并不矛盾，而是从不同角度描述了同一个双平面系统。
+
+%% ============================================================

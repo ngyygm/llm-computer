@@ -1,0 +1,56 @@
+\section{社会技术启示：智能计算的产业结构}
+\label{sec:sociotechnical}
+
+ICA框架描述了模型原生计算系统的分层体系结构。但体系结构并非存在于真空之中；它既塑造着构建它的产业结构，也被这一结构所塑造。半导体和个人计算机产业在四十年间经历了一场有据可查的纵向解耦，从垂直整合巨头演变为由专业化公司组成的分层生态系统。新兴的AI产业似乎正在沿着相似的轨迹演进，但存在一个关键差异：模型权重是软件，可以以接近零的边际成本无限复制，这意味着保护芯片制造商的物理护城河没有直接对应的类比。本节追踪决定智能计算最终走向解耦分层还是被少数垂直整合巨头主导的结构性动力。
+
+\subsection{从IDM到Fabless：半导体类比与AI栈解耦}
+\label{sec:idm-fabless}
+
+半导体产业经历了四个结构阶段的演进。在1980年代之前，Intel、AMD和Texas Instruments等公司作为集成器件制造商（Integrated Device Manufacturer, IDM），控制从设计、制造到销售的每一个环节~\cite{generativevalue2024semiconductor}。TSMC于1987年创立，引入了纯代工（pure-play foundry）模式，将制造与设计分离~\cite{quartr2024tsmc}。随后进入无晶圆厂（fabless）时代：NVIDIA和Qualcomm在不拥有晶圆厂的情况下设计芯片。ARM随后添加了第四层，通过许可处理器IP而不参与任何制造~\cite{eetimes2025asic}。每个阶段都降低了进入壁垒，并创造了专业化的价值链层次。
+
+当今AI产业类似于IDM阶段。NVIDIA作为垂直整合平台占据主导地位，同时拥有硬件（GPU）和软件栈（CUDA），正如IBM在PC时代解耦之前同时控制大型机硬件、操作系统和应用程序。Ben Evans提出了核心的结构性问题：AI是否会遵循PC时代的解耦模式，分离为独立的芯片、平台/OS、模型和应用层，还是将在主导企业之下保持垂直整合？~\cite{benevans2025fullstack}
+
+第一波解耦已经清晰可见。云巨头构建自研芯片（Google TPU、Amazon Trainium、Microsoft Maia）标志着硬件提供与软件及模型层的分离，类似于代工模式将制造与设计分离~\cite{industryanalysis2026aivaluechain}。Stanford HAI的2025年数据显示推理成本下降了280倍，加上小型模型性能的快速提升，对基础模型提供商形成了商品化压力~\cite{stanfordhai2025index}，加速了与商品化x86 CPU驱动PC解耦相平行的结构性趋势。Gartner预测由于供过于求，智能体AI（agentic AI）将出现重大整合~\cite{gartner2026trends}，这一趋势与半导体产业的整合周期如出一辙，暗示只有少数基础模型提供商将存活下来，成为AI领域的"Intel/AMD"。
+
+\subsection{模型权重即软件：可复制性问题与闭源战略应对}
+\label{sec:copyability}
+
+然而，半导体类比在一个关键点上失效了。CPU的知识产权嵌入在其物理制造工艺中：从芯片的外部行为逆向工程其内部设计在经济上是不可行的。而模型权重本质上是软件。它们可以以接近零的边际成本无限复制，而且可以通过模型蒸馏攻击从API输出中提取。这种不对称性是顶级模型（GPT-4、Claude、Gemini）保持闭源的首要结构性原因。
+
+闭源战略表现为仅通过API提供访问。模型提供商出售基于token的推理服务而非权重本身，OpenAI在2026年第一季度通过从每百万token \$0.05至\$120不等的价格体系创造了\$57亿收入~\cite{investingcom2026tokenpricing}。这与微软历史上按设备收取OEM许可费的做法如出一辙：收入与使用量挂钩，而非与制品本身挂钩。
+
+DeepSeek的开源R1模型展示了与OpenAI o1相竞争的基准性能，开创了一条"第三路径"：从开源AI中获取收入~\cite{thirdbridge2025deepseek}。据报道，专有企业AI使用率在2025年间从80\%下降至44\%，而开源替代方案不断蚕食市场份额~\cite{mckinsey2025aisurvey}。连接OpenAI、Anthropic、Microsoft、Google、NVIDIA和Amazon的超过\$2000亿美元的交叉投资网络~\cite{brookings2025aicustomers}构成了一个垂直整合的\textit{系列企业}（keiretsu）结构，通过资本相互依存暂时维系着闭源模式。然而，它无法解决根本的可复制性问题：权重一旦泄露或被蒸馏，就会以零边际成本传播。
+
+\subsection{硬件绑定与权重保护：重建物理护城河}
+\label{sec:hardware-binding}
+
+如果说可复制性削弱了纯软件商业模式，那么产业的应对之策就是围绕模型权重重建物理护城河。三种策略跨越了从基于软件的保护到永久硬件绑定的光谱。
+
+第一种方法将权重视为可复制的，但使其在没有授权硬件的情况下无法使用。兰德公司（RAND Corporation）2024年的权重保护方案提出了167项安全措施，推荐使用基于可信执行环境（Trusted Execution Environment, TEE）的加密方案，其中权重仅在经过验证的飞地内部解密~\cite{rand2024weightplaybook}。NVIDIA的H100是首款具备机密计算能力的GPU，Corvex于2026年推出的方案将TEE与硬件加密GPU内存及Intel TDX相结合~\cite{corvex2026secureweights}，体现了这一路径：一种面向AI模型的数字版权管理形式。
+
+第二种方法将硬件级身份嵌入推理过程。RePACK（Nature Communications，2025）将物理不可克隆函数（Physical Unclonable Function, PUF）与ReRAM存算一体相结合，创建设备特定的指纹，将权重执行绑定到特定的硅片~\cite{wu2025physicalunclonable}。这是一种中间策略：权重仍然以数字方式分发，但正确执行需要匹配的硬件。
+
+第三种也是最激进的方法将模型权重永久烧录到硅晶体管中。Taalas（2026）生产专用的推理芯片，实现芯片与模型的一对一绑定，达到每用户每秒约17,000 token的吞吐（约为GPU性能的十倍）~\cite{taalas_2026_hc1}。模型变得与硬件不可分离："模型即计算机。"这创造了类似Intel芯片制造的真正物理护城河，知识产权体现在制造工艺本身之中。这三种方法（TEE加密、基于PUF的存算一体和永久硅片烧录）代表了"物理化"程度的递增，每种方法都以牺牲灵活性来换取IP保护，直接对应半导体产业从许可IP（ARM）到制造芯片（Intel）再到专用ASIC的演进路径。
+
+\subsection{OS层作为流量网关：AI时代的平台战略}
+\label{sec:os-gateway}
+
+上一小节的硬件绑定策略解决了模型层的权重保护问题。但PC产业的历史表明，价值捕获的最高点既不在硬件也不在模型，而在平台层：即连接用户与底层能力的界面。
+
+微软1990年的关键成就可以说明这一动态。通过与三十家主要PC制造商达成Windows~3.0的OEM预装协议~\cite{licendi2024mslicensing}，微软创造了一个飞轮：广泛的分发滋养了开发者生态，开发者生态驱动了用户锁定，用户锁定支撑了近年来达到每年\$230至\$290亿的许可收入~\cite{strategyzer2024msbusinessmodel}。Windows是用户与PC计算之间的流量网关。控制网关的实体攫取了不成比例的价值，尽管制造底层硬件使其成为可能的是Intel。
+
+当前的AI聊天界面（ChatGPT、Claude、Gemini）实质上扮演着AI交互的"操作系统"角色。它们是用户与模型能力之间的流量网关。Walmart、Google和微信正在明确竞争成为"AI时代的流量网关"~\cite{ceibs2025aiagents}，确认了平台层被公认为AI栈中价值捕获的最高点。Google的Android战略，一种通过嵌入式服务（广告、Play Store、云）变现的开源操作系统~\cite{wikipedia2024msopensource}，代表了一种AI平台公司可能采用的替代模式：开放界面以获取市场份额，然后通过嵌入式商业和数据流实现变现。随着AI行业标准与协议的成熟，实现模型间的互操作性和可移植性，控制网关的实体，而非模型本身，将可能攫取不成比例的价值，正如微软在PC时代攫取了比Intel更多的价值~\cite{ccia2025competition}。
+
+\subsection{收敛情景：当训练趋于稳定，大脑成为物理产品}
+\label{sec:convergence}
+
+半导体产业的四阶段演化为AI产业成熟化提供了路线图。全面解耦的前提是行业标准和协议的出现，使各层之间实现互操作，正如标准接口（x86 ISA、PCI总线、USB）使PC生态得以解耦~\cite{microchipusa2024amdhistory}。
+
+多项信号表明产业正在接近一个"训练稳定化"拐点。Gartner预测2026年AI支出将达\$2.59万亿（同比增长47\%），并预测智能体AI将出现重大整合~\cite{gartner2026spending}。McKinsey报告仅有33\%的组织已将AI从试点推广至规模化应用~\cite{mckinsey2025aisurvey}，这种"幻灭低谷"在历史上往往先于产业成熟期。PC产业经历过类似阶段：1983至1985年的硬件洗牌淘汰了数十个不兼容平台，此后标准的IBM PC兼容架构才催生了爆发式增长。
+
+当模型架构趋于稳定时，"将大脑作为物理设备出售"的模式变得可行。具有烧录权重的专用推理芯片，如实现十倍GPU性能的Taalas HC1~\cite{taalas_2026_hc1}，可以使模型层商品化，同时创造一个新的硬件产品类别：AI家电。这将类比于从大型机分时共享到个人计算机的转变，计算不再是共享服务，而成为个人财产。
+
+三大趋势的收敛（硬件绑定技术成熟、推理成本下降280倍、自研芯片扩散）为"fabless AI"产业结构创造了条件。模型公司将设计"大脑"（架构与权重），代工厂（TSMC、Samsung）将把它们制造为专用芯片，平台公司将通过OS级网关进行分发。最可能的终态是一个三层产业结构：fabless模型设计商（AI领域未来的Intel和AMD）、制造专用推理和训练芯片的AI代工厂，以及通过界面和网关服务控制用户关系的AI OS平台。这映射了半导体和PC解耦所创造出的今天的Intel、TSMC和微软，正是这些公司的历史构成了本节预测视角的透镜。
+
+
+%% ============================================================

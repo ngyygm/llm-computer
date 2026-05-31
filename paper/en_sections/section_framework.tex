@@ -3,12 +3,12 @@
 
 \subsection{Principles of Analogy}
 
-The analogy framework underlying this paper is summarized in Table~\ref{tab:mapping}.
+The analogy framework underlying this paper is summarized in Table~\ref{tab:mapping} and illustrated in Figure~\ref{fig_analogy_map}.
 Before presenting the detailed mapping, we establish three principles to ensure that the analogy serves as a rigorous analytical instrument rather than a decorative metaphor.
 
 \textbf{Principle 1: The analogy must correspond to genuine engineering mechanisms.}
 The observation ``KV cache resembles a processor cache'' holds not because the names sound alike, but because both serve the same fundamental goal of exploiting \textit{temporal locality} and \textit{state reuse}~\cite{drepper2007memory,kwon2023pagedattention}.
-Temporal locality---the empirical regularity that recently accessed data is likely to be accessed again in the near future---governs both a CPU cache line and a recently computed set of KV vectors.
+Temporal locality, the empirical regularity that recently accessed data is likely to be accessed again in the near future, governs both a CPU cache line and a recently computed set of KV vectors.
 Similarly, the observation ``PagedAttention resembles virtual memory'' is valid because vLLM literally organizes KV blocks into fixed-size pages and maps them through a block table to non-contiguous physical memory, mirroring the mechanism by which an operating system manages virtual pages~\cite{kwon2023pagedattention}.
 In each case, the analogy is grounded in shared engineering structure, not superficial naming.
 
@@ -16,7 +16,7 @@ In each case, the analogy is grounded in shared engineering structure, not super
 A model is not a deterministic CPU: executing \texttt{ADD R1, R2} always produces the same result, whereas the same prompt may yield different responses across invocations.
 Semantic retrieval is not exact addressing: \texttt{MOV [0x7fff], EAX} always writes to the same location, while vector similarity search returns results that vary with the embedding model and query phrasing.
 An agent runtime is not a mature operating system: the Linux kernel rests on four decades of formal verification and regression testing, whereas the safety mechanisms of current agent frameworks are still evolving rapidly.
-These ``not quite identical'' gaps are not weaknesses of the analogy---they define precisely the research space where the most impactful future work lies.
+These ``not quite identical'' gaps are not weaknesses of the analogy; rather, they define precisely the research space where the most impactful future work lies.
 
 \textbf{Principle 3: The goal of the analogy is to generate research questions.}
 A productive analogy does more than aid understanding; it surfaces new engineering problems.
@@ -25,27 +25,44 @@ Which shared states demand consistency guarantees?
 Which execution paths require access control and audit logging?
 The rightmost column of Table~\ref{tab:mapping} captures the research directions that the analogy generates.
 
-\begin{table}[t]
-\centering
-\footnotesize
+%% Figure fig_analogy_map already included in Section~\ref{sec:intro}; referenced here via \ref
+
+\scriptsize
+\renewcommand{\arraystretch}{1.25}
+\begin{longtable}{p{0.11\textwidth}p{0.13\textwidth}p{0.23\textwidth}p{0.23\textwidth}p{0.20\textwidth}}
 \caption{Analogy mapping between classical computer architecture and the model-native system stack. Each row pairs a classical concept with its model-native counterpart, along with the core similarity, fundamental difference, and resulting engineering implication.}
-\label{tab:mapping}
-\begin{tabularx}{\textwidth}{p{0.11\textwidth}p{0.13\textwidth}Y Y Y}
+\label{tab:mapping} \\
 \toprule
-Classical Concept & Model-Native Counterpart & Core Similarity \& Example & Fundamental Difference & Engineering Implication \\
+\textbf{Classical Concept} & \textbf{Model-Native Counterpart} & \textbf{Core Similarity \& Example} & \textbf{Fundamental Difference} & \textbf{Engineering Implication} \\
 \midrule
-ISA / ABI (Application Binary Interface) & Prompt templates, tool specifications, Skill/Agent interfaces & Both define the calling contract and composition boundary visible to upper layers. Example: RISC-V's \texttt{ECALL} instruction has precisely defined semantics\cite{riscv_spec_2026}; MCP's \texttt{tools/call} interface specifies parameter schemas and return formats\cite{mcp_intro_2026} & Prompts lack strict formal semantics---ambiguity and drift are possible; the same prompt may behave differently across model versions & Requires stable schemas, version identifiers, and replay compatibility \\
-CPU Core & Foundation model forward pass & Both are general-purpose execution cores that map inputs to outputs. Example: a CPU maps instruction sequences to register state changes; a model maps token sequences to next-token probability distributions\cite{vaswani2017attention,brown2020gpt3} & The model performs probabilistic inference, not deterministic logic; identical inputs can yield different outputs & Explicitly decouple model capability, inference strategy, and runtime \\
-Microarchitecture & Attention kernels, decoding algorithms, serving engines & Both determine the real performance and cost behind the same ``interface.'' Example: superscalar pipelines vs.\ FlashAttention's I/O-aware tiled computation~\cite{dao2022flashattention}; branch prediction vs.\ speculative decoding\cite{leviathan2023speculative} & Model-era ``microarchitecture'' spans the software/hardware boundary & Joint optimization of FlashAttention, speculative decoding, and parallelism strategies \\
-L1/L2 Cache & Session-level KV cache, prefix caching & Both exploit temporal locality and hotspot reuse. Example: a CPU L1 cache retains recently accessed cache lines; a KV cache retains recently computed Key/Value vectors to avoid redundant computation\cite{kwon2023pagedattention,vllm_prefix_2026} & Semantic cache hit criteria are far weaker than address-based hit criteria; address equality is a Boolean check, while semantic similarity is a continuous-valued comparison & Requires block-level allocation, sharing, invalidation, and monitoring \\
-Main Memory / Virtual Memory & Context window, external memory, virtual context & Both create the illusion of a large space through layering. Example: virtual memory gives each process the illusion of a contiguous, large address space; virtual context management gives an agent the illusion of unlimited memory\cite{memgpt2023} & Semantic summarization loses information---it is not lossless paging; OS page swap is byte-exact, while summary compression is irreversible & Requires hot/warm/cold memory tiering, re-retrieval, and backfill strategies \\
-Operating System & Agent runtime & Both manage scheduling, permissions, I/O, and failure handling. Example: Linux cgroups isolate process resources\cite{linux_cgroup_2026}; Codex sandboxes isolate agent file access\cite{openai_codex_sandbox_2026} & Agents entail non-deterministic reasoning and language-mediated interfaces & Requires sandboxing, approval gates, sub-agent orchestration, hooks, and logging \\
-System Calls / Drivers & Tool calls, MCP servers & Both integrate external capabilities through a unified access interface. Example: the \texttt{open()} system call standardizes file operations; MCP's \texttt{tools/call} standardizes tool invocations\cite{mcp_intro_2026} & Tool results may be non-deterministic, asynchronous, and carry strong side effects & Requires capability annotations, authentication, and idempotent design \\
-File System / Disk & Vector stores, object storage, knowledge bases & Both store high-volume, persistent state. Example: ext4 organizes files by inode; Milvus organizes knowledge by vector index\cite{lewis2020rag} & Semantic retrieval is not exact addressing; \texttt{find(path)} returns a unique result, while vector search returns top-$k$ approximate matches & Requires provenance tracking, versioned snapshots, and TTL policies \\
-Process / Thread & Agent / Sub-agent / Task graph & Both serve as the fundamental unit of concurrent execution and isolation. Example: POSIX threads share an address space but have independent stacks; Codex sub-agents share project context but execute independently\cite{openai_codex_subagents_2026} & Sharing semantic state is more fragile than sharing memory; ``reading the same document'' does not imply ``having the same understanding'' & Requires budgeting, prioritization, and result merging \\
+\endfirsthead
+\toprule
+\textbf{Classical Concept} & \textbf{Model-Native Counterpart} & \textbf{Core Similarity \& Example} & \textbf{Fundamental Difference} & \textbf{Engineering Implication} \\
+\midrule
+\endhead
+
+ISA / ABI & Prompt templates, tool specifications, Skill/Agent interfaces & Both define the calling contract and composition boundary visible to upper layers. Example: RISC-V's \texttt{ECALL} instruction has precisely defined semantics~\cite{riscv_spec_2026}; MCP's \texttt{tools/call} interface specifies parameter schemas and return formats~\cite{mcp_intro_2026} & Prompts lack strict formal semantics; ambiguity and drift are possible, and the same prompt may behave differently across model versions & Requires stable schemas, version identifiers, and replay compatibility \\[3pt]
+
+CPU Core & Foundation model forward pass & Both are general-purpose execution cores that map inputs to outputs. Example: a CPU maps instruction sequences to register state changes; a model maps token sequences to next-token probability distributions~\cite{vaswani2017attention,brown2020gpt3} & The model performs probabilistic inference, not deterministic logic; identical inputs can yield different outputs & Explicitly decouple model capability, inference strategy, and runtime \\[3pt]
+
+Micro-architecture & Attention kernels, decoding algorithms, serving engines & Both determine the real performance and cost behind the same ``interface.'' Example: superscalar pipelines vs.\ FlashAttention's I/O-aware tiled computation~\cite{dao2022flashattention}; branch prediction vs.\ speculative decoding~\cite{leviathan2023speculative} & Model-era ``micro-architecture'' spans the software--hardware boundary & Joint optimization of FlashAttention, speculative decoding, and parallelism strategies \\[3pt]
+
+L1/L2 Cache & Session-level KV cache, prefix caching & Both exploit temporal locality and hotspot reuse. Example: a CPU L1 cache retains recently accessed cache lines; a KV cache retains recently computed Key/Value vectors to avoid redundant computation~\cite{kwon2023pagedattention,vllm_prefix_2026} & Semantic cache hit criteria are far weaker than address-based hit criteria; address equality is a Boolean check, while semantic similarity is a continuous-valued comparison & Requires block-level allocation, sharing, invalidation, and monitoring \\[3pt]
+
+Main Memory / Virtual Memory & Context window, external memory, virtual context & Both create the illusion of a large space through layering. Example: virtual memory gives each process the illusion of a contiguous, large address space; virtual context management gives an agent the illusion of unlimited memory~\cite{memgpt2023} & Semantic summarization loses information (it is not lossless paging); OS page swap is byte-exact, while summary compression is irreversible & Requires hot/warm/cold memory tiering, re-retrieval, and backfill strategies \\[3pt]
+
+Operating System & Agent runtime & Both manage scheduling, permissions, I/O, and failure handling. Example: Linux cgroups isolate process resources~\cite{linux_cgroup_2026}; Codex sandboxes isolate agent file access~\cite{openai_codex_sandbox_2026} & Agents entail non-deterministic reasoning and language-mediated interfaces & Requires sandboxing, approval gates, sub-agent orchestration, hooks, and logging \\[3pt]
+
+System Calls / Drivers & Tool calls, MCP servers & Both integrate external capabilities through a unified access interface. Example: the \texttt{open()} system call standardizes file operations; MCP's \texttt{tools/call} standardizes tool invocations~\cite{mcp_intro_2026} & Tool results may be non-deterministic, asynchronous, and carry strong side effects & Requires capability annotations, authentication, and idempotent design \\[3pt]
+
+File System / Disk & Vector stores, object storage, knowledge bases & Both store high-volume, persistent state. Example: ext4 organizes files by inode; Milvus organizes knowledge by vector index~\cite{lewis2020rag} & Semantic retrieval is not exact addressing; \texttt{find(path)} returns a unique result, while vector search returns top-$k$ approximate matches & Requires provenance tracking, versioned snapshots, and TTL policies \\[3pt]
+
+Process / Thread & Agent / Sub-agent / Task graph & Both serve as the fundamental unit of concurrent execution and isolation. Example: POSIX threads share an address space but have independent stacks; Codex sub-agents share project context but execute independently~\cite{openai_codex_subagents_2026} & Sharing semantic state is more fragile than sharing memory; ``reading the same document'' does not imply ``having the same understanding'' & Requires budgeting, prioritization, and result merging \\
+
 \bottomrule
-\end{tabularx}
-\end{table}
+\end{longtable}
+\renewcommand{\arraystretch}{1.0}
+\normalsize
 
 Within this framework, a future model-native computing architecture can be understood as follows: \textbf{a system that uses the foundation model as its computing core, KV and context hierarchies as its storage layer, an agent kernel as its control layer, tools and the external world as its I/O layer, and serving clusters with shared memory as its distributed substrate.}
 In Section~\ref{sec:components}, we unpack each component in detail, proceeding from core to periphery.
@@ -69,7 +86,7 @@ The probabilistic execution plane is, at its core, the foundation model's forwar
 
 \textbf{Concrete example.}
 When a user submits a code review request to GPT-4, the model's attention mechanism performs matrix operations over billions of parameters, ultimately producing a token probability distribution from which the response is sampled.
-The same input may yield different outputs across invocations; the quality of the output depends heavily on how the context is organized; and the model itself holds no persistent state---the results of one conversation do not automatically carry over to the next.
+The same input may yield different outputs across invocations; the quality of the output depends heavily on how the context is organized; and the model itself holds no persistent state, as the results of one conversation do not automatically carry over to the next.
 
 The key characteristics of this plane are:
 \begin{itemize}[nosep]
@@ -78,14 +95,14 @@ The key characteristics of this plane are:
 \item \textit{No persistent state:} model weights remain static across requests; all ``memory'' resides in the tokens within the context window.
 \end{itemize}
 
-KV caches, attention mechanisms, and decoding strategies all belong to the ``microarchitecture'' of this plane---they optimize the efficiency and quality of the model's forward computation itself.
+KV caches, attention mechanisms, and decoding strategies all belong to the ``micro-architecture'' of this plane, optimizing the efficiency and quality of the model's forward computation itself.
 
 \subsubsection{The Deterministic Control Plane}
 
-The deterministic control plane is the programmatic control layer that wraps around the model---the scheduler, permission enforcer, state machine, logging system, and failure recovery logic.
+The deterministic control plane is the programmatic control layer that wraps around the model: the scheduler, permission enforcer, state machine, logging system, and failure recovery logic.
 
 \textbf{Concrete example.}
-When Claude Code receives the request ``refactor this function,'' the deterministic control plane executes the following sequence: check current directory permissions (is the path within the allowed project scope?) $\to$ load the project memory file (\texttt{CLAUDE.md}) $\to$ parse the request and decompose it into subtasks $\to$ for each step involving file writes, determine whether user confirmation is required based on the approval policy $\to$ upon completion, write a change log to the audit record\cite{anthropic_claudecode_security_2026}.
+When Claude Code receives the request ``refactor this function,'' the deterministic control plane executes the following sequence: check current directory permissions (is the path within the allowed project scope?) $\to$ load the project memory file (\texttt{CLAUDE.md}) $\to$ parse the request and decompose it into subtasks $\to$ for each step involving file writes, determine whether user confirmation is required based on the approval policy $\to$ upon completion, write a change log to the audit record~\cite{anthropic_claudecode_security_2026}.
 Every step in this sequence is executed by deterministic code; its behavior is predictable, auditable, and replayable.
 
 The key characteristics of this plane are:
@@ -95,45 +112,37 @@ The key characteristics of this plane are:
 \item \textit{Auditability:} every decision step is logged and supports post-hoc review.
 \end{itemize}
 
-Codex's approval policies\cite{openai_codex_approvals_2026}, Claude Code's read-by-default stance and hook system\cite{anthropic_claudecode_security_2026}, and CaMeL's capability-based security mechanisms\cite{debenedetti2025camel} all belong to this plane.
+Codex's approval policies~\cite{openai_codex_approvals_2026}, Claude Code's read-by-default stance and hook system~\cite{anthropic_claudecode_security_2026}, and CaMeL's capability-based security mechanisms~\cite{debenedetti2025camel} all belong to this plane.
 
 \subsubsection{Why the Separation Is Necessary}
 
 Industrial practice has already validated the necessity of this separation.
-Praetorian's development platform embeds LLMs within a deterministic orchestration layer, substantially improving agent reliability in autonomous software development\cite{praetorian2025deterministic}.
-The ``deterministic shell, probabilistic core'' pattern is emerging as the de facto standard architecture for agent systems\cite{towardsai2025deterministicshell}.
-The ``Blueprint First, Model Second'' framework encodes operational logic as deterministic source-code blueprints, constraining the LLM to operate within well-defined boundaries\cite{blueprintfirst2025}.
+Praetorian's development platform embeds LLMs within a deterministic orchestration layer, substantially improving agent reliability in autonomous software development~\cite{praetorian2025deterministic}.
+The ``deterministic shell, probabilistic core'' pattern is emerging as the de facto standard architecture for agent systems~\cite{towardsai2025deterministicshell}.
+The ``Blueprint First, Model Second'' framework encodes operational logic as deterministic source-code blueprints, constraining the LLM to operate within well-defined boundaries~\cite{blueprintfirst2025}.
+
 
 The core rationale for separation is a clean division of responsibilities:
 \begin{itemize}[nosep]
-\item The probabilistic plane excels at \textit{understanding and generation}---it answers what \emph{can} be done.
-\item The deterministic plane excels at \textit{control and assurance}---it governs what \emph{should} be done.
+\item The probabilistic plane excels at \textit{understanding and generation}: it answers what \emph{can} be done.
+\item The deterministic plane excels at \textit{control and assurance}: it governs what \emph{should} be done.
 \item The probabilistic plane should \textit{not} directly execute side-effectful operations (writing files, calling external APIs); instead, such actions must be mediated through the deterministic plane's approval and audit channels.
 \end{itemize}
 
 This separation finds strong support in recent empirical evidence.
-Anthropic's internal study reveals that engineers use AI for approximately 60\% of their work tasks yet feel comfortable fully delegating only 0--20\%\cite{anthropic2026agenticreport}.
+Anthropic's internal study reveals that engineers use AI for approximately 60\% of their work tasks yet feel comfortable fully delegating only 0--20\%~\cite{anthropic2026agenticreport}.
 This \textbf{collaboration paradox} is not a temporary artifact of insufficient model capability; it is a structural property of dual-plane systems.
-The deterministic control plane---including human judgment transmitted through permission policies and approval workflows---naturally constrains the action space of the probabilistic plane.
+The deterministic control plane, including human judgment transmitted through permission policies and approval workflows, naturally constrains the action space of the probabilistic plane.
 Engineers tend to delegate tasks that are ``easy to verify or low-risk'' while retaining tasks that are ``conceptually difficult or depend on design decisions.''
 This is precisely the behavior of a deterministic plane acting as a gate for the probabilistic plane.
-Without separation---if the model could directly execute any operation---such graduated delegation would be impossible.
+Without separation, if the model could directly execute any operation, such graduated delegation would be impossible.
 
 The analogy to classical architecture is instructive.
-In a traditional system, user-mode code cannot access hardware directly; it must issue a system call that traps into the kernel\cite{ostep_2023}.
+In a traditional system, user-mode code cannot access hardware directly; it must issue a system call that traps into the kernel~\cite{ostep_2023}.
 User programs (the probabilistic plane) may issue arbitrary requests, but the kernel (the deterministic plane) decides which requests are permitted, at what priority they execute, and how they are logged and recovered.
 
 \textbf{The metaphor conflict is thereby resolved.}
 When ArbiterOS calls the LLM a ``Probabilistic CPU,'' it is describing the probabilistic execution plane.
 When AIOS incorporates the LLM into a ``kernel,'' it is observing a mixture of the probabilistic plane and partial control logic.
 When AgentOS proposes a ``reasoning kernel,'' it is attempting to impose the structure of the control plane onto the probabilistic plane.
-These positions are not contradictory---they are complementary descriptions of the same dual-plane system, viewed from different vantage points.
-
-% TODO: Insert figure showing dual-plane architecture diagram (probabilistic execution plane vs. deterministic control plane)
-\begin{figure}[t]
-\centering
-% \includegraphics[width=0.9\textwidth]{figures/dual_plane.pdf}
-\fbox{\parbox{0.9\textwidth}{\centering\vspace{2em}\textit{[Placeholder: Dual-plane architecture diagram showing the probabilistic execution plane (model forward pass, KV cache, attention, decoding) and the deterministic control plane (scheduler, permissions, state machine, audit log), with the control plane wrapping around and gating the execution plane.]}\vspace{2em}}}
-\caption{The dual-plane architecture of model-native computing systems. The probabilistic execution plane handles understanding and generation; the deterministic control plane governs permissions, scheduling, and audit. The control plane mediates all side-effectful operations initiated by the execution plane.}
-\label{fig:dual_plane}
-\end{figure}
+These positions are not contradictory; they are complementary descriptions of the same dual-plane system, viewed from different vantage points.

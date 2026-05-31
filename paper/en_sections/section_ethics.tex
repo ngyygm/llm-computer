@@ -1,70 +1,70 @@
 \section{Ethics, Safety, and Explainability}
 \label{sec:ethics}
 
-Treating large-model systems as computers does not make ethical concerns disappear. If anything, the architectural lens renders certain ethical questions sharper, because each concern maps to a specific ICAM layer and its corresponding governance mechanism.
+Treating large-model systems as computers does not make ethical concerns vanish.  If anything, the architectural lens brings certain ethical questions into sharper relief, because it maps each concern to a specific ICA layer and its corresponding governance mechanism.  In particular, the \emph{weakest-link principle} introduced in Section~\ref{sec:paradigm} implies that a system's overall ethical standing is likewise bounded by its lowest-scoring safety dimension: a system that scores only at the 20th percentile on safety compliance receives an overall ethical rating of~20, not the average of its other dimensions.
 
-\subsection{Permission and Isolation (L5 Orchestration Layer)}
+\subsection{Permissions and Isolation (L5 Orchestration Layer)}
 \label{sec:ethics-permission}
 
-If agents are the new processes, then the questions of what privileges they hold, what secrets they can observe, whether they may access the network, and whether they may mutate persistent state must be answered through explicit security policies---analogous to how an operating system mediates process permissions~\cite{openai_codex_approvals_2026,openai_codex_sandbox_2026,anthropic_claudecode_security_2026,anthropic_claudecode_sandbox_2026,debenedetti2025camel,ironclaw2025}.
+If agents are the new processes, then the questions of what privileges they hold, what secrets they may observe, whether they may access the network, and whether they may mutate persistent state must be governed through explicit security policies, analogous to how an operating system mediates process permissions~\cite{openai_codex_approvals_2026,openai_codex_sandbox_2026,anthropic_claudecode_security_2026,anthropic_claudecode_sandbox_2026,debenedetti2025camel,ironclaw2025}.
 
-Concretely, the governance mechanisms at ICAM's L5 layer must address four questions:
+Concretely, the governance mechanisms at ICA's L5 layer must address four questions:
 
 \begin{itemize}[nosep]
-\item \textbf{Who may create agents?} This is the analog of process-creation privileges. OpenAI Codex requires developers to declare agent behavioral boundaries through an explicit \texttt{AGENTS.md} manifest~\cite{openai_codex_agents_md_2026}.
-\item \textbf{What resources may an agent access?} This corresponds to file-system permission bits. Claude Code adopts a default-read-only posture: every write operation requires explicit user approval~\cite{anthropic_claudecode_security_2026}.
-\item \textbf{How are permissions scoped to individual operations?} This mirrors capability-based security. CaMeL~\cite{debenedetti2025camel} attaches \textit{capability tokens} to each tool invocation, ensuring that an agent can exercise only the rights explicitly granted for that particular call.
-\item \textbf{How is a misbehaving agent terminated?} This is the analog of process signals and sandbox isolation. Codex employs OS-level sandboxing so that all agent write operations are confined to a controlled environment~\cite{openai_codex_sandbox_2026}. IronClaw~\cite{ironclaw2025} extends this model by proposing hardware-enforced isolation boundaries for agentic workloads, drawing a direct parallel to hypervisor-based virtual machine isolation.
+\item \textbf{Who may create agents?}  This is the analog of process-creation privileges.  OpenAI Codex requires developers to declare agent behavioral boundaries through an explicit \texttt{AGENTS.md} manifest~\cite{openai_codex_agents_md_2026}.
+\item \textbf{What resources may an agent access?}  This corresponds to file-system permission bits.  Claude Code adopts a default-read-only posture: every write operation requires explicit user approval~\cite{anthropic_claudecode_security_2026}.
+\item \textbf{How are permissions scoped to individual operations?}  This mirrors capability-based security.  CaMeL~\cite{debenedetti2025camel} attaches \emph{capability tokens} to each tool invocation, ensuring that an agent can exercise only the rights explicitly granted for that particular call.
+\item \textbf{How is a misbehaving agent terminated?}  This is the analog of process signals and sandbox isolation.  Codex employs OS-level sandboxing so that all agent write operations are confined to a controlled environment~\cite{openai_codex_sandbox_2026}.  IronClaw~\cite{ironclaw2025} extends this model by proposing hardware-enforced isolation boundaries for agentic workloads, drawing a direct parallel to hypervisor-based virtual-machine isolation.
 \end{itemize}
 
-Viewed through the lens of the \textit{dual-plane architecture} introduced in Section~\ref{sec:dual-plane}, these permission controls fall squarely within the remit of the \textit{deterministic control plane}: the \textit{probabilistic execution plane} determines what the model \emph{can} do (reasoning and generation), while the deterministic control plane determines what it \emph{is allowed} to do (approval and isolation).
+Viewed through the lens of the \emph{dual-plane architecture}, these permission controls fall squarely within the remit of the \emph{deterministic control plane}: the \emph{probabilistic execution plane} determines what the model \emph{can} do (reasoning and generation), while the deterministic control plane determines what it \emph{is permitted} to do (approval and isolation).
 
 \subsection{Privacy and Memory Governance (L3 Memory Layer)}
 \label{sec:ethics-privacy}
 
-Privacy concerns concentrate at L3, the memory layer. Once a system supports long-term state, it must confront four governance questions---questions that have analogs in classical memory management but become substantially more complex in a semantic system.
+Privacy concerns concentrate at L3, the memory layer.  Once a system supports long-term state, it must confront four governance questions that have analogs in classical memory management but become substantially more complex in a semantic system.
 
 \paragraph{What should be persisted?}
-Not every interaction deserves long-term retention. Classical operating systems use page-protection bits to distinguish readable, writable, and executable pages; L3 must similarly distinguish between \textit{persistable} information and \textit{session-scoped} information. A user's code-editing preferences may be safely persisted, whereas temporary credentials or sensitive conversation fragments should be tagged as session-scoped and automatically purged when the session ends.
+Not every interaction warrants long-term retention.  Classical operating systems use page-protection bits to distinguish readable, writable, and executable pages; L3 must similarly distinguish between \emph{persistable} information and \emph{session-scoped} information.  A user's code-editing preferences may be safely persisted, whereas temporary credentials or sensitive conversation fragments should be tagged as session-scoped and automatically purged when the session ends.
 
 \paragraph{For how long?}
-This raises the question of retention policies. Traditional file systems manage temporary files through Time-To-Live (TTL) metadata; L3 must assign a TTL and a version number to every memory block. The design is further complicated by a direct policy conflict: the EU AI Act~\cite{euaiact2026} requires high-risk AI systems to retain operational logs for at least ten years, while the GDPR's Right to Be Forgotten~\cite{gdpr_righttoforget} empowers users to request the deletion of personal data. Reconciling these obligations is not a matter of model design---it is a governance decision that L3's retention-policy designers must address explicitly.
+This raises the question of retention policies.  Traditional file systems manage temporary files through Time-To-Live (TTL) metadata; L3 must assign a TTL and a version number to every memory block.  The design is further complicated by a direct policy conflict: the EU AI Act~\cite{euaiact2026} requires high-risk AI systems to retain operational logs for at least ten years, while the GDPR's Right to Be Forgotten~\cite{gdpr_righttoforget} empowers users to request the deletion of their personal data.  Reconciling these obligations is not a matter of model design; it is a governance decision that L3's retention-policy architects must address explicitly.
 
 \paragraph{Who has the right to delete?}
-In a multi-agent setting with shared memory, a memory block written by one agent may be referenced by others. Deletion cannot proceed naively; it requires a reference-tracking mechanism akin to garbage collection---a block may be physically freed only when all referencing agents have consented or have themselves terminated. This extends the Observability Axiom (Axiom~6): the act of deletion must itself be auditable.
+In a multi-agent setting with shared memory, a memory block written by one agent may be referenced by others.  Deletion cannot proceed naively; it requires a reference-tracking mechanism akin to garbage collection, whereby a block may be physically freed only when all referencing agents have consented or have themselves terminated.  This extends the Observability Axiom (Section~\ref{sec:icam-axioms}): the act of deletion must itself be auditable.
 
 \paragraph{Can summaries be reverse-engineered to reveal sensitive information?}
-L3's context compiler routinely compresses raw inputs into summaries to conserve context-window capacity. However, summaries may retain enough semantic signal that sensitive attributes---personal identities, financial data---can be inferred. This demands that L3's semantic address contracts enforce four properties: \emph{minimal retention} (store only task-essential information), \emph{cascading deletion} (when raw data is removed, all derived summaries are purged together), \emph{access isolation} (memory belonging to different users must not be cross-accessible), and \emph{encrypted storage}~\cite{longmemeval2024,navaie2025privacy}.
+L3's context compiler routinely compresses raw inputs into summaries to conserve context-window capacity.  However, summaries may retain enough semantic signal that sensitive attributes, such as personal identities and financial data, can be inferred.  This demands that L3's semantic address contracts enforce four properties: \emph{minimal retention} (store only task-essential information), \emph{cascading deletion} (when raw data is removed, all derived summaries are purged together), \emph{access isolation} (memory belonging to different users must not be cross-accessible), and \emph{encrypted storage}~\cite{longmemeval2024,navaie2025privacy}.
 
 \subsection{Explainability: From Explaining Models to Explaining Systems (Full-Stack)}
 \label{sec:ethics-explainability}
 
-Traditional LLM explainability research focuses on interpreting a model's internal representations---the roles of attention heads, the semantics of individual neurons, and so on. From ICAM's perspective, however, the more operationally actionable unit of explanation for an agent system running on a complete model-native computing architecture is not found inside the model, but in the system's behavioral trace. This insight is the very core of the Observability Axiom (Axiom~6).
+Traditional LLM explainability research focuses on interpreting a model's internal representations, including the roles of attention heads and the semantics of individual neurons.  From ICA's perspective, however, the more operationally actionable unit of explanation for an agent system running atop a complete model-native computing architecture lies not inside the model but in the system's \emph{behavioral trace}.  This insight is the very core of the Observability Axiom (Section~\ref{sec:icam-axioms}).
 
-ICAM decomposes explainability into the following actionable tiers, each aligned with a specific layer:
+ICA accordingly decomposes explainability into the following actionable tiers, each aligned with a specific layer:
 
 \begin{itemize}[nosep]
-\item \textbf{L2}---Cache hit/miss logs: which context fragments were reused, which were evicted, and what policy governed each eviction decision.
-\item \textbf{L3}---Context-compilation decisions: which information was loaded verbatim versus in summary form, the provenance of each summary, and the compression ratio achieved.
-\item \textbf{L4}---Tool-call parameters and results: which tool was invoked, with what arguments, what it returned, and whether a permission denial was triggered.
-\item \textbf{L5}---Approval decisions and state commits: which agent requested which privilege at what time, whether the request was granted or denied, and what state mutation was ultimately committed.
+\item \textbf{L2:} Cache hit/miss logs: which context fragments were reused, which were evicted, and what policy governed each eviction decision.
+\item \textbf{L3:} Context-compilation decisions: which information was loaded verbatim versus in summary form, the provenance of each summary, and the compression ratio achieved.
+\item \textbf{L4:} Tool-call parameters and results: which tool was invoked, with what arguments, what it returned, and whether a permission denial was triggered.
+\item \textbf{L5:} Approval decisions and state commits: which agent requested which privilege at what time, whether the request was granted or denied, and what state mutation was ultimately committed.
 \end{itemize}
 
-This notion of \textit{system-level behavioral-trace explainability} is more directly useful than model-internal explainability. It does not require prying open the model's black box; instead, it demands a faithful record of what the system did at every step, why it did so, and what the outcome was. Viewed through the dual-plane architecture, this is precisely the core output of the deterministic control plane---an auditable, replayable event stream.
+This notion of \emph{system-level behavioral-trace explainability} is more directly useful than model-internal explainability.  It does not require prying open the model's black box; instead, it demands a faithful record of what the system did at every step, why it did so, and what the outcome was.  Viewed through the dual-plane architecture, this is precisely the core output of the deterministic control plane: an auditable, replayable event stream.
 
 \subsection{Fairness and Resource Allocation (L2 Inference Layer and L5 Orchestration Layer)}
 \label{sec:ethics-fairness}
 
-When multiple users or multiple agents share an inference-serving cluster, fair resource allocation becomes an ethical imperative. Classical operating systems enforce fair sharing of CPU, memory, and I/O through control groups (cgroups)~\cite{linux_cgroup_2026}; model-native computing systems must analogously enforce per-agent or per-task budgets for context-window capacity, inference time, and monetary cost.
+When multiple users or multiple agents share an inference-serving cluster, fair resource allocation becomes an ethical imperative.  Classical operating systems enforce fair sharing of CPU, memory, and I/O through control groups (cgroups)~\cite{linux_cgroup_2026}; model-native computing systems must analogously enforce per-agent or per-task budgets for context-window capacity, inference time, and monetary cost.
 
 The specific fairness concerns include:
 
 \begin{itemize}[nosep]
-\item \textbf{Inference-resource fairness.} Are GPU resources distributed equitably, or do high-volume users monopolize capacity?
-\item \textbf{KV-cache contention.} Do long-running agents hoard KV-cache entries, starving short tasks of memory---an analog of the classical memory-hog problem?
-\item \textbf{Side-effect equity.} When tool invocations produce side effects (e.g., modifying shared state), are those effects applied uniformly for all users, or do scheduling biases advantage some agents over others?
+\item \textbf{Inference-resource fairness.}  Are GPU resources distributed equitably, or do high-volume users monopolize capacity?
+\item \textbf{KV-cache contention.}  Do long-running agents hoard KV-cache entries, starving short tasks of memory, an analog of the classical memory-hog problem?
+\item \textbf{Side-effect equity.}  When tool invocations produce side effects (e.g., modifying shared state), are those effects applied uniformly for all users, or do scheduling biases advantage some agents over others?
 \end{itemize}
 
-These fairness questions are a direct extension of the Least-Privilege Axiom (Axiom~5) into the resource-management plane: an agent should consume no more than its fair share of shared resources, and the system must enforce this bound as a first-class invariant. The Anthropic 2026 agentic safety report~\cite{anthropic2026agenticreport} further highlights the dual-use risk: the same architectural mechanisms that enable capable autonomous agents can be repurposed for harmful ends, making robust permission isolation and resource governance not merely a fairness concern but a societal imperative.
+These fairness questions are a direct extension of the Least-Privilege Axiom (Section~\ref{sec:icam-axioms}) into the resource-management plane: an agent should consume no more than its fair share of shared resources, and the system must enforce this bound as a first-class invariant.
 
 %% ============================================================

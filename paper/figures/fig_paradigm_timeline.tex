@@ -1,0 +1,231 @@
+\begin{figure}[t]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[
+    font=\sffamily,
+    >=Stealth,
+    % ---- Node styles ----
+    cpuNode/.style={
+        draw=classical!80, fill=classical!18,
+        rounded corners=3pt,
+        minimum width=22mm, minimum height=9mm,
+        inner sep=2pt, align=center,
+        font=\scriptsize\bfseries, text=classical!90!black,
+        line width=0.6pt
+    },
+    llmNode/.style={
+        draw=modelnative!80, fill=modelnative!18,
+        rounded corners=3pt,
+        minimum width=22mm, minimum height=9mm,
+        inner sep=2pt, align=center,
+        font=\scriptsize\bfseries, text=modelnative!90!black,
+        line width=0.6pt
+    },
+    futureNode/.style={
+        draw=modelnative!60, fill=modelnative!8,
+        rounded corners=3pt,
+        minimum width=22mm, minimum height=9mm,
+        inner sep=2pt, align=center,
+        font=\scriptsize\bfseries\itshape, text=modelnative!70!black,
+        line width=0.6pt, dashed
+    },
+    yearLabel/.style={
+        font=\tiny\bfseries, text=timelineGray!85!black
+    },
+    timelineLine/.style={
+        line width=1.6pt, draw=#1!50
+    },
+    phaseBand/.style={
+        fill=#1, fill opacity=0.08, rounded corners=4pt
+    },
+    curvedArrow/.style={
+        -{Stealth[length=2.2mm, width=1.5mm]},
+        thick, draw=#1,
+        shorten <=2pt, shorten >=2pt
+    },
+    arrowLabel/.style={
+        font=\tiny\bfseries, text=#1,
+        fill=white, fill opacity=0.85, text opacity=1,
+        rounded corners=1.5pt, inner xsep=3pt, inner ysep=1.2pt,
+        draw=#1!30, line width=0.3pt
+    },
+    timelineHeader/.style={
+        font=\small\bfseries, text=#1,
+        fill=#1!6, rounded corners=3pt, inner sep=4pt
+    }
+]
+
+% ==============================================================
+%  COORDINATE SYSTEM
+%  x-axis: logical year position (evenly spaced for clarity)
+%    CPU:  x = 0, 3, 6, 9, 12, 15, 18
+%    LLM:  x = 0, 3, 6, 6, 9, 9, 12   (some share year positions)
+%  y-axis:
+%    CPU timeline at y = 2.8
+%    LLM timeline at y = -1.2
+% ==============================================================
+\def\cpuY{2.8}
+\def\llmY{-1.2}
+
+% ==============================================================
+%  PHASE BACKGROUND BANDS
+% ==============================================================
+% CPU Phase 1: Sequential / Scalar era (1945-2004)
+\fill[phaseBand=classical]
+    (-1.3, \cpuY+1.1) rectangle (4.7, \cpuY-0.5);
+% CPU Phase 2: Parallelism & Heterogeneity (2005-2019)
+\fill[phaseBand=classical]
+    (4.9, \cpuY+1.1) rectangle (13.7, \cpuY-0.5);
+% CPU Phase 3: Specialization (2020+)
+\fill[phaseBand=classical]
+    (13.9, \cpuY+1.1) rectangle (19.5, \cpuY-0.5);
+
+% LLM Phase 1: Pretrained Foundation (2020)
+\fill[phaseBand=modelnative]
+    (-1.3, \llmY+0.65) rectangle (1.7, \llmY-1.05);
+% LLM Phase 2: Interfaces & Bottlenecks (2023-2024)
+\fill[phaseBand=modelnative]
+    (1.9, \llmY+0.65) rectangle (7.7, \llmY-1.05);
+% LLM Phase 3: Heterogeneous Orchestration (2025-Future)
+\fill[phaseBand=modelnative]
+    (7.9, \llmY+0.65) rectangle (13.5, \llmY-1.05);
+
+% Phase labels (subtle, inside bands)
+\node[font=\tiny\itshape, text=classical!45]
+    at (1.7, \cpuY+0.85) {Sequential Era};
+\node[font=\tiny\itshape, text=classical!45]
+    at (9.3, \cpuY+0.85) {Parallelism \& Heterogeneity};
+\node[font=\tiny\itshape, text=classical!45]
+    at (16.7, \cpuY+0.85) {Specialization};
+
+\node[font=\tiny\itshape, text=modelnative!45]
+    at (0.2, \llmY-0.7) {Foundation};
+\node[font=\tiny\itshape, text=modelnative!45]
+    at (4.8, \llmY-0.7) {Interfaces \& Bottlenecks};
+\node[font=\tiny\itshape, text=modelnative!45]
+    at (10.7, \llmY-0.7) {Orchestration \& Specialization};
+
+% ==============================================================
+%  TIMELINE HEADERS
+% ==============================================================
+\node[timelineHeader=classical] at (9, \cpuY+1.55) {CPU Architecture};
+\node[timelineHeader=modelnative] at (6, \llmY+1.05) {LLM Systems};
+
+% ==============================================================
+%  TIMELINE LINES
+% ==============================================================
+\draw[timelineLine=classical] (-1.0, \cpuY) -- (19.0, \cpuY);
+\draw[timelineLine=modelnative] (-1.0, \llmY) -- (13.0, \llmY);
+
+% ==============================================================
+%  CPU TIMELINE MILESTONES  (top row)
+% ==============================================================
+% 1945: ENIAC
+\node[cpuNode] (cpu1) at (0, \cpuY) {ENIAC};
+\node[yearLabel, below=2.5mm of cpu1] {1945};
+
+% 1978: x86 ISA
+\node[cpuNode] (cpu2) at (3, \cpuY) {x86 ISA};
+\node[yearLabel, below=2.5mm of cpu2] {1978};
+
+% 2005: Dennard Scaling Collapse
+\node[cpuNode] (cpu3) at (6, \cpuY) {Dennard\\[-1pt]Collapse};
+\node[yearLabel, below=2.5mm of cpu3] {2005};
+
+% 2006: Multi-core
+\node[cpuNode] (cpu4) at (9, \cpuY) {Multi-core};
+\node[yearLabel, below=2.5mm of cpu4] {2006};
+
+% 2012: big.LITTLE
+\node[cpuNode] (cpu5) at (12, \cpuY) {big.LITTLE};
+\node[yearLabel, below=2.5mm of cpu5] {2012};
+
+% 2016: Heterogeneous SoC
+\node[cpuNode] (cpu6) at (15, \cpuY) {Hetero.\\[-1pt]SoC};
+\node[yearLabel, below=2.5mm of cpu6] {2016};
+
+% 2020+: Domain-Specific Accelerators
+\node[cpuNode] (cpu7) at (18, \cpuY) {Domain\\[-1pt]Accelerators};
+\node[yearLabel, below=2.5mm of cpu7] {2020+};
+
+% ==============================================================
+%  LLM TIMELINE MILESTONES  (bottom row)
+% ==============================================================
+% 2020: Pretrained LLMs
+\node[llmNode] (llm1) at (0, \llmY) {GPT-3};
+\node[yearLabel, above=2.5mm of llm1] {2020};
+
+% 2023: Token/Tool Interface
+\node[llmNode] (llm2) at (3, \llmY) {ChatGPT\\[-1pt]Plugins};
+\node[yearLabel, above=2.5mm of llm2] {2023};
+
+% 2024: Inference Energy Wall
+\node[llmNode] (llm3) at (5.5, \llmY) {KV Cache\\[-1pt]Wall};
+\node[yearLabel, above=2.5mm of llm3] {2024};
+
+% 2024: Sparse MoE
+\node[llmNode] (llm4) at (8, \llmY) {Sparse\\[-1pt]MoE};
+\node[yearLabel, above=2.5mm of llm4] {2024};
+
+% 2025: Heterogeneous Model Orchestration
+\node[llmNode] (llm5) at (10.5, \llmY) {Multi-Model\\[-1pt]Orchestr.};
+\node[yearLabel, above=2.5mm of llm5] {2025};
+
+% 2025: Specialized Small Models
+\node[llmNode] (llm6) at (13, \llmY) {Specialized\\[-1pt]SLMs};
+\node[yearLabel, above=2.5mm of llm6] {2025};
+
+% Future: Alternative Substrates  (not connected by arrows; shown for completeness)
+% (Omitted to keep the figure focused on the five structural parallels)
+
+% ==============================================================
+%  CURVED CONNECTING ARROWS  (CPU → LLM structural parallels)
+% ==============================================================
+% The arrows curve downward from the CPU timeline to the LLM timeline.
+% We use bend left/right to create aesthetically curved paths.
+
+% 1. Dennard Collapse → KV Cache Wall  ("Power Wall")
+\draw[curvedArrow=red!70!black]
+    (cpu3.south) to[bend right=18]
+    node[arrowLabel=red!70!black, pos=0.45, anchor=west, xshift=1pt]
+        {Power Wall}
+    (llm3.north);
+
+% 2. Multi-core → Sparse MoE  ("Parallelism Shift")
+\draw[curvedArrow=blue!70!black]
+    (cpu4.south) to[bend right=22]
+    node[arrowLabel=blue!70!black, pos=0.45, anchor=west, xshift=1pt]
+        {Parallelism Shift}
+    (llm4.north);
+
+% 3. big.LITTLE → Multi-Model Orchestration  ("Heterogeneity")
+\draw[curvedArrow=orange!85!black]
+    (cpu5.south) to[bend right=22]
+    node[arrowLabel=orange!85!black, pos=0.45, anchor=west, xshift=1pt]
+        {Heterogeneity}
+    (llm5.north);
+
+% 4. x86 ISA → ChatGPT Plugins  ("ISA Abstraction")
+\draw[curvedArrow=classical!85!black]
+    (cpu2.south) to[bend right=12]
+    node[arrowLabel=classical!85!black, pos=0.50, anchor=east, xshift=-1pt]
+        {ISA Abstraction}
+    (llm2.north);
+
+% 5. Domain Accelerators → Specialized SLMs  ("Specialization")
+\draw[curvedArrow=purple!70!black]
+    (cpu7.south) to[bend right=28]
+    node[arrowLabel=purple!70!black, pos=0.40, anchor=west, xshift=1pt]
+        {Specialization}
+    (llm6.north);
+
+\end{tikzpicture}}% end resizebox
+\caption{Structural parallels between CPU and LLM system evolution.
+Curved arrows connect milestones that share the same architectural driver:
+Dennard scaling collapse and the inference energy wall both arise from a \emph{Power Wall};
+the multi-core and MoE transitions reflect a \emph{Parallelism Shift};
+big.LITTLE and heterogeneous model orchestration embody \emph{Heterogeneity};
+x86 ISA and the token/tool interface represent \emph{ISA Abstraction};
+and domain accelerators and specialized small models pursue \emph{Specialization}.}
+\label{fig:paradigm_timeline}
+\end{figure}

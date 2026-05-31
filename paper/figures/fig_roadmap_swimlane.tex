@@ -1,0 +1,337 @@
+% ---------------------------------------------------------------------------
+% Research Roadmap Swim-Lane Diagram  (Gantt-style)
+% fig:roadmap_swimlane
+% ---------------------------------------------------------------------------
+\begin{figure}[htbp]
+\centering
+% ---- color definitions (outside tikzpicture so caption can use them) ----
+\providecolor{lawI}{HTML}{4C78A8}       % blue   – inference efficiency
+\providecolor{lawII}{HTML}{D9824B}      % orange – context management
+\providecolor{lawIII}{HTML}{C44E52}     % red    – agent speedup
+\providecolor{axiom}{HTML}{8C8C8C}      % gray   – architectural principles
+%
+\resizebox{0.97\textwidth}{!}{%
+\begin{tikzpicture}[
+    % ---- global styles ----
+    >=Latex,
+    font=\small,
+    lane label/.style={
+        font=\footnotesize\bfseries, anchor=east, text=black!75
+    },
+    phase header/.style={
+        font=\small\bfseries, anchor=south, text=black!80
+    },
+    phase sub/.style={
+        font=\scriptsize, anchor=north, text=black!50
+    },
+    bar/.style={
+        draw=#1!60!black, fill=#1!25, rounded corners=3pt,
+        minimum height=0.55cm, inner xsep=3pt, inner ysep=1.5pt,
+        font=\scriptsize, align=center, line width=0.5pt,
+        text=black!85
+    },
+    bar selected/.style={
+        draw=#1!80!black, fill=#1!35, rounded corners=3pt,
+        minimum height=0.55cm, inner xsep=3pt, inner ysep=1.5pt,
+        font=\scriptsize\bfseries, align=center, line width=0.7pt,
+        text=black!90
+    },
+    dep arrow/.style={
+        -{Latex[length=1.8mm]}, thick, black!45, line width=0.6pt
+    },
+    dep arrow dashed/.style={
+        -{Latex[length=1.8mm]}, thick, black!30,
+        line width=0.5pt, dashed
+    },
+]
+
+% ================================================================
+% COLOR PALETTE  (lane backgrounds only; main colors defined above)
+% ================================================================
+\providecolor{laneBg}{HTML}{F8F9FA}     % very light gray for lane fills
+\providecolor{laneAlt}{HTML}{F0F2F5}    % slightly darker for alternating
+
+% ================================================================
+% LAYOUT PARAMETERS
+% ================================================================
+% x-coordinates for three phase columns
+\def\xShortL{3.2}
+\def\xShortR{7.2}
+\def\xMidL{8.2}
+\def\xMidR{12.8}
+\def\xLongL{13.8}
+\def\xLongR{19.4}
+
+% y-coordinates for six lanes (L1 at bottom, L6 at top)
+\def\yLone{0.5}
+\def\yLtwo{2.0}
+\def\yLthree{3.5}
+\def\yLfour{5.0}
+\def\yLfive{6.5}
+\def\yLsix{8.0}
+
+% lane vertical extent
+\def\laneHalf{0.62}
+
+% ================================================================
+% PHASE HEADER LABELS
+% ================================================================
+\node[phase header] at ({(\xShortL+\xShortR)/2}, \yLsix+1.45)
+    {Short-Term};
+\node[phase sub] at ({(\xShortL+\xShortR)/2}, \yLsix+1.05)
+    {1--2 years};
+
+\node[phase header] at ({(\xMidL+\xMidR)/2}, \yLsix+1.45)
+    {Mid-Term};
+\node[phase sub] at ({(\xMidL+\xMidR)/2}, \yLsix+1.05)
+    {2--4 years};
+
+\node[phase header] at ({(\xLongL+\xLongR)/2}, \yLsix+1.45)
+    {Long-Term};
+\node[phase sub] at ({(\xLongL+\xLongR)/2}, \yLsix+1.05)
+    {4--8 years};
+
+% ================================================================
+% PHASE BACKGROUND BANDS (alternating subtle shading)
+% ================================================================
+\fill[laneBg, rounded corners=4pt]
+    (\xShortL-0.2, \yLone-\laneHalf-0.15)
+    rectangle (\xShortR+0.2, \yLsix+\laneHalf+0.15);
+\fill[laneAlt, rounded corners=4pt]
+    (\xMidL-0.2, \yLone-\laneHalf-0.15)
+    rectangle (\xMidR+0.2, \yLsix+\laneHalf+0.15);
+\fill[laneBg, rounded corners=4pt]
+    (\xLongL-0.2, \yLone-\laneHalf-0.15)
+    rectangle (\xLongR+0.2, \yLsix+\laneHalf+0.15);
+
+% Phase separator vertical lines
+\draw[black!15, line width=0.4pt]
+    ({(\xShortR+\xMidL)/2}, \yLone-\laneHalf-0.15)
+    -- ({(\xShortR+\xMidL)/2}, \yLsix+\laneHalf+0.15);
+\draw[black!15, line width=0.4pt]
+    ({(\xMidR+\xLongL)/2}, \yLone-\laneHalf-0.15)
+    -- ({(\xMidR+\xLongL)/2}, \yLsix+\laneHalf+0.15);
+
+% ================================================================
+% LANE HORIZONTAL GUIDES  (dashed, very subtle)
+% ================================================================
+\foreach \y in {\yLone,\yLtwo,\yLthree,\yLfour,\yLfive,\yLsix}{
+    \draw[black!8, line width=0.3pt, dashed]
+        (\xShortL-0.2, \y) -- (\xLongR+0.2, \y);
+}
+
+% ================================================================
+% LANE LABELS  (L1–L6, left margin)
+% ================================================================
+\node[lane label] at (\xShortL-0.55, \yLsix) {L6 Application};
+\node[lane label] at (\xShortL-0.55, \yLfive) {L5 Orchestration};
+\node[lane label] at (\xShortL-0.55, \yLfour) {L4 Interface};
+\node[lane label] at (\xShortL-0.55, \yLthree) {L3 Context};
+\node[lane label] at (\xShortL-0.55, \yLtwo) {L2 Inference};
+\node[lane label] at (\xShortL-0.55, \yLone) {L1 Physical};
+
+% ================================================================
+% "WE ARE HERE" VERTICAL LINE
+% ================================================================
+\draw[black!70, line width=1.1pt, densely dashed]
+    (\xShortL-0.05, \yLone-\laneHalf-0.15)
+    -- (\xShortL-0.05, \yLsix+\laneHalf+0.15);
+\pgfmathsetmacro{\weAreHereY}{(\yLone+\yLsix)/2}
+\node[font=\scriptsize\bfseries, text=black!65, rotate=90, anchor=south]
+    at (\xShortL-0.45, \weAreHereY)
+    {We Are Here};
+
+% ================================================================
+% RESEARCH TOPIC BARS
+% ================================================================
+
+% ---- L6  (Application) --------------------------------------------------
+\node[bar=axiom]
+    (L6gov) at ({(\xMidL+\xMidR)/2}, \yLsix)
+    {Governance kernel};
+
+\node[bar=lawIII]
+    (L6dist) at ({(\xLongL+\xLongR)/2-0.2}, \yLsix)
+    {Distributed agent};
+\node[bar=axiom]
+    (L6fed) at ({(\xLongL+\xLongR)/2-0.2}, \yLsix+0.52)
+    {Federated agent networks};
+
+% ---- L5  (Orchestration) ------------------------------------------------
+\node[bar selected=lawIII]
+    (L5proto) at ({(\xShortL+\xShortR)/2}, \yLfive)
+    {Protocol unification};
+
+\node[bar=lawIII]
+    (L5mcp) at ({(\xMidL+\xMidR)/2-0.55}, \yLfive-0.28)
+    {MCP + A2A integration};
+\node[bar=axiom]
+    (L5cap) at ({(\xMidL+\xMidR)/2+0.55}, \yLfive+0.28)
+    {Capability negotiation};
+
+\node[bar=lawIII]
+    (L5os) at ({(\xLongL+\xLongR)/2}, \yLfive)
+    {Agent OS kernel};
+
+% ---- L4  (Semantic Interface) -------------------------------------------
+\node[bar=lawIII]
+    (L4bench) at ({(\xShortL+\xShortR)/2}, \yLfour)
+    {Agent runtime\\[-1pt]benchmarks};
+
+\node[bar=lawI]
+    (L4interop) at ({(\xMidL+\xMidR)/2-0.55}, \yLfour-0.28)
+    {Cross-framework\\[-1pt]interop};
+\node[bar=axiom]
+    (L4sec) at ({(\xMidL+\xMidR)/2+0.55}, \yLfour+0.28)
+    {Agent security\\[-1pt]architecture};
+
+\node[bar=axiom]
+    (L4driver) at ({(\xLongL+\xLongR)/2-0.3}, \yLfour-0.28)
+    {Physical-world\\[-1pt]interface drivers};
+\node[bar=axiom]
+    (L4isa) at ({(\xLongL+\xLongR)/2-0.3}, \yLfour+0.28)
+    {Intelligent ISA};
+
+% ---- L3  (Context Management) -------------------------------------------
+\node[bar selected=lawII]
+    (L3comp) at ({(\xShortL+\xShortR)/2}, \yLthree)
+    {Context compilation\\[-1pt]algorithms};
+
+\node[bar=lawII]
+    (L3tier) at ({(\xMidL+\xMidR)/2-0.55}, \yLthree-0.28)
+    {Semantic page\\[-1pt]replacement};
+\node[bar=axiom]
+    (L3mem) at ({(\xMidL+\xMidR)/2+0.55}, \yLthree+0.28)
+    {Consistency-controlled\\[-1pt]shared memory};
+
+\node[bar=lawII]
+    (L3persist) at ({(\xLongL+\xLongR)/2}, \yLthree)
+    {Persistent context\\[-1pt]stores (L3--L5)};
+
+% ---- L2  (Inference Serving) --------------------------------------------
+\node[bar selected=lawI]
+    (L2kv) at ({(\xShortL+\xShortR)/2-0.2}, \yLtwo-0.28)
+    {KV cache\\[-1pt]optimization};
+\node[bar=lawI]
+    (L2sparse) at ({(\xShortL+\xShortR)/2-0.2}, \yLtwo+0.28)
+    {Sparse attention\\[-1pt]optimization};
+
+\node[bar=lawI]
+    (L2prefix) at ({(\xMidL+\xMidR)/2-0.55}, \yLtwo-0.28)
+    {Heterogeneous model\\[-1pt]collaboration};
+\node[bar=lawI]
+    (L2semcache) at ({(\xMidL+\xMidR)/2+0.55}, \yLtwo+0.28)
+    {Prefix caching\\[-1pt]standardization};
+
+\node[bar=axiom]
+    (L2substrate) at ({(\xLongL+\xLongR)/2}, \yLtwo)
+    {Substrate-independent\\[-1pt]compute stack};
+
+% ---- L1  (Physical Execution) -------------------------------------------
+\node[bar=lawI]
+    (L1sparse) at ({(\xShortL+\xShortR)/2}, \yLone)
+    {Sparse attention\\[-1pt]kernels};
+
+\node[bar=axiom]
+    (L1alt) at ({(\xLongL+\xLongR)/2}, \yLone)
+    {Alternative inference\\[-1pt]substrates};
+
+% ================================================================
+% DEPENDENCY ARROWS
+% ================================================================
+
+% KV cache optimization -> Context compilation (L2 -> L3)
+\draw[dep arrow] (L2kv.north) -- (L3comp.south);
+
+% Context compilation -> Semantic page replacement (L3 short -> L3 mid)
+\draw[dep arrow] (L3comp) -- (L3tier);
+
+% Protocol unification -> MCP+A2A integration (L5 short -> L5 mid)
+\draw[dep arrow] (L5proto) -- (L5mcp);
+
+% MCP+A2A integration -> Capability negotiation (L5 mid -> L5 mid)
+\draw[dep arrow] (L5mcp) -- (L5cap);
+
+% Agent runtime benchmarks -> Cross-framework interop (L4 short -> L4 mid)
+\draw[dep arrow] (L4bench) -- (L4interop);
+
+% Agent security architecture -> Governance kernel (L4 mid -> L6 mid)
+\draw[dep arrow] (L4sec.north) -- (L6gov.south);
+
+% Governance kernel -> Distributed agent coordination (L6 mid -> L6 long)
+\draw[dep arrow] (L6gov) -- (L6dist);
+
+% Consistency shared memory -> Persistent context stores (L3 mid -> L3 long)
+\draw[dep arrow] (L3mem) -- (L3persist);
+
+% Capability negotiation -> Agent OS kernel (L5 mid -> L5 long)
+\draw[dep arrow dashed] (L5cap.east) -- (L5os.west);
+
+% Intelligent ISA -> Agent OS kernel (L4 long -> L5 long)
+\draw[dep arrow] (L4isa.north) -- (L5os.south);
+
+% Substrate-independent stack -> Alternative inference substrates (L2 long -> L1 long)
+\draw[dep arrow] (L2substrate.south) -- (L1alt.north);
+
+% Cross-framework interop -> Agent security architecture (L4 mid -> L4 mid)
+\draw[dep arrow] (L4interop.north east) -- (L4sec.south west);
+
+% Semantic page replacement -> Persistent context stores (L3 mid -> L3 long)
+\draw[dep arrow dashed] (L3tier.east) -- (L3persist.west);
+
+% Heterogeneous model collaboration -> Prefix caching (L2 mid -> L2 mid)
+\draw[dep arrow] (L2prefix.north east) -- (L2semcache.south west);
+
+% Distributed agent -> Federated agent networks (L6 long -> L6 long)
+\draw[dep arrow] (L6dist) -- (L6fed);
+
+% Physical-world interface drivers -> Agent OS kernel (L4 long -> L5 long)
+\draw[dep arrow dashed] (L4driver.north) -- (L5os.south west);
+
+% ================================================================
+% COLOR LEGEND
+% ================================================================
+\pgfmathsetmacro{\legY}{-1.05}
+\pgfmathsetmacro{\xA}{(\xShortL+\xShortR)/2}
+\pgfmathsetmacro{\xB}{(\xMidL+\xMidR)/2}
+\pgfmathsetmacro{\xC}{(\xLongL+\xLongR)/2}
+
+\node[font=\scriptsize\bfseries, anchor=east, text=black!65]
+    at (\xA-0.3, \legY) {Legend:};
+
+% Law I
+\fill[lawI!25, draw=lawI!60!black, rounded corners=2pt, line width=0.5pt]
+    (\xA, \legY-0.17) rectangle ++(1.6, 0.34);
+\node[font=\scriptsize, anchor=west, text=black!70]
+    at (\xA+1.8, \legY) {Law~I (Semantic Locality)};
+
+% Law II
+\fill[lawII!25, draw=lawII!60!black, rounded corners=2pt, line width=0.5pt]
+    (\xB-0.5, \legY-0.17) rectangle ++(1.6, 0.34);
+\node[font=\scriptsize, anchor=west, text=black!70]
+    at (\xB+1.3, \legY) {Law~II (Context Budget)};
+
+% Law III
+\fill[lawIII!25, draw=lawIII!60!black, rounded corners=2pt, line width=0.5pt]
+    (\xB+3.2, \legY-0.17) rectangle ++(1.6, 0.34);
+\node[font=\scriptsize, anchor=west, text=black!70]
+    at (\xB+5.0, \legY) {Law~III (Agent Speedup)};
+
+% Axiom
+\fill[axiom!25, draw=axiom!60!black, rounded corners=2pt, line width=0.5pt]
+    (\xC-1.0, \legY-0.17) rectangle ++(1.6, 0.34);
+\node[font=\scriptsize, anchor=west, text=black!70]
+    at (\xC+0.8, \legY) {Axiom (Architectural)};
+
+\end{tikzpicture}}%
+\caption{Research roadmap organized by ICA layer and time horizon.
+  Horizontal lanes correspond to ICA layers L1--L6; columns represent
+  short-term (1--2\,yr), mid-term (2--4\,yr), and long-term (4--8\,yr)
+  research phases.  Bar colors indicate which law or axiom each topic
+  validates: {\color{lawI}Law~I} (Semantic Locality, blue),
+  {\color{lawII}Law~II} (Context Budget, orange),
+  {\color{lawIII}Law~III} (Agent Speedup, red), and
+  {\color{axiom}Axiom} (architectural principles, gray).
+  Arrows denote key dependencies between research topics.}
+\label{fig:roadmap_swimlane}
+\end{figure}

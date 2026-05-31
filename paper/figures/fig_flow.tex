@@ -1,0 +1,156 @@
+\begin{figure}[htbp]
+\centering
+\resizebox{0.95\textwidth}{!}{%
+\begin{tikzpicture}[
+    % ---- Styles ----
+    procB/.style={draw=classical!60, rounded corners=4pt,
+        minimum width=6.2cm, minimum height=9mm, align=center,
+        fill=classical!15, font=\small, line width=0.65pt},
+    procO/.style={draw=modelnative!60, rounded corners=4pt,
+        minimum width=6.2cm, minimum height=9mm, align=center,
+        fill=modelnative!15, font=\small, line width=0.65pt},
+    procN/.style={draw=gray!50, rounded corners=4pt,
+        minimum height=9mm, align=center,
+        fill=gray!10, font=\small, line width=0.65pt},
+    dec/.style={draw, diamond, aspect=2.6, align=center,
+        inner sep=2pt, font=\small, line width=0.65pt},
+    arrB/.style={-{Latex[length=2.2mm]}, thick, classical!75},
+    arrO/.style={-{Latex[length=2.2mm]}, thick, modelnative!75},
+    arrG/.style={-{Latex[length=2.2mm]}, thick, gray!55},
+    hdr/.style={font=\footnotesize\bfseries, inner sep=3pt,
+        rounded corners=2pt, fill opacity=0.55, text opacity=1},
+    node distance=5mm and 5mm,
+]
+
+% ============================================================
+%  GEOMETRY
+% ============================================================
+\pgfmathsetmacro{\cxL}{-3.8}   % left-lane centre x
+\pgfmathsetmacro{\cxR}{+3.8}   % right-lane centre x
+\pgfmathsetmacro{\halfW}{3.5}  % half-width of each lane band
+
+\def\yBot{-10.2}
+\def\yTop{1.35}
+
+% ============================================================
+%  SWIM-LANE BACKGROUNDS  (blue left, orange right)
+% ============================================================
+\fill[classical!6, rounded corners=8pt]
+    (\cxL-\halfW, \yBot-0.35) rectangle
+    (\cxL+\halfW, \yTop+0.75);
+
+\fill[modelnative!6, rounded corners=8pt]
+    (\cxR-\halfW, \yBot-0.35) rectangle
+    (\cxR+\halfW, \yTop+0.75);
+
+% ---- Lane header pills ----
+\node[hdr, text=classical!80!black, fill=classical!10]
+    at (\cxL, \yTop+0.45) {Probabilistic Execution};
+\node[hdr, text=modelnative!80!black, fill=modelnative!10]
+    at (\cxR, \yTop+0.45) {Deterministic Control};
+
+% ============================================================
+%  INPUT  (spans both lanes, centred)
+% ============================================================
+\node[procN, minimum width=13.0cm]
+    (req) at (0, 0.75)
+    {User request arrives: goal, constraints, environment handle};
+
+% ============================================================
+%  LEFT LANE -- Probabilistic Execution  (blue)
+% ============================================================
+\node[procB] (plan) at (\cxL, 0.0)
+    {Agent kernel parses task and loads\\base policies, project memory};
+
+\node[procB, below=4.5mm of plan]
+    (perm) {Permission \& capability check\\(deterministic gate)};
+
+\node[procB, below=4.5mm of perm]
+    (prefill) {Context compilation \& address resolution:\\
+    hot-window loading, summary backfill,\\
+    prefix-cache hit, prefill/decode scheduling};
+
+\node[procB, below=4.5mm of prefill]
+    (gen) {Model execution \& control loop:\\
+    generate action, validate result,\\
+    retry or fork if needed};
+
+% ============================================================
+%  RIGHT LANE -- Deterministic Control  (orange)
+% ============================================================
+\node[procO]
+    (policy) at (\cxR, 0.0)
+    {Load permission config,\\
+    tool-capability annotations};
+
+\node[dec, below=6mm of policy,
+      draw=classical!50, fill=modelnative!8]
+    (tool) {Tool / sub-agent\\needed?};
+
+% Split-colour diagonal lines inside diamond
+\draw[modelnative!40, line width=0.4pt] (tool.south west) -- (tool.north east);
+\draw[classical!40, line width=0.4pt]   (tool.north west) -- (tool.south east);
+
+\node[procO, below=5mm of tool]
+    (syscall) {System call path:\\
+    MCP / tool invocation, sandboxed\\
+    execution, result return};
+
+\node[procO, below=4.5mm of syscall]
+    (commit) {State commit: update short-term memory,\\
+    long-term memory, execution log \&\\
+    auditable evidence};
+
+% ============================================================
+%  CONVERGENCE / OUTPUT  (spans both lanes)
+% ============================================================
+\node[procN, minimum width=13.0cm]
+    (resp) at (0, \yBot)
+    {Output response or produce committable artifact};
+
+% ---- Convergence dot ----
+\fill[gray!30] (0, \yBot+0.55) circle (3pt);
+\node[font=\tiny, text=gray!50, right=3pt] at (0.05, \yBot+0.55) {merge};
+
+% ============================================================
+%  ARROWS
+% ============================================================
+% Input splits into both lanes
+\coordinate (split) at (0, 0.15);
+\draw[arrG] (req.south) -- (split);
+\draw[arrG] (split) -| (plan.north);
+\draw[arrG] (split) -| (policy.north);
+
+% Left lane (probabilistic)
+\draw[arrB] (plan) -- (perm);
+\draw[arrB] (perm) -- (prefill);
+\draw[arrB] (prefill) -- (gen);
+
+% Right lane (deterministic)
+\draw[arrO] (policy) -- (tool);
+\draw[arrO] (tool.south) --
+    node[right, font=\scriptsize, text=modelnative!70!black] {Yes}
+    (syscall);
+\draw[arrO] (syscall) -- (commit);
+
+% Cross-lane: decision "No" feeds context compilation
+\draw[arrB] (tool.west) --
+    node[above, font=\scriptsize, text=classical!70!black] {No}
+    (prefill.east);
+
+% Cross-lane: model generation feeds state commit
+\draw[arrO] (gen.east) -- (commit.west);
+
+% Convergence to output
+\coordinate (merge) at (0, \yBot+0.9);
+\draw[arrG] (gen.south)  |- (merge);
+\draw[arrG] (commit.south) |- (merge);
+\draw[arrG] (merge) -- (resp.north);
+
+\end{tikzpicture}}
+\caption{Request flow through the model-native computing architecture as a dual-plane swim-lane diagram.
+Blue nodes belong to the probabilistic execution plane; orange nodes belong to the deterministic control plane.
+The split-coloured diamond represents the control-plane decision that gates both paths.
+Grey boxes span both planes.}
+\label{fig:flow}
+\end{figure}

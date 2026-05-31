@@ -1,9 +1,9 @@
 \section{Design Challenges: Performance, State, Consistency, and Security}
 \label{sec:challenges}
 
-Each generational leap in agent frameworks---from first-generation tool chains to fifth-generation autonomous agents---has exposed new systemic problems that neither the model itself nor ad hoc engineering workarounds can fully resolve.
+Each generational leap in agent frameworks, from first-generation tool chains to fifth-generation autonomous agents, has exposed new systemic problems that neither the model itself nor ad hoc engineering workarounds can fully resolve.
 This section examines five cross-cutting design challenges through a uniform lens: (1)~we describe a concrete scenario that illustrates the problem; (2)~we analyze the root cause; (3)~we survey current solutions; and (4)~we draw an explicit analogy to a well-studied problem in classical computer architecture.
-Throughout, we trace each challenge back to the ICAM layers (Section~\ref{sec:icam}) and the quantitative laws (Section~\ref{sec:laws}), arguing that the dual-plane architecture introduced in Section~\ref{sec:framework} is not merely an organizational convenience but a \emph{necessary} structural response to these challenges.
+Throughout, we trace each challenge back to the ICA layers (Section~\ref{sec:icam}) and the quantitative laws (Section~\ref{sec:laws}), arguing that the dual-plane architecture introduced in Section~\ref{sec:framework} is not merely an organizational convenience but a \emph{necessary} structural response to these challenges.
 
 
 %% ---------- Latency, Throughput, Cost ----------
@@ -21,19 +21,19 @@ This is the \emph{latency--throughput--cost trilemma}: reducing latency demands 
 \subsubsection{Root Cause}
 The root cause lies in a structural asymmetry inherent to autoregressive LLM serving.
 The \textbf{prefill} phase is \emph{compute-bound}: the entire input sequence must be processed in one forward pass, keeping GPU compute units fully occupied, with FLOPS as the bottleneck.
-The \textbf{decode} phase is \emph{memory-bandwidth-bound}: generating each new token requires reading the full model weights and the current KV cache---effectively streaming all parameters from memory on every clock cycle~\cite{gholami2024memorywall}.
+The \textbf{decode} phase is \emph{memory-bandwidth-bound}: generating each new token requires reading the full model weights and the current KV cache, effectively streaming all parameters from memory on every clock cycle~\cite{gholami2024memorywall}.
 Gholami et al.\ quantify this imbalance: peak FLOPS grow at $3.0\times$ every two years, while DRAM bandwidth improves at only $1.6\times$ over the same period~\cite{gholami2024memorywall}.
 
 Because the two phases demand fundamentally different hardware resources, co-scheduling them in the same batch inevitably leaves some resource underutilized: prefill monopolizes compute while decode stalls on memory bandwidth.
 Agent workloads exacerbate this problem.
-Multiple sub-agents issue concurrent requests whose context lengths vary wildly---one may read a single function while another must ingest an entire repository---rendering static batching strategies inefficient.
+Multiple sub-agents issue concurrent requests whose context lengths vary wildly: one may read a single function while another must ingest an entire repository, rendering static batching strategies inefficient.
 
 \subsubsection{Current Solutions}
 The research community has responded at multiple levels.
 
 \paragraph{Scheduling-level optimizations.}
 ORCA~\cite{orca2022} introduces \emph{iteration-level scheduling}: rather than waiting for an entire sequence to complete before admitting new requests, the scheduler checks after every decode step whether a new request can join the running batch, significantly improving GPU utilization.
-DistServe~\cite{zhong2024distserve} goes further by \emph{disaggregating} prefill and decode onto separate GPU groups, allowing each group to be independently optimized---high-FLOPS GPUs for prefill, high-bandwidth GPUs for decode.
+DistServe~\cite{zhong2024distserve} goes further by \emph{disaggregating} prefill and decode onto separate GPU groups, allowing each group to be independently optimized: high-FLOPS GPUs for prefill, high-bandwidth GPUs for decode.
 Sarathi-Serve~\cite{agrawal2024sarathi} introduces stall-free scheduling via \emph{chunked prefill}, which slices long inputs into fixed-size chunks and interleaves them with decode tasks, eliminating stalls caused by waiting for large prefills to complete.
 
 \paragraph{Memory management optimizations.}
@@ -45,10 +45,10 @@ vAttention~\cite{prabhu2024vattention} offers an alternative approach: leveragin
 \subsubsection{Analogy to Classical Architecture}
 This challenge is a direct analog of the classical \emph{memory wall}.
 Since the 1980s, CPU speeds have improved at roughly 50\% per year while DRAM latency has improved at only 7\% per year~\cite{hennessy2017quantitative}.
-The architectural response---multi-level caches (L1/L2/L3), hardware prefetching, and write buffers---maps directly onto LLM serving: KV cache tiering corresponds to cache hierarchy, prefix caching to instruction cache sharing, and asynchronous decoding to write buffering.
+The architectural response, including multi-level caches (L1/L2/L3), hardware prefetching, and write buffers, maps directly onto LLM serving: KV cache tiering corresponds to cache hierarchy, prefix caching to instruction cache sharing, and asynchronous decoding to write buffering.
 The familiar response-time--throughput trade-off in time-sharing operating systems is also analogous: interactive tasks demand low response time (low latency) while batch tasks demand high throughput (large batches), and the scheduler must balance both~\cite{ostep_2023}.
 
-Within ICAM, this trilemma primarily spans L1 (physical execution) and L2 (inference serving).
+Within ICA, this trilemma primarily spans L1 (physical execution) and L2 (inference serving).
 Law~I (Section~\ref{sec:law1}) quantifies the cache-side of this trade-off: the KV cache hit rate $H$ directly determines the achievable speedup, and any scheduling or memory management optimization can be understood as an attempt to maximize $H$ under the trilemma's constraints.
 
 
@@ -59,13 +59,13 @@ Law~I (Section~\ref{sec:law1}) quantifies the cache-side of this trade-off: the 
 Suppose a user works with the same agent over three consecutive days to build a project.
 On Day~1, the agent learns that the user prefers TypeScript over JavaScript.
 On Day~2, the user asks the agent to refactor the codebase; the agent must respect the preference learned on Day~1 while correctly understanding the current state of the code.
-On Day~3, the user discovers a new bug, and the agent must recall modifications made on both previous days---the bug may have been introduced by those very changes---while reasoning about the latest project state.
+On Day~3, the user discovers a new bug, and the agent must recall modifications made on both previous days (the bug may have been introduced by those very changes) while reasoning about the latest project state.
 To complicate matters further, suppose the user runs two agent instances concurrently on Day~2: one performing the refactor and another writing tests.
 Both agents may modify the same file, creating a conflict.
 
 \subsubsection{Root Cause}
 A traditional CPU is a \emph{stateless} executor: given the same inputs and register state, the output is deterministic and reproducible.
-Intelligent systems, by contrast, must \emph{persist} state across sessions---user preferences (``I prefer TypeScript''), task history (``yesterday we refactored the authentication module''), and external-world changes (``three new files were added to the repository'').
+Intelligent systems, by contrast, must \emph{persist} state across sessions: user preferences (``I prefer TypeScript''), task history (``yesterday we refactored the authentication module''), and external-world changes (``three new files were added to the repository'').
 Once persistent state is introduced, at least three categories of problems inevitably arise:
 
 \begin{enumerate}[nosep]
@@ -78,7 +78,7 @@ Agent~A modifies a file but has not yet committed the change; Agent~B begins mod
 Detecting and resolving such conflicts mirrors optimistic concurrency control in distributed systems.
 
 \item \textbf{Memory staleness.}
-The fact ``the project uses React'' learned three days ago may be obsolete---the project has since migrated to Vue.
+The fact ``the project uses React'' learned three days ago may be obsolete because the project has since migrated to Vue.
 Determining whether a memory is still valid is analogous to cache invalidation.
 \end{enumerate}
 
@@ -102,15 +102,15 @@ Critically, the time horizon of agent execution is expanding from minutes to hou
 Recent industrial practice shows that agents can autonomously run for over seven hours to complete complex tasks~\cite{anthropic2026agenticreport}.
 Such cross-hour and cross-day execution introduces additional temporal decay challenges: the attention decay function $\beta(L)$ is no longer solely a function of context position but also depends on session duration and cross-step state accumulation.
 This means the three-way state classification above acquires a time dimension: cross-hour execution requires session-persistent KV caches (L2), context window management must support working-set restoration across checkpoints (L3), and the governance layer must define periodic checkpointing and human-recovery protocols (L5).
-Law~II (Section~\ref{sec:law2}), as currently formulated, does not capture this temporal dimension---an important direction for future work.
+Law~II (Section~\ref{sec:law2}), as currently formulated, does not capture this temporal dimension, an important direction for future work.
 
 \subsubsection{Analogy to Classical Architecture}
 These challenges map directly onto \emph{virtual memory and distributed consistency} in classical systems.
-OS virtual memory uses page tables to map virtual to physical addresses and provides swap mechanisms to create the illusion of unbounded memory---analogous to context management in agent systems.
-Distributed file systems such as GFS and Spanner~\cite{spanner2012} use Paxos/Raft~\cite{raft2014} consensus protocols to guarantee multi-replica consistency---analogous to consistency in multi-agent shared memory.
+OS virtual memory uses page tables to map virtual to physical addresses and provides swap mechanisms to create the illusion of unbounded memory, analogous to context management in agent systems.
+Distributed file systems such as GFS and Spanner~\cite{spanner2012} use Paxos/Raft~\cite{raft2014} consensus protocols to guarantee multi-replica consistency, analogous to consistency in multi-agent shared memory.
 The CAP theorem~\cite{cap2002} states that consistency, availability, and partition tolerance cannot be simultaneously achieved; agent memory management faces the same trade-off: strong consistency (synchronizing all replicas before acknowledging each operation) versus eventual consistency (tolerating brief inconsistency in exchange for lower latency).
 
-Within ICAM, this challenge primarily spans L3 (context management) and L5 (orchestration).
+Within ICA, this challenge primarily spans L3 (context management) and L5 (orchestration).
 The dual-plane architecture naturally separates the problem: the probabilistic execution plane manages the working context (what to remember and what to forget), while the deterministic control plane enforces consistency guarantees and conflict-resolution protocols.
 
 
@@ -125,7 +125,7 @@ A more subtle scenario: the agent's prompt template relies on the model producin
 Similar problems arise when MCP servers update their capability descriptions, when skill packs change their interfaces, or when memory file formats undergo version upgrades.
 
 \subsubsection{Root Cause}
-Classical computer systems achieve scalability in large part because their core interfaces---ISA, ABI, system calls, and file formats---remain \emph{stable over decades}.
+Classical computer systems achieve scalability in large part because their core interfaces, including ISA, ABI, system calls, and file formats, remain \emph{stable over decades}.
 The x86 instruction set has maintained backward compatibility from the 8086 (1978) through the latest processors in 2026; the POSIX standard, established in 1988, has preserved the semantics of \texttt{read()}/\texttt{write()}/\texttt{fork()} with almost no change~\cite{ostep_2023}.
 This stability allows upper-layer software to be built with confidence that the ground beneath it will not shift unexpectedly.
 
@@ -141,7 +141,7 @@ At least four sources of drift can be identified:
 \subsubsection{Current Solutions}
 OpenAI Codex provides project-level stability anchors through AGENTS.md~\cite{openai_codex_agents_md_2026} and the Skills mechanism~\cite{openai_codex_skills_2026}: each skill pack carries explicit version numbers and compatibility declarations.
 Claude Code achieves similar functionality through CLAUDE.md~\cite{anthropic_claudecode_memory_2026}.
-Interoperability protocols---MCP~\cite{mcp_intro_2026} for model--tool communication and A2A~\cite{google_a2a_2025} for agent--agent interaction---are attempting to establish standardized interfaces.
+Interoperability protocols, including MCP~\cite{mcp_intro_2026} for model--tool communication and A2A~\cite{google_a2a_2025} for agent--agent interaction, are attempting to establish standardized interfaces.
 The A2A protocol, built on JSON-RPC 2.0 over HTTP, defines standard workflows for agent discovery, capability negotiation, and task delegation~\cite{google_a2a_2025}.
 However, these protocols are themselves evolving rapidly and have not yet achieved the stability of an ISA or POSIX.
 
@@ -150,8 +150,8 @@ This challenge corresponds to \emph{ABI stability and version management} in cla
 Intel has maintained x86 backward compatibility for over 45~years; the Linux kernel has preserved system-call backward compatibility for over 30~years; even shared-library versioning has mature solutions (semantic versioning, symbol versioning).
 Model-native computing architectures must develop their own ``version control discipline'': tool schemas need version numbers, model output formats need compatibility guarantees, skill packs need dependency management (analogous to npm's \texttt{package.json}), and memory files need format migration tools (analogous to database schema migration).
 
-Within ICAM, interface drift primarily affects L4 (semantic interface layer) and the L4--L5 boundary.
-The deterministic control plane must maintain version-aware interface contracts that insulate the probabilistic execution plane from upstream changes---precisely the role that ABI stability plays in shielding application software from hardware evolution.
+Within ICA, interface drift primarily affects L4 (semantic interface layer) and the L4--L5 boundary.
+The deterministic control plane must maintain version-aware interface contracts that insulate the probabilistic execution plane from upstream changes, precisely the role that ABI stability plays in shielding application software from hardware evolution.
 
 
 %% ---------- Security, Privacy, Least Privilege ----------
@@ -164,7 +164,7 @@ During this process, the agent may: (1)~write sensitive data to log files or tra
 Worse still: since the agent can execute arbitrary shell commands, a carefully crafted prompt injection could cause it to run \texttt{rm -rf /} or upload sensitive files to an external server.
 
 \subsubsection{Root Cause}
-Once an agent can read and write files, execute commands, browse the web, and query databases, it is no longer merely a language model but an \emph{agent} in the security sense---a principal with external action capability.
+Once an agent can read and write files, execute commands, browse the web, and query databases, it is no longer merely a language model but an \emph{agent} in the security sense: a principal with external action capability.
 This introduces attack surfaces that classical software security does not cover:
 
 \begin{enumerate}[nosep]
@@ -202,8 +202,8 @@ Christodorescu et al.~\cite{agenticsecurity2025} argue that agent security must 
 
 \subsubsection{Analogy to Classical Architecture}
 These challenges correspond to \emph{process security and permission management} in classical systems.
-Unix security rests on three core concepts: (1)~user/kernel mode separation---user programs cannot access hardware directly and must go through system calls~\cite{ostep_2023}; (2)~file permissions (rwx)---each file has explicit read, write, and execute permissions; (3)~root/non-root separation---privileged operations require explicit elevation.
-Agent security requires an analogous three-layer model: (1)~probabilistic-plane/deterministic-plane separation---agents cannot directly execute side-effecting operations but must pass through the deterministic control plane's approval channel; (2)~tool capability annotations---each tool carries explicit capability declarations and permission requirements; (3)~governance-layer privilege elevation---high-risk operations require explicit authorization or human confirmation.
+Unix security rests on three core concepts: (1)~user/kernel mode separation, where user programs cannot access hardware directly and must go through system calls~\cite{ostep_2023}; (2)~file permissions (rwx), where each file has explicit read, write, and execute permissions; (3)~root/non-root separation, where privileged operations require explicit elevation.
+Agent security requires an analogous three-layer model: (1)~probabilistic-plane/deterministic-plane separation, where agents cannot directly execute side-effecting operations but must pass through the deterministic control plane's approval channel; (2)~tool capability annotations, where each tool carries explicit capability declarations and permission requirements; (3)~governance-layer privilege elevation, where high-risk operations require explicit authorization or human confirmation.
 
 \subsubsection{Dual-Use Security Concerns}
 It is important to recognize that agent capabilities are inherently dual-use.
@@ -211,7 +211,7 @@ The same capabilities that enable automated security auditing (defensive use) ca
 This means the deterministic control plane of a dual-plane architecture must not only constrain its own agents' behavior but also anticipate that adversaries possess equivalent dual-plane systems.
 Anthropic's 2026 agentic security report predicts that ``agentic cyber defense systems'' will operate at machine speed~\cite{anthropic2026agenticreport}, implying that the L5 governance layer's primitives must incorporate adversarial scenarios into their threat models from the outset.
 
-Within ICAM, security spans all six layers but concentrates at L4 (tool capability annotations and call audits) and L5 (permission approval and failure recovery).
+Within ICA, security spans all six layers but concentrates at L4 (tool capability annotations and call audits) and L5 (permission approval and failure recovery).
 The dual-plane architecture is essential here: the probabilistic plane handles the reasoning needed to interpret user intent, while the deterministic plane enforces the non-negotiable security invariants.
 
 
@@ -223,14 +223,17 @@ ArbiterOS~\cite{arbiteros2025} identifies the fundamental crisis in agent engine
 In traditional software engineering, code behavior is deterministic: identical inputs produce identical outputs, tests can cover all branches, and bugs can be caught with assertions.
 Agent behavior, however, is driven by a probabilistic model: the same prompt may yield different outputs across invocations, tests cannot cover all possible reasoning paths, and ``bugs'' manifest as hallucinations or instruction-following failures that resist detection by traditional assertions.
 
-Aura~\cite{aura2025} further demonstrates that once agents enter the OS and mobile environments, permission management (does the agent have access to the contacts list?), authentication (is the caller the genuine user or an attacker?), semantic input pollution (can a malicious SMS hijack the agent?), and memory taint propagation (how is tainted memory cleaned?) all become \emph{kernel-level} concerns---no longer merely application-layer vulnerabilities but foundational security issues for the entire system architecture.
+Aura~\cite{aura2025} further demonstrates that once agents enter the OS and mobile environments, permission management (does the agent have access to the contacts list?), authentication (is the caller the genuine user or an attacker?), semantic input pollution (can a malicious SMS hijack the agent?), and memory taint propagation (how is tainted memory cleaned?) all become \emph{kernel-level} concerns, no longer merely application-layer vulnerabilities but foundational security issues for the entire system architecture.
+
+Figure~\ref{fig:challenge_heatmap} maps each challenge to the ICA layers it impacts most, showing primary, secondary, and tertiary impact levels across the full stack.
+\input{/home/linkco/exa/llm-computer/paper/figures/fig_security_layers.tex}
 
 \subsubsection{Governance Is Not a Retrofit}
 These observations imply that governance must not be treated as an after-the-fact security patch or a compliance checklist.
-Just as operating system designers learned---through decades of painful experience---that bolting on security after the fact is fundamentally unworkable~\cite{ostep_2023}, agent system governance must be embedded into the architecture from day one.
+Just as operating system designers learned, through decades of painful experience, that bolting on security after the fact is fundamentally unworkable~\cite{ostep_2023}, agent system governance must be embedded into the architecture from day one.
 
-\subsubsection{Per-Layer Governance in ICAM}
-Specifically, each layer of ICAM (Section~\ref{sec:icam}) requires its own governance mechanisms:
+\subsubsection{Per-Layer Governance in ICA}
+Specifically, each layer of ICA (Section~\ref{sec:icam}) requires its own governance mechanisms:
 
 \begin{itemize}[nosep]
 \item \textbf{L1---Physical Execution:} hardware-level inference precision guarantees and energy budgets.
@@ -241,7 +244,7 @@ Each agent's inference calls should have budget caps (e.g., ``at most 10 inferen
 KV cache management must ensure that critical state is not inadvertently evicted.
 
 \item \textbf{L3---Context Management:} memory retention and deletion policies.
-Sensitive user information (passwords, credit card numbers) should be automatically detected and promptly removed, analogous to the GDPR's ``right to be forgotten''~\cite{gdpr_righttoforget}.
+Sensitive user information (passwords, credit card numbers) should be automatically detected and promptly removed, analogous to the GDPR's ``right to be forgotten.''
 Memory entries should carry explicit time-to-live (TTL) annotations; expired memories should be automatically degraded or deleted.
 
 \item \textbf{L4---Semantic Interface:} tool capability annotations and call audits.
@@ -261,8 +264,8 @@ After each user task completes, the system should generate a side-effect report 
 Viewed through the lens of the dual-plane architecture (Section~\ref{sec:framework}), governance is the \emph{central component} of the deterministic control plane.
 Its role is not to replace the probabilistic plane's reasoning capability but to set boundaries, maintain audit trails, and provide rollback mechanisms for the results of that reasoning.
 Concretely:
-the probabilistic plane is responsible for ``understanding user intent, decomposing tasks, and generating tool-call parameters''---the reasoning capabilities at which LLMs excel;
-the deterministic plane is responsible for ``checking whether permissions are satisfied, whether tool calls are safe, whether results are compliant, and whether failures are recoverable''---the deterministic logic at which traditional software engineering excels.
+the probabilistic plane is responsible for ``understanding user intent, decomposing tasks, and generating tool-call parameters,'' the reasoning capabilities at which LLMs excel;
+the deterministic plane is responsible for ``checking whether permissions are satisfied, whether tool calls are safe, whether results are compliant, and whether failures are recoverable,'' the deterministic logic at which traditional software engineering excels.
 CaMeL's capability manager~\cite{debenedetti2025camel}, Codex's approval policies~\cite{openai_codex_approvals_2026}, and Claude Code's hooks~\cite{anthropic_claudecode_security_2026} are all concrete implementations of this principle.
 
 This division of labor mirrors a classic design philosophy in operating systems: ``the kernel does not compute on behalf of user programs, but ensures that their computation does not exceed its bounds''~\cite{ostep_2023}.
@@ -274,8 +277,8 @@ Embedding governance into the architecture still faces a fundamental formalizati
 Traditional OS security models rest on deterministic state machines: every system call has well-defined preconditions (e.g., ``the file descriptor must be valid'') and postconditions (e.g., ``returns the number of bytes read'').
 Agent behavior, however, is probabilistic: the same operation may produce different results in different contexts, and whether a result is ``safe'' often depends on semantic judgment rather than formal verification.
 ArbiterOS's policy specification~\cite{arbiteros2025} and IronClaw's behavior-space modeling~\cite{ironclaw2025} represent first steps in this direction, but a practical formal governance framework remains distant.
-This is precisely the critical research direction that ICAM and the dual-plane architecture delineate for future work.
+This is precisely the critical research direction that ICA and the dual-plane architecture delineate for future work.
 
-Within ICAM, governance is not localized to a single layer but is a \emph{cross-cutting concern} that manifests differently at each level of the stack---from hardware precision guarantees (L1) to user-facing intent confirmation (L6).
-The dual-plane architecture provides the structural mechanism by which governance invariants are enforced: the deterministic control plane acts as the architectural ``kernel'' that mediates all interactions between the probabilistic reasoning engine and the external world, ensuring that Axiom~6 (``every irreversible action must be approved by the deterministic control plane'') is upheld regardless of which ICAM layer originates the action.
-This perspective transforms governance from an operational afterthought into an architectural invariant---a first-class design principle rather than a retrofit.
+Within ICA, governance is not localized to a single layer but is a \emph{cross-cutting concern} that manifests differently at each level of the stack, from hardware precision guarantees (L1) to user-facing intent confirmation (L6).
+The dual-plane architecture provides the structural mechanism by which governance invariants are enforced: the deterministic control plane acts as the architectural ``kernel'' that mediates all interactions between the probabilistic reasoning engine and the external world, ensuring that Axiom~6 (``every irreversible action must be approved by the deterministic control plane'') is upheld regardless of which ICA layer originates the action.
+This perspective transforms governance from an operational afterthought into an architectural invariant, a first-class design principle rather than a retrofit.

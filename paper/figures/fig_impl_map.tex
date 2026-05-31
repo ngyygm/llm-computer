@@ -1,0 +1,324 @@
+\begin{figure}[htbp]
+\centering
+\resizebox{0.99\textwidth}{!}{%
+\begin{tikzpicture}[
+    x=1cm, y=1cm,
+    >={Stealth[length=2mm,width=1.3mm]},
+    font=\sffamily,
+    % --- ICA stack layer band ---
+    layerband/.style={
+        rounded corners=3pt,
+        minimum width=5.0cm,
+        minimum height=0.82cm,
+        align=center,
+        text=white,
+        inner xsep=5pt,
+        inner ysep=3pt,
+        line width=0.5pt,
+        draw=white!30,
+        font=\small
+    },
+    % --- Annotation pill ---
+    annot/.style={
+        rounded corners=2.5pt,
+        draw=#1!60,
+        fill=#1!8,
+        text=#1!85!black,
+        font=\scriptsize,
+        inner xsep=4pt,
+        inner ysep=2.5pt,
+        align=center,
+        line width=0.5pt
+    },
+    % --- System box ---
+    sysbox/.style={
+        rounded corners=2.5pt,
+        draw=#1!50,
+        fill=#1!6,
+        text=black!85,
+        font=\scriptsize,
+        inner xsep=3.5pt,
+        inner ysep=2pt,
+        align=center,
+        line width=0.5pt
+    },
+    % --- Recommendation sidebar item ---
+    recbox/.style={
+        rounded corners=3pt,
+        draw=ink!30,
+        fill=ink!4,
+        text=ink,
+        font=\scriptsize,
+        inner xsep=4pt,
+        inner ysep=3pt,
+        align=left,
+        line width=0.5pt,
+        text width=3.8cm
+    },
+    % --- Connector arrow ---
+    conn/.style={
+        -{Stealth[length=1.6mm,width=1.1mm]},
+        draw=#1!55,
+        line width=0.6pt
+    },
+    % --- Section header ---
+    colhead/.style={
+        font=\footnotesize\bfseries,
+        text=ink
+    },
+    layernum/.style={
+        font=\scriptsize\bfseries,
+        text=softgray
+    },
+]
+
+% =========================================================================
+% Color definitions (ensure they exist)
+% =========================================================================
+\providecolor{classical}{HTML}{3D6FB6}
+\providecolor{modelnative}{HTML}{D9792B}
+\providecolor{ink}{HTML}{22303C}
+\providecolor{softgray}{HTML}{6E7B87}
+\providecolor{bgline}{HTML}{D8DEE6}
+
+% Layer band colors (consistent with fig_dual_stack)
+\providecolor{c1}{HTML}{234C84}
+\providecolor{c2}{HTML}{2F5F9E}
+\providecolor{c3}{HTML}{3E73B2}
+\providecolor{m4}{HTML}{E38431}
+\providecolor{m5}{HTML}{EE9D50}
+\providecolor{g6}{HTML}{7B8A9E}
+
+% =========================================================================
+% Coordinates
+% =========================================================================
+% Stack center x=0, layers from bottom (L1) to top (L6)
+% y positions: L1=0, L2=1.2, L3=2.4, L4=4.2, L5=5.4, L6=6.6
+% (gap at L3/L4 for dashed line)
+
+% =========================================================================
+% Background: Probabilistic Execution Plane (L1--L3)
+% =========================================================================
+\fill[classical!8, rounded corners=8pt]
+    (-2.8,-0.55) rectangle (2.8,3.15);
+
+% =========================================================================
+% Background: Deterministic Control Plane (L4--L5)
+% =========================================================================
+\fill[modelnative!8, rounded corners=8pt]
+    (-2.8,3.55) rectangle (2.8,6.1);
+
+% =========================================================================
+% Plane labels (small, inside background areas)
+% =========================================================================
+\node[font=\tiny\bfseries, text=classical!60!black, anchor=north west]
+    at (-2.65,3.05) {Probabilistic Execution Plane};
+\node[font=\tiny\bfseries, text=modelnative!60!black, anchor=north west]
+    at (-2.65,6.0) {Deterministic Control Plane};
+
+% =========================================================================
+% ICA Layer Bands (central stack)
+% =========================================================================
+% L1 -- Physical Execution
+\node[layerband, fill=c1] (L1) at (0,0)
+    {\textbf{L1}~~Physical Execution};
+
+% L2 -- Inference Serving
+\node[layerband, fill=c2] (L2) at (0,1.15)
+    {\textbf{L2}~~Inference Serving};
+
+% L3 -- Context Management
+\node[layerband, fill=c3] (L3) at (0,2.3)
+    {\textbf{L3}~~Context Management};
+
+% ---- Dashed boundary at L3/L4 ----
+\draw[dashed, black!40, line width=0.9pt]
+    (-3.5,3.35) -- (3.5,3.35);
+\node[font=\tiny\itshape, text=black!40, anchor=west]
+    at (-3.4,3.35) {L3/L4 interface};
+
+% L4 -- Semantic Interface
+\node[layerband, fill=m4] (L4) at (0,4.1)
+    {\textbf{L4}~~Semantic Interface};
+
+% L5 -- Orchestration
+\node[layerband, fill=m5] (L5) at (0,5.2)
+    {\textbf{L5}~~Orchestration};
+
+% L6 -- Application
+\node[layerband, fill=g6] (L6) at (0,6.3)
+    {\textbf{L6}~~Application};
+
+% =========================================================================
+% Layer number labels (far left)
+% =========================================================================
+\foreach \y/\lab in {0/L1, 1.15/L2, 2.3/L3, 4.1/L4, 5.2/L5, 6.3/L6}{
+    \node[layernum] at (-4.3,\y) {\lab};
+    \draw[bgline, line width=0.4pt] (-4.0,\y) -- (-2.75,\y);
+}
+
+% =========================================================================
+% Vertical stack arrows
+% =========================================================================
+\foreach \a/\b in {L1/L2, L2/L3, L3/L4, L4/L5, L5/L6}{
+    \draw[-{Stealth[length=1.5mm]}, black!25, line width=0.5pt] (\a) -- (\b);
+}
+
+% =========================================================================
+% COLUMN 1 -- Serving Layer (left, x ~ -6.5 to -3.5)
+% =========================================================================
+\node[colhead] at (-5.4,7.3) {Serving Layer};
+
+% L1 systems
+\node[sysbox=classical, text width=2.6cm] (TGI) at (-6.5,0.3)
+    {\textbf{TGI}\\[-1pt]{\tiny Unified multi-model interface}};
+\node[sysbox=classical, text width=2.6cm] (TRT) at (-4.3,0.3)
+    {\textbf{TensorRT-LLM}\\[-1pt]{\tiny FP8, Tensor Core}};
+
+% Annotation: kernel fusion
+\node[annot=classical, text width=2.0cm] (annkf) at (-5.4,-0.65)
+    {kernel fusion};
+\draw[conn=classical] (annkf.north) -- (-5.4,-0.05);
+
+% Connect to L1
+\draw[conn=classical] (TGI.east) -- ([xshift=-4pt]L1.west);
+\draw[conn=classical] (TRT.east) -- ([xshift=-4pt]L1.west);
+
+% L2 systems
+\node[sysbox=classical, text width=2.6cm] (vLLM) at (-6.5,1.45)
+    {\textbf{vLLM}\\[-1pt]{\tiny PagedAttention}};
+\node[sysbox=classical, text width=2.6cm] (SGLang) at (-4.3,1.45)
+    {\textbf{SGLang}\\[-1pt]{\tiny RadixAttention}};
+
+% Connect to L2
+\draw[conn=classical] (vLLM.east) -- ([xshift=-4pt]L2.west);
+\draw[conn=classical] (SGLang.east) -- ([xshift=-4pt]L2.west);
+
+% =========================================================================
+% COLUMN 2 -- Protocol Layer (center-top, x ~ -1.5 to 1.5)
+% =========================================================================
+\node[colhead] at (0,7.3) {Protocol Layer};
+
+% MCP -- vertical bus (spans L4-L5)
+\node[sysbox=modelnative, text width=2.2cm, minimum height=1.6cm] (MCP) at (-1.6,4.65)
+    {\textbf{MCP}\\[2pt]{\tiny JSON-RPC\\tool server bus}};
+
+% MCP annotation
+\node[annot=modelnative, text width=1.6cm] (annmcp) at (-1.6,3.55)
+    {tool discovery};
+\draw[conn=modelnative] (annmcp.north) -- (MCP.south);
+
+% Connect MCP to L4 and L5
+\draw[conn=modelnative] (MCP.west) -- ([xshift=2pt]L4.east);
+\draw[conn=modelnative] ([yshift=4pt]MCP.west) -- ([xshift=2pt]L5.east);
+
+% A2A -- horizontal interconnect (spans L5-L6)
+\node[sysbox=modelnative, text width=2.2cm, minimum height=1.1cm] (A2A) at (1.6,5.7)
+    {\textbf{A2A}\\[2pt]{\tiny agent-to-agent}};
+
+% A2A annotation
+\node[annot=modelnative, text width=1.8cm] (anna2a) at (1.6,6.8)
+    {agent communication};
+\draw[conn=modelnative] (anna2a.south) -- (A2A.north);
+
+% Connect A2A to L5 and L6
+\draw[conn=modelnative] (A2A.west) -- ([xshift=6pt]L5.east);
+\draw[conn=modelnative] ([yshift=-3pt]A2A.west) -- ([xshift=4pt]L6.east);
+
+% =========================================================================
+% COLUMN 3 -- Agent Layer (right, x ~ 4.5 to 8.0)
+% =========================================================================
+\node[colhead] at (6.5,7.3) {Agent Layer};
+
+% L5: Industrial agents
+\node[sysbox=modelnative, text width=1.7cm] (Codex) at (4.7,5.5)
+    {\textbf{Codex}};
+\node[sysbox=modelnative, text width=1.7cm] (Claude) at (6.5,5.5)
+    {\textbf{Claude Code}};
+\node[sysbox=modelnative, text width=1.7cm] (OH) at (8.3,5.5)
+    {\textbf{OpenHands}};
+
+% Connect to L5
+\draw[conn=modelnative] (Codex.west) -- ([xshift=8pt]L5.east);
+\draw[conn=modelnative] (Claude.west) -- ([xshift=12pt]L5.east);
+\draw[conn=modelnative] (OH.west) -- ([xshift=16pt]L5.east);
+
+% L4-L5 spanning: Agent OS
+\node[sysbox=modelnative, text width=3.8cm, minimum height=0.8cm] (ArbOS) at (6.5,4.35)
+    {\textbf{ArbiterOS / AgentOS}\\[-1pt]{\tiny governance $\cdot$ reasoning kernel $\cdot$ sandboxing}};
+
+% Connect ArbiterOS to L4 and L5
+\draw[conn=modelnative] (ArbOS.west) -- ([xshift=10pt]L4.east);
+\draw[conn=modelnative] ([yshift=3pt]ArbOS.west) -- ([xshift=14pt]L5.east);
+
+% =========================================================================
+% RECOMMENDATIONS SIDEBAR (far right)
+% =========================================================================
+\node[font=\footnotesize\bfseries, text=ink, anchor=south] at (13.2,7.3)
+    {Implementation};
+\node[font=\footnotesize\bfseries, text=ink, anchor=north] at (13.2,7.2)
+    {Recommendations};
+
+% Rec 1: Separate control plane from data plane
+\node[recbox] (R1) at (13.2,6.15)
+    {\textbf{R1.} Separate control \& data planes\\[-1pt]{\tiny Codex approvals, Claude Code hooks}};
+
+% Rec 2: Separate short-term context from long-term memory
+\node[recbox] (R2) at (13.2,4.85)
+    {\textbf{R2.} Separate hot context \& cold memory\\[-1pt]{\tiny MemGPT virtual context, L3 tiering}};
+
+% Rec 3: Version every behavior-affecting object
+\node[recbox] (R3) at (13.2,3.55)
+    {\textbf{R3.} Version every behavior object\\[-1pt]{\tiny MCP schemas, tool ABI versioning}};
+
+% Rec 4: Enforce resource quotas
+\node[recbox] (R4) at (13.2,2.25)
+    {\textbf{R4.} Enforce resource quotas\\[-1pt]{\tiny cgroup-style budgets, Axiom 5 \& 6}};
+
+% Rec 5: Design failure recovery
+\node[recbox] (R5) at (13.2,0.95)
+    {\textbf{R5.} Design failure recovery\\[-1pt]{\tiny Checkpoint/retry, distributed DB patterns}};
+
+% =========================================================================
+% Connector lines: Recommendations to specific systems/layers
+% =========================================================================
+% R1 -> L5 (Codex, Claude Code, ArbiterOS)
+\draw[conn=ink, dashed] (R1.west) -- ++(-1.2,0) |- ([xshift=2pt]Claude.east);
+
+% R2 -> L3 (context management)
+\draw[conn=ink, dashed] (R2.west) -- ++(-0.8,0) |- ([xshift=14pt]L3.east);
+
+% R3 -> MCP / L4
+\draw[conn=ink, dashed] (R3.west) -- ++(-1.0,0) |- ([xshift=-2pt]MCP.east);
+
+% R4 -> spans L4-L5
+\draw[conn=ink, dashed] (R4.west) -- ++(-0.8,0) |- ([xshift=18pt]L4.east);
+
+% R5 -> spans L2-L5
+\draw[conn=ink, dashed] (R5.west) -- ++(-0.6,0) |- ([xshift=12pt]L2.east);
+
+% =========================================================================
+% Decorative: vertical brace for recommendations
+% =========================================================================
+\draw[decorate, decoration={brace, amplitude=5pt, mirror},
+      line width=0.7pt, draw=ink!40]
+    (15.3,6.7) -- (15.3,0.45)
+    node[midway, right=8pt, font=\tiny\bfseries, text=ink!60, align=center]
+    {Five\\recs};
+
+% =========================================================================
+% Subtle footnote
+% =========================================================================
+\node[font=\tiny, text=softgray, anchor=west] at (-6.5,-1.1)
+    {Open-source ecosystem mapped to the six-layer ICA architecture; dashed lines connect recommendations to target layers.};
+
+\end{tikzpicture}%
+}
+\caption{Open-source ecosystem mapped to the ICA architecture.  The central stack shows
+  the six ICA layers with dual-plane shading (blue = probabilistic execution plane L1--L3;
+  orange = deterministic control plane L4--L5).  Three annotation columns identify
+  representative systems at the serving, protocol, and agent layers.  The right sidebar
+  connects the five implementation recommendations to the specific layers and systems
+  they target.}
+\label{fig:impl_map}
+\end{figure}

@@ -4,13 +4,23 @@
 {A-MEM Team}.
 \newblock {A-MEM}: Agentic memory for {LLM} agents.
 \newblock {\em arXiv preprint arXiv:2502.12110}, 2025.
-\newblock URL: \url{https://arxiv.org/abs/2502.12110}.
+
+\bibitem{phi3_2024}
+Marah Abdin, Sam Jacobs, Ammar~Ahmed Awan, et~al.
+\newblock {Phi-3} technical report: A highly capable language model locally on
+  your phone.
+\newblock {\em arXiv preprint arXiv:2404.14219}, 2024.
+
+\bibitem{abreu_2025_loihi2_llm}
+Robbie Abreu et~al.
+\newblock Low-power large language model inference on {Intel Loihi 2}
+  neuromorphic hardware.
+\newblock {\em arXiv preprint arXiv:2503.07922}, 2025.
 
 \bibitem{agentprotocols2025}
 {Agent Protocol Survey Authors}.
 \newblock A survey of agent interoperability protocols.
 \newblock {\em arXiv preprint arXiv:2505.02279}, 2025.
-\newblock URL: \url{https://arxiv.org/abs/2505.02279}.
 
 \bibitem{agrawal2024sarathi}
 Anshuman Agrawal, Vivek Kedia, Jayashree Panwar, Aayush Mohanty, Aviral
@@ -19,7 +29,24 @@ Anshuman Agrawal, Vivek Kedia, Jayashree Panwar, Aayush Mohanty, Aviral
   sarathi-serve.
 \newblock In {\em USENIX Symposium on Operating Systems Design and
   Implementation}, 2024.
-\newblock URL: \url{https://arxiv.org/abs/2403.02310}.
+
+\bibitem{airbench_2024}
+{AIR-BENCH Team}.
+\newblock {AIR-BENCH}: {Chinese} {AI} safety benchmark.
+\newblock {\em arXiv preprint arXiv:2402.16269}, 2024.
+
+\bibitem{allen_riken_2025_mouse_fugaku}
+{Allen Institute} and {RIKEN}.
+\newblock Whole mouse cortex simulation on the {Fugaku} supercomputer.
+\newblock Joint research announcement, 2025.
+\newblock Mouse cortex simulation using Fugaku supercomputer.
+
+\bibitem{amdahl_1967}
+Gene~M. Amdahl.
+\newblock Validity of the single processor approach to achieving large scale
+  computing capabilities.
+\newblock In {\em Proceedings of the April 18--20, 1967, Spring Joint Computer
+  Conference (AFIPS)}, pages 483--485, 1967.
 
 \bibitem{anthropic2026agenticreport}
 {Anthropic}.
@@ -33,55 +60,56 @@ Anshuman Agrawal, Vivek Kedia, Jayashree Panwar, Aayush Mohanty, Aviral
 {Anthropic}.
 \newblock Configure the sandboxed bash tool -- claude code docs, 2026.
 \newblock Accessed: 2026-05-29.
-\newblock URL: \url{https://code.claude.com/docs/en/sandboxing}.
 
 \bibitem{anthropic_claudecode_mcp_2026}
 {Anthropic}.
 \newblock Connect claude code to tools via mcp -- claude code docs, 2026.
 \newblock Accessed: 2026-05-29.
-\newblock URL: \url{https://docs.anthropic.com/en/docs/claude-code/mcp}.
 
 \bibitem{anthropic_claudecode_subagents_2026}
 {Anthropic}.
 \newblock Create custom subagents -- claude code docs, 2026.
 \newblock Accessed: 2026-05-29.
-\newblock URL: \url{https://docs.anthropic.com/en/docs/claude-code/sub-agents}.
 
 \bibitem{anthropic_claudecode_skills_2026}
 {Anthropic}.
 \newblock Extend claude with skills -- claude code docs, 2026.
 \newblock Accessed: 2026-05-29.
-\newblock URL: \url{https://docs.anthropic.com/en/docs/claude-code/skills}.
 
 \bibitem{anthropic_claudecode_memory_2026}
 {Anthropic}.
 \newblock How claude remembers your project -- claude code docs, 2026.
 \newblock Accessed: 2026-05-29.
-\newblock URL: \url{https://docs.anthropic.com/en/docs/claude-code/memory}.
 
 \bibitem{anthropic_claudecode_overview_2026}
 {Anthropic}.
 \newblock Overview -- claude code docs, 2026.
 \newblock Accessed: 2026-05-29.
-\newblock URL: \url{https://docs.anthropic.com/en/docs/claude-code/overview}.
 
 \bibitem{anthropic_claudecode_security_2026}
 {Anthropic}.
 \newblock Security -- claude code docs, 2026.
 \newblock Accessed: 2026-05-29.
-\newblock URL: \url{https://docs.anthropic.com/en/docs/claude-code/security}.
+
+\bibitem{apple_m1_2020}
+{Apple}.
+\newblock {Apple M1} chip: An {Apple} silicon breakthrough, 2020.
+\newblock Announced November 2020.
+
+\bibitem{biglittle_arm_2012}
+{ARM}.
+\newblock {big.LITTLE} processing with {ARM} cortex-a15 \& cortex-a7.
+\newblock ARM Whitepaper, 2012.
 
 \bibitem{ostep_2023}
 Remzi~H. Arpaci-Dusseau and Andrea~C. Arpaci-Dusseau.
 \newblock Operating systems: Three easy pieces, 2023.
 \newblock Version 1.10; accessed 2026-05-29.
-\newblock URL: \url{https://pages.cs.wisc.edu/~remzi/OSTEP/}.
 
 \bibitem{autogpt_platform_2026}
 {AutoGPT}.
 \newblock What is the autogpt platform?, 2026.
 \newblock Accessed: 2026-05-29.
-\newblock URL: \url{https://agpt.co/docs/platform}.
 
 \bibitem{longbenchv2_2024}
 Yushi Bai, Shangqing Tu, Jiajie Zhang, Hao Peng, Xiaozhi Wang, Xin Lv, Shulin
@@ -89,14 +117,19 @@ Yushi Bai, Shangqing Tu, Jiajie Zhang, Hao Peng, Xiaozhi Wang, Xin Lv, Shulin
 \newblock Longbench v2: Towards deeper understanding and reasoning on realistic
   long-context multitasks.
 \newblock {\em arXiv preprint arXiv:2412.15204}, 2024.
-\newblock URL: \url{https://arxiv.org/abs/2412.15204}.
+
+\bibitem{blem_2013_microarchitecture}
+Emily Blem, Jaikrishnan Menon, and Karthikeyan Sankaralingam.
+\newblock Which is the better {ISA}: {ARM} or {x86}? a case study using
+  speculative precomputation.
+\newblock In {\em Proceedings of the 40th Annual International Symposium on
+  Computer Architecture (ISCA)}, pages 1--12, 2013.
 
 \bibitem{blueprintfirst2025}
 {Blueprint Framework Authors}.
 \newblock Blueprint first, model second: A framework for deterministic {LLM}
   applications.
 \newblock {\em arXiv preprint arXiv:2508.02721}, 2025.
-\newblock URL: \url{https://arxiv.org/html/2508.02721v1}.
 
 \bibitem{brown2020gpt3}
 Tom~B. Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared Kaplan,
@@ -105,7 +138,6 @@ Tom~B. Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared Kaplan,
 \newblock Language models are few-shot learners.
 \newblock {\em Advances in Neural Information Processing Systems},
   33:1877--1901, 2020.
-\newblock URL: \url{https://arxiv.org/abs/2005.14165}.
 
 \bibitem{ioa2024}
 Weize Chen, Ziming You, Ran Li, Yitong Guan, Chen Qian, Chenyang Zhao, Cheng
@@ -113,28 +145,54 @@ Weize Chen, Ziming You, Ran Li, Yitong Guan, Chen Qian, Chenyang Zhao, Cheng
 \newblock Internet of agents: Weaving a web of heterogeneous agents for
   collaborative intelligence.
 \newblock {\em arXiv preprint arXiv:2407.07061}, 2024.
-\newblock URL: \url{https://arxiv.org/abs/2407.07061}.
+
+\bibitem{ceibs2025aiagents}
+{China Europe International Business School (CEIBS)}.
+\newblock {AI} industry landscape report 2025.
+\newblock Industry Report, 2025.
+\newblock Analysis of AI industry structure, agent market competition and
+  ecosystem dynamics.
 
 \bibitem{agenticsecurity2025}
 Mihai Christodorescu, Earlence Fernandes, Ashish Hooda, Somesh Jha, and Johann
   Rehberger.
 \newblock Systems security foundations for agentic computing.
 \newblock {\em arXiv preprint arXiv:2512.01295}, 2025.
-\newblock URL: \url{https://arxiv.org/abs/2512.01295}.
 
 \bibitem{gdpr_righttoforget}
 {Cloud Security Alliance}.
 \newblock The right to be forgotten vs. {AI}'s infinite memory.
-\newblock 2025.
+\newblock {\em Cloud Security Alliance Blog}, 2025.
 \newblock Accessed: 2026-05-29.
-\newblock URL:
-  \url{https://cloudsecurityalliance.org/blog/2025/04/11/the-right-to-be-forgotten-but-can-ai-forget}.
 
 \bibitem{devin2024cognition}
 {Cognition AI}.
 \newblock Devin: The first autonomous {AI} software engineer, 2024.
 \newblock Announced March 2024; accessed 2026-05-29.
-\newblock URL: \url{https://devin.ai/}.
+
+\bibitem{cognition_2025_multiagent}
+{Cognition AI}.
+\newblock Devin: Autonomous {AI} software engineer -- multi-agent architecture,
+  2025.
+\newblock Multi-agent coding system; accessed 2026-05-29.
+
+\bibitem{ccia2025competition}
+{Computer \& Communications Industry Association (CCIA)}.
+\newblock Intense competition across the {AI} stack.
+\newblock Policy Analysis, 2025.
+\newblock Analysis of competition dynamics across the AI technology stack.
+
+\bibitem{corbato_1962_ctss}
+Fernando~J. Corbat{\'o}, Marjorie Merwin-Daggett, and Robert~C. Daley.
+\newblock An experimental time-sharing system.
+\newblock In {\em Proceedings of the May 1--3, 1962, Spring Joint Computer
+  Conference (AFIPS)}, pages 335--344, 1962.
+
+\bibitem{corbato_1965_multics}
+Fernando~J. Corbat{\'o} and Victor~A. Vyssotsky.
+\newblock Introduction and overview of the {Multics} system.
+\newblock {\em Proceedings of the Fall Joint Computer Conference (AFIPS)},
+  pages 185--196, 1965.
 
 \bibitem{spanner2012}
 James~C. Corbett, Jeffrey Dean, Michael Epstein, Andrew Fikes, Christopher
@@ -143,21 +201,27 @@ James~C. Corbett, Jeffrey Dean, Michael Epstein, Andrew Fikes, Christopher
 \newblock Spanner: Google's globally-distributed database.
 \newblock In {\em USENIX Symposium on Operating Systems Design and
   Implementation}, 2012.
-\newblock URL:
-  \url{https://research.google/pubs/spanner-googles-globally-distributed-database-2/}.
+
+\bibitem{cortical_2025_cl1}
+{Cortical Labs}.
+\newblock {CL1}: The first biological computer, 2025.
+\newblock Commercial biological computing system; accessed 2026-05-29.
+
+\bibitem{corvex2026secureweights}
+{Corvex}.
+\newblock Secure weight deployment: Protecting {AI} model integrity at runtime.
+\newblock Technical Whitepaper, 2026.
+\newblock Secure weight deployment solution.
 
 \bibitem{xv6_2022}
 Russ Cox, Frans Kaashoek, and Robert Morris.
 \newblock xv6: a simple, unix-like teaching operating system, 2022.
-\newblock URL:
-  \url{https://pdos.csail.mit.edu/6.828/2023/xv6/book-riscv-rev3.pdf}.
 
 \bibitem{dao2023flashattention2}
 Tri Dao.
 \newblock Flashattention-2: Faster attention with better parallelism and work
   partitioning.
 \newblock {\em arXiv preprint arXiv:2307.08691}, 2023.
-\newblock URL: \url{https://openreview.net/forum?id=mZn2Xyh9Ec}.
 
 \bibitem{dao2022flashattention}
 Tri Dao, Daniel~Y. Fu, Stefano Ermon, Atri Rudra, and Christopher R{\'e}.
@@ -165,139 +229,204 @@ Tri Dao, Daniel~Y. Fu, Stefano Ermon, Atri Rudra, and Christopher R{\'e}.
   io-awareness.
 \newblock {\em Advances in Neural Information Processing Systems},
   35:16344--16359, 2022.
-\newblock URL: \url{https://openreview.net/forum?id=H4DqfPSibmx}.
 
 \bibitem{debenedetti2025camel}
 Edoardo Debenedetti et~al.
 \newblock Defeating prompt injections by design.
 \newblock {\em arXiv preprint arXiv:2503.18813}, 2025.
-\newblock URL: \url{https://arxiv.org/abs/2503.18813}.
+
+\bibitem{deepseek_2024_moe}
+{DeepSeek-AI}.
+\newblock {DeepSeekMoE}: Towards ultimate expert specialization in
+  mixture-of-experts language models.
+\newblock {\em arXiv preprint arXiv:2401.06066}, 2024.
+
+\bibitem{dennard_1974}
+Robert~H. Dennard, Fritz~H. Gaensslen, Hwa-Nien Yu, V.~Leo Rideout, Ernest
+  Bassous, and Andre~R. LeBlanc.
+\newblock Design of ion-implanted {MOSFET}'s with very small physical
+  dimensions.
+\newblock {\em IEEE Journal of Solid-State Circuits}, 9(5):256--268, 1974.
 
 \bibitem{denning1968thrashing}
 Peter~J. Denning.
 \newblock Thrashing: Its causes and prevention.
-\newblock pages 915--922, 1968.
-\newblock URL: \url{https://dl.acm.org/doi/10.1145/1476589.1476705}.
+\newblock In {\em Proceedings of the AFIPS Fall Joint Computer Conference},
+  pages 915--922, 1968.
 
 \bibitem{denning2020workingset}
 Peter~J. Denning and Ted~G. Lewis.
 \newblock Working set analytics.
 \newblock {\em ACM Computing Surveys}, 52(3):1--33, 2020.
-\newblock URL: \url{https://dl.acm.org/doi/abs/10.1145/3399709}, \href
-  {https://doi.org/10.1145/3399709} {\path{doi:10.1145/3399709}}.
 
 \bibitem{mcpadoption2026}
 {Digital Applied}.
 \newblock Mcp adoption statistics 2026: Model context protocol, 2026.
 \newblock Accessed: 2026-05-29.
-\newblock URL:
-  \url{https://www.digitalapplied.com/blog/mcp-adoption-statistics-2026-model-context-protocol}.
 
 \bibitem{longrope2024}
 Yiran Ding, Li~Lyna Zhang, Chengruidong Zhang, Yuanyuan Xu, Ning Shang, Jiahang
   Xu, Fan Yang, and Mao Yang.
 \newblock Longrope: Extending llm context window beyond 2 million tokens.
 \newblock {\em International Conference on Machine Learning}, 2024.
-\newblock URL: \url{https://arxiv.org/abs/2402.13753}.
 
 \bibitem{drepper2007memory}
 Ulrich Drepper.
 \newblock What every programmer should know about memory.
 \newblock {\em Red Hat, Inc.}, 2007.
-\newblock URL:
-  \url{https://people.freebsd.org/~lstewart/articles/cpumemory.pdf}.
+
+\bibitem{eetimes2025asic}
+{EE Times}.
+\newblock The {ASIC} market and {ARM} {IP} licensing: How the chip industry
+  evolved.
+\newblock Industry Report, 2025.
+\newblock Analysis of ASIC market structure and ARM IP model.
+
+\bibitem{eon_systems_2025_virtual_fly}
+{Eon Systems}.
+\newblock Virtual fly simulation: Whole-brain emulation of the drosophila
+  nervous system, 2025.
+\newblock Virtual fly brain simulation project; accessed 2026-05-29.
+
+\bibitem{esmaeilzadeh_2011}
+Hadi Esmaeilzadeh, Emily Blem, Reny St.~Amant, Karthikeyan Ranganathan, and
+  Doug Burger.
+\newblock Dark silicon and the end of multicore scaling.
+\newblock In {\em Proceedings of the 38th Annual International Symposium on
+  Computer Architecture (ISCA)}, pages 365--376, 2011.
 
 \bibitem{euaiact2026}
 {European Commission}.
 \newblock Eu artificial intelligence act: Official developments and compliance,
   2026.
 \newblock Accessed: 2026-05-29.
-\newblock URL: \url{https://artificialintelligenceact.eu/}.
+
+\bibitem{benevans2025fullstack}
+Benedict Evans.
+\newblock Two ways to read the {AI} stack: Disaggregated vs.\ concentrated.
+\newblock Industry Analysis, LinkedIn, 2025.
+\newblock Analysis of AI industry structure: vertical integration vs.\
+  disaggregation.
 
 \bibitem{switch2022}
 William Fedus, Barret Zoph, and Noam Shazeer.
 \newblock Switch transformers: Scaling to trillion parameter models with simple
   and efficient sparsity.
 \newblock {\em Journal of Machine Learning Research}, 23(120):1--39, 2022.
-\newblock URL: \url{https://arxiv.org/abs/2101.03961}.
+
+\bibitem{flywire_2024}
+{FlyWire Consortium}.
+\newblock Neuronal wiring diagram of an adult brain.
+\newblock {\em Nature}, 634:124--138, 2024.
+
+\bibitem{fodor_2025_benchmarks}
+Andras Fodor et~al.
+\newblock The line goes up: Evaluating {LLM} benchmarks and their claims.
+\newblock {\em arXiv preprint arXiv:2502.12745}, 2025.
+
+\bibitem{spinnaker2_2024}
+Steve Furber, Francesco Galluppi, Steve Temple, and Luis~A. Plana.
+\newblock {SpiNNaker2}: A large-scale neuromorphic system for event-based and
+  asynchronous computing.
+\newblock {\em arXiv preprint arXiv:2305.14575}, 2024.
+
+\bibitem{gartner2026spending}
+{Gartner}.
+\newblock Forecast: {AI} spending worldwide, 2024--2028.
+\newblock Gartner Research, 2026.
+\newblock Worldwide AI spending forecast.
+
+\bibitem{gartner2026trends}
+{Gartner}.
+\newblock Top strategic technology trends 2026: {AI} and beyond.
+\newblock Gartner Research, 2026.
+\newblock Prediction on AI technology trends.
 
 \bibitem{ge2023llmos}
 Yiran Ge et~al.
 \newblock {LLM} as {OS}, agents as apps: Envisioning {AIOS} 1.0.
 \newblock {\em arXiv preprint arXiv:2312.03815}, 2023.
-\newblock URL: \url{https://arxiv.org/abs/2312.03815}.
+
+\bibitem{generativevalue2024semiconductor}
+{Generative Value}.
+\newblock The semiconductor industry: Vertical integration vs. disaggregation.
+\newblock Industry Analysis, 2024.
+\newblock Analysis of semiconductor value chain.
 
 \bibitem{gholami2024memorywall}
 Amir Gholami, Zhewei Yao, Sehoon Kim, Coleman Hooper, Michael~W. Mahoney, and
   Kurt Keutzer.
 \newblock Ai and the memory wall.
 \newblock {\em IEEE Micro}, 2024.
-\newblock URL: \url{https://arxiv.org/abs/2403.14123}, \href
-  {https://doi.org/10.1109/MM.2024.3407446}
-  {\path{doi:10.1109/MM.2024.3407446}}.
 
 \bibitem{cap2002}
 Seth Gilbert and Nancy Lynch.
 \newblock Brewer's conjecture and the feasibility of consistent, available,
   partition-tolerant web services.
 \newblock {\em SIGACT News}, 33(2):51--59, 2002.
-\newblock URL:
-  \url{https://users.ece.cmu.edu/~adrian/731-sp04/readings/GL-cap.pdf}, \href
-  {https://doi.org/10.1145/564585.564601} {\path{doi:10.1145/564585.564601}}.
 
 \bibitem{gim2024promptcache}
 I.~Gim et~al.
 \newblock Prompt cache: Modular attention reuse for low-latency inference.
 \newblock In {\em MLSys}, 2024.
-\newblock URL: \url{https://arxiv.org/abs/2311.04934}.
 
 \bibitem{google_a2a_2025}
 {Google}.
 \newblock {A2A}: Agent-to-agent protocol, 2025.
 \newblock Accessed: 2026-05-29.
-\newblock URL: \url{https://github.com/google/A2A}.
 
 \bibitem{a2alinux2025}
 {Google Cloud}.
 \newblock Google donates agent2agent (a2a) protocol to the linux foundation,
   2025.
 \newblock Accessed: 2026-05-29.
-\newblock URL:
-  \url{https://cloud.google.com/blog/products/ai-machine-learning/agent2agent-protocol-is-getting-an-upgrade}.
 
 \bibitem{gemini2024}
 {Google DeepMind}.
 \newblock Gemini 1.5: Unlocking multimodal understanding across millions of
   tokens.
 \newblock {\em arXiv preprint arXiv:2403.05530}, 2024.
-\newblock URL: \url{https://arxiv.org/abs/2403.05530}.
 
 \bibitem{gu2024mamba}
 Albert Gu and Tri Dao.
 \newblock Mamba: Linear-time sequence modeling with selective state spaces.
 \newblock In {\em International Conference on Machine Learning}, 2024.
-\newblock URL: \url{https://arxiv.org/abs/2312.00752}.
+
+\bibitem{guo_2024_quantum_transformer}
+Xin Guo et~al.
+\newblock Quantum transformer: A survey.
+\newblock {\em arXiv preprint arXiv:2408.11066}, 2024.
+
+\bibitem{hartung_2023_oi}
+Thomas Hartung, Lena~Smirnova Doshi, Giada Zandomeneghi, Anil Sharma, Lena
+  Smirnova, Mei Huang, Kai Huang, Peter Taga, Yijing Zhao, Fanny Hartung,
+  et~al.
+\newblock Organoid intelligence ({OI}): The new frontier in biocomputing and
+  intelligence-in-a-dish.
+\newblock {\em Frontiers in Science}, 10, 2023.
 
 \bibitem{hennessy2017quantitative}
 John~L. Hennessy and David~A. Patterson.
 \newblock {\em Computer Architecture: A Quantitative Approach}.
 \newblock Morgan Kaufmann, 6 edition, 2017.
-\newblock URL:
-  \url{https://books.google.com/books/about/Computer_Architecture.html?id=cM8mDwAAQBAJ}.
+
+\bibitem{hennessy_patterson_2019}
+John~L. Hennessy and David~A. Patterson.
+\newblock A new golden age for computer architecture.
+\newblock {\em Communications of the ACM}, 62(2):48--60, 2019.
+\newblock Turing Lecture.
 
 \bibitem{hiagent2024}
 {HiAgent Team}.
 \newblock {HiAgent}: Hierarchical working memory management for solving
   long-horizon agent tasks.
 \newblock {\em arXiv preprint arXiv:2408.09559}, 2024.
-\newblock URL: \url{https://arxiv.org/abs/2408.09559}.
 
 \bibitem{holt2024l2mac}
 Samuel Holt, Aman Chaudhry, Max Schroeder, Hao Zheng, Nils Mayclin, et~al.
 \newblock {L2MAC}: Large language model automatic computer for extensive code
   generation.
 \newblock In {\em International Conference on Learning Representations}, 2024.
-\newblock URL: \url{https://openreview.net/forum?id=EhrzQwsV4K}.
 
 \bibitem{metagpt2023}
 Sirui Hong, Mingchen Zhuge, Jonathan Chen, Xiawu Zheng, Yuheng Cheng, Ceyao
@@ -306,14 +435,12 @@ Sirui Hong, Mingchen Zhuge, Jonathan Chen, Xiawu Zheng, Yuheng Cheng, Ceyao
 \newblock {MetaGPT}: Meta programming for a multi-agent collaborative
   framework.
 \newblock {\em International Conference on Learning Representations}, 2023.
-\newblock URL: \url{https://arxiv.org/abs/2308.00352}.
 
 \bibitem{hooper2024kvquant}
 Coleman Hooper, Sehoon Kim, others, and Michael~W. Mahoney.
 \newblock {KVQuant}: Towards 10 million context length {LLM} inference with
   {KV} cache quantization.
 \newblock In {\em Advances in Neural Information Processing Systems}, 2024.
-\newblock URL: \url{https://arxiv.org/abs/2401.18079}.
 
 \bibitem{ruler2024}
 Cheng-Ping Hsieh, Simeng Sun, Samuel Kriman, Shantanu Acharya, Dima Rekesh, Fei
@@ -321,28 +448,50 @@ Cheng-Ping Hsieh, Simeng Sun, Samuel Kriman, Shantanu Acharya, Dima Rekesh, Fei
 \newblock {RULER}: What's the real context size of your long-context language
   models?
 \newblock {\em arXiv preprint arXiv:2404.06654}, 2024.
-\newblock URL: \url{https://arxiv.org/abs/2404.06654}.
 
 \bibitem{tgi_docs_2026}
 {Hugging Face}.
 \newblock Text generation inference documentation, 2026.
 \newblock Accessed: 2026-05-29.
-\newblock URL:
-  \url{https://huggingface.co/docs/text-generation-inference/index}.
+
+\bibitem{industryanalysis2026aivaluechain}
+{Industry Analysts}.
+\newblock {AI} value chain disaggregation: From chips to applications.
+\newblock Industry Report, 2026.
+\newblock Analysis of AI value chain disaggregation trends.
+
+\bibitem{intel_thread_director_2021}
+{Intel}.
+\newblock Intel thread director: Heterogeneous multi-thread scheduling.
+\newblock Intel Developer Blog, 2021.
+\newblock Introduced with Alder Lake architecture.
+
+\bibitem{saez_2022_thread_director}
+{Intel}.
+\newblock Intel thread director technology.
+\newblock Intel Developer Documentation, 2022.
+\newblock Related to 12th Gen Alder Lake heterogeneous scheduling.
+
+\bibitem{hala_point_2024}
+{Intel}.
+\newblock {Hala Point}: An {Intel} neuromorphic research system.
+\newblock Intel Labs, 2024.
+\newblock Announced April 2024.
 
 \bibitem{intel_sdm_2026}
 {Intel}.
 \newblock Intel 64 and ia-32 architectures software developer's manual, 2026.
 \newblock Accessed: 2026-05-29.
-\newblock URL:
-  \url{https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html}.
+
+\bibitem{investingcom2026tokenpricing}
+{Investing.com}.
+\newblock {AI} {API} token pricing comparison, 2026.
+\newblock Token pricing data for major LLM providers.
 
 \bibitem{jetbrains2025context}
 {JetBrains Research}.
 \newblock Efficient context management for {LLM} coding agents, 2025.
 \newblock Accessed: 2026-05-29.
-\newblock URL:
-  \url{https://blog.jetbrains.com/research/2025/12/efficient-context-management/}.
 
 \bibitem{mixtral2024}
 Albert~Q. Jiang, Alexandre Sablayrolles, Antoine Roux, Arthur Mensch, Blanche
@@ -350,27 +499,43 @@ Albert~Q. Jiang, Alexandre Sablayrolles, Antoine Roux, Arthur Mensch, Blanche
   Bou~Hanna, Florian Bressand, et~al.
 \newblock Mixtral of experts.
 \newblock {\em arXiv preprint arXiv:2401.04088}, 2024.
-\newblock URL: \url{https://arxiv.org/abs/2401.04088}.
 
 \bibitem{swebench2023}
 Carlos~E. Jimenez, John Yang, Alexander Wettig, Shunyu Yao, Kexin Pei, Ofir
   Press, and Karthik Narasimhan.
 \newblock {SWE}-bench: Can language models resolve real-world github issues?
 \newblock {\em arXiv preprint arXiv:2310.06770}, 2023.
-\newblock URL: \url{https://arxiv.org/abs/2310.06770}.
+
+\bibitem{kagan_2022_pong_bioneurons}
+Brett~J. Kagan, Adele~C. Kitchen, Nhi~T. Tran, Forough Habib, Srivas Chennu,
+  Lachlan Ransom, Csaba Forró, et~al.
+\newblock In vitro neurons learn and exhibit sentience when embodied in a
+  simulated game-world.
+\newblock {\em Neuron}, 110(23):3952--3969, 2022.
 
 \bibitem{memoryos2025}
 Jiazheng Kang, Mingming Ji, Zhe Zhao, and Ting Bai.
 \newblock {MemoryOS}: Memory operating system of {AI} agent.
 \newblock In {\em Proceedings of EMNLP 2025}, 2025.
-\newblock URL: \url{https://aclanthology.org/2025.emnlp-main.1318}.
 
 \bibitem{karpathy2023llmos}
 Andrej Karpathy.
 \newblock {LLMs} are not chatbots, they are the kernel process of a new
   operating system.
 \newblock Social media post, 2023.
-\newblock URL: \url{https://x.com/karpathy/status/1707437820045062561}.
+
+\bibitem{khatri_2024_quixer}
+Sumeet Khatri, Ryan LaRose, Weiyuan He, et~al.
+\newblock {Quixer}: A quantum transformer model.
+\newblock {\em arXiv preprint arXiv:2406.04305}, 2024.
+\newblock Quantinuum.
+
+\bibitem{kumar_2003_singleISA}
+Rakesh Kumar, Keith~I. Farkas, Norman~P. Jouppi, and Dean~M. Tullsen.
+\newblock Single-{ISA} heterogeneous multi-core architectures: The potential
+  for processor power reduction.
+\newblock In {\em Proceedings of the 36th Annual IEEE/ACM International
+  Symposium on Microarchitecture (MICRO-36)}, pages 81--92, 2003.
 
 \bibitem{kwon2023pagedattention}
 Woosuk Kwon, Zhuohan Li, Siyuan Zhuang, Ying Sheng, Lianmin Zheng, Cody~Hao Yu,
@@ -379,9 +544,6 @@ Woosuk Kwon, Zhuohan Li, Siyuan Zhuang, Ying Sheng, Lianmin Zheng, Cody~Hao Yu,
   pagedattention.
 \newblock {\em Proceedings of the ACM SIGOPS 30th Symposium on Operating
   Systems Principles}, 2023.
-\newblock URL: \url{https://arxiv.org/abs/2309.06180}, \href
-  {https://doi.org/10.1145/3600006.3613165}
-  {\path{doi:10.1145/3600006.3613165}}.
 
 \bibitem{loft2024}
 Jinhyuk Lee, Anthony Chen, Zhuyun Dai, Dheeru Dua, Devendra~Singh Sachan,
@@ -390,21 +552,23 @@ Jinhyuk Lee, Anthony Chen, Zhuyun Dai, Dheeru Dua, Devendra~Singh Sachan,
 \newblock Can long-context language models subsume retrieval, {RAG}, {SQL}, and
   more?
 \newblock {\em arXiv preprint arXiv:2406.13121}, 2024.
-\newblock URL: \url{https://arxiv.org/abs/2406.13121}.
+
+\bibitem{leroux_2025_cim}
+Felix Leroux et~al.
+\newblock Analog compute-in-memory acceleration for large language model
+  attention.
+\newblock {\em arXiv preprint arXiv:2503.06873}, 2025.
 
 \bibitem{letta_stateful_2026}
 {Letta}.
 \newblock Introduction to stateful agents -- letta docs, 2026.
 \newblock Accessed: 2026-05-29.
-\newblock URL:
-  \url{https://docs.letta.com/guides/core-concepts/stateful-agents/}.
 
 \bibitem{leviathan2023speculative}
 Yaniv Leviathan, Matan Kalman, and Yossi Matias.
 \newblock Fast inference from transformers via speculative decoding.
 \newblock {\em Proceedings of the 40th International Conference on Machine
   Learning}, 202:19274--19286, 2023.
-\newblock URL: \url{https://arxiv.org/abs/2211.17192}.
 
 \bibitem{lewis2020rag}
 Patrick Lewis, Ethan Perez, Aleksandra Piktus, Fabio Petroni, Vladimir
@@ -413,14 +577,12 @@ Patrick Lewis, Ethan Perez, Aleksandra Piktus, Fabio Petroni, Vladimir
 \newblock Retrieval-augmented generation for knowledge-intensive {NLP} tasks.
 \newblock {\em Advances in Neural Information Processing Systems},
   33:9459--9474, 2020.
-\newblock URL: \url{https://arxiv.org/abs/2005.11401}.
 
 \bibitem{agentos2025}
 ChengYou Li, XiaoDong Liu, XiangBao Meng, and XinYu Zhao.
 \newblock Architecting {AgentOS}: From token-level context to emergent
   system-level intelligence.
 \newblock {\em arXiv preprint arXiv:2602.20934}, 2026.
-\newblock URL: \url{https://arxiv.org/abs/2602.20934}.
 
 \bibitem{likvcache2024survey}
 Haoyang Li, Yuxuan Li, Qiantong Zhang, Xin Cui, Yanyue Wang, Liang Ding,
@@ -428,39 +590,58 @@ Haoyang Li, Yuxuan Li, Qiantong Zhang, Xin Cui, Yanyue Wang, Liang Ding,
 \newblock A survey on large language model acceleration based on {KV} cache
   management.
 \newblock {\em arXiv preprint arXiv:2412.19442}, 2024.
-\newblock URL: \url{https://arxiv.org/abs/2412.19442}.
+
+\bibitem{li_2024_eagle}
+Yuhui Li, Fei Wei, Tianyi Cui, et~al.
+\newblock {EAGLE}: Speculative sampling requires rethinking feature
+  uncertainty.
+\newblock In {\em Proceedings of the 41st International Conference on Machine
+  Learning (ICML)}, 2024.
 
 \bibitem{memos2025}
 Zhiyu Li, Chenyang Xi, Chunyu Li, Ding Chen, Boyu Chen, Shichao Song, Simin
   Niu, Hanyu Wang, et~al.
 \newblock {MemOS}: A memory {OS} for {AI} system.
 \newblock {\em arXiv preprint arXiv:2507.03724}, 2025.
-\newblock URL: \url{https://arxiv.org/abs/2507.03724}.
+
+\bibitem{licendi2024mslicensing}
+{Licendi}.
+\newblock The history of {Microsoft} {OEM} licensing and its impact on the {PC}
+  industry.
+\newblock Industry Analysis, 2024.
+\newblock Microsoft OEM licensing history.
+
+\bibitem{eas_linux_2019}
+{Linux Kernel Documentation}.
+\newblock Energy aware scheduling, 2019.
+\newblock Accessed: 2026-05-29.
 
 \bibitem{linux_cfs_2026}
 {Linux Kernel Documentation}.
 \newblock Cfs scheduler, 2026.
 \newblock Accessed: 2026-05-29.
-\newblock URL: \url{https://docs.kernel.org/scheduler/sched-design-CFS.html}.
 
 \bibitem{linux_cgroup_2026}
 {Linux Kernel Documentation}.
 \newblock Control group v2, 2026.
 \newblock Accessed: 2026-05-29.
-\newblock URL: \url{https://docs.kernel.org/admin-guide/cgroup-v2.html}.
 
 \bibitem{liu2024ringattention}
 Hao Liu, Matei Zaharia, and Pieter Abbeel.
 \newblock Ring attention with blockwise transformers for near-infinite context.
 \newblock In {\em International Conference on Learning Representations}, 2024.
-\newblock URL: \url{https://arxiv.org/abs/2310.01889}.
+
+\bibitem{liu_2025_claude_code}
+Jialun Liu et~al.
+\newblock {Claude Code}: Multi-model routing and agentic coding at anthropic.
+\newblock {\em arXiv preprint arXiv:2604.14228}, 2025.
+\newblock Analysis of Claude Code system architecture.
 
 \bibitem{dive_claudecode_2026}
 Jialun Liu, Yifan Shen, et~al.
 \newblock Dive into {Claude Code}: The design space of today's and future {AI}
   agent systems.
 \newblock {\em arXiv preprint arXiv:2604.14228}, 2026.
-\newblock URL: \url{https://arxiv.org/abs/2604.14228}.
 
 \bibitem{liu2023lostmiddle}
 Nelson~F. Liu, Kevin Lin, John Hewitt, Ashwin Parrish, Andriana Like, Omer
@@ -468,162 +649,170 @@ Nelson~F. Liu, Kevin Lin, John Hewitt, Ashwin Parrish, Andriana Like, Omer
 \newblock Lost in the middle: How language models use long contexts.
 \newblock {\em Transactions of the Association for Computational Linguistics},
   12:157--173, 2024.
-\newblock URL: \url{https://arxiv.org/abs/2307.03172}, \href
-  {https://doi.org/10.1162/tacl_a_00638} {\path{doi:10.1162/tacl_a_00638}}.
 
 \bibitem{liu2024kivi}
 Zirui Liu, Jiayi Yuan, Hongye Jin, Shaochen Zhong, Zhaozhuo Xu, Vladimir
   Braverman, et~al.
 \newblock {KIVI}: A tuning-free asymmetric 2bit quantization for {KV} cache.
 \newblock In {\em International Conference on Machine Learning}, 2024.
-\newblock URL: \url{https://arxiv.org/abs/2402.02750}.
 
 \bibitem{lpc2025}
 {LPC Team}.
 \newblock Learned prefix caching for efficient {LLM} inference.
 \newblock {\em Advances in Neural Information Processing Systems}, 2025.
 \newblock NeurIPS 2025 poster.
-\newblock URL: \url{https://neurips.cc/virtual/2025/poster/117662}.
 
 \bibitem{malekar2024amdahlllm}
 Jinendra Malekar and Ramtin Zand.
 \newblock Amdahl's law for {LLM}s: A throughput-centric analysis of extreme
   {LLM} quantization.
 \newblock {\em Transactions on Machine Learning Research}, 2025.
-\newblock URL: \url{https://openreview.net/forum?id=JtrQJJQYpP}.
+
+\bibitem{harmbench_2024}
+Mantas Mazeika, Long Phan, Xuwang Yin, Andy Zou, Zifan Wang, Norman Mu, Elmar
+  Sukhija, Yide Li, David Forsyth, Bo~Li, Hamed Song, Poyan
+  Yoosefzadeh-Tabrizi, Chiyuan Song, and Dan Hendrycks.
+\newblock {HarmBench}: A standardized evaluation framework for automated red
+  teaming.
+\newblock In {\em Proceedings of the 41st International Conference on Machine
+  Learning (ICML)}, 2024.
+
+\bibitem{mckinsey2025aisurvey}
+{McKinsey \& Company}.
+\newblock The state of {AI} in 2025: {McKinsey} global survey on {AI}.
+\newblock McKinsey Global Institute, 2025.
+\newblock Annual AI adoption survey.
 
 \bibitem{mei2024aios}
 Kai Mei, Wentao Zhang, Jiaying Xu, Wei Hua, Ming Jin, Zhi Li, Siyu Xu, Rui Ye,
   Yonghua Ge, and Yongfeng Zhang.
 \newblock {AIOS}: {LLM} agent operating system.
 \newblock {\em arXiv preprint arXiv:2403.16971}, 2024.
-\newblock URL: \url{https://arxiv.org/abs/2403.16971}.
 
 \bibitem{contextengineer_survey2025}
 Lingrui Mei, Jiayu Yao, Yuyao Ge, Yiwei Wang, Baolong Bi, Yujun Cai, Jiazhi
   Liu, Mingyu Li, et~al.
 \newblock A survey of context engineering for large language models.
 \newblock {\em arXiv preprint arXiv:2507.13334}, 2025.
-\newblock URL: \url{https://arxiv.org/abs/2507.13334}.
 
 \bibitem{agentmemorysurvey2025}
 {Memory Survey Authors}.
 \newblock Memory for autonomous {LLM} agents: Mechanisms, evaluation, and
   design space.
 \newblock {\em arXiv preprint arXiv:2603.07670}, 2025.
-\newblock URL: \url{https://arxiv.org/abs/2603.07670}.
+
+\bibitem{llama32_2024}
+{Meta}.
+\newblock {Llama 3.2}: Open models for edge and cloud, 2024.
+\newblock Released September 2024; accessed 2026-05-29.
 
 \bibitem{mi2025llmagentscomputersystems}
 Yapeng Mi, Zhi Gao, Xiaojian Ma, and Qing Li.
 \newblock Building {LLM} agents by incorporating insights from computer
   systems.
 \newblock {\em arXiv preprint arXiv:2504.04485}, 2025.
-\newblock URL: \url{https://arxiv.org/abs/2504.04485}.
 
 \bibitem{gaia2023}
 Gr{\'e}goire Mialon, Cl{\'e}mentine Fourrier, Cody Swift, Thomas Wolf, Yann
   LeCun, and Thomas Scialom.
 \newblock {GAIA}: A benchmark for general {AI} assistants.
 \newblock {\em arXiv preprint arXiv:2311.12983}, 2023.
-\newblock URL: \url{https://arxiv.org/abs/2311.12983}.
+
+\bibitem{microchipusa2024amdhistory}
+{Microchip USA}.
+\newblock {AMD} and the {x86} competition: A history of challenger
+  architectures.
+\newblock Industry History, 2024.
+\newblock History of AMD and x86 competition.
 
 \bibitem{mcp_intro_2026}
 {Model Context Protocol}.
 \newblock Model context protocol documentation -- introduction, 2026.
 \newblock Accessed: 2026-05-29.
-\newblock URL:
-  \url{https://modelcontextprotocol.io/docs/getting-started/intro}.
+
+\bibitem{moore_1965}
+Gordon~E. Moore.
+\newblock Cramming more components onto integrated circuits.
+\newblock {\em Electronics}, 38(8):114--117, 1965.
 
 \bibitem{multilevelcache2025}
 {Multi-Level Cache Team}.
 \newblock A multi-level architecture to reduce tool execution overhead in
   {LLM}-based agents.
 \newblock {\em MDPI Big Data and Cognitive Computing}, 8(2):30, 2025.
-\newblock URL: \url{https://www.mdpi.com/2504-4990/8/2/30}.
 
 \bibitem{navaie2025privacy}
 Keivan Navaie.
 \newblock From rights to runtime: Privacy engineering for agentic {AI}.
 \newblock {\em AI Magazine (Wiley)}, 46(4), 2025.
-\newblock URL:
-  \url{https://onlinelibrary.wiley.com/doi/full/10.1002/aaai.70036}, \href
-  {https://doi.org/10.1002/aaai.70036} {\path{doi:10.1002/aaai.70036}}.
+
+\bibitem{rand2024weightplaybook}
+Sella Nevo et~al.
+\newblock Securing {AI} model weights: Preventing theft and misuse of frontier
+  models.
+\newblock Research Report RRA2849-1, RAND Corporation, 2024.
+\newblock Identifies 38 security measures as a playbook for frontier AI labs.
 
 \bibitem{tensorrtllm_docs_2026}
 {NVIDIA}.
 \newblock Tensorrt-llm documentation, 2026.
 \newblock Accessed: 2026-05-29.
-\newblock URL: \url{https://nvidia.github.io/TensorRT-LLM/}.
 
 \bibitem{raft2014}
 Diego Ongaro and John Ousterhout.
 \newblock In search of an understandable consensus algorithm.
 \newblock In {\em USENIX Annual Technical Conference}, 2014.
-\newblock URL:
-  \url{https://www.usenix.org/conference/atc14/technical-sessions/presentation/ongaro}.
 
 \bibitem{openai_codex_approvals_2026}
 {OpenAI}.
 \newblock Agent approvals \& security -- codex, 2026.
 \newblock Accessed: 2026-05-29.
-\newblock URL:
-  \url{https://developers.openai.com/codex/agent-approvals-security}.
 
 \bibitem{openai_codex_skills_2026}
 {OpenAI}.
 \newblock Agent skills -- codex, 2026.
 \newblock Accessed: 2026-05-29.
-\newblock URL: \url{https://developers.openai.com/codex/skills}.
 
 \bibitem{openai_codex_overview_2026}
 {OpenAI}.
 \newblock Codex -- openai developers, 2026.
 \newblock Accessed: 2026-05-29.
-\newblock URL: \url{https://developers.openai.com/codex}.
 
 \bibitem{openai_codex_security_2026}
 {OpenAI}.
 \newblock Codex security, 2026.
 \newblock Accessed: 2026-05-29.
-\newblock URL: \url{https://developers.openai.com/codex/security}.
 
 \bibitem{openai_codex_agents_md_2026}
 {OpenAI}.
 \newblock Custom instructions with agents.md -- codex, 2026.
 \newblock Accessed: 2026-05-29.
-\newblock URL: \url{https://developers.openai.com/codex/guides/agents-md}.
 
 \bibitem{openai_codex_sandbox_2026}
 {OpenAI}.
 \newblock Sandbox -- codex, 2026.
 \newblock Accessed: 2026-05-29.
-\newblock URL: \url{https://developers.openai.com/codex/concepts/sandboxing}.
 
 \bibitem{openai_codex_subagents_2026}
 {OpenAI}.
 \newblock Subagents -- codex, 2026.
 \newblock Accessed: 2026-05-29.
-\newblock URL: \url{https://developers.openai.com/codex/subagents}.
 
 \bibitem{openai_codex_agentsdk_2026}
 {OpenAI}.
 \newblock Use codex with the agents sdk, 2026.
 \newblock Accessed: 2026-05-29.
-\newblock URL: \url{https://developers.openai.com/codex/guides/agents-sdk}.
 
 \bibitem{owasp_agentic2026}
 {OWASP Gen AI Security Project}.
 \newblock {OWASP} top 10 for agentic applications, 2026.
 \newblock Released December 2025; accessed 2026-05-29.
-\newblock URL:
-  \url{https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/}.
 
 \bibitem{memgpt2023}
 Charles Packer, Sarah Wooders, Kevin Lin, Vivian Fang, Shishir~G. Patil, Ion
   Stoica, and Joseph~E. Gonzalez.
 \newblock {MemGPT}: Towards {LLM}s as operating systems.
 \newblock {\em arXiv preprint arXiv:2310.08560}, 2023.
-\newblock URL: \url{https://arxiv.org/abs/2310.08560}.
 
 \bibitem{park2023generativeagents}
 Joon~Sung Park, Joseph~C. O'Brien, Carrie~J. Cai, Meredith~Ringel Morris, Percy
@@ -631,64 +820,81 @@ Joon~Sung Park, Joseph~C. O'Brien, Carrie~J. Cai, Meredith~Ringel Morris, Percy
 \newblock Generative agents: Interactive simulacra of human behavior.
 \newblock {\em Proceedings of the 36th Annual ACM Symposium on User Interface
   Software and Technology}, 2023.
-\newblock URL: \url{https://arxiv.org/abs/2304.03442}, \href
-  {https://doi.org/10.1145/3586183.3606763}
-  {\path{doi:10.1145/3586183.3606763}}.
 
 \bibitem{patil2024gorilla}
 Shishir~G. Patil, Tianjun Zhang, Xin Wang, Joseph~E. Gonzalez, and Ion Stoica.
 \newblock Gorilla: Large language model connected with massive {API}s.
 \newblock In {\em arXiv preprint arXiv:2305.15334}, 2024.
-\newblock URL: \url{https://arxiv.org/abs/2305.15334}.
+
+\bibitem{patterson_hennessy_2017}
+David~A. Patterson and John~L. Hennessy.
+\newblock {\em Computer Organization and Design: The Hardware/Software
+  Interface}.
+\newblock Morgan Kaufmann, 6 edition, 2017.
 
 \bibitem{yarn2024}
 Bowen Peng, Jeffrey Quesnelle, Honglu Fan, and Enrico Shippole.
 \newblock {YaRN}: Efficient context window extension of large language models.
 \newblock {\em International Conference on Learning Representations}, 2024.
-\newblock URL: \url{https://arxiv.org/abs/2309.00071}.
 
 \bibitem{ironclaw2025}
 Lukas Pirch, Micha Horlboge, Patrick Gro{\ss}mann, Syed~Madde Asif, Klim
   Kireev, Thorsten Holz, and Konrad Rieck.
 \newblock Toward securing {AI} agents like operating systems.
 \newblock {\em arXiv preprint arXiv:2605.14932}, 2026.
-\newblock URL: \url{https://arxiv.org/abs/2605.14932}.
 
 \bibitem{prabhu2024vattention}
 Ramya Prabhu, Ajay Nayak, Jayashree Mohan, et~al.
 \newblock {vAttention}: Dynamic memory management for serving {LLM}s without
   {PagedAttention}.
 \newblock In {\em USENIX OSDI}, 2024.
-\newblock URL: \url{https://arxiv.org/abs/2405.04437}.
 
 \bibitem{praetorian2025deterministic}
 {Praetorian}.
 \newblock Deterministic {AI} orchestration: A platform architecture for
   autonomous development, 2025.
 \newblock Accessed: 2026-05-29.
-\newblock URL:
-  \url{https://www.praetorian.com/blog/deterministic-ai-orchestration-a-platform-architecture-for-autonomous-development/}.
+
+\bibitem{3dmind_2025}
+{Princeton University Research Team}.
+\newblock {3D-MIND}: A three-dimensional biological computing device.
+\newblock {\em Nature}, 2025.
+\newblock 3D biological computing device from Princeton.
+
+\bibitem{quartr2024tsmc}
+{Quartr}.
+\newblock {TSMC}: The founding and history of the world's largest chipmaker.
+\newblock Company Analysis, 2024.
+\newblock Analysis of TSMC founding and business model.
+
+\bibitem{brookings2025aicustomers}
+Asad Ramzanali and Tom Wheeler.
+\newblock What happens when {AI} companies compete with their customers?
+\newblock Brookings Institution, 2025.
+\newblock Analysis of vertical integration and competition dynamics in AI
+  industry.
 
 \bibitem{riscv_spec_2026}
 {RISC-V International}.
 \newblock The risc-v instruction set manual, volume i: Unprivileged
   architecture, 2026.
 \newblock Official release version 20260120; accessed 2026-05-29.
-\newblock URL:
-  \url{https://docs.riscv.org/reference/isa/unpriv/unpriv-index.html}.
+
+\bibitem{ritchie_thompson_1974}
+Dennis~M. Ritchie and Ken Thompson.
+\newblock The {UNIX} time-sharing system.
+\newblock {\em Communications of the ACM}, 17(7):365--375, 1974.
 
 \bibitem{schick2023toolformer}
 Timo Schick, Jane Dwivedi-Yu, Roberto Dess{\`i}, Roberta Raileanu, Maria
   Lomeli, Luke Zettlemoyer, Nicola Cancedda, and Thomas Scialom.
 \newblock Toolformer: Language models can teach themselves to use tools.
 \newblock {\em arXiv preprint arXiv:2302.04761}, 2023.
-\newblock URL: \url{https://arxiv.org/abs/2302.04761}.
 
 \bibitem{sglang_docs_2026}
 {SGLang Project}.
 \newblock Sglang documentation, 2026.
 \newblock Accessed: 2026-05-29.
-\newblock URL: \url{https://sgl-project.github.io/}.
 
 \bibitem{hugginggpt2023}
 Yongliang Shen, Kaitao Song, Xu~Tan, Dongsheng Li, Weiming Lu, and Yueting
@@ -696,31 +902,61 @@ Yongliang Shen, Kaitao Song, Xu~Tan, Dongsheng Li, Weiming Lu, and Yueting
 \newblock {HuggingGPT}: Solving {AI} tasks with {ChatGPT} and its friends in
   {Hugging Face}.
 \newblock {\em arXiv preprint arXiv:2303.17580}, 2023.
-\newblock URL: \url{https://arxiv.org/abs/2303.17580}.
 
 \bibitem{autogpt_repo_2026}
 {Significant Gravitas}.
 \newblock Autogpt: Build, deploy, and run ai agents, 2026.
 \newblock Accessed: 2026-05-29.
-\newblock URL: \url{https://github.com/significant-gravitas/autogpt}.
+
+\bibitem{benchmark_pitfalls_2025}
+Taylor Sorensen et~al.
+\newblock Pitfalls in {LLM} benchmarking: What benchmarks really measure.
+\newblock {\em arXiv preprint arXiv:2503.09522}, 2025.
+
+\bibitem{spec_benchmark}
+{Standard Performance Evaluation Corporation}.
+\newblock {SPEC CPU} benchmark suite, 2024.
+\newblock Standard benchmark suite for CPU performance evaluation.
+
+\bibitem{stanfordhai2025index}
+{Stanford HAI}.
+\newblock {AI} index report 2025.
+\newblock Stanford Institute for Human-Centered Artificial Intelligence, 2025.
+\newblock Annual report measuring AI trends.
+
+\bibitem{strategyzer2024msbusinessmodel}
+{Strategyzer}.
+\newblock {Microsoft}'s business model: From software licensing to cloud
+  services.
+\newblock Business Model Analysis, 2024.
+\newblock Analysis of Microsoft's evolving business model.
 
 \bibitem{su2021roformer}
 Jianlin Su, Yu~Lu, Shengfeng Pan, Bo~Wen, and Yunfeng Liu.
 \newblock Roformer: Enhanced transformer with rotary position embedding.
 \newblock {\em arXiv preprint arXiv:2104.09864}, 2021.
-\newblock URL: \url{https://arxiv.org/abs/2104.09864}.
 
 \bibitem{sumers2024coala}
 Theodore Sumers, Shunyu Yao, Karthik Narasimhan, and Thomas~L. Griffiths.
 \newblock Cognitive architectures for language agents.
 \newblock {\em arXiv preprint arXiv:2309.02427}, 2024.
-\newblock URL: \url{https://arxiv.org/abs/2309.02427}.
+
+\bibitem{taalas_2026_hc1}
+{Taalas}.
+\newblock {Taalas HC1}: A dedicated chip for {LLM} inference, 2026.
+\newblock Hardcoded LLM inference chip; accessed 2026-05-29.
 
 \bibitem{contextcompiler2025}
 Shuang Tang et~al.
 \newblock Intelligent push-based context management for large language models.
 \newblock {\em arXiv preprint}, 2025.
-\newblock URL: \url{https://pcm.tangshuang.net/paper}.
+
+\bibitem{thirdbridge2025deepseek}
+{Third Bridge}.
+\newblock {DeepSeek}'s open source strategy: Implications for the {AI}
+  industry.
+\newblock Industry Analysis, 2025.
+\newblock Analysis of DeepSeek open source approach.
 
 \bibitem{llama2023}
 Hugo Touvron, Thibaut Lavril, Gautier Izacard, Xavier Martinet, Marie-Anne
@@ -728,47 +964,38 @@ Hugo Touvron, Thibaut Lavril, Gautier Izacard, Xavier Martinet, Marie-Anne
   Hambro, Faisal Azhar, et~al.
 \newblock {LLaMA}: Open and efficient foundation language models.
 \newblock {\em arXiv preprint arXiv:2302.13971}, 2023.
-\newblock URL: \url{https://arxiv.org/abs/2302.13971}.
 
 \bibitem{towardsai2025deterministicshell}
 {Towards AI}.
 \newblock Deterministic shells, probabilistic cores: The architecture pattern
   behind every reliable agent, 2025.
 \newblock Accessed: 2026-05-29.
-\newblock URL:
-  \url{https://pub.towardsai.net/deterministic-shells-probabilistic-cores-a5de28e36bd0}.
 
 \bibitem{langmodelteams2026}
 Various.
 \newblock Language model teams as distributed systems.
 \newblock {\em arXiv preprint arXiv:2603.12229}, 2026.
-\newblock URL: \url{https://arxiv.org/abs/2603.12229}.
 
 \bibitem{vaswani2017attention}
 Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones,
   Aidan~N. Gomez, {\L}ukasz Kaiser, and Illia Polosukhin.
 \newblock Attention is all you need.
 \newblock {\em Advances in Neural Information Processing Systems}, 30, 2017.
-\newblock URL: \url{https://arxiv.org/abs/1706.03762}.
 
 \bibitem{vllm_prefix_2026}
 {vLLM Project}.
 \newblock Automatic prefix caching -- vllm documentation, 2026.
 \newblock Accessed: 2026-05-29.
-\newblock URL:
-  \url{https://docs.vllm.ai/en/latest/features/automatic_prefix_caching.html}.
 
 \bibitem{vllm_docs_2026}
 {vLLM Project}.
 \newblock vllm documentation, 2026.
 \newblock Accessed: 2026-05-29.
-\newblock URL: \url{https://docs.vllm.ai/}.
 
 \bibitem{wang2023voyager}
 Guanzhi Wang, Yuqi Xie, et~al.
 \newblock Voyager: An open-ended embodied agent with large language models.
 \newblock In {\em NeurIPS Workshop}, 2023.
-\newblock URL: \url{https://arxiv.org/abs/2305.16291}.
 
 \bibitem{gta2_2025}
 Jize Wang, Xuanxuan Liu, Yining Li, Songyang Zhang, Yijun Wang, Xinyi Le,
@@ -776,62 +1003,78 @@ Jize Wang, Xuanxuan Liu, Yining Li, Songyang Zhang, Yijun Wang, Xinyi Le,
 \newblock {GTA-2}: Benchmarking general tool agents from atomic tool-use to
   open-ended workflows.
 \newblock {\em arXiv preprint arXiv:2604.15715}, 2025.
-\newblock URL: \url{https://arxiv.org/abs/2604.15715}.
+
+\bibitem{wang_2024_hmoe}
+Qiang Wang et~al.
+\newblock {HMoE}: Heterogeneous mixture of experts.
+\newblock {\em arXiv preprint arXiv:2408.10673}, 2024.
 
 \bibitem{longmem2023}
 Weizhi Wang, Li~Dong, Hao Cheng, Xiaodong Liu, Xifeng Yan, Jianfeng Gao, and
   Furu Wei.
 \newblock Augmenting language models with long-term memory.
 \newblock {\em arXiv preprint arXiv:2306.07174}, 2023.
-\newblock URL: \url{https://arxiv.org/abs/2306.07174}.
 
 \bibitem{openhands_paper_2025}
 Xiang Wang et~al.
 \newblock Openhands: An open platform for ai software developers as generalist
   agents, 2025.
 \newblock OpenReview preprint; accessed 2026-05-29.
-\newblock URL: \url{https://openreview.net/forum?id=OJd3ayDDoF}.
+
+\bibitem{worst_at_k_2025}
+Yubo Wang et~al.
+\newblock Worst-at-{K}: A robust evaluation metric for language models.
+\newblock {\em arXiv preprint arXiv:2504.08723}, 2025.
+
+\bibitem{wikipedia2024msopensource}
+{Wikipedia}.
+\newblock {Microsoft} and open source: Strategic evolution, 2024.
+\newblock Overview of Microsoft's open source strategy.
 
 \bibitem{wolters2024computeinmemory}
 Christopher Wolters, Xiaoxuan Yang, Ulf Schlichtmann, and Toyotaro Suzumura.
 \newblock Memory is all you need: An overview of compute-in-memory
   architectures for accelerating large language model inference.
 \newblock {\em arXiv preprint arXiv:2406.08413}, 2024.
-\newblock URL: \url{https://arxiv.org/abs/2406.08413}.
 
 \bibitem{longmemeval2024}
 Di~Wu, Hongwei Wang, Wenhao Yu, Yuwei Zhang, Kai-Wei Chang, and Dong Yu.
 \newblock Longmemeval: Benchmarking chat assistants on long-term interactive
   memory.
 \newblock {\em arXiv preprint arXiv:2410.10813}, 2024.
-\newblock URL: \url{https://arxiv.org/abs/2410.10813}.
 
 \bibitem{wu2023autogen}
 Qingyun Wu et~al.
 \newblock Autogen: Enabling next-gen {LLM} applications via multi-agent
   conversation.
 \newblock {\em arXiv preprint arXiv:2308.08155}, 2023.
-\newblock URL: \url{https://arxiv.org/abs/2308.08155}.
+
+\bibitem{wu2025physicalunclonable}
+Zhiyu Wu et~al.
+\newblock {RePACK}: Physical unclonable functions for {AI} model protection.
+\newblock {\em Nature Communications}, 2025.
 
 \bibitem{xiao2024streamingllm}
 Guangxuan Xiao, Yuandong Tian, Beidi Chen, Song Han, and Mike Lewis.
 \newblock Efficient streaming language models with attention sinks.
 \newblock In {\em International Conference on Learning Representations}, 2024.
-\newblock URL: \url{https://arxiv.org/abs/2309.17453}.
 
 \bibitem{arbiteros2025}
 Qiang Xu, Xiangyu Wen, Changran Xu, Zeju Li, and Jianyuan Zhong.
 \newblock From craft to constitution: A governance-first paradigm for
   principled agent engineering.
 \newblock {\em arXiv preprint arXiv:2510.13857}, 2025.
-\newblock URL: \url{https://arxiv.org/abs/2510.13857}.
+
+\bibitem{slm_edge_2025}
+Zhiwei Xu, Shuai Wang, et~al.
+\newblock Small language models for edge computing: A comprehensive survey.
+\newblock {\em arXiv preprint arXiv:2502.05870}, 2025.
 
 \bibitem{osworld2024}
 Tianbao Xue, Ruida Zhang, et~al.
 \newblock {OSWorld}: Benchmarking multimodal agents for open-ended tasks in
   real computer environments.
 \newblock In {\em Advances in Neural Information Processing Systems}, 2024.
-\newblock URL: \url{https://arxiv.org/abs/2404.07972}.
 
 \bibitem{sweagent2024}
 John Yang, Carlos~E. Jimenez, Alexander Wettig, Kilian Lieret, Shunyu Yao,
@@ -839,21 +1082,18 @@ John Yang, Carlos~E. Jimenez, Alexander Wettig, Kilian Lieret, Shunyu Yao,
 \newblock {SWE}-agent: Agent-computer interfaces enable automated software
   engineering.
 \newblock {\em Advances in Neural Information Processing Systems}, 37, 2024.
-\newblock URL: \url{https://arxiv.org/abs/2405.15793}.
 
 \bibitem{taubench2024}
 Shunyu Yao, Noah Shinn, Pedram Razavi, and Karthik Narasimhan.
 \newblock $\tau$-bench: A benchmark for tool-agent-user interaction in
   real-world domains.
 \newblock {\em arXiv preprint arXiv:2406.12045}, 2024.
-\newblock URL: \url{https://arxiv.org/abs/2406.12045}.
 
 \bibitem{yao2023react}
 Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak Shafran, Karthik Narasimhan,
   and Yuan Cao.
 \newblock {ReAct}: Synergizing reasoning and acting in language models.
 \newblock {\em International Conference on Learning Representations}, 2023.
-\newblock URL: \url{https://openreview.net/forum?id=WE_vluYUL-X}.
 
 \bibitem{orca2022}
 Gyeong-In Yu, Joo~Seong Jeong, Gunho Kim, Sukmin Kim, and Byung-Gon Chun.
@@ -861,7 +1101,6 @@ Gyeong-In Yu, Joo~Seong Jeong, Gunho Kim, Sukmin Kim, and Byung-Gon Chun.
   models.
 \newblock In {\em USENIX Symposium on Operating Systems Design and
   Implementation}, pages 521--538, 2022.
-\newblock URL: \url{https://www.usenix.org/conference/osdi22/presentation/yu}.
 
 \bibitem{yuan2024llminference}
 Zhihang Yuan, Yuzhang Shang, Yang Zhou, Zhen Dong, Zhe Zhou, Chenhao Xue,
@@ -869,14 +1108,12 @@ Zhihang Yuan, Yuzhang Shang, Yang Zhou, Zhen Dong, Zhe Zhou, Chenhao Xue,
   Sun, and Kurt Keutzer.
 \newblock {LLM} inference unveiled: Survey and roofline model insights.
 \newblock {\em arXiv preprint arXiv:2402.16363}, 2024.
-\newblock URL: \url{https://arxiv.org/abs/2402.16363}.
 
 \bibitem{ufo2_2025}
 Chaoyun Zhang, He~Huang, Chiming Ni, Jian Mu, Si~Qin, Shilin He, Lu~Wang,
   Fangkai Yang, et~al.
 \newblock {UFO}\textsuperscript{2}: The {Desktop AgentOS}.
 \newblock {\em arXiv preprint arXiv:2504.14603}, 2025.
-\newblock URL: \url{https://arxiv.org/abs/2504.14603}.
 
 \bibitem{h2o2023}
 Zhenyu Zhang, Ying Sheng, Tianyi Zhou, Tianlong Chen, Lianmin Zheng, Ruisi Cai,
@@ -885,7 +1122,6 @@ Zhenyu Zhang, Ying Sheng, Tianyi Zhou, Tianlong Chen, Lianmin Zheng, Ruisi Cai,
 \newblock {H2O}: Heavy-hitter oracle for efficient generative inference of
   large language models.
 \newblock In {\em Advances in Neural Information Processing Systems}, 2023.
-\newblock URL: \url{https://arxiv.org/abs/2306.14898}.
 
 \bibitem{sglang2024}
 Lianmin Zheng, Liangsheng Yin, Zhiqiang Xie, Chuyue Sun, Jeff Huang, Cody~Hao
@@ -893,7 +1129,13 @@ Lianmin Zheng, Liangsheng Yin, Zhiqiang Xie, Chuyue Sun, Jeff Huang, Cody~Hao
   Sheng.
 \newblock {SGLang}: Efficient execution of structured language model programs.
 \newblock {\em arXiv preprint arXiv:2312.07104}, 2024.
-\newblock URL: \url{https://arxiv.org/abs/2312.07104}.
+
+\bibitem{zhong_2024_weakest_link}
+Ming Zhong, Pei Zou, Zifan Wang, Xuefei Gao, et~al.
+\newblock Law of the weakest link: Cross capabilities of large language models.
+\newblock In {\em International Conference on Learning Representations (ICLR)},
+  2025.
+\newblock Spotlight paper.
 
 \bibitem{zhong2024distserve}
 Yinmin Zhong, Shengyu Liu, Junda Chen, Jianbo Hu, Yibo Zhu, Xuanzhe Liu, Xin
@@ -902,19 +1144,16 @@ Yinmin Zhong, Shengyu Liu, Junda Chen, Jianbo Hu, Yibo Zhu, Xuanzhe Liu, Xin
   large language model serving.
 \newblock In {\em USENIX Symposium on Operating Systems Design and
   Implementation}, 2024.
-\newblock URL: \url{https://arxiv.org/abs/2401.09670}.
 
 \bibitem{zhou2024efficientinference}
 Zixuan Zhou, Xuefei Ning, Ke~Hong, others, and Yu~Wang.
 \newblock A survey on efficient inference for large language models.
 \newblock {\em arXiv preprint arXiv:2404.14294}, 2024.
-\newblock URL: \url{https://arxiv.org/abs/2404.14294}.
 
 \bibitem{aura2025}
 Zhenhua Zou, Sheng Guo, Qiuyang Zhan, et~al.
 \newblock Blind gods and broken screens: Architecting a secure, intent-centric
   mobile agent operating system.
 \newblock {\em arXiv preprint arXiv:2602.10915}, 2026.
-\newblock URL: \url{https://arxiv.org/abs/2602.10915}.
 
 \end{thebibliography}

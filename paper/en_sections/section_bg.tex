@@ -7,13 +7,13 @@ This section first reviews the layered logic of classical computer architecture 
 
 The layered organization of a classical computing system is not an ad hoc design choice but a general engineering strategy for managing complexity~\cite{hennessy2017quantitative}.
 The central idea is that each layer depends only on the \emph{interface} exposed by the layer below, never on its \emph{implementation}.
-This separation allows any layer to be independently optimized---or even replaced---without disrupting the rest of the stack.
+This separation allows any layer to be independently optimized (or even replaced) without disrupting the rest of the stack.
 We now review the core concepts of each layer in turn.
 
 \subsubsection{Instruction Set Architecture (ISA): The Contract Between Hardware and Software}
 
 The \textit{Instruction Set Architecture} (ISA) specifies the machine behavior visible to software: the available instructions (arithmetic, memory access, branching, jumping), the register file, how exceptions are raised and handled, and how the address space is organized.
-The ISA serves as a stable contract---as long as the processor honors this contract, software above it runs correctly, regardless of the microarchitectural details hidden below.
+The ISA serves as a stable contract: as long as the processor honors this contract, software above it runs correctly, regardless of the microarchitectural details hidden below.
 Intel x86, ARM, and RISC-V embody three distinct design philosophies~\cite{intel_sdm_2026,riscv_spec_2026}: x86 prioritizes backward compatibility (code written four decades ago still executes), ARM optimizes for energy efficiency (a decisive advantage in mobile devices), and RISC-V embraces openness and modularity (users may define custom instruction extensions).
 Despite their differences, all three serve the same purpose: providing a stable programming target for the software stack.
 
@@ -21,7 +21,7 @@ Despite their differences, all three serve the same purpose: providing a stable 
 
 The \textit{microarchitecture} determines how a given ISA is realized in silicon and, consequently, what performance a processor actually delivers.
 It answers questions such as: how many clock cycles does an instruction require? How many instructions can execute simultaneously? What is the penalty for a mispredicted branch?
-Concretely, a \emph{pipeline} decomposes instruction execution into stages---fetch, decode, execute, memory access, write-back---so that different instructions can overlap across stages.
+Concretely, a \emph{pipeline} decomposes instruction execution into stages (fetch, decode, execute, memory access, write-back) so that different instructions can overlap across stages.
 A \emph{superscalar} design dispatches multiple instructions per cycle to independent execution units.
 A \emph{branch predictor} uses historical patterns to speculate on the outcome of conditional branches, thereby avoiding pipeline bubbles.
 Both Intel's Core microarchitecture and AMD's Zen microarchitecture implement the same x86 ISA yet deliver different performance characteristics, and this difference is entirely transparent to software.
@@ -29,7 +29,7 @@ Both Intel's Core microarchitecture and AMD's Zen microarchitecture implement th
 \subsubsection{Cache Hierarchy: Exploiting Locality to Bridge the Processor--Memory Gap}
 
 The \textit{cache hierarchy} addresses a fundamental speed mismatch between processors and main memory.
-A modern CPU core can complete an operation in roughly one nanosecond, whereas a DRAM access requires approximately 100 nanoseconds---forcing the processor to stall for two orders of magnitude longer if every data reference must reach main memory.
+A modern CPU core can complete an operation in roughly one nanosecond, whereas a DRAM access requires approximately 100 nanoseconds, forcing the processor to stall for two orders of magnitude longer if every data reference must reach main memory.
 Caches exploit the \emph{principle of locality}: \emph{temporal locality} holds that data accessed recently is likely to be accessed again soon, while \emph{spatial locality} holds that data at nearby addresses will likely be accessed in the near future~\cite{drepper2007memory}.
 Accordingly, caches store recently and nearby accessed data in faster but smaller SRAM: the L1 cache (typically 32--64\,KB, $\sim$4-cycle latency) sits closest to the core, the L2 cache (256\,KB--1\,MB, $\sim$10 cycles) acts as a second-level buffer, and the L3 cache (several to tens of megabytes, $\sim$40 cycles) is shared among multiple cores.
 On a cache miss, data must be fetched from DRAM at a cost of roughly 200 cycles.
@@ -48,7 +48,7 @@ Virtual memory also enforces isolation: each process maintains its own page tabl
 The \textit{operating system} (OS) is the first software layer above hardware.
 It manages compute resources and provides uniform abstractions to applications.
 Its core responsibilities include: process scheduling (deciding which process runs next, e.g., Linux's Completely Fair Scheduler~\cite{linux_cfs_2026}), memory management (allocating and reclaiming physical page frames), I/O management (providing uniform file and device interfaces), access control (ensuring processes access only authorized resources), and concurrency support (semaphores, locks, condition variables)~\cite{ostep_2023,xv6_2022}.
-The OS design principle is simple: expose clean abstractions upward---processes, files, sockets---while managing complex hardware downward---CPU cores, memory modules, disks, network interfaces.
+The OS design principle is simple: expose clean abstractions upward (processes, files, sockets) while managing complex hardware downward (CPU cores, memory modules, disks, network interfaces).
 Applications invoke system calls such as \texttt{open()}, \texttt{read()}, and \texttt{fork()} without needing to know whether the storage device is an SSD or an HDD, or whether the network link runs at 1\,GbE or 10\,GbE.
 
 \subsubsection{Distributed Systems: Scaling Beyond a Single Node}
@@ -85,7 +85,7 @@ Yuan et al.\ systematically applied the Roofline model to LLM inference, reveali
 \paragraph{Locality Principle.}
 Temporal and spatial locality directly inform cache design: temporal locality (recently accessed data will be re-accessed) motivates cache residency, while spatial locality (nearby addresses will be accessed soon) motivates cache lines (typically 64 bytes), hardware prefetching, and replacement policies such as LRU~\cite{drepper2007memory}.
 
-Taken together, these quantitative principles have enabled the computing stack to scale from thousands of floating-point operations per second to over $10^{18}$ operations per second across eight decades---all without requiring programmers to understand the physical details of every layer.
+Taken together, these quantitative principles have enabled the computing stack to scale from thousands of floating-point operations per second to over $10^{18}$ operations per second across eight decades, all without requiring programmers to understand the physical details of every layer.
 
 \subsection{Emerging Layers of the LLM System Stack}
 
@@ -107,14 +107,14 @@ vLLM's PagedAttention~\cite{kwon2023pagedattention} models KV cache management a
 ORCA~\cite{orca2022} introduces continuous batching at the iteration level, allowing new requests to join a running batch during the decode phase of existing requests.
 DistServe~\cite{zhong2024distserve} decouples the prefill phase (processing the input prompt) from the decode phase (generating tokens one at a time) onto separate GPUs, avoiding resource contention between the two.
 Sarathi-Serve~\cite{agrawal2024sarathi} further refines the throughput--latency trade-off.
-A unifying theme across these systems is the adaptation of classical operating systems techniques---paging, batch scheduling, resource isolation---to LLM inference engines.
+A unifying theme across these systems is the adaptation of classical operating systems techniques (paging, batch scheduling, resource isolation) to LLM inference engines.
 
 \subsubsection{Memory Layer: Reconciling Finite Windows with Persistent State}
 
 At the memory layer, the core challenge is that the context window is finite (e.g., 128K tokens), whereas agents often need access to knowledge and interaction histories that far exceed this limit.
 Multiple technical directions are being explored in parallel.
 Long-context extensions~\cite{gemini2024,yarn2024} attempt to enlarge the window directly, but face quadratic growth in computation cost with sequence length.
-Retrieval-Augmented Generation (RAG)~\cite{lewis2020rag} retrieves relevant passages from an external knowledge base at inference time and injects them into the context---analogous to demand paging in an operating system.
+Retrieval-Augmented Generation (RAG)~\cite{lewis2020rag} retrieves relevant passages from an external knowledge base at inference time and injects them into the context, analogous to demand paging in an operating system.
 MemGPT~\cite{memgpt2023} explicitly introduces \textit{virtual context management}, partitioning context into a working context (analogous to main memory) and an external storage (analogous to disk), and automatically moving information between the two.
 LongMem~\cite{longmem2023} and Generative Agents~\cite{park2023generativeagents} explore alternative forms of long-term memory.
 LongMemEval~\cite{longmemeval2024} establishes a benchmark for evaluating memory in long-term interactions.
@@ -128,18 +128,19 @@ It is defined as the engineering practice of systematically designing, selecting
 
 At the agent layer, LLMs have evolved beyond single-turn inference engines into controllers within complex runtime environments.
 ReAct~\cite{yao2023react} interleaves reasoning with acting, enabling a model to solve multi-step tasks in a ``think--act--observe'' loop.
-Toolformer~\cite{schick2023toolformer} teaches models to invoke external tools---calculators, search engines---autonomously.
+Toolformer~\cite{schick2023toolformer} teaches models to invoke external tools (calculators, search engines) autonomously.
 SWE-agent~\cite{sweagent2024} and OpenHands~\cite{openhands_paper_2025} are autonomous agents for software engineering that can navigate code repositories, write patches, and run test suites.
 Codex~\cite{openai_codex_overview_2026} and Claude Code~\cite{anthropic_claudecode_overview_2026} are production-grade coding agents equipped with OS-kernel-like capabilities: sub-agent scheduling~\cite{openai_codex_subagents_2026,anthropic_claudecode_subagents_2026}, sandbox isolation~\cite{openai_codex_sandbox_2026,anthropic_claudecode_sandbox_2026}, and permission control~\cite{openai_codex_approvals_2026,anthropic_claudecode_security_2026}.
 Multi-agent collaboration frameworks such as AutoGen~\cite{wu2023autogen} and MetaGPT~\cite{metagpt2023} further organize ensembles of specialized agents into cooperative networks.
 
 \subsection{The Gap: No Unified System Language}
 
-Despite rapid progress across each layer, the LLM systems landscape lacks a unified system language---a shared vocabulary and abstraction framework that connects optimizations across layers.
+Despite rapid progress across each layer, the LLM systems landscape lacks a unified system language, that is, a shared vocabulary and abstraction framework that connects optimizations across layers.
 Without such a framework, research at each layer tends to fragment into isolated collections of engineering tricks.
 Consider, for example, \emph{prefix caching} (reusing cached key--value pairs across shared prompt prefixes), \emph{chunked prefill} (breaking long prefill computations into schedulable chunks), \emph{sub-agents} (concurrently executing child agents), \emph{MCP servers} (standardized tool interfaces via the Model Context Protocol), and \emph{persistent memory} (durable storage for agent state).
-These concepts appear to belong to entirely different research directions, yet from an architectural standpoint they correspond to cache reuse, scheduling granularity, concurrent execution, I/O interfaces, and tiered storage---all well-studied abstractions in classical systems.
+These concepts appear to belong to entirely different research directions, yet from an architectural standpoint they correspond to cache reuse, scheduling granularity, concurrent execution, I/O interfaces, and tiered storage, all well-studied abstractions in classical systems.
 
 This observation motivates the architectural analogy that runs through this paper.
 The analogy does not claim that LLM systems and classical systems are ``fundamentally the same.''
 Rather, it places independently developed engineering techniques back into a larger, unified design space, making it possible to compose, predict, and systematically design cross-layer optimizations.
+

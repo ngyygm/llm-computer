@@ -1,0 +1,228 @@
+\section{智能计算体系结构：ICA}
+\label{sec:icam}
+
+前四节的类比框架提供了直觉，但直觉本身不足以指导工程设计。经典计算机体系结构之所以能持续演进八十余年，关键在于它拥有\textbf{形式化的模型}：从指令集架构（ISA）的软硬件契约，到存储层次的局部性理论，再到Amdahl定律的量化分析框架。
+本节将前文的类比\textbf{形式化}为智能计算体系结构（Intelligent Computing Architecture, ICA），包含六个功能层的分层定义、层间接口契约和六条设计公理，为后续的量化分析奠定基础。
+
+% ---------------------------------------------------------
+\subsection{ICA六层定义}
+\label{sec:icam-layers}
+% ---------------------------------------------------------
+
+经典计算机体系结构的核心思想是\textbf{分层抽象}：硬件隐藏在ISA之后，操作系统通过系统调用提供服务，应用程序只需调用库函数。
+每一层只关心相邻层的接口，无需了解远层的实现细节——这使得整个系统的复杂性可控、可组合。
+ICA将这一思想迁移到模型原生计算领域，定义了六个功能层。
+
+\begin{definition}[智能计算体系结构 ICA]
+智能计算体系结构（Intelligent Computing Architecture, ICA）将模型原生计算系统定义为六个功能层，每层通过明确的接口契约与相邻层交互：
+\begin{enumerate}[nosep]
+\item \textbf{L1 物理执行层}：GPU/TPU/ASIC/存算一体硬件，执行矩阵运算和注意力计算。这一层相当于经典体系结构中的ALU和浮点单元——它只负责执行计算指令，不关心计算的语义含义。例如，NVIDIA H100的Transformer引擎在硬件层面加速FP8矩阵乘法，即属于L1的范畴。
+
+\item \textbf{L2 推理服务层}：模型权重加载、KV缓存管理、连续批处理（continuous batching）、预填充/解码调度。这一层相当于经典体系结构中的微架构和缓存层次——它管理计算资源与热点数据，使得上层的"调用"尽可能高效。vLLM通过PagedAttention实现KV缓存的按需分配与共享\cite{kwon2023pagedattention}，SGLang通过RadixAttention实现前缀缓存复用\cite{sglang2024}，它们都是L2的代表实现。
+
+\item \textbf{L3 上下文管理层}：热/温/冷记忆分层、上下文编译、摘要与检索、语义虚拟内存。这一层相当于经典体系结构中的虚拟内存子系统——它将有限的物理上下文窗口虚拟化为更大的逻辑工作空间。MemGPT提出"虚拟上下文管理"，将LLM的上下文窗口类比为主存、外部存储类比为磁盘，通过LLM自主管理记忆的换入换出\cite{memgpt2023}；MemoryOS借鉴操作系统的内存管理机制设计了分层记忆架构\cite{memoryos2025}——它们都是L3的代表实现。
+
+\item \textbf{L4 语义接口层}：工具schema（Tool ABI）、记忆API（Memory API）、追踪API（Trace API）。这一层相当于经典体系结构中的系统调用接口和ABI——它定义了智能系统访问外部能力的统一协议。MCP（Model Context Protocol）定义了模型与工具之间的标准化通信协议\cite{mcp_intro_2026}，A2A（Agent-to-Agent）定义了Agent之间的互操作协议\cite{agentprotocols2025}——它们是L4的代表实现。
+
+\item \textbf{L5 编排层}：任务规划、Agent调度、权限审批、失败恢复、状态提交。这一层相当于经典体系结构中的操作系统内核——它负责任务的调度、资源分配、安全隔离和容错。OpenAI Codex将Agent任务提交到沙箱中执行，支持子Agent的创建与协调\cite{openai_codex_overview_2026,openai_codex_subagents_2026}；Claude Code通过skill机制扩展Agent能力，通过MCP连接外部工具\cite{anthropic_claudecode_overview_2026,anthropic_claudecode_skills_2026}——它们是L5的代表实现。
+
+\item \textbf{L6 应用层}：用户任务、Agent应用、工作流自动化。这一层相当于经典体系结构中的用户应用——它承载最终用户的需求。SWE-agent自动化地解决GitHub issue\cite{sweagent2024}，OpenHands作为通用软件开发Agent\cite{openhands_paper_2025}——它们是L6的代表实现。值得注意的是，L6的用户群体正在从专业工程师扩展到领域专家：Anthropic法律团队使用Claude将营销审核周转从2--3天缩短到24小时；Zapier在89\%的组织范围内实现了AI采用，部署了800多个内部Agent\cite{anthropic2026agenticreport}。这一趋势表明L6需要支持更丰富的交互模式和更强的内置护栏。
+\end{enumerate}
+\end{definition}
+
+ICA的分层并非任意的拆分，而是遵循一个基本原则：每一层为上层提供服务，同时依赖下层的接口——恰如网络协议栈或操作系统层次结构的设计哲学。
+这种分层的好处是\textbf{关注点分离}：L2的工程师优化KV缓存策略时无需关心Agent的编排逻辑，L5的开发者设计任务调度时无需理解注意力计算的硬件实现。
+
+表~\ref{tab:icam}将ICA各层与传统计算机体系结构做系统对比，并给出当前的代表实现。
+
+\begin{table}[htbp]
+\centering
+\footnotesize
+\caption{ICA各层与经典计算机体系结构的对应关系}
+\label{tab:icam}
+\begin{tabularx}{\textwidth}{p{0.10\textwidth}p{0.12\textwidth}p{0.22\textwidth}p{0.22\textwidth}p{0.22\textwidth}}
+\toprule
+ICA层 & 经典对应 & 职责 & 核心差异 & 代表实现 \\
+\midrule
+L1 & 硬件/ISA & 执行基本计算操作 & 概率式矩阵运算而非确定性逻辑门 & GPU, TPU, 存算一体\cite{wolters2024computeinmemory} \\
+L2 & 微架构/缓存 & 管理计算资源与热点数据 & KV缓存按语义序列增长而非地址寻址 & vLLM, SGLang\cite{kwon2023pagedattention,sglang2024} \\
+L3 & 虚拟内存 & 扩大可寻址工作集 & 语义摘要有损而非无损分页 & MemGPT, MemoryOS\cite{memgpt2023,memoryos2025} \\
+L4 & 系统调用/ABI & 统一外部能力访问接口 & 工具语义含自然语言歧义 & MCP, A2A\cite{mcp_intro_2026,agentprotocols2025} \\
+L5 & 操作系统 & 调度、权限、容错 & Agent自身含不确定推理 & Codex, Claude Code\cite{openai_codex_overview_2026,anthropic_claudecode_overview_2026} \\
+L6 & 用户应用 & 承载最终用户任务 & 任务可含开放式目标和模糊约束 & SWE-agent, OpenHands\cite{sweagent2024,openhands_paper_2025} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ---------------------------------------------------------
+\subsection{层间接口契约}
+\label{sec:icam-interfaces}
+% ---------------------------------------------------------
+
+经典计算机体系结构之所以能够持续演进，关键在于\textbf{层间接口的稳定性}。ISA定义了软硬件之间的契约——Intel的CPU从8086到今天的Core Ultra，微架构发生了翻天覆地的变化，但x86 ISA保持了向后兼容；POSIX定义了应用与操作系统之间的契约——Linux内核从2.0演进到6.x，应用程序几乎无需修改。这种"接口稳定、实现可变"的原则使得每一层可以独立优化。
+ICA同样为每对相邻层定义接口契约。下文逐一说明每个接口的操作、不变量和度量指标。
+
+\subsubsection{L1--L2接口：张量运算契约}
+
+L2向L1请求张量运算。用通俗的话说，这个接口就像"应用程序调用GPU驱动程序"——上层说"请帮我计算这个矩阵乘法"，下层负责高效执行并返回结果。
+
+\begin{itemize}[nosep]
+\item \textbf{操作}：\texttt{forward(batch\_tokens) $\to$ logits}。输入一批token的嵌入向量，输出对应的logits概率分布。
+\item \textbf{不变量}：运算精度不低于配置的最低精度（如FP16/BF16）。
+\item \textbf{度量}：FLOPS利用率（衡量硬件算力被利用了多少）、内存带宽利用率、TTFT（Time To First Token，首token延迟）、TPOT（Time Per Output Token，每token延迟）。
+\end{itemize}
+
+\subsubsection{L2--L3接口：KV块管理契约}
+
+L3向L2请求KV块的分配、加载和释放。这个接口就像"应用程序调用\texttt{malloc}/\texttt{free}"——上层说"我需要一段内存来存储KV缓存"，下层负责分配物理空间、处理碎片、在容量不足时执行回收。
+
+\begin{itemize}[nosep]
+\item \textbf{操作}：\texttt{alloc / load(prefix\_hash) / evict(policy)}。分配新的KV块、按前缀哈希加载已有KV块、按策略回收不活跃的KV块。
+\item \textbf{不变量}：KV块不丢失当前推理步所需的状态——类似于操作系统保证不会换出正在被进程使用的内存页。
+\item \textbf{度量}：KV命中率（$H$，即定律I的核心参数）、显存峰值、页置换次数。
+\end{itemize}
+
+\subsubsection{L3--L4接口：上下文装载契约}
+
+L4向L3请求上下文装载。这个接口就像"应用程序通过内存映射（mmap）加载文件"——上层说"我需要关于X的信息"，下层负责从外部存储中检索、压缩、装载到上下文窗口中。
+
+\begin{itemize}[nosep]
+\item \textbf{操作}：\texttt{read(query) / prefetch(hint) / compact / evict}。按查询检索上下文、按提示预取、压缩上下文、回收不活跃上下文。
+\item \textbf{不变量}：返回内容附带来源追踪和时效标注——类似于文件系统保证返回的数据是最新版本。
+\item \textbf{度量}：检索召回率、上下文压缩比、加载延迟。
+\end{itemize}
+
+\subsubsection{L4--L5接口：能力调用契约}
+
+L5向L4请求工具调用和记忆读写。这个接口就像"应用程序通过系统调用请求操作系统服务"——上层说"我需要读写文件"（对应记忆读写）或"我需要访问网络"（对应工具调用），下层负责权限校验和审计。
+
+\begin{itemize}[nosep]
+\item \textbf{操作}：\texttt{call(tool, args, capability\_token) / query(memory)}。带权限令牌调用工具、查询记忆。
+\item \textbf{不变量}：无capability token的工具调用被拒绝（类比：无权限的进程不能打开文件）；副作用操作可审计\cite{debenedetti2025camel}。
+\item \textbf{度量}：工具调用成功率、权限拒绝率。
+\end{itemize}
+
+\subsubsection{L5--L6接口：任务提交契约}
+
+L6向L5提交任务。这个接口就像"用户通过命令行启动程序"——上层说"请帮我完成这个任务"，下层负责任务的排队、执行、监控和结果返回。
+
+\begin{itemize}[nosep]
+\item \textbf{操作}：\texttt{submit(task\_spec) / poll / cancel}。提交任务规格、轮询状态、取消任务。
+\item \textbf{不变量}：任务执行产生可追踪trace；失败时回滚副作用——类似于数据库的事务原子性保证。
+\item \textbf{度量}：任务完成率、人工接管率。
+\end{itemize}
+
+\textbf{值得注意的经验约束}
+Anthropic的内部研究显示，工程师在工作中约60\%使用AI，但只能"完全委托"0--20\%的任务\cite{anthropic2026agenticreport}。
+这一"协作悖论"意味着L5--L6接口的任务提交契约不能仅建模为二元操作（提交/不提交），而需要反映一个委托置信度谱系：任务的可验证性越高、组织上下文依赖越低，委托置信度越高。
+这与双平面架构直接相关——确定性控制平面提供的可审计轨迹正是提高可验证性、从而提高委托置信度的关键机制。
+
+% ---------------------------------------------------------
+\subsection{双平面与ICA的交叉映射}
+\label{sec:dual-plane-icam}
+% ---------------------------------------------------------
+
+第~\ref{sec:framework}节提出了双平面架构：概率执行平面（LLM的不确定性推理）和确定性控制平面（可审计的逻辑控制）。
+一个自然的问题是：双平面与ICA六层模型是什么关系？
+答案是：它们是\textbf{正交的两个维度}。ICA是纵向分层（从硬件到应用），双平面是横向切分（从概率到确定性）。它们的交叉形成了一个$6 \times 2$的矩阵。
+
+表~\ref{tab:dual-plane-icam}展示了这一交叉映射。
+
+\begin{table}[htbp]
+\centering
+\footnotesize
+\caption{双平面与ICA的交叉映射}
+\label{tab:dual-plane-icam}
+\begin{tabularx}{\textwidth}{p{0.12\textwidth}p{0.38\textwidth}p{0.38\textwidth}}
+\toprule
+ICA层 & 概率执行平面的成分 & 确定性控制平面的成分 \\
+\midrule
+L1 & 矩阵运算、注意力计算（概率性输出） & 精度校验、硬件错误检测 \\
+L2 & KV缓存的语义匹配、前缀共享 & 缓存容量管理、回收策略 \\
+L3 & 语义检索、上下文编译、摘要生成 & 记忆保留策略、版本戳、状态持久化 \\
+L4 & 工具结果的语义理解 & 工具schema、协议规范、权限审批、审计 \\
+L5 & Agent推理与决策（概率性） & 任务调度、权限控制、失败恢复、trace记录 \\
+L6 & \multicolumn{2}{c}{两个平面的消费者：同时获得智能输出和可审计轨迹} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+从表中可以看出两个关键特征：
+第一，\textbf{概率平面的重心偏下}，主要覆盖L1（物理执行）和L2（推理服务），并渗透到L3（语义检索与上下文编译）。这是因为LLM的核心能力——语言理解和生成——集中在这些层。
+第二，\textbf{确定性平面的重心偏上}，主要覆盖L5（编排层）和L4的接口契约部分（权限审批、审计、capability标注），并延伸到L3的状态管理部分（记忆保留策略、版本戳）。这是因为系统级的安全、可靠、可审计需求需要确定性保证。
+
+L4是一个特殊的"过渡层"：工具schema和协议规范属于确定性平面（它们是形式化的接口定义），而工具结果的语义理解属于概率平面（LLM需要理解自然语言描述的返回值）。
+L6（应用层）是两个平面的消费者：用户同时获得概率平面的智能输出和确定性平面的可审计轨迹。
+
+这一交叉映射解释了为什么不同文献对"LLM在哪一层"的判断不同——它们看到的是同一系统中不同平面的不同层。例如，聚焦推理优化的研究者认为LLM是L1-L2的计算引擎\cite{kwon2023pagedattention,zhou2024efficientinference}；聚焦Agent系统的研究者认为LLM是L5-L6的智能内核\cite{openai_codex_overview_2026,anthropic_claudecode_overview_2026}；聚焦上下文管理的研究者认为LLM是L3的记忆处理器\cite{memgpt2023,memoryos2025}——这些视角并不矛盾，而是观察到了ICA模型的不同层面。
+
+% ---------------------------------------------------------
+\subsection{设计公理体系}
+\label{sec:icam-axioms}
+% ---------------------------------------------------------
+
+经典计算机体系结构八十年的设计经验可以提炼为一组\textbf{设计原则}：局部性原理指导缓存设计，抽象层次原则指导接口定义，最小权限原则指导安全设计。
+本文将这些原则迁移到模型原生计算领域，结合模型原生计算的特殊性，提出六条设计公理。每条公理指明其经典来源、在ICA中的体现以及具体的设计含义。
+
+\refstepcounter{axiom}
+\begin{axiombox}{\theaxiom\enspace 局部性公理}
+模型原生计算呈现\textbf{时间局部性}（近期访问的上下文片段将再次被访问）和\textbf{语义局部性}（语义相近的查询访问相似的上下文）。
+\end{axiombox}
+\begin{description}[style=nextline,leftmargin=2em,font=\bfseries]
+\item[直观解释] 正如程序在运行时倾向于反复访问同一组内存页（这催生了LRU缓存），LLM在多轮对话中也倾向于反复引用同一批上下文片段。用户先问"Python的装饰器怎么用"，后续的问题往往围绕同一主题展开——这就是语义局部性。
+\item[经典来源] 缓存设计的理论基础\cite{drepper2007memory}。
+\item[ICA体现] L2的KV缓存复用（相同前缀共享KV缓存）、L2的前缀缓存共享（多个请求共享公共system prompt的KV缓存）、L3的语义缓存（语义相似的查询复用之前的生成结果）。
+\item[设计含义] ICA的每一层都应基于局部性做缓存/预取。定律I（第~\ref{sec:laws}节）将这一公理量化为可计算的公式。
+\end{description}
+
+\refstepcounter{axiom}
+\begin{axiombox}{\theaxiom\enspace 分层抽象公理}
+复杂性应通过分层来管理：每层只依赖下层的接口契约，而不依赖其实现细节。
+\end{axiombox}
+\begin{description}[style=nextline,leftmargin=2em,font=\bfseries]
+\item[直观解释] 正如应用程序不需要知道CPU是RISC还是CISC、缓存是4-way还是8-way associative，Agent逻辑也不需要知道底层模型是通过什么推理引擎服务的。
+\item[经典来源] ISA/微架构分离、OS内核/用户态分离\cite{hennessy2017quantitative,ostep_2023}。
+\item[ICA体现] 模型升级（L2的实现变化）不应破坏Agent逻辑（L5的功能）；工具schema变更（L4的接口调整）不应导致记忆失效（L3的数据损坏）。
+\end{description}
+
+\refstepcounter{axiom}
+\begin{axiombox}{\theaxiom\enspace 概率执行公理}
+模型原生计算的核心执行（模型前向推理）是概率式的：相同输入不保证相同输出。
+\end{axiombox}
+\begin{description}[style=nextline,leftmargin=2em,font=\bfseries]
+\item[直观解释] 这是模型原生计算与经典计算\textbf{最根本的差异}。经典计算中，\texttt{2+2}永远等于4；但在LLM中，同一个问题问两次可能得到不同的回答——这不是bug，而是特性。这种概率性使得传统的确定性测试方法失效：我们不能通过"回放相同的输入序列"来验证系统正确性，而需要定义"语义等价性"作为验证标准。
+\item[经典来源] 无经典对应——这是模型原生计算独有的公理。
+\item[ICA体现] 整个ICA模型的分层设计需要为概率性"留出空间"。L4-L5的接口契约不能要求工具调用的结果完全确定，而必须容忍语义层面的变化。L5的失败恢复机制不能依赖精确的输入回放，而需要语义级别的检查点。
+\end{description}
+
+\refstepcounter{axiom}
+\begin{axiombox}{\theaxiom\enspace 虚拟化公理}
+有限物理资源应通过虚拟化呈现为更大的逻辑资源，同时保持隔离与保护。
+\end{axiombox}
+\begin{description}[style=nextline,leftmargin=2em,font=\bfseries]
+\item[直观解释] 正如32位操作系统通过虚拟内存让程序以为它有4GB内存（尽管物理内存可能只有1GB），模型原生计算系统需要让Agent以为它有无限长的上下文窗口（尽管物理上下文窗口只有128K token）。
+\item[经典来源] 虚拟内存、进程隔离\cite{ostep_2023}。
+\item[ICA体现] MemGPT的虚拟上下文管理\cite{memgpt2023}；PagedAttention的页式KV管理\cite{kwon2023pagedattention}——将KV缓存按"页"组织，按需分配，回收不活跃页，与操作系统的虚拟内存管理如出一辙；Agent沙箱\cite{openai_codex_sandbox_2026}——将Agent的执行环境与宿主系统隔离，正如进程的地址空间隔离。
+\end{description}
+
+\refstepcounter{axiom}
+\begin{axiombox}{\theaxiom\enspace 最小权限公理}
+每个执行单元应只被授予完成任务所需的最小权限集合。
+\end{axiombox}
+\begin{description}[style=nextline,leftmargin=2em,font=\bfseries]
+\item[直观解释] 正如文本编辑器不需要管理员权限就能编辑文件，一个负责代码生成的Agent也不应该拥有删除整个代码仓库的权限。
+\item[经典来源] 操作系统安全原则\cite{ostep_2023}。
+\item[ICA体现] CaMeL的能力安全机制\cite{debenedetti2025camel}——为每个Agent操作分配细粒度的capability token；Codex的OS级沙箱\cite{openai_codex_security_2026}——限制Agent的文件系统和网络访问权限。
+\end{description}
+
+\refstepcounter{axiom}
+\begin{axiombox}{\theaxiom\enspace 可观测性公理}
+每个有副作用的操作都必须产生可追踪、可审计的事件记录。
+\end{axiombox}
+\begin{description}[style=nextline,leftmargin=2em,font=\bfseries]
+\item[直观解释] 正如数据库记录每一次写操作的WAL（Write-Ahead Log），Agent的每一次工具调用、文件修改都应该被记录下来，使得事后可以追溯"为什么做了这个操作"。
+\item[经典来源] 系统日志、性能监控\cite{linux_cgroup_2026}。
+\item[ICA体现] OpenAI Agents SDK的tracing机制\cite{openai_codex_agentsdk_2026}——记录Agent的每一步决策和工具调用；Agent安全研究中的trace grading\cite{agenticsecurity2025}——评估Agent操作轨迹的安全性。
+\end{description}
+
+%% ============================================================

@@ -1,0 +1,192 @@
+\begin{figure}[htbp]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[
+    csbox/.style={
+        draw=classical!50, fill=classical!20, rounded corners=2pt,
+        inner sep=3pt, font=\scriptsize\bfseries, text=classical!85!black
+    },
+    msbox/.style={
+        draw=modelnative!50, fill=modelnative!20, rounded corners=2pt,
+        inner sep=3pt, font=\scriptsize\bfseries, text=modelnative!85!black
+    },
+    ltitle/.style={font=\footnotesize\bfseries, text=black!70},
+    arr/.style={<->, >=stealth, thick, draw=gray!40},
+    sep/.style={dashed, gray!20},
+    maplabel/.style={
+        font=\tiny\bfseries, text=black!65,
+        fill=white, draw=gray!25, rounded corners=2pt,
+        inner xsep=3pt, inner ysep=1pt
+    }
+]
+
+% =====================================================================
+%  Layout constants
+%  Left frame: x = -8.8 .. -0.8   Right frame: x = 0.8 .. 8.8
+%  Each frame has 3 columns at offsets -2.2, 0, +2.2 from center
+%  6 rows, y-spacing = 1.25, bottom row center at y = 1.35
+%  Governance bar above frames at y = 9.1
+% =====================================================================
+
+% Row y-centers (bottom to top): 1.35, 2.60, 3.85, 5.10, 6.35, 7.60
+% Frame top = 8.6, bottom = 0.3
+% Title y = 8.2
+
+% =====================================================================
+%  Dual-plane background shading (behind frames)
+% =====================================================================
+% Probabilistic Execution Plane background (L1-L3)
+\fill[blue!6, rounded corners=8pt]
+    (-9.0, 0.15) rectangle (9.4, 4.55);
+
+% Deterministic Control Plane background (L4-L6)
+\fill[orange!6, rounded corners=8pt]
+    (-9.0, 4.75) rectangle (9.4, 8.75);
+
+% ---- Left Frame ----
+\draw[draw=classical!25, fill=classical!3, rounded corners=6pt]
+    (-8.8, 0.3) rectangle (-0.8, 8.6);
+\node[font=\small\bfseries, text=classical] at (-4.8, 8.2) {Classical Computer Architecture};
+
+% Separator lines inside left frame
+\foreach \y in {6.975, 5.725, 4.475, 3.225, 1.975}
+    { \draw[sep] (-8.6, \y) -- (-1.0, \y); }
+
+% L6 Distributed Systems (y_center=7.60)
+\node[ltitle] at (-4.8, 7.95) {Distributed Systems};
+\node[csbox] at (-7.0, 7.55) {Multi-core};
+\node[csbox] at (-4.8, 7.55) {Big.LITTLE};
+\node[csbox] at (-2.6, 7.55) {Load Bal.};
+
+% L5 I/O Bus (y_center=6.35)
+\node[ltitle] at (-4.8, 6.70) {I/O Bus};
+\node[csbox] at (-7.0, 6.30) {Drivers};
+\node[csbox] at (-4.8, 6.30) {Bus Protocol};
+\node[csbox] at (-2.6, 6.30) {DMA};
+
+% L4 Operating System (y_center=5.10)
+\node[ltitle] at (-4.8, 5.45) {Operating System};
+\node[csbox] at (-7.0, 5.05) {Scheduler};
+\node[csbox] at (-4.8, 5.05) {Syscalls};
+\node[csbox] at (-2.6, 5.05) {Virtualization};
+
+% L3 Memory Hierarchy (y_center=3.85)
+\node[ltitle] at (-4.8, 4.20) {Memory Hierarchy};
+\node[csbox] at (-7.0, 3.80) {L1/L2 Cache};
+\node[csbox] at (-4.8, 3.80) {Main Memory};
+\node[csbox] at (-2.6, 3.80) {Virtual Mem.};
+
+% L2 Processor (y_center=2.60)
+\node[ltitle] at (-4.8, 2.95) {Processor (CPU)};
+\node[csbox] at (-7.0, 2.55) {ALU/FPU};
+\node[csbox] at (-4.8, 2.55) {Pipeline};
+\node[csbox] at (-2.6, 2.55) {Branch Predict};
+
+% L1 Hardware (y_center=1.35)
+\node[ltitle] at (-4.8, 1.70) {Hardware (ISA)};
+\node[csbox] at (-7.0, 1.30) {Opcodes};
+\node[csbox] at (-4.8, 1.30) {Registers};
+\node[csbox] at (-2.6, 1.30) {Addressing};
+
+% ---- Right Frame ----
+\draw[draw=modelnative!25, fill=modelnative!3, rounded corners=6pt]
+    (0.8, 0.3) rectangle (8.8, 8.6);
+\node[font=\small\bfseries, text=modelnative] at (4.8, 8.2) {Model-Native Computing Architecture (ICA)};
+
+% Separator lines inside right frame
+\foreach \y in {6.975, 5.725, 4.475, 3.225, 1.975}
+    { \draw[sep] (1.0, \y) -- (8.6, \y); }
+
+% L6 Multi-Agent (y_center=7.60)
+\node[ltitle] at (4.8, 7.95) {Multi-Agent};
+\node[msbox] at (2.6, 7.55) {Model Routing};
+\node[msbox] at (4.8, 7.55) {Hetero. Dispatch};
+\node[msbox] at (7.0, 7.55) {Cross-Validation};
+
+% L5 Tool & Protocol (y_center=6.35)
+\node[ltitle] at (4.8, 6.70) {Tool \& Protocol};
+\node[msbox] at (2.6, 6.30) {Tool Adapters};
+\node[msbox] at (4.8, 6.30) {MCP / A2A};
+\node[msbox] at (7.0, 6.30) {Streaming};
+
+% L4 Agent Runtime (y_center=5.10)
+\node[ltitle] at (4.8, 5.45) {Agent Runtime};
+\node[msbox] at (2.6, 5.05) {Task Orchestration};
+\node[msbox] at (4.8, 5.05) {Tool Calls};
+\node[msbox] at (7.0, 5.05) {Sandboxing};
+
+% L3 Context Management (y_center=3.85)
+\node[ltitle] at (4.8, 4.20) {Context Management};
+\node[msbox] at (2.6, 3.80) {KV Cache};
+\node[msbox] at (4.8, 3.80) {Context Window};
+\node[msbox] at (7.0, 3.80) {RAG Extension};
+
+% L2 Foundation Model (y_center=2.60)
+\node[ltitle] at (4.8, 2.95) {Foundation Model};
+\node[msbox] at (2.6, 2.55) {Transformer};
+\node[msbox] at (4.8, 2.55) {Chain-of-Thought};
+\node[msbox] at (7.0, 2.55) {Specul. Decoding};
+
+% L1 Prompt Interface (y_center=1.35)
+\node[ltitle] at (4.8, 1.70) {Prompt Interface};
+\node[msbox] at (2.6, 1.30) {Task Instructions};
+\node[msbox] at (4.8, 1.30) {Few-Shot};
+\node[msbox] at (7.0, 1.30) {Semantic Retrieval};
+
+% =====================================================================
+%  Dashed interface line between L3 and L4 (across both frames)
+% =====================================================================
+\draw[dashed, thick, black!25] (-8.8, 4.475) -- (8.8, 4.475);
+
+% =====================================================================
+%  Arrows between frames with semantic mapping labels
+% =====================================================================
+\draw[arr] (-0.75, 7.55) -- node[maplabel] {Scale} (0.75, 7.55);
+\draw[arr] (-0.75, 6.30) -- node[maplabel] {Manage} (0.75, 6.30);
+\draw[arr] (-0.75, 5.05) -- node[maplabel] {Abstract} (0.75, 5.05);
+\draw[arr] (-0.75, 3.80) -- node[maplabel] {Store} (0.75, 3.80);
+\draw[arr] (-0.75, 2.55) -- node[maplabel] {Compute} (0.75, 2.55);
+\draw[arr] (-0.75, 1.30) -- node[maplabel] {Substrate} (0.75, 1.30);
+
+% =====================================================================
+%  Layer Numbers (left of left frame)
+% =====================================================================
+\node[font=\tiny\bfseries, text=gray!40] at (-9.15, 7.55) {L6};
+\node[font=\tiny\bfseries, text=gray!40] at (-9.15, 6.30) {L5};
+\node[font=\tiny\bfseries, text=gray!40] at (-9.15, 5.05) {L4};
+\node[font=\tiny\bfseries, text=gray!40] at (-9.15, 3.80) {L3};
+\node[font=\tiny\bfseries, text=gray!40] at (-9.15, 2.55) {L2};
+\node[font=\tiny\bfseries, text=gray!40] at (-9.15, 1.30) {L1};
+
+% =====================================================================
+%  Dual-Plane Brackets (right of right frame)
+% =====================================================================
+% Probabilistic Execution Plane: L1-L3
+\draw[decorate, decoration={brace, amplitude=5pt},
+      thick, draw=blue!50]
+    (9.15, 4.50) -- (9.15, 1.05)
+    node[midway, right=8pt, font=\tiny\bfseries,
+         text=blue!60!black, align=center] {Probabilistic\\Execution Plane};
+
+% Deterministic Control Plane: L4-L6
+\draw[decorate, decoration={brace, amplitude=5pt},
+      thick, draw=orange!60!black]
+    (9.15, 7.95) -- (9.15, 4.65)
+    node[midway, right=8pt, font=\tiny\bfseries,
+         text=orange!60!black, align=center] {Deterministic\\Control Plane};
+
+% L1 substrate indicator
+\draw[dashed, gray!25] (9.15, 0.95) -- (9.15, 0.65);
+\node[font=\tiny, text=gray!35] at (9.55, 0.55) {Physical Substrate};
+
+% =====================================================================
+%  Governance annotation bar (spans full width above frames)
+% =====================================================================
+\draw[thick, gray!40] (-8.8, 8.75) -- (8.8, 8.75);
+\node[font=\scriptsize, text=gray!55] at (0, 9.05)
+    {Governance spans the full stack (Axiom 5: Deterministic Control Boundary \;\textperiodcentered\; Axiom 6: Observable Execution)};
+
+\end{tikzpicture}}% end resizebox
+\caption{Overview analogy mapping between computer architecture and model-native computing systems, with dual-plane decomposition and layer-wise semantic correspondences}
+\label{fig:analogy_map}
+\end{figure}

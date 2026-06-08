@@ -1,206 +1,186 @@
-\begin{figure}[t]
-\providecolor{classical}{HTML}{3D6FB6}
-\providecolor{modelnative}{HTML}{D9792B}
-\providecolor{ink}{HTML}{22303C}
-\providecolor{softgray}{HTML}{6E7B87}
-\providecolor{bgline}{HTML}{D8DEE6}
-\providecolor{pillbg}{HTML}{F5F7FA}
-\centering
-\resizebox{0.98\linewidth}{!}{%
-\begin{tikzpicture}[
-    x=1cm, y=1cm,
-    >={Stealth[length=2.2mm,width=1.4mm]},
-    font=\sffamily,
-    % --- Cell style for regular rows ---
-    cell/.style={
-        rounded corners=3pt,
-        minimum width=5.4cm,
-        minimum height=1.0cm,
-        align=center,
-        inner xsep=5pt,
-        inner ysep=3pt,
-        line width=0.5pt,
-        text=white,
-        font=\small
-    },
-    % --- Transition-zone cell (L4) ---
-    tcell/.style={
-        cell,
-        line width=1.0pt,
-        draw=white!60
-    },
-    % --- Sub-text inside cells ---
-    sub/.style={font=\tiny, text=white!88},
-    % --- Column header ---
-    colhead/.style={
-        rounded corners=6pt,
-        fill=pillbg,
-        draw=bgline,
-        line width=0.5pt,
-        minimum width=5.4cm,
-        minimum height=0.6cm,
-        font=\normalsize\bfseries,
-        inner sep=5pt
-    },
-    % --- Layer label on the left ---
-    laylab/.style={
-        font=\small\bfseries,
-        text=ink,
-        anchor=east
-    },
-    % --- Vertical arrow label ---
-    arrowlab/.style={
-        font=\scriptsize\bfseries,
-        align=center,
-        text=ink
+\begin{figure}[h]
+    \providecolor{classical}{HTML}{3D6FB6}
+    \providecolor{modelnative}{HTML}{D9792B}
+    \providecolor{ink}{HTML}{22303C}
+    \providecolor{softgray}{HTML}{6E7B87}
+    \providecolor{bgline}{HTML}{D8DEE6}
+    \providecolor{pillbg}{HTML}{F5F7FA}
+    \centering
+    \resizebox{0.98\linewidth}{!}{%
+    \begin{tikzpicture}[
+        x=1cm, y=1cm,
+        >={Stealth[length=2.2mm,width=1.4mm]},
+        font=\sffamily,
+        % --- Cell style for regular rows ---
+        cell/.style={
+            rounded corners=3pt,
+            minimum width=5.4cm,
+            minimum height=1.0cm,
+            align=center,
+            inner xsep=5pt,
+            inner ysep=3pt,
+            line width=0.5pt,
+            text=white,
+            font=\small
+        },
+        % --- Transition-zone cell (L4) ---
+        tcell/.style={
+            cell,
+            line width=1.0pt,
+            draw=white!60
+        },
+        % --- Sub-text inside cells ---
+        sub/.style={font=\tiny, text=white!88},
+        % --- Column header ---
+        colhead/.style={
+            rounded corners=6pt,
+            fill=pillbg,
+            draw=bgline,
+            line width=0.5pt,
+            minimum width=5.4cm,
+            minimum height=0.6cm,
+            font=\normalsize\bfseries,
+            inner sep=5pt
+        },
+        % --- Layer label on the left ---
+        laylab/.style={
+            font=\small\bfseries,
+            text=ink,
+            anchor=east
+        },
+        % --- Vertical arrow label ---
+        arrowlab/.style={
+            font=\scriptsize\bfseries,
+            align=center,
+            text=ink
+        }
+    ]
+    
+    % ============================================================
+    %  Row-to-color mapping (gradient: deep blue at L1 -> orange at L6)
+    % ============================================================
+    % L1 – deep blue
+    \providecolor{ra1}{HTML}{1A3B6E}
+    % L2 – blue
+    \providecolor{ra2}{HTML}{2A5594}
+    % L3 – blue-purple transition
+    \providecolor{ra3}{HTML}{4A6AAB}
+    % L4 – purple transition (highlight zone)
+    \providecolor{ra4}{HTML}{7D5B8C}
+    % L5 – orange
+    \providecolor{ra5}{HTML}{C06B2E}
+    % L6 – deep orange
+    \providecolor{ra6}{HTML}{D97B1F}
+    
+    % L4 transition zone lighter tints (left/right cells get a tinted variant)
+    \providecolor{t4l}{HTML}{8B6599}   % Probabilistic side – slightly warmer
+    \providecolor{t4r}{HTML}{6F4F7D}   % Deterministic side – slightly cooler
+    
+    % ============================================================
+    %  Column headers
+    % ============================================================
+    \node[colhead, text=classical] at (0, 7.6)    {Probabilistic Execution};
+    \node[colhead, text=modelnative] at (5.8, 7.6) {Deterministic Control};
+    
+    % ============================================================
+    %  L6 row (top) – y = 6.6
+    % ============================================================
+    \node[cell, fill=ra6, draw=ra6!70!white] (L6P) at (0, 6.6)
+        {\textbf{Distributed Inference}\\[2pt]{\scriptsize Coordination}};
+    \node[cell, fill=ra6, draw=ra6!70!white] (L6D) at (5.8, 6.6)
+        {\textbf{Distributed Governance}\\[2pt]{\scriptsize Consensus}};
+    
+    % ============================================================
+    %  L5 row – y = 5.4
+    % ============================================================
+    \node[cell, fill=ra5, draw=ra5!70!white] (L5P) at (0, 5.4)
+        {\textbf{Semantic I/O}\\[2pt]{\scriptsize Interpretation}};
+    \node[cell, fill=ra5, draw=ra5!70!white] (L5D) at (5.8, 5.4)
+        {\textbf{Protocol Validation}\\[2pt]{\scriptsize I/O Sandboxing}};
+    
+    % ============================================================
+    %  L4 row – y = 4.2  *** TRANSITION ZONE ***
+    % ============================================================
+    \node[tcell, fill=t4l] (L4P) at (0, 4.2)
+        {\textbf{Agent Planning}\\[2pt]{\scriptsize Tool Selection}};
+    \node[tcell, fill=t4r] (L4D) at (5.8, 4.2)
+        {\textbf{Permission Enforcement}\\[2pt]{\scriptsize Execution Monitoring}};
+    
+    % ============================================================
+    %  L3 row – y = 3.0
+    % ============================================================
+    \node[cell, fill=ra3, draw=ra3!70!white] (L3P) at (0, 3.0)
+        {\textbf{Context Prioritization}\\[2pt]{\scriptsize Relevance Scoring}};
+    \node[cell, fill=ra3, draw=ra3!70!white] (L3D) at (5.8, 3.0)
+        {\textbf{Memory Allocation}\\[2pt]{\scriptsize Context Window Enforcement}};
+    
+    % ============================================================
+    %  L2 row – y = 1.8
+    % ============================================================
+    \node[cell, fill=ra2, draw=ra2!70!white] (L2P) at (0, 1.8)
+        {\textbf{Semantic KV-Cache}\\[2pt]{\scriptsize Matching $\cdot$ Prefix Reuse}};
+    \node[cell, fill=ra2, draw=ra2!70!white] (L2D) at (5.8, 1.8)
+        {\textbf{Cache Capacity Mgmt}\\[2pt]{\scriptsize Eviction Policy}};
+    
+    % ============================================================
+    %  L1 row (bottom) – y = 0.6
+    % ============================================================
+    \node[cell, fill=ra1, draw=ra1!70!white] (L1P) at (0, 0.6)
+        {\textbf{Token Generation}\\[2pt]{\scriptsize Sampling $\cdot$ Beam Search}};
+    \node[cell, fill=ra1, draw=ra1!70!white] (L1D) at (5.8, 0.6)
+        {\textbf{Inference Scheduling}\\[2pt]{\scriptsize Batch Management}};
+    
+    % ============================================================
+    %  Layer labels on the left margin
+    % ============================================================
+    \foreach \y/\lab in {6.6/L6, 5.4/L5, 4.2/L4, 3.0/L3, 1.8/L2, 0.6/L1}{
+        \node[laylab] at (-3.2, \y) {\lab};
     }
-]
-
-% ============================================================
-%  Row-to-color mapping (gradient: deep blue at L1 -> orange at L6)
-% ============================================================
-% L1 – deep blue
-\providecolor{ra1}{HTML}{1A3B6E}
-% L2 – blue
-\providecolor{ra2}{HTML}{2A5594}
-% L3 – blue-purple transition
-\providecolor{ra3}{HTML}{4A6AAB}
-% L4 – purple transition (highlight zone)
-\providecolor{ra4}{HTML}{7D5B8C}
-% L5 – orange
-\providecolor{ra5}{HTML}{C06B2E}
-% L6 – deep orange
-\providecolor{ra6}{HTML}{D97B1F}
-
-% L4 transition zone lighter tints (left/right cells get a tinted variant)
-\providecolor{t4l}{HTML}{8B6599}   % Probabilistic side – slightly warmer
-\providecolor{t4r}{HTML}{6F4F7D}   % Deterministic side – slightly cooler
-
-% ============================================================
-%  Column headers
-% ============================================================
-\node[colhead, text=classical] at (0, 7.6)    {Probabilistic Execution};
-\node[colhead, text=modelnative] at (5.8, 7.6) {Deterministic Control};
-
-% ============================================================
-%  L6 row (top) – y = 6.6
-% ============================================================
-\node[cell, fill=ra6, draw=ra6!70!white] (L6P) at (0, 6.6)
-    {\textbf{Distributed Inference}\\[-1pt]
-\\[-1pt]{\scriptsize Coordination}};
-\node[cell, fill=ra6, draw=ra6!70!white] (L6D) at (5.8, 6.6)
-    {\textbf{Distributed Governance}\\[-1pt]
-\\[-1pt]{\scriptsize Consensus}};
-
-% ============================================================
-%  L5 row – y = 5.4
-% ============================================================
-\node[cell, fill=ra5, draw=ra5!70!white] (L5P) at (0, 5.4)
-    {\textbf{Semantic I/O}\\[-1pt]
-\\[-1pt]{\scriptsize Interpretation}};
-\node[cell, fill=ra5, draw=ra5!70!white] (L5D) at (5.8, 5.4)
-    {\textbf{Protocol Validation}\\[-1pt]
-\\[-1pt]{\scriptsize I/O Sandboxing}};
-
-% ============================================================
-%  L4 row – y = 4.2  *** TRANSITION ZONE ***
-% ============================================================
-% Highlight background band
-\fill[yellow!12, rounded corners=5pt] (-3.05, 3.55) rectangle (8.85, 4.85);
-\draw[modelnative!50, dashed, line width=0.7pt, rounded corners=5pt]
-    (-3.05, 3.55) rectangle (8.85, 4.85);
-% Transition-zone label
-\node[font=\tiny\itshape, text=modelnative!75!black, anchor=north east]
-    at (8.75, 4.80) {Transition Zone};
-
-\node[tcell, fill=t4l] (L4P) at (0, 4.2)
-    {\textbf{Agent Planning}\\[-1pt]
-\\[-1pt]{\scriptsize Tool Selection}};
-\node[tcell, fill=t4r] (L4D) at (5.8, 4.2)
-    {\textbf{Permission Enforcement}\\[-1pt]
-\\[-1pt]{\scriptsize Execution Monitoring}};
-
-% ============================================================
-%  L3 row – y = 3.0
-% ============================================================
-\node[cell, fill=ra3, draw=ra3!70!white] (L3P) at (0, 3.0)
-    {\textbf{Context Prioritization}\\[-1pt]
-\\[-1pt]{\scriptsize Relevance Scoring}};
-\node[cell, fill=ra3, draw=ra3!70!white] (L3D) at (5.8, 3.0)
-    {\textbf{Memory Allocation}\\[-1pt]
-\\[-1pt]{\scriptsize Context Window Enforcement}};
-
-% ============================================================
-%  L2 row – y = 1.8
-% ============================================================
-\node[cell, fill=ra2, draw=ra2!70!white] (L2P) at (0, 1.8)
-    {\textbf{Semantic KV-Cache}\\[-1pt]
-\\[-1pt]{\scriptsize Matching $\cdot$ Prefix Reuse}};
-\node[cell, fill=ra2, draw=ra2!70!white] (L2D) at (5.8, 1.8)
-    {\textbf{Cache Capacity Mgmt}\\[-1pt]
-\\[-1pt]{\scriptsize Eviction Policy}};
-
-% ============================================================
-%  L1 row (bottom) – y = 0.6
-% ============================================================
-\node[cell, fill=ra1, draw=ra1!70!white] (L1P) at (0, 0.6)
-    {\textbf{Token Generation}\\[-1pt]
-\\[-1pt]{\scriptsize Sampling $\cdot$ Beam Search}};
-\node[cell, fill=ra1, draw=ra1!70!white] (L1D) at (5.8, 0.6)
-    {\textbf{Inference Scheduling}\\[-1pt]
-\\[-1pt]{\scriptsize Batch Management}};
-
-% ============================================================
-%  Layer labels on the left margin
-% ============================================================
-\foreach \y/\lab in {6.6/L6, 5.4/L5, 4.2/L4, 3.0/L3, 1.8/L2, 0.6/L1}{
-    \node[laylab] at (-3.2, \y) {\lab};
-}
-
-% Thin guide lines from label to row
-\foreach \y in {6.6, 5.4, 4.2, 3.0, 1.8, 0.6}{
-    \draw[bgline, line width=0.4pt] (-3.05, \y) -- (-2.8, \y);
-}
-
-% ============================================================
-%  Vertical arrow: Probabilistic weight decreasing
-% ============================================================
-\draw[-{Latex[length=2.8mm, width=2mm]}, line width=1.4pt, draw=classical!60!modelnative]
-    (-4.2, 6.5) -- (-4.2, 0.7);
-\node[arrowlab, rotate=90, anchor=south] at (-4.7, 3.6)
-    {Probabilistic weight decreasing $\uparrow$};
-
-% Complementary arrow: Deterministic weight increasing
-\draw[-{Latex[length=2.8mm, width=2mm]}, line width=1.4pt,
-      draw=modelnative!60!classical]
-    (9.6, 0.7) -- (9.6, 6.5);
-\node[arrowlab, rotate=270, anchor=south] at (10.1, 3.6)
-    {Deterministic control increasing $\uparrow$};
-
-% ============================================================
-%  Thin horizontal divider between the two columns
-% ============================================================
-\draw[bgline, line width=0.5pt] (2.9, 0.0) -- (2.9, 7.1);
-
-% ============================================================
-%  Subtle background plane shading
-% ============================================================
-\begin{scope}[on background layer]
-    \fill[classical!6, rounded corners=6pt]
-        (-3.05, -0.15) rectangle (2.85, 7.25);
-    \fill[modelnative!6, rounded corners=6pt]
-        (2.95, -0.15) rectangle (8.85, 7.25);
-\end{scope}
-
-% ============================================================
-%  Footer annotation
-% ============================================================
-\node[font=\scriptsize, text=softgray, align=center] at (2.9, -0.55)
-    {Each ICA layer maps responsibilities across both planes;
-     L4 marks the probabilistic-to-deterministic transition};
-
-\end{tikzpicture}%
-}
-\caption{Cross-mapping of ICA layers against the dual-plane architecture}
-\label{fig:icam_crossmap}
-\end{figure}
+    
+    % Thin guide lines from label to row
+    \foreach \y in {6.6, 5.4, 4.2, 3.0, 1.8, 0.6}{
+        \draw[bgline, line width=0.4pt] (-3.05, \y) -- (-2.8, \y);
+    }
+    
+    % ============================================================
+    %  Vertical arrow: Probabilistic weight decreasing
+    % ============================================================
+    \draw[-{Latex[length=2.8mm, width=2mm]}, line width=1.4pt, draw=classical!60!modelnative]
+        (-4.2, 6.5) -- (-4.2, 0.7);
+    \node[arrowlab, rotate=90, anchor=south] at (-4.7, 3.6)
+        {Probabilistic weight decreasing $\uparrow$};
+    
+    % Complementary arrow: Deterministic weight increasing
+    \draw[-{Latex[length=2.8mm, width=2mm]}, line width=1.4pt,
+          draw=modelnative!60!classical]
+        (9.6, 0.7) -- (9.6, 6.5);
+    \node[arrowlab, rotate=270, anchor=south] at (10.1, 3.6)
+        {Deterministic control increasing $\uparrow$};
+    
+    % ============================================================
+    %  Thin horizontal divider between the two columns
+    % ============================================================
+    \draw[bgline, line width=0.5pt] (2.9, 0.0) -- (2.9, 7.1);
+    
+    % ============================================================
+    %  Subtle background plane shading
+    % ============================================================
+    \begin{scope}[on background layer]
+        \fill[classical!6, rounded corners=6pt]
+            (-3.05, -0.15) rectangle (2.85, 7.25);
+        \fill[modelnative!6, rounded corners=6pt]
+            (2.95, -0.15) rectangle (8.85, 7.25);
+    \end{scope}
+    
+    % ============================================================
+    %  Footer annotation
+    % ============================================================
+    \node[font=\scriptsize, text=softgray, align=center] at (2.9, -0.55)
+        {Each ICA layer maps responsibilities across both planes;
+         L4 marks the probabilistic-to-deterministic transition};
+    
+    \end{tikzpicture}%
+    }
+    \caption{Cross-mapping of ICA layers against the dual-plane architecture}
+    \label{fig:icam_crossmap}
+    \end{figure}

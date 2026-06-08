@@ -1,0 +1,101 @@
+\begin{figure}[htbp]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[
+    every node/.style={font=\small},
+]
+
+%% Tier y-coordinates (fixed):
+%% Tier 1 (fastest): y = 3.5 -- 4.7
+%% Tier 2:           y = 2.3 -- 3.5
+%% Tier 3:           y = 1.1 -- 2.3
+%% Tier 4 (largest): y = 0.0 -- 1.1
+%% Half-widths grow downward: 2.1, 2.6, 3.1, 3.6
+%% Left column centre: x=0;  Right column centre: x=12
+
+%% ── LEFT: Classical CPU Cache ────────────────────────────────────────────────
+% Tier 1: L1
+\fill[classical!60, rounded corners=3pt]
+    (-2.1, 3.5) rectangle (2.1, 4.7);
+\node[text=white, font=\small\bfseries] at (0, 4.22) {L1 Cache};
+\node[font=\scriptsize, text=classical!15!white] at (0, 3.88) {$\sim$1\,ns \enspace 64\,KB};
+
+% Tier 2: L2
+\fill[classical!42, rounded corners=3pt]
+    (-2.6, 2.3) rectangle (2.6, 3.5);
+\node[font=\small\bfseries] at (0, 3.02) {L2 Cache};
+\node[font=\scriptsize, text=black!60] at (0, 2.68) {$\sim$4\,ns \enspace 512\,KB};
+
+% Tier 3: L3
+\fill[classical!25, rounded corners=3pt]
+    (-3.1, 1.1) rectangle (3.1, 2.3);
+\node[font=\small\bfseries] at (0, 1.82) {L3 Cache};
+\node[font=\scriptsize, text=black!55] at (0, 1.48) {$\sim$12\,ns \enspace 8--32\,MB};
+
+% Tier 4: Main Memory
+\fill[classical!12, rounded corners=3pt]
+    (-3.6, 0.0) rectangle (3.6, 1.1);
+\node[font=\small\bfseries] at (0, 0.72) {Main Memory (DRAM)};
+\node[font=\scriptsize, text=black!50] at (0, 0.28) {$\sim$60\,ns \enspace 8--64\,GB};
+
+% Left column title
+\node[font=\small\bfseries, text=classical!80!black] at (0, 5.05)
+    {Classical CPU Cache};
+
+%% ── RIGHT: LLM KV Cache Hierarchy ───────────────────────────────────────────
+% Tier 1: Session KV
+\fill[modelnative!60, rounded corners=3pt]
+    (9.9, 3.5) rectangle (14.1, 4.7);
+\node[text=white, font=\small\bfseries] at (12, 4.22) {Session KV Cache};
+\node[font=\scriptsize, text=modelnative!15!white] at (12, 3.88) {$<$1\,ms \enspace GPU VRAM};
+
+% Tier 2: Prefix / Shared Cache
+\fill[modelnative!42, rounded corners=3pt]
+    (9.4, 2.3) rectangle (14.6, 3.5);
+\node[font=\small\bfseries] at (12, 3.02) {Prefix / Shared Cache};
+\node[font=\scriptsize, text=black!60] at (12, 2.68) {$\sim$1--5\,ms \enspace CPU Memory};
+
+% Tier 3: Semantic Cache
+\fill[modelnative!25, rounded corners=3pt]
+    (8.9, 1.1) rectangle (15.1, 2.3);
+\node[font=\small\bfseries] at (12, 1.82) {Semantic Cache};
+\node[font=\scriptsize, text=black!55] at (12, 1.48) {$\sim$10\,ms \enspace SSD / Object Store};
+
+% Tier 4: External Memory
+\fill[modelnative!12, rounded corners=3pt]
+    (8.4, 0.0) rectangle (15.6, 1.1);
+\node[font=\small\bfseries] at (12, 0.72) {External Memory (Vector DB)};
+\node[font=\scriptsize, text=black!50] at (12, 0.28) {$\sim$50--200\,ms \enspace Unlimited};
+
+% Right column title
+\node[font=\small\bfseries, text=modelnative!80!black] at (12, 5.05)
+    {LLM KV Cache Hierarchy};
+
+%% ── Correspondence arrows in the gap (x: 2.1 to 9.9) ────────────────────────
+\draw[dashed, gray!55, thick, -{Latex[length=2mm]}]
+    (2.2, 4.1) -- (9.8, 4.1);
+\node[font=\scriptsize, text=gray!65] at (6, 4.35) {\textit{locality}};
+
+\draw[dashed, gray!55, thick, -{Latex[length=2mm]}]
+    (2.7, 2.9) -- (9.3, 2.9);
+\node[font=\scriptsize, text=gray!65] at (6, 3.15) {\textit{sharing}};
+
+\draw[dashed, gray!55, thick, -{Latex[length=2mm]}]
+    (3.2, 1.7) -- (8.8, 1.7);
+\node[font=\scriptsize, text=gray!65] at (6, 1.95) {\textit{similarity}};
+
+\draw[dashed, gray!55, thick, -{Latex[length=2mm]}]
+    (3.7, 0.55) -- (8.3, 0.55);
+\node[font=\scriptsize, text=gray!65] at (6, 0.80) {\textit{lookup}};
+
+%% ── Capacity / Latency gradient arrow on far left ────────────────────────────
+\draw[{Latex[length=2.5mm]}-{Latex[length=2.5mm]}, gray!45, line width=0.6pt]
+    (-4.4, 0.1) -- (-4.4, 4.6);
+\node[font=\scriptsize, text=gray!55, rotate=90] at (-4.85, 2.35)
+    {Capacity $\uparrow$ \quad Latency $\uparrow$};
+
+\end{tikzpicture}
+}%
+\caption{Structural correspondence between the classical CPU cache hierarchy and the emerging LLM KV cache hierarchy. Both exploit locality and reuse at multiple granularities, with capacity increasing and latency worsening at each lower tier.}
+\label{fig_kv_hierarchy}
+\end{figure}

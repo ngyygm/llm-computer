@@ -1,0 +1,61 @@
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=1.05]
+    
+    % ── Triangle vertices ─────────────────────────────────────────────────────────
+    \coordinate (A) at (0,   3.5);   % top: Low Latency
+    \coordinate (B) at (-3.0, 0);    % bottom-left: Low Cost
+    \coordinate (C) at ( 3.0, 0);    % bottom-right: High Throughput
+    
+    % ── Fill triangle lightly ────────────────────────────────────────────────────
+    \fill[gray!8] (A) -- (B) -- (C) -- cycle;
+    \draw[gray!40, thick] (A) -- (B) -- (C) -- cycle;
+    
+    % ── Vertex labels ────────────────────────────────────────────────────────────
+    \node[font=\small\bfseries, text=classical!80!black, align=center] at (0, 4.15)
+        {Low Latency\\{\scriptsize (fast response)}};
+    
+    \node[font=\small\bfseries, text=modelnative!80!black, align=center] at (-3.8, -0.55)
+        {Low Cost\\{\scriptsize (efficient resource)}};
+    
+    \node[font=\small\bfseries, text=black!70, align=center] at (3.8, -0.55)
+        {High Throughput\\{\scriptsize (batch efficiency)}};
+    
+    % ── Edge annotations (outside triangle edges, not overlapping) ───────────────
+    \node[font=\scriptsize, text=gray!55, rotate=54, align=center]
+        at (-2.2, 2.0) {small batch,\\dedicated GPU};
+    
+    \node[font=\scriptsize, text=gray!55, rotate=-54, align=center]
+        at (2.2, 2.0) {more GPUs,\\higher cost};
+    
+    \node[font=\scriptsize, text=gray!55, align=center]
+        at (0, -0.35) {large batch, queue longer};
+    
+    % ── "Pick any two" label in centre ──────────────────────────────────────────
+
+    
+    % ── System design example points ─────────────────────────────────────────────
+    % Interactive agent: low latency + low cost side
+    % 【修改点】：将文字的 X 坐标从 -0.8 改为 -0.6，使其向右平移一点点
+    \filldraw[classical!70] (-0.8, 1.8) circle (3.5pt);
+    \node[font=\scriptsize, text=classical!80, anchor=north] at (-0.6, 1.65)
+        {Interactive agent};
+    
+    % Batch pipeline: high throughput + low cost side
+    \filldraw[modelnative!70] (1.2, 0.6) circle (3.5pt);
+    \node[font=\scriptsize, text=modelnative!80, anchor=east] at (1.0, 0.6)
+        {Batch pipeline};
+    
+    % RT serving: low latency + high throughput
+    \filldraw[black!55] (0.5, 2.5) circle (3.5pt);
+    \node[font=\scriptsize, text=black!65, anchor=east] at (0.3, 2.5)
+        {RT serving};
+    
+    % ── Classical analogy note (no citation) ─────────────────────────────────────
+    \node[font=\scriptsize, text=gray!50, align=center] at (0, -1.4)
+        {Classical analogy: response time -- throughput trade-off in time-sharing OS};
+    
+    \end{tikzpicture}
+    \caption{The latency--throughput--cost trilemma in LLM serving. Any two objectives can be jointly optimised, but improving all three simultaneously is structurally infeasible given the compute-bound prefill / bandwidth-bound decode asymmetry. Representative system designs are plotted as points inside the triangle.}
+    \label{fig_trilemma}
+    \end{figure}

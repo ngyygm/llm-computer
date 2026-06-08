@@ -30,7 +30,7 @@ Hot/warm/cold memory tiering, context compilation, summarization and retrieval, 
 Tool schemas (the Tool ABI), Memory APIs, and Trace APIs. This layer parallels the system-call interface and ABI in classical architecture: it defines the uniform protocols through which an intelligent system accesses external capabilities. The Model Context Protocol (MCP) standardizes communication between models and tools~\cite{mcp_intro_2026}, while the Agent-to-Agent (A2A) protocol defines interoperability between agents~\cite{agentprotocols2025}. Both are representative L4 implementations.
 
 \item \textbf{L5~--- Orchestration Layer.}
-Task planning, agent scheduling, permission enforcement, failure recovery, and state commitment. This layer is the analog of the operating system kernel: it is responsible for scheduling tasks, allocating resources, enforcing isolation, and providing fault tolerance. OpenAI Codex submits agent tasks to sandboxes for execution and supports the creation and coordination of sub-agents~\cite{openai_codex_overview_2026,openai_codex_subagents_2026}; Claude Code extends agent capabilities through a skill mechanism and connects to external tools via MCP~\cite{anthropic_claudecode_overview_2026,anthropic_claudecode_skills_2026}. Both are representative L5 implementations.
+Task planning, agent scheduling, permission enforcement, failure recovery, and state commitment. This layer is the analog of the operating system kernel: it is responsible for scheduling tasks, allocating resources, enforcing isolation, and providing fault tolerance. OpenAI Codex submits agent tasks to sandboxes for execution and supports the creation and coordination of sub-agents~\cite{openai_codex_overview_2026}; Claude Code extends agent capabilities through a skill mechanism and connects to external tools via MCP~\cite{anthropic_claudecode_overview_2026,anthropic_claudecode_skills_2026}. Both are representative L5 implementations.
 
 \item \textbf{L6~--- Application Layer.}
 User tasks, agent applications, and workflow automation. This layer parallels the user-space application layer in classical systems: it carries end-user intent. SWE-agent autonomously resolves GitHub issues~\cite{sweagent2024}; OpenHands serves as a general-purpose software-development agent~\cite{openhands_paper_2025}. It is worth noting that the L6 user base is rapidly expanding from professional engineers to domain experts: Anthropic's legal team used Claude to reduce marketing-review turnaround from two to three days to under 24~hours; Zapier achieved 89\% organization-wide AI adoption and deployed over 800 internal agents~\cite{anthropic2026agenticreport}. This trend underscores the need for richer interaction modes and stronger built-in guardrails at L6.
@@ -153,11 +153,11 @@ Section~\ref{sec:framework} introduced the dual-plane architecture comprising a 
 
 The answer is that they are \textbf{orthogonal dimensions}. ICA decomposes the system \textit{vertically} (from hardware to application), while the dual-plane architecture partitions it \textit{horizontally} (from probabilistic to deterministic). Their intersection forms a $6 \times 2$ matrix.
 
-Table~\ref{tab:dual-plane-icam} presents this cross-mapping.
+Figure~\ref{fig:icam_crossmap} and Table~\ref{tab:dual-plane-icam} present this cross-mapping.
 
 \input{figures/fig_icam_crossmap}
 
-\begin{table}[t]
+\begin{table}[h]
 \centering
 \footnotesize
 \caption{Cross-mapping of the dual-plane architecture onto ICA layers.}

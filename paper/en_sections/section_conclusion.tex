@@ -5,19 +5,19 @@ The central contributions of this paper can be distilled into a unified framewor
 
 \subsection{Core Contributions}
 
-\textbf{Unified framework: the ICA six-layer model.}
+\paragraph{Unified framework: the ICA six-layer model.}
 We have proposed the Intelligent Computing Architecture (ICA), which defines a model-native computing system as six functional layers (L1--L6), each equipped with explicit interface contracts, design axioms, and performance metrics. ICA is not a mechanical transcription of classical computer architecture; rather, it is a layered abstraction purpose-built for probabilistic execution. Its primary value lies in unifying previously disparate efforts, from AIOS~\cite{mei2024aios} and MemGPT~\cite{memgpt2023} to MCP~\cite{mcp_intro_2026} and PagedAttention~\cite{kwon2023pagedattention}, under a single, shared vocabulary that makes their interdependencies visible and their design trade-offs explicit.
 
-\textbf{Architectural resolution: the dual-plane architecture.}
+\paragraph{Architectural resolution: the dual-plane architecture.}
 We have identified the root cause of the enduring ``Is an LLM a CPU or an OS?'' metaphor clash and resolved it through the dual-plane architecture. The \textit{probabilistic execution plane} (model inference) captures what the system \emph{can} do; the \textit{deterministic control plane} (schedulers, approvers, audit logs within the agent runtime) governs what the system \emph{should} do. This separation reconciles ArbiterOS's ``Probabilistic CPU''~\cite{arbiteros2025}, AIOS's ``kernel''~\cite{mei2024aios}, and AgentOS's ``reasoning kernel''~\cite{agentos2025}: they are not contradictory claims about a single component but complementary perspectives on two distinct planes within the same system.
 
-\textbf{Computable principles: three quantitative laws.}
+\paragraph{Computable principles: three quantitative laws.}
 The Semantic Locality Law ($S = 1/((1-H) + H \cdot \alpha^{-1})$), the Context Budget Law ($W_{\mathrm{eff}} \leq C \cdot \beta(L)$), and the Agent Speedup Law ($S_{\mathrm{agent}} = 1/((1-F) + F/(N \cdot E))$) provide model-native computing with the same kind of computable guardrails that Amdahl's Law and the Roofline model have long offered classical architecture. These laws are isomorphic to Amdahl's Law in form; their contribution is not mathematical novelty but rather the provision of a \emph{quantitative decision language} for a design space that has thus far relied primarily on intuition. Empirical validation against published experimental data shows qualitative agreement, though systematic quantitative verification remains an important next step.
 
-\textbf{Paradigm mapping: from silicon to substrate.}
+\paragraph{Paradigm mapping: from silicon to substrate.}
 We have systematically mapped the canonical lessons from five decades of CPU evolution, including Dennard scaling and the power wall, big.LITTLE heterogeneous architectures and energy-aware scheduling, specialized coprocessor partitioning, and ISA abstraction and substrate independence, onto the evolutionary trajectory of LLM/agent systems. This mapping yields not only historical analogies but two architecturally significant principles: \textbf{substrate independence} (an intelligent operating system should be decoupled from the physical implementation of its compute core) and the \textbf{weakest-link principle} (the reliability of an intelligent system is bounded by its weakest capability dimension).
 
-\textbf{Socio-technical analysis: the industry structure of intelligent computing.}
+\paragraph{Socio-technical analysis: the industry structure of intelligent computing.}
 Drawing on the disaggregation histories of the semiconductor and personal-computer industries, we have analyzed the structural dynamics of the emerging AI stack. The fundamental property of model weights as infinitely copyable software stands in sharp contrast to the physical moats of chip fabrication, driving a convergence toward a fabless AI industry structure comprising specialized model designers, AI foundries, and OS-level platform gateways.
 
 \subsection{Positioning and Boundaries}

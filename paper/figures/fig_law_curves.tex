@@ -1,4 +1,4 @@
-\begin{figure}[t]
+\begin{figure}[h]
 \centering
 \resizebox{\textwidth}{!}{%
 \begin{tikzpicture}
@@ -39,6 +39,10 @@
     title style={font=\small\bfseries, at={(0.5,1.08)}},
     title={(a) Semantic Locality Law},
 ]
+% Shaded practical range FIRST so curves draw on top
+\addplot[blue!10, fill=blue!10, fill opacity=0.35, draw=none, forget plot]
+    coordinates {(0.5,0)(0.5,22)(0.85,22)(0.85,0)};
+\node[font=\tiny, blue!50!black, anchor=north] at (axis cs:0.675,22) {Practical Range};
 \addplot[blue!80!black, domain=0.01:1, samples=60]
     {1/((1-x)+x/5)};
 \addlegendentry{$\alpha=5$}
@@ -48,32 +52,32 @@
 \addplot[red!70!black, domain=0.01:1, samples=60]
     {1/((1-x)+x/20)};
 \addlegendentry{$\alpha=20$}
-% Shaded practical range (semi-transparent)
-\fill[blue!20, fill opacity=0.25, rounded corners=1pt] (axis cs:0.5,0) rectangle (axis cs:0.85,22);
-\node[font=\tiny, blue!60!black] at (axis cs:0.675,3) {Practical Range};
 
 %% (b) W_eff vs C with decay curves lambda = 0.5, 1, 2
 \nextgroupplot[
     xlabel={Context Capacity $C$ (K)},
-    ylabel={Effective Window $W_{\mathrm{eff}}$},
+    ylabel={Effective Window $W_{\mathrm{eff}}$ (K)},
     xmin=0, xmax=130,
-    ymin=0, ymax=60,
+    ymin=0, ymax=90,
     xtick={0,32,64,96,128},
+    ytick={0,20,40,60,80},
     title style={font=\small\bfseries, at={(0.5,1.08)}},
     title={(b) Context Budget Law},
 ]
+% Shaded practical range FIRST — full height to ymax=90
+\addplot[orange!10, fill=orange!10, fill opacity=0.40, draw=none, forget plot]
+    coordinates {(32,0)(32,90)(96,90)(96,0)};
+\node[font=\tiny, orange!55!black, anchor=north] at (axis cs:64,90) {Practical Range};
+% W_eff = C * exp(-lambda * C / C0), C0=128K
 \addplot[blue!80!black, domain=1:130, samples=60]
-    {x * exp(-0.5*128/x)};
+    {x * exp(-0.5*x/128)};
 \addlegendentry{$\lambda=0.5$}
 \addplot[orange!90!black, domain=1:130, samples=60]
-    {x * exp(-1.0*128/x)};
+    {x * exp(-1.0*x/128)};
 \addlegendentry{$\lambda=1$}
 \addplot[red!70!black, domain=1:130, samples=60]
-    {x * exp(-2.0*128/x)};
+    {x * exp(-2.0*x/128)};
 \addlegendentry{$\lambda=2$}
-% Shaded practical range (semi-transparent)
-\fill[orange!20, fill opacity=0.25, rounded corners=1pt] (axis cs:32,0) rectangle (axis cs:96,60);
-\node[font=\tiny, orange!60!black] at (axis cs:64,8) {Practical Range};
 
 %% (c) S_agent vs N for E = 0.3, 0.5, 0.8
 \nextgroupplot[
@@ -85,18 +89,20 @@
     title style={font=\small\bfseries, at={(0.5,1.08)}},
     title={(c) Agent Speedup Law},
 ]
-\addplot[blue!80!black, domain=1:16, samples=60]
+% Start from N=2 to avoid S<1 at N=1 with low E
+\addplot[blue!80!black, domain=2:16, samples=60]
     {1/(0.2+0.8/(x*0.3))};
 \addlegendentry{$E=0.3$}
-\addplot[orange!90!black, domain=1:16, samples=60]
+\addplot[orange!90!black, domain=2:16, samples=60]
     {1/(0.2+0.8/(x*0.5))};
 \addlegendentry{$E=0.5$}
-\addplot[red!70!black, domain=1:16, samples=60]
+\addplot[red!70!black, domain=2:16, samples=60]
     {1/(0.2+0.8/(x*0.8))};
 \addlegendentry{$E=0.8$}
-% Shaded practical range (semi-transparent)
-\fill[red!20, fill opacity=0.25, rounded corners=1pt] (axis cs:4,0) rectangle (axis cs:10,5);
-\node[font=\tiny, red!60!black] at (axis cs:7,1.2) {Practical Range};
+% Shaded practical range FIRST so curves draw on top
+\addplot[red!10, fill=red!10, fill opacity=0.40, draw=none, forget plot]
+    coordinates {(4,0)(4,5)(10,5)(10,0)};
+\node[font=\tiny, red!55!black, anchor=north] at (axis cs:7,5) {Practical Range};
 
 \end{groupplot}
 \end{tikzpicture}}%

@@ -1,185 +1,167 @@
 \begin{figure}[htbp]
-\centering
-\resizebox{0.97\textwidth}{!}{%
-\begin{tikzpicture}[
-    node distance=4mm and 5mm,
-    layer/.style={
-        draw, rounded corners=4pt, minimum width=9.6cm,
-        minimum height=1cm, font=\small, align=center,
-        line width=0.7pt
-    },
-    subbox/.style={
-        draw, rounded corners=3pt, minimum height=0.85cm,
-        font=\footnotesize, align=center, line width=0.6pt
-    },
-    arrow/.style={-{Latex[length=2mm]}, thick, black!40},
-    bypass/.style={
-        -{Latex[length=2.8mm]}, line width=2pt,
-        modelnative!85!black
-    },
-]
-
-% ============================================================
-% Background: Probabilistic Execution Plane  (L1--L3)
-% ============================================================
-\fill[classical!10, rounded corners=8pt]
-    (-6.4,-6.5) rectangle (6.4,0.0);
-
-% Background: Deterministic Control Plane  (L4--L5)
-\fill[modelnative!10, rounded corners=8pt]
-    (-6.4,0.6) rectangle (6.4,5.3);
-
-% ============================================================
-% L6 -- Application Layer (above both planes)
-% ============================================================
-\node[layer, fill=gray!18, draw=gray!55]
-    (L6) at (0,6.2)
-    {\textbf{L6 \, Application Layer}\\[-1pt]
-     {\scriptsize User tasks \, agent apps \, workflow automation \, governance}};
-
-% ============================================================
-% L5 -- Orchestration Layer
-% ============================================================
-\node[layer, fill=modelnative!20, draw=modelnative!65]
-    (L5) at (0,4.4)
-    {\textbf{L5 \, Orchestration Layer}\\[-1pt]
-     {\scriptsize Planning $\cdot$ Agent scheduling $\cdot$ Permission / Approval $\cdot$
-      Failure recovery $\cdot$ State commitment}};
-
-% ============================================================
-% L4 -- Semantic Interface Layer
-% ============================================================
-\node[layer, fill=modelnative!20, draw=modelnative!65]
-    (L4) at (0,2.8)
-    {\textbf{L4 \, Semantic Interface Layer}\\[-1pt]
-     {\scriptsize Tool schemas (Tool ABI) $\cdot$ Memory APIs $\cdot$ Trace APIs $\cdot$
-      MCP / A2A protocols}};
-
-% ---- Dashed interface line at L3/L4 boundary ----
-\draw[dashed, thick, black!35, line width=0.9pt]
-    (-6.4,0.3) -- (6.4,0.3);
-\node[font=\tiny\itshape, text=black!45, anchor=west] at (-6.3,0.3)
-    {L3--L4 interface contract};
-
-% ============================================================
-% L3 -- Context Management Layer
-% ============================================================
-\node[layer, fill=classical!20, draw=classical!60]
-    (L3) at (0,-0.9)
-    {\textbf{L3 \, Context Management Layer}\\[-1pt]
-     {\scriptsize Hot / warm / cold tiering $\cdot$ Context compilation $\cdot$
-      Summarization \& retrieval $\cdot$ Virtual context}};
-
-% ============================================================
-% L2 -- Inference Serving Layer (split into sub-components)
-% ============================================================
-\node[subbox, fill=classical!20, draw=classical!60,
-      minimum width=4.4cm]
-    (L2core) at (-2.2,-2.7)
-    {\textbf{Model Core}\\[-1pt]
-     {\scriptsize Foundation model / Inference strategy}};
-
-\node[subbox, fill=classical!20, draw=classical!60,
-      minimum width=2.3cm]
-    (L2sess) at (1.5,-2.35)
-    {\textbf{Session KV}\\[-1pt]
-     {\scriptsize Per-request cache}};
-
-\node[subbox, fill=classical!20, draw=classical!60,
-      minimum width=2.3cm]
-    (L2pref) at (1.5,-3.05)
-    {\textbf{Prefix / Shared KV}\\[-1pt]
-     {\scriptsize Cross-request reuse}};
-
-% thin bracket grouping L2 sub-boxes
-\draw[classical!50, line width=0.5pt]
-    (3.0,-2.1) -- (3.25,-2.1) -- (3.25,-3.3) -- (3.0,-3.3);
-\node[font=\tiny\bfseries, text=classical!70!black, anchor=west]
-    at (3.35,-2.7) {L2};
-
-% ============================================================
-% L1 -- Physical Execution Layer
-% ============================================================
-\node[layer, fill=classical!20, draw=classical!60]
-    (L1) at (0,-4.7)
-    {\textbf{L1 \, Physical Execution Layer}\\[-1pt]
-     {\scriptsize GPU / TPU / ASIC \, matrix ops $\cdot$ Attention kernels $\cdot$
-      Sampling \& decoding}};
-
-% ============================================================
-% L0 -- Distributed Substrate (below both planes)
-% ============================================================
-\node[layer, fill=gray!18, draw=gray!55]
-    (L0) at (0,-6.0)
-    {\textbf{Distributed Substrate}\\[-1pt]
-     {\scriptsize Continuous batching $\cdot$ Prefill / decode decoupling $\cdot$
-      Parallel routing $\cdot$ Replication $\cdot$ Consistency}};
-
-% ============================================================
-% Plane labels (inside backgrounds, top-left)
-% ============================================================
-\node[font=\small\bfseries, text=classical!80!black, anchor=north west,
-      fill=classical!6, fill opacity=0.7, text opacity=1,
-      rounded corners=2pt, inner sep=2.5pt]
-    at (-6.2,-0.1)
-    {Probabilistic Execution Plane};
-
-\node[font=\small\bfseries, text=modelnative!80!black, anchor=north west,
-      fill=modelnative!6, fill opacity=0.7, text opacity=1,
-      rounded corners=2pt, inner sep=2.5pt]
-    at (-6.2,5.1)
-    {Deterministic Control Plane};
-
-% ============================================================
-% Vertical arrows (inter-layer data / service flow)
-% ============================================================
-\draw[arrow] (L6)   -- (L5);
-\draw[arrow] (L5)   -- (L4);
-\draw[arrow] (L4)   -- (L3);
-\draw[arrow] (L3)   -- (L2core);
-\draw[arrow] (L2core) -- (L1);
-\draw[arrow] (L1)   -- (L0);
-\draw[arrow] (L2sess)  -- (L2core);
-\draw[arrow] (L2pref)  -- (L2core);
-
-% ============================================================
-% BYPASS ARROWS -- the central visual feature
-% ============================================================
-% LEFT bypass: L5 down to L2 (KV cache management)
-\draw[bypass]
-    ([xshift=-1mm]L5.west) -- ++(-1.4,0)
-    coordinate (bl1) -- ++(0,-5.9)
-    coordinate (bl2) -- ++(1.4,0)
-    ([xshift=-1mm]L2core.west);
-\node[font=\scriptsize\bfseries, text=modelnative!85!black,
-      rotate=90, anchor=south]
-    at ([xshift=-8mm]bl2) {Direct KV cache control};
-
-% RIGHT bypass: L4 down to L3 (context management) and L2
-\draw[bypass]
-    ([xshift=1mm]L4.east) -- ++(1.4,0)
-    coordinate (br1) -- ++(0,-4.2)
-    coordinate (br2) -- ++(-1.4,0)
-    ([xshift=1mm]L3.east);
-
-\draw[bypass]
-    ([xshift=1mm]L5.east) -- ++(2.2,0)
-    coordinate (br3) -- ++(0,-7.7)
-    coordinate (br4) -- ++(-1.8,0)
-    ([xshift=1mm]L1.east);
-\node[font=\scriptsize\bfseries, text=modelnative!85!black,
-      rotate=-90, anchor=south]
-    at ([xshift=8mm]br4) {Direct inference control};
-
-\end{tikzpicture}}
-\caption{ICA layered architecture for model-native computing.
-  \textbf{Top to bottom:} L6 Application, L5 Orchestration, L4 Semantic Interface
-  (Deterministic Control Plane, orange), dashed L3--L4 interface boundary,
-  L3 Context Management, L2 Inference Serving (Model Core + Session KV +
-  Prefix/Shared KV), L1 Physical Execution (Probabilistic Execution Plane, blue),
-  and Distributed Substrate.
-  Thick orange bypass arrows show the Deterministic Control Plane reaching
-  through the interface boundary to directly manage KV caches (L2) and
-  hardware execution (L1).}
-\label{fig:arch}
-\end{figure}
+    \centering
+    \resizebox{0.97\textwidth}{!}{%
+    \begin{tikzpicture}[
+        node distance=4mm and 5mm,
+        layer/.style={
+            draw, rounded corners=4pt, minimum width=9.6cm,
+            minimum height=1cm, font=\small, align=center,
+            line width=0.7pt
+        },
+        subbox/.style={
+            draw, rounded corners=3pt, minimum height=0.85cm,
+            font=\footnotesize, align=center, line width=0.6pt
+        },
+        arrow/.style={-{Latex[length=2mm]}, thick, black!40},
+        bypass/.style={
+            -{Latex[length=2.8mm]}, line width=2pt,
+            modelnative!85!black
+        },
+    ]
+    
+    % ============================================================
+    % Background: Deterministic Control Plane  (L4--L5)
+    % ============================================================
+    % 进一步加宽背景框 (-6.8 到 6.8)，极致舒展
+    \fill[modelnative!10, rounded corners=8pt]
+        (-6.8, 1.4) rectangle (6.8, 5.8);
+    \node[font=\small\bfseries, text=modelnative!80!black, anchor=west]
+        at (-6.6, 5.4)
+        {Deterministic Control Plane};
+    
+    % ============================================================
+    % Background: Probabilistic Execution Plane  (L1--L3)
+    % ============================================================
+    % 同步极致加宽背景框
+    \fill[classical!10, rounded corners=8pt]
+        (-6.8, -5.3) rectangle (6.8, 0.8);
+    \node[font=\small\bfseries, text=classical!80!black, anchor=west]
+        at (-6.6, 0.4)
+        {Probabilistic Execution Plane};
+    
+    % ============================================================
+    % Layers Definition
+    % ============================================================
+    % L6 -- Application Layer
+    \node[layer, fill=gray!18, draw=gray!55]
+        (L6) at (0,6.7)
+        {\textbf{L6 \, Application Layer}\\[-1pt]
+         {\scriptsize User tasks \, agent apps \, workflow automation \, governance}};
+    
+    % L5 -- Orchestration Layer
+    \node[layer, fill=modelnative!20, draw=modelnative!65]
+        (L5) at (0,4.5)
+        {\textbf{L5 \, Orchestration Layer}\\[-1pt]
+         {\scriptsize Planning $\cdot$ Agent scheduling $\cdot$ Permission / Approval $\cdot$
+          Failure recovery $\cdot$ State commitment}};
+    
+    % L4 -- Semantic Interface Layer
+    \node[layer, fill=modelnative!20, draw=modelnative!65]
+        (L4) at (0,2.5)
+        {\textbf{L4 \, Semantic Interface Layer}\\[-1pt]
+         {\scriptsize Tool schemas (Tool ABI) $\cdot$ Memory APIs $\cdot$ Trace APIs $\cdot$
+          MCP / A2A protocols}};
+    
+    % ---- Dashed interface line at L3/L4 boundary ----
+    % 虚线长度同步适配到更宽的背景
+    \draw[dashed, thick, black!35, line width=0.9pt]
+        (-6.8,1.15) -- (6.8,1.15);
+    
+    % L3 -- Context Management Layer
+    \node[layer, fill=classical!20, draw=classical!60]
+        (L3) at (0,-0.5)
+        {\textbf{L3 \, Context Management Layer}\\[-1pt]
+         {\scriptsize Hot / warm / cold tiering $\cdot$ Context compilation $\cdot$
+          Summarization \& retrieval $\cdot$ Virtual context}};
+    
+    % ============================================================
+    % L2 -- Inference Serving Layer
+    % ============================================================
+    \node[subbox, fill=classical!20, draw=classical!60,
+          minimum width=4.6cm] 
+        (L2core) at (-2.2,-2.5)
+        {\textbf{Model Core}\\[-1pt]
+         {\scriptsize Foundation model / Inference strategy}};
+    
+    \node[subbox, fill=classical!20, draw=classical!60,
+          minimum width=2.8cm]
+        (L2sess) at (2.8,-2.0)
+        {\textbf{Session KV}\\[-1pt]
+         {\scriptsize Per-request cache}};
+    
+    \node[subbox, fill=classical!20, draw=classical!60,
+          minimum width=2.8cm]
+        (L2pref) at (2.8,-3.0)
+        {\textbf{Prefix / Shared KV}\\[-1pt]
+         {\scriptsize Cross-request reuse}};
+    
+    \draw[classical!50, line width=0.5pt]
+        (4.6,-1.5) -- (4.8,-1.5) -- (4.8,-3.5) -- (4.6,-3.5);
+    \node[font=\tiny\bfseries, text=classical!70!black, anchor=west]
+        at (4.9,-2.5) {L2};
+    
+    % L1 -- Physical Execution Layer
+    \node[layer, fill=classical!20, draw=classical!60]
+        (L1) at (0,-4.5)
+        {\textbf{L1 \, Physical Execution Layer}\\[-1pt]
+         {\scriptsize GPU / TPU / ASIC \, matrix ops $\cdot$ Attention kernels $\cdot$
+          Sampling \& decoding}};
+    
+    % L0 -- Distributed Substrate
+    \node[layer, fill=gray!18, draw=gray!55]
+        (L0) at (0,-6.3)
+        {\textbf{Distributed Substrate}\\[-1pt]
+         {\scriptsize Continuous batching $\cdot$ Prefill / decode decoupling $\cdot$
+          Parallel routing $\cdot$ Replication $\cdot$ Consistency}};
+    
+    % ============================================================
+    % Vertical arrows
+    % ============================================================
+    \draw[arrow] (L6)   -- (L5);
+    \draw[arrow] (L5)   -- (L4);
+    \draw[arrow] (L4)   -- (L3);
+    
+    \draw[arrow] (L3.south -| L2core.north) -- (L2core.north);
+    \draw[arrow] (L2core.south)   -- (L1.north -| L2core.south);
+    \draw[arrow] (L1)   -- (L0);
+    
+    % L2 内部水平指针
+    \draw[arrow] (L2sess.west)  -- (L2core.east |- L2sess.west);
+    \draw[arrow] (L2pref.west)  -- (L2core.east |- L2pref.west);
+    
+    % ============================================================
+    % BYPASS ARROWS (彻底放弃 |-，使用严格三段点对点坐标连线)
+    % ============================================================
+    
+    % LEFT bypass: L5 到 L2 Core (向左偏置增加到 -2.4，绕开新背景)
+    \draw[bypass]
+        (L5.west) -- ++(-2.4,0) coordinate (bl1) -- (bl1 |- L2core.west) -- (L2core.west);
+    \path (L5.west) -- ++(-2.4,0) coordinate (bl1) -- (bl1 |- L2core.west)
+        node[midway, font=\scriptsize\bfseries, text=modelnative!85!black,
+             rotate=90, anchor=south, yshift=1mm]
+        {Direct KV cache control};
+    
+    % RIGHT bypass 1: L4 到 L3 【修改点】：向右拉宽了线 (1.6)，并强制最后一段为水平向左
+    \draw[bypass]
+        (L4.east) -- ++(1.6,0) coordinate (br1) -- (br1 |- L3.east) -- (L3.east);
+    
+    % RIGHT bypass 2: L5 到 L1 (向右偏置增加到 2.4，绕开新背景)
+    \draw[bypass]
+        (L5.east) -- ++(2.4,0) coordinate (br3) -- (br3 |- L1.east) -- (L1.east);
+    \path (L5.east) -- ++(2.4,0) coordinate (br3) -- (br3 |- L1.east)
+        node[midway, font=\scriptsize\bfseries, text=modelnative!85!black,
+             rotate=-90, anchor=south, yshift=1mm]
+        {Direct inference control};
+    
+    \end{tikzpicture}}
+    \caption{ICA layered architecture for model-native computing.
+      \textbf{Top to bottom:} L6 Application, L5 Orchestration, L4 Semantic Interface
+      (Deterministic Control Plane, orange), dashed L3--L4 interface boundary,
+      L3 Context Management, L2 Inference Serving (Model Core + Session KV +
+      Prefix/Shared KV), L1 Physical Execution (Probabilistic Execution Plane, blue),
+      and Distributed Substrate.
+      Thick orange bypass arrows show the Deterministic Control Plane reaching
+      through the interface boundary to directly manage KV caches (L2) and
+      hardware execution (L1).}
+    \label{fig:arch}
+    \end{figure}

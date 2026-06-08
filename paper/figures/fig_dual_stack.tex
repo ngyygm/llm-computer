@@ -25,7 +25,7 @@
 \definecolor{m5}{HTML}{EE9D50}
 \definecolor{m6}{HTML}{F4B777}
 
-\newcommand{\subline}[1]{{\color{white!92}\tiny #1}}
+\newcommand{\subline}[1]{{\color{white!92}\fontsize{5.8}{7}\selectfont #1}}
 
 \begin{figure}[htbp]
 \centering
@@ -36,12 +36,13 @@
     font=\sffamily,
     box/.style={
         rounded corners=4pt,
-        minimum width=5.55cm,
-        minimum height=1.02cm,
+        minimum width=6.5cm,
+        text width=6.5cm,
+        minimum height=1.0cm,
         align=center,
         text=white,
-        inner xsep=5pt,
-        inner ysep=4pt,
+        inner xsep=4pt,
+        inner ysep=3pt,
         line width=0.5pt,
         draw=white!35,
         font=\small
@@ -69,66 +70,68 @@
     sidetitle/.style={font=\scriptsize\bfseries,align=center}
 ]
 
-% Section headers
-\node[stacktitle,text=classical] at (-3.8,7.25) {Classical Computing Stack};
-\node[stacktitle,text=modelnative] at ( 3.8,7.25) {Model-Native Computing Stack (ICAM)};
+%% ── Layout constants ────────────────────────────────────────────────────────
+%% Left column centre:  lx = -4.5   (box half-width 2.7 → left edge -7.2)
+%% Right column centre: rx =  4.5   (box half-width 2.7 → right edge  7.2)
+%% Middle gap:  from -1.8 to +1.8  → 3.6 cm wide, label sits at x=0
+%% Layer-number column: x = -7.7 (well clear of left edge -7.2)
+%% Right brace: x = 7.6 (well clear of right edge 7.2)
 
-% Central divider
+\def\lx{-5.0}
+\def\rx{5.0}
+
+% ── Section headers ──────────────────────────────────────────────────────────
+\node[stacktitle,text=classical]    at (\lx, 7.25) {Classical Computing Stack};
+\node[stacktitle,text=modelnative]  at (\rx, 7.25) {Model-Native Computing Stack (ICAM)};
+
+% ── Central divider ───────────────────────────────────────────────────────────
 \draw[bgline, line width=0.8pt] (0,-0.85) -- (0,6.95);
 
-% Column boxes, left
-\node[box, fill=c6] (cl6) at (-3.8, 6.05) {\textbf{Distributed Systems}\\[-1pt]\subline{MPI $\cdot$ RPC $\cdot$ Load Balancing $\cdot$ Consensus}};
-\node[box, fill=c5] (cl5) at (-3.8, 4.85) {\textbf{Operating System}\\[-1pt]\subline{Scheduling $\cdot$ Syscalls $\cdot$ IPC $\cdot$ Virtualization $\cdot$ File System}};
-\node[box, fill=c4] (cl4) at (-3.8, 3.65) {\textbf{Virtual Memory}\\[-1pt]\subline{Page Tables $\cdot$ TLB $\cdot$ Demand Paging $\cdot$ Working Set $\cdot$ Thrashing}};
-\node[box, fill=c3] (cl3) at (-3.8, 2.45) {\textbf{Cache Hierarchy}\\[-1pt]\subline{L1/L2/L3 $\cdot$ Write-Back $\cdot$ Cache Coherence}};
-\node[box, fill=c2] (cl2) at (-3.8, 1.25) {\textbf{Microarchitecture}\\[-1pt]\subline{Pipeline $\cdot$ Branch Prediction $\cdot$ Out-of-Order $\cdot$ Superscalar}};
-\node[box, fill=c1] (cl1) at (-3.8, 0.05) {\textbf{Hardware}\\[-1pt]\subline{CPU $\cdot$ GPU $\cdot$ FPGA $\cdot$ ASIC $\cdot$ Transistors}};
+% ── Left column boxes ────────────────────────────────────────────────────────
+\node[box, fill=c6] (cl6) at (\lx, 6.05) {\textbf{Distributed Systems}\\[-1pt]\subline{MPI $\cdot$ RPC $\cdot$ Load Balancing $\cdot$ Consensus}};
+\node[box, fill=c5] (cl5) at (\lx, 4.85) {\textbf{Operating System}\\[-1pt]\subline{Scheduling $\cdot$ Syscalls $\cdot$ IPC $\cdot$ File System}};
+\node[box, fill=c4] (cl4) at (\lx, 3.65) {\textbf{Virtual Memory}\\[-1pt]\subline{Page Tables $\cdot$ TLB $\cdot$ Demand Paging $\cdot$ Working Set}};
+\node[box, fill=c3] (cl3) at (\lx, 2.45) {\textbf{Cache Hierarchy}\\[-1pt]\subline{L1/L2/L3 $\cdot$ Write-Back $\cdot$ Cache Coherence}};
+\node[box, fill=c2] (cl2) at (\lx, 1.25) {\textbf{Microarchitecture}\\[-1pt]\subline{Pipeline $\cdot$ Branch Prediction $\cdot$ Out-of-Order}};
+\node[box, fill=c1] (cl1) at (\lx, 0.05) {\textbf{Hardware}\\[-1pt]\subline{CPU $\cdot$ GPU $\cdot$ FPGA $\cdot$ ASIC $\cdot$ Transistors}};
 
-% Column boxes, right
-\node[box, fill=m6] (ml6) at ( 3.8, 6.05) {\textbf{Application Layer}\\[-1pt]\subline{Multi-Agent $\cdot$ Task Decomposition $\cdot$ Cross-Validation $\cdot$ Consensus}};
-\node[box, fill=m5] (ml5) at ( 3.8, 4.85) {\textbf{Orchestration Layer}\\[-1pt]\subline{Agent Runtime $\cdot$ MCP $\cdot$ Sandboxing $\cdot$ Planning/Monitoring}};
-\node[box, fill=m4] (ml4) at ( 3.8, 3.65) {\textbf{Semantic Interface}\\[-1pt]\subline{Prompting $\cdot$ ICL $\cdot$ Structured Output $\cdot$ Schemas}};
-\node[box, fill=m3] (ml3) at ( 3.8, 2.45) {\textbf{Context Management}\\[-1pt]\subline{KV Cache $\cdot$ Context Window $\cdot$ RAG $\cdot$ Attention Patterns}};
-\node[box, fill=m2] (ml2) at ( 3.8, 1.25) {\textbf{Inference Serving}\\[-1pt]\subline{vLLM $\cdot$ SGLang $\cdot$ PagedAttention $\cdot$ Speculative Decoding}};
-\node[box, fill=m1] (ml1) at ( 3.8, 0.05) {\textbf{Physical Execution}\\[-1pt]\subline{GPU/TPU $\cdot$ ASIC $\cdot$ Neuromorphic $\cdot$ Quantum}};
+% ── Right column boxes ───────────────────────────────────────────────────────
+\node[box, fill=m6] (ml6) at (\rx, 6.05) {\textbf{Application Layer}\\[-1pt]\subline{Multi-Agent $\cdot$ Task Decomposition $\cdot$ Consensus}};
+\node[box, fill=m5] (ml5) at (\rx, 4.85) {\textbf{Orchestration Layer}\\[-1pt]\subline{Agent Runtime $\cdot$ MCP $\cdot$ Sandboxing $\cdot$ Planning}};
+\node[box, fill=m4] (ml4) at (\rx, 3.65) {\textbf{Semantic Interface}\\[-1pt]\subline{Prompting $\cdot$ ICL $\cdot$ Structured Output $\cdot$ Schemas}};
+\node[box, fill=m3] (ml3) at (\rx, 2.45) {\textbf{Context Management}\\[-1pt]\subline{KV Cache $\cdot$ Context Window $\cdot$ RAG}};
+\node[box, fill=m2] (ml2) at (\rx, 1.25) {\textbf{Inference Serving}\\[-1pt]\subline{vLLM $\cdot$ SGLang $\cdot$ PagedAttention}};
+\node[box, fill=m1] (ml1) at (\rx, 0.05) {\textbf{Physical Execution}\\[-1pt]\subline{GPU/TPU $\cdot$ ASIC $\cdot$ Neuromorphic $\cdot$ Quantum}};
 
-% Layer numbers aligned at left margin
+% ── Layer numbers: fixed x=-9.0, well outside left box (left edge = -4.7-3.0=-7.7) ──
 \foreach \y/\lab in {6.05/L6,4.85/L5,3.65/L4,2.45/L3,1.25/L2,0.05/L1}{
-  \node[layernum] at (-6.85,\y) {\lab};
+  \node[layernum,anchor=east] at (-8.5,\y) {\lab};
 }
 
-% Horizontal guide stubs for layer numbers
-\foreach \y in {6.05,4.85,3.65,2.45,1.25,0.05}{
-  \draw[bgline,line width=0.45pt] (-6.55,\y) -- (-6.05,\y);
+% ── Mapping arrows: fixed coords centred in gap ──────────────────────────────
+% lx=-4.7, half-width=3.0 → right edge = -1.7
+% rx= 4.7, half-width=3.0 → left edge  =  1.7
+% draw from -1.4 to +1.4, label at 0
+\foreach \y/\lbl in {6.05/Scale,4.85/Manage,3.65/Abstract,2.45/Store,1.25/Compute,0.05/Substrate}{
+  \draw[rel] (-1.4,\y) -- (1.4,\y);
+  \node[maplabel] at (0,\y) {\lbl};
 }
 
-% Mapping arrows with relation labels
-\draw[rel] (cl6.east) -- node[maplabel] {Scale}     (ml6.west);
-\draw[rel] (cl5.east) -- node[maplabel] {Manage}    (ml5.west);
-\draw[rel] (cl4.east) -- node[maplabel] {Abstract}  (ml4.west);
-\draw[rel] (cl3.east) -- node[maplabel] {Store}     (ml3.west);
-\draw[rel] (cl2.east) -- node[maplabel] {Compute}   (ml2.west);
-\draw[rel] (cl1.east) -- node[maplabel] {Substrate} (ml1.west);
-
-% Right-side braces / planes
+% ── Right-side braces (right edge of right box = 5.0+3.25=8.25, brace at 8.5)
 \draw[decorate,decoration={brace,amplitude=5pt},line width=0.9pt,draw=purple!55]
-  (6.75,3.05) -- (6.75,0.18)
-  node[midway,right=9pt,sidetitle,text=purple!60!black] {Probabilistic\\Execution Plane};
+  (8.5,3.05) -- (8.5,-0.42)
+  node[midway,right=8pt,sidetitle,text=purple!60!black] {Probabilistic\\Execution Plane};
 
 \draw[decorate,decoration={brace,amplitude=5pt},line width=0.9pt,draw=teal!60!black]
-  (6.75,6.6) -- (6.75,3.28)
-  node[midway,right=9pt,sidetitle,text=teal!60!black] {Deterministic\\Control Plane};
+  (8.5,6.6) -- (8.5,3.28)
+  node[midway,right=8pt,sidetitle,text=teal!60!black] {Deterministic\\Control Plane};
 
-% Substrate indicator for L1
-\draw[dashed,draw=softgray!60,line width=0.6pt] (6.75,0.48) -- (6.75,-0.55);
-\node[font=\scriptsize,text=softgray] at (7.85,-0.15) {Physical Substrate};
-
-% Small explanatory note
-\node[font=\scriptsize,text=softgray,align=center] at (0,-0.72)
+% ── Bottom note ───────────────────────────────────────────────────────────────
+\node[font=\scriptsize,text=softgray,align=center] at (0,-1.05)
 {Six-layer analogy from classical systems abstractions to model-native computing components};
 
 \end{tikzpicture}%
 }
-\caption{Layer comparison between the classical computing stack and the model-native computing stack.}
+\caption{Layer comparison between the classical computing stack and the model-native computing stack. L1--L3 form the probabilistic execution plane; L4--L5 form the deterministic control plane.}
 \label{fig_dual_stack}
 \end{figure}

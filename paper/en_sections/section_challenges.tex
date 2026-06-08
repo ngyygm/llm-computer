@@ -42,6 +42,9 @@ SGLang~\cite{sglang2024,sglang_docs_2026} uses RadixAttention to organize reques
 TGI~\cite{tgi_docs_2026} and TensorRT-LLM~\cite{tensorrtllm_docs_2026} provide production-grade implementations of continuous batching and paged KV management.
 vAttention~\cite{prabhu2024vattention} offers an alternative approach: leveraging OS-level contiguous virtual memory with dynamic growth to support standard attention kernels directly, bypassing the need for specialized PagedAttention kernels.
 
+Figure~\ref{fig_trilemma} illustrates the three-way trade-off. Any two of the three objectives can be jointly optimised, but improving all three simultaneously is structurally infeasible.
+\input{figures/fig_trilemma.tex}
+
 \subsubsection{Analogy to Classical Architecture}
 This challenge is a direct analog of the classical \emph{memory wall}.
 Since the 1980s, CPU speeds have improved at roughly 50\% per year while DRAM latency has improved at only 7\% per year~\cite{hennessy2017quantitative}.
@@ -226,7 +229,7 @@ Agent behavior, however, is driven by a probabilistic model: the same prompt may
 Aura~\cite{aura2025} further demonstrates that once agents enter the OS and mobile environments, permission management (does the agent have access to the contacts list?), authentication (is the caller the genuine user or an attacker?), semantic input pollution (can a malicious SMS hijack the agent?), and memory taint propagation (how is tainted memory cleaned?) all become \emph{kernel-level} concerns, no longer merely application-layer vulnerabilities but foundational security issues for the entire system architecture.
 
 Figure~\ref{fig:challenge_heatmap} maps each challenge to the ICA layers it impacts most, showing primary, secondary, and tertiary impact levels across the full stack.
-\input{/home/linkco/exa/llm-computer/paper/figures/fig_security_layers.tex}
+\input{figures/fig_security_layers.tex}
 
 \subsubsection{Governance Is Not a Retrofit}
 These observations imply that governance must not be treated as an after-the-fact security patch or a compliance checklist.

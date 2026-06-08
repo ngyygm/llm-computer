@@ -10,7 +10,7 @@ This section surveys the most relevant literature along functional themes, progr
 
 The earliest systematic articulation of the ``LLM as operating system'' analogy is due to Ge et al.\ (2023), who proposed ``LLM as OS, Agents as Apps''~\cite{ge2023llmos}.
 Their central insight is captured by a system mapping diagram: the LLM corresponds to the OS kernel (responsible for core inference and scheduling), the \textit{context window} corresponds to main memory, external storage corresponds to the file system, hardware tools correspond to peripherals, software tools correspond to programming libraries, and user prompts correspond to user commands.
-In other words, they reconceived the LLM not as a ``chatbot'' but as a ``kernel process,'' a metaphor later popularized by Karpathy~\cite{karpathy2023llmos}.
+In other words, they reconceived the LLM not as a ``chatbot'' but as a ``kernel process,'' a metaphor that subsequently gained wide recognition in the practitioner community.
 Within the analogy framework of this paper, the work of Ge et al.\ directly corresponds to the embryonic notion of the Agent OS (the ICA orchestration layer).
 
 Mei et al.'s AIOS~\cite{mei2024aios} advanced this line of thinking from analogy to a runnable system implementation.
@@ -32,7 +32,7 @@ Its key innovation lies in simultaneously supporting both GUI screenshot compreh
 Aura~\cite{aura2025}, targeting mobile scenarios, adopts a hub-and-spoke topology: a privileged System Agent parses user intent, while multiple sandboxed App Agents each handle a specific domain.
 Its design philosophy is ``security first'': inter-agent communication must be mediated through the System Agent, analogous to how inter-process communication in a traditional OS must pass through the kernel.
 
-\textbf{Relationship to this paper.}
+\paragraph{Relationship to this paper.}
 The works above each define a role for the LLM within the system (OS kernel, reasoning kernel, or Agent Kernel) but they have not converged on a unified layered model.
 The ICA model proposed in Section~\ref{sec:icam} consolidates these disparate ``kernel'' concepts into a six-layer architecture and explicitly positions the LLM as the core of the \textbf{probabilistic execution plane} (spanning the physical execution layer and the inference service layer), while the Agent OS occupies the \textbf{deterministic control plane} as an orchestration layer; the two belong to distinct planes and should not be conflated.
 
@@ -62,7 +62,7 @@ HiAgent~\cite{hiagent2024} (published at ACL~2025) proposes ``hierarchical worki
 A-MEM~\cite{amem2025} introduces the concept of \textit{agentic memory}: memory is not a passively stored record but a dynamic resource that agents can autonomously organize, recombine, and update.
 LongMemEval~\cite{longmemeval2024} further demonstrates that long-term memory is not simply ``storing more chat logs,'' but a complex systems engineering challenge involving information extraction, temporal reasoning, knowledge updating, and the capacity to refuse to answer.
 
-\textbf{Relationship to this paper.}
+\paragraph{Relationship to this paper.}
 Research on memory subsystems has become highly systematic, yet it is typically discussed in isolation from the agent runtime and I/O layers, lacking a full-stack perspective.
 More importantly, existing work has not explicitly identified the \textit{KV cache} (the key-value cache maintained during model inference) as the counterpart of ``hardware cache'' in the analogy, whereas this paper argues that the KV cache is precisely the key hardware abstraction bridging the probabilistic compute core and the semantic memory hierarchy.
 We elaborate on this correspondence in Section~\ref{sec:kv}.
@@ -72,7 +72,7 @@ We elaborate on this correspondence in Section~\ref{sec:kv}.
 
 If the preceding two subsections define the ``kernel'' and ``memory,'' respectively, this section focuses on how programs execute on top of that kernel, that is, the execution frameworks and runtime environments for agents.
 
-\textbf{Foundational capabilities: interleaving reasoning and action.}
+\paragraph{Foundational capabilities: interleaving reasoning and action.}
 ReAct~\cite{yao2023react} is the foundational work on agent execution paradigms.
 Prior to ReAct, reasoning (e.g., Chain-of-Thought) and acting (e.g., invoking tools) were separate, sequential steps for LLMs.
 ReAct demonstrated that \textbf{interleaving} reasoning and action within a single loop (``think one step, act one step, observe the result, think again'') significantly improves task completion quality.
@@ -81,11 +81,11 @@ This is analogous to the fetch-decode-execute cycle in traditional computing, wh
 Toolformer~\cite{schick2023toolformer} addressed another foundational question: enabling the model to learn \textbf{when} to call APIs autonomously.
 By automatically inserting API call examples into training data, Toolformer empowers the model to decide during generation whether it needs to invoke a particular tool, analogous to the \textit{system call} mechanism in an operating system, whereby a user program initiates a request to the kernel.
 
-\textbf{The rise of coding agents.}
+\paragraph{The rise of coding agents.}
 The most striking agent advances in 2024--2026 have concentrated in software engineering.
 OpenAI's Codex~CLI~\cite{openai_codex_overview_2026}, released in April~2025, is a terminal-based agent programming assistant.
 It can read code repositories, edit files, execute commands, and operate safely within a sandboxed environment~\cite{openai_codex_sandbox_2026}.
-In early 2026, Codex~CLI introduced a subagent capability~\cite{openai_codex_subagents_2026}: the main agent can spawn specialized subagents that execute subtasks in parallel, each with its own independent context window and sandbox.
+In early 2026, Codex~CLI introduced a subagent capability~\cite{openai_codex_overview_2026}: the main agent can spawn specialized subagents that execute subtasks in parallel, each with its own independent context window and sandbox.
 This directly mirrors the \texttt{fork()} model in traditional operating systems, where a parent process creates child processes.
 Codex also supports custom instructions via AGENTS.md files~\cite{openai_codex_agents_md_2026} and reusable capability modules through Skills~\cite{openai_codex_skills_2026}.
 
@@ -102,7 +102,7 @@ OpenHands~\cite{openhands_paper_2025} (formerly OpenDevin) is an open-source gen
 It achieves approximately 70--74\% issue-resolution rates on the SWE-bench Verified benchmark~\cite{swebench2023} and supports multiple LLM backends.
 SWE-agent~\cite{sweagent2024} focuses specifically on software engineering tasks, achieving comparable performance with a more streamlined Agent-Computer Interface (ACI) design.
 
-\textbf{Relationship to this paper.}
+\paragraph{Relationship to this paper.}
 These agent frameworks already exhibit operating-system-like characteristics in their architecture: Codex's subagents correspond to process management, Claude Code's CLAUDE.md corresponds to configuration and environment management, and OpenHands' ACI corresponds to the system call interface.
 However, they remain independently designed ``application-layer'' tools lacking a unified layered abstraction.
 The ICA model proposed in this paper provides a unifying theoretical framework that maps their functionality onto well-defined architectural layers.
@@ -118,19 +118,19 @@ HuggingGPT~\cite{hugginggpt2023} is an early representative work: it places the 
 This is analogous to the device driver management layer in an operating system, where the OS uniformly manages calls to different devices (models).
 Gorilla~\cite{patil2024gorilla} focuses on a more specific problem: when API documentation is frequently updated, how does the model maintain call accuracy? This corresponds to the version-compatibility challenge for device drivers.
 
-\textbf{MCP: the model-to-system I/O bus.}
+\paragraph{MCP: the model-to-system I/O bus.}
 In November~2024, Anthropic introduced the Model Context Protocol (MCP)~\cite{mcp_intro_2026}, defined as an open standard for connecting AI applications with external data sources, tools, and workflows.
 MCP adopts a client--server architecture: an MCP Client runs on the AI application side, while an MCP Server encapsulates a specific tool or data source.
 Through a unified JSON-RPC protocol, any MCP-compatible AI application can connect to any tool that exposes an MCP Server; Anthropic has likened MCP to ``USB-C for AI.''
 By 2026, the MCP ecosystem had expanded rapidly, with Claude Code~\cite{anthropic_claudecode_mcp_2026} and numerous third-party tools all supporting MCP connections.
 
-\textbf{A2A: the agent-to-agent interconnect protocol.}
+\paragraph{A2A: the agent-to-agent interconnect protocol.}
 In April~2025, Google announced the Agent-to-Agent Protocol (A2A)~\cite{google_a2a_2025} at Cloud Next~'25, explicitly positioned as a complementary open protocol to MCP.
 A2A addresses not the ``model-to-tool'' connection problem but the ``agent-to-agent'' collaboration problem, supporting capability discovery, task lifecycle management, long-running tasks, and multimodal coordination.
 A2A was donated to the Linux Foundation in 2025~\cite{a2alinux2025}, positioning it as a candidate industry standard.
 A2A employs a peer-to-peer client--server model in which every agent can act as both a requesting client and a responding server.
 
-\textbf{Relationship to this paper.}
+\paragraph{Relationship to this paper.}
 Taken together, MCP plays the role of a model-to-system I/O bus (analogous to USB/PCIe), while A2A serves as an agent-to-agent interconnect protocol (analogous to the TCP/IP networking stack).
 In the ICA model proposed in this paper, these correspond to Layer~4 (I/O and tool layer) and Layer~5 (interconnect and protocol layer), respectively.
 No existing work has yet integrated both protocols into a unified layered abstraction or examined their interactions with context management, kernel scheduling, and other layers at the architectural level.
@@ -158,7 +158,7 @@ Its core contribution is an agent integration protocol supporting dynamic team f
 IoA draws design inspiration directly from the Internet: just as the Internet connects computers from different manufacturers running different operating systems, IoA aims to connect agents built with different frameworks by different organizations.
 This effort has also spurred IETF-level standardization (IoA Protocol Internet Draft).
 
-\textbf{Relationship to this paper.}
+\paragraph{Relationship to this paper.}
 Multi-agent systems already exhibit ``distributed system'' morphology at the level of the phenomena they study: AutoGen corresponds to message-passing mechanisms, MetaGPT to workflow orchestration, and IoA to network interconnect protocols.
 However, most work remains at the ``framework and protocol'' layer without integrating individual-agent memory management, kernel scheduling, I/O, and access control into a unified architecture.
 The ICA model maps multi-agent collaboration onto Layer~5 (interconnect and protocol layer) and Layer~6 (application layer), and discusses cross-layer interaction design principles.
@@ -169,7 +169,7 @@ The ICA model maps multi-agent collaboration onto Layer~5 (interconnect and prot
 The preceding subsections have surveyed related work from a functional systems perspective (kernel, memory, runtime, I/O, multi-agent).
 This subsection turns to two higher-level themes: what cognitive architecture should agent systems follow, and how should their security be governed?
 
-\textbf{Cognitive architectures.}
+\paragraph{Cognitive architectures.}
 CoALA (Cognitive Architectures for Language Agents)~\cite{sumers2024coala} provides a theoretical framework grounded in cognitive science.
 CoALA organizes language agents into three core components:
 (1)~\textit{modular memory} (divided into short-term working memory and long-term memory: semantic, episodic, and procedural);
@@ -179,7 +179,7 @@ The value of CoALA lies in providing the theoretical grounding for ``why this sy
 L2MAC~\cite{holt2024l2mac} (ICLR~2024) explicitly frames its architecture as the ``first practical LLM-based stored-program automatic computer (von Neumann architecture),'' comprising an instruction register, file storage, a control unit, and independent LLM agent modules.
 Mi et al.~\cite{mi2025llmagentscomputersystems} organize their LLM agent survey from a ``computer systems perspective,'' explicitly inspired by the von Neumann architecture: they decompose agents into perception, cognition, memory, tool, and action modules, observe that the context window is analogous to main memory and databases to disk, and point out that agents currently lack a ``cache module.''
 
-\textbf{Security governance.}
+\paragraph{Security governance.}
 ArbiterOS~\cite{arbiteros2025} identifies a fundamental tension: we are using the mental model of \textbf{deterministic software engineering} to direct what are \textbf{inherently probabilistic processors}.
 This contradiction demands the introduction of a governance layer at the system architecture level.
 ArbiterOS accordingly proposes the ``Agentic Computer'' mental model, redefining the LLM as a \textit{Probabilistic CPU} and designing governance-layer concepts including a governor, a formal instruction set, and a hardware abstraction layer (HAL).
@@ -189,7 +189,7 @@ CaMeL~\cite{debenedetti2025camel} (Google DeepMind, 2025) applies operating-syst
 Its core design philosophy is ``Don't execute data'': strictly separating trusted instructions from untrusted data, extracting control flow and data flow, and enforcing separate security policies on each to defend against prompt injection attacks.
 IronClaw~\cite{ironclaw2025} (2026) explicitly advocates protecting AI agents in the same way an operating system protects its processes, migrating OS security mechanisms such as privilege separation, sandbox isolation, and audit logging into the agent system.
 
-\textbf{Relationship to this paper.}
+\paragraph{Relationship to this paper.}
 The cognitive architecture line of work provides theoretical foundations, while the security governance line supplies engineering constraints.
 Yet these two threads remain unintegrated: cognitive architectures rarely address security, and security governance rarely considers cognitive structure.
 The dual-plane architecture proposed in this paper attempts to unify both: the probabilistic execution plane carries cognitive capabilities, while the deterministic control plane enforces security governance, and the two interact through well-defined interface contracts.
@@ -200,9 +200,9 @@ The dual-plane architecture proposed in this paper attempts to unify both: the p
 The six themes surveyed above collectively approach the vision of a ``model-native computing architecture,'' yet four critical problems remain unsolved in a unified manner.
 
 Figure~\ref{fig_coverage_map} summarizes the coverage of system layers by existing works.
-\input{/home/linkco/exa/llm-computer/paper/figures/fig_coverage_map.tex}
+\input{figures/fig_coverage_map.tex}
 
-\textbf{Problem 1: What role does the LLM actually play?}
+\paragraph{Problem 1: What role does the LLM actually play?}
 Existing work exhibits a fundamental divergence in positioning the LLM within the system.
 Ge et al.\ and AIOS place the LLM at the core of the OS~\cite{ge2023llmos,mei2024aios}, where the LLM \textit{is} the kernel;
 ArbiterOS demotes it to a ``Probabilistic CPU'' governed by the kernel~\cite{arbiteros2025}, treating the LLM as a managed processor;
@@ -211,17 +211,17 @@ These three positions lead to fundamentally different system designs.
 The ICA model proposed in this paper offers a unified answer: the LLM is the core of the \textbf{probabilistic execution plane} (analogous to the CPU, spanning the physical execution layer and the inference service layer), and the Agent OS is the orchestration layer within the \textbf{deterministic control plane} (analogous to the OS kernel); the two belong to distinct planes and should not be conflated.
 The LLM provides compute capability, while the Agent OS provides management and scheduling, just as the CPU and the OS kernel are two independent yet tightly cooperating layers in classical computer architecture.
 
-\textbf{Problem 2: No full-stack layered model exists.}
+\paragraph{Problem 2: No full-stack layered model exists.}
 No mainstream work simultaneously addresses the probabilistic compute core, semantic memory hierarchy, tool and peripheral bus, Agent OS/kernel, interconnect protocols, governance and security layer, programming model and instruction semantics, and evaluation metrics within a single architectural framework.
 L2MAC~\cite{holt2024l2mac} focuses on the stored-program computer model; Mi et al.~\cite{mi2025llmagentscomputersystems} provide a von Neumann-inspired survey framework, but each covers only one facet of the architecture.
 Memory management work does not discuss I/O protocols; agent frameworks do not discuss KV cache; security governance does not discuss multi-agent collaboration; each line of work makes genuine contributions, but their boundaries are clearly delineated.
 
-\textbf{Problem 3: The probabilistic--deterministic tension has not been codified architecturally.}
+\paragraph{Problem 3: The probabilistic--deterministic tension has not been codified architecturally.}
 ArbiterOS~\cite{arbiteros2025} correctly identifies the tension between probabilistic processors and deterministic governance, but it proposes only a conceptual ``governance-first'' paradigm.
 CaMeL~\cite{debenedetti2025camel} and IronClaw~\cite{ironclaw2025} provide concrete security mechanisms, but these are not embedded within a complete layered architecture.
 This paper \textit{codifies this tension architecturally} through the dual-plane architecture: the probabilistic execution plane carries the LLM's inference capabilities, while the deterministic control plane enforces OS-level management and security responsibilities, with the two planes cooperating through explicit interface protocols.
 
-\textbf{Problem 4: Structural constraints of human--agent collaboration have not been modeled.}
+\paragraph{Problem 4: Structural constraints of human--agent collaboration have not been modeled.}
 Existing work treats the human as a boundary condition of the system (Layer~6 user), but recent industrial evidence reveals a ``collaboration paradox'': engineers use AI for approximately 60\% of their work, yet can fully delegate only 0--20\% of their tasks~\cite{anthropic2026agenticreport}.
 Engineers tend to delegate tasks that are ``easy to verify or low-risk'' while retaining those that are ``conceptually difficult or depend on design decisions.''
 This structural constraint suggests that the human--agent interaction loop should become an explicit component of the architecture, rather than an external assumption.

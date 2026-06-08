@@ -6,24 +6,24 @@ Between 2022 and 2025, these frameworks have undergone a systematic evolution th
 This section traces five distinct generations of this evolution, examining each along three dimensions: its \textbf{core architectural contribution}, its \textbf{representative systems and their concrete mechanisms}, and its \textbf{structural correspondence to classical operating-system history}.
 
 Figure~\ref{fig_agent_timeline} presents a timeline of the five-generation evolution.
-\input{/home/linkco/exa/llm-computer/paper/figures/fig_agent_timeline.tex}
+\input{figures/fig_agent_timeline.tex}
 
 %% ---------- Generation 1 ----------
 \subsection{Generation I: Establishing the Execution Paradigm (2022--2023)}
 
-\textbf{Core contribution.}
+\paragraph{Core contribution.}
 The first generation of agent frameworks established the interleaved \textit{Thought--Action--Observation} loop as the fundamental execution paradigm.
 Prior to this, LLM usage followed a single-turn, question-answer pattern: the user supplied a prompt, and the model returned a complete response, analogous to submitting a batch job and waiting for its output.
 Generation~I broke this limitation by placing the model inside an active loop in which it could \textbf{reason} (analyze the current state and decide on the next step), \textbf{act} (invoke a tool or execute an operation), and \textbf{observe} (read the tool's return value), before entering the next iteration.
 
-\textbf{Representative systems.}
+\paragraph{Representative systems.}
 ReAct~\cite{yao2023react} is the foundational work of this generation.
 Its core mechanism injects a ``Thought'' field into the prompt template, requiring the model to emit an explicit reasoning trace before every tool invocation.
 When asked, for example, ``What is Shakespeare's longest play?'', the model does not guess the answer outright; instead, it first outputs ``I need to search for the lengths of all Shakespeare's plays,'' calls a search tool, and then reasons over the results to arrive at the final answer.
 This ``think before you act'' discipline, while seemingly simple, effectively mitigates the \textit{hallucinated tool calls} that arise when models generate tool invocations without intermediate deliberation.
 Toolformer~\cite{schick2023toolformer} approached the problem from a complementary angle: it taught the model \textbf{when and how} to invoke tools by injecting tool-call demonstrations into the training corpus, thereby acquiring tool usage as a self-supervised capability.
 
-\textbf{OS analogy.}
+\paragraph{OS analogy.}
 Generation~I frameworks correspond to the \textbf{single-task batch-processing systems} of the 1950s, such as the Fortran Monitor System on the IBM~704~\cite{ostep_2023}.
 The system handles one task at a time, to completion, before starting the next; there is no concurrency, no interrupts, and no persistent state across tasks.
 The ReAct loop is the simplest possible ``fetch--decode--execute'' pipeline, with each iteration analogous to a single instruction cycle.
@@ -32,12 +32,12 @@ There is no resource management whatsoever: no task scheduler (only one task exi
 %% ---------- Generation 2 ----------
 \subsection{Generation II: Persistent Multi-Step Agents (2023)}
 
-\textbf{Core contribution.}
+\paragraph{Core contribution.}
 The defining advance of Generation~II is \textbf{persistence} and \textbf{autonomous goal decomposition}.
 In Generation~I, each user query triggers an independent reasoning--action loop, and all intermediate state vanishes upon completion.
 Generation~II frameworks allow agents to run continuously, autonomously decompose high-level goals into sequences of subtasks, maintain intermediate state across steps, and pass information between subtasks, in effect endowing the agent with a \textit{working memory}.
 
-\textbf{Representative systems.}
+\paragraph{Representative systems.}
 AutoGPT~\cite{autogpt_repo_2026} is the most widely recognized effort of this generation.
 Given a high-level objective such as ``survey recent advances in quantum computing and write a report,'' AutoGPT autonomously decomposes it into subtasks (searching papers, extracting key findings, organizing an outline, and drafting the report) and executes them in sequence.
 It introduces long-term memory backed by a vector database to store intermediate results across steps, enabling the agent to ``remember'' what it has already done.
@@ -48,7 +48,7 @@ Voyager~\cite{wang2023voyager} made a critical improvement within the Minecraft 
 This enables the agent to accumulate experience incrementally rather than starting from scratch each time.
 BabyAGI implemented a cleaner task-queue manager: maintaining a prioritized to-do list, executing tasks in priority order, and dynamically spawning new tasks based on execution results.
 
-\textbf{OS analogy.}
+\paragraph{OS analogy.}
 Generation~II corresponds to \textbf{multiprogramming} in the 1960s~\cite{ostep_2023}: the system begins to manage complex multi-step state, and tasks can share and pass information.
 AutoGPT's task queue is a primitive ``job scheduler''; Voyager's skill library resembles an ``executable program library''; BabyAGI's priority ordering parallels early ``job scheduling policies.''
 Compared with mature operating systems, however, Generation~II lacks three critical mechanisms: \textbf{isolation} (different tasks may interfere with one another), \textbf{preemptive scheduling} (a stalled task blocks the entire system), and \textbf{protection} (a failed task can corrupt the state of other tasks).
@@ -56,12 +56,12 @@ Compared with mature operating systems, however, Generation~II lacks three criti
 %% ---------- Generation 3 ----------
 \subsection{Generation III: General-Purpose Runtimes (2023--2024)}
 
-\textbf{Core contribution.}
+\paragraph{Core contribution.}
 Generation~III frameworks systematically introduce \textbf{scheduling}, \textbf{isolation}, and \textbf{resource management}, upgrading the agent framework from a single-script automation tool into a general-purpose runtime platform.
 The key indicator is that an agent is no longer merely a serial loop; it becomes a schedulable, suspendable, resumable ``process.''
 Multiple agents can run concurrently without mutual interference, and the system explicitly manages computational resources such as inference budgets, context space, and tool-call rate limits.
 
-\textbf{Representative systems.}
+\paragraph{Representative systems.}
 AIOS~\cite{mei2024aios} constructed a complete agent operating system kernel organized into six subsystems: an Agent Scheduler for concurrent multi-agent scheduling, a Context Manager for context isolation and sharing across agents, a Memory Manager for hierarchical memory, a Tool Manager for tool registration and permission control, an I/O Manager for input--output mediation, and a Knowledge Manager for knowledge-base integration.
 Each agent is encapsulated as a ``process'' with its own state space and resource budget.
 
@@ -70,7 +70,7 @@ Developers define agent behavioral specifications, permission boundaries, and co
 
 AutoGen~\cite{wu2023autogen} proposed a multi-agent conversational framework in which multiple agents collaborate on complex tasks through structured message passing, each assuming a distinct role (e.g., programmer, tester, project manager), analogous to multi-process cooperation in a conventional operating system.
 
-\textbf{OS analogy.}
+\paragraph{OS analogy.}
 Generation~III corresponds to the \textbf{time-sharing operating systems} of the 1960s--70s, such as Multics and Unix~\cite{ostep_2023}.
 The core breakthrough of time-sharing OSes was providing each user (process) with an independent address space and fair CPU time slices, enabling multiple users to safely share a single computer.
 AIOS's Agent Scheduler corresponds to the process scheduler of a time-sharing OS; its Context Manager maps to the address isolation provided by the memory management unit (MMU); and the Tool Manager's permission controls parallel Unix's file permission system.
@@ -79,14 +79,14 @@ The Agents SDK's tracing mechanism mirrors OS-level system-call auditing via \te
 %% ---------- Generation 4 ----------
 \subsection{Generation IV: Engineering-Grade Operating Systems (2024--2025)}
 
-\textbf{Core contribution.}
+\paragraph{Core contribution.}
 The hallmark of Generation~IV is \textbf{deep integration with real-world software engineering environments}.
 Whereas the first three generations validated their concepts primarily in laboratory or constrained settings, Generation~IV confronts real codebases, real terminal environments, real file systems, and real external services.
 This forces the system to address problems that earlier generations could sidestep: large repositories whose context far exceeds the model's window, tool calls that may produce irreversible side effects, concurrent edits that can introduce conflicts, and real projects that demand permission controls and audit trails.
 
-\textbf{Representative systems.}
+\paragraph{Representative systems.}
 OpenAI Codex~\cite{openai_codex_overview_2026} is a cloud-based coding agent that runs inside an isolated sandbox: it checks out the repository in a dedicated container, performs reads, writes, and command execution, and submits a diff for human review upon completion.
-Codex introduced a sub-agent mechanism~\cite{openai_codex_subagents_2026}: the primary agent can dispatch subtasks to specialized sub-agents, each running in its own sandbox, with results merged after approval, analogous to Unix's \texttt{fork()} creating child processes.
+Codex introduced a sub-agent mechanism~\cite{openai_codex_overview_2026}: the primary agent can dispatch subtasks to specialized sub-agents, each running in its own sandbox, with results merged after approval, analogous to Unix's \texttt{fork()} creating child processes.
 Codex also supports skills packages~\cite{openai_codex_skills_2026} and project-level instruction files (AGENTS.md)~\cite{openai_codex_agents_md_2026}, enabling reusable configurations across projects.
 
 Claude Code~\cite{anthropic_claudecode_overview_2026} adopts a complementary design philosophy: it runs in the developer's local terminal, connects to external tools via the Model Context Protocol (MCP)~\cite{mcp_intro_2026}, defaults to read-only access (unless the user explicitly authorizes writes), and supports custom hooks that intercept and audit every tool call~\cite{anthropic_claudecode_security_2026}.
@@ -96,7 +96,7 @@ OpenHands~\cite{openhands_paper_2025} provides an open agent platform supporting
 OSWorld~\cite{osworld2024} advanced this direction from an evaluation standpoint by constructing real operating-system environments (complete with file managers, browsers, and terminals) and requiring agents to complete open-ended tasks within authentic GUI settings, thereby exposing agents' limitations when confronted with real-world complexity.
 Devin~\cite{devin2024cognition} further exemplified Generation~IV's engineering orientation: as an ``AI software engineer,'' it integrates a code editor, browser, and terminal, and is capable of autonomous planning, coding, debugging, and deployment.
 
-\textbf{OS analogy.}
+\paragraph{OS analogy.}
 Generation~IV corresponds to the \textbf{modern operating systems} of the 1980s--90s, such as Unix System~V, early Linux, and Windows~NT~\cite{ostep_2023}.
 The defining characteristic of modern OSes is their ability to handle real-world complexity: multitasking schedulers (e.g., the Completely Fair Scheduler~\cite{linux_cfs_2026}), virtual memory with demand paging, network protocol stacks, device driver frameworks, and security auditing.
 Codex's sandbox maps to OS-level process isolation (each sub-agent runs in an independent container, akin to \texttt{chroot} or container technology); Claude Code's hooks parallel Linux Security Modules (LSM) security hooks; Codex's approval mechanism corresponds to Unix's \texttt{sudo} privilege escalation; and OpenHands's multi-model backend serves the role of a hardware abstraction layer (HAL).
@@ -104,13 +104,13 @@ Codex's sandbox maps to OS-level process isolation (each sub-agent runs in an in
 %% ---------- Generation 5 ----------
 \subsection{Generation V: Governed Operating Systems (2025--Present)}
 
-\textbf{Core contribution.}
+\paragraph{Core contribution.}
 The defining breakthrough of Generation~V is the elevation of security and governance from post-hoc patches to \textbf{first-principles architectural design}.
 In the first four generations, security measures were additive: first make the agent functional, then bolt on sandboxes, approval gates, and audit logs.
 Generation~V inverts this ordering: define security boundaries and governance rules first, then empower the agent to act within those boundaries.
 This paradigm shift parallels the historical transition of operating systems from ``functional'' to ``trustworthy'': just as Multics introduced ring protection and mandatory access control in the 1960s, but it was not until the widespread adoption of SELinux and capability-based security that protection became an organic component of OS architecture~\cite{ostep_2023}.
 
-\textbf{Representative systems.}
+\paragraph{Representative systems.}
 ArbiterOS~\cite{arbiteros2025} explicitly articulates a layered architecture of ``probabilistic CPU + deterministic governor/kernel'': the underlying LLM serves as the probabilistic processor that determines \textit{what the agent can do}, while the governor above acts as the deterministic controller that decides \textit{what the agent should do}.
 The governor constrains the agent's behavioral boundaries through policy specifications, analogous to how an OS kernel defines a process's capability envelope via system-call tables and permission bits.
 
@@ -134,13 +134,16 @@ The attack surface thus expands from ``code vulnerabilities'' to ``semantic vuln
 
 The OWASP \textbf{Agentic Applications Top~10}~\cite{owasp_agentic2026}, published in late 2025, further systematizes these threats into ten risk categories, including Agent Goal Hijack, Tool Misuse \& Exploitation, and Identity \& Privilege Abuse, providing a taxonomic foundation for the security design of Generation~V frameworks.
 
-\textbf{OS analogy.}
+\paragraph{OS analogy.}
 Generation~V corresponds to the inflection point at which operating systems transitioned from ``functional'' to ``trustworthy.''
 In classical OS history, Unix~V6 (1975) was a functional but insecure system: it lacked memory protection (any process could read or write any memory address) and privilege separation (the root user held unrestricted power).
 As networking and multi-user environments developed, security evolved from an ``optional feature'' to a ``foundational requirement,'' giving rise to Multics ring protection, SELinux mandatory access control, and formal verification of modern microkernels such as seL4~\cite{ostep_2023}.
 Generation~V agent frameworks are undergoing the same transition: security is no longer merely ``add a sandbox,'' but requires a top-to-bottom redesign of the agent's permission model, audit mechanisms, and failure-recovery strategies at the architectural level.
 
 %% ---------- Quantitative perspective ----------
+Figure~\ref{fig_gen_matrix} summarises the capability maturity of each generation across six architectural dimensions.
+\input{figures/fig_gen_matrix.tex}
+
 \subsection{The Five Generations Through the Lens of Law~III}
 
 Viewed through the agent speedup law (Law~III) introduced in Section~\ref{sec:laws}, the five generations of evolution correspond to a progressive increase in $F$ (the parallelizable fraction) and $E$ (the orchestration efficiency).
@@ -152,8 +155,7 @@ S_{\mathrm{agent}} = \frac{1}{(1-F) + \dfrac{F}{N \cdot E}}
 \end{equation}
 where $F \in [0,1]$ denotes the fraction of the task that can be decomposed for parallel execution, $N$ is the number of schedulable agents, and $E \in (0,1]$ is the orchestration efficiency ($E=1$ means zero overhead; $E\to 0$ means overhead consumes all parallel benefit).
 
-\textbf{Quantitative trajectory across generations.}
-
+\paragraph{Quantitative trajectory across generations.}
 \textit{Generation~I (ReAct).}
 $F \approx 0$ (no task decomposition; single-agent serial execution), $N=1$, $E \approx 1$ (no orchestration overhead), yielding $S_{\mathrm{agent}} \approx 1$.
 This corresponds to the ``uniprocessor, no parallelism'' regime.
@@ -174,7 +176,7 @@ The execution time horizon of Generation~IV systems is also expanding from minut
 In a striking demonstration, engineers at Rakuten tested Claude Code on the vLLM project (12.5~million lines of code), where it ran autonomously for seven hours to complete an activation-vector extraction task, achieving 99.9\% numerical accuracy~\cite{anthropic2026agenticreport}.
 This kind of long-duration autonomous execution introduces new architectural challenges, including cross-hour KV-cache persistence, checkpoint/recovery protocols, and sustained resource management, that further reinforce the analogy between agent runtimes and operating systems.
 
-\textbf{The target: a true model-native OS.}
+\paragraph{The target: a true model-native OS.}
 Achieving a genuine model-native operating system requires $F > 0.8$ and $E > 0.8$, which would yield $S_{\mathrm{agent}} > 1/(0.2 + 0.8/8) \approx 3.3$.
 This target demands both high decomposability (high~$F$) \textit{and} low orchestration overhead (high~$E$), a dual requirement that no current system meets.
 

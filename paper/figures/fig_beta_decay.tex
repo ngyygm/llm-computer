@@ -1,0 +1,111 @@
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{groupplot}[
+    group style={
+        group size=2 by 1,
+        horizontal sep=2.2cm,
+    },
+    width=6.2cm,
+    height=4.8cm,
+    grid=major,
+    grid style={gray!18},
+    tick label style={font=\scriptsize},
+    label style={font=\small},
+    every axis plot/.append style={thick},
+    axis lines=left,
+    xmin=0, xmax=1,
+    ymin=0, ymax=1.25,
+    xtick={0,0.25,0.5,0.75,1.0},
+    xticklabels={0,,0.5,,1},
+    ytick={0,0.25,0.5,0.75,1.0},
+    yticklabels={0,,0.5,,1},
+    enlargelimits=false,
+    clip=false,
+]
+
+% ── Left plot: empirical U-shaped β(L) ──────────────────────────────────────
+\nextgroupplot[
+    xlabel={Relative position $L/C$},
+    ylabel={Retention rate $\beta(L)$},
+    title={\small Empirical: U-shaped curve},
+    title style={font=\small},
+    % legend at very bottom centre
+    legend style={
+        font=\scriptsize,
+        at={(0.50,0.02)},
+        anchor=south,
+        draw=gray!40,
+        fill=white,
+        rounded corners=2pt,
+    },
+]
+
+% U-shaped curve
+\addplot[classical, thick, smooth, domain=0:1, samples=100]
+    { 0.92*exp(-8*(x-0)^2) + 0.85*exp(-8*(x-1)^2) + 0.30 };
+\addlegendentry{Observed $\beta(L)$}
+
+% Annotations: Primacy above left peak, Recency above right peak
+% placed well above ymax to avoid overlap
+\node[font=\scriptsize, text=classical!80!black, anchor=south]
+    at (axis cs:0.05, 1.18) {Primacy};
+\draw[classical!50, ->, thin]
+    (axis cs:0.05, 1.17) -- (axis cs:0.08, 1.10);
+
+\node[font=\scriptsize, text=classical!80!black, anchor=south]
+    at (axis cs:0.95, 1.10) {Recency};
+\draw[classical!50, ->, thin]
+    (axis cs:0.95, 1.09) -- (axis cs:0.92, 1.02);
+
+% "Lost in the Middle" label above legend
+\node[font=\scriptsize, text=gray!55]
+    at (axis cs:0.50, 0.44) {``Lost in the Middle''};
+
+% ── Right plot: exponential decay model ─────────────────────────────────────
+\nextgroupplot[
+    xlabel={Relative position $L/C$},
+    ylabel={},
+    title={\small Model: exponential decay},
+    title style={font=\small},
+    yticklabels={},
+    % legend at top-right, very compact
+    legend style={
+        font=\tiny,
+        at={(0.98,0.98)},
+        anchor=north east,
+        draw=gray!40,
+        fill=white,
+        fill opacity=0.85,
+        text opacity=1,
+        rounded corners=2pt,
+        inner xsep=2pt,
+        inner ysep=1pt,
+        row sep=-3pt,
+    },
+]
+
+% shaded region FIRST so curves draw on top
+\addplot[modelnative!15, fill=modelnative!15, draw=none]
+    coordinates {(0,0) (0,1) (1,{exp(-1.5)}) (1,0)} -- cycle;
+
+\addplot[modelnative, thick, smooth, domain=0:1, samples=80]
+    { exp(-1.5*x) };
+\addlegendentry{$\beta_0 e^{-\lambda L/C}$, $\lambda{=}1.5$}
+
+\addplot[modelnative!50, thick, smooth, domain=0:1, samples=80, dashed]
+    { exp(-0.7*x) };
+\addlegendentry{$\lambda{=}0.7$ (slow decay)}
+
+\addplot[modelnative!80, thick, smooth, domain=0:1, samples=80, dotted, line width=1.5pt]
+    { exp(-3.0*x) };
+\addlegendentry{$\lambda{=}3.0$ (fast decay)}
+
+\node[font=\scriptsize, text=modelnative!70!black, anchor=center]
+    at (axis cs:0.55, 0.14) {$W_{\mathrm{eff}} = C\!\cdot\!\bar{\beta}$ \, (for $\lambda{=}1.5$)};
+
+\end{groupplot}
+\end{tikzpicture}
+\caption{Two perspectives on the attention retention rate $\beta(L)$. \textbf{Left:} Empirically observed U-shaped curve (Liu et al.~\cite{liu2023lostmiddle}): information at the beginning and end of the context is recalled well, while the middle region suffers a sharp drop in retention. \textbf{Right:} Exponential decay model $\beta(L)\approx\beta_0 e^{-\lambda L/C}$ adopted in Law~II for analytical tractability; the shaded area represents the effective working set $W_{\mathrm{eff}}=C\cdot\bar{\beta}$.}
+\label{fig_beta_decay}
+\end{figure}

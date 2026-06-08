@@ -33,14 +33,14 @@ Before proceeding to the derivation, we develop intuition for the two core param
 
 We begin from first principles.
 
-\textbf{Step~1: Decompose execution time.}
+\paragraph{Step~1: Decompose execution time.}
 Let $T$ denote the total wall-clock time for a single inference request. This time decomposes into two disjoint components:
 \begin{equation}
 T = T_{\mathrm{miss}} + T_{\mathrm{hit}}
 \end{equation}
 where $T_{\mathrm{miss}}$ is the time spent on KV-cache misses (requiring full recomputation) and $T_{\mathrm{hit}}$ is the time spent on KV-cache hits (direct reuse of existing KV tensors).
 
-\textbf{Step~2: Express each component in terms of the hit rate.}
+\paragraph{Step~2: Express each component in terms of the hit rate.}
 Let $T_{\mathrm{total}}$ be the time required when \emph{no} cache is available (i.e., every token must be computed from scratch). When a cache is present, a fraction $(1-H)$ of the work incurs misses while a fraction $H$ enjoys hits. Because a hit is $\alpha$ times faster than a miss, the hit component costs only $1/\alpha$ of its uncached value:
 \begin{equation}
 T = T_{\mathrm{total}} \cdot (1-H) + T_{\mathrm{total}} \cdot H \cdot \frac{1}{\alpha}
@@ -50,7 +50,7 @@ Collecting terms:
 T = T_{\mathrm{total}} \cdot \left[(1-H) + \frac{H}{\alpha}\right]
 \end{equation}
 
-\textbf{Step~3: Define the speedup.}
+\paragraph{Step~3: Define the speedup.}
 The speedup $S$ is the ratio of uncached to cached execution time:
 \begin{equation}
 S = \frac{T_{\mathrm{total}}}{T} = \frac{T_{\mathrm{total}}}{T_{\mathrm{total}} \cdot \left[(1-H) + H/\alpha\right]} = \frac{1}{(1-H) + H/\alpha}
@@ -87,7 +87,8 @@ S_{\mathrm{Amdahl}} = \frac{1}{(1-f) + f/p}
 \end{equation}
 where $f$ is the fraction of work that can be accelerated and $p$ is the per-unit speedup. The correspondence is: $f \leftrightarrow H$ (the accelerable fraction equals the cache-hit fraction) and $p \leftrightarrow \alpha$ (the per-unit speedup equals the KV-reuse factor).
 
-\textbf{Design implication.} There are two levers for improving inference throughput: increasing $H$ (through better caching policies, prefix sharing, or semantic caching \cite{gim2024promptcache}) and increasing $\alpha$ (through faster KV loading, PagedAttention \cite{kwon2023pagedattention}, or KV quantization \cite{hooper2024kvquant}). These two levers are \textbf{complementary}: when $H$ is already high, further increases in $H$ yield large marginal gains; when $H$ is low, raising $\alpha$ alone is ineffective, and the priority should be improving the caching strategy first.
+\paragraph{Design implication.}
+There are two levers for improving inference throughput: increasing $H$ (through better caching policies, prefix sharing, or semantic caching \cite{gim2024promptcache}) and increasing $\alpha$ (through faster KV loading, PagedAttention \cite{kwon2023pagedattention}, or KV quantization \cite{hooper2024kvquant}). These two levers are \textbf{complementary}: when $H$ is already high, further increases in $H$ yield large marginal gains; when $H$ is low, raising $\alpha$ alone is ineffective, and the priority should be improving the caching strategy first.
 
 \subsubsection{Empirical Validation}
 
@@ -105,12 +106,12 @@ Validating Law~I requires two pieces of data: the speedup reported by a system a
 % ---------------------------------------------------------
 
 \begin{law}[Context Budget Law]
-The effective working set $W_{\mathrm{eff}}$ of a language model is jointly constrained by the context window size $C$ and the attention retention rate $\beta(L)$:
+The effective working set $W_{\mathrm{eff}}$ of a language model is the integral of the attention retention rate $\beta(L)$ over the nominal context window $C$:
 \begin{equation}
 \label{eq:context}
-W_{\mathrm{eff}} \leq C \cdot \beta(L)
+W_{\mathrm{eff}} = \int_0^C \beta(L)\,dL = C \cdot \bar{\beta} \leq C, \qquad \bar{\beta} = \frac{1}{C}\int_0^C \beta(L)\,dL
 \end{equation}
-where $C$ is the model's nominal context window size (e.g., 128K, 1M tokens), $L$ is the positional distance of information within the window, and $\beta(L) \in [0,1]$ measures the probability that information at position $L$ is effectively utilized by the model.
+where $C$ is the model's nominal context window size (e.g., 128K, 1M tokens), $L$ is the positional distance of information within the window, $\beta(L) \in [0,1]$ measures the probability that information at position $L$ is effectively utilized by the model, and $\bar{\beta} \in (0,1]$ is the average retention rate across the full window. The inequality $W_{\mathrm{eff}} \leq C$ follows directly from $\beta(L) \leq 1$, with equality only when every token is perfectly utilized.
 \end{law}
 
 \subsubsection{Intuitive Parameter Semantics}
@@ -130,6 +131,9 @@ $\beta(L)$ is not a constant but a function that decays with positional distance
 Liu et al.\ systematically studied this phenomenon in their seminal work \cite{liu2023lostmiddle}: they placed critical information at various positions within long contexts and measured whether the model could retrieve it. The results revealed a pronounced \textbf{U-shaped curve}: information at the \textbf{beginning} of the context (analogous to a primacy effect) and at the \textbf{end} (analogous to a recency effect) was retrieved with high accuracy, while information in the \textbf{middle} suffered a significant drop in retrieval accuracy.
 
 Subsequent studies have further quantified this decay. The RULER benchmark shows that retrieval accuracy drops from $>$95\% at 4K tokens to $<$70\% at 128K tokens \cite{ruler2024}. LongBench~v2 confirms that the decay is more severe for tasks requiring deep reasoning \cite{longbenchv2_2024}. The LOFT study demonstrates that even models supporting ultra-long contexts exhibit significant under-utilization of their stated capacity \cite{loft2024}. Recent work suggests that the effective context length exploited by LLMs may be only 10--20\% of the stated window.
+
+Figure~\ref{fig_beta_decay} visualises both the empirically observed U-shaped curve and the exponential decay model adopted in Law~II.
+\input{figures/fig_beta_decay.tex}
 
 \subsubsection{Why an Exponential Decay Model}
 
@@ -165,7 +169,7 @@ Law~II carries three direct design implications:
 Validating Law~II requires measuring the gap between a model's stated context window $C$ and its effective context $W_{\mathrm{eff}}$.
 
 \begin{enumerate}[nosep]
-\item \textbf{RULER benchmark.} Hsieh et al.\ designed RULER to test effective context via needle-in-a-haystack retrieval tasks at varying context lengths \cite{ruler2024}. Even for models that nominally support 128K contexts, accuracy on complex retrieval tasks drops from $>$95\% at 4K to $<$70\% at 128K. This implies $W_{\mathrm{eff}} \approx 0.7 \times 128\mathrm{K} \approx 90\mathrm{K}$, far below the stated $C$.
+\item \textbf{RULER benchmark.} Hsieh et al.\ designed RULER to test effective context via needle-in-a-haystack retrieval tasks at varying context lengths \cite{ruler2024}. Even for models that nominally support 128K contexts, accuracy on complex retrieval tasks drops from $>$95\% at 4K to $<$70\% at 128K. This monotone decline in retrieval accuracy as $C$ grows is consistent with a decreasing $\bar{\beta}$, confirming that $W_{\mathrm{eff}} = C \cdot \bar{\beta}$ grows substantially slower than $C$ and is far below the nominal window size.
 
 \item \textbf{LongBench v2.} Bai et al.\ find that decay is substantially faster for deep reasoning tasks (e.g., mathematical proofs, multi-step logic) than for simple retrieval \cite{longbenchv2_2024}. This confirms that $\lambda$ is not a fixed property of the model but varies with task type.
 \end{enumerate}
@@ -188,7 +192,7 @@ S_{\mathrm{agent}} = \frac{1}{(1-F) + \frac{F}{N \cdot E}}
 \begin{itemize}[nosep]
 \item $F$ (parallelizable fraction): \textbf{The fraction of the task that can be distributed across multiple agents for concurrent execution.} For example, a ``compare three papers'' task allows each paper's summary to be extracted by a separate agent simultaneously ($F$ is high); a ``compile, test, deploy in strict sequence'' task forces most steps to execute serially ($F$ is low). The domain of $F$ is $[0, 1]$.
 
-\item $N$ (number of sub-agents): The number of agents that can be dispatched concurrently, analogous to the number of processors in a distributed system. For instance, Codex supports creating multiple sub-agents for complex tasks \cite{openai_codex_subagents_2026}, and Claude Code supports parallel sub-task processing through its sub-agent mechanism \cite{anthropic_claudecode_subagents_2026}.
+\item $N$ (number of sub-agents): The number of agents that can be dispatched concurrently, analogous to the number of processors in a distributed system. For instance, Codex supports creating multiple sub-agents for complex tasks \cite{openai_codex_overview_2026}, and Claude Code supports parallel sub-task processing through its sub-agent mechanism \cite{anthropic_claudecode_subagents_2026}.
 
 \item $E$ (orchestration efficiency): \textbf{The overhead factor incurred in coordinating multiple agents,} $E \in (0, 1]$. $E$ captures the additional costs of multi-agent coordination: context synchronization (agents must share intermediate results), result merging (outputs from multiple agents must be integrated), conflict detection (multiple agents may modify the same resource), and permission negotiation (each agent's permissions must be independently authorized). $E = 1$ indicates zero orchestration overhead; $E < 1$ indicates that overhead exists.
 \end{itemize}
@@ -197,16 +201,16 @@ S_{\mathrm{agent}} = \frac{1}{(1-F) + \frac{F}{N \cdot E}}
 
 The derivation parallels that of Law~I but introduces the orchestration efficiency factor.
 
-\textbf{Step~1: Decompose execution time.}
+\paragraph{Step~1: Decompose execution time.}
 Let $T_{\mathrm{total}}$ denote the execution time on a single agent. The task decomposes into a parallelizable fraction $F$ and a serial fraction $(1-F)$.
 
-\textbf{Step~2: Compute the time for each component.}
+\paragraph{Step~2: Compute the time for each component.}
 \begin{itemize}[nosep]
 \item Serial component: $(1-F) \cdot T_{\mathrm{total}}$ (cannot be accelerated).
 \item Parallel component: distributed across $N$ agents but subject to orchestration overhead $E$, so the effective speedup is $N \cdot E$ rather than $N$. The time is $F \cdot T_{\mathrm{total}} / (N \cdot E)$.
 \end{itemize}
 
-\textbf{Step~3: Aggregate and compute the speedup.}
+\paragraph{Step~3: Aggregate and compute the speedup.}
 \begin{equation}
 T = (1-F) \cdot T_{\mathrm{total}} + \frac{F \cdot T_{\mathrm{total}}}{N \cdot E}
 \end{equation}
@@ -214,7 +218,8 @@ T = (1-F) \cdot T_{\mathrm{total}} + \frac{F \cdot T_{\mathrm{total}}}{N \cdot E
 S_{\mathrm{agent}} = \frac{T_{\mathrm{total}}}{T} = \frac{1}{(1-F) + \frac{F}{N \cdot E}}
 \end{equation}
 
-\textbf{Step~4: Verify degeneration.} When $E = 1$ (no orchestration overhead), the formula degenerates to the standard Amdahl's Law, confirming the derivation's consistency.
+\paragraph{Step~4: Verify degeneration.}
+When $E = 1$ (no orchestration overhead), the formula degenerates to the standard Amdahl's Law, confirming the derivation's consistency.
 
 \subsubsection{Limit Behavior}
 
@@ -239,7 +244,7 @@ Consider a code-review task with $F = 0.6$ (60\% of the review work can be distr
 
 Increasing the agent count from 2 to 4 yields a $37\%$ additional speedup, whereas increasing from 8 to 16 yields only $12\%$, exhibiting \textbf{diminishing returns}, the hallmark of Amdahl-style scaling.
 
-\textbf{Industrial calibration with the Fountain system.}
+\paragraph{Industrial calibration with the Fountain system.}
 Consider the Fountain Copilot system reported by Anthropic \cite{anthropic2026agenticreport}: a central orchestration agent coordinates three specialized sub-agents for candidate screening, document generation, and sentiment analysis. In practice, however, sub-tasks form a pipeline, so the effective parallelism is considerably higher than the agent count alone would suggest. If the baseline workflow requires 168 hours for a full recruiting-center configuration and the agent-assisted pipeline completes it in 72 hours, then $S_{\mathrm{agent}} = 168/72 = 2.33$. Substituting into Equation~(\ref{eq:agent}) with $F \approx 0.7$ and $E \approx 0.65$ yields a required effective parallelism of $N \approx 8$, consistent with three agents processing multiple sub-tasks in a pipelined fashion. Note that $N$ here denotes \textbf{effective parallelism} (the number of concurrently executable sub-tasks), not the raw agent count. This calibration demonstrates that the parameter space of Law~III can be grounded with production data, while also revealing the important distinction between effective parallelism and agent count: pipelining allows a small number of agents to achieve a high degree of effective parallelism.
 
 \subsubsection{Comparison with Classical Amdahl's Law}
@@ -280,25 +285,27 @@ Validating Law~III requires real performance data from multi-agent systems.
 
 Table~\ref{tab:empirical} summarizes the core formula, supporting evidence, and open questions for each of the three laws.
 
-Figure~\ref{fig_law_curves} plots the characteristic curves of the three quantitative laws.
-\input{/home/linkco/exa/llm-computer/paper/figures/fig_law_curves.tex}
+\begin{table}[h]
+    \centering
+    \footnotesize
+    \caption{Empirical evidence for the three quantitative laws.}
+    \label{tab:empirical}
+    \begin{tabularx}{\textwidth}{lY Y Y}
+    \toprule
+    & Law~I (Semantic Locality) & Law~II (Context Budget) & Law~III (Agent Speedup) \\
+    \midrule
+    Core formula & $S = 1/((1-H)+H/\alpha)$ & $W_{\mathrm{eff}} = C\cdot\bar{\beta} \leq C$ & $S = 1/((1-F)+F/(NE))$ \\
+    Classical analogue & Amdahl's Law ($f \leftrightarrow H$, $p \leftrightarrow \alpha$) & Denning working-set model ($W(\tau) \leftrightarrow W_{\mathrm{eff}}$) & Amdahl + orchestration overhead ($E < 1$) \\
+    Supporting data & vLLM: $2$--$4\times$ throughput gain ($H \approx 0.56$--$0.83$) \cite{kwon2023pagedattention}; Prompt Cache: $8$--$60\times$ TTFT reduction ($H \approx 0.89$--$\approx 1.00$) \cite{gim2024promptcache} & RULER: accuracy drops from $>$95\% at 4K to $<$70\% at 128K \cite{ruler2024}; LongBench~v2: faster decay for deep reasoning \cite{longbenchv2_2024} & AutoGen: diminishing returns from 2 to 8 agents \cite{wu2023autogen}; GTA-2: open-workflow success only 14.39\% \cite{gta2_2025} \\
+    Open questions & Distribution of $H$ under semantic caching & Precise functional form of $\beta(L)$ & Quantitative relationship between $E$ and task complexity \\
+    \bottomrule
+    \end{tabularx}
+    \end{table}
 
-\begin{table}[t]
-\centering
-\footnotesize
-\caption{Empirical evidence for the three quantitative laws.}
-\label{tab:empirical}
-\begin{tabularx}{\textwidth}{lY Y Y}
-\toprule
-& Law~I (Semantic Locality) & Law~II (Context Budget) & Law~III (Agent Speedup) \\
-\midrule
-Core formula & $S = 1/((1-H)+H/\alpha)$ & $W_{\mathrm{eff}} \leq C \cdot \beta(L)$ & $S = 1/((1-F)+F/(NE))$ \\
-Classical analogue & Amdahl's Law ($f \leftrightarrow H$, $p \leftrightarrow \alpha$) & Denning working-set model ($W(\tau) \leftrightarrow W_{\mathrm{eff}}$) & Amdahl + orchestration overhead ($E < 1$) \\
-Supporting data & vLLM: $2$--$4\times$ throughput gain ($H \approx 0.56$--$0.83$) \cite{kwon2023pagedattention}; Prompt Cache: $8$--$60\times$ TTFT reduction ($H \approx 0.89$--$\approx 1.00$) \cite{gim2024promptcache} & RULER: accuracy drops from $>$95\% at 4K to $<$70\% at 128K \cite{ruler2024}; LongBench~v2: faster decay for deep reasoning \cite{longbenchv2_2024} & AutoGen: diminishing returns from 2 to 8 agents \cite{wu2023autogen}; GTA-2: open-workflow success only 14.39\% \cite{gta2_2025} \\
-Open questions & Distribution of $H$ under semantic caching & Precise functional form of $\beta(L)$ & Quantitative relationship between $E$ and task complexity \\
-\bottomrule
-\end{tabularx}
-\end{table}
+Figure~\ref{fig_law_curves} plots the characteristic curves of the three quantitative laws.
+\input{figures/fig_law_curves.tex}
+
+
 
 The three laws share a common theme: each reveals a \textbf{performance ceiling} in model-native computing and points toward strategies for approaching it. Law~I defines the theoretical limit of KV-cache optimization. Law~II quantifies the actual returns from extending the context window. Law~III delineates the effective boundary for scaling up the number of agents. Together, these three laws form the \textbf{quantitative backbone} of the ICA model, translating the qualitative design principles of Section~\ref{sec:icam} into computable engineering targets.
 %% ============================================================

@@ -6,19 +6,19 @@
 The analogy framework underlying this paper is summarized in Table~\ref{tab:mapping} and illustrated in Figure~\ref{fig_analogy_map}.
 Before presenting the detailed mapping, we establish three principles to ensure that the analogy serves as a rigorous analytical instrument rather than a decorative metaphor.
 
-\textbf{Principle 1: The analogy must correspond to genuine engineering mechanisms.}
+\paragraph{Principle 1: The analogy must correspond to genuine engineering mechanisms.}
 The observation ``KV cache resembles a processor cache'' holds not because the names sound alike, but because both serve the same fundamental goal of exploiting \textit{temporal locality} and \textit{state reuse}~\cite{drepper2007memory,kwon2023pagedattention}.
 Temporal locality, the empirical regularity that recently accessed data is likely to be accessed again in the near future, governs both a CPU cache line and a recently computed set of KV vectors.
 Similarly, the observation ``PagedAttention resembles virtual memory'' is valid because vLLM literally organizes KV blocks into fixed-size pages and maps them through a block table to non-contiguous physical memory, mirroring the mechanism by which an operating system manages virtual pages~\cite{kwon2023pagedattention}.
 In each case, the analogy is grounded in shared engineering structure, not superficial naming.
 
-\textbf{Principle 2: The analogy must acknowledge its boundaries.}
+\paragraph{Principle 2: The analogy must acknowledge its boundaries.}
 A model is not a deterministic CPU: executing \texttt{ADD R1, R2} always produces the same result, whereas the same prompt may yield different responses across invocations.
 Semantic retrieval is not exact addressing: \texttt{MOV [0x7fff], EAX} always writes to the same location, while vector similarity search returns results that vary with the embedding model and query phrasing.
 An agent runtime is not a mature operating system: the Linux kernel rests on four decades of formal verification and regression testing, whereas the safety mechanisms of current agent frameworks are still evolving rapidly.
 These ``not quite identical'' gaps are not weaknesses of the analogy; rather, they define precisely the research space where the most impactful future work lies.
 
-\textbf{Principle 3: The goal of the analogy is to generate research questions.}
+\paragraph{Principle 3: The goal of the analogy is to generate research questions.}
 A productive analogy does more than aid understanding; it surfaces new engineering problems.
 Which modules require clearly defined interface contracts?
 Which shared states demand consistency guarantees?
@@ -57,7 +57,7 @@ System Calls / Drivers & Tool calls, MCP servers & Both integrate external capab
 
 File System / Disk & Vector stores, object storage, knowledge bases & Both store high-volume, persistent state. Example: ext4 organizes files by inode; Milvus organizes knowledge by vector index~\cite{lewis2020rag} & Semantic retrieval is not exact addressing; \texttt{find(path)} returns a unique result, while vector search returns top-$k$ approximate matches & Requires provenance tracking, versioned snapshots, and TTL policies \\[3pt]
 
-Process / Thread & Agent / Sub-agent / Task graph & Both serve as the fundamental unit of concurrent execution and isolation. Example: POSIX threads share an address space but have independent stacks; Codex sub-agents share project context but execute independently~\cite{openai_codex_subagents_2026} & Sharing semantic state is more fragile than sharing memory; ``reading the same document'' does not imply ``having the same understanding'' & Requires budgeting, prioritization, and result merging \\
+Process / Thread & Agent / Sub-agent / Task graph & Both serve as the fundamental unit of concurrent execution and isolation. Example: POSIX threads share an address space but have independent stacks; Codex sub-agents share project context but execute independently~\cite{openai_codex_overview_2026} & Sharing semantic state is more fragile than sharing memory; ``reading the same document'' does not imply ``having the same understanding'' & Requires budgeting, prioritization, and result merging \\
 
 \bottomrule
 \end{longtable}
@@ -84,7 +84,7 @@ We argue that a model-native computing system simultaneously encompasses \textbf
 
 The probabilistic execution plane is, at its core, the foundation model's forward inference process.
 
-\textbf{Concrete example.}
+\paragraph{Concrete example.}
 When a user submits a code review request to GPT-4, the model's attention mechanism performs matrix operations over billions of parameters, ultimately producing a token probability distribution from which the response is sampled.
 The same input may yield different outputs across invocations; the quality of the output depends heavily on how the context is organized; and the model itself holds no persistent state, as the results of one conversation do not automatically carry over to the next.
 
@@ -101,7 +101,7 @@ KV caches, attention mechanisms, and decoding strategies all belong to the ``mic
 
 The deterministic control plane is the programmatic control layer that wraps around the model: the scheduler, permission enforcer, state machine, logging system, and failure recovery logic.
 
-\textbf{Concrete example.}
+\paragraph{Concrete example.}
 When Claude Code receives the request ``refactor this function,'' the deterministic control plane executes the following sequence: check current directory permissions (is the path within the allowed project scope?) $\to$ load the project memory file (\texttt{CLAUDE.md}) $\to$ parse the request and decompose it into subtasks $\to$ for each step involving file writes, determine whether user confirmation is required based on the approval policy $\to$ upon completion, write a change log to the audit record~\cite{anthropic_claudecode_security_2026}.
 Every step in this sequence is executed by deterministic code; its behavior is predictable, auditable, and replayable.
 
@@ -141,8 +141,11 @@ The analogy to classical architecture is instructive.
 In a traditional system, user-mode code cannot access hardware directly; it must issue a system call that traps into the kernel~\cite{ostep_2023}.
 User programs (the probabilistic plane) may issue arbitrary requests, but the kernel (the deterministic plane) decides which requests are permitted, at what priority they execute, and how they are logged and recovered.
 
-\textbf{The metaphor conflict is thereby resolved.}
+\paragraph{The metaphor conflict is thereby resolved.}
 When ArbiterOS calls the LLM a ``Probabilistic CPU,'' it is describing the probabilistic execution plane.
 When AIOS incorporates the LLM into a ``kernel,'' it is observing a mixture of the probabilistic plane and partial control logic.
 When AgentOS proposes a ``reasoning kernel,'' it is attempting to impose the structure of the control plane onto the probabilistic plane.
 These positions are not contradictory; they are complementary descriptions of the same dual-plane system, viewed from different vantage points.
+
+Figure~\ref{fig_dual_plane} illustrates the dual-plane architecture and its mapping onto the ICA layers.
+\input{figures/fig_dual_plane.tex}

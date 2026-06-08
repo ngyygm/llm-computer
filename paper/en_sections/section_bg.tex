@@ -130,7 +130,7 @@ At the agent layer, LLMs have evolved beyond single-turn inference engines into 
 ReAct~\cite{yao2023react} interleaves reasoning with acting, enabling a model to solve multi-step tasks in a ``think--act--observe'' loop.
 Toolformer~\cite{schick2023toolformer} teaches models to invoke external tools (calculators, search engines) autonomously.
 SWE-agent~\cite{sweagent2024} and OpenHands~\cite{openhands_paper_2025} are autonomous agents for software engineering that can navigate code repositories, write patches, and run test suites.
-Codex~\cite{openai_codex_overview_2026} and Claude Code~\cite{anthropic_claudecode_overview_2026} are production-grade coding agents equipped with OS-kernel-like capabilities: sub-agent scheduling~\cite{openai_codex_subagents_2026,anthropic_claudecode_subagents_2026}, sandbox isolation~\cite{openai_codex_sandbox_2026,anthropic_claudecode_sandbox_2026}, and permission control~\cite{openai_codex_approvals_2026,anthropic_claudecode_security_2026}.
+Codex~\cite{openai_codex_overview_2026} and Claude Code~\cite{anthropic_claudecode_overview_2026} are production-grade coding agents equipped with OS-kernel-like capabilities: sub-agent scheduling~\cite{openai_codex_overview_2026,anthropic_claudecode_subagents_2026}, sandbox isolation~\cite{openai_codex_sandbox_2026,anthropic_claudecode_sandbox_2026}, and permission control~\cite{openai_codex_approvals_2026,anthropic_claudecode_security_2026}.
 Multi-agent collaboration frameworks such as AutoGen~\cite{wu2023autogen} and MetaGPT~\cite{metagpt2023} further organize ensembles of specialized agents into cooperative networks.
 
 \subsection{The Gap: No Unified System Language}
@@ -143,4 +143,7 @@ These concepts appear to belong to entirely different research directions, yet f
 This observation motivates the architectural analogy that runs through this paper.
 The analogy does not claim that LLM systems and classical systems are ``fundamentally the same.''
 Rather, it places independently developed engineering techniques back into a larger, unified design space, making it possible to compose, predict, and systematically design cross-layer optimizations.
+
+Figure~\ref{fig_dual_stack} illustrates the structural correspondence between the two stacks.
+\input{figures/fig_dual_stack.tex}
 

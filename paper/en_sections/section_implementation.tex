@@ -1,9 +1,9 @@
 \section{Open-Source Implementation and Engineering Practice}
 \label{sec:implementation}
 
-\input{figures/fig_impl_map}
+Viewed through an engineering lens, today's open-source ecosystem already contains several projects that serve as de facto prototypes for the model-native computing architecture envisioned in this paper. Figure~\ref{fig:impl_map} maps these systems onto the six-layer ICA architecture. In this section, we survey representative systems along three dimensions of the ICA stack (the serving layer (L2), the agent layer (L5), and the protocol layer (L4)) and distill five concrete implementation recommendations grounded in both industrial practice and the design axioms introduced earlier.
 
-Viewed through an engineering lens, today's open-source ecosystem already contains several projects that serve as de facto prototypes for the model-native computing architecture envisioned in this paper. In this section, we survey representative systems along three dimensions of the ICA stack (the serving layer (L2), the agent layer (L5), and the protocol layer (L4)) and distill five concrete implementation recommendations grounded in both industrial practice and the design axioms introduced earlier.
+\input{figures/fig_impl_map}
 
 \subsection{Serving Layer (L2): Inference Serving and KV Cache Management}
 \label{sec:impl-serving}
@@ -33,7 +33,7 @@ Several projects have begun to treat the agent runtime itself as an operating sy
 
 \subsubsection{Industrial Agent Systems}
 
-Two industrial systems merit particular attention because they explicitly adopt OS-building conventions. \textbf{OpenAI Codex} elevates sub-agents, skills, MCP server integration, sandboxed execution, and approval policies to first-class citizens in its runtime~\cite{openai_codex_overview_2026,openai_codex_subagents_2026,openai_codex_skills_2026,openai_codex_sandbox_2026,openai_codex_approvals_2026}. \textbf{Anthropic Claude Code} offers sub-agents, skills, hooks, MCP connections, and project memory files, defaulting to read-only permissions with explicit approval gates~\cite{anthropic_claudecode_overview_2026,anthropic_claudecode_security_2026}. Both systems signal that the industry has begun to construct agent runtimes as bona fide operating systems.
+Two industrial systems merit particular attention because they explicitly adopt OS-building conventions. \textbf{OpenAI Codex} elevates sub-agents, skills, MCP server integration, sandboxed execution, and approval policies to first-class citizens in its runtime~\cite{openai_codex_overview_2026,openai_codex_skills_2026,openai_codex_sandbox_2026,openai_codex_approvals_2026}. \textbf{Anthropic Claude Code} offers sub-agents, skills, hooks, MCP connections, and project memory files, defaulting to read-only permissions with explicit approval gates~\cite{anthropic_claudecode_overview_2026,anthropic_claudecode_security_2026}. Both systems signal that the industry has begun to construct agent runtimes as bona fide operating systems.
 
 \subsection{Protocol Layer (L4): Standardized Tool Connection and Agent Interconnection}
 \label{sec:impl-protocol}

@@ -1,0 +1,148 @@
+\begin{figure}[htbp]
+    \centering
+    \resizebox{\textwidth}{!}{%
+    \begin{tikzpicture}[
+        cell/.style={
+            minimum width=2.4cm, minimum height=1.0cm,
+            align=center, font=\scriptsize,
+            inner sep=2pt,
+        },
+        rowlabel/.style={
+            % 【修复点】：将过宽的宽度大幅缩小至 2.8cm，彻底解决边框太宽和重叠问题
+            minimum width=2.8cm, minimum height=1.0cm,
+            text width=2.5cm, align=left, font=\small\bfseries,
+            inner sep=4pt,
+        },
+        collabel/.style={
+            minimum width=2.4cm, minimum height=0.9cm,
+            align=center, font=\small\bfseries,
+            inner sep=2pt,
+        },
+    ]
+    
+    % ── Capability columns ────────────────────────────────────────────────────────
+    \def\cols{{"Task\\Decomp.", "Concurrency\\(F)", "Orchestration\\Eff.~(E)", "State\\Persist.", "Isolation\\/ Sandbox", "Security\\/ Govern."}}
+    \def\ncols{6}
+    
+    % ── Color helper: 0=none, 1=low, 2=mid, 3=high ──────────────────────────────
+    % 0 → white, 1 → 25%, 2 → 55%, 3 → 85% of modelnative
+    \def\fillcol#1{%
+        \ifnum#1=0 white\fi%
+        \ifnum#1=1 modelnative!20\fi%
+        \ifnum#1=2 modelnative!50\fi%
+        \ifnum#1=3 modelnative!85\fi%
+    }
+    \def\txtcol#1{%
+        \ifnum#1=0 gray!40\fi%
+        \ifnum#1=1 modelnative!60!black\fi%
+        \ifnum#1=2 modelnative!70!black\fi%
+        \ifnum#1=3 white\fi%
+    }
+    \def\levelstr#1{%
+        \ifnum#1=0 ---\fi%
+        \ifnum#1=1 Low\fi%
+        \ifnum#1=2 Medium\fi%
+        \ifnum#1=3 High\fi%
+    }
+    
+    % Data: rows = Gen I..V, each row = 6 values (0-3)
+    % Gen I  (ReAct)
+    \def\rowA{0,0,3,0,0,0}
+    % Gen II (AutoGPT)
+    \def\rowB{1,0,2,1,0,0}
+    % Gen III (AIOS/SDK)
+    \def\rowC{2,2,2,2,1,1}
+    % Gen IV (Codex/Claude Code)
+    \def\rowD{3,3,2,3,3,2}
+    % Gen V (ArbiterOS/AURA)
+    \def\rowE{3,3,3,3,3,3}
+    
+    \def\rowlabels{{"Gen~I\\(ReAct)", "Gen~II\\(AutoGPT)", "Gen~III\\(AIOS)", "Gen~IV\\(Codex)", "Gen~V\\(ArbiterOS)"}}
+    \def\sublabels{{"2022--23", "2023", "2023--24", "2024--25", "2025--"}}
+    
+    % ── Draw column headers ───────────────────────────────────────────────────────
+    \foreach \j/\lbl in {
+        0/Task\\Decomp.,
+        1/Concurrency\\$(F)$,
+        2/Orchestration\\Eff.~$(E)$,
+        3/State\\Persist.,
+        4/Isolation\\/ Sandbox,
+        5/Security\\/ Govern.}
+    {
+        \node[collabel, draw=gray!30, fill=gray!10]
+            at ({3.9 + \j*2.4}, 0.5) {\lbl};
+    }
+    
+    % Row label header
+    % 【修复点】：X坐标整体向左平移至 1.3，与右侧列（起点 2.7）完美断开
+    \node[rowlabel, draw=gray!30, fill=gray!10, minimum height=0.9cm]
+        at (1.3, 0.5) {Generation};
+    
+    % ── Helper macro to draw one cell ────────────────────────────────────────────
+    \newcommand{\drawcell}[3]{% #1=col(0-5), #2=row(0-4), #3=value(0-3)
+        \pgfmathsetmacro\vint{int(#3)}%
+        \ifnum\vint=0 \def\fc{white}\def\tc{gray!35}\fi%
+        \ifnum\vint=1 \def\fc{modelnative!20}\def\tc{modelnative!65!black}\fi%
+        \ifnum\vint=2 \def\fc{modelnative!50}\def\tc{modelnative!80!black}\fi%
+        \ifnum\vint=3 \def\fc{modelnative!85}\def\tc{white}\fi%
+        \node[cell, draw=gray!25, fill=\fc, text=\tc, minimum height=1.0cm]
+            at ({3.9 + #1*2.4}, {-#2*1.0 - 0.5})
+            {\ifnum\vint=0 ---\fi%
+             \ifnum\vint=1 Low\fi%
+             \ifnum\vint=2 Medium\fi%
+             \ifnum\vint=3 High\fi};%
+    }
+    
+    % ── Draw row labels ───────────────────────────────────────────────────────────
+    \foreach \i/\rlab/\rsub in {
+        0/{Gen~I}/{\footnotesize 2022--23},
+        1/{Gen~II}/{\footnotesize 2023},
+        2/{Gen~III}/{\footnotesize 2023--24},
+        3/{Gen~IV}/{\footnotesize 2024--25},
+        4/{Gen~V}/{\footnotesize 2025--Present}%
+    }{
+        \node[rowlabel, draw=gray!20, fill=gray!5, minimum height=1.0cm]
+            at (1.3, {-\i*1.0 - 0.5})
+            {\textbf{\rlab}\\[1pt]\rsub};
+    }
+    
+    % ── Draw cells: \drawcell{col}{row}{value} ────────────────────────────────────
+    % Gen I  (ReAct)
+    \drawcell{0}{0}{0} \drawcell{1}{0}{0} \drawcell{2}{0}{3}
+    \drawcell{3}{0}{0} \drawcell{4}{0}{0} \drawcell{5}{0}{0}
+    
+    % Gen II (AutoGPT/Voyager)
+    \drawcell{0}{1}{1} \drawcell{1}{1}{0} \drawcell{2}{1}{2}
+    \drawcell{3}{1}{1} \drawcell{4}{1}{0} \drawcell{5}{1}{0}
+    
+    % Gen III (AIOS/SDK)
+    \drawcell{0}{2}{2} \drawcell{1}{2}{2} \drawcell{2}{2}{2}
+    \drawcell{3}{2}{2} \drawcell{4}{2}{1} \drawcell{5}{2}{1}
+    
+    % Gen IV (Codex/Claude Code)
+    \drawcell{0}{3}{3} \drawcell{1}{3}{3} \drawcell{2}{3}{2}
+    \drawcell{3}{3}{3} \drawcell{4}{3}{3} \drawcell{5}{3}{2}
+    
+    % Gen V (ArbiterOS/AgentOS)
+    \drawcell{0}{4}{3} \drawcell{1}{4}{3} \drawcell{2}{4}{3}
+    \drawcell{3}{4}{3} \drawcell{4}{4}{3} \drawcell{5}{4}{3}
+    
+    % ── Legend (centred under table) ─────────────────────────────────────────────
+    % 【修复点】：整体微调图例的坐标，使其严格居中对齐整个表格
+    \node[font=\scriptsize, text=gray!60, anchor=east] at (5.7, -5.65) {Maturity:};
+    \foreach \v/\lbl in {0/None, 1/Low, 2/Medium, 3/High} {
+        \ifnum\v=0\def\fc{white}\def\tc{gray!40}\fi
+        \ifnum\v=1\def\fc{modelnative!20}\def\tc{modelnative!65!black}\fi
+        \ifnum\v=2\def\fc{modelnative!50}\def\tc{modelnative!80!black}\fi
+        \ifnum\v=3\def\fc{modelnative!85}\def\tc{white}\fi
+        \node[draw=gray!30, fill=\fc, text=\tc,
+              minimum width=1.5cm, minimum height=0.55cm,
+              font=\scriptsize, rounded corners=2pt]
+            at ({6.7 + \v*1.9}, -5.65) {\lbl};
+    }
+    
+    \end{tikzpicture}
+    }% end resizebox
+    \caption{Capability maturity matrix across the five generations of agent framework evolution. Each cell reflects the maturity level of a key architectural dimension: \textit{None} (---) through \textit{High}. The progressive darkening from Generation~I to Generation~V illustrates the systematic increase in both the parallelisable fraction~$F$ and the orchestration efficiency~$E$ captured by Law~III.}
+    \label{fig_gen_matrix}
+    \end{figure}

@@ -98,10 +98,6 @@
         (tool) at (\cxR, \yRowB) 
         {Tool / sub-agent\\needed?};
     
-    % Split-colour diagonal lines inside diamond
-    \draw[modelnative!40, line width=0.4pt] (tool.south west) -- (tool.north east);
-    \draw[classical!40, line width=0.4pt]   (tool.north west) -- (tool.south east);
-    
     \node[procO] (syscall) at (\cxR, \yRowC)
         {System call path:\\
         MCP / tool invocation, sandboxed\\

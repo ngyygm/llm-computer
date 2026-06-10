@@ -100,6 +100,9 @@ From a distributed systems perspective, at least three state types must be disti
 \item \textbf{Committed state with full auditability and replay:} permanent modifications to files, databases, or external systems, analogous to a database transaction's commit point, supporting audit and rollback~\cite{spanner2012}.
 \end{enumerate}
 
+Figure~\ref{fig:state_lifecycle} illustrates the lifecycle and ICA layer mapping of these three state types.
+\input{figures/fig_state_lifecycle}
+
 \subsubsection{Temporal Decay in Long-Running Agents}
 Critically, the time horizon of agent execution is expanding from minutes to hours and even days.
 Recent industrial practice shows that agents can autonomously run for over seven hours to complete complex tasks~\cite{anthropic2026agenticreport}.

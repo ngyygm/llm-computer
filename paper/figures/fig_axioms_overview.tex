@@ -1,0 +1,138 @@
+% ---------------------------------------------------------------------------
+% Six Design Axioms — heatmap: axiom × ICA layer applicability
+% fig:axioms_overview
+% ---------------------------------------------------------------------------
+\begin{figure}[htbp]
+\centering
+\providecolor{axHigh}{HTML}{C44E52}
+\providecolor{axMed}{HTML}{E8A87C}
+\providecolor{axLow}{HTML}{F5DEB3}
+\providecolor{axNone}{HTML}{F0F0F0}
+\providecolor{hdrBlue}{HTML}{4A78A8}
+%
+\resizebox{0.96\textwidth}{!}{%
+\begin{tikzpicture}[
+    font=\small,
+    >=Latex,
+    cellH/.style={fill=axHigh!80, draw=axHigh!60!black, rounded corners=1pt, line width=0.4pt},
+    cellM/.style={fill=axMed!80,  draw=axMed!60!black,  rounded corners=1pt, line width=0.4pt},
+    cellL/.style={fill=axLow!80,  draw=axLow!60!black,  rounded corners=1pt, line width=0.4pt},
+    cellN/.style={fill=axNone,    draw=gray!30,          rounded corners=1pt, line width=0.4pt},
+    colhdr/.style={font=\small\bfseries, align=center, text=hdrBlue!80!black},
+    rowhdr/.style={font=\small\bfseries, align=right, anchor=east, text width=3.0cm},
+    celltxt/.style={font=\scriptsize, align=center, text=black!70},
+]
+
+% Cell dimensions: width=1.9cm, height=1.0cm, sep=0.12cm
+% Column x-left edges: L1=0, L2=2.02, L3=4.04, L4=6.06, L5=8.08, L6=10.10
+% Row y-bottom edges (top-down): R1=-1.12, R2=-2.24, R3=-3.36, R4=-4.48, R5=-5.60, R6=-6.72
+
+\def\cw{1.90}
+\def\ch{1.00}
+
+% Column x-centers (shifted left by 1cm)
+\def\xA{-0.05}
+\def\xB{1.97}
+\def\xC{3.99}
+\def\xD{6.01}
+\def\xE{8.03}
+\def\xF{10.05}
+
+% Column x-lefts (shifted left by 1cm)
+\def\xAl{-1.00}
+\def\xBl{1.02}
+\def\xCl{3.04}
+\def\xDl{5.06}
+\def\xEl{7.08}
+\def\xFl{9.10}
+
+% Row y-bottoms
+\def\yAb{-1.12}
+\def\yBb{-2.24}
+\def\yCb{-3.36}
+\def\yDb{-4.48}
+\def\yEb{-5.60}
+\def\yFb{-6.72}
+
+% Row y-centers
+\def\yAc{-0.62}
+\def\yBc{-1.74}
+\def\yCc{-2.86}
+\def\yDc{-3.98}
+\def\yEc{-5.10}
+\def\yFc{-6.22}
+
+% ---- Column headers ----
+\node[colhdr] at (\xA,  0.3) {L1};
+\node[colhdr] at (\xB,  0.3) {L2};
+\node[colhdr] at (\xC,  0.3) {L3};
+\node[colhdr] at (\xD,  0.3) {L4};
+\node[colhdr] at (\xE,  0.3) {L5};
+\node[colhdr] at (\xF,  0.3) {L6};
+
+% ---- Row headers ----
+\node[rowhdr] at (-1.1, \yAc) {A1 Locality};
+\node[rowhdr] at (-1.1, \yBc) {A2 Layered\\Abstraction};
+\node[rowhdr] at (-1.1, \yCc) {A3 Probabilistic\\Execution};
+\node[font=\small\bfseries, anchor=east] at (-1.1, \yDc) {A4 Virtualization};
+\node[rowhdr] at (-1.1, \yEc) {A5 Least Privilege};
+\node[rowhdr] at (-1.1, \yFc) {A6 Observability};
+
+% ---- Row A1: Locality ----
+\draw[cellH] (\xAl,\yAb) rectangle +(\cw,\ch); \node[celltxt] at (\xA,\yAc) {Primary};
+\draw[cellH] (\xBl,\yAb) rectangle +(\cw,\ch); \node[celltxt] at (\xB,\yAc) {Primary};
+\draw[cellM] (\xCl,\yAb) rectangle +(\cw,\ch); \node[celltxt] at (\xC,\yAc) {Secondary};
+\draw[cellL] (\xDl,\yAb) rectangle +(\cw,\ch); \node[celltxt] at (\xD,\yAc) {Tertiary};
+\draw[cellN] (\xEl,\yAb) rectangle +(\cw,\ch); \node[celltxt] at (\xE,\yAc) {---};
+\draw[cellN] (\xFl,\yAb) rectangle +(\cw,\ch); \node[celltxt] at (\xF,\yAc) {---};
+
+% ---- Row A2: Layered Abstraction ----
+\draw[cellM] (\xAl,\yBb) rectangle +(\cw,\ch); \node[celltxt] at (\xA,\yBc) {Secondary};
+\draw[cellH] (\xBl,\yBb) rectangle +(\cw,\ch); \node[celltxt] at (\xB,\yBc) {Primary};
+\draw[cellH] (\xCl,\yBb) rectangle +(\cw,\ch); \node[celltxt] at (\xC,\yBc) {Primary};
+\draw[cellH] (\xDl,\yBb) rectangle +(\cw,\ch); \node[celltxt] at (\xD,\yBc) {Primary};
+\draw[cellH] (\xEl,\yBb) rectangle +(\cw,\ch); \node[celltxt] at (\xE,\yBc) {Primary};
+\draw[cellM] (\xFl,\yBb) rectangle +(\cw,\ch); \node[celltxt] at (\xF,\yBc) {Secondary};
+
+% ---- Row A3: Probabilistic Execution ----
+\draw[cellH] (\xAl,\yCb) rectangle +(\cw,\ch); \node[celltxt] at (\xA,\yCc) {Primary};
+\draw[cellH] (\xBl,\yCb) rectangle +(\cw,\ch); \node[celltxt] at (\xB,\yCc) {Primary};
+\draw[cellM] (\xCl,\yCb) rectangle +(\cw,\ch); \node[celltxt] at (\xC,\yCc) {Secondary};
+\draw[cellM] (\xDl,\yCb) rectangle +(\cw,\ch); \node[celltxt] at (\xD,\yCc) {Secondary};
+\draw[cellL] (\xEl,\yCb) rectangle +(\cw,\ch); \node[celltxt] at (\xE,\yCc) {Tertiary};
+\draw[cellN] (\xFl,\yCb) rectangle +(\cw,\ch); \node[celltxt] at (\xF,\yCc) {---};
+
+% ---- Row A4: Virtualization ----
+\draw[cellL] (\xAl,\yDb) rectangle +(\cw,\ch); \node[celltxt] at (\xA,\yDc) {Tertiary};
+\draw[cellH] (\xBl,\yDb) rectangle +(\cw,\ch); \node[celltxt] at (\xB,\yDc) {Primary};
+\draw[cellH] (\xCl,\yDb) rectangle +(\cw,\ch); \node[celltxt] at (\xC,\yDc) {Primary};
+\draw[cellM] (\xDl,\yDb) rectangle +(\cw,\ch); \node[celltxt] at (\xD,\yDc) {Secondary};
+\draw[cellL] (\xEl,\yDb) rectangle +(\cw,\ch); \node[celltxt] at (\xE,\yDc) {Tertiary};
+\draw[cellN] (\xFl,\yDb) rectangle +(\cw,\ch); \node[celltxt] at (\xF,\yDc) {---};
+
+% ---- Row A5: Least Privilege ----
+\draw[cellN] (\xAl,\yEb) rectangle +(\cw,\ch); \node[celltxt] at (\xA,\yEc) {---};
+\draw[cellL] (\xBl,\yEb) rectangle +(\cw,\ch); \node[celltxt] at (\xB,\yEc) {Tertiary};
+\draw[cellM] (\xCl,\yEb) rectangle +(\cw,\ch); \node[celltxt] at (\xC,\yEc) {Secondary};
+\draw[cellH] (\xDl,\yEb) rectangle +(\cw,\ch); \node[celltxt] at (\xD,\yEc) {Primary};
+\draw[cellH] (\xEl,\yEb) rectangle +(\cw,\ch); \node[celltxt] at (\xE,\yEc) {Primary};
+\draw[cellM] (\xFl,\yEb) rectangle +(\cw,\ch); \node[celltxt] at (\xF,\yEc) {Secondary};
+
+% ---- Row A6: Observability ----
+\draw[cellN] (\xAl,\yFb) rectangle +(\cw,\ch); \node[celltxt] at (\xA,\yFc) {---};
+\draw[cellM] (\xBl,\yFb) rectangle +(\cw,\ch); \node[celltxt] at (\xB,\yFc) {Secondary};
+\draw[cellM] (\xCl,\yFb) rectangle +(\cw,\ch); \node[celltxt] at (\xC,\yFc) {Secondary};
+\draw[cellH] (\xDl,\yFb) rectangle +(\cw,\ch); \node[celltxt] at (\xD,\yFc) {Primary};
+\draw[cellH] (\xEl,\yFb) rectangle +(\cw,\ch); \node[celltxt] at (\xE,\yFc) {Primary};
+\draw[cellH] (\xFl,\yFb) rectangle +(\cw,\ch); \node[celltxt] at (\xF,\yFc) {Primary};
+
+% ---- Legend ----
+\draw[cellH] (-1.0,-7.55) rectangle +(0.5,0.40); \node[font=\scriptsize,anchor=west] at (-0.35,-7.35) {Primary};
+\draw[cellM] (2.0,-7.55) rectangle +(0.5,0.40); \node[font=\scriptsize,anchor=west] at (2.65,-7.35) {Secondary};
+\draw[cellL] (5.0,-7.55) rectangle +(0.5,0.40); \node[font=\scriptsize,anchor=west] at (5.65,-7.35) {Tertiary};
+\draw[cellN] (8.0,-7.55) rectangle +(0.5,0.40); \node[font=\scriptsize,anchor=west] at (8.65,-7.35) {Not applicable};
+
+\end{tikzpicture}}%
+\caption{Applicability heatmap of the six ICA design axioms across the six architecture layers. \textcolor{axHigh!80!black}{\textbf{Primary}} indicates the axiom directly governs design decisions at that layer; \textcolor{axMed!80!black}{\textbf{secondary}} indicates significant but indirect applicability; \textcolor{axLow!80!black}{\textbf{tertiary}} indicates contextual relevance. A1~(Locality) is most critical at the inference and KV-cache layers; A5~(Least Privilege) and A6~(Observability) dominate the interface and orchestration layers.}
+\label{fig:axioms_overview}
+\end{figure}

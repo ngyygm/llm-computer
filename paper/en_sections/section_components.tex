@@ -157,6 +157,9 @@ The more principled design, therefore, should not aim to ``stuff everything into
 \item \textbf{Cold memory (external knowledge bases):} Persistent vector stores and document repositories, analogous to data on disk.
 \end{itemize}
 
+Figure~\ref{fig:context_tiers} illustrates this three-tier hierarchy alongside its classical virtual-memory counterpart.
+\input{figures/fig_context_tiers}
+
 MemGPT formalizes this idea as \textit{virtual context management}, explicitly drawing the LLM-as-operating-system analogy and paging information between the context window (``main memory'') and external storage (``disk'')~\cite{memgpt2023}.
 LongMem decouples long-term memory from the backbone model entirely~\cite{longmem2023}.
 RAG functions as an \textbf{external page-in mechanism}: when the agent encounters a ``page fault,'' it retrieves relevant content from a knowledge base into the context window via semantic search~\cite{lewis2020rag}.

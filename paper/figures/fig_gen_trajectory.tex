@@ -1,0 +1,105 @@
+% ---------------------------------------------------------------------------
+% Five-Generation Quantitative Trajectory: F, E, S across Gen I–V
+% fig:gen_trajectory
+% ---------------------------------------------------------------------------
+\begin{figure}[htbp]
+\centering
+\resizebox{0.88\textwidth}{!}{%
+\begin{tikzpicture}
+\small
+\begin{groupplot}[
+    group style={
+        group size=3 by 1,
+        horizontal sep=2.2cm,
+    },
+    width=5.0cm,
+    height=5.2cm,
+    grid=major,
+    grid style={gray!18},
+    tick label style={font=\footnotesize},
+    label style={font=\small},
+    xtick={1,2,3,4,5},
+    xticklabels={I,II,III,IV,V},
+    xlabel style={font=\small},
+    ylabel style={font=\small},
+    xmin=0.5, xmax=5.5,
+    axis lines=left,
+    every axis plot/.append style={thick, mark=*, mark size=2.2pt},
+    enlargelimits=0.12,
+    legend style={
+        font=\scriptsize,
+        at={(0.5,-0.32)},
+        anchor=north,
+        legend columns=1,
+        draw=gray!40,
+        rounded corners=2pt,
+    },
+]
+
+%% (a) Parallelizable Fraction F
+\nextgroupplot[
+    title style={font=\small\bfseries, at={(0.5,1.06)}},
+    title={(a) Parallelizable Fraction $F$},
+    xlabel={Generation},
+    ylabel={$F$},
+    ymin=0, ymax=1.05,
+    ytick={0,0.2,0.4,0.6,0.8,1.0},
+]
+\addplot[blue!70!black, mark=*]
+    coordinates {(1,0.00)(2,0.15)(3,0.30)(4,0.50)(5,0.72)};
+% target line
+\addplot[red!60!black, dashed, no marks, domain=0.5:5.5] {0.8};
+\addlegendentry{$F$ (estimated)}
+\addlegendentry{Target $F>0.8$}
+% annotations (shifted left)
+\node[font=\tiny, blue!60!black, anchor=east] at (axis cs:0.9, 0.05) {${\approx}0$};
+\node[font=\tiny, blue!60!black, anchor=east] at (axis cs:1.85, 0.20) {$0.15$};
+\node[font=\tiny, blue!60!black, anchor=east] at (axis cs:2.85, 0.35) {$0.30$};
+\node[font=\tiny, blue!60!black, anchor=east] at (axis cs:3.85, 0.53) {$0.50$};
+\node[font=\tiny, blue!60!black, anchor=east] at (axis cs:4.85, 0.73) {$0.72$};
+
+%% (b) Orchestration Efficiency E
+\nextgroupplot[
+    title style={font=\small\bfseries, at={(0.5,1.06)}},
+    title={(b) Orchestration Efficiency $E$},
+    xlabel={Generation},
+    ylabel={$E$},
+    ymin=0, ymax=1.05,
+    ytick={0,0.2,0.4,0.6,0.8,1.0},
+]
+\addplot[orange!80!black, mark=square*]
+    coordinates {(1,1.00)(2,0.90)(3,0.70)(4,0.50)(5,0.65)};
+\addplot[red!60!black, dashed, no marks, domain=0.5:5.5] {0.8};
+\addlegendentry{$E$ (estimated)}
+\addlegendentry{Target $E>0.8$}
+\node[font=\tiny, orange!70!black] at (axis cs:1, 0.88) {$1.0$};
+\node[font=\tiny, orange!70!black] at (axis cs:2, 1) {$0.9$};
+\node[font=\tiny, orange!70!black] at (axis cs:3, 0.58) {$0.7$};
+\node[font=\tiny, orange!70!black] at (axis cs:4, 0.38) {$0.5$};
+\node[font=\tiny, orange!70!black] at (axis cs:5, 0.5) {$0.65$};
+
+%% (c) Agent Speedup S
+\nextgroupplot[
+    title style={font=\small\bfseries, at={(0.5,1.06)}},
+    title={(c) Agent Speedup $S_{\mathrm{agent}}$},
+    xlabel={Generation},
+    ylabel={$S_{\mathrm{agent}}$},
+    ymin=0, ymax=4.0,
+    ytick={0,1,2,3,4},
+]
+\addplot[red!70!black, mark=triangle*, mark size=2.5pt]
+    coordinates {(1,1.00)(2,1.00)(3,1.27)(4,1.60)(5,2.10)};
+\addplot[red!50!black, dashed, no marks, domain=0.5:5.5] {3.3};
+\addlegendentry{$S_{\mathrm{agent}}$}
+\addlegendentry{Target $S>3.3$}
+\node[font=\tiny, red!65!black] at (axis cs:1, 1.3) {$1.0$};
+\node[font=\tiny, red!65!black] at (axis cs:2, 1.3) {$1.0$};
+\node[font=\tiny, red!65!black] at (axis cs:3, 1.7) {$1.27$};
+\node[font=\tiny, red!65!black] at (axis cs:4, 2.0) {$1.60$};
+\node[font=\tiny, red!65!black] at (axis cs:5, 2.5) {$2.10$};
+
+\end{groupplot}
+\end{tikzpicture}}%
+\caption{Quantitative trajectory of agent framework parameters across five generations, estimated from Law~III ($S_{\mathrm{agent}} = 1/((1-F)+F/(N{\cdot}E))$ with representative $N$ values per generation). (a)~Parallelizable fraction $F$ grows from near zero (Gen~I serial loop) to ${\approx}0.72$ (Gen~V governed OS). (b)~Orchestration efficiency $E$ initially near~1 (trivial single-agent overhead) but dips in Gen~IV due to sandbox isolation and approval overhead, then recovers in Gen~V with governance-first design. (c)~Resulting speedup $S_{\mathrm{agent}}$ rises from $1.0\times$ to ${\approx}2.1\times$, still well below the target $3.3\times$ that requires $F>0.8$ and $E>0.8$ simultaneously. Dashed red lines mark the target thresholds.}
+\label{fig:gen_trajectory}
+\end{figure}

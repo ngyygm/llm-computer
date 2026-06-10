@@ -1,0 +1,111 @@
+% ---------------------------------------------------------------------------
+% Agent State Lifecycle — three-tier state classification
+% fig:state_lifecycle
+% ---------------------------------------------------------------------------
+\begin{figure}[htbp]
+\centering
+\providecolor{ephColor}{HTML}{4A78A8}
+\providecolor{sessColor}{HTML}{E07B39}
+\providecolor{commColor}{HTML}{3A8A3A}
+\providecolor{timeColor}{HTML}{888888}
+%
+\resizebox{0.90\textwidth}{!}{%
+\begin{tikzpicture}[
+    font=\small, >=Latex,
+    statebox/.style={draw=#1!70!black, fill=#1!15, rounded corners=5pt,
+        minimum width=3.8cm, minimum height=1.1cm,
+        align=center, font=\small\bfseries, text=#1!85!black, line width=0.7pt},
+    opbox/.style={draw=#1!50, fill=#1!8, rounded corners=3pt,
+        minimum width=3.4cm, minimum height=0.65cm,
+        align=center, font=\scriptsize, text=#1!70!black, line width=0.4pt},
+    analogbox/.style={draw=gray!40, fill=gray!6, rounded corners=3pt,
+        minimum width=3.4cm, minimum height=0.65cm,
+        align=center, font=\scriptsize, text=gray!65!black, line width=0.4pt},
+    arrowstyle/.style={-{Latex[length=2mm]}, thick, line width=0.65pt},
+    timelabel/.style={font=\scriptsize, text=timeColor!80},
+]
+
+% ============================================================
+% STATE 1: Ephemeral
+% ============================================================
+\node[statebox=ephColor] (E) at (-4.8, 2.2)
+    {Ephemeral State};
+\node[opbox=ephColor] at (-4.8, 1.15)  {Scope: single inference step};
+\node[opbox=ephColor] at (-4.8, 0.30)  {Persistence: none required};
+\node[analogbox]      at (-4.8, -0.65) {Analogy: CPU registers};
+\node[opbox=ephColor] at (-4.8, -1.65) {Examples: KV activations,\\intermediate logits};
+
+% ============================================================
+% STATE 2: Session
+% ============================================================
+\node[statebox=sessColor] (S) at (0.5, 2.2)
+    {Session State};
+\node[opbox=sessColor] at (0.5, 1.15)  {Scope: within-task agent chain};
+\node[opbox=sessColor] at (0.5, 0.30)  {Consistency: causal ordering};
+\node[analogbox]      at (0.5, -0.65) {Analogy: distributed message\\passing (Raft)};
+\node[opbox=sessColor] at (0.5, -1.65) {Examples: agent handoff state,\\intermediate results};
+
+
+% ============================================================
+% STATE 3: Committed
+% ============================================================
+\node[statebox=commColor] (C) at (5.5, 2.2)
+    {Committed State};
+\node[opbox=commColor] at (5.5, 1.15)  {Scope: permanent side effects};
+\node[opbox=commColor] at (5.5, 0.30)  {Consistency: full auditability};
+\node[analogbox]       at (5.5, -0.65) {Analogy: DB transaction\\commit (Spanner)};
+\node[opbox=commColor] at (5.5, -1.65) {Examples: file writes, DB\\updates, code commits};
+
+
+% ============================================================
+% ICA layer labels
+% ============================================================
+\node[font=\scriptsize\bfseries, ephColor!80!black, anchor=north] at (-4.8, -2.2)
+    {ICA L2 (KV cache)};
+\node[font=\scriptsize\bfseries, sessColor!80!black, anchor=north] at (0.5, -2.2)
+    {ICA L3--L5 (context / orch.)};
+\node[font=\scriptsize\bfseries, commColor!80!black, anchor=north] at (5.5, -2.2)
+    {ICA L4--L6 (interface / app)};
+
+% lifetime bars (moved up)
+\fill[ephColor!30] (-6.5,-3.2) rectangle (-2.0,-2.8);
+\node[font=\tiny, text=ephColor!80] at (-4.25, -3.0) {ephemeral lifetime};
+
+\fill[sessColor!30] (-2.0,-3.2) rectangle (2.5,-2.8);
+\node[font=\tiny, text=sessColor!80] at (0.25, -3.0) {session lifetime};
+
+\fill[commColor!30] (2.5,-3.2) rectangle (7.0,-2.8);
+\node[font=\tiny, text=commColor!80] at (4.75, -3.0) {committed lifetime};
+
+% timeline (moved up)
+\draw[{Latex[length=2.5mm]}-, thick, timeColor!50, line width=1.0pt]
+    (-6.5, -3.5) -- (7.2, -3.5);
+\node[timelabel, anchor=west] at (7.3, -3.5) {time};
+\foreach \x/\lbl in {-6.0/Step start, -2.0/Task boundary, 2.5/Commit point, 6.5/Session end}{
+    \draw[timeColor!40, line width=0.5pt] (\x, -3.35) -- (\x, -3.65);
+    \node[timelabel, anchor=north] at (\x, -3.7) {\lbl};
+}
+
+% ============================================================
+% State transition arrows
+% ============================================================
+\draw[arrowstyle, ephColor!60]
+    (E.north east) -- ++(0, 0.45) -|
+    node[above, font=\scriptsize, text=black!50, pos=0.35] {promote on task boundary}
+    (S.north west);
+\draw[arrowstyle, sessColor!60]
+    (S.north east) -- ++(0, 0.45) -|
+    node[above, font=\scriptsize, text=black!50, pos=0.35] {commit on side-effect}
+    (C.north west);
+
+% Rollback arrow — routed above all boxes
+\draw[arrowstyle, commColor!50, dashed, rounded corners=4pt]
+    (C.north) -- ++(0, 1.2)
+    -- ++(-5.0, 0)
+    node[above, midway, font=\scriptsize, text=black!45] {rollback on failure}
+    -- (S.north);
+
+\end{tikzpicture}}%
+\caption{Three-tier agent state lifecycle. \textbf{Ephemeral state} (left) lives only within a single inference step and requires no persistence, analogous to CPU registers. \textbf{Session state} (centre) spans an agent task chain and requires causal consistency guarantees, analogous to distributed message passing. \textbf{Committed state} (right) constitutes permanent, auditable side effects and requires full rollback support, analogous to a database transaction commit. Arrows indicate promotion on task boundaries and rollback paths on failure.}
+\label{fig:state_lifecycle}
+\end{figure}

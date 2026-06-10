@@ -1,0 +1,116 @@
+% ---------------------------------------------------------------------------
+% Context Management Three-Tier Memory Hierarchy
+% fig:context_tiers
+% ---------------------------------------------------------------------------
+\begin{figure}[htbp]
+\centering
+\providecolor{hotColor}{HTML}{C44E52}
+\providecolor{warmColor}{HTML}{E07B39}
+\providecolor{coldColor}{HTML}{4A78A8}
+\providecolor{classicHot}{HTML}{8B3A8B}
+\providecolor{classicWarm}{HTML}{5C7EA8}
+\providecolor{classicCold}{HTML}{3A5A8A}
+%
+\resizebox{0.88\textwidth}{!}{%
+\begin{tikzpicture}[
+    font=\small, >=Latex,
+    tierbox/.style={draw=#1!70!black, fill=#1!18, rounded corners=4pt,
+        align=center, font=\small\bfseries, text=#1!85!black, line width=0.7pt},
+    classicbox/.style={draw=#1!70!black, fill=#1!12, rounded corners=4pt,
+        align=center, font=\small, text=#1!75!black, line width=0.5pt},
+    arrowlbl/.style={font=\scriptsize, text=black!55},
+]
+
+% ============================================================
+%  LEFT SIDE: LLM Context Tiers
+% ============================================================
+\def\xL{-5.0}
+
+% Hot tier
+\node[tierbox=hotColor, minimum width=5.5cm, minimum height=1.5cm]
+    (hot) at (\xL, 3.8)
+    {Hot Memory\\
+     {\normalfont\scriptsize Context window (128K--1M tokens)}\\
+     {\normalfont\tiny Latency: $\sim$0\,ms\enspace|\enspace lossless}};
+
+% Warm tier
+\node[tierbox=warmColor, minimum width=5.5cm, minimum height=1.5cm]
+    (warm) at (\xL, 1.7)
+    {Warm Memory\\
+     {\normalfont\scriptsize Summaries \& indices (compressed)}\\
+     {\normalfont\tiny Latency: $\sim$10--100\,ms\enspace|\enspace lossy}};
+
+% Cold tier
+\node[tierbox=coldColor, minimum width=5.5cm, minimum height=1.5cm]
+    (cold) at (\xL, -0.4)
+    {Cold Memory\\
+     {\normalfont\scriptsize External knowledge bases (vector stores)}\\
+     {\normalfont\tiny Latency: $\sim$100\,ms--1\,s\enspace|\enspace top-$k$ retrieval}};
+
+% Title
+\node[font=\small\bfseries, text=black!70] at (\xL, 5.1) {Model-Native Context Hierarchy};
+
+% Page-in arrows (left side, between tiers)
+\draw[-{Latex[length=2mm]}, warmColor!70, thick]
+    (warm.north) -- node[arrowlbl, left, xshift=-2pt] {\textit{page-in}} (hot.south);
+\draw[-{Latex[length=2mm]}, coldColor!70, thick]
+    (cold.north) -- node[arrowlbl, left, xshift=-2pt] {\textit{RAG / page-in}} (warm.south);
+
+% ============================================================
+%  RIGHT SIDE: Classical Memory Hierarchy
+% ============================================================
+\def\xR{5.0}
+
+\node[classicbox=classicHot, minimum width=5.5cm, minimum height=1.5cm]
+    (l1) at (\xR, 3.8)
+    {Physical Memory (RAM)\\
+     {\scriptsize 16--256\,GB; active pages}\\
+     {\tiny Latency: $\sim$10--100\,ns\enspace|\enspace lossless}};
+
+\node[classicbox=classicWarm, minimum width=5.5cm, minimum height=1.5cm]
+    (l2) at (\xR, 1.7)
+    {Swap Space\\
+     {\scriptsize Compressed pages / SSD swap}\\
+     {\tiny Latency: $\sim$1--10\,ms\enspace|\enspace lossless}};
+
+\node[classicbox=classicCold, minimum width=5.5cm, minimum height=1.5cm]
+    (l3) at (\xR, -0.4)
+    {Disk / Object Storage\\
+     {\scriptsize Files, databases, archives}\\
+     {\tiny Latency: $\sim$10--100\,ms\enspace|\enspace lossless}};
+
+\node[font=\small\bfseries, text=black!70] at (\xR, 5.1) {Classical Virtual Memory};
+
+% Page-in arrows (right side)
+\draw[-{Latex[length=2mm]}, classicWarm!70, thick]
+    (l2.north) -- node[arrowlbl, right, xshift=2pt] {\textit{page-in}} (l1.south);
+\draw[-{Latex[length=2mm]}, classicCold!70, thick]
+    (l3.north) -- node[arrowlbl, right, xshift=2pt] {\textit{demand paging}} (l2.south);
+
+% ============================================================
+%  CENTRE: analogy arrows (short labels only, no overlap)
+% ============================================================
+\draw[{Latex[length=2mm]}-{Latex[length=2mm]}, thick, black!30, dashed]
+    (hot.east)  -- node[font=\tiny, above, text=black!40, yshift=1pt]
+    {active pages} (l1.west);
+\draw[{Latex[length=2mm]}-{Latex[length=2mm]}, thick, black!30, dashed]
+    (warm.east) -- node[font=\tiny, above, text=black!40, yshift=1pt]
+    {swap / compressed} (l2.west);
+\draw[{Latex[length=2mm]}-{Latex[length=2mm]}, thick, black!30, dashed]
+    (cold.east) -- node[font=\tiny, above, text=black!40, yshift=1pt]
+    {disk storage} (l3.west);
+
+% ============================================================
+%  KEY DIFFERENCE note
+% ============================================================
+\node[draw=black!25, fill=black!4, rounded corners=4pt,
+      font=\scriptsize, align=center, text width=11.5cm,
+      inner sep=6pt] at (0, -2.5)
+    {\textbf{Key difference:} Virtual memory is \textit{lossless} (exact byte preservation);
+     context management is \textit{lossy} (summarization discards detail).
+     ``Address translation'' is exact in MMU, but approximate (top-$k$ similarity) in RAG retrieval.};
+
+\end{tikzpicture}}%
+\caption{The hot/warm/cold tiered context management hierarchy (left) and its classical virtual-memory analogy (right). Both exploit temporal locality and demand-loading to give consumers the illusion of abundant capacity. The critical distinction is that context management is lossy: summaries and semantic retrieval introduce irreversible information loss absent in classical paging.}
+\label{fig:context_tiers}
+\end{figure}

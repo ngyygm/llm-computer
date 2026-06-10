@@ -1,0 +1,143 @@
+% ---------------------------------------------------------------------------
+% big.LITTLE  ↔  Heterogeneous LLM Orchestration — three-stage comparison
+% fig:biglittle
+% ---------------------------------------------------------------------------
+\begin{figure}[htbp]
+\centering
+\providecolor{bigColor}{HTML}{C44E52}
+\providecolor{littleColor}{HTML}{4A78A8}
+\providecolor{schedColor}{HTML}{3A8A3A}
+\providecolor{stageHdr}{HTML}{555555}
+%
+\resizebox{0.98\textwidth}{!}{%
+\begin{tikzpicture}[
+    font=\small, >=Latex,
+    stagebox/.style={draw=stageHdr!35, fill=stageHdr!4, rounded corners=7pt,
+        minimum width=5.8cm, line width=0.6pt},
+    bigbox/.style={draw=bigColor!65!black, fill=bigColor!14, rounded corners=4pt,
+        minimum width=2.0cm, minimum height=0.80cm,
+        align=center, font=\scriptsize\bfseries, text=bigColor!80!black, line width=0.6pt},
+    litbox/.style={draw=littleColor!65!black, fill=littleColor!14, rounded corners=4pt,
+        minimum width=1.8cm, minimum height=0.70cm,
+        align=center, font=\scriptsize\bfseries, text=littleColor!80!black, line width=0.6pt},
+    schbox/.style={draw=schedColor!65!black, fill=schedColor!10, rounded corners=4pt,
+        minimum width=2.8cm, minimum height=0.80cm,
+        align=center, font=\scriptsize, text=schedColor!75!black, line width=0.55pt},
+    divline/.style={draw=black!18, dashed, line width=0.55pt},
+    darr/.style={-{Latex[length=1.6mm]}, black!45, line width=0.55pt},
+    earr/.style={-{Latex[length=2.2mm]}, black!35, line width=0.75pt},
+    ann/.style={font=\scriptsize\itshape, text=black!50, align=center},
+    hdr/.style={font=\small\bfseries, text=stageHdr!75!black},
+    subhdr/.style={font=\scriptsize, text=black!45, align=center},
+]
+
+% ── column x-centres ──────────────────────────────────────────
+\def\xA{-7.5}   % Stage 1
+\def\xB{0.0}    % Stage 2
+\def\xC{7.5}    % Stage 3
+
+% ── row y-centres (top section) ───────────────────────────────
+% Classical rows
+\def\yTitle{4.6}
+\def\ySub{4.0}
+\def\yCoreTop{2.9}   % top big/LITTLE row
+\def\yCoreBot{1.8}   % bottom big/LITTLE row (Stage 2/3)
+\def\ySched{1.4}     % scheduler row
+\def\yAnnotC{1.9}    % classical annotation (moved up)
+% divider
+\def\yDiv{0.3}
+\def\yDivLbl{0.15}
+% LLM rows
+\def\yLLMTop{-0.6}
+\def\yLLMSched{-2.0}
+\def\yAnnotL{-2.6}
+
+% ── stage backgrounds ─────────────────────────────────────────
+\node[stagebox, minimum height=8.6cm] at (\xA, 0.55) {};
+\node[stagebox, minimum height=8.6cm] at (\xB, 0.55) {};
+\node[stagebox, minimum height=8.6cm] at (\xC, 0.55) {};
+
+% ── headers ───────────────────────────────────────────────────
+\node[hdr]    at (\xA, \yTitle) {Stage 1: Cluster Migration};
+\node[subhdr] at (\xA, \ySub)   {(ARM big.LITTLE, 2011)};
+\node[hdr]    at (\xB, \yTitle) {Stage 2: HMP};
+\node[subhdr] at (\xB, \ySub)   {(All cores active, OS-level routing)};
+\node[hdr]    at (\xC, \yTitle) {Stage 3: EAS};
+\node[subhdr] at (\xC, \ySub)   {(Linux 5.0, 2019; telemetry-driven)};
+
+% ══════════════════════════════════════════════════════════════
+% STAGE 1 — Classical half
+% ══════════════════════════════════════════════════════════════
+\node[bigbox] (A_big)    at (\xA-1.7, \yCoreTop-0.5) {big\\[-1pt]Cortex-A15};
+\node[litbox] (A_little) at (\xA+1.7, \yCoreTop-0.5) {LITTLE\\[-1pt]A7};
+% X mark between the two boxes
+\draw[red!55, line width=1.3pt]
+    (\xA-0.45, \yCoreTop-0.90) -- (\xA+0.45, \yCoreTop-0.10);
+\draw[red!55, line width=1.3pt]
+    (\xA-0.45, \yCoreTop-0.10) -- (\xA+0.45, \yCoreTop-0.90);
+\node[ann] at (\xA, \yAnnotC-0.5) {\textit{Only one cluster active}\\[-2pt]\textit{at a time}};
+
+% ══════════════════════════════════════════════════════════════
+% STAGE 2 — Classical half
+% ══════════════════════════════════════════════════════════════
+\node[bigbox] (B_big)   at (\xB-1.5, \yCoreTop) {big core};
+\node[litbox] (B_lit)   at (\xB+1.5, \yCoreTop) {LITTLE};
+\node[schbox] (B_sched) at (\xB,     \ySched)    {OS scheduler};
+\draw[darr] (B_sched.north) -- ++(0,0.2) -| (B_big.south);
+\draw[darr] (B_sched.north) -- ++(0,0.2) -| (B_lit.south);
+
+% ══════════════════════════════════════════════════════════════
+% STAGE 3 — Classical half
+% ══════════════════════════════════════════════════════════════
+\node[bigbox] (C_big)   at (\xC-1.5, \yCoreTop) {big core};
+\node[litbox] (C_lit)   at (\xC+1.5, \yCoreTop) {LITTLE};
+\node[schbox, minimum width=3.0cm] (C_sched) at (\xC, \ySched) {Energy Model\\[-2pt]+ telemetry};
+\draw[darr] (C_sched.north) -- ++(0,0.2) -| (C_big.south);
+\draw[darr] (C_sched.north) -- ++(0,0.2) -| (C_lit.south);
+
+% ── dividers ──────────────────────────────────────────────────
+\foreach \cx in {\xA, \xB, \xC}{
+    \draw[divline] (\cx-2.6, \yDiv) -- (\cx+2.6, \yDiv);
+    \node[font=\tiny, text=black!32] at (\cx, \yDivLbl)
+        {Classical\,$\uparrow$\quad LLM\,$\downarrow$};
+}
+
+% ══════════════════════════════════════════════════════════════
+% STAGE 1 — LLM half
+% ══════════════════════════════════════════════════════════════
+\node[bigbox] at (\xA-1.3, \yLLMTop-0.5) {Large LLM\\[-1pt]{\tiny(e.g., GPT-4)}};
+\node[litbox] at (\xA+1.3, \yLLMTop-0.5) {SLM\\[-1pt]{\tiny(e.g., Haiku)}};
+\node[ann]    at (\xA, \yAnnotL+0.3) {\textit{Single model handles}\\[-2pt]\textit{all tasks}};
+
+% ══════════════════════════════════════════════════════════════
+% STAGE 2 — LLM half
+% ══════════════════════════════════════════════════════════════
+\node[bigbox] (B_llm)   at (\xB-1.7, \yLLMTop)   {Large LLM};
+\node[litbox] (B_slm)   at (\xB+1.7, \yLLMTop)   {SLM};
+\node[schbox] (B_router)at (\xB,     \yLLMSched)  {Plan/execute router};
+\draw[darr] (B_router.north) -- ++(0,0.2) -| (B_llm.south);
+\draw[darr] (B_router.north) -- ++(0,0.2) -| (B_slm.south);
+\node[ann] at (\xB, \yAnnotL-0.3) {\textit{Large model plans,}\\[-2pt]\textit{small model executes}};
+
+% ══════════════════════════════════════════════════════════════
+% STAGE 3 — LLM half
+% ══════════════════════════════════════════════════════════════
+\node[bigbox] (C_llm)   at (\xC-1.7, \yLLMTop)   {Large LLM};
+\node[litbox] (C_slm)   at (\xC+1.7, \yLLMTop)   {SLM};
+\node[schbox, minimum width=3.0cm] (C_router) at (\xC, \yLLMSched) {Cost-Capability\\[-2pt]Model};
+\draw[darr] (C_router.north) -- ++(0,0.2) -| (C_llm.south);
+\draw[darr] (C_router.north) -- ++(0,0.2) -| (C_slm.south);
+\node[ann] at (\xC, \yAnnotL-0.3) {\textit{Per-subtask cost-optimal}\\[-2pt]\textit{routing (Claude Code, Codex)}};
+
+% ── evolution arrows between stages ───────────────────────────
+\draw[earr] (-4.5, \yCoreTop)
+    -- node[above, font=\scriptsize, text=black!40] {+concurrency}
+    (-2.9, \yCoreTop);
+\draw[earr] (3, \yCoreTop)
+    -- node[above, font=\scriptsize, text=black!40] {+telemetry}
+    (4.5, \yCoreTop);
+
+\end{tikzpicture}}%
+\caption{Three-stage evolution of heterogeneous scheduling, mapped between classical ARM big.LITTLE (top half of each panel) and LLM model orchestration (bottom half). Stage~1 (cluster migration / single model) activates only one resource type at a time. Stage~2 (HMP / plan-execute routing) runs both simultaneously with coarse-grained task assignment. Stage~3 (EAS / cost-capability routing) uses real-time telemetry to route each subtask to the cost-optimal compute substrate, the pattern already deployed in Claude Code and Codex.}
+\label{fig:biglittle}
+\end{figure}

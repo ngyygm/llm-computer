@@ -156,6 +156,10 @@ S_{\mathrm{agent}} = \frac{1}{(1-F) + \dfrac{F}{N \cdot E}}
 where $F \in [0,1]$ denotes the fraction of the task that can be decomposed for parallel execution, $N$ is the number of schedulable agents, and $E \in (0,1]$ is the orchestration efficiency ($E=1$ means zero overhead; $E\to 0$ means overhead consumes all parallel benefit).
 
 \paragraph{Quantitative trajectory across generations.}
+Figure~\ref{fig:gen_trajectory} plots the estimated values of $F$, $E$, and $S_{\mathrm{agent}}$ across the five generations.
+
+\input{figures/fig_gen_trajectory}
+
 \textit{Generation~I (ReAct).}
 $F \approx 0$ (no task decomposition; single-agent serial execution), $N=1$, $E \approx 1$ (no orchestration overhead), yielding $S_{\mathrm{agent}} \approx 1$.
 This corresponds to the ``uniprocessor, no parallelism'' regime.
@@ -171,6 +175,10 @@ Multi-agent execution begins to deliver speedup, but orchestration overhead part
 \textit{Generation~IV (Codex/Claude Code).}
 $F \approx 0.5$ (real-world software engineering tasks exhibit substantial decomposability), $N \approx 4$--$8$ (sub-agent concurrency), $E \approx 0.5$ (sandbox isolation, approval workflows, and state synchronization impose significant overhead), yielding $S_{\mathrm{agent}} \approx 1/(0.5 + 0.5/4) \approx 1.6$.
 Speedup becomes substantial, yet orchestration overhead remains the binding constraint.
+
+\textit{Generation~V (ArbiterOS/CaMeL/IronClaw).}
+$F \approx 0.72$ (governance-first design enables broader task decomposition), $N \approx 6$ (mature multi-agent concurrency), $E \approx 0.65$ (governance overhead partially recovered through structured policy enforcement and capability tokens), yielding $S_{\mathrm{agent}} \approx 1/(0.28 + 0.72/3.9) \approx 2.1$.
+The partial recovery of $E$ relative to Gen~IV reflects the shift from ad-hoc sandboxing to principled capability-based security, which reduces redundant permission checks. However, $F$ and $E$ remain below the $0.8$ threshold required for the target $3.3\times$ speedup.
 
 The execution time horizon of Generation~IV systems is also expanding from minutes to hours.
 In a striking demonstration, engineers at Rakuten tested Claude Code on the vLLM project (12.5~million lines of code), where it ran autonomously for seven hours to complete an activation-vector extraction task, achieving 99.9\% numerical accuracy~\cite{anthropic2026agenticreport}.

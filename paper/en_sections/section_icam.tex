@@ -67,7 +67,9 @@ L6 & User Application & Carry end-user tasks & Tasks may have open-ended goals a
 
 The sustained evolution of classical computer architecture hinges on the \textbf{stability of inter-layer interfaces}. The ISA defines the contract between hardware and software: Intel's processors evolved from the 8086 to today's Core Ultra with sweeping microarchitectural changes, yet the x86 ISA maintained backward compatibility throughout. POSIX defines the contract between applications and the operating system: the Linux kernel progressed from 2.0 to 6.x, yet user applications required virtually no modification. The principle of ``stable interfaces, mutable implementations'' allows each layer to be optimized independently.
 
-ICA similarly defines an interface contract for each pair of adjacent layers. The following subsections specify the operations, invariants, and metrics for each interface.
+ICA similarly defines an interface contract for each pair of adjacent layers. Figure~\ref{fig:interface_contracts} provides a visual overview of all five interface contracts. The following subsections specify the operations, invariants, and metrics for each interface.
+
+\input{figures/fig_interface_contracts}
 
 \subsubsection{L1--L2 Interface: Tensor Operation Contract}
 
@@ -193,7 +195,9 @@ This cross-mapping resolves an apparent contradiction in the literature. Researc
 \label{sec:icam-axioms}
 % ---------------------------------------------------------
 
-Eight decades of classical computer architecture have distilled a set of enduring \textbf{design principles}: the principle of locality guides cache design, layered abstraction guides interface specification, and least privilege guides security architecture. We now transplant these principles into the model-native computing domain and, informed by its distinctive characteristics, propose six design axioms. For each axiom we identify its classical source, its embodiment within ICA, and its concrete design implication.
+Eight decades of classical computer architecture have distilled a set of enduring \textbf{design principles}: the principle of locality guides cache design, layered abstraction guides interface specification, and least privilege guides security architecture. We now transplant these principles into the model-native computing domain and, informed by its distinctive characteristics, propose six design axioms. For each axiom we identify its classical source, its embodiment within ICA, and its concrete design implication. Figure~\ref{fig:axioms_overview} summarizes the applicability of each axiom across the six ICA layers.
+
+\input{figures/fig_axioms_overview}
 
 \refstepcounter{axiom}
 \begin{axiombox}{\theaxiom\enspace Locality Axiom}

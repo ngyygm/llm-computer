@@ -1,0 +1,74 @@
+% ---------------------------------------------------------------------------
+% Classical Computing Stack — six-layer abstraction overview
+% fig:classical_stack
+% ---------------------------------------------------------------------------
+\begin{figure}[htbp]
+\centering
+\providecolor{csL1}{HTML}{2E5E9E}
+\providecolor{csL2}{HTML}{3A72B5}
+\providecolor{csL3}{HTML}{4A8AC8}
+\providecolor{csL4}{HTML}{5EA0D8}
+\providecolor{csL5}{HTML}{73B4E4}
+\providecolor{csL6}{HTML}{90C8F0}
+%
+\resizebox{0.85\textwidth}{!}{%
+\begin{tikzpicture}[
+    >=Latex, font=\small,
+    layrow/.style={
+        draw=#1!70!black, fill=#1!22, rounded corners=4pt,
+        minimum width=14.0cm, minimum height=1.0cm,
+        align=center, font=\small\bfseries, text=#1!90!black,
+        line width=0.65pt
+    },
+    annot/.style={font=\scriptsize, text=black!60, align=left, text width=5.8cm},
+    classicannot/.style={font=\scriptsize, text=black!55, align=right, text width=5.2cm},
+]
+
+\def\gap{1.25}
+
+% ---- Layer rows (bottom to top) ----
+\node[layrow=csL1] (hw) at (0, 0*\gap)
+    {L1 \enspace ISA / Physical Hardware\enspace
+    {\normalfont\scriptsize(x86, ARM, RISC-V; transistors, DRAM, SSD)}};
+
+\node[layrow=csL2] (micro) at (0, 1*\gap)
+    {L2 \enspace Microarchitecture\enspace
+    {\normalfont\scriptsize(pipeline, superscalar, branch prediction, out-of-order)}};
+
+\node[layrow=csL3] (cache) at (0, 2*\gap)
+    {L3 \enspace Cache Hierarchy\enspace
+    {\normalfont\scriptsize(L1/L2/L3 SRAM caches; TLB; hardware prefetcher)}};
+
+\node[layrow=csL4] (vm) at (0, 3*\gap)
+    {L4 \enspace Virtual Memory\enspace
+    {\normalfont\scriptsize(paging, page tables, MMU, demand paging, swap)}};
+
+\node[layrow=csL5] (os) at (0, 4*\gap)
+    {L5 \enspace Operating System\enspace
+    {\normalfont\scriptsize(process scheduler, IPC, file system, access control)}};
+
+\node[layrow=csL6] (dist) at (0, 5*\gap)
+    {L6 \enspace Distributed Systems / Applications\enspace
+    {\normalfont\scriptsize(consensus, replication, CAP, Raft, Spanner)}};
+
+% ---- Right annotations: key principle ----
+\node[font=\scriptsize, text=black!60, anchor=west] at (7.3, 0*\gap)  {\textit{Stable contract: ISA decouples SW from HW}};
+\node[font=\scriptsize, text=black!60, anchor=west] at (7.3, 1*\gap)  {\textit{Amdahl's Law; ILP; power wall $\to$ multicore}};
+\node[annot, anchor=west] at (7.3, 2*\gap)  {\textit{Locality principle; hit rate $\to$ speedup}};
+\node[annot, anchor=west] at (7.3, 3*\gap)  {\textit{Virtualization; isolation; demand paging}};
+\node[annot, anchor=west] at (7.3, 4*\gap)  {\textit{Least privilege; scheduling; abstraction}};
+\node[annot, anchor=west] at (7.3, 5*\gap)  {\textit{CAP theorem; consensus; fault tolerance}};
+
+% ---- Left annotations: analogy target in ICA ----
+\node[classicannot, anchor=east] at (-7.3, 0*\gap)  {ICA L1\\Physical Execution};
+\node[classicannot, anchor=east] at (-7.3, 1*\gap)  {ICA L2\\Inference Serving};
+\node[classicannot, anchor=east] at (-7.3, 2*\gap)  {ICA L2--L3\\KV Cache / Context};
+\node[classicannot, anchor=east] at (-7.3, 3*\gap)  {ICA L3\\Context Mgmt};
+\node[classicannot, anchor=east] at (-7.3, 4*\gap)  {ICA L4--L5\\Interface / Orchestration};
+\node[classicannot, anchor=east] at (-7.3, 5*\gap)  {ICA L5--L6\\Multi-Agent / App};
+
+
+\end{tikzpicture}}%
+\caption{The classical computing stack as a six-layer abstraction hierarchy, with corresponding ICA layer mappings on the left and the governing design principle on the right. Each layer depends only on the interface of the layer below, enabling independent evolution. The ICA architecture (Section~\ref{sec:icam}) transplants this layered discipline into the model-native computing domain.}
+\label{fig:classical_stack}
+\end{figure}

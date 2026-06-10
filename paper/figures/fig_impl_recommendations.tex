@@ -1,0 +1,124 @@
+% ---------------------------------------------------------------------------
+% Five Implementation Recommendations × ICA Layer mapping
+% fig:impl_recommendations
+% ---------------------------------------------------------------------------
+\begin{figure}[htbp]
+\centering
+\providecolor{r1Color}{HTML}{4A78A8}
+\providecolor{r2Color}{HTML}{5C9ED4}
+\providecolor{r3Color}{HTML}{E07B39}
+\providecolor{r4Color}{HTML}{C44E52}
+\providecolor{r5Color}{HTML}{3A8A3A}
+\providecolor{dotFull}{HTML}{333333}
+\providecolor{dotPart}{HTML}{999999}
+%
+\resizebox{0.96\textwidth}{!}{%
+\begin{tikzpicture}[
+    font=\small, >=Latex,
+    recbox/.style={draw=#1!65!black, fill=#1!14, rounded corners=5pt,
+        minimum width=3.4cm, minimum height=1.2cm,
+        align=center, font=\small\bfseries, text=#1!80!black, line width=0.7pt,
+        inner sep=5pt},
+    layercell/.style={draw=#1!50, fill=#1!12, rounded corners=3pt,
+        minimum width=1.55cm, minimum height=0.75cm,
+        align=center, font=\scriptsize, text=#1!75!black, line width=0.4pt},
+    nabox/.style={fill=gray!8, draw=gray!25, rounded corners=3pt,
+        minimum width=1.55cm, minimum height=0.75cm,
+        align=center, font=\scriptsize, text=gray!50, line width=0.3pt},
+    axiomtag/.style={draw=#1!55, fill=#1!10, rounded corners=2pt,
+        font=\tiny\bfseries, text=#1!75!black, inner xsep=3pt, inner ysep=2pt,
+        line width=0.4pt},
+    hdr/.style={font=\small\bfseries, text=black!65},
+]
+
+% ---- Column header positions ----
+\def\xR{-0.2}   % Recommendation col
+\def\xLone{2.8} \def\xLtwo{4.5} \def\xLthree{6.2}
+\def\xLfour{7.9} \def\xLfive{9.6} \def\xLsix{11.3}
+\def\xAxiom{12.8}
+
+% ---- Headers ----
+\node[hdr] at (\xR, 6.5)     {Recommendation};
+\node[hdr, text=blue!60!black]   at (\xLone,   6.5) {L1};
+\node[hdr, text=blue!60!black]   at (\xLtwo,   6.5) {L2};
+\node[hdr, text=blue!60!black]   at (\xLthree, 6.5) {L3};
+\node[hdr, text=orange!60!black] at (\xLfour,  6.5) {L4};
+\node[hdr, text=orange!60!black] at (\xLfive,  6.5) {L5};
+\node[hdr, text=orange!60!black] at (\xLsix,   6.5) {L6};
+\node[hdr, text=red!60!black]    at (\xAxiom,  6.5) {Axiom};
+
+% ---- R1: Separate control & data planes ----
+\def\yRa{5.1}
+\node[recbox=r1Color, text width=3.0cm] (r1) at (\xR, \yRa)
+    {R1\\Separate control\\$\&$ data planes};
+\node[nabox]          at (\xLone,   \yRa) {---};
+\node[nabox]          at (\xLtwo,   \yRa) {---};
+\node[nabox]          at (\xLthree, \yRa) {---};
+\node[layercell=r1Color] at (\xLfour,  \yRa) {Key};
+\node[layercell=r1Color] at (\xLfive,  \yRa) {Key};
+\node[nabox]          at (\xLsix,   \yRa) {---};
+\node[axiomtag=r1Color]  at (\xAxiom,  \yRa) {A3, A6};
+
+% ---- R2: Separate hot context & cold memory ----
+\def\yRb{3.4}
+\node[recbox=r2Color, text width=3.0cm] (r2) at (\xR, \yRb)
+    {R2\\Hot context /\\cold memory};
+\node[nabox]          at (\xLone,   \yRb) {---};
+\node[layercell=r2Color] at (\xLtwo,   \yRb) {Partial};
+\node[layercell=r2Color] at (\xLthree, \yRb) {Key};
+\node[nabox]          at (\xLfour,  \yRb) {---};
+\node[nabox]          at (\xLfive,  \yRb) {---};
+\node[nabox]          at (\xLsix,   \yRb) {---};
+\node[axiomtag=r2Color]  at (\xAxiom,  \yRb) {A1, A4};
+
+% ---- R3: Version every behavior object ----
+\def\yRc{1.7}
+\node[recbox=r3Color, text width=3.0cm] (r3) at (\xR, \yRc)
+    {R3\\Version every\\behavior object};
+\node[nabox]          at (\xLone,   \yRc) {---};
+\node[nabox]          at (\xLtwo,   \yRc) {---};
+\node[layercell=r3Color] at (\xLthree, \yRc) {Partial};
+\node[layercell=r3Color] at (\xLfour,  \yRc) {Key};
+\node[layercell=r3Color] at (\xLfive,  \yRc) {Partial};
+\node[nabox]          at (\xLsix,   \yRc) {---};
+\node[axiomtag=r3Color]  at (\xAxiom,  \yRc) {A2};
+
+% ---- R4: Enforce resource quotas ----
+\def\yRd{0.0}
+\node[recbox=r4Color, text width=3.0cm] (r4) at (\xR, \yRd)
+    {R4\\Enforce resource\\quotas};
+\node[nabox]          at (\xLone,   \yRd) {---};
+\node[layercell=r4Color] at (\xLtwo,   \yRd) {Partial};
+\node[layercell=r4Color] at (\xLthree, \yRd) {Partial};
+\node[nabox]          at (\xLfour,  \yRd) {---};
+\node[layercell=r4Color] at (\xLfive,  \yRd) {Key};
+\node[nabox]          at (\xLsix,   \yRd) {---};
+\node[axiomtag=r4Color]  at (\xAxiom,  \yRd) {A5, A6};
+
+% ---- R5: Design failure recovery ----
+\def\yRe{-1.7}
+\node[recbox=r5Color, text width=3.0cm] (r5) at (\xR, \yRe)
+    {R5\\Design failure\\recovery};
+\node[nabox]          at (\xLone,   \yRe) {---};
+\node[layercell=r5Color] at (\xLtwo,   \yRe) {Partial};
+\node[layercell=r5Color] at (\xLthree, \yRe) {Partial};
+\node[nabox]          at (\xLfour,  \yRe) {---};
+\node[layercell=r5Color] at (\xLfive,  \yRe) {Key};
+\node[layercell=r5Color] at (\xLsix,  \yRe) {Partial};
+\node[axiomtag=r5Color]  at (\xAxiom,  \yRe) {A3, A6};
+
+% ---- Legend (single row, centred under table) ----
+\def\legy{-3.1}
+% Diagram spans x: -0.2 to ~14.0, mid ~6.9
+% Three items each ~3.8cm wide, total ~11.4cm, start at ~1.2
+\node[layercell=dotFull, minimum width=1.3cm, text=dotFull!70] at (0.6, \legy) {Key};
+\node[font=\scriptsize, anchor=west] at (1.45, \legy) {Primary layer};
+\node[layercell=dotPart, minimum width=1.3cm, text=dotPart!70] at (5.1, \legy) {Partial};
+\node[font=\scriptsize, anchor=west] at (5.95, \legy) {Supporting role};
+\node[nabox, minimum width=1.3cm] at (9.6, \legy) {---};
+\node[font=\scriptsize, anchor=west] at (10.45, \legy) {Not applicable};
+
+\end{tikzpicture}}%
+\caption{Mapping of the five implementation recommendations (R1--R5) onto ICA layers (L1--L6) and their governing design axioms. \textbf{Key} cells indicate the primary ICA layer at which the recommendation must be enforced; \textbf{Partial} cells indicate supporting roles. R1 (control/data plane separation) targets L4--L5; R2 (context tiering) targets L3; R3 (versioning) targets L4; R4 (resource quotas) and R5 (failure recovery) both center on L5 with support from adjacent layers.}
+\label{fig:impl_recommendations}
+\end{figure}

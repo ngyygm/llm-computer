@@ -8,6 +8,8 @@ This section first reviews the layered logic of classical computer architecture 
 The layered organization of a classical computing system is not an ad hoc design choice but a general engineering strategy for managing complexity~\cite{hennessy2017quantitative}.
 The central idea is that each layer depends only on the \emph{interface} exposed by the layer below, never on its \emph{implementation}.
 This separation allows any layer to be independently optimized (or even replaced) without disrupting the rest of the stack.
+Figure~\ref{fig:classical_stack} provides an overview of the six-layer classical stack and its correspondence to ICA layers.
+\input{figures/fig_classical_stack}
 We now review the core concepts of each layer in turn.
 
 \subsubsection{Instruction Set Architecture (ISA): The Contract Between Hardware and Software}

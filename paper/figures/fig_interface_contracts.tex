@@ -1,0 +1,112 @@
+% ---------------------------------------------------------------------------
+% ICA Inter-Layer Interface Contracts — vertical protocol stack
+% fig:interface_contracts
+% ---------------------------------------------------------------------------
+\begin{figure}[htbp]
+\centering
+\providecolor{cL1}{HTML}{3B6EA5}
+\providecolor{cL2}{HTML}{4A82BB}
+\providecolor{cL3}{HTML}{5C9ED4}
+\providecolor{cL4}{HTML}{E07B39}
+\providecolor{cL5}{HTML}{D4622A}
+\providecolor{cL6}{HTML}{C44A1A}
+\providecolor{ifcColor}{HTML}{555555}
+%
+\resizebox{0.98\textwidth}{!}{%
+\begin{tikzpicture}[
+    >=Latex, font=\small,
+    laybox/.style={
+        draw=#1!70!black, fill=#1!18, rounded corners=5pt,
+        minimum width=7.2cm, minimum height=0.9cm,
+        align=center, font=\small\bfseries, text=#1!80!black,
+        line width=0.7pt
+    },
+    ifcbox/.style={
+        draw=ifcColor!60, fill=ifcColor!8, rounded corners=3pt,
+        minimum width=10.0cm, minimum height=0.68cm,
+        align=center, font=\scriptsize, text=ifcColor!80!black,
+        line width=0.5pt
+    },
+    arrowstyle/.style={-{Latex[length=2mm]}, thick, ifcColor!60, line width=0.6pt},
+    ifclabel/.style={font=\scriptsize\bfseries, text=ifcColor!75!black, anchor=south west},
+]
+
+% Y coordinates
+\def\yLsix{10.2}
+\def\yIfcFive{9.05}
+\def\yLfive{7.9}
+\def\yIfcFour{6.75}
+\def\yLfour{5.6}
+\def\yIfcThree{4.45}
+\def\yLthree{3.3}
+\def\yIfcTwo{2.15}
+\def\yLtwo{1.0}
+\def\yIfcOne{-0.15}
+\def\yLone{-1.3}
+
+% ---- Layer boxes (shifted right by 2cm) ----
+\node[laybox=cL6] (L6) at (2, \yLsix)  {L6\quad Application Layer};
+\node[laybox=cL5] (L5) at (2, \yLfive) {L5\quad Orchestration Layer};
+\node[laybox=cL4] (L4) at (2, \yLfour) {L4\quad Semantic Interface};
+\node[laybox=cL3] (L3) at (2, \yLthree){L3\quad Context Management};
+\node[laybox=cL2] (L2) at (2, \yLtwo)  {L2\quad Inference Serving};
+\node[laybox=cL1] (L1) at (2, \yLone)  {L1\quad Physical Execution};
+
+% ---- Interface contract bands (shifted right by 2cm) ----
+\node[ifcbox] (ifc56) at (2, \yIfcFive)
+    {\texttt{submit(task\_spec)} / \texttt{poll} / \texttt{cancel}\enspace
+     Invariant: audit trail + rollback\enspace
+     Metric: task completion rate, delegation confidence};
+\node[ifclabel] at (ifc56.north west) {\textbf{L5--L6} Task Submission\strut};
+
+\node[ifcbox] (ifc45) at (2, \yIfcFour)
+    {\texttt{call(tool, args, cap\_token)} / \texttt{query(memory)}\enspace
+     Invariant: capability token required; side-effects auditable\enspace
+     Metric: tool-call success rate, permission-denial rate};
+\node[ifclabel] at (ifc45.north west) {\textbf{L4--L5} Capability Invocation\strut};
+
+\node[ifcbox] (ifc34) at (2, \yIfcThree)
+    {\texttt{read(query)} / \texttt{prefetch(hint)} / \texttt{compact} / \texttt{evict}\enspace
+     Invariant: provenance + freshness annotations\enspace
+     Metric: retrieval recall, compression ratio, load latency};
+\node[ifclabel] at (ifc34.north west) {\textbf{L3--L4} Context Loading\strut};
+
+\node[ifcbox] (ifc23) at (2, \yIfcTwo)
+    {\texttt{alloc} / \texttt{load(prefix\_hash)} / \texttt{evict(policy)}\enspace
+     Invariant: active KV blocks never lost during inference\enspace
+     Metric: KV hit rate $H$, GPU memory, page-replacement count};
+\node[ifclabel] at (ifc23.north west) {\textbf{L2--L3} KV Block Management\strut};
+
+\node[ifcbox] (ifc12) at (2, \yIfcOne)
+    {\texttt{forward(batch\_tokens)} $\to$ \texttt{logits}\enspace
+     Invariant: compute precision $\geq$ FP16/BF16\enspace
+     Metric: FLOPS utilization, TTFT, TPOT};
+\node[ifclabel] at (ifc12.north west) {\textbf{L1--L2} Tensor Operation\strut};
+
+% ---- Arrows ----
+\draw[arrowstyle] (L6.south) -- (ifc56.north);
+\draw[arrowstyle] (ifc56.south) -- (L5.north);
+\draw[arrowstyle] (L5.south) -- (ifc45.north);
+\draw[arrowstyle] (ifc45.south) -- (L4.north);
+\draw[arrowstyle] (L4.south) -- (ifc34.north);
+\draw[arrowstyle] (ifc34.south) -- (L3.north);
+\draw[arrowstyle] (L3.south) -- (ifc23.north);
+\draw[arrowstyle] (ifc23.south) -- (L2.north);
+\draw[arrowstyle] (L2.south) -- (ifc12.north);
+\draw[arrowstyle] (ifc12.south) -- (L1.north);
+
+% ---- Dual-plane side labels ----
+\node[font=\scriptsize\bfseries, cL1!75!black, rotate=90, anchor=south]
+    at (-10.0, {(\yLone+\yLtwo)/2+0.3}) {Model-Native Plane (L1--L2)};
+\draw[thick, cL1!50, line width=1.0pt]
+    (-10.0, \yLone-1) -- (-10.0, \yLtwo+1.5);
+
+\node[font=\scriptsize\bfseries, cL4!75!black, rotate=90, anchor=south]
+    at (-10.0, {(\yLthree+\yLsix)/2}) {Classical Control Plane (L3--L6)};
+\draw[thick, cL4!50, line width=1.0pt]
+    (-10.0, \yLthree-0.45) -- (-10.0, \yLsix+0.45);
+
+\end{tikzpicture}}%
+\caption{ICA inter-layer interface contracts. Each grey band specifies the operations, invariant, and key metric for the corresponding layer boundary. Labels above each band identify the interface name. The left brackets mark the dual-plane division: the model-native plane (L1--L2) hosts probabilistic execution, while the classical control plane (L3--L6) hosts deterministic orchestration.}
+\label{fig:interface_contracts}
+\end{figure}

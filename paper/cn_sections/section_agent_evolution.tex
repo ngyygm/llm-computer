@@ -6,38 +6,38 @@ Agent框架（Agent Framework）是指围绕大语言模型构建的、使其能
 本节梳理这一演进的五个阶段，每个阶段从\textbf{核心架构特征}、\textbf{代表性系统及其具体做法}、以及\textbf{与经典操作系统演进的对应关系}三个维度展开分析。
 
 图~\ref{fig_agent_timeline}展示了Agent框架五代演进的时间线。
-\input{/home/linkco/exa/llm-computer/paper/figures/fig_agent_timeline.tex}
+\input{figures/fig_agent_timeline.tex}
 
 %% ---------- 第一代 ----------
-\subsection*{第一代：执行范式确立（2022--2023）}
+\subsection{第一代：执行范式确立（2022--2023）}
 
-\textbf{核心特征}
+\paragraph{核心特征。}
 第一代Agent框架确立了``推理--行动--观察''交织循环（Thought--Action--Observation loop）的基本范式。
 在此之前，大语言模型的使用方式是``单轮问答''：用户给出提示，模型一次性返回回答，类似于向批处理系统提交一个作业并等待输出。
 第一代框架打破了这一限制：模型不再是被动回答者，而是在循环中主动\textbf{推理}（分析当前状态并决定下一步）、\textbf{行动}（调用工具或执行操作）、\textbf{观察}（读取工具返回的结果），然后进入下一轮循环。
 
-\textbf{代表工作}
+\paragraph{代表工作。}
 ReAct\cite{yao2023react}是这一代的奠基工作。
 它的核心做法是在提示模板中引入``Thought''字段，要求模型在每次调用工具前先显式输出推理过程。
 例如，当用户问``莎士比亚最长的剧本是什么？''时，模型不是直接猜测答案，而是先输出``我需要搜索莎士比亚所有剧本的长度''，然后调用搜索工具，再根据搜索结果推理出最终答案。
 这种``先想再做''的模式看似简单，却解决了大模型直接生成工具调用时常见的``幻觉式工具调用''问题。
 Toolformer\cite{schick2023toolformer}则从另一个角度切入：让模型\textbf{自学}何时以及如何调用工具，通过在训练数据中注入工具调用示例来实现。
 
-\textbf{与OS演进的对应}
+\paragraph{与OS演进的对应。}
 这一代框架类似于1950年代的\textbf{单任务批处理系统}（如IBM 704的Fortran Monitor System）：系统一次只处理一个任务，做完再做下一个，没有并发、没有中断、没有状态保持。
 ReAct的循环就是最简单的``取指--译码--执行''流水线，每次循环对应一个``指令周期''。
 系统没有任何资源管理能力：没有任务调度（只有一个任务）、没有内存管理（上下文窗口就是全部``内存''）、没有I/O抽象（工具调用是硬编码的）。
 
 %% ---------- 第二代 ----------
-\subsection*{第二代：持续多步代理（2023）}
+\subsection{第二代：持续多步代理（2023）}
 
-\textbf{核心特征}
+\paragraph{核心特征。}
 第二代框架的核心突破是\textbf{持续性}（persistence）和\textbf{自主目标分解}（autonomous goal decomposition）。
 第一代框架中，每个用户提问触发一个独立的推理--行动循环；循环结束后，所有中间状态消失。
 第二代框架允许Agent持续运行，自主将高层目标分解为子任务序列，维护跨步骤的中间状态，并在子任务之间传递信息。
 这意味着Agent开始具备``工作记忆''的能力。
 
-\textbf{代表工作}
+\paragraph{代表工作。}
 AutoGPT\cite{autogpt_repo_2026}是第二代最知名的尝试。
 用户给定一个高层目标（如``调研量子计算领域的最新进展并撰写报告''），AutoGPT自主将其分解为搜索论文、提取关键信息、组织大纲、撰写报告等子任务，并依次执行。
 它引入了长期记忆（基于向量数据库）来存储跨步骤的中间结果，使Agent能``记住''之前做过什么。
@@ -46,40 +46,40 @@ Voyager\cite{wang2023voyager}在Minecraft环境中做出了关键改进：引入
 这使得Agent能够持续积累经验，而不是每次都从头开始。
 BabyAGI则实现了更简洁的任务队列管理：维护一个待办任务列表，按优先级排序执行，并根据执行结果动态生成新任务。
 
-\textbf{与OS演进的对应}
+\paragraph{与OS演进的对应。}
 这一代框架类似于1960年代的\textbf{多道程序设计}（multiprogramming）：系统开始管理复杂的多步状态，任务之间可以共享和传递信息。
 AutoGPT的任务队列就是最原始的``作业调度器''；Voyager的技能库类似于``可执行程序库''；BabyAGI的优先级排序类似于早期的``作业调度策略''。
 但与成熟的OS相比，第二代框架缺少三个关键机制：\textbf{隔离}（不同任务之间可能相互干扰）、\textbf{调度}（没有抢占式调度，一个任务卡住会阻塞整个系统）、和\textbf{保护}（一个任务出错可能污染其他任务的状态）。
 
 %% ---------- 第三代 ----------
-\subsection*{第三代：通用运行时（2023--2024）}
+\subsection{第三代：通用运行时（2023--2024）}
 
-\textbf{核心特征}
+\paragraph{核心特征。}
 第三代框架开始系统性地引入\textbf{调度}、\textbf{隔离}和\textbf{资源管理}能力，使Agent框架从``单脚本自动化工具''升级为``通用运行时平台''。
 关键标志是：Agent不再只是一个串行执行的循环，而是可以被调度、被暂停、被恢复的``进程''；多个Agent可以并发运行且互不干扰；系统开始显式管理计算资源（推理次数、上下文空间、工具调用频率）。
 
-\textbf{代表工作}
+\paragraph{代表工作。}
 AIOS\cite{mei2024aios}构建了完整的Agent OS内核，其架构包含六个子系统：Agent Scheduler（负责多Agent的并发调度）、Context Manager（管理不同Agent的上下文隔离与共享）、Memory Manager（分层记忆管理）、 Tool Manager（工具注册与权限控制）、IO Manager（输入输出管理）和 Knowledge Manager（知识库管理）。
 每个Agent被封装为一个``进程''，拥有独立的状态空间和资源预算。
 OpenAI Agents SDK\cite{openai_codex_agentsdk_2026}则采取了更工程化的路线：将orchestration（编排）、state management（状态管理）、approvals（审批流）、handoffs（Agent间任务移交）与tracing（全链路追踪）做成代码优先（code-first）的运行时。
 开发者可以用Python代码定义Agent的行为规范、权限边界和协作流程，而不是用提示模板来隐式地``编程''。
 AutoGen\cite{wu2023autogen}提出了多Agent对话框架：多个Agent通过结构化的消息传递来协作完成复杂任务，每个Agent扮演不同角色（如程序员、测试员、项目经理），类似于多进程协作。
 
-\textbf{与OS演进的对应}
+\paragraph{与OS演进的对应。}
 这一代框架类似于1960--70年代的\textbf{分时操作系统}（Time-Sharing OS，如Multics和Unix）。
 分时OS的核心突破是为每个用户（进程）提供独立的地址空间和公平的CPU时间片，使得多用户可以安全地共享同一台计算机。
 AIOS的Agent Scheduler对应分时OS的进程调度器；Context Manager对应内存管理单元（MMU）的地址隔离；Tool Manager的权限控制对应Unix的文件权限系统。
 Agents SDK的tracing机制则对应OS的\texttt{strace}/\texttt{auditd}系统调用追踪。
 
 %% ---------- 第四代 ----------
-\subsection*{第四代：工程化操作系统（2024--2025）}
+\subsection{第四代：工程化操作系统（2024--2025）}
 
-\textbf{核心特征}
+\paragraph{核心特征。}
 第四代框架的核心标志是\textbf{面向真实软件工程环境的深度整合}。
 前三代框架主要在实验室环境或受限场景中验证概念；第四代框架直面真实的代码库、真实的终端环境、真实的文件系统和真实的外部服务。
 这意味着系统必须处理前几代可以回避的问题：大型代码仓库的上下文远超模型窗口、工具调用可能产生不可逆的副作用、并发编辑可能引发冲突、真实项目需要权限和审计。
 
-\textbf{代表工作}
+\paragraph{代表工作。}
 OpenAI Codex\cite{openai_codex_overview_2026}是一个运行在隔离沙箱中的云端代码Agent：它在独立的容器中checkout代码仓库，执行读写和运行命令，完成后提交差异（diff）供人类审查。
 Codex引入了子Agent机制（subagents）\cite{openai_codex_subagents_2026}：主Agent可以将子任务分派给专门的子Agent执行，子Agent在独立的沙箱中运行，结果经审批后合并---类似于Unix的\texttt{fork()}创建子进程。
 Codex还支持技能包（skills）\cite{openai_codex_skills_2026}和项目级指令文件（AGENTS.md）\cite{openai_codex_agents_md_2026}，实现了跨项目的可复用配置。
@@ -91,21 +91,21 @@ OpenHands\cite{openhands_paper_2025}提供了开放的Agent平台，支持多种
 OSWorld\cite{osworld2024}则从评估角度推动了这个方向：它构建了真实的操作系统环境（包含文件管理器、浏览器、终端等），要求Agent在真实的GUI环境中完成开放式任务，暴露了Agent在真实世界复杂性面前的局限性。
 Devin\cite{devin2024cognition}进一步展现了第四代的工程化特征：作为一个``AI软件工程师''，它集成了代码编辑器、浏览器和终端，能够自主规划、编码、调试和部署。
 
-\textbf{与OS演进的对应}
+\paragraph{与OS演进的对应。}
 这一代框架类似于1980--90年代的\textbf{现代操作系统}（如Unix System V、Linux早期版本、Windows NT）。
 现代OS的核心特征是处理真实世界的复杂性：多任务调度（CFS调度器\cite{linux_cfs_2026}）、虚拟内存与按需分页、网络协议栈、设备驱动框架、安全审计。
 Codex的沙箱对应OS的进程隔离（每个子Agent在独立容器中运行，类似\texttt{chroot}或容器技术）；Claude Code的hooks对应Linux的LSM（Linux Security Modules）安全钩子；Codex的审批机制对应Unix的\texttt{sudo}权限提升；OpenHands的多模型后端对应OS的硬件抽象层（HAL）。
 
 %% ---------- 第五代 ----------
-\subsection*{第五代：治理化操作系统（2025--至今）}
+\subsection{第五代：治理化操作系统（2025--至今）}
 
-\textbf{核心特征}
+\paragraph{核心特征。}
 第五代框架的核心突破是\textbf{将安全和治理从事后补丁升级为体系结构的第一性设计原则}。
 前四代框架的安全措施是``加法式''的：先让Agent能工作，再加沙箱、加审批、加日志。
 第五代框架反过来：先定义安全边界和治理规则，再在边界内赋予Agent行动能力。
 这种范式的转变类似于操作系统从``可用''到``可信''的转折---正如Multics在1960年代就引入了环保护（ring protection）和强制访问控制（mandatory access control），但直到SELinux和Capability-based Security普及后，安全才真正成为OS体系结构的有机组成部分\cite{ostep_2023}。
 
-\textbf{代表工作}
+\paragraph{代表工作。}
 ArbiterOS\cite{arbiteros2025}明确提出了``Probabilistic CPU + Deterministic Governor/Kernel''的分层架构：底层的LLM是概率式处理器，负责``能做什么''；上层的governor是确定性控制器，负责``应该做什么''。
 governor通过策略文件（policy specification）定义Agent的行为边界，类似于OS内核通过系统调用表和权限位定义进程的能力范围。
 
@@ -128,14 +128,17 @@ IronClaw\cite{ironclaw2025}系统性地论证了为什么AI Agent需要像操作
 
 OWASP在2025年底发布的\textbf{Agentic Applications Top 10}\cite{owasp_agentic2026}进一步系统化了这些威胁：Agent Goal Hijack（目标劫持）、Tool Misuse \& Exploitation（工具滥用）、Identity \& Privilege Abuse（身份与权限滥用）等十大风险类别，为第五代框架的安全设计提供了分类学基础。
 
-\textbf{与OS演进的对应}
+\paragraph{与OS演进的对应。}
 这一代框架对应操作系统从``可用''到``可信''的转折期。
 在经典OS历史上，Unix V6（1975年）是一个``可用但不安全''的系统：没有内存保护，任何进程都可以读写任何内存地址；没有权限分离，root用户拥有不受限制的权力。
 随着网络和多用户环境的发展，安全性从``可选功能''变为``必要基础''，导致了Multics的环保护、SELinux的强制访问控制、以及现代微内核（如seL4）的形式化验证\cite{ostep_2023}。
 第五代Agent框架正在经历同样的转折：安全性不再只是``加个沙箱''，而是需要从体系结构层面重新设计Agent的权限模型、审计机制和失败恢复策略。
 
 %% ---------- 演进的量化视角 ----------
-\subsection*{从定律III看五代演进}
+图~\ref{fig_gen_matrix}总结了五代框架在六个体系结构维度上的能力成熟度。
+\input{figures/fig_gen_matrix.tex}
+
+\subsection{从定律III看五代演进}
 
 从第~\ref{sec:laws}节提出的Agent加速比定律（定律III）的视角看，五代演进对应着$F$（可分解比例）和$E$（编排效率）的逐步提升。
 
@@ -147,10 +150,18 @@ S_{\mathrm{agent}} = \frac{1}{(1-F) + \dfrac{F}{N \cdot E}}
 其中$F \in [0,1]$是任务中可以被并行分解的比例，$N$是可调度的Agent数量，$E \in (0,1]$是编排效率（1表示无开销，0表示开销吞噬全部并行收益）。
 
 \textbf{具体数值分析}
+图~\ref{fig:gen_trajectory}绘制了五代框架的$F$、$E$和$S_{\mathrm{agent}}$估计值。
+
+\input{figures/fig_gen_trajectory}
+
 第一代（ReAct）：$F \approx 0$（任务不分解，单Agent串行执行），$N=1$，$E \approx 1$（无编排开销），$S_{\mathrm{agent}} \approx 1$。这对应``单处理器无并行''的状态。
 第二代（AutoGPT/Voyager）：$F \approx 0.1$--$0.2$（少量子任务可以被分离），$N=1$（仍然是单Agent），$E \approx 0.9$，$S_{\mathrm{agent}} \approx 1$。分解能力初现，但编排开销不大，因为只有一个Agent。
 第三代（AIOS/Agents SDK）：$F \approx 0.3$（中等分解能力），$N \approx 2$--$4$（开始支持多Agent），$E \approx 0.7$（调度和上下文切换引入显著开销），$S_{\mathrm{agent}} \approx 1/(0.7 + 0.3/2.8) \approx 1.27$。多Agent开始带来加速，但编排开销抵消了部分收益。
 第四代（Codex/Claude Code）：$F \approx 0.5$（面向真实软件工程的代码任务有较高的可分解性），$N \approx 4$--$8$（子Agent并发），$E \approx 0.5$（沙箱隔离、审批流程、状态同步带来显著开销），$S_{\mathrm{agent}} \approx 1/(0.5 + 0.5/4) \approx 1.6$。加速比显著提升，但编排开销仍是瓶颈。
+
+第五代（ArbiterOS/CaMeL/IronClaw）：$F \approx 0.72$（治理优先设计使更广泛的任务分解成为可能），$N \approx 6$（成熟的多Agent并发），$E \approx 0.65$（通过结构化策略执行和能力令牌部分回收治理开销），$S_{\mathrm{agent}} \approx 1/(0.28 + 0.72/3.9) \approx 2.1$。
+$E$相对于第四代的部分回升反映了从临时沙箱向基于能力的原则性安全的转变，这减少了冗余的权限检查。然而，$F$和$E$仍低于实现$3.3\times$加速目标所需的$0.8$阈值。
+
 第四代系统的执行时间跨度也正在从分钟级向小时级扩展：Rakuten的工程师测试Claude Code在vLLM项目（1250万行代码）上自主运行7小时完成激活向量提取，达到99.9\%数值精度\cite{anthropic2026agenticreport}。
 这种长期自主执行引入了新的体系结构挑战——跨小时的KV缓存持久化、检查点/恢复协议和资源管理——正是Agent运行时类比操作系统的有力支撑。
 

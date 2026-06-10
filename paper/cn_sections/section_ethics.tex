@@ -5,6 +5,7 @@
 特别地，第~\ref{sec:paradigm}节引入的木桶原理意味着：一个系统的伦理水准同样受限于其最弱的安全维度——安全合规上仅得20百分位的系统，其整体伦理评分为20百分位，而非其他维度的平均值。
 
 \subsection{权限与隔离（对应L5编排层）}
+\label{sec:ethics-permission}
 
 如果Agent相当于进程，那么它拥有哪些权限、能看到哪些秘密、是否能联网、是否能修改持久状态，就必须像操作系统安全策略那样被显式配置\cite{openai_codex_approvals_2026,openai_codex_sandbox_2026,anthropic_claudecode_security_2026,anthropic_claudecode_sandbox_2026,debenedetti2025camel,ironclaw2025}。
 
@@ -13,37 +14,39 @@
 \item \textbf{谁能创建Agent？}——对应进程创建权限。Codex要求用户通过AGENTS.md显式声明Agent行为边界\cite{openai_codex_agents_md_2026}。
 \item \textbf{Agent能访问哪些资源？}——对应文件系统权限。Claude Code默认只读，写操作需显式审批\cite{anthropic_claudecode_security_2026}。
 \item \textbf{Agent的权限如何粒度化？}——对应capability-based安全。CaMeL用能力令牌（capability token）控制每个工具调用的权限边界\cite{debenedetti2025camel}。
-\item \textbf{Agent越权时如何终止？}——对应进程信号和沙箱隔离。Codex使用OS级沙箱，Agent的所有写操作都被隔离在受控环境中\cite{openai_codex_sandbox_2026}。
+\item \textbf{Agent越权时如何终止？}——对应进程信号和沙箱隔离。Codex使用OS级沙箱，Agent的所有写操作都被隔离在受控环境中\cite{openai_codex_sandbox_2026}。IronClaw\cite{ironclaw2025}进一步扩展了这一模型，提出硬件强制隔离边界来约束Agent工作负载，直接类比于基于hypervisor的虚拟机隔离。
 \end{itemize}
 
 从双平面架构的视角看，这些权限控制属于确定性控制平面的核心职责：概率执行平面负责"能做什么"（推理和生成），确定性控制平面负责"允许做什么"（审批和隔离）。
 
 \subsection{隐私与记忆治理（对应L3记忆层）}
+\label{sec:ethics-privacy}
 
 隐私问题集中在L3（记忆层）。
 一旦引入长期状态，系统必须回答四个核心问题——这些问题在传统计算机的内存管理中也有对应，但在语义系统中变得更加复杂：
 
-\textbf{什么应保存？}
+\paragraph{什么应保存？}
 不是所有交互都应被长期记忆。
 传统操作系统通过页面保护位（protection bits）区分可读、可写、可执行页面；L3记忆层同样需要区分"可持久化"和"仅会话级"的信息。
 例如，用户的代码编辑偏好可以持久化，但临时密码或敏感对话内容应标记为"仅会话级"，会话结束后自动清除。
 
-\textbf{保存多久？}
+\paragraph{保存多久？}
 这涉及记忆的保留策略（retention policy）。
 传统文件系统通过TTL（Time-To-Live）管理临时文件；L3层同样需要为每个记忆块设定TTL和版本号。
 更复杂的是，欧盟《人工智能法案》（EU AI Act）要求高风险AI系统保留至少10年的操作日志\cite{euaiact2026}，而GDPR的"被遗忘权"（Right to Be Forgotten）则要求用户可以请求删除个人数据\cite{gdpr_righttoforget}——两者之间存在直接的政策冲突，需要L3层的保留策略设计者显式处理。
 
-\textbf{谁有权删除？}
+\paragraph{谁有权删除？}
 在多Agent共享记忆的场景下，一个Agent写入的记忆块可能被其他Agent引用。
 删除操作不能简单执行，而需要类似垃圾回收（garbage collection）的引用追踪机制——只有当所有引用者都同意或已失效时，记忆块才可被真正清除。
 这对应公理6（可观测性公理）的延伸：删除操作本身也必须是可审计的。
 
-\textbf{摘要能否反推出原始敏感信息？}
+\paragraph{摘要能否反推出原始敏感信息？}
 L3层的上下文编译器经常将原始信息压缩为摘要以节省窗口空间。
 但摘要可能保留足够多的语义线索，使得敏感信息（如个人身份、财务数据）可以从摘要中推断出来。
 这要求L3层的语义地址契约包含最小保留（只保留任务必需的信息）、可追溯删除（删除时连同所有派生摘要一起清除）、访问隔离（不同用户的记忆不可交叉访问）和加密存储\cite{longmemeval2024,navaie2025privacy}。
 
 \subsection{可解释性：从"解释模型"到"解释系统"（对应全栈）}
+\label{sec:ethics-explainability}
 
 传统LLM可解释性研究的重点是解释模型的内部表征（如注意力头的作用、神经元的语义）。
 但ICA认为，对于一个运行在完整模型原生计算架构上的Agent系统，更有操作性的解释单元不在模型内部，而在系统行为轨迹中——这正是可观测性公理（公理6）的核心。
@@ -61,15 +64,19 @@ L3层的上下文编译器经常将原始信息压缩为摘要以节省窗口空
 从双平面架构的视角看，这恰好是确定性控制平面的核心产出——可审计、可回放的事件流。
 
 \subsection{公平性与资源分配（对应L2推理服务层与L5编排层）}
+\label{sec:ethics-fairness}
 
 当多个用户或多个Agent共享同一推理服务集群时，公平的资源分配成为伦理问题。
 传统操作系统通过cgroup（控制组）实现CPU、内存和I/O的公平分配\cite{linux_cgroup_2026}；
 模型原生计算系统同样需要为每个Agent或任务设定上下文窗口预算、推理时间预算和成本预算。
 
 具体问题包括：
-推理资源是否公平分配？大用户是否垄断了GPU资源？
-长任务的Agent是否占用了过多KV缓存，导致短任务饥饿？
-工具调用的副作用是否对所有用户一视同仁？
-这些公平性问题直接关联到公理5（最小权限公理）在资源管理层面的延伸。
+\begin{itemize}[nosep]
+\item \textbf{推理资源公平性。}大用户是否垄断了GPU资源？
+\item \textbf{KV缓存争用。}长任务的Agent是否占用了过多KV缓存，导致短任务饥饿——这正是经典"内存霸占"问题的Agent版本？
+\item \textbf{副作用公平性。}工具调用的副作用是否对所有用户一视同仁，还是调度偏差使得某些Agent获得了优势？
+\end{itemize}
+
+这些公平性问题直接关联到公理5（最小权限公理）在资源管理层面的延伸：一个Agent不应消耗超过其公平份额的共享资源，系统必须将这一约束作为一等不变量来执行。
 
 %% ============================================================

@@ -132,6 +132,9 @@ Liu等人的开创性工作系统地研究了这一问题\cite{liu2023lostmiddle
 
 后续研究进一步量化了这一衰减：RULER基准表明，上下文从4K增长到128K时，检索准确率从$>$95\%降至$<$70\%\cite{ruler2024}；LongBench v2确认深度推理任务的衰减更为严重\cite{longbenchv2_2024}；LOFT的研究表明即使模型支持超长上下文，在实际利用效率上也存在显著不足\cite{loft2024}。近期的研究指出LLM实际有效利用的上下文长度可能仅为声称窗口的10\%--20\%。
 
+图~\ref{fig_beta_decay}可视化了经验观察到的U形曲线和定律II采用的指数衰减模型。
+\input{figures/fig_beta_decay.tex}
+
 \subsubsection{为什么使用指数衰减模型}
 
 本文采用指数衰减形式来建模$\beta(L)$：

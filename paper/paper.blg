@@ -9,44 +9,69 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated field_info (elt_size=4) to 10488 items from 5000.
 Database file #1: refs.bib
-You've used 196 entries,
+Warning--I didn't find a database entry for "karpathy2023llmos"
+Warning--I didn't find a database entry for "openai_codex_subagents_2026"
+Warning--I didn't find a database entry for "liu_2025_claude_code"
+Warning--I didn't find a database entry for "cognition_2025_multiagent"
+Warning--I didn't find a database entry for "3dmind_2025"
+Warning--I didn't find a database entry for "leroux_2025_cim"
+Warning--I didn't find a database entry for "benchmark_pitfalls_2025"
+Warning--I didn't find a database entry for "worst_at_k_2025"
+Warning--I didn't find a database entry for "blem_2013_microarchitecture"
+Warning--I didn't find a database entry for "intel_thread_director_2021"
+Warning--I didn't find a database entry for "allen_riken_2025_mouse_fugaku"
+Warning--I didn't find a database entry for "generativevalue2024semiconductor"
+Warning--I didn't find a database entry for "quartr2024tsmc"
+Warning--I didn't find a database entry for "eetimes2025asic"
+Warning--I didn't find a database entry for "benevans2025fullstack"
+Warning--I didn't find a database entry for "industryanalysis2026aivaluechain"
+Warning--I didn't find a database entry for "investingcom2026tokenpricing"
+Warning--I didn't find a database entry for "corvex2026secureweights"
+Warning--I didn't find a database entry for "wu2025physicalunclonable"
+Warning--I didn't find a database entry for "strategyzer2024msbusinessmodel"
+Warning--I didn't find a database entry for "microchipusa2024amdhistory"
+Warning--I didn't find a database entry for "gartner2026spending"
+Warning--empty journal in memgpt2023
+Warning--empty journal in phi3_2024
+You've used 174 entries,
             2616 wiz_defined-function locations,
-            1586 strings with 45145 characters,
-and the built_in function-call counts, 64876 in all, are:
-= -- 6408
-> -- 2598
-< -- 9
-+ -- 865
-- -- 669
-* -- 2477
-:= -- 8432
-add.period$ -- 812
-call.type$ -- 196
-change.case$ -- 196
+            1439 strings with 44665 characters,
+and the built_in function-call counts, 65126 in all, are:
+= -- 5923
+> -- 3349
+< -- 34
++ -- 1112
+- -- 938
+* -- 3142
+:= -- 8765
+add.period$ -- 637
+call.type$ -- 174
+change.case$ -- 174
 chr.to.int$ -- 0
-cite$ -- 196
-duplicate$ -- 1927
-empty$ -- 7596
-format.name$ -- 669
-if$ -- 18939
+cite$ -- 176
+duplicate$ -- 1840
+empty$ -- 6953
+format.name$ -- 938
+if$ -- 18159
 int.to.chr$ -- 0
-int.to.str$ -- 196
-missing$ -- 123
-newline$ -- 1207
-num.names$ -- 196
-pop$ -- 1918
+int.to.str$ -- 174
+missing$ -- 115
+newline$ -- 986
+num.names$ -- 174
+pop$ -- 1670
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 5318
+skip$ -- 4838
 stack$ -- 0
-substring$ -- 643
-swap$ -- 329
-text.length$ -- 49
+substring$ -- 1790
+swap$ -- 494
+text.length$ -- 48
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 0
-while$ -- 249
-width$ -- 199
-write$ -- 2459
+warning$ -- 2
+while$ -- 299
+width$ -- 177
+write$ -- 2044
+(There were 24 warnings)

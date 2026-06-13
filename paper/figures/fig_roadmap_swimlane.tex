@@ -85,9 +85,8 @@
 
 % Bottom of the band
 \pgfmathsetmacro{\bandBot}{\yLone-\laneHalf-0.2}
-% Top of the band — now includes ONLY the sub-label ("1--2 years")
-% The bold title sits ABOVE the band
-\pgfmathsetmacro{\bandTop}{\yLsix+\laneHalf+0.65}
+% Top of the band — the bold phase title sits ABOVE the band
+\pgfmathsetmacro{\bandTop}{\yLsix+\laneHalf+0.15}
 
 % ================================================================
 % PHASE BACKGROUND BANDS  — top edge just above the year sub-label
@@ -113,13 +112,10 @@
 %   - sub-label ("1--2 years") sits INSIDE the band near the top edge
 %   - bold title ("Short-Term") sits ABOVE the band
 % ================================================================
-\node[phase sub]    at ({(\xShortL+\xShortR)/2}, \bandTop-0.20) {1--2 years};
 \node[phase header] at ({(\xShortL+\xShortR)/2}, \bandTop+0.45) {Short-Term};
 
-\node[phase sub]    at ({(\xMidL+\xMidR)/2},   \bandTop-0.20) {2--4 years};
 \node[phase header] at ({(\xMidL+\xMidR)/2},   \bandTop+0.45) {Mid-Term};
 
-\node[phase sub]    at ({(\xLongL+\xLongR)/2}, \bandTop-0.20) {4--8 years};
 \node[phase header] at ({(\xLongL+\xLongR)/2}, \bandTop+0.45) {Long-Term};
 
 % ================================================================

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.3.14)  11 JUN 2026 02:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.3.14)  13 JUN 2026 16:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1150,88 +1150,88 @@ File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 (./paper.aux)
 \openout1 = `paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for C00/song/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for C05/song/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for C09/song/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for C10/song/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for C20/song/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for C19/song/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for C40/song/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for C42/song/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for C43/song/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for C50/song/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for C52/song/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for C49/song/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for C60/mj/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for C61/mj/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for C63/mj/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for C64/mj/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for C65/mj/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for C70/song/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for C31/song/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for C32/song/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for C33/song/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for C34/song/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for C35/song/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for C36/song/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for C37/song/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for C80/song/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for C81/song/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for C01/song/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for C11/song/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for C21/song/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for C41/song/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for C62/song/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for C00/song/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for C05/song/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for C09/song/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for C10/song/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for C20/song/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for C19/song/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for C40/song/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for C42/song/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for C43/song/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for C50/song/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for C52/song/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for C49/song/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for C60/mj/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for C61/mj/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for C63/mj/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for C64/mj/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for C65/mj/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for C70/song/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for C31/song/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for C32/song/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for C33/song/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for C34/song/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for C35/song/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for C36/song/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for C37/song/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for C80/song/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for C81/song/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for C01/song/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for C11/song/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for C21/song/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for C41/song/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for C62/song/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1292,7 +1292,7 @@ e
 Package pgfplots notification 'compat/show suggested version=true': document ha
 s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
-Package hyperref Info: Link coloring ON on input line 59.
+Package hyperref Info: Link coloring ON on input line 68.
 (./paper.out) (./paper.out)
 \@outlinefile=\write4
 \openout4 = `paper.out'.
@@ -1311,7 +1311,7 @@ File: UTF8.enc 2021/10/16 4.8.5
 File: UTF8.chr 2021/10/16 4.8.5
 )
 LaTeX Font Info:    Trying to load font information for C70+gbsn on input line 
-62.
+71.
 
 (/usr/share/texmf/tex/latex/CJK/UTF8/c70gbsn.fd
 File: c70gbsn.fd 2008/10/03 4.8.1
@@ -1319,20 +1319,27 @@ File: c70gbsn.fd 2008/10/03 4.8.1
 (/usr/share/texmf/tex/latex/CJK/UTF8/c70gbsn.fdx
 File: c70gbsn.fdx 2012/05/07 4.8.3
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 62.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 71.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 62.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 71.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 7
+1.
 
-LaTeX Warning: No \author given.
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
+)
+Overfull \hbox (37.88336pt too wide) in paragraph at lines 71--71
+ [][] 
+ []
 
 (./cn_sections/section_intro.tex
 
@@ -1351,7 +1358,7 @@ Underfull \hbox (badness 10000) in alignment at lines 35--35
 LaTeX Warning: Citation `karpathy2023llmos' on page 2 undefined on input line 4
 0.
 
-<figures/fig_analogy_map.png, id=957, 1678.27pt x 944.52875pt>
+<figures/fig_analogy_map.png, id=960, 1678.27pt x 944.52875pt>
 File: figures/fig_analogy_map.png Graphic file (type png)
 <use figures/fig_analogy_map.png>
 Package pdftex.def Info: figures/fig_analogy_map.png  used on input line 45.
@@ -1365,8 +1372,8 @@ gbsn/m/n/10.95/68 F \C70/gbsn/m/n/10.95/67 ∂ \C70/gbsn/m/n/10.95/79  \C70/gbsn
 /m/n/10.95/4e :\T1/cmr/m/n/10.95 stored-program au-to-matic
  []
 
-[2]) (./cn_sections/section_bg.tex [3 <./figures/fig_analogy_map.png (PNG copy)
->] (./figures/fig_classical_stack.tex
+[2] [3 <./figures/fig_analogy_map.png (PNG copy)>])
+(./cn_sections/section_bg.tex (./figures/fig_classical_stack.tex
 Underfull \hbox (badness 10000) in paragraph at lines 71--71
  [][][]\T1/cmr/m/n/8 ICA L1
  []
@@ -1426,12 +1433,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 71--71
  []\T1/cmr/m/n/8 Multi-Agent / App[]
  []
 
-) [4]
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 5
-2.
- (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
-) [5]
+) [4] [5]
 Overfull \hbox (18.74643pt too wide) in paragraph at lines 103--112
 \C70/gbsn/bx/n/10.95/57 ( \C70/gbsn/bx/n/10.95/63 ® \C70/gbsn/bx/n/10.95/74 ^^F
  \C70/gbsn/bx/n/10.95/4f ß \C70/gbsn/m/n/10.95/ff ^^L \C70/gbsn/m/it/10.95/4e ^
@@ -1706,7 +1708,7 @@ Overfull \hbox (14.69351pt too wide) in alignment at lines 32--53
  [] [] [] [] [] 
  []
 
-[13] [14{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+[13] [14]
 Overfull \hbox (0.147pt too wide) in paragraph at lines 101--102
 []\T1/cmr/m/n/10.95 Codex\C70/gbsn/bx/n/10.95/76 Ñ\T1/cmr/m/n/10.95 approval po
 licies[[]]\C70/gbsn/bx/n/10.95/30 ^^A\T1/cmr/m/n/10.95 Claude Code\C70/gbsn/bx/
@@ -1743,8 +1745,8 @@ gbsn/bx/n/10.95/76 Ñ \C70/gbsn/m/it/10.95/4e ã \C70/gbsn/bx/n/10.95/5b û \C70/g
 bsn/bx/n/10.95/68 ^^G \C70/gbsn/m/it/10.95/51 ∆ \C70/gbsn/bx/n/10.95/67 ∂
  []
 
-(./figures/fig_dual_plane.tex) [15]) (./cn_sections/section_components.tex
-[16]
+[15{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+(./figures/fig_dual_plane.tex)) (./cn_sections/section_components.tex [16]
 Overfull \hbox (1.15462pt too wide) in paragraph at lines 72--76
 \C70/gbsn/bx/n/10.95/57 ( \C70/gbsn/m/n/10.95/81 Í \C70/gbsn/bx/n/10.95/56 ﬁ \C
 70/gbsn/m/it/10.95/5f R \C70/gbsn/bx/n/10.95/63 ® \C70/gbsn/bx/n/10.95/74 ^^F \
@@ -1774,7 +1776,7 @@ sn/m/it/10.95/90 ^^P \C70/gbsn/m/it/10.95/7b V \C70/gbsn/m/it/10.95/75 e\T1/cmr
 sn/bx/n/10.95/76 Ñ \C70/gbsn/m/it/10.95/4f ^^X
  []
 
-(./figures/fig_kv_hierarchy.tex) [18] (./figures/fig_context_tiers.tex)
+[18] (./figures/fig_kv_hierarchy.tex) (./figures/fig_context_tiers.tex)
 [19] [20]
 
 LaTeX Warning: Citation `karpathy2023llmos' on page 21 undefined on input line 
@@ -1793,7 +1795,7 @@ nts\C70/gbsn/bx/n/10.95/30 ^^A\T1/cmr/m/n/10.95 skills\C70/gbsn/bx/n/10.95/30 ^
 \C70/gbsn/bx/n/10.95/52 6
  []
 
-[21]
+[21] [22]
 Overfull \hbox (10.33841pt too wide) in paragraph at lines 313--315
 []\C70/gbsn/bx/n/10.95/62 ä \C70/gbsn/m/it/10.95/4e $ \C70/gbsn/bx/n/10.95/80 ^
 ^E \C70/gbsn/m/it/10.95/54 ^^H \C70/gbsn/bx/n/10.95/8d w \C70/gbsn/m/it/10.95/6
@@ -1808,7 +1810,7 @@ mr/m/n/10.95 agent\C70/gbsn/bx/n/10.95/52 0\T1/cmr/m/n/10.95 agent\C70/gbsn/bx/
 n/10.95/76 Ñ
  []
 
-[22] [23]
+[23]
 Overfull \hbox (18.13597pt too wide) in paragraph at lines 381--383
 \C70/gbsn/m/it/10.95/7b ,[][] \C70/gbsn/m/it/10.95/4e ^^@[][] \C70/gbsn/m/n/10.
 95/ff ^^L[][] \C70/gbsn/m/it/10.95/90 ^^Z[][] \C70/gbsn/m/it/10.95/4f ·[][] \C7
@@ -1835,7 +1837,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 LaTeX Font Warning: Font shape `C70/gbsn/bx/it' undefined
 (Font)              using `C70/gbsn/bx/n' instead on input line 19.
 
-
+[26]
 Underfull \hbox (badness 3291) in paragraph at lines 25--26
 []\T1/cmr/bx/it/10.95 L4 \C70/gbsn/bx/it/10.95/8b Ì[][] \C70/gbsn/bx/it/10.95/4
 e I[][] \C70/gbsn/bx/it/10.95/63 •[][] \C70/gbsn/bx/it/10.95/53 „[][] \C70/gbsn
@@ -1848,10 +1850,10 @@ gbsn/m/it/10.95/30 ^^A \C70/gbsn/m/it/10.95/8f ˝
  []
 
 
-LaTeX Warning: Citation `openai_codex_subagents_2026' on page 26 undefined on i
+LaTeX Warning: Citation `openai_codex_subagents_2026' on page 27 undefined on i
 nput line 27.
 
-[26]
+
 Underfull \hbox (badness 8094) in paragraph at lines 54--54
 []|\T1/cmr/m/n/9 GPU, TPU, \C70/gbsn/m/n/9/5b X \C70/gbsn/m/n/9/7b ó \C70/gbsn/
 m/n/9/4e ^^@
@@ -1925,7 +1927,7 @@ mr/m/n/10.95 capability to-ken\C70/gbsn/m/it/10.95/ff ^^[\T1/cmr/m/n/10.95 Code
 x\C70/gbsn/m/it/10.95/76 Ñ\T1/cmr/m/n/10.95 OS\C70/gbsn/bx/n/10.95/7e ß
  []
 
-) (./cn_sections/section_laws.tex [32] [33] [34]
+[32]) (./cn_sections/section_laws.tex [33] [34]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 127.
@@ -1946,7 +1948,7 @@ nput line 198.
 [37] [38] (/home/linkco/exa/llm-computer/paper/figures/fig_law_curves.tex))
 (./cn_sections/section_agent_evolution.tex [39]
 (./figures/fig_agent_timeline.tex
-<figures/fig_agent_timeline_gemini.png, id=1705, 2762.32pt x 1541.76pt>
+<figures/fig_agent_timeline_gemini.png, id=1706, 2762.32pt x 1541.76pt>
 File: figures/fig_agent_timeline_gemini.png Graphic file (type png)
 <use figures/fig_agent_timeline_gemini.png>
 Package pdftex.def Info: figures/fig_agent_timeline_gemini.png  used on input l
@@ -1982,7 +1984,7 @@ Mod-ules\C70/gbsn/m/it/10.95/ff 	 \C70/gbsn/bx/n/10.95/5b â \C70/gbsn/m/it/10.9
 5/51 h \C70/gbsn/m/n/10.95/94 ©
  []
 
-[42] (./figures/fig_gen_matrix.tex) (./figures/fig_gen_trajectory.tex [43])
+[42] (./figures/fig_gen_matrix.tex) [43] (./figures/fig_gen_trajectory.tex)
 [44]) (./cn_sections/section_challenges.tex [45] (./figures/fig_trilemma.tex)
 [46] (./figures/fig_state_lifecycle.tex) [47]
 Overfull \hbox (87.59567pt too wide) in paragraph at lines 125--130
@@ -2023,7 +2025,11 @@ Underfull \hbox (badness 3536) in paragraph at lines 67--67
  []\T1/cmr/bx/n/8 Privacy
  []
 
-) [51]) [52] (./cn_sections/section_paradigm.tex
+)
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[51] [52]) (./cn_sections/section_paradigm.tex
 (./figures/fig_paradigm_timeline.tex) [53] [54] (./figures/fig_biglittle.tex)
 
 LaTeX Warning: Citation `liu_2025_claude_code' on page 55 undefined on input li
@@ -2090,7 +2096,7 @@ put line 132.
 LaTeX Warning: Citation `allen_riken_2025_mouse_fugaku' on page 59 undefined on
  input line 140.
 
-) (./cn_sections/section_social.tex [59]
+[59]) (./cn_sections/section_social.tex
 
 LaTeX Warning: Citation `generativevalue2024semiconductor' on page 60 undefined
  on input line 9.
@@ -2128,7 +2134,7 @@ d Ú \C70/gbsn/bx/n/10.95/7e œ \C70/gbsn/m/it/10.95/6e ^^E \C70/gbsn/m/it/10.95/
 LaTeX Warning: Citation `investingcom2026tokenpricing' on page 60 undefined on 
 input line 20.
 
-
+[60]
 Overfull \hbox (44.89287pt too wide) in paragraph at lines 22--23
 \C70/gbsn/m/it/10.95/66 ˇ \C70/gbsn/bx/it/10.95/4e „ \C70/gbsn/bx/it/10.95/65 π
  \C70/gbsn/m/it/10.95/68 H \C70/gbsn/bx/it/10.95/4e ^^M \C70/gbsn/bx/it/10.95/6
@@ -2142,7 +2148,6 @@ oft\C70/gbsn/m/it/10.95/30 ^^A\T1/cmr/m/n/10.95 Google\C70/gbsn/m/it/10.95/30 ^
 /gbsn/m/it/10.95/76 Ñ
  []
 
-[60]
 
 LaTeX Warning: Citation `corvex2026secureweights' on page 61 undefined on input
  line 29.
@@ -2174,11 +2179,12 @@ x/it/10.95/4e ; \C70/gbsn/m/it/10.95/89 Å\T1/cmr/m/n/10.95 PC\C70/gbsn/bx/it/10
 LaTeX Warning: Citation `microchipusa2024amdhistory' on page 61 undefined on in
 put line 47.
 
+[61]
 
-LaTeX Warning: Citation `gartner2026spending' on page 61 undefined on input lin
+LaTeX Warning: Citation `gartner2026spending' on page 62 undefined on input lin
 e 49.
 
-[61]) (./cn_sections/section_implementation.tex (./figures/fig_impl_map.tex)
+) (./cn_sections/section_implementation.tex (./figures/fig_impl_map.tex)
 [62]
 Overfull \hbox (25.26851pt too wide) in paragraph at lines 41--45
 \C70/gbsn/m/it/10.95/76 Ñ\T1/cmr/m/n/10.95 "reasoning kernel"[[]]\C70/gbsn/m/it
@@ -2195,7 +2201,7 @@ t/10.95/97 b \C70/gbsn/bx/n/10.95/7e ß\T1/cmr/m/n/10.95 AgentOS\C70/gbsn/m/it/1
 LaTeX Warning: Citation `openai_codex_subagents_2026' on page 63 undefined on i
 nput line 48.
 
-(./figures/fig_impl_recommendations.tex) [63] [64])
+[63] (./figures/fig_impl_recommendations.tex) [64])
 (./cn_sections/section_roadmap.tex
 Overfull \hbox (1.1519pt too wide) in paragraph at lines 14--14
 []|\T1/cmr/m/n/10 ICA\C70/gbsn/m/n/10/5c B| 
@@ -2345,8 +2351,8 @@ Underfull \hbox (badness 1237) in paragraph at lines 35--35
 sn/m/n/10/82 Ç \C70/gbsn/bx/n/10/8b ƒ
  []
 
-[65] (./figures/fig_roadmap_swimlane.tex) [66] [67] [68])
-(./cn_sections/section_ethics.tex
+[65] (./figures/fig_roadmap_swimlane.tex) [66] [67])
+(./cn_sections/section_ethics.tex [68]
 Underfull \hbox (badness 2556) in paragraph at lines 16--17
 []\T1/cmr/bx/n/10.95 Agent\C70/gbsn/m/it/10.95/76 Ñ[][] \C70/gbsn/bx/it/10.95/6
 7 C[][] \C70/gbsn/m/it/10.95/96 P[][] \C70/gbsn/m/it/10.95/59 Ç[][] \C70/gbsn/m
@@ -2373,7 +2379,7 @@ m/it/10.95/4f U[][] \C70/gbsn/bx/n/10.95/7e »[][] \C70/gbsn/m/it/10.95/6b b[][]
 gbsn/bx/n/10.95/7e ß \C70/gbsn/m/it/10.95/6c ô
  []
 
-[69]) (./cn_sections/section_conclusion.tex [70]
+[69]) (./cn_sections/section_conclusion.tex
 Underfull \hbox (badness 10000) in paragraph at lines 15--18
 \C70/gbsn/m/it/10.95/79 ª \C70/gbsn/m/it/10.95/4f ^^? \C70/gbsn/m/it/10.95/5f ó
 \T1/cmr/m/n/10.95 ArbiterOS\C70/gbsn/m/it/10.95/76 Ñ\T1/cmr/m/n/10.95 "Probabil
@@ -2382,7 +2388,7 @@ istic CPU"[[]]\C70/gbsn/m/it/10.95/30 ^^A\T1/cmr/m/n/10.95 AIOS\C70/gbsn/m/it/1
 95 AgentOS\C70/gbsn/m/it/10.95/76 Ñ\T1/cmr/m/n/10.95 "reasoning
  []
 
-[71]) (./paper.bbl [72] [73] [74] [75] [76] [77]
+[70] [71]) (./paper.bbl [72] [73] [74] [75] [76] [77]
 Overfull \hbox (45.90363pt too wide) in paragraph at lines 567--573
 \T1/cmtt/m/n/10.95 deterministic-[]ai-[]orchestration-[]a-[]platform-[]architec
 ture-[]for-[]autonomous-[]development/$[][]\T1/cmr/m/n/10.95 . 
@@ -2394,13 +2400,13 @@ Underfull \hbox (badness 4328) in paragraph at lines 696--701
 / / blog . jetbrains . com / research / 2025 / 12 /
  []
 
-[79] [80]
+[79]
 Underfull \hbox (badness 1448) in paragraph at lines 807--811
 []\T1/cmr/m/n/10.95 Shunyu Yao, Noah Shinn, Pe-dram Razavi, and Karthik Narasim
 han.  $\OML/cmm/m/it/10.95 ^^\$\T1/cmr/m/n/10.95 -bench:
  []
 
-
+[80]
 Underfull \hbox (badness 10000) in paragraph at lines 898--903
 []\T1/cmr/m/n/10.95 ARM.  big.LITTLE pro-cess-ing with ARM cortex-a15 & cortex-
 
@@ -2412,7 +2418,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 898--903
 ps : / / www . eetimes . com /
  []
 
-[81]
+
 Underfull \hbox (badness 1648) in paragraph at lines 919--925
 []\T1/cmr/m/n/10.95 Intel.  In-tel thread di-rec-tor tech-nol-ogy.  In-tel De-v
 el-oper Doc-u-men-ta-tion, 2022.
@@ -2430,7 +2436,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 919--925
 articles / 000097053 / processors /
  []
 
-
+[81]
 Underfull \hbox (badness 5652) in paragraph at lines 975--980
 []\T1/cmr/m/n/10.95 Meta.  Llama 3.2: Open mod-els for edge and cloud, 2024.  R
 e-leased
@@ -2466,7 +2472,7 @@ Overfull \hbox (18.61177pt too wide) in paragraph at lines 1020--1027
 to-[]enable-[]more-[]sustainable-[]ai$[][]\T1/cmr/m/n/10.95 . 
  []
 
-[83] [84]
+[83]
 Underfull \hbox (badness 3407) in paragraph at lines 1197--1203
 []\T1/cmr/m/n/10.95 Computer & Com-mu-ni-ca-tions In-dus-try As-so-ci-a-tion (C
 CIA).  In-tense com-pe-ti-
@@ -2484,7 +2490,7 @@ Underfull \hbox (badness 1688) in paragraph at lines 1197--1203
 /m/n/10.95 https : / / ccianet . org / articles /
  []
 
-
+[84]
 Underfull \hbox (badness 7722) in paragraph at lines 1211--1216
 []\T1/cmr/m/n/10.95 Digital Ap-plied.  Mcp adop-tion statis-tics 2026: Model co
 n-text pro-to-col,
@@ -2524,15 +2530,18 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `paper.out' has not changed.
 (rerunfilecheck)             Checksum: 512D7662F379B49A10FE2C515CCAF57C;26564.
  ) 
 Here is how much of TeX's memory you used:
- 51910 strings out of 474222
- 1154320 string characters out of 5748733
- 1996975 words of memory out of 5000000
- 71980 multiletter control sequences out of 15000+600000
- 702295 words of font info for 522 fonts, out of 8000000 for 9000
+ 51945 strings out of 474222
+ 1154897 string characters out of 5748733
+ 1997975 words of memory out of 5000000
+ 72000 multiletter control sequences out of 15000+600000
+ 703060 words of font info for 525 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  88i,22n,96p,1748b,4496s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us
@@ -2624,11 +2633,12 @@ hare/texmf/fonts/type1/public/cm-super/sfti0800.pfb></usr/share/texmf/fonts/typ
 e1/public/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/s
 fti1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt0800.pfb></usr/sh
 are/texmf/fonts/type1/public/cm-super/sftt1000.pfb></usr/share/texmf/fonts/type
-1/public/cm-super/sftt1095.pfb>
-Output written on paper.pdf (85 pages, 7797396 bytes).
+1/public/cm-super/sftt1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sf
+tt1200.pfb>
+Output written on paper.pdf (85 pages, 7835667 bytes).
 PDF statistics:
- 3114 PDF objects out of 3580 (max. 8388607)
- 2613 compressed objects within 27 object streams
+ 3119 PDF objects out of 3580 (max. 8388607)
+ 2616 compressed objects within 27 object streams
  568 named destinations out of 1000 (max. 500000)
  1939 words of extra memory for PDF output out of 10000 (max. 10000000)
 

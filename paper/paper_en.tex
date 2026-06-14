@@ -65,20 +65,18 @@ $^{*}$Corresponding author: \texttt{zheng.haitao@sz.tsinghua.edu.cn}
 \maketitle
 
 \begin{abstract}
-Large language models are undergoing a fundamental transition: from ``model technology'' to ``system technology.''
-When developers use Codex to write code, Claude Code to manage projects, or AutoGPT to execute multi-step tasks, the engineering challenges that surface, including cache reuse efficiency, context capacity management, agent scheduling, and permission control, bear an unmistakable resemblance to classical computer systems problems.
-A natural analogy emerges: if we treat the LLM as a CPU, the KV cache as a processor cache, the context window as main memory, and the agent framework as an operating system, can eighty years of accumulated wisdom from computer architecture guide us in understanding and building the next generation of model-native computing systems?
+Large language models are undergoing a fundamental transition from ``model technology'' to ``system technology.''
+The engineering challenges now dominating practice---cache reuse, context capacity, agent scheduling, permission control---bear an unmistakable resemblance to classical computer-systems problems.
+This raises a natural question: if we treat the LLM as a CPU, the KV cache as a processor cache, the context window as main memory, and the agent framework as an operating system, can eight decades of computer-architecture wisdom guide the next generation of model-native computing systems?
 
 This paper pursues that analogy as a \emph{visionary survey}.
-We first establish a systematic mapping between computer architecture concepts and the emerging stack of model-native systems, then survey the rapidly growing literature across LLM-as-OS, memory management, agent frameworks, tool protocols, multi-agent coordination, cognitive architectures, and safety governance, revealing that each strand addresses a different layer of the same system but lacks a unifying layered model.
-To fill that gap, we propose the \textbf{Intelligent Computing Architecture (ICA)}, which organizes model-native computing into six functional layers, each with clearly defined interface contracts and design axioms.
-A central tension in the literature---whether the LLM resembles a CPU or an operating system---is resolved by our \textbf{dual-plane architecture}: model-native systems simultaneously encompass a probabilistic execution plane (concerned with what \emph{can} be computed) and a deterministic control plane (concerned with what \emph{should} be computed), and prior work has simply been viewing different cross-sections of these two planes.
+We map computer-architecture concepts onto the emerging model-native stack, survey the rapidly growing literature across LLM-as-OS, memory management, agent frameworks, tool protocols, multi-agent coordination, cognitive architectures, and safety governance, and find that each strand addresses a different layer of the same system yet lacks a unifying layered model.
+To fill that gap we propose the \textbf{Intelligent Computing Architecture (ICA)}: six functional layers, each with interface contracts and design axioms.
+The enduring tension over whether the LLM resembles a CPU or an operating system is resolved by our \textbf{dual-plane architecture}---a probabilistic execution plane (concerned with what \emph{can} be computed) and a deterministic control plane (concerned with what \emph{should} be computed), through which every layer passes as a graded crossover.
 
-At the quantitative level, we propose three Amdahl-style design heuristics---the \emph{Semantic Locality} heuristic, which relates KV-cache hit rates to inference speedup; the \emph{Context Budget} heuristic, which captures the dual constraint of window capacity and attention decay on effective working sets; and the \emph{Agent Speedup} heuristic, which characterizes the diminishing returns of multi-agent collaboration.
-We are explicit that these are organizing back-of-envelope models rather than validated scaling laws: we illustrate their parameter ranges with published system-level data and identify systematic predictive validation as the principal open task.
-Recent empirical evidence from the Anthropic 2026 agentic practices report further underscores an apparent tension: although multi-agent setups yield diminishing marginal returns, the aggregate economic impact is substantial, with organizations reporting hundreds of thousands of hours saved and significant acceleration of engineering delivery.
-We close by articulating the boundaries of the analogy, identifying fundamental differences between silicon-era and model-era architectures, and proposing a research roadmap for the coming decade.
-This paper is a conceptual and survey contribution; it does not present new experimental results.
+At the quantitative level we propose three Amdahl-style design \emph{heuristics}---Semantic Locality, Context Budget, and Agent Speedup---which we are explicit are organizing back-of-envelope models rather than validated scaling laws: we illustrate their parameter ranges with published data and identify systematic predictive validation as the principal open task.
+We articulate the boundaries of the analogy, note the fundamental differences between silicon-era and model-era architectures, and propose a research roadmap.
+This paper is a conceptual and survey contribution; it presents no new experimental results.
 \end{abstract}
 
 \noindent\textbf{Keywords:} LLM systems; computer architecture analogy; Intelligent Computing Architecture; Amdahl-style design heuristics; KV cache; context engineering; agent runtime; dual-plane architecture

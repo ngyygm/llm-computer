@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.3.14)  14 JUN 2026 19:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.3.14)  14 JUN 2026 20:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1341,12 +1341,11 @@ Overfull \hbox (37.88336pt too wide) in paragraph at lines 71--71
  [][] 
  []
 
-(./cn_sections/section_intro.tex
 
 LaTeX Font Warning: Font shape `C70/gbsn/m/it' undefined
-(Font)              using `C70/gbsn/m/n' instead on input line 7.
+(Font)              using `C70/gbsn/m/n' instead on input line 77.
 
-[1
+(./cn_sections/section_intro.tex [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/enc/
 dvips/cm-super/cm-super-t1.enc}]
@@ -1354,7 +1353,7 @@ Underfull \hbox (badness 10000) in alignment at lines 35--35
 [][][] 
  []
 
-<figures/fig_analogy_map.png, id=963, 1678.27pt x 944.52875pt>
+<figures/fig_analogy_map.png, id=947, 1678.27pt x 944.52875pt>
 File: figures/fig_analogy_map.png Graphic file (type png)
 <use figures/fig_analogy_map.png>
 Package pdftex.def Info: figures/fig_analogy_map.png  used on input line 45.
@@ -1487,7 +1486,7 @@ LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <4.05998> not available
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <2.9> not available
 (Font)              size <5> substituted on input line 134.
 
-)) (./cn_sections/section_related.tex [7] [8]
+)) (./cn_sections/section_related.tex [7]
 Underfull \hbox (badness 1902) in paragraph at lines 34--39
 []\C70/gbsn/bx/n/10.95/52 0\T1/cmr/m/n/10.95 2025--2026\C70/gbsn/m/it/10.95/5e 
 t \C70/gbsn/m/n/10.95/ff ^^L \C70/gbsn/bx/n/10.95/8f Ÿ \C70/gbsn/m/it/10.95/67 
@@ -1501,7 +1500,7 @@ L \C70/gbsn/m/it/10.95/97 b \C70/gbsn/bx/n/10.95/54 å \C70/gbsn/m/it/10.95/79 ˚
  \C70/gbsn/bx/n/10.95/5f Æ \C70/gbsn/bx/n/10.95/8f o
  []
 
-[9]
+[8] [9]
 Overfull \hbox (24.96408pt too wide) in paragraph at lines 91--98
 []\C70/gbsn/m/it/10.95/7f ^^V[][] \C70/gbsn/bx/n/10.95/7a [][]\T1/cmr/bx/n/10.
 95 Agent\C70/gbsn/bx/n/10.95/76 Ñ[][] \C70/gbsn/m/it/10.95/51 t[][] \C70/gbsn/b
@@ -1515,7 +1514,7 @@ m/it/10.95/98 Ü \C70/gbsn/bx/n/10.95/57 ﬂ \C70/gbsn/bx/n/10.95/30 ^^B\T1/cmr/m/
 n/10.95 OpenAI\C70/gbsn/bx/n/10.95/76 Ñ\T1/cmr/m/n/10.95 Codex
  []
 
-[10]
+
 Underfull \hbox (badness 1824) in paragraph at lines 133--138
 []\T1/cmr/bx/n/10.95 A2A\C70/gbsn/m/n/10.95/ff ^^Z[][]\T1/cmr/bx/n/10.95 Agent\
 C70/gbsn/bx/n/10.95/52 0[][]\T1/cmr/bx/n/10.95 Agent\C70/gbsn/bx/n/10.95/76 Ñ[]
@@ -1528,19 +1527,19 @@ Next '25\C70/gbsn/m/it/10.95/59 ' \C70/gbsn/m/it/10.95/4f ^^Z \C70/gbsn/m/it/10
  \C70/gbsn/bx/n/10.95/63 ®
  []
 
-
+[10]
 Underfull \hbox (badness 2005) in paragraph at lines 139--143
 []\C70/gbsn/m/it/10.95/4e ^^N[][] \C70/gbsn/m/it/10.95/67 ,[][] \C70/gbsn/bx/n/
 10.95/65 á[][] \C70/gbsn/bx/n/10.95/76 Ñ[][] \C70/gbsn/m/it/10.95/51 s[][] \C70
-/gbsn/m/it/10.95/7c ˚[][] \C70/gbsn/m/it/10.95/5c ^^F \C70/gbsn/m/it/10.95/4e $
+/gbsn/bx/n/10.95/7c ˚[][] \C70/gbsn/m/it/10.95/5c ^^F \C70/gbsn/m/it/10.95/4e $
  \C70/gbsn/bx/n/10.95/80 ^^E \C70/gbsn/bx/n/10.95/54 ^^H \C70/gbsn/bx/n/10.95/8
 d w \C70/gbsn/m/it/10.95/67 e \C70/gbsn/m/n/10.95/77  \C70/gbsn/m/n/10.95/ff ^
 ^L\T1/cmr/m/n/10.95 MCP\C70/gbsn/bx/n/10.95/62 n \C70/gbsn/bx/n/10.95/6f ^^T \C
 70/gbsn/bx/n/10.95/6a ! \C70/gbsn/bx/n/10.95/57 ã \C70/gbsn/bx/n/10.95/52 0 \C7
-0/gbsn/m/it/10.95/7c ˚ \C70/gbsn/bx/n/10.95/7e ﬂ \C70/gbsn/bx/n/10.95/76 Ñ\T1/c
+0/gbsn/bx/n/10.95/7c ˚ \C70/gbsn/bx/n/10.95/7e ﬂ \C70/gbsn/bx/n/10.95/76 Ñ\T1/c
 mr/m/n/10.95 I/O\C70/gbsn/m/it/10.95/60 ; \C70/gbsn/bx/n/10.95/7e ø \C70/gbsn/b
-x/n/10.95/89 “ \C70/gbsn/bx/n/10.95/82 r \C70/gbsn/m/n/10.95/ff ^^H \C70/gbsn/m
-/it/10.95/7c {
+x/n/10.95/89 “ \C70/gbsn/bx/n/10.95/82 r \C70/gbsn/m/n/10.95/ff ^^H \C70/gbsn/b
+x/n/10.95/7c {
  []
 
 [11] (/home/linkco/exa/llm-computer/paper/figures/fig_coverage_map.tex
@@ -1569,7 +1568,7 @@ Underfull \hbox (badness 10000) in alignment at lines 251--251
 [][][] 
  []
 
-) [13] (./cn_sections/section_framework.tex
+) (./cn_sections/section_framework.tex [13]
 Overfull \hbox (14.69351pt too wide) in alignment at lines 23--28
  [] [] [] [] [] 
  []
@@ -1704,94 +1703,106 @@ n/10.95/76 Ñ \C70/gbsn/m/it/10.95/53 Í \C70/gbsn/m/it/10.95/8b ˚ \C70/gbsn/m/n/
 .95/76 Ñ\T1/cmr/m/n/10.95 capability\C70/gbsn/bx/n/10.95/5b â
  []
 
-[16] (./figures/fig_dual_plane.tex)) (./cn_sections/section_components.tex
+(./figures/fig_dual_plane.tex)) (./cn_sections/section_components.tex [16]
 [17]
-Overfull \hbox (1.15462pt too wide) in paragraph at lines 72--76
-\C70/gbsn/bx/n/10.95/57 ( \C70/gbsn/m/n/10.95/81 Í \C70/gbsn/bx/n/10.95/56 ﬁ \C
-70/gbsn/bx/n/10.95/5f R \C70/gbsn/bx/n/10.95/63 ® \C70/gbsn/bx/n/10.95/74 ^^F \
-C70/gbsn/m/it/10.95/4e - \C70/gbsn/m/n/10.95/ff ^^L \C70/gbsn/m/it/10.95/75 ^^_
- \C70/gbsn/bx/n/10.95/62 ^^P \C70/gbsn/bx/n/10.95/6b œ \C70/gbsn/m/it/10.95/4e 
-* \C70/gbsn/m/it/10.95/65 ∞\T1/cmr/m/n/10.95 token\C70/gbsn/m/it/10.95/65 ˆ \C7
-0/gbsn/m/it/10.95/90 ˝ \C70/gbsn/m/it/10.95/97 ^^@ \C70/gbsn/m/it/10.95/89 Å \C
-70/gbsn/m/it/10.95/75 ( \C70/gbsn/m/it/10.95/8b Â\T1/cmr/m/n/10.95 token\C70/gb
-sn/bx/n/10.95/76 Ñ\T1/cmr/m/n/10.95 Query\C70/gbsn/m/it/10.95/4e ^^N K \C70/gbs
-n/bx/n/10.95/52 M \C70/gbsn/bx/n/10.95/62 @ \C70/gbsn/m/it/10.95/67 	\T1/cmr/m/
-n/10.95 token\C70/gbsn/bx/n/10.95/76 Ñ\T1/cmr/m/n/10.95 Key/Value\C70/gbsn/m/it
-/10.95/8b °
+Overfull \hbox (22.93037pt too wide) in paragraph at lines 60--64
+[]\C70/gbsn/bx/n/10.95/57 ( \C70/gbsn/m/n/10.95/81 Í \C70/gbsn/bx/n/10.95/56 ﬁ 
+\C70/gbsn/bx/n/10.95/5f R \C70/gbsn/bx/n/10.95/63 ® \C70/gbsn/bx/n/10.95/74 ^^F
+ \C70/gbsn/m/it/10.95/4e - \C70/gbsn/m/it/10.95/ff ^^L \C70/gbsn/m/it/10.95/75 
+^^_ \C70/gbsn/bx/n/10.95/62 ^^P \C70/gbsn/m/it/10.95/6b œ \C70/gbsn/m/it/10.95/
+4e * \C70/gbsn/m/it/10.95/65 ∞\T1/cmr/m/n/10.95 token\C70/gbsn/m/it/10.95/65 ˆ 
+\C70/gbsn/m/it/10.95/90 ˝ \C70/gbsn/m/it/10.95/97 ^^@ \C70/gbsn/m/it/10.95/89 Å
+ \C70/gbsn/m/it/10.95/75 ( \C70/gbsn/m/it/10.95/8b Â\T1/cmr/m/n/10.95 token\C70
+/gbsn/bx/n/10.95/76 Ñ\T1/cmr/m/n/10.95 Query\C70/gbsn/m/it/10.95/4e ^^N K \C70/
+gbsn/bx/n/10.95/52 M \C70/gbsn/bx/n/10.95/62 @ \C70/gbsn/m/it/10.95/67 	\T1/cmr
+/m/n/10.95 token\C70/gbsn/bx/n/10.95/76 Ñ\T1/cmr/m/n/10.95 Key/Value\C70/gbsn/m
+/it/10.95/8b °
  []
 
 [18]
-Underfull \hbox (badness 2591) in paragraph at lines 94--97
+Underfull \hbox (badness 2591) in paragraph at lines 82--85
 \C70/gbsn/bx/n/10.95/91 Õ \C70/gbsn/m/it/10.95/67 ^^@ \C70/gbsn/m/it/10.95/59 '
- \C70/gbsn/bx/n/10.95/76 Ñ\T1/cmr/m/n/10.95 token\C70/gbsn/m/n/10.95/ff 	 \C70/
-gbsn/bx/n/10.95/5b û \C70/gbsn/bx/n/10.95/73 ∞ \C70/gbsn/m/it/10.95/4e Ü \C70/g
-bsn/m/it/10.95/66 z \C70/gbsn/bx/n/10.95/80 ˝ \C70/gbsn/m/it/10.95/9a q \C70/gb
-sn/m/it/10.95/90 ^^P \C70/gbsn/m/it/10.95/7b V \C70/gbsn/m/it/10.95/75 e\T1/cmr
-/m/n/10.95 [[]]\C70/gbsn/m/n/10.95/ff ^^L \C70/gbsn/m/it/10.95/7c { \C70/gbsn/m
-/it/10.95/4f < \C70/gbsn/m/it/10.95/4e é\T1/cmr/m/n/10.95 CPU\C70/gbsn/m/it/10.
-95/7f ^^S \C70/gbsn/bx/n/10.95/5b X \C70/gbsn/m/it/10.95/4e - \C70/gbsn/m/it/10
-.95/8b ∆ \C70/gbsn/bx/n/10.95/52 +\T1/cmr/m/n/10.95 ``\C70/gbsn/bx/n/10.95/70 Ì
- \C70/gbsn/m/it/10.95/65 p \C70/gbsn/bx/n/10.95/63 n\T1/cmr/m/n/10.95 ''\C70/gb
-sn/bx/n/10.95/76 Ñ \C70/gbsn/m/it/10.95/4f ^^X
+ \C70/gbsn/bx/n/10.95/76 Ñ\T1/cmr/m/n/10.95 token\C70/gbsn/m/it/10.95/ff 	 \C70
+/gbsn/bx/n/10.95/5b û \C70/gbsn/bx/n/10.95/73 ∞ \C70/gbsn/m/it/10.95/4e Ü \C70/
+gbsn/m/it/10.95/66 z \C70/gbsn/bx/n/10.95/80 ˝ \C70/gbsn/m/it/10.95/9a q \C70/g
+bsn/m/it/10.95/90 ^^P \C70/gbsn/m/it/10.95/7b V \C70/gbsn/m/it/10.95/75 e\T1/cm
+r/m/n/10.95 [[]]\C70/gbsn/m/it/10.95/ff ^^L \C70/gbsn/bx/n/10.95/7c { \C70/gbsn
+/m/it/10.95/4f < \C70/gbsn/m/it/10.95/4e é\T1/cmr/m/n/10.95 CPU\C70/gbsn/m/it/1
+0.95/7f ^^S \C70/gbsn/bx/n/10.95/5b X \C70/gbsn/m/it/10.95/4e - \C70/gbsn/m/it/
+10.95/8b ∆ \C70/gbsn/bx/n/10.95/52 +\T1/cmr/m/n/10.95 ``\C70/gbsn/bx/n/10.95/70
+ Ì \C70/gbsn/m/it/10.95/65 p \C70/gbsn/bx/n/10.95/63 n\T1/cmr/m/n/10.95 ''\C70/
+gbsn/bx/n/10.95/76 Ñ \C70/gbsn/m/it/10.95/4f ^^X
  []
 
-[19] (./figures/fig_kv_hierarchy.tex) (./figures/fig_context_tiers.tex)
+(./figures/fig_kv_hierarchy.tex) [19] (./figures/fig_context_tiers.tex)
 [20] [21]
-Underfull \hbox (badness 4531) in paragraph at lines 236--239
+Underfull \hbox (badness 4531) in paragraph at lines 210--213
 []\C70/gbsn/bx/n/10.95/5d Â \C70/gbsn/m/it/10.95/4e ^^Z \C70/gbsn/bx/n/10.95/5b
  û \C70/gbsn/bx/n/10.95/8d ı \C70/gbsn/m/it/10.95/4e _ \C70/gbsn/bx/n/10.95/57 
 ( \C70/gbsn/m/it/10.95/67 ^^] \C70/gbsn/m/it/10.95/8f Ÿ \C70/gbsn/m/it/10.95/4e
  * \C70/gbsn/m/it/10.95/65 π \C70/gbsn/m/it/10.95/54 ^^Q \C70/gbsn/bx/n/10.95/6
-f ^^T \C70/gbsn/m/it/10.95/53 ^^V \C70/gbsn/m/n/10.95/ff ^^Z\T1/cmr/m/n/10.95 C
-odex\C70/gbsn/bx/n/10.95/63 – \C70/gbsn/m/it/10.95/4f õ\T1/cmr/m/n/10.95 subage
-nts\C70/gbsn/bx/n/10.95/30 ^^A\T1/cmr/m/n/10.95 skills\C70/gbsn/bx/n/10.95/30 ^
-^A\T1/cmr/m/n/10.95 sandbox\C70/gbsn/m/it/10.95/7b I \C70/gbsn/bx/n/10.95/63 ß 
-\C70/gbsn/bx/n/10.95/52 6
+f ^^T \C70/gbsn/m/it/10.95/53 ^^V \C70/gbsn/m/it/10.95/ff ^^Z\T1/cmr/m/n/10.95 
+Codex\C70/gbsn/bx/n/10.95/63 – \C70/gbsn/m/it/10.95/4f õ\T1/cmr/m/n/10.95 subag
+ents\C70/gbsn/bx/n/10.95/30 ^^A\T1/cmr/m/n/10.95 skills\C70/gbsn/bx/n/10.95/30 
+^^A\T1/cmr/m/n/10.95 sandbox\C70/gbsn/m/it/10.95/7b I \C70/gbsn/bx/n/10.95/63 ß
+ \C70/gbsn/bx/n/10.95/52 6
  []
 
-[22] [23]
-Overfull \hbox (10.33841pt too wide) in paragraph at lines 312--314
+
+Underfull \hbox (badness 1371) in paragraph at lines 266--267
+\C70/gbsn/bx/n/10.95/7e œ \C70/gbsn/m/it/10.95/51 x \C70/gbsn/bx/n/10.95/5b ˘ \
+C70/gbsn/m/it/10.95/5e î \C70/gbsn/m/it/10.95/72 i\T1/cmr/m/it/10.95 ^^V^^VI/O\
+C70/gbsn/bx/n/10.95/7c ˚ \C70/gbsn/bx/n/10.95/7e ﬂ \C70/gbsn/m/it/10.95/ff ^^Z 
+\C70/gbsn/m/it/10.95/4e Œ\T1/cmr/m/n/10.95 1960\C70/gbsn/m/it/10.95/5e t \C70/g
+bsn/m/it/10.95/4e „ \C70/gbsn/m/it/10.95/6b œ \C70/gbsn/m/it/10.95/59 ^^V \C70/
+gbsn/m/it/10.95/8b æ \C70/gbsn/m/it/10.95/4e ^^S \C70/gbsn/m/it/10.95/75 ( \C70
+/gbsn/bx/n/10.95/63 • \C70/gbsn/m/it/10.95/53 „ \C70/gbsn/m/it/10.95/ff ^^L \C7
+0/gbsn/bx/n/10.95/52 0\T1/cmr/m/n/10.95 1990\C70/gbsn/m/it/10.95/5e t \C70/gbsn
+/m/it/10.95/4e „ \C70/gbsn/bx/n/10.95/76 Ñ \C70/gbsn/bx/n/10.95/68 ^^G \C70/gbs
+n/m/it/10.95/51 ∆ \C70/gbsn/m/it/10.95/53 ^^V \C70/gbsn/m/it/10.95/60 ; \C70/gb
+sn/bx/n/10.95/7e ø
+ []
+
+[22]
+Overfull \hbox (10.33841pt too wide) in paragraph at lines 278--280
 []\C70/gbsn/bx/n/10.95/62 ä \C70/gbsn/m/it/10.95/4e $ \C70/gbsn/bx/n/10.95/80 ^
 ^E \C70/gbsn/m/it/10.95/54 ^^H \C70/gbsn/bx/n/10.95/8d w \C70/gbsn/m/it/10.95/6
-7 e \C70/gbsn/bx/n/10.95/77  \C70/gbsn/m/n/10.95/ff ^^L\T1/cmr/m/n/10.95 MCP\C
-70/gbsn/m/it/10.95/66 /\T1/cmr/m/n/10.95 model\C70/gbsn/bx/n/10.95/52 0 \C70/gb
-sn/m/it/10.95/7c ˚ \C70/gbsn/bx/n/10.95/7e ﬂ \C70/gbsn/bx/n/10.95/76 Ñ \C70/gbs
-n/bx/n/10.95/7e µ[][] \C70/gbsn/m/it/10.95/54 ^^Q[][] \C70/gbsn/m/it/10.95/60 ;
-[][] \C70/gbsn/bx/n/10.95/7e ø[][] \C70/gbsn/m/n/10.95/ff ^^H\T1/cmr/m/n/10.95 
-Agent\TS1/cmr/m/n/10.95 ^^Y\C70/gbsn/bx/n/10.95/5d Â \C70/gbsn/m/it/10.95/51 w 
-\C70/gbsn/m/n/10.95/ff 	 ^^L\T1/cmr/m/n/10.95 A2A\C70/gbsn/m/it/10.95/66 /\T1/c
-mr/m/n/10.95 agent\C70/gbsn/bx/n/10.95/52 0\T1/cmr/m/n/10.95 agent\C70/gbsn/bx/
-n/10.95/76 Ñ
+7 e \C70/gbsn/bx/n/10.95/77  \C70/gbsn/m/it/10.95/ff ^^L\T1/cmr/m/n/10.95 MCP\
+C70/gbsn/m/it/10.95/66 /\T1/cmr/m/n/10.95 model\C70/gbsn/bx/n/10.95/52 0 \C70/g
+bsn/bx/n/10.95/7c ˚ \C70/gbsn/bx/n/10.95/7e ﬂ \C70/gbsn/bx/n/10.95/76 Ñ \C70/gb
+sn/bx/n/10.95/7e µ[][] \C70/gbsn/m/it/10.95/54 ^^Q[][] \C70/gbsn/m/it/10.95/60 
+;[][] \C70/gbsn/bx/n/10.95/7e ø[][] \C70/gbsn/m/it/10.95/ff ^^H\T1/cmr/m/n/10.9
+5 Agent\TS1/cmr/m/n/10.95 ^^Y\C70/gbsn/bx/n/10.95/5d Â \C70/gbsn/m/it/10.95/51 
+w \C70/gbsn/m/it/10.95/ff 	 ^^L\T1/cmr/m/n/10.95 A2A\C70/gbsn/m/it/10.95/66 /\T
+1/cmr/m/n/10.95 agent\C70/gbsn/bx/n/10.95/52 0\T1/cmr/m/n/10.95 agent\C70/gbsn/
+bx/n/10.95/76 Ñ
  []
 
-[24]
-Overfull \hbox (18.13597pt too wide) in paragraph at lines 380--382
-\C70/gbsn/m/it/10.95/7b ,[][] \C70/gbsn/m/it/10.95/4e ^^@[][] \C70/gbsn/m/n/10.
-95/ff ^^L[][] \C70/gbsn/m/it/10.95/90 ^^Z[][] \C70/gbsn/m/it/10.95/4f ·[][] \C7
-0/gbsn/m/it/10.95/5e &[][] \C70/gbsn/bx/n/10.95/5b Ω[][] \C70/gbsn/m/it/10.95/4
-e ^^N[][] \C70/gbsn/m/it/10.95/7c æ[][] \C70/gbsn/m/it/10.95/5e ¶[][] \C70/gbsn
-/bx/n/10.95/76 Ñ[][] \C70/gbsn/bx/n/10.95/68 9[][] \C70/gbsn/m/it/10.95/67 ,[][
-] \C70/gbsn/bx/n/10.95/5d Ó[][] \C70/gbsn/bx/n/10.95/5f ^^B[][] \C70/gbsn/bx/n/
-10.95/52 ^^F \C70/gbsn/m/it/10.95/5e ^^C \C70/gbsn/bx/n/10.95/5f ^^O \C70/gbsn/
-bx/n/10.95/82 Ç \C70/gbsn/bx/n/10.95/70 π \C70/gbsn/m/it/10.95/4e K \C70/gbsn/m
-/it/10.95/95 Ù \C70/gbsn/m/it/10.95/90 ^^Z \C70/gbsn/m/it/10.95/8f « \C70/gbsn/
-bx/n/10.95/7e ” \C70/gbsn/m/it/10.95/67 Ñ \C70/gbsn/m/it/10.95/53 ^^V O \C70/gb
-sn/m/it/10.95/8b Æ \C70/gbsn/m/it/10.95/90 ^^Z \C70/gbsn/m/it/10.95/4f · \C70/g
-bsn/m/n/10.95/ff ^^H \C70/gbsn/m/it/10.95/59 Ç\T1/cmr/m/n/10.95 gRPC\C70/gbsn/b
-x/n/10.95/76 Ñ\T1/cmr/m/n/10.95 protobuf\C70/gbsn/m/n/10.95/ff 	 ^^L
+[23]
+Overfull \hbox (18.13597pt too wide) in paragraph at lines 338--340
+\C70/gbsn/m/it/10.95/7b ,[][] \C70/gbsn/m/it/10.95/4e ^^@[][] \C70/gbsn/m/it/10
+.95/ff ^^L[][] \C70/gbsn/m/it/10.95/90 ^^Z[][] \C70/gbsn/m/it/10.95/4f ·[][] \C
+70/gbsn/m/it/10.95/5e &[][] \C70/gbsn/bx/n/10.95/5b Ω[][] \C70/gbsn/m/it/10.95/
+4e ^^N[][] \C70/gbsn/bx/n/10.95/7c æ[][] \C70/gbsn/m/it/10.95/5e ¶[][] \C70/gbs
+n/bx/n/10.95/76 Ñ[][] \C70/gbsn/bx/n/10.95/68 9[][] \C70/gbsn/m/it/10.95/67 ,[]
+[] \C70/gbsn/bx/n/10.95/5d Ó[][] \C70/gbsn/bx/n/10.95/5f ^^B[][] \C70/gbsn/bx/n
+/10.95/52 ^^F \C70/gbsn/m/it/10.95/5e ^^C \C70/gbsn/bx/n/10.95/5f ^^O \C70/gbsn
+/bx/n/10.95/82 Ç \C70/gbsn/bx/n/10.95/70 π \C70/gbsn/m/it/10.95/4e K \C70/gbsn/
+m/it/10.95/95 Ù \C70/gbsn/m/it/10.95/90 ^^Z \C70/gbsn/m/it/10.95/8f « \C70/gbsn
+/bx/n/10.95/7e ” \C70/gbsn/m/it/10.95/67 Ñ \C70/gbsn/m/it/10.95/53 ^^V O \C70/g
+bsn/m/it/10.95/8b Æ \C70/gbsn/m/it/10.95/90 ^^Z \C70/gbsn/m/it/10.95/4f · \C70/
+gbsn/m/it/10.95/ff ^^H \C70/gbsn/m/it/10.95/59 Ç\T1/cmr/m/n/10.95 gRPC\C70/gbsn
+/bx/n/10.95/76 Ñ\T1/cmr/m/n/10.95 protobuf\C70/gbsn/m/it/10.95/ff 	 ^^L
  []
 
-(/home/linkco/exa/llm-computer/paper/figures/fig_arch.tex)
-(/home/linkco/exa/llm-computer/paper/figures/fig_flow.tex
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-)) (./cn_sections/section_icam.tex [25] [26]
+(/home/linkco/exa/llm-computer/paper/figures/fig_arch.tex) [24] [25]
+(/home/linkco/exa/llm-computer/paper/figures/fig_flow.tex))
+(./cn_sections/section_icam.tex
 
 LaTeX Font Warning: Font shape `C70/gbsn/bx/it' undefined
 (Font)              using `C70/gbsn/bx/n' instead on input line 19.
 
-[27]
+[26]
 Underfull \hbox (badness 3291) in paragraph at lines 25--26
 []\T1/cmr/bx/it/10.95 L4 \C70/gbsn/bx/it/10.95/8b Ì[][] \C70/gbsn/bx/it/10.95/4
 e I[][] \C70/gbsn/bx/it/10.95/63 •[][] \C70/gbsn/bx/it/10.95/53 „[][] \C70/gbsn
@@ -1829,12 +1840,8 @@ Overfull \hbox (5.64604pt too wide) in alignment at lines 53--53
 [][][][][] 
  []
 
-(./figures/fig_interface_contracts.tex) [28] [29]
-(./figures/fig_icam_crossmap.tex
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-)
+(./figures/fig_interface_contracts.tex) [27] [28] [29]
+(./figures/fig_icam_crossmap.tex)
 Underfull \hbox (badness 10000) in alignment at lines 150--150
 [][][] 
  []
@@ -1872,12 +1879,12 @@ Overfull \hbox (20.59163pt too wide) in paragraph at lines 220--221
 70/gbsn/bx/it/10.95/4e : \C70/gbsn/m/it/10.95/6b œ \C70/gbsn/bx/it/10.95/4e *\T
 1/cmr/m/n/10.95 Agent\C70/gbsn/m/it/10.95/64 Õ \C70/gbsn/m/it/10.95/4f \ \C70/g
 bsn/bx/it/10.95/52 ^^F \C70/gbsn/m/it/10.95/91 M \C70/gbsn/bx/n/10.95/7e ∆ \C70
-/gbsn/m/it/10.95/7c í \C70/gbsn/bx/it/10.95/5e ¶ \C70/gbsn/m/it/10.95/76 Ñ\T1/c
+/gbsn/bx/n/10.95/7c í \C70/gbsn/bx/it/10.95/5e ¶ \C70/gbsn/m/it/10.95/76 Ñ\T1/c
 mr/m/n/10.95 capability to-ken\C70/gbsn/m/it/10.95/ff ^^[\T1/cmr/m/n/10.95 Code
 x\C70/gbsn/m/it/10.95/76 Ñ\T1/cmr/m/n/10.95 OS\C70/gbsn/bx/n/10.95/7e ß
  []
 
-[33]) (./cn_sections/section_laws.tex [34] [35]
+) (./cn_sections/section_laws.tex [33] [34] [35]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 125.
@@ -1890,7 +1897,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 125.
 
-[36] (./figures/fig_beta_decay.tex)
+(./figures/fig_beta_decay.tex)
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 136.
@@ -1903,9 +1910,13 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 136.
 
-[37] [38] [39] [40] (./figures/fig_law_curves.tex))
-(./cn_sections/section_agent_evolution.tex (./figures/fig_agent_timeline.tex
-<figures/fig_agent_timeline_gemini.png, id=1751, 2762.32pt x 1541.76pt>
+[36] [37] [38] [39] (./figures/fig_law_curves.tex)
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) (./cn_sections/section_agent_evolution.tex [40]
+(./figures/fig_agent_timeline.tex
+<figures/fig_agent_timeline_gemini.png, id=1735, 2762.32pt x 1541.76pt>
 File: figures/fig_agent_timeline_gemini.png Graphic file (type png)
 <use figures/fig_agent_timeline_gemini.png>
 Package pdftex.def Info: figures/fig_agent_timeline_gemini.png  used on input l
@@ -1925,7 +1936,7 @@ t/10.95/89 ¬ \C70/gbsn/bx/n/10.95/5b ﬂ\T1/cmr/m/n/10.95 ''\C70/gbsn/bx/it/10.95
 73 Ø \C70/gbsn/m/it/10.95/ff ^^H\T1/cmr/m/n/10.95 Thought--Action--
  []
 
-[41] [42 <./figures/fig_agent_timeline_gemini.png (PNG copy)>] [43]
+[41 <./figures/fig_agent_timeline_gemini.png (PNG copy)>] [42]
 Underfull \hbox (badness 1377) in paragraph at lines 95--98
 \C70/gbsn/bx/n/10.95/5b π \C70/gbsn/m/it/10.95/56 h \C70/gbsn/bx/it/10.95/62 Ä 
 \C70/gbsn/bx/it/10.95/67 / \C70/gbsn/m/it/10.95/ff 	 ^^[\T1/cmr/m/n/10.95 Claud
@@ -1936,8 +1947,9 @@ Mod-ules\C70/gbsn/m/it/10.95/ff 	 \C70/gbsn/bx/n/10.95/5b â \C70/gbsn/m/it/10.9
 5/51 h \C70/gbsn/m/n/10.95/94 ©
  []
 
-[44] (./figures/fig_gen_matrix.tex) [45] (./figures/fig_gen_trajectory.tex)
-[46]) (./cn_sections/section_challenges.tex [47] (./figures/fig_trilemma.tex)
+[43] [44] (./figures/fig_gen_matrix.tex) (./figures/fig_gen_trajectory.tex)
+[45]) (./cn_sections/section_challenges.tex [46] (./figures/fig_trilemma.tex)
+[47]
 Underfull \hbox (badness 1642) in paragraph at lines 53--55
 []\C70/gbsn/m/it/10.95/57 (\T1/cmr/m/n/10.95 ICA\C70/gbsn/bx/it/10.95/4e - \C70
 /gbsn/m/it/10.95/ff ^^L \C70/gbsn/m/it/10.95/8f Ÿ \C70/gbsn/bx/it/10.95/4e ^^@ 
@@ -1966,7 +1978,7 @@ b API\C70/gbsn/bx/it/10.95/67 e \C70/gbsn/bx/it/10.95/7b ° \C70/gbsn/bx/it/10.9
 5 repos/:owner/:repo/pulls\C70/gbsn/m/it/10.95/76 Ñ
  []
 
-[50] [51] [52] (./figures/fig_security_layers.tex
+[50] [51] (./figures/fig_security_layers.tex
 Underfull \hbox (badness 5475) in paragraph at lines 63--63
  [][]\T1/cmr/bx/n/8 State
  []
@@ -1991,9 +2003,12 @@ Underfull \hbox (badness 3536) in paragraph at lines 67--67
  []\T1/cmr/bx/n/8 Privacy
  []
 
-) [53]) (./cn_sections/section_paradigm.tex [54]
-(./figures/fig_paradigm_timeline.tex) [55] (./figures/fig_biglittle.tex)
-[56] [57]
+) [52] [53]) (./cn_sections/section_paradigm.tex
+(./figures/fig_paradigm_timeline.tex
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) [54] [55] (./figures/fig_biglittle.tex) [56] [57]
 Overfull \hbox (6.41724pt too wide) in paragraph at lines 66--67
 []\C70/gbsn/bx/it/10.95/75 ^^_[][] \C70/gbsn/m/it/10.95/72 i[][] \C70/gbsn/bx/i
 t/10.95/8b °[][] \C70/gbsn/bx/it/10.95/7b ó[][] \C70/gbsn/m/it/10.95/ff ^^H[][]
@@ -2019,7 +2034,7 @@ Overfull \hbox (42.57928pt too wide) in paragraph at lines 70--71
 .95 2024\C70/gbsn/bx/it/10.95/5e t \C70/gbsn/m/it/10.95/ff 	
  []
 
-[58] [59] [60]) (./cn_sections/section_social.tex [61]
+[58] [59] [60]) (./cn_sections/section_social.tex
 Overfull \hbox (20.60434pt too wide) in paragraph at lines 13--14
 []\C70/gbsn/bx/it/10.95/7b , \C70/gbsn/bx/it/10.95/4e ^^@ \C70/gbsn/m/it/10.95/
 6c ‚ \C70/gbsn/m/it/10.95/89 „ \C70/gbsn/m/it/10.95/80 & \C70/gbsn/bx/n/10.95/5
@@ -2033,7 +2048,7 @@ d Ú \C70/gbsn/bx/n/10.95/7e œ \C70/gbsn/m/it/10.95/6e ^^E \C70/gbsn/m/it/10.95/
 /m/n/10.95 Microsoft
  []
 
-
+[61]
 Overfull \hbox (44.89287pt too wide) in paragraph at lines 22--23
 \C70/gbsn/m/it/10.95/66 ˇ \C70/gbsn/bx/it/10.95/4e „ \C70/gbsn/bx/it/10.95/65 π
  \C70/gbsn/bx/n/10.95/68 H \C70/gbsn/bx/it/10.95/4e ^^M \C70/gbsn/bx/it/10.95/6
@@ -2047,7 +2062,7 @@ oft\C70/gbsn/m/it/10.95/30 ^^A\T1/cmr/m/n/10.95 Google\C70/gbsn/m/it/10.95/30 ^
 /gbsn/m/it/10.95/76 Ñ
  []
 
-[62]
+
 Underfull \hbox (badness 1983) in paragraph at lines 40--41
 []\C70/gbsn/bx/n/10.95/5f Æ \C70/gbsn/m/it/10.95/8f o\T1/cmr/m/n/10.95 1990\C70
 /gbsn/bx/it/10.95/5e t \C70/gbsn/m/it/10.95/76 Ñ \C70/gbsn/m/it/10.95/51 s \C70
@@ -2062,7 +2077,15 @@ x/it/10.95/4e ; \C70/gbsn/m/it/10.95/89 Å\T1/cmr/m/n/10.95 PC\C70/gbsn/bx/it/10
 95/8f æ
  []
 
-) (./cn_sections/section_implementation.tex [63] (./figures/fig_impl_map.tex)
+[62]
+Overfull \hbox (11.7617pt too wide) in alignment at lines 76--76
+[][][][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[63]) (./cn_sections/section_implementation.tex (./figures/fig_impl_map.tex)
 [64]
 Overfull \hbox (25.26851pt too wide) in paragraph at lines 41--45
 \C70/gbsn/m/it/10.95/76 Ñ\T1/cmr/m/n/10.95 "reasoning kernel"[[]]\C70/gbsn/m/it
@@ -2075,7 +2098,7 @@ t/10.95/97 b \C70/gbsn/bx/n/10.95/7e ß\T1/cmr/m/n/10.95 AgentOS\C70/gbsn/m/it/1
 /it/10.95/54 å\T1/cmr/m/n/10.95 GUI--
  []
 
-(./figures/fig_impl_recommendations.tex) [65] [66])
+[65] (./figures/fig_impl_recommendations.tex) [66])
 (./cn_sections/section_roadmap.tex
 Overfull \hbox (1.1519pt too wide) in paragraph at lines 14--14
 []|\T1/cmr/m/n/10 ICA\C70/gbsn/m/n/10/5c B| 
@@ -2083,8 +2106,8 @@ Overfull \hbox (1.1519pt too wide) in paragraph at lines 14--14
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 14--15
-[]|\C70/gbsn/m/n/10/76 ¯ \C70/gbsn/m/n/10/51 s \C70/gbsn/m/n/10/54 / \C70/gbsn/
-bx/n/10/53 —
+[]|\C70/gbsn/m/n/10/76 ¯ \C70/gbsn/m/n/10/51 s \C70/gbsn/m/it/10/54 / \C70/gbsn
+/m/it/10/53 —
  []
 
 
@@ -2094,8 +2117,8 @@ Overfull \hbox (1.1519pt too wide) in paragraph at lines 18--18
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 18--19
-[]|\C70/gbsn/m/n/10/76 ¯ \C70/gbsn/m/n/10/51 s \C70/gbsn/m/n/10/54 / \C70/gbsn/
-bx/n/10/53 —
+[]|\C70/gbsn/m/n/10/76 ¯ \C70/gbsn/m/n/10/51 s \C70/gbsn/m/it/10/54 / \C70/gbsn
+/m/it/10/53 —
  []
 
 
@@ -2117,12 +2140,12 @@ m/n/10/72 H \C70/gbsn/bx/n/10/67 ,
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 24--24
-[]|\C70/gbsn/m/n/10/8f o \C70/gbsn/m/n/10/4e ˆ \C70/gbsn/m/n/10/5d Â
+[]|\C70/gbsn/m/it/10/8f o \C70/gbsn/m/n/10/4e ˆ \C70/gbsn/m/n/10/5d Â
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 24--24
-[]|\T1/cmr/m/n/10 ACI\C70/gbsn/m/n/10/63 • \C70/gbsn/bx/n/10/53 „ \C70/gbsn/bx/
+[]|\T1/cmr/m/n/10 ACI\C70/gbsn/m/n/10/63 • \C70/gbsn/m/it/10/53 „ \C70/gbsn/bx/
 n/10/7e ﬂ \C70/gbsn/m/n/10/4e ^^@ \C70/gbsn/bx/n/10/ff ^^L
  []
 
@@ -2134,20 +2157,20 @@ Underfull \hbox (badness 1237) in paragraph at lines 25--25
 
 
 Underfull \hbox (badness 1237) in paragraph at lines 26--26
-[]|\C70/gbsn/m/n/10/4e ^^@ \C70/gbsn/m/n/10/81 Ù \C70/gbsn/m/n/10/60 ' \C70/gbs
-n/bx/n/10/53 Ô \C70/gbsn/m/n/10/63 ß
+[]|\C70/gbsn/m/n/10/4e ^^@ \C70/gbsn/m/n/10/81 Ù \C70/gbsn/m/it/10/60 ' \C70/gb
+sn/m/it/10/53 Ô \C70/gbsn/m/n/10/63 ß
  []
 
 
 Underfull \hbox (badness 1237) in paragraph at lines 27--27
-[]|\C70/gbsn/m/n/10/5f ^^B \C70/gbsn/bx/n/10/67 Ñ \C70/gbsn/m/n/10/6a ! \C70/gb
-sn/m/n/10/57 ã \C70/gbsn/bx/n/10/53 O
+[]|\C70/gbsn/m/it/10/5f ^^B \C70/gbsn/bx/n/10/67 Ñ \C70/gbsn/m/n/10/6a ! \C70/g
+bsn/m/it/10/57 ã \C70/gbsn/m/it/10/53 O
  []
 
 
 Underfull \hbox (badness 4366) in paragraph at lines 27--27
 []|\C70/gbsn/m/n/10/83 I \C70/gbsn/m/n/10/7a ? \C70/gbsn/m/n/10/6a ! \C70/gbsn/
-m/n/10/57 ã \C70/gbsn/bx/n/10/ff ^^H\T1/cmr/m/n/10 Speculative
+m/it/10/57 ã \C70/gbsn/bx/n/10/ff ^^H\T1/cmr/m/n/10 Speculative
  []
 
 
@@ -2158,8 +2181,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 29--29
 
 Underfull \hbox (badness 1371) in paragraph at lines 29--29
 []|\C70/gbsn/m/n/10/4e ˚ \C70/gbsn/m/n/10/52 °\T1/cmr/m/n/10 DSL\C70/gbsn/m/n/1
-0/30 ^^A \C70/gbsn/bx/n/10/53 ◊ \C70/gbsn/m/n/10/63 ß \C70/gbsn/m/n/10/8f ì \C7
-0/gbsn/m/n/10/51 ˙ \C70/gbsn/m/n/10/68 <
+0/30 ^^A \C70/gbsn/m/it/10/53 ◊ \C70/gbsn/m/n/10/63 ß \C70/gbsn/m/it/10/8f ì \C
+70/gbsn/m/n/10/51 ˙ \C70/gbsn/m/n/10/68 <
  []
 
 
@@ -2169,8 +2192,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 30--30
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 30--30
-[]|\C70/gbsn/m/n/10/72 ∂ \C70/gbsn/m/n/10/60 ^^A \C70/gbsn/bx/n/10/53 ^^V \C70/
-gbsn/m/n/10/4e *
+[]|\C70/gbsn/m/n/10/72 ∂ \C70/gbsn/m/it/10/60 ^^A \C70/gbsn/m/it/10/53 ^^V \C70
+/gbsn/m/n/10/4e *
  []
 
 
@@ -2180,14 +2203,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 31--31
 
 
 Underfull \hbox (badness 1237) in paragraph at lines 31--31
-[]|\C70/gbsn/m/n/10/52 ^^F \C70/gbsn/bx/n/10/5e ^^C \C70/gbsn/m/n/10/5f ^^O \C7
-0/gbsn/m/n/10/6a ! \C70/gbsn/m/n/10/57 ã
+[]|\C70/gbsn/m/n/10/52 ^^F \C70/gbsn/bx/n/10/5e ^^C \C70/gbsn/m/it/10/5f ^^O \C
+70/gbsn/m/n/10/6a ! \C70/gbsn/m/it/10/57 ã
  []
 
 
 Underfull \hbox (badness 1237) in paragraph at lines 31--31
-\C70/gbsn/bx/n/10/53 ü \C70/gbsn/m/n/10/75 ^^_ \C70/gbsn/bx/n/10/8b ° \C70/gbsn
-/bx/n/10/7b ó \C70/gbsn/bx/n/10/7e «
+\C70/gbsn/m/it/10/53 ü \C70/gbsn/m/it/10/75 ^^_ \C70/gbsn/bx/n/10/8b ° \C70/gbs
+n/bx/n/10/7b ó \C70/gbsn/bx/n/10/7e «
  []
 
 
@@ -2197,8 +2220,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 33--33
 
 
 Underfull \hbox (badness 1237) in paragraph at lines 33--33
-[]|\C70/gbsn/m/n/10/57 ˙ \C70/gbsn/bx/n/10/5e ï \C70/gbsn/m/n/10/65 ‡ \C70/gbsn
-/m/n/10/51 s \C70/gbsn/m/n/10/76 Ñ
+[]|\C70/gbsn/m/it/10/57 ˙ \C70/gbsn/bx/n/10/5e ï \C70/gbsn/m/n/10/65 ‡ \C70/gbs
+n/m/n/10/51 s \C70/gbsn/m/n/10/76 Ñ
  []
 
 
@@ -2209,7 +2232,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 34--34
 
 Underfull \hbox (badness 1237) in paragraph at lines 34--34
 []|\C70/gbsn/m/n/10/72 i \C70/gbsn/m/n/10/74 ^^F \C70/gbsn/m/n/10/4e ^^V \C70/g
-bsn/m/n/10/75 L \C70/gbsn/m/n/10/63 •
+bsn/m/it/10/75 L \C70/gbsn/m/n/10/63 •
  []
 
 
@@ -2221,8 +2244,8 @@ gbsn/m/n/10/9a q \C70/gbsn/m/n/10/52 ® \C70/gbsn/m/n/10/62 Ω
 
 
 Underfull \hbox (badness 1237) in paragraph at lines 35--35
-[]|\C70/gbsn/bx/n/10/67 ^^@ \C70/gbsn/m/n/10/5f 1 \C70/gbsn/m/n/10/73 Ø \C70/gb
-sn/m/n/10/82 Ç \C70/gbsn/bx/n/10/8b ƒ
+[]|\C70/gbsn/bx/n/10/67 ^^@ \C70/gbsn/m/it/10/5f 1 \C70/gbsn/m/n/10/73 Ø \C70/g
+bsn/m/n/10/82 Ç \C70/gbsn/bx/n/10/8b ƒ
  []
 
 [67] (./figures/fig_roadmap_swimlane.tex) [68] [69])
@@ -2230,7 +2253,7 @@ sn/m/n/10/82 Ç \C70/gbsn/bx/n/10/8b ƒ
 Underfull \hbox (badness 2556) in paragraph at lines 16--17
 []\T1/cmr/bx/n/10.95 Agent\C70/gbsn/m/it/10.95/76 Ñ[][] \C70/gbsn/bx/it/10.95/6
 7 C[][] \C70/gbsn/m/it/10.95/96 P[][] \C70/gbsn/m/it/10.95/59 Ç[][] \C70/gbsn/m
-/it/10.95/4f U[][] \C70/gbsn/m/it/10.95/7c í[][] \C70/gbsn/bx/it/10.95/5e ¶[][]
+/it/10.95/4f U[][] \C70/gbsn/bx/n/10.95/7c í[][] \C70/gbsn/bx/it/10.95/5e ¶[][]
  \C70/gbsn/bx/it/10.95/53 ^^V[][] \C70/gbsn/m/it/10.95/ff ^^_[][]\T1/cmr/m/n/10
 .95 ^^V^^V\C70/gbsn/bx/n/10.95/5b ˘ \C70/gbsn/bx/it/10.95/5e î\T1/cmr/m/n/10.95
  capability-based\C70/gbsn/bx/n/10.95/5b â \C70/gbsn/m/it/10.95/51 h \C70/gbsn/
@@ -2402,16 +2425,16 @@ LaTeX Font Warning: Size substitutions with differences
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `paper.out' has not changed.
-(rerunfilecheck)             Checksum: CDC07E2CFE99D9F6F678C0D0525B09AE;26769.
+(rerunfilecheck)             Checksum: 0F41A6AC043A6262FA50FBDDD03043B5;26009.
  ) 
 Here is how much of TeX's memory you used:
- 52089 strings out of 474222
- 1157242 string characters out of 5748733
- 1995975 words of memory out of 5000000
- 72109 multiletter control sequences out of 15000+600000
- 704613 words of font info for 529 fonts, out of 8000000 for 9000
+ 52114 strings out of 474222
+ 1157638 string characters out of 5748733
+ 1993975 words of memory out of 5000000
+ 72129 multiletter control sequences out of 15000+600000
+ 704710 words of font info for 529 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 88i,22n,96p,1748b,4532s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 88i,22n,96p,1748b,4525s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texli
@@ -2503,10 +2526,10 @@ fti1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt0800.pfb></usr/sh
 are/texmf/fonts/type1/public/cm-super/sftt1000.pfb></usr/share/texmf/fonts/type
 1/public/cm-super/sftt1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sf
 tt1200.pfb>
-Output written on paper.pdf (87 pages, 7872251 bytes).
+Output written on paper.pdf (87 pages, 7872647 bytes).
 PDF statistics:
- 3182 PDF objects out of 3580 (max. 8388607)
- 2674 compressed objects within 27 object streams
- 580 named destinations out of 1000 (max. 500000)
- 1947 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 3164 PDF objects out of 3580 (max. 8388607)
+ 2656 compressed objects within 27 object streams
+ 576 named destinations out of 1000 (max. 500000)
+ 1907 words of extra memory for PDF output out of 10000 (max. 10000000)
 

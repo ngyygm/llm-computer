@@ -9,15 +9,9 @@ For each component, we follow a uniform four-part structure: (1)~the classical c
 \subsection{Foundation Model: Probabilistic Computing Core}
 \label{sec:model}
 
-\subsubsection{The CPU in Classical Computer Architecture}
-
-In a classical computer, the CPU (Central Processing Unit) serves as the system's execution core.
-Its responsibility can be stated concisely: \textbf{execute instructions in sequence, mapping input state to output state}.
-Internally, the CPU comprises an arithmetic logic unit (ALU) for computation, a register file for holding operands, and a control unit for instruction fetch and decode.
-The defining property is \textbf{determinism}: executing \texttt{ADD R1, R2, R3} one million times yields the identical result provided the input registers hold the same values.
-CPU behavior is precisely specified by the instruction set architecture (ISA); for instance, the RISC-V specification gives a mathematically rigorous description of every instruction's semantics~\cite{riscv_spec_2026}.
-
 \subsubsection{The Counterpart in LLM-Based Systems}
+
+\textit{Classical counterpart---the CPU:} an execution core that maps input state to output state by running a formally specified instruction set (the ISA) with full \textbf{determinism}---\texttt{ADD R1, R2, R3} executed a million times yields the identical result~\cite{riscv_spec_2026}.
 
 In a model-native computing system, the foundation model (e.g., GPT-4, Claude, LLaMA) plays the role of a \textit{general-purpose execution core}.
 Given an input context comprising a system prompt, user messages, tool results, and control constraints, the model produces the next action or output through a forward pass~\cite{vaswani2017attention,brown2020gpt3,llama2023}.
@@ -58,15 +52,9 @@ From an architectural perspective, this means the community should evaluate mode
 \subsection{KV Cache: Cache Hierarchy for Intelligent Systems}
 \label{sec:kv}
 
-\subsubsection{The Cache Hierarchy in Classical Computers}
-
-In a classical computer, caches resolve the fundamental tension between fast processors and slow memory~\cite{drepper2007memory}.
-A modern CPU typically has three cache levels: L1 ($\sim$1\,ns, 64\,KB) $\to$ L2 ($\sim$4\,ns, 512\,KB) $\to$ L3 ($\sim$12\,ns, several to tens of MB).
-Caches exploit \textbf{temporal locality}: data accessed recently is likely to be accessed again soon.
-When the CPU needs data, it checks L1 first, then L2, then L3, and finally fetches from main memory.
-Cache management revolves around three core questions: \textit{placement policy} (where to store data), \textit{replacement policy} (what to evict when full), and \textit{write policy} (how to propagate modifications).
-
 \subsubsection{The Counterpart in LLM-Based Systems}
+
+\textit{Classical counterpart---the cache hierarchy:} L1/L2/L3 caches bridge the processor--memory speed gap by exploiting \textbf{temporal locality}, managed through placement, replacement (e.g., LRU), and write policies~\cite{drepper2007memory}.
 
 During autoregressive inference, generating each new token requires computing attention between that token's Query vector and the Key/Value vectors of \textit{all} preceding tokens.
 Recomputing the full prefix KV at every step would incur $O(n^2)$ cost in sequence length.
@@ -128,16 +116,9 @@ Figure~\ref{fig_kv_hierarchy} illustrates the structural correspondence between 
 \subsection{Context Management: Virtual Memory with Semantics}
 \label{sec:memory}
 
-\subsubsection{Virtual Memory in Classical Computers}
-
-Virtual memory resolves a core tension: ``programs need far more address space than physical memory provides.''
-The operating system creates the illusion of abundant space through \textbf{paging}: each process receives its own virtual address space (e.g., 48-bit addressing, 256\,TB), while physical memory may be only 16\,GB.
-When a process accesses a virtual page not yet mapped to physical memory, a page fault occurs, and the OS loads the required page from disk.
-The central advantage is \textbf{demand paging}: only data actually accessed occupies physical memory, and the entire process is transparent to the application.
-
-Key components of virtual memory management include: page tables (mapping virtual to physical addresses), TLBs (caches that accelerate address translation), page replacement policies (deciding which pages to evict to disk), and write-back policies (determining when dirty pages are flushed to disk)~\cite{ostep_2023}.
-
 \subsubsection{The Counterpart in LLM-Based Systems}
+
+\textit{Classical counterpart---virtual memory:} paging gives each process an apparently unbounded address space backed by limited physical memory through \textbf{demand paging}, supported by page tables, TLBs, and replacement policies~\cite{ostep_2023}.
 
 The context window is to a foundation model what main memory is to a process: a high-bandwidth, low-latency, but capacity-limited \textbf{working set}.
 Anthropic defines the context window directly as the working memory available to the model during generation.
@@ -200,14 +181,9 @@ Research from JetBrains suggests that effective context management depends not o
 \subsection{Agent Runtime: The Intelligent Operating System}
 \label{sec:agent}
 
-\subsubsection{The Operating System in Classical Computers}
-
-In a classical computer, the operating system is the system software that ``manages hardware resources, isolates applications, and provides unified service interfaces''~\cite{ostep_2023}.
-Its core responsibilities can be summarized in three abstractions: \textbf{virtualization} (giving each process the illusion of exclusive CPU and memory access), \textbf{concurrency} (enabling multiple processes to run simultaneously and safely), and \textbf{persistence} (reliably storing and managing files).
-
-Concretely, the OS handles: responding to system calls (file reads and writes), scheduling processes (which runs first and for how long), isolating processes (one crash does not affect another), managing memory (allocation, reclamation, paging), enforcing permissions (who can access which resources), handling I/O (interacting with peripheral devices), and maintaining logs (auditing and fault recovery).
-
 \subsubsection{The Counterpart in LLM-Based Systems}
+
+\textit{Classical counterpart---the operating system:} system software providing \textbf{virtualization}, \textbf{concurrency}, and \textbf{persistence}---scheduling, isolation, memory management, permissions, I/O, and logging~\cite{ostep_2023}.
 
 If the foundation model is the CPU, then the agent framework increasingly resembles the OS.
 An agent runtime must:
@@ -283,17 +259,9 @@ These efforts underscore a critical insight: \textbf{security boundaries are pri
 \subsection{Tool Bus and Agent Interconnection}
 \label{sec:io}
 
-\subsubsection{The I/O System in Classical Computers}
-
-In a classical computer, the I/O system connects the CPU and memory to the external world.
-Its evolution is highly instructive:
-In the \textbf{early phase} (1960s--1970s), each peripheral required a dedicated interface and driver: graphics cards had their own bus, hard drives their own controller, printers their own parallel port.
-In the \textbf{standardization phase} (1990s--2000s), PCI/PCIe unified the motherboard-level bus and USB unified peripheral connectivity, so that hardware vendors needed only to follow a common protocol for plug-and-play operation.
-In the \textbf{networking phase} (2000s--present), the TCP/IP protocol stack unified network communication, allowing any device to interoperate through standard protocols.
-
-The central lesson of this history is: \textbf{a standardized bus protocol is a prerequisite for ecosystem prosperity}.
-
 \subsubsection{The Counterpart in LLM-Based Systems}
+
+\textit{Classical counterpart---the I/O system:} it evolved from per-peripheral dedicated interfaces (1960s) through standardized buses (PCI/PCIe, USB; 1990s) to a unified network stack (TCP/IP); the central lesson is that \textbf{a standardized bus protocol is a prerequisite for ecosystem prosperity}.
 
 In model-native computing, the I/O layer is undergoing a similar transition from point-to-point connections to a standardized bus.
 
@@ -336,17 +304,9 @@ This compels the agent I/O layer to introduce \textbf{verification and redundanc
 \subsection{Multi-Agent Collaboration: Distributed Systems with Semantics}
 \label{sec:distributed}
 
-\subsubsection{Distributed Systems in Classical Computing}
-
-When a single computer lacks the compute power to complete a task, multiple machines must cooperate over a network; this is the domain of distributed systems.
-The core challenges include:
-\textbf{task decomposition and scheduling} (breaking a large task into smaller ones and assigning them to different nodes),
-\textbf{state synchronization and consistency} (how multiple nodes agree on shared state),
-\textbf{fault detection and recovery} (how the system continues when a node crashes),
-\textbf{deadlock avoidance} (breaking cyclic waits among nodes), and
-\textbf{load balancing} (keeping all nodes busy rather than overloading some while others idle)~\cite{hennessy2017quantitative}.
-
 \subsubsection{The Counterpart in LLM-Based Systems}
+
+\textit{Classical counterpart---distributed systems:} cooperation across networked machines confronting task decomposition, state consistency, fault recovery, deadlock avoidance, and load balancing~\cite{hennessy2017quantitative}.
 
 When multiple agents collaborate on a complex task, the system exhibits characteristics of distributed computing.
 

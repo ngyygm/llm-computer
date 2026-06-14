@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.3.14)  14 JUN 2026 19:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.3.14)  14 JUN 2026 20:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1175,22 +1175,22 @@ Overfull \hbox (36.40163pt too wide) in paragraph at lines 66--66
  [][] 
  []
 
-[1
+(./en_sections/section_intro.tex [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/enc/
-dvips/cm-super/cm-super-t1.enc}] (./en_sections/section_intro.tex
+dvips/cm-super/cm-super-t1.enc}]
 Underfull \hbox (badness 10000) in alignment at lines 41--41
 [][][] 
  []
 
 [2]
-<figures/fig_analogy_map.png, id=839, 1678.27pt x 944.52875pt>
+<figures/fig_analogy_map.png, id=820, 1678.27pt x 944.52875pt>
 File: figures/fig_analogy_map.png Graphic file (type png)
 <use figures/fig_analogy_map.png>
 Package pdftex.def Info: figures/fig_analogy_map.png  used on input line 59.
 (pdftex.def)             Requested size: 443.9066pt x 249.82332pt.
- [3 <./figures/fig_analogy_map.png (PNG copy)>] [4])
-(./en_sections/section_bg.tex (./figures/fig_classical_stack.tex
+ [3 <./figures/fig_analogy_map.png (PNG copy)>])
+(./en_sections/section_bg.tex [4] (./figures/fig_classical_stack.tex
 Underfull \hbox (badness 10000) in paragraph at lines 71--71
  [][][]\T1/cmr/m/n/8 ICA L1
  []
@@ -1299,9 +1299,6 @@ Overfull \hbox (1.06763pt too wide) in paragraph at lines 126--126
 Underfull \hbox (badness 10000) in alignment at lines 249--249
 [][][] 
  []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
 
 ) (./en_sections/section_framework.tex [17]
 Underfull \hbox (badness 10000) in paragraph at lines 36--36
@@ -1741,9 +1738,12 @@ Overfull \hbox (14.70042pt too wide) in alignment at lines 42--63
 [18] [19] [20{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
 [21] (./figures/fig_dual_plane.tex)) (./en_sections/section_components.tex
 [22] [23] [24] [25] (./figures/fig_kv_hierarchy.tex) [26]
-(./figures/fig_context_tiers.tex) [27] [28] [29] [30] [31] [32] [33]
-(./figures/fig_arch.tex) [34] (./figures/fig_flow.tex))
-(./en_sections/section_icam.tex [35] [36]
+(./figures/fig_context_tiers.tex) [27] [28] [29] [30] [31] [32]
+(./figures/fig_arch.tex) (./figures/fig_flow.tex
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+)) (./en_sections/section_icam.tex [33] [34] [35]
 Underfull \hbox (badness 10000) in paragraph at lines 60--60
 []|\T1/cmr/m/n/9 ICA
  []
@@ -1848,8 +1848,12 @@ Overfull \hbox (5.64604pt too wide) in alignment at lines 60--60
 [][][][][] 
  []
 
-(./figures/fig_interface_contracts.tex) [37] [38] [39]
-(./figures/fig_icam_crossmap.tex)
+[36] (./figures/fig_interface_contracts.tex) [37] [38]
+(./figures/fig_icam_crossmap.tex
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+)
 Underfull \hbox (badness 1389) in paragraph at lines 178--178
 []|\T1/cmr/m/n/9 Matrix op-er-a-tions, at-ten-tion com-pu-ta-tion
  []
@@ -1859,7 +1863,7 @@ Underfull \hbox (badness 10000) in alignment at lines 178--178
 [][][] 
  []
 
-[40] (./figures/fig_axioms_overview.tex) [41] [42] [43])
+[39] (./figures/fig_axioms_overview.tex) [40] [41] [42] [43])
 (./en_sections/section_laws.tex [44] [45] [46]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
@@ -1873,7 +1877,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 127.
 
-[47] (./figures/fig_beta_decay.tex)
+(./figures/fig_beta_decay.tex)
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 138.
@@ -1886,27 +1890,23 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 138.
 
-[48] [49] [50] [51]
+[47] [48] [49] [50] [51] (./figures/fig_law_curves.tex)
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-(./figures/fig_law_curves.tex)
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-) (./en_sections/section_agent_evolution.tex [52] [53]
+) (./en_sections/section_agent_evolution.tex [52]
 (./figures/fig_agent_timeline.tex
-<figures/fig_agent_timeline_gemini.png, id=1732, 2762.32pt x 1541.76pt>
+<figures/fig_agent_timeline_gemini.png, id=1708, 2762.32pt x 1541.76pt>
 File: figures/fig_agent_timeline_gemini.png Graphic file (type png)
 <use figures/fig_agent_timeline_gemini.png>
 Package pdftex.def Info: figures/fig_agent_timeline_gemini.png  used on input l
 ine 4.
 (pdftex.def)             Requested size: 430.31812pt x 240.17012pt.
-) [54 <./figures/fig_agent_timeline_gemini.png (PNG copy)>] [55] [56] [57] (./f
-igures/fig_gen_matrix.tex)
+) [53] [54 <./figures/fig_agent_timeline_gemini.png (PNG copy)>] [55] [56] [57]
+ (./figures/fig_gen_matrix.tex)
 (./figures/fig_gen_trajectory.tex [58]) [59])
-(./en_sections/section_challenges.tex [60] [61] (./figures/fig_trilemma.tex)
-[62] (./figures/fig_state_lifecycle.tex) [63] [64] [65] [66] [67]
+(./en_sections/section_challenges.tex [60] (./figures/fig_trilemma.tex)
+[61] [62] (./figures/fig_state_lifecycle.tex) [63] [64] [65] [66] [67]
 (./figures/fig_security_layers.tex
 Underfull \hbox (badness 5475) in paragraph at lines 63--63
  [][]\T1/cmr/bx/n/8 State
@@ -1932,15 +1932,19 @@ Underfull \hbox (badness 3536) in paragraph at lines 67--67
  []\T1/cmr/bx/n/8 Privacy
  []
 
-) [68] [69]) (./en_sections/section_paradigm.tex
-(./figures/fig_paradigm_timeline.tex
+) [68]) (./en_sections/section_paradigm.tex [69]
+(./figures/fig_paradigm_timeline.tex) [70] [71] (./figures/fig_biglittle.tex)
+[72] [73] [74] [75] [76] [77]) (./en_sections/section_social.tex [78] [79]
+[80]
+Overfull \hbox (11.7617pt too wide) in alignment at lines 76--76
+[][][][] 
+ []
+
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-) [70] [71] (./figures/fig_biglittle.tex) [72] [73] [74] [75] [76] [77])
-(./en_sections/section_social.tex [78] [79] [80])
-(./en_sections/section_implementation.tex [81] (./figures/fig_impl_map.tex)
-[82] [83] (./figures/fig_impl_recommendations.tex) [84])
+) (./en_sections/section_implementation.tex [81] (./figures/fig_impl_map.tex)
+[82] [83] (./figures/fig_impl_recommendations.tex) [84] [85])
 (./en_sections/section_roadmap.tex
 Overfull \hbox (2.46303pt too wide) in paragraph at lines 12--12
 []|\T1/cmr/bx/n/10 Phase| 
@@ -2321,21 +2325,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 34--34
 []|\T1/cmr/m/n/10 Weakest-Link
  []
 
-[85] (./figures/fig_roadmap_swimlane.tex) [86] [87] [88] [89])
-(./en_sections/section_ethics.tex [90] [91] [92])
-(./en_sections/section_conclusion.tex [93] [94]) [95] (./paper_en.bbl [96]
+[86] (./figures/fig_roadmap_swimlane.tex) [87] [88] [89] [90])
+(./en_sections/section_ethics.tex [91] [92] [93])
+(./en_sections/section_conclusion.tex [94] [95] [96]) (./paper_en.bbl [97]
 Underfull \hbox (badness 1960) in paragraph at lines 162--166
 []\T1/cmr/m/n/10.95 Cloud Se-cu-rity Al-liance.  The right to be for-got-ten vs
 . AI's in-fi-nite mem-ory.
  []
 
-[97] [98] [99] [100] [101] [102] [103] [104] [105]
+[98] [99] [100] [101] [102] [103] [104] [105] [106]
 Underfull \hbox (badness 1448) in paragraph at lines 1041--1045
 []\T1/cmr/m/n/10.95 Shunyu Yao, Noah Shinn, Pe-dram Razavi, and Karthik Narasim
 han.  $\OML/cmm/m/it/10.95 ^^\$\T1/cmr/m/n/10.95 -bench:
  []
 
-[106]) [107] (./paper_en.aux)
+[107]) [108] (./paper_en.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -2346,13 +2350,13 @@ LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 2.1pt have occurred.
 
 Package rerunfilecheck Info: File `paper_en.out' has not changed.
-(rerunfilecheck)             Checksum: 49995E93166F2F5A67F8F187B27BC0AD;48771.
+(rerunfilecheck)             Checksum: 9EF3AB3CFBEF3C9495C5DBB99BB1220D;47392.
  ) 
 Here is how much of TeX's memory you used:
- 45903 strings out of 474222
- 1060274 string characters out of 5748733
- 1980975 words of memory out of 5000000
- 66687 multiletter control sequences out of 15000+600000
+ 45897 strings out of 474222
+ 1060131 string characters out of 5748733
+ 1972975 words of memory out of 5000000
+ 66684 multiletter control sequences out of 15000+600000
  589392 words of font info for 113 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,22n,96p,1231b,2684s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -2392,10 +2396,10 @@ onts/type1/public/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/public/cm
 </usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb></usr/share/texmf/fo
 nts/type1/public/cm-super/sftt1095.pfb></usr/share/texmf/fonts/type1/public/cm-
 super/sftt1200.pfb>
-Output written on paper_en.pdf (107 pages, 6910065 bytes).
+Output written on paper_en.pdf (108 pages, 6908173 bytes).
 PDF statistics:
- 2731 PDF objects out of 2984 (max. 8388607)
- 2444 compressed objects within 25 object streams
- 684 named destinations out of 1000 (max. 500000)
- 1623 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2719 PDF objects out of 2984 (max. 8388607)
+ 2431 compressed objects within 25 object streams
+ 681 named destinations out of 1000 (max. 500000)
+ 1583 words of extra memory for PDF output out of 10000 (max. 10000000)
 

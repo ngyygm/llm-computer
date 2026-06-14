@@ -51,3 +51,31 @@ Several signals suggest the industry is approaching a ``training stabilization''
 When model architectures stabilize, the ``selling brains as physical devices'' model becomes viable. Dedicated inference chips with burned-in weights, such as the Taalas HC1 achieving tenfold GPU performance~\cite{taalas_2026_hc1}, could commoditize the model layer while creating a new hardware product category: the AI appliance. This would parallel the transition from mainframe time-sharing to personal computers, where computing ceased to be a shared service and became a personal possession.
 
 The convergence of three trends (hardware binding technologies maturing, inference costs dropping 280-fold, and custom silicon proliferating) creates the conditions for a ``fabless AI'' industry structure. Model companies would design ``brains'' (architectures and weights), foundries (TSMC, Samsung) would manufacture them as dedicated chips, and platform companies would distribute them through OS-level gateways. The most likely end-state is a three-layer industry structure: fabless model designers (the future Intels and AMDs of AI), AI foundries manufacturing dedicated inference and training chips, and AI OS platforms controlling user relationships through interface and gateway services. This mirrors the semiconductor and PC disaggregation that created today's Intel, TSMC, and Microsoft, the very firms whose history has served as this section's predictive lens.
+
+\subsection{Layer-by-Layer: Mapping the Industry Stack onto ICA}
+\label{sec:social-layers}
+
+The three-layer fabless-AI prediction above is a coarse-grained sketch. Projecting it onto the finer ICA hierarchy makes explicit where value will concentrate and where commoditization will bite. Table~\ref{tab:industry-layers} maps each ICA layer to its classical industry analog, the emerging class of AI-industry owner, and the structural prospects for value capture.
+
+\begin{table}[h]
+\centering
+\footnotesize
+\caption{Mapping the emerging AI industry stack onto the ICA layers, with the classical industry analog and value-capture prospect for each.}
+\label{tab:industry-layers}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.08\textwidth}>{\raggedright\arraybackslash}p{0.26\textwidth}>{\raggedright\arraybackslash}p{0.38\textwidth}>{\raggedright\arraybackslash}p{0.20\textwidth}}
+\toprule
+\textbf{Layer} & \textbf{Classical analog} & \textbf{Emerging AI-industry owner} & \textbf{Value-capture prospect} \\
+\midrule
+L1 & Foundry + fabless chip designer (TSMC; NVIDIA/AMD) & Accelerator and foundry layer (GPUs, TPUs, ASICs, custom silicon) & High (capital and process moat), cyclical \\
+L2 & Microarchitecture vendor / OEM & Open serving runtimes (vLLM, SGLang) plus cloud inference platforms & Commoditizing (open-source middleware) \\
+L3 & Memory OEM (DRAM/NAND) & Memory and retrieval middleware (vector databases, context systems) & Differentiated by integration, not standalone \\
+L4 & Bus / interface standard (PCIe, USB, ISA) & Open protocols (MCP, A2A) as the agent I/O bus & Winner-take-most; low direct revenue \\
+L5 & OS vendor (Microsoft, Apple) & Agent runtimes and agent-OS gateways (Codex, Claude Code, \ldots) & \textbf{Highest}---the traffic gateway, platform lock-in \\
+L6 & Application ISV & Vertical agent apps and domain workflows & Long tail; winner-take-most per vertical \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Three structural patterns emerge from this mapping. First, \textbf{value concentrates at the two ends of the stack}: at L1, where the capital intensity and fabrication-process moats of accelerator production mirror the classical foundry barrier, and at L5, where the agent-OS gateway controls the interface between users and all underlying capability---precisely the Microsoft-versus-Intel dynamic of the PC era. Second, \textbf{the middle layers (L2--L4) face commoditization pressure}: open-source serving runtimes at L2, open protocols at L4, and largely interchangeable memory middleware at L3 erode standalone margins, pushing value either down to the silicon or up to the gateway. Third, the copyability of model weights (Section~\ref{sec:copyability}) accelerates this squeeze: unless weights are hardware-bound (Section~\ref{sec:hardware-binding}), the model layer drifts toward commodity, which is precisely the pressure that forces the industry toward either the closed-API strategy or the physical-moat strategy.
+
+This layer-resolved view also clarifies the standardization prerequisite for disaggregation. In the PC era, the x86 ISA, the PCI bus, and USB were the interface contracts that allowed the stack to separate into competing specialists. In the AI stack, the analogous prerequisites are the L4 protocols (MCP, A2A) and, more fundamentally, the inter-layer interface contracts of ICA itself. Until those contracts stabilize, the stack cannot disaggregate and vertically integrated players retain their advantage; once they do, the fabless-AI structure above becomes structurally inevitable rather than merely predictive.

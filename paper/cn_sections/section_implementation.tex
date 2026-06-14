@@ -66,7 +66,7 @@ A2A扮演类似网络协议栈中TCP/IP的角色，与MCP互补：MCP是Agent到
 \subsection{五条实现建议}
 \label{sec:impl-recommendations}
 
-基于上述工程实践和本文提出的六条设计公理，本文给出五条可直接指导工程落地的实现建议。图~\ref{fig:impl_recommendations}将每条建议映射到其主要ICA层和对应公理。
+基于上述工程实践和本文提出的六条设计公理，本文提炼出五条可直接指导工程落地的实现建议。它们贯穿整个技术栈，大致按从架构到运维的顺序排列。\textbf{R1}将确定性控制平面与概率执行平面分离，把权限、审计和恢复逻辑集中在L4--L5，而非让其渗入推理路径。\textbf{R2}将上下文分为热工作窗口和冷持久存储，即L3层对应的存储层级结构。\textbf{R3}对每个影响行为的对象（提示、工具schema、技能、记忆文件）进行版本管理，使接口像ISA或ABI那样兼容演进。\textbf{R4}像操作系统通过cgroups那样，为每个Agent施加显式的资源配额（上下文大小、工具调用次数、推理时间、金钱成本）。\textbf{R5}将故障恢复视为分布式系统问题，为长时任务提供检查点、重试与回滚机制。图~\ref{fig:impl_recommendations}将每条建议映射到其主要ICA层（\textbf{Key}）与辅助作用（\textbf{Partial}），并标注其主导公理；下面的各小节依次展开。
 
 \input{figures/fig_impl_recommendations}
 

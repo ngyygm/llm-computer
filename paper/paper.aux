@@ -845,8 +845,6 @@
 \citation{google_a2a_2025}
 \citation{agentprotocols2025}
 \citation{a2alinux2025}
-\citation{openai_codex_approvals_2026}
-\citation{anthropic_claudecode_security_2026}
 \@writefile{toc}{\contentsline {subsection}{\numberline {12.2}Agent层（L5）：Agent运行时与操作系统}{65}{subsection.12.2}\protected@file@percent }
 \newlabel{sec:impl-agent}{{12.2}{65}{Agent层（L5）：Agent运行时与操作系统}{subsection.12.2}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {12.2.1}通用Agent}{65}{subsubsection.12.2.1}\protected@file@percent }
@@ -856,14 +854,18 @@
 \newlabel{sec:impl-protocol}{{12.3}{65}{协议层（L4）：标准化工具连接与Agent互联}{subsection.12.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {12.4}五条实现建议}{65}{subsection.12.4}\protected@file@percent }
 \newlabel{sec:impl-recommendations}{{12.4}{65}{五条实现建议}{subsection.12.4}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.1}控制面与数据面分离}{65}{subsubsection.12.4.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {24}{\ignorespaces Mapping of the five implementation recommendations (R1--R5) onto ICA layers (L1--L6) and their governing design axioms. \textbf  {Key} cells indicate the primary ICA layer at which the recommendation must be enforced; \textbf  {Partial} cells indicate supporting roles. R1 (control/data plane separation) targets L4--L5; R2 (context tiering) targets L3; R3 (versioning) targets L4; R4 (resource quotas) and R5 (failure recovery) both center on L5 with support from adjacent layers.}}{66}{figure.caption.86}\protected@file@percent }
-\newlabel{fig:impl_recommendations}{{24}{66}{Mapping of the five implementation recommendations (R1--R5) onto ICA layers (L1--L6) and their governing design axioms. \textbf {Key} cells indicate the primary ICA layer at which the recommendation must be enforced; \textbf {Partial} cells indicate supporting roles. R1 (control/data plane separation) targets L4--L5; R2 (context tiering) targets L3; R3 (versioning) targets L4; R4 (resource quotas) and R5 (failure recovery) both center on L5 with support from adjacent layers}{figure.caption.86}{}}
+\citation{openai_codex_approvals_2026}
+\citation{anthropic_claudecode_security_2026}
 \citation{memgpt2023}
 \citation{anthropic2026agenticreport}
 \citation{mcp_intro_2026}
 \citation{agentprotocols2025}
 \citation{linux_cgroup_2026}
+\@writefile{lof}{\contentsline {figure}{\numberline {24}{\ignorespaces Mapping of the five implementation recommendations (R1--R5) onto ICA layers (L1--L6) and their governing design axioms. \textbf  {Key} cells indicate the primary ICA layer at which the recommendation must be enforced; \textbf  {Partial} cells indicate supporting roles. R1 (control/data plane separation) targets L4--L5; R2 (context tiering) targets L3; R3 (versioning) targets L4; R4 (resource quotas) and R5 (failure recovery) both center on L5 with support from adjacent layers.}}{66}{figure.caption.86}\protected@file@percent }
+\newlabel{fig:impl_recommendations}{{24}{66}{Mapping of the five implementation recommendations (R1--R5) onto ICA layers (L1--L6) and their governing design axioms. \textbf {Key} cells indicate the primary ICA layer at which the recommendation must be enforced; \textbf {Partial} cells indicate supporting roles. R1 (control/data plane separation) targets L4--L5; R2 (context tiering) targets L3; R3 (versioning) targets L4; R4 (resource quotas) and R5 (failure recovery) both center on L5 with support from adjacent layers}{figure.caption.86}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.1}控制面与数据面分离}{66}{subsubsection.12.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.2}短期上下文与长期记忆分离}{66}{subsubsection.12.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.3}所有可影响行为的对象都要版本化}{66}{subsubsection.12.4.3}\protected@file@percent }
 \citation{raft2014}
 \citation{spanner2012}
 \citation{anthropic2026agenticreport}
@@ -874,16 +876,12 @@
     {1}{125.24197pt}\LT@entry 
     {1}{93.5309pt}\LT@entry 
     {1}{75.41522pt}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.2}短期上下文与长期记忆分离}{67}{subsubsection.12.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.3}所有可影响行为的对象都要版本化}{67}{subsubsection.12.4.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.4}像OS一样实施资源配额}{67}{subsubsection.12.4.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.5}像分布式系统一样设计故障恢复}{67}{subsubsection.12.4.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {13}研究路线图}{67}{section.13}\protected@file@percent }
 \newlabel{sec:roadmap}{{13}{67}{研究路线图}{section.13}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces 基于ICA的研究议题清单}}{67}{table.8}\protected@file@percent }
 \newlabel{tab:roadmap}{{8}{67}{基于ICA的研究议题清单}{table.8}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {25}{\ignorespaces Research roadmap organized by ICA layer and time horizon. Horizontal lanes correspond to ICA layers L1--L6; columns represent short-term (1--2\,yr), mid-term (2--4\,yr), and long-term (4--8\,yr) research phases. Bar colors indicate which heuristic or axiom each topic targets: {\color  {lawI}Heur.~I} (Semantic Locality, blue), {\color  {lawII}Heur.~II} (Context Budget, orange), {\color  {lawIII}Heur.~III} (Agent Speedup, red), and {\color  {axiom}Axiom} (architectural principles, gray). Arrows denote key dependencies between research topics.}}{68}{figure.caption.87}\protected@file@percent }
-\newlabel{fig:roadmap_swimlane}{{25}{68}{Research roadmap organized by ICA layer and time horizon. Horizontal lanes correspond to ICA layers L1--L6; columns represent short-term (1--2\,yr), mid-term (2--4\,yr), and long-term (4--8\,yr) research phases. Bar colors indicate which heuristic or axiom each topic targets: {\color {lawI}Heur.~I} (Semantic Locality, blue), {\color {lawII}Heur.~II} (Context Budget, orange), {\color {lawIII}Heur.~III} (Agent Speedup, red), and {\color {axiom}Axiom} (architectural principles, gray). Arrows denote key dependencies between research topics}{figure.caption.87}{}}
 \citation{gholami2024memorywall}
 \citation{h2o2023}
 \citation{hooper2024kvquant}
@@ -895,6 +893,9 @@
 \citation{hiagent2024}
 \citation{mcp_intro_2026}
 \citation{agentprotocols2025}
+\@writefile{lof}{\contentsline {figure}{\numberline {25}{\ignorespaces Research roadmap organized by ICA layer and time horizon. Horizontal lanes correspond to ICA layers L1--L6; columns represent short-term (1--2\,yr), mid-term (2--4\,yr), and long-term (4--8\,yr) research phases. Bar colors indicate which heuristic or axiom each topic targets: {\color  {lawI}Heur.~I} (Semantic Locality, blue), {\color  {lawII}Heur.~II} (Context Budget, orange), {\color  {lawIII}Heur.~III} (Agent Speedup, red), and {\color  {axiom}Axiom} (architectural principles, gray). Arrows denote key dependencies between research topics.}}{68}{figure.caption.87}\protected@file@percent }
+\newlabel{fig:roadmap_swimlane}{{25}{68}{Research roadmap organized by ICA layer and time horizon. Horizontal lanes correspond to ICA layers L1--L6; columns represent short-term (1--2\,yr), mid-term (2--4\,yr), and long-term (4--8\,yr) research phases. Bar colors indicate which heuristic or axiom each topic targets: {\color {lawI}Heur.~I} (Semantic Locality, blue), {\color {lawII}Heur.~II} (Context Budget, orange), {\color {lawIII}Heur.~III} (Agent Speedup, red), and {\color {axiom}Axiom} (architectural principles, gray). Arrows denote key dependencies between research topics}{figure.caption.87}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {13.1}短期议题}{68}{subsection.13.1}\protected@file@percent }
 \citation{swebench2023}
 \citation{sweagent2024}
 \citation{raft2014}
@@ -905,22 +906,23 @@
 \citation{debenedetti2025camel}
 \citation{ironclaw2025}
 \citation{agenticsecurity2025}
-\@writefile{toc}{\contentsline {subsection}{\numberline {13.1}短期议题}{69}{subsection.13.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {13.2}中期议题}{69}{subsection.13.2}\protected@file@percent }
 \citation{amem2025}
 \citation{agentmemorysurvey2025}
+\@writefile{toc}{\contentsline {subsection}{\numberline {13.2}中期议题}{69}{subsection.13.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {13.3}长期议题}{69}{subsection.13.3}\protected@file@percent }
 \citation{spanner2012}
 \citation{raft2014}
 \citation{arbiteros2025}
 \citation{ironclaw2025}
-\@writefile{toc}{\contentsline {subsection}{\numberline {13.3}长期议题}{70}{subsection.13.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {13.4}与模型能力进步的解耦}{70}{subsection.13.4}\protected@file@percent }
 \citation{openai_codex_approvals_2026}
 \citation{openai_codex_sandbox_2026}
 \citation{anthropic_claudecode_security_2026}
 \citation{anthropic_claudecode_sandbox_2026}
 \citation{debenedetti2025camel}
 \citation{ironclaw2025}
+\@writefile{toc}{\contentsline {subsection}{\numberline {13.4}与模型能力进步的解耦}{70}{subsection.13.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {14}伦理、安全与可解释性}{70}{section.14}\protected@file@percent }
+\newlabel{sec:ethics}{{14}{70}{伦理、安全与可解释性}{section.14}{}}
 \citation{openai_codex_agents_md_2026}
 \citation{anthropic_claudecode_security_2026}
 \citation{debenedetti2025camel}
@@ -928,32 +930,33 @@
 \citation{ironclaw2025}
 \citation{euaiact2026}
 \citation{gdpr_righttoforget}
-\@writefile{toc}{\contentsline {section}{\numberline {14}伦理、安全与可解释性}{71}{section.14}\protected@file@percent }
-\newlabel{sec:ethics}{{14}{71}{伦理、安全与可解释性}{section.14}{}}
+\citation{longmemeval2024}
+\citation{navaie2025privacy}
 \@writefile{toc}{\contentsline {subsection}{\numberline {14.1}权限与隔离（对应L5编排层）}{71}{subsection.14.1}\protected@file@percent }
 \newlabel{sec:ethics-permission}{{14.1}{71}{权限与隔离（对应L5编排层）}{subsection.14.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {14.2}隐私与记忆治理（对应L3记忆层）}{71}{subsection.14.2}\protected@file@percent }
 \newlabel{sec:ethics-privacy}{{14.2}{71}{隐私与记忆治理（对应L3记忆层）}{subsection.14.2}{}}
 \@writefile{toc}{\contentsline {paragraph}{什么应保存？}{71}{section*.88}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{保存多久？}{71}{section*.89}\protected@file@percent }
-\citation{longmemeval2024}
-\citation{navaie2025privacy}
+\@writefile{toc}{\contentsline {paragraph}{谁有权删除？}{71}{section*.90}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{摘要能否反推出原始敏感信息？}{71}{section*.91}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.3}可解释性：从"解释模型"到"解释系统"（对应全栈）}{71}{subsection.14.3}\protected@file@percent }
+\newlabel{sec:ethics-explainability}{{14.3}{71}{可解释性：从"解释模型"到"解释系统"（对应全栈）}{subsection.14.3}{}}
 \citation{linux_cgroup_2026}
 \citation{mei2024aios}
 \citation{memgpt2023}
 \citation{mcp_intro_2026}
 \citation{kwon2023pagedattention}
-\@writefile{toc}{\contentsline {paragraph}{谁有权删除？}{72}{section*.90}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{摘要能否反推出原始敏感信息？}{72}{section*.91}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {14.3}可解释性：从"解释模型"到"解释系统"（对应全栈）}{72}{subsection.14.3}\protected@file@percent }
-\newlabel{sec:ethics-explainability}{{14.3}{72}{可解释性：从"解释模型"到"解释系统"（对应全栈）}{subsection.14.3}{}}
+\citation{arbiteros2025}
+\citation{mei2024aios}
+\citation{agentos2025}
 \@writefile{toc}{\contentsline {subsection}{\numberline {14.4}公平性与资源分配（对应L2推理服务层与L5编排层）}{72}{subsection.14.4}\protected@file@percent }
 \newlabel{sec:ethics-fairness}{{14.4}{72}{公平性与资源分配（对应L2推理服务层与L5编排层）}{subsection.14.4}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {15}结论与展望}{72}{section.15}\protected@file@percent }
 \newlabel{sec:conclusion}{{15}{72}{结论与展望}{section.15}{}}
-\citation{arbiteros2025}
-\citation{mei2024aios}
-\citation{agentos2025}
+\@writefile{toc}{\contentsline {subsection}{\numberline {15.1}核心贡献}{72}{subsection.15.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{统一框架：ICA六层模型。}{72}{section*.92}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{架构解法：双平面架构。}{72}{section*.93}\protected@file@percent }
 \citation{ge2023llmos}
 \citation{holt2024l2mac}
 \citation{mi2025llmagentscomputersystems}
@@ -961,27 +964,24 @@
 \citation{memos2025}
 \citation{mi2025llmagentscomputersystems}
 \citation{arbiteros2025}
-\@writefile{toc}{\contentsline {subsection}{\numberline {15.1}核心贡献}{73}{subsection.15.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{统一框架：ICA六层模型。}{73}{section*.92}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{架构解法：双平面架构。}{73}{section*.93}\protected@file@percent }
+\citation{anthropic2026agenticreport}
 \@writefile{toc}{\contentsline {paragraph}{组织性启发式：三条Amdahl式设计模型。}{73}{section*.94}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{范式映射：从硅到基底的智能计算演进。}{73}{section*.95}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{社会技术分析：智能计算的产业结构。}{73}{section*.96}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {15.2}定位与边界}{73}{subsection.15.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{类比不是同构。}{73}{section*.97}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{增量贡献，而非开创性。}{73}{section*.98}\protected@file@percent }
-\citation{anthropic2026agenticreport}
+\@writefile{toc}{\contentsline {paragraph}{技术畅想，而非最终方案。}{73}{section*.99}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{协作悖论尚未被建模。}{73}{section*.100}\protected@file@percent }
 \citation{anthropic2026agenticreport}
 \bibstyle{unsrturl}
 \bibdata{refs}
 \bibcite{brown2020gpt3}{1}
 \bibcite{llama2023}{2}
-\@writefile{toc}{\contentsline {paragraph}{技术畅想，而非最终方案。}{74}{section*.99}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{协作悖论尚未被建模。}{74}{section*.100}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {15.3}未来方向}{74}{subsection.15.3}\protected@file@percent }
 \bibcite{schick2023toolformer}{3}
 \bibcite{lewis2020rag}{4}
 \bibcite{yao2023react}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {15.3}未来方向}{74}{subsection.15.3}\protected@file@percent }
 \bibcite{openhands_paper_2025}{6}
 \bibcite{sweagent2024}{7}
 \bibcite{anthropic2026agenticreport}{8}
@@ -1156,4 +1156,4 @@
 \bibcite{euaiact2026}{177}
 \bibcite{gdpr_righttoforget}{178}
 \bibcite{navaie2025privacy}{179}
-\gdef \@abspage@last{88}
+\gdef \@abspage@last{87}

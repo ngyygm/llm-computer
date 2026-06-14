@@ -11,15 +11,15 @@ Reallocated field_info (elt_size=4) to 10012 items from 5000.
 Database file #1: refs.bib
 You've used 179 entries,
             2616 wiz_defined-function locations,
-            1442 strings with 45334 characters,
-and the built_in function-call counts, 66694 in all, are:
+            1442 strings with 43186 characters,
+and the built_in function-call counts, 65042 in all, are:
 = -- 6072
-> -- 3427
+> -- 3046
 < -- 34
-+ -- 1137
-- -- 958
-* -- 3219
-:= -- 8983
++ -- 1010
+- -- 831
+* -- 2963
+:= -- 8602
 add.period$ -- 658
 call.type$ -- 179
 change.case$ -- 179
@@ -27,8 +27,8 @@ chr.to.int$ -- 0
 cite$ -- 179
 duplicate$ -- 1877
 empty$ -- 7115
-format.name$ -- 958
-if$ -- 18606
+format.name$ -- 831
+if$ -- 18352
 int.to.chr$ -- 0
 int.to.str$ -- 179
 missing$ -- 119
@@ -38,7 +38,7 @@ pop$ -- 1704
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 4971
+skip$ -- 4972
 stack$ -- 0
 substring$ -- 1790
 swap$ -- 511

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.3.14)  14 JUN 2026 20:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.3.14)  14 JUN 2026 20:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2068,7 +2068,7 @@ t/10.95/97 b \C70/gbsn/bx/n/10.95/7e §\T1/cmr/m/n/10.95 AgentOS\C70/gbsn/m/it/1
 /it/10.95/54 Œ\T1/cmr/m/n/10.95 GUI--
  []
 
-(./figures/fig_impl_recommendations.tex) [65] [66])
+[65] (./figures/fig_impl_recommendations.tex) [66])
 (./cn_sections/section_roadmap.tex
 Overfull \hbox (1.1519pt too wide) in paragraph at lines 14--14
 []|\T1/cmr/m/n/10 ICA\C70/gbsn/m/n/10/5c B| 
@@ -2218,8 +2218,8 @@ Underfull \hbox (badness 1237) in paragraph at lines 35--35
 bsn/m/n/10/82 ‚ \C70/gbsn/bx/n/10/8b Ä
  []
 
-[67] (./figures/fig_roadmap_swimlane.tex) [68] [69] [70])
-(./cn_sections/section_ethics.tex
+[67] (./figures/fig_roadmap_swimlane.tex) [68] [69])
+(./cn_sections/section_ethics.tex [70]
 Underfull \hbox (badness 2556) in paragraph at lines 16--17
 []\T1/cmr/bx/n/10.95 Agent\C70/gbsn/m/it/10.95/76 „[][] \C70/gbsn/bx/it/10.95/6
 7 C[][] \C70/gbsn/m/it/10.95/96 P[][] \C70/gbsn/m/it/10.95/59 ‚[][] \C70/gbsn/m
@@ -2246,7 +2246,7 @@ m/it/10.95/4f U[][] \C70/gbsn/bx/n/10.95/7e È[][] \C70/gbsn/m/it/10.95/6b b[][]
 gbsn/bx/n/10.95/7e § \C70/gbsn/m/it/10.95/6c ™
  []
 
-[71]) (./cn_sections/section_conclusion.tex [72]
+[71]) (./cn_sections/section_conclusion.tex
 Underfull \hbox (badness 10000) in paragraph at lines 15--18
 \C70/gbsn/bx/n/10.95/79 » \C70/gbsn/m/it/10.95/4f ^^? \C70/gbsn/bx/n/10.95/5f —
 \T1/cmr/m/n/10.95 ArbiterOS\C70/gbsn/m/it/10.95/76 „\T1/cmr/m/n/10.95 "Probabil
@@ -2255,7 +2255,7 @@ istic CPU"[[]]\C70/gbsn/m/it/10.95/30 ^^A\T1/cmr/m/n/10.95 AIOS\C70/gbsn/m/it/1
 95 AgentOS\C70/gbsn/m/it/10.95/76 „\T1/cmr/m/n/10.95 "reasoning
  []
 
-[73]) (./paper.bbl [74] [75] [76] [77] [78] [79]
+[72] [73]) (./paper.bbl [74] [75] [76] [77] [78] [79]
 Overfull \hbox (45.90363pt too wide) in paragraph at lines 604--610
 \T1/cmtt/m/n/10.95 deterministic-[]ai-[]orchestration-[]a-[]platform-[]architec
 ture-[]for-[]autonomous-[]development/$[][]\T1/cmr/m/n/10.95 . 
@@ -2273,7 +2273,7 @@ Underfull \hbox (badness 1448) in paragraph at lines 844--848
 han.  $\OML/cmm/m/it/10.95 ^^\$\T1/cmr/m/n/10.95 -bench:
  []
 
-[83]
+
 Underfull \hbox (badness 10000) in paragraph at lines 935--940
 []\T1/cmr/m/n/10.95 ARM.  big.LITTLE pro-cess-ing with ARM cortex-a15 & cortex-
 
@@ -2285,7 +2285,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 935--940
 ps : / / www . eetimes . com /
  []
 
-
+[83]
 Underfull \hbox (badness 1648) in paragraph at lines 956--962
 []\T1/cmr/m/n/10.95 Intel.  In-tel thread di-rec-tor tech-nol-ogy.  In-tel De-v
 el-oper Doc-u-men-ta-tion, 2022.
@@ -2303,7 +2303,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 956--962
 articles / 000097053 / processors /
  []
 
-[84]
+
 Underfull \hbox (badness 5652) in paragraph at lines 1012--1017
 []\T1/cmr/m/n/10.95 Meta.  Llama 3.2: Open mod-els for edge and cloud, 2024.  R
 e-leased
@@ -2315,73 +2315,73 @@ Underfull \hbox (badness 10000) in paragraph at lines 1012--1017
 n/10.95 https : / / ai . meta . com / blog /
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 1057--1064
+[84]
+Underfull \hbox (badness 10000) in paragraph at lines 1034--1041
 []\T1/cmr/m/n/10.95 Intel.  In-tel builds world's largest neu-ro-mor-phic sys-t
 em to en-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1057--1064
+Underfull \hbox (badness 10000) in paragraph at lines 1034--1041
 \T1/cmr/m/n/10.95 able more sus-tain-able ai.  In-tel Labs, 2024.  An-nounced A
 pril
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1057--1064
+Underfull \hbox (badness 10000) in paragraph at lines 1034--1041
 \T1/cmr/m/n/10.95 2024.  URL: [][]$\T1/cmtt/m/n/10.95 https : / / newsroom . in
 tel . com / artificial-[]intelligence /
  []
 
 
-Overfull \hbox (18.61177pt too wide) in paragraph at lines 1057--1064
+Overfull \hbox (18.61177pt too wide) in paragraph at lines 1034--1041
 \T1/cmtt/m/n/10.95 intel-[]builds-[]worlds-[]largest-[]neuromorphic-[]system-[]
 to-[]enable-[]more-[]sustainable-[]ai$[][]\T1/cmr/m/n/10.95 . 
  []
 
-[85] [86]
-Underfull \hbox (badness 3407) in paragraph at lines 1234--1240
+[85]
+Underfull \hbox (badness 3407) in paragraph at lines 1211--1217
 []\T1/cmr/m/n/10.95 Computer & Com-mu-ni-ca-tions In-dus-try As-so-ci-a-tion (C
 CIA).  In-tense com-pe-ti-
  []
 
 
-Underfull \hbox (badness 1194) in paragraph at lines 1234--1240
+Underfull \hbox (badness 1194) in paragraph at lines 1211--1217
 \T1/cmr/m/n/10.95 tion across the AI stack.  Pol-icy Anal-y-sis, 2025.  Anal-y-
 sis of com-pe-ti-tion dy-
  []
 
 
-Underfull \hbox (badness 1688) in paragraph at lines 1234--1240
+Underfull \hbox (badness 1688) in paragraph at lines 1211--1217
 \T1/cmr/m/n/10.95 nam-ics across the AI tech-nol-ogy stack.  URL: [][]$\T1/cmtt
 /m/n/10.95 https : / / ccianet . org / articles /
  []
 
-
-Underfull \hbox (badness 7722) in paragraph at lines 1248--1253
+[86]
+Underfull \hbox (badness 7722) in paragraph at lines 1225--1230
 []\T1/cmr/m/n/10.95 Digital Ap-plied.  Mcp adop-tion statis-tics 2026: Model co
 n-text pro-to-col,
  []
 
 
-Underfull \hbox (badness 3612) in paragraph at lines 1248--1253
+Underfull \hbox (badness 3612) in paragraph at lines 1225--1230
 \T1/cmr/m/n/10.95 2026.  Ac-cessed: 2026-05-29.  URL: [][]$\T1/cmtt/m/n/10.95 h
 ttps : / / www . digitalapplied . com / blog /
  []
 
 
-Underfull \hbox (badness 1122) in paragraph at lines 1255--1261
+Underfull \hbox (badness 1122) in paragraph at lines 1232--1238
 []\T1/cmr/m/n/10.95 Google Cloud.  Google do-nates agent2agent (a2a) pro-to-col
  to the linux foun-da-
  []
 
-[87]
-Underfull \hbox (badness 1960) in paragraph at lines 1276--1280
+
+Underfull \hbox (badness 1960) in paragraph at lines 1253--1257
 []\T1/cmr/m/n/10.95 Cloud Se-cu-rity Al-liance.  The right to be for-got-ten vs
 . AI's in-fi-nite mem-ory.
  []
 
-) [88] (./paper.aux)
+) [87] (./paper.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -2398,10 +2398,10 @@ Package rerunfilecheck Info: File `paper.out' has not changed.
 (rerunfilecheck)             Checksum: 0F41A6AC043A6262FA50FBDDD03043B5;26009.
  ) 
 Here is how much of TeX's memory you used:
- 52200 strings out of 474222
- 1158964 string characters out of 5748733
+ 52202 strings out of 474222
+ 1159003 string characters out of 5748733
  1993975 words of memory out of 5000000
- 72145 multiletter control sequences out of 15000+600000
+ 72148 multiletter control sequences out of 15000+600000
  704710 words of font info for 529 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  88i,22n,96p,1748b,4529s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -2496,10 +2496,10 @@ fti1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt0800.pfb></usr/sh
 are/texmf/fonts/type1/public/cm-super/sftt1000.pfb></usr/share/texmf/fonts/type
 1/public/cm-super/sftt1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sf
 tt1200.pfb>
-Output written on paper.pdf (88 pages, 7875433 bytes).
+Output written on paper.pdf (87 pages, 7876009 bytes).
 PDF statistics:
- 3201 PDF objects out of 3580 (max. 8388607)
- 2692 compressed objects within 27 object streams
- 604 named destinations out of 1000 (max. 500000)
+ 3198 PDF objects out of 3580 (max. 8388607)
+ 2690 compressed objects within 27 object streams
+ 603 named destinations out of 1000 (max. 500000)
  1907 words of extra memory for PDF output out of 10000 (max. 10000000)
 

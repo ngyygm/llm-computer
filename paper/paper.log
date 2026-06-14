@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.3.14)  14 JUN 2026 20:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.3.14)  14 JUN 2026 20:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1705,7 +1705,7 @@ n/10.95/76 „ \C70/gbsn/m/it/10.95/53 ê \C70/gbsn/m/it/10.95/8b û \C70/gbsn/m/n/
 
 (./figures/fig_dual_plane.tex)) (./cn_sections/section_components.tex [16]
 [17]
-Overfull \hbox (22.93037pt too wide) in paragraph at lines 60--64
+Overfull \hbox (22.93037pt too wide) in paragraph at lines 51--55
 []\C70/gbsn/bx/n/10.95/57 ( \C70/gbsn/m/n/10.95/81 ê \C70/gbsn/bx/n/10.95/56 Þ 
 \C70/gbsn/bx/n/10.95/5f R \C70/gbsn/bx/n/10.95/63 ¨ \C70/gbsn/bx/n/10.95/74 ^^F
  \C70/gbsn/m/it/10.95/4e - \C70/gbsn/m/it/10.95/ff ^^L \C70/gbsn/m/it/10.95/75 
@@ -1719,24 +1719,9 @@ gbsn/bx/n/10.95/52 M \C70/gbsn/bx/n/10.95/62 @ \C70/gbsn/m/it/10.95/67 	\T1/cmr
 /it/10.95/8b ¡
  []
 
-[18]
-Underfull \hbox (badness 2591) in paragraph at lines 82--85
-\C70/gbsn/bx/n/10.95/91 Í \C70/gbsn/m/it/10.95/67 ^^@ \C70/gbsn/m/it/10.95/59 '
- \C70/gbsn/bx/n/10.95/76 „\T1/cmr/m/n/10.95 token\C70/gbsn/m/it/10.95/ff 	 \C70
-/gbsn/bx/n/10.95/5b ž \C70/gbsn/bx/n/10.95/73 ° \C70/gbsn/m/it/10.95/4e † \C70/
-gbsn/m/it/10.95/66 z \C70/gbsn/bx/n/10.95/80 ý \C70/gbsn/m/it/10.95/9a q \C70/g
-bsn/m/it/10.95/90 ^^P \C70/gbsn/m/it/10.95/7b V \C70/gbsn/m/it/10.95/75 e\T1/cm
-r/m/n/10.95 [[]]\C70/gbsn/m/it/10.95/ff ^^L \C70/gbsn/bx/n/10.95/7c { \C70/gbsn
-/m/it/10.95/4f < \C70/gbsn/m/it/10.95/4e Ž\T1/cmr/m/n/10.95 CPU\C70/gbsn/m/it/1
-0.95/7f ^^S \C70/gbsn/bx/n/10.95/5b X \C70/gbsn/m/it/10.95/4e - \C70/gbsn/m/it/
-10.95/8b Æ \C70/gbsn/bx/n/10.95/52 +\T1/cmr/m/n/10.95 ``\C70/gbsn/bx/n/10.95/70
- í \C70/gbsn/m/it/10.95/65 p \C70/gbsn/bx/n/10.95/63 n\T1/cmr/m/n/10.95 ''\C70/
-gbsn/bx/n/10.95/76 „ \C70/gbsn/m/it/10.95/4f ^^X
- []
-
-(./figures/fig_kv_hierarchy.tex) [19] (./figures/fig_context_tiers.tex)
+[18] (./figures/fig_kv_hierarchy.tex) [19] (./figures/fig_context_tiers.tex)
 [20] [21]
-Underfull \hbox (badness 4531) in paragraph at lines 210--213
+Underfull \hbox (badness 4531) in paragraph at lines 201--204
 []\C70/gbsn/bx/n/10.95/5d å \C70/gbsn/m/it/10.95/4e ^^Z \C70/gbsn/bx/n/10.95/5b
  ž \C70/gbsn/bx/n/10.95/8d õ \C70/gbsn/m/it/10.95/4e _ \C70/gbsn/bx/n/10.95/57 
 ( \C70/gbsn/m/it/10.95/67 ^^] \C70/gbsn/m/it/10.95/8f Ù \C70/gbsn/m/it/10.95/4e
@@ -1748,8 +1733,8 @@ ents\C70/gbsn/bx/n/10.95/30 ^^A\T1/cmr/m/n/10.95 skills\C70/gbsn/bx/n/10.95/30
  \C70/gbsn/bx/n/10.95/52 6
  []
 
-
-Underfull \hbox (badness 1371) in paragraph at lines 266--267
+[22]
+Underfull \hbox (badness 1371) in paragraph at lines 257--258
 \C70/gbsn/bx/n/10.95/7e Ï \C70/gbsn/m/it/10.95/51 x \C70/gbsn/bx/n/10.95/5b ù \
 C70/gbsn/m/it/10.95/5e ” \C70/gbsn/m/it/10.95/72 i\T1/cmr/m/it/10.95 ^^V^^VI/O\
 C70/gbsn/bx/n/10.95/7c û \C70/gbsn/bx/n/10.95/7e ß \C70/gbsn/m/it/10.95/ff ^^Z 
@@ -1763,8 +1748,8 @@ n/m/it/10.95/51 Æ \C70/gbsn/m/it/10.95/53 ^^V \C70/gbsn/m/it/10.95/60 ; \C70/gb
 sn/bx/n/10.95/7e ¿
  []
 
-[22]
-Overfull \hbox (10.33841pt too wide) in paragraph at lines 278--280
+
+Overfull \hbox (10.33841pt too wide) in paragraph at lines 269--271
 []\C70/gbsn/bx/n/10.95/62 Š \C70/gbsn/m/it/10.95/4e $ \C70/gbsn/bx/n/10.95/80 ^
 ^E \C70/gbsn/m/it/10.95/54 ^^H \C70/gbsn/bx/n/10.95/8d w \C70/gbsn/m/it/10.95/6
 7 e \C70/gbsn/bx/n/10.95/77  \C70/gbsn/m/it/10.95/ff ^^L\T1/cmr/m/n/10.95 MCP\
@@ -1778,26 +1763,12 @@ w \C70/gbsn/m/it/10.95/ff 	 ^^L\T1/cmr/m/n/10.95 A2A\C70/gbsn/m/it/10.95/66 /\T
 bx/n/10.95/76 „
  []
 
-[23]
-Overfull \hbox (18.13597pt too wide) in paragraph at lines 338--340
-\C70/gbsn/m/it/10.95/7b ,[][] \C70/gbsn/m/it/10.95/4e ^^@[][] \C70/gbsn/m/it/10
-.95/ff ^^L[][] \C70/gbsn/m/it/10.95/90 ^^Z[][] \C70/gbsn/m/it/10.95/4f á[][] \C
-70/gbsn/m/it/10.95/5e &[][] \C70/gbsn/bx/n/10.95/5b ½[][] \C70/gbsn/m/it/10.95/
-4e ^^N[][] \C70/gbsn/bx/n/10.95/7c ¾[][] \C70/gbsn/m/it/10.95/5e ¦[][] \C70/gbs
-n/bx/n/10.95/76 „[][] \C70/gbsn/bx/n/10.95/68 9[][] \C70/gbsn/m/it/10.95/67 ,[]
-[] \C70/gbsn/bx/n/10.95/5d î[][] \C70/gbsn/bx/n/10.95/5f ^^B[][] \C70/gbsn/bx/n
-/10.95/52 ^^F \C70/gbsn/m/it/10.95/5e ^^C \C70/gbsn/bx/n/10.95/5f ^^O \C70/gbsn
-/bx/n/10.95/82 ‚ \C70/gbsn/bx/n/10.95/70 ¹ \C70/gbsn/m/it/10.95/4e K \C70/gbsn/
-m/it/10.95/95 ô \C70/gbsn/m/it/10.95/90 ^^Z \C70/gbsn/m/it/10.95/8f Ç \C70/gbsn
-/bx/n/10.95/7e Ó \C70/gbsn/m/it/10.95/67 „ \C70/gbsn/m/it/10.95/53 ^^V O \C70/g
-bsn/m/it/10.95/8b ® \C70/gbsn/m/it/10.95/90 ^^Z \C70/gbsn/m/it/10.95/4f á \C70/
-gbsn/m/it/10.95/ff ^^H \C70/gbsn/m/it/10.95/59 ‚\T1/cmr/m/n/10.95 gRPC\C70/gbsn
-/bx/n/10.95/76 „\T1/cmr/m/n/10.95 protobuf\C70/gbsn/m/it/10.95/ff 	 ^^L
- []
+[23] [24] (/home/linkco/exa/llm-computer/paper/figures/fig_arch.tex)
+(/home/linkco/exa/llm-computer/paper/figures/fig_flow.tex
 
-(/home/linkco/exa/llm-computer/paper/figures/fig_arch.tex) [24] [25]
-(/home/linkco/exa/llm-computer/paper/figures/fig_flow.tex))
-(./cn_sections/section_icam.tex
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+)) (./cn_sections/section_icam.tex [25]
 
 LaTeX Font Warning: Font shape `C70/gbsn/bx/it' undefined
 (Font)              using `C70/gbsn/bx/n' instead on input line 19.
@@ -1840,13 +1811,17 @@ Overfull \hbox (5.64604pt too wide) in alignment at lines 53--53
 [][][][][] 
  []
 
-(./figures/fig_interface_contracts.tex) [27] [28] [29]
-(./figures/fig_icam_crossmap.tex)
+[27] (./figures/fig_interface_contracts.tex) [28]
+(./figures/fig_icam_crossmap.tex
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+)
 Underfull \hbox (badness 10000) in alignment at lines 150--150
 [][][] 
  []
 
-[30] (./figures/fig_axioms_overview.tex) [31]
+[29] (./figures/fig_axioms_overview.tex) [30]
 Underfull \hbox (badness 1221) in paragraph at lines 188--189
 \C70/gbsn/m/it/10.95/6b c \C70/gbsn/m/it/10.95/59 ‚ \C70/gbsn/bx/it/10.95/5e ” 
 \C70/gbsn/bx/it/10.95/75 ( \C70/gbsn/m/it/10.95/7a  \C70/gbsn/bx/it/10.95/5e 
@@ -1859,7 +1834,7 @@ n/m/it/10.95/66 /\T1/cmr/m/n/10.95 CISC\C70/gbsn/m/it/10.95/30 ^^A \C70/gbsn/bx
 5 8-way as-so-cia-
  []
 
-[32]
+[31]
 Underfull \hbox (badness 2269) in paragraph at lines 210--211
 \T1/cmr/m/n/10.95 MemGPT\C70/gbsn/m/it/10.95/76 „ \C70/gbsn/m/it/10.95/86 Z \C7
 0/gbsn/bx/it/10.95/62 ß \C70/gbsn/bx/it/10.95/4e 
@@ -1884,7 +1859,7 @@ mr/m/n/10.95 capability to-ken\C70/gbsn/m/it/10.95/ff ^^[\T1/cmr/m/n/10.95 Code
 x\C70/gbsn/m/it/10.95/76 „\T1/cmr/m/n/10.95 OS\C70/gbsn/bx/n/10.95/7e §
  []
 
-) (./cn_sections/section_laws.tex [33] [34] [35]
+[32]) (./cn_sections/section_laws.tex [33] [34]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 125.
@@ -1897,7 +1872,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 125.
 
-(./figures/fig_beta_decay.tex)
+[35] (./figures/fig_beta_decay.tex)
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 136.
@@ -1910,13 +1885,10 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 136.
 
-[36] [37] [38] [39] (./figures/fig_law_curves.tex)
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-) (./cn_sections/section_agent_evolution.tex [40]
+[36] [37] [38] [39] (./figures/fig_law_curves.tex))
+(./cn_sections/section_agent_evolution.tex [40]
 (./figures/fig_agent_timeline.tex
-<figures/fig_agent_timeline_gemini.png, id=1735, 2762.32pt x 1541.76pt>
+<figures/fig_agent_timeline_gemini.png, id=1762, 2762.32pt x 1541.76pt>
 File: figures/fig_agent_timeline_gemini.png Graphic file (type png)
 <use figures/fig_agent_timeline_gemini.png>
 Package pdftex.def Info: figures/fig_agent_timeline_gemini.png  used on input l
@@ -1947,7 +1919,7 @@ Mod-ules\C70/gbsn/m/it/10.95/ff 	 \C70/gbsn/bx/n/10.95/5b ‰ \C70/gbsn/m/it/10.9
 5/51 h \C70/gbsn/m/n/10.95/94 ©
  []
 
-[43] [44] (./figures/fig_gen_matrix.tex) (./figures/fig_gen_trajectory.tex)
+[43] (./figures/fig_gen_matrix.tex) [44] (./figures/fig_gen_trajectory.tex)
 [45]) (./cn_sections/section_challenges.tex [46] (./figures/fig_trilemma.tex)
 [47]
 Underfull \hbox (badness 1642) in paragraph at lines 53--55
@@ -1964,7 +1936,7 @@ C70/gbsn/bx/it/10.95/67 ^^M \C70/gbsn/bx/it/10.95/52 ¡ \C70/gbsn/m/it/10.95/ff
 3 Ñ
  []
 
-[48] (./figures/fig_state_lifecycle.tex) [49]
+(./figures/fig_state_lifecycle.tex) [48]
 Overfull \hbox (87.59567pt too wide) in paragraph at lines 125--130
 \C70/gbsn/bx/it/10.95/4e ^^@ *\T1/cmr/m/n/10.95 Agent\C70/gbsn/bx/it/10.95/88 «
  \C70/gbsn/m/it/10.95/91 M \C70/gbsn/bx/it/10.95/7f n \C70/gbsn/bx/it/10.95/4e 
@@ -1978,7 +1950,7 @@ b API\C70/gbsn/bx/it/10.95/67 e \C70/gbsn/bx/it/10.95/7b ¡ \C70/gbsn/bx/it/10.9
 5 repos/:owner/:repo/pulls\C70/gbsn/m/it/10.95/76 „
  []
 
-[50] [51] (./figures/fig_security_layers.tex
+[49] [50] [51] (./figures/fig_security_layers.tex
 Underfull \hbox (badness 5475) in paragraph at lines 63--63
  [][]\T1/cmr/bx/n/8 State
  []
@@ -2003,12 +1975,13 @@ Underfull \hbox (badness 3536) in paragraph at lines 67--67
  []\T1/cmr/bx/n/8 Privacy
  []
 
-) [52] [53]) (./cn_sections/section_paradigm.tex
-(./figures/fig_paradigm_timeline.tex
+)
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-) [54] [55] (./figures/fig_biglittle.tex) [56] [57]
+[52] [53]) (./cn_sections/section_paradigm.tex
+(./figures/fig_paradigm_timeline.tex) [54] [55] (./figures/fig_biglittle.tex)
+[56]
 Overfull \hbox (6.41724pt too wide) in paragraph at lines 66--67
 []\C70/gbsn/bx/it/10.95/75 ^^_[][] \C70/gbsn/m/it/10.95/72 i[][] \C70/gbsn/bx/i
 t/10.95/8b ¡[][] \C70/gbsn/bx/it/10.95/7b —[][] \C70/gbsn/m/it/10.95/ff ^^H[][]
@@ -2034,7 +2007,7 @@ Overfull \hbox (42.57928pt too wide) in paragraph at lines 70--71
 .95 2024\C70/gbsn/bx/it/10.95/5e t \C70/gbsn/m/it/10.95/ff 	
  []
 
-[58] [59] [60]) (./cn_sections/section_social.tex
+[57] [58] [59] [60]) (./cn_sections/section_social.tex
 Overfull \hbox (20.60434pt too wide) in paragraph at lines 13--14
 []\C70/gbsn/bx/it/10.95/7b , \C70/gbsn/bx/it/10.95/4e ^^@ \C70/gbsn/m/it/10.95/
 6c â \C70/gbsn/m/it/10.95/89 ã \C70/gbsn/m/it/10.95/80 & \C70/gbsn/bx/n/10.95/5
@@ -2082,9 +2055,6 @@ Overfull \hbox (11.7617pt too wide) in alignment at lines 76--76
 [][][][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 [63]) (./cn_sections/section_implementation.tex (./figures/fig_impl_map.tex)
 [64]
 Overfull \hbox (25.26851pt too wide) in paragraph at lines 41--45
@@ -2098,7 +2068,7 @@ t/10.95/97 b \C70/gbsn/bx/n/10.95/7e §\T1/cmr/m/n/10.95 AgentOS\C70/gbsn/m/it/1
 /it/10.95/54 Œ\T1/cmr/m/n/10.95 GUI--
  []
 
-[65] (./figures/fig_impl_recommendations.tex) [66])
+(./figures/fig_impl_recommendations.tex) [65] [66])
 (./cn_sections/section_roadmap.tex
 Overfull \hbox (1.1519pt too wide) in paragraph at lines 14--14
 []|\T1/cmr/m/n/10 ICA\C70/gbsn/m/n/10/5c B| 
@@ -2248,8 +2218,8 @@ Underfull \hbox (badness 1237) in paragraph at lines 35--35
 bsn/m/n/10/82 ‚ \C70/gbsn/bx/n/10/8b Ä
  []
 
-[67] (./figures/fig_roadmap_swimlane.tex) [68] [69])
-(./cn_sections/section_ethics.tex [70]
+[67] (./figures/fig_roadmap_swimlane.tex) [68] [69] [70])
+(./cn_sections/section_ethics.tex
 Underfull \hbox (badness 2556) in paragraph at lines 16--17
 []\T1/cmr/bx/n/10.95 Agent\C70/gbsn/m/it/10.95/76 „[][] \C70/gbsn/bx/it/10.95/6
 7 C[][] \C70/gbsn/m/it/10.95/96 P[][] \C70/gbsn/m/it/10.95/59 ‚[][] \C70/gbsn/m
@@ -2276,7 +2246,7 @@ m/it/10.95/4f U[][] \C70/gbsn/bx/n/10.95/7e È[][] \C70/gbsn/m/it/10.95/6b b[][]
 gbsn/bx/n/10.95/7e § \C70/gbsn/m/it/10.95/6c ™
  []
 
-[71]) (./cn_sections/section_conclusion.tex
+[71]) (./cn_sections/section_conclusion.tex [72]
 Underfull \hbox (badness 10000) in paragraph at lines 15--18
 \C70/gbsn/bx/n/10.95/79 » \C70/gbsn/m/it/10.95/4f ^^? \C70/gbsn/bx/n/10.95/5f —
 \T1/cmr/m/n/10.95 ArbiterOS\C70/gbsn/m/it/10.95/76 „\T1/cmr/m/n/10.95 "Probabil
@@ -2285,7 +2255,7 @@ istic CPU"[[]]\C70/gbsn/m/it/10.95/30 ^^A\T1/cmr/m/n/10.95 AIOS\C70/gbsn/m/it/1
 95 AgentOS\C70/gbsn/m/it/10.95/76 „\T1/cmr/m/n/10.95 "reasoning
  []
 
-[72] [73]) (./paper.bbl [74] [75] [76] [77] [78] [79]
+[73]) (./paper.bbl [74] [75] [76] [77] [78] [79]
 Overfull \hbox (45.90363pt too wide) in paragraph at lines 604--610
 \T1/cmtt/m/n/10.95 deterministic-[]ai-[]orchestration-[]a-[]platform-[]architec
 ture-[]for-[]autonomous-[]development/$[][]\T1/cmr/m/n/10.95 . 
@@ -2405,13 +2375,13 @@ Underfull \hbox (badness 1122) in paragraph at lines 1255--1261
  to the linux foun-da-
  []
 
-
+[87]
 Underfull \hbox (badness 1960) in paragraph at lines 1276--1280
 []\T1/cmr/m/n/10.95 Cloud Se-cu-rity Al-liance.  The right to be for-got-ten vs
 . AI's in-fi-nite mem-ory.
  []
 
-) [87] (./paper.aux)
+) [88] (./paper.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -2428,13 +2398,13 @@ Package rerunfilecheck Info: File `paper.out' has not changed.
 (rerunfilecheck)             Checksum: 0F41A6AC043A6262FA50FBDDD03043B5;26009.
  ) 
 Here is how much of TeX's memory you used:
- 52114 strings out of 474222
- 1157638 string characters out of 5748733
+ 52200 strings out of 474222
+ 1158964 string characters out of 5748733
  1993975 words of memory out of 5000000
- 72129 multiletter control sequences out of 15000+600000
+ 72145 multiletter control sequences out of 15000+600000
  704710 words of font info for 529 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 88i,22n,96p,1748b,4525s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 88i,22n,96p,1748b,4529s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texli
@@ -2526,10 +2496,10 @@ fti1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt0800.pfb></usr/sh
 are/texmf/fonts/type1/public/cm-super/sftt1000.pfb></usr/share/texmf/fonts/type
 1/public/cm-super/sftt1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sf
 tt1200.pfb>
-Output written on paper.pdf (87 pages, 7872647 bytes).
+Output written on paper.pdf (88 pages, 7875433 bytes).
 PDF statistics:
- 3164 PDF objects out of 3580 (max. 8388607)
- 2656 compressed objects within 27 object streams
- 576 named destinations out of 1000 (max. 500000)
+ 3201 PDF objects out of 3580 (max. 8388607)
+ 2692 compressed objects within 27 object streams
+ 604 named destinations out of 1000 (max. 500000)
  1907 words of extra memory for PDF output out of 10000 (max. 10000000)
 

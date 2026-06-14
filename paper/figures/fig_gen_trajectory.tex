@@ -90,7 +90,7 @@
 \addplot[red!70!black, mark=triangle*, mark size=2.5pt]
     coordinates {(1,1.00)(2,1.00)(3,1.27)(4,1.60)(5,2.10)};
 \addplot[red!50!black, dashed, no marks, domain=0.5:5.5] {3.3};
-\addlegendentry{$S_{\mathrm{agent}}$}
+\addlegendentry{$S_{\mathrm{agent}}$ (estimated)}
 \addlegendentry{Target $S>3.3$}
 \node[font=\tiny, red!65!black] at (axis cs:1, 1.3) {$1.0$};
 \node[font=\tiny, red!65!black] at (axis cs:2, 1.3) {$1.0$};
@@ -100,6 +100,6 @@
 
 \end{groupplot}
 \end{tikzpicture}}%
-\caption{Quantitative trajectory of agent framework parameters across five generations, estimated from Law~III ($S_{\mathrm{agent}} = 1/((1-F)+F/(N{\cdot}E))$ with representative $N$ values per generation). (a)~Parallelizable fraction $F$ grows from near zero (Gen~I serial loop) to ${\approx}0.72$ (Gen~V governed OS). (b)~Orchestration efficiency $E$ initially near~1 (trivial single-agent overhead) but dips in Gen~IV due to sandbox isolation and approval overhead, then recovers in Gen~V with governance-first design. (c)~Resulting speedup $S_{\mathrm{agent}}$ rises from $1.0\times$ to ${\approx}2.1\times$, still well below the target $3.3\times$ that requires $F>0.8$ and $E>0.8$ simultaneously. Dashed red lines mark the target thresholds.}
+\caption{Illustrative quantitative trajectory of agent framework parameters across five generations, estimated from Heuristic~III ($S_{\mathrm{agent}} = 1/((1-F)+F/(N{\cdot}E))$ with representative $N$ values per generation). (a)~Parallelizable fraction $F$ grows from near zero (Gen~I serial loop) to ${\approx}0.72$ (Gen~V governed OS). (b)~Orchestration efficiency $E$ initially near~1 (trivial single-agent overhead) but dips in Gen~IV due to sandbox isolation and approval overhead, then recovers in Gen~V with governance-first design. (c)~Resulting speedup $S_{\mathrm{agent}}$ rises from $1.0\times$ to ${\approx}2.1\times$, still well below the target $3.3\times$ that requires $F>0.8$ and $E>0.8$ simultaneously. Dashed red lines mark the target thresholds.}
 \label{fig:gen_trajectory}
 \end{figure}

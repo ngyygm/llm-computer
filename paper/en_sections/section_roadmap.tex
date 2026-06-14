@@ -6,32 +6,32 @@ Table~\ref{tab:roadmap} presents a research roadmap organized around the ICA six
 \footnotesize
 \renewcommand{\arraystretch}{1.35}
 \begin{longtable}{>{\small}p{0.06\textwidth}>{\small}p{0.06\textwidth}>{\small}p{0.13\textwidth}>{\small}p{0.25\textwidth}>{\small}p{0.18\textwidth}>{\small}p{0.14\textwidth}}
-\caption{Research agenda organized by ICA layer, phase, and associated law or axiom.}
+\caption{Research agenda organized by ICA layer, phase, and associated heuristic or axiom.}
 \label{tab:roadmap}\\
 \toprule
-\textbf{Phase} & \textbf{ICA Layer} & \textbf{Topic} & \textbf{Method} & \textbf{Metrics} & \textbf{Related Law / Axiom} \\
+\textbf{Phase} & \textbf{ICA Layer} & \textbf{Topic} & \textbf{Method} & \textbf{Metrics} & \textbf{Related Heuristic / Axiom} \\
 \midrule
 \endfirsthead
 \toprule
-\textbf{Phase} & \textbf{ICA Layer} & \textbf{Topic} & \textbf{Method} & \textbf{Metrics} & \textbf{Related Law / Axiom} \\
+\textbf{Phase} & \textbf{ICA Layer} & \textbf{Topic} & \textbf{Method} & \textbf{Metrics} & \textbf{Related Heuristic / Axiom} \\
 \midrule
 \endhead
 
-Short-term & L2 & KV cache hit-rate optimization & Semantic eviction; KV quantization; prefix sharing & $H$, $S$, TTFT & Law~I (Semantic Locality) \\[3pt]
-Short-term & L3 & Unified context compiler & Hot / warm / cold tiering; version stamps with TTL & $W_{\mathrm{eff}}$, compression ratio & Law~II (Context Budget) \\[3pt]
+Short-term & L2 & KV cache hit-rate optimization & Semantic eviction; KV quantization; prefix sharing & $H$, $S$, TTFT & Heur.~I (Semantic Locality) \\[3pt]
+Short-term & L3 & Unified context compiler & Hot / warm / cold tiering; version stamps with TTL & $W_{\mathrm{eff}}$, compression ratio & Heur.~II (Context Budget) \\[3pt]
 Short-term & L4 & Tool ABI standardization & Schema versioning; capability annotation & Invocation success rate; security violation rate & Axiom~5 (Least Privilege) \\[3pt]
-Short-term & L5 & Software engineering agent kernel & Unified ACI; specialized sub-agents & Task completion rate; $E$ & Law~III (Agent Speedup) \\[3pt]
-Mid-term & L3 & Semantic page replacement & Learned eviction; summary write-back retrieval & $\beta(L)$ curve & Law~II \\[3pt]
+Short-term & L5 & Software engineering agent kernel & Unified ACI; specialized sub-agents & Task completion rate; $E$ & Heur.~III (Agent Speedup) \\[3pt]
+Mid-term & L3 & Semantic page replacement & Learned eviction; summary write-back retrieval & $\beta(L)$ curve & Heur.~II \\[3pt]
 Mid-term & L5 & Consistency-controlled shared memory & Event sourcing; conflict detection & Memory correctness rate & Axiom~4 (Virtualization) \\[3pt]
-Mid-term & L2 & Heterogeneous model collaboration & Speculative decoding; MoE routing & End-to-end latency; $H$ & Law~I \\[3pt]
+Mid-term & L2 & Heterogeneous model collaboration & Speculative decoding; MoE routing & End-to-end latency; $H$ & Heur.~I \\[3pt]
 Mid-term & L4 & Agent security architecture & Sandboxing; audit logging; capability security & Audit completeness & Axioms~5,~6 \\[3pt]
 Long-term & L1--L6 & Intelligent ISA and programmable skill layer & Task DSL; controlled output formats; reusable skill packages & Generalization ability & Axioms~2,~3 \\[3pt]
-Long-term & L3--L5 & Stateful individual agents & Long-term memory; experience abstraction and strategy learning & Experience utilization rate & Laws~II,~III \\[3pt]
-Long-term & L1--L6 & Distributed model-native compute fabric & Memory replication; consistency layers; load balancing & Cluster utilization & Laws~I,~III \\[3pt]
+Long-term & L3--L5 & Stateful individual agents & Long-term memory; experience abstraction and strategy learning & Experience utilization rate & Heur.~II,~III \\[3pt]
+Long-term & L1--L6 & Distributed model-native compute fabric & Memory replication; consistency layers; load balancing & Cluster utilization & Heur.~I,~III \\[3pt]
 Long-term & L5 & Governance-layer primitives & Probabilistic / deterministic dual-plane; audit logs; permission declarations & Governance coverage & Axioms~3,~5,~6 \\[3pt]
 Long-term & L1--L2 & Substrate-independent compute stack & Non-silicon interface generalization; baseline intelligence score threshold & Interface compatibility rate & Axiom~2 \\[3pt]
 Long-term & L4--L5 & Physical-world interface drivers & Sensor / actuator driver abstraction; simulation environment integration & Driver coverage rate & Axioms~2,~5 \\[3pt]
-Mid-term & Full stack & Weakest-link evaluation framework & Worst-at-$k$; multi-dimensional capability profiling; compliance test suite & Minimum dimension score & Barrel Principle \\[3pt]
+Mid-term & Full stack & Weakest-link evaluation framework & Worst-at-$k$; multi-dimensional capability profiling; compliance test suite & Minimum dimension score & Weakest-Link Principle \\[3pt]
 \bottomrule
 \end{longtable}
 \renewcommand{\arraystretch}{1.0}
@@ -44,18 +44,18 @@ Mid-term & Full stack & Weakest-link evaluation framework & Worst-at-$k$; multi-
 The short-term items focus on optimizing and standardizing existing engineering prototypes, with the goal of bringing current systems to production-grade performance and reliability.
 
 \paragraph{KV cache hit-rate optimization (L2).}
-The decoding phase of LLM inference is a classic memory-bandwidth-bound problem~\cite{gholami2024memorywall}, and the KV cache hit rate $H$ directly governs the inference speedup ratio $S$ predicted by the Semantic Locality Law (Law~I).
+The decoding phase of LLM inference is a classic memory-bandwidth-bound problem~\cite{gholami2024memorywall}, and the KV cache hit rate $H$ directly governs the inference speedup ratio $S$ described by the Semantic Locality heuristic (Heuristic~I).
 Three complementary techniques can be brought to bear.
 First, \textit{semantic eviction} strategies, exemplified by H2O's heavy-hitter identification~\cite{h2o2023}, retain the KV entries most likely to be reused based on attention weight patterns rather than recency alone.
 Second, \textit{KV quantization} compresses the KV cache with minimal quality loss: KVQuant achieves up to $8\times$ compression~\cite{hooper2024kvquant}, while KIVI introduces asymmetric 2-bit quantization~\cite{liu2024kivi}.
 Third, \textit{prefix sharing} across requests, as implemented by PagedAttention~\cite{kwon2023pagedattention} and RadixAttention~\cite{sglang2024}, enables multiple requests with common system prompts to reuse the same KV blocks, directly increasing $H$.
-The target outcome is to raise $H$ from the current 0.5--0.7 range to above 0.85 under typical agent workloads, yielding the 5--10$\times$ speedup predicted by Law~I.
+The target outcome is to raise $H$ from the current 0.5--0.7 range to above 0.85 under typical agent workloads, yielding the 5--10$\times$ speedup consistent with Heuristic~I.
 
 \paragraph{Unified context compiler (L3).}
 Different agent frameworks manage context in idiosyncratic ways: MemGPT uses virtual context management~\cite{memgpt2023}, Letta builds stateful agents with explicit memory tiers~\cite{letta_stateful_2026}, and HiAgent employs hierarchical working memory~\cite{hiagent2024}.
 What is missing is a unified \textit{context compiler}, analogous to an operating system's page replacement subsystem, that decides, for each piece of information, whether to load it verbatim, as a summary, or as a retrievable index entry.
 We propose a hot / warm / cold tiered context management strategy, where each context block carries a version stamp and a time-to-live (TTL) annotation.
-The expected result is a $\geq 50\%$ increase in the effective context utilization ratio $W_{\mathrm{eff}}/C$ without degrading task completion rates, thereby providing direct empirical validation of the Context Budget Law (Law~II).
+The expected result is a $\geq 50\%$ increase in the effective context utilization ratio $W_{\mathrm{eff}}/C$ without degrading task completion rates, thereby providing direct empirical grounding for the Context Budget heuristic (Heuristic~II).
 
 \paragraph{Tool ABI standardization (L4).}
 While MCP and A2A have made significant strides at the protocol level~\cite{mcp_intro_2026,agentprotocols2025}, tool schemas themselves still lack unified specifications for versioning, backward compatibility, and capability annotation.
@@ -65,7 +65,7 @@ The expected outcome is a measurable increase in tool invocation success rates a
 \paragraph{Software engineering agent kernel (L5).}
 SWE-bench and SWE-agent have demonstrated that current code agents still achieve limited resolution rates on real-world GitHub issues~\cite{swebench2023,sweagent2024}.
 A key bottleneck is the lack of a unified Agent-Computer Interface (ACI) standard: different frameworks adopt inconsistent sub-agent delegation strategies.
-We propose standardizing the ACI specification and designing specialized sub-agents (a code-search agent, an edit agent, and a test agent) whose orchestration efficiency $E$ can be quantified through the Agent Speedup Law (Law~III).
+We propose standardizing the ACI specification and designing specialized sub-agents (a code-search agent, an edit agent, and a test agent) whose orchestration efficiency $E$ can be characterized through the Agent Speedup heuristic (Heuristic~III).
 The target is to increase task completion rates on SWE-bench-class benchmarks while raising $E$ from the current 0.3--0.5 range to above 0.6.
 
 \subsection{Mid-Term Research Topics}
@@ -75,7 +75,7 @@ The mid-term items shift focus from per-layer optimization to cross-layer coordi
 \paragraph{Semantic page replacement (L3).}
 Classical operating systems replace pages using deterministic access patterns (LRU, CLOCK). In a model-native computing system, ``page replacement'' must be governed by \textit{semantic relevance}, deciding which context blocks to evict based on their pertinence to the current task.
 We propose a learned eviction policy that scores each context block against the active task and generates compressed summaries for evicted blocks, enabling later retrieval.
-The primary research output is an empirically measured $\beta(L)$ curve that characterizes how attention retention decays with position, providing the Context Budget Law with calibrated quantitative parameters.
+The primary research output is an empirically measured $\beta(L)$ curve that characterizes how attention retention decays with position, providing the Context Budget heuristic with calibrated quantitative parameters.
 
 \paragraph{Consistency-controlled shared memory (L5).}
 When multiple agents collaborate, shared memory consistency management lacks a unified framework.
@@ -94,7 +94,7 @@ We propose embedding sandboxing, auditing, and capability-based security directl
 The target is 100\% audit completeness: every side-effecting operation across all ICA layers must be traceable, establishing the security infrastructure required to enforce Axioms~5 and~6 in practice.
 
 \paragraph{Weakest-link evaluation framework (full stack).}
-The Barrel Principle introduced in Section~\ref{sec:agentevolution} posits that system intelligence is bounded by its weakest capability dimension, yet current evaluation practice overwhelmingly relies on aggregate or average metrics.
+The Weakest-Link Principle introduced in Section~\ref{sec:paradigm} posits that system intelligence is bounded by its weakest capability dimension, yet current evaluation practice overwhelmingly relies on aggregate or average metrics.
 We propose an evaluation suite built around worst-at-$k$ scoring and multi-dimensional capability profiling (covering reasoning, safety, tool use, multilingual understanding, and physical-world interaction) that serves as a compliance test for the intelligent ISA.
 The expected outcome is a compliance-grade evaluation standard for intelligent compute cores, transforming substrate independence from an architectural principle into an enforceable contractual property.
 
@@ -105,18 +105,18 @@ The long-term items target fundamental architectural innovations, with the goal 
 \paragraph{Intelligent ISA and programmable skill layer (L1--L6).}
 Prompts, tool descriptions, and skill packages collectively form the ``soft instructions'' of model-native computing, yet they currently lack formal semantics and stability guarantees.
 We envision developing task-specific domain-specific languages (DSLs), controlled output formats, and reusable skill packages that together constitute a stable interface layer, the model-native analog of a classical Instruction Set Architecture.
-As argued in Section~\ref{sec:agentevolution}, the stability of this interface layer is a prerequisite for substrate independence: whether the underlying hardware is a silicon GPU, a neuromorphic chip, or a biological compute substrate, any implementation satisfying the intelligent ISA contract should be capable of running the same agent framework.
+As argued in Section~\ref{sec:paradigm}, the stability of this interface layer is a prerequisite for substrate independence: whether the underlying hardware is a silicon GPU, a neuromorphic chip, or a biological compute substrate, any implementation satisfying the intelligent ISA contract should be capable of running the same agent framework.
 The expected outcome is significantly improved agent generalization, enabling the same skill package to migrate seamlessly across different models and runtimes, thereby operationalizing Axioms~2 (Layered Abstraction) and~3 (Probabilistic Execution).
 
 \paragraph{Stateful individual agents (L3--L5).}
 Most agents today are stateless: each session starts from scratch, unable to accumulate or reuse experience.
 We propose equipping agents with long-term memory and experience abstraction mechanisms, enabling them to learn strategies from historical executions, distill recurring patterns, and proactively optimize their own behavior~\cite{amem2025,agentmemorysurvey2025}.
-The expected outcome is a measurable increase in \textit{experience utilization}, defined as the fraction of current task performance attributable to distilled prior experience, which opens new validation dimensions for both the Context Budget Law (Law~II) and the Agent Speedup Law (Law~III).
+The expected outcome is a measurable increase in \textit{experience utilization}, defined as the fraction of current task performance attributable to distilled prior experience, which opens new empirical dimensions for both the Context Budget heuristic (Heuristic~II) and the Agent Speedup heuristic (Heuristic~III).
 
 \paragraph{Distributed model-native compute fabric (L1--L6).}
 When multiple agent clusters collaborate across nodes, distributed systems problems such as memory replication, state consistency, and load balancing remain largely unsolved in the model-native computing context.
 Drawing on distributed database techniques for memory replication and consistency management~\cite{spanner2012,raft2014}, we propose a unified resource scheduling and state management substrate for multi-node agent clusters.
-The target is for cluster utilization to scale linearly (or at least near-linearly) with node count, empirically validating the Semantic Locality Law (Law~I) and the Agent Speedup Law (Law~III) in distributed settings.
+The target is for cluster utilization to scale linearly (or at least near-linearly) with node count, empirically grounding the Semantic Locality heuristic (Heuristic~I) and the Agent Speedup heuristic (Heuristic~III) in distributed settings.
 
 \paragraph{Governance-layer primitives (L5).}
 Current governance mechanisms in agent systems (permissions, auditing, compliance) are retrofitted patches rather than first-class architectural primitives.
@@ -124,13 +124,13 @@ We propose elevating the dual-plane separation (probabilistic execution plane an
 The target is 100\% governance coverage: every side-effecting operation at every layer falls under governance constraints, fully realizing Axioms~3,~5, and~6 across the entire stack.
 
 \paragraph{Substrate-independent intelligent compute stack (L1--L2).}
-Section~\ref{sec:agentevolution} discussed the rapid development of non-silicon substrates, including neuromorphic processors, biological computing, and compute-in-memory architectures, yet current ICA interface contracts implicitly assume a GPU-centric execution model.
+Section~\ref{sec:paradigm} discussed the rapid development of non-silicon substrates, including neuromorphic processors, biological computing, and compute-in-memory architectures, yet current ICA interface contracts implicitly assume a GPU-centric execution model.
 We propose investigating how L1--L2 interface contracts can be generalized to accommodate diverse substrates: event-driven spiking computation, analog in-memory computation, and the asynchronous response patterns of biological neural networks.
 A baseline intelligence score threshold would serve as the core admission criterion.
 The expected outcome is a cross-substrate interface contract specification that enables future non-silicon compute cores to integrate seamlessly with existing agent frameworks.
 
 \paragraph{Physical-world interface drivers (L4--L5).}
-Section~\ref{sec:agentevolution} identified the extension from purely digital interaction to the physical world, spanning robotics, autonomous driving, agriculture, and space navigation, as the next inflection point for intelligent operating systems, yet current L4 tool protocols (MCP, A2A) were designed for the digital domain.
+Section~\ref{sec:paradigm} identified the extension from purely digital interaction to the physical world, spanning robotics, autonomous driving, agriculture, and space navigation, as the next inflection point for intelligent operating systems, yet current L4 tool protocols (MCP, A2A) were designed for the digital domain.
 We propose extending ICA's L4--L5 interfaces to support sensors, actuators, simulation environments, and telemetry data streams, following the same abstraction patterns as MCP tool servers.
 The expected outcome is a tool driver specification for the physical world such that ``adding a robotic arm driver'' follows the same workflow as ``adding an MCP tool server.''
 

@@ -38,7 +38,7 @@
 \setlength{\captionmargin}{15pt}
 \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
 \usepackage[most]{tcolorbox}
-\newtheorem{law}{Law}[section]
+\newtheorem{heuristic}{Heuristic}[section]
 \newtheorem{definition}{Definition}[section]
 \newtcolorbox{axiombox}[1]{
   colback=blue!4, colframe=blue!50!black,
@@ -74,14 +74,14 @@ We first establish a systematic mapping between computer architecture concepts a
 To fill that gap, we propose the \textbf{Intelligent Computing Architecture (ICA)}, which organizes model-native computing into six functional layers, each with clearly defined interface contracts and design axioms.
 A central tension in the literature---whether the LLM resembles a CPU or an operating system---is resolved by our \textbf{dual-plane architecture}: model-native systems simultaneously encompass a probabilistic execution plane (concerned with what \emph{can} be computed) and a deterministic control plane (concerned with what \emph{should} be computed), and prior work has simply been viewing different cross-sections of these two planes.
 
-At the quantitative level, we introduce three design laws: the \emph{Semantic Locality Law}, which characterizes the relationship between KV-cache hit rates and inference speedup; the \emph{Context Budget Law}, which captures the dual constraint of window capacity and attention decay on effective working sets; and the \emph{Agent Speedup Law}, which formalizes the diminishing returns of multi-agent collaboration.
-Each law is validated against published system-level data.
-Recent empirical evidence from the Anthropic 2026 agentic practices report further underscores a striking \emph{collaboration paradox}: although multi-agent setups yield diminishing marginal returns, the aggregate economic impact is substantial, with organizations reporting hundreds of thousands of hours saved and significant acceleration of engineering delivery.
+At the quantitative level, we propose three Amdahl-style design heuristics---the \emph{Semantic Locality} heuristic, which relates KV-cache hit rates to inference speedup; the \emph{Context Budget} heuristic, which captures the dual constraint of window capacity and attention decay on effective working sets; and the \emph{Agent Speedup} heuristic, which characterizes the diminishing returns of multi-agent collaboration.
+We are explicit that these are organizing back-of-envelope models rather than validated scaling laws: we illustrate their parameter ranges with published system-level data and identify systematic predictive validation as the principal open task.
+Recent empirical evidence from the Anthropic 2026 agentic practices report further underscores an apparent tension: although multi-agent setups yield diminishing marginal returns, the aggregate economic impact is substantial, with organizations reporting hundreds of thousands of hours saved and significant acceleration of engineering delivery.
 We close by articulating the boundaries of the analogy, identifying fundamental differences between silicon-era and model-era architectures, and proposing a research roadmap for the coming decade.
 This paper is a conceptual and survey contribution; it does not present new experimental results.
 \end{abstract}
 
-\noindent\textbf{Keywords:} LLM systems; computer architecture analogy; Intelligent Computing Architecture; quantitative design laws; KV cache; context engineering; agent runtime; dual-plane architecture
+\noindent\textbf{Keywords:} LLM systems; computer architecture analogy; Intelligent Computing Architecture; Amdahl-style design heuristics; KV cache; context engineering; agent runtime; dual-plane architecture
 
 %% ============================================================
 \input{en_sections/section_intro.tex}

@@ -109,6 +109,7 @@ vLLM's PagedAttention~\cite{kwon2023pagedattention} models KV cache management a
 ORCA~\cite{orca2022} introduces continuous batching at the iteration level, allowing new requests to join a running batch during the decode phase of existing requests.
 DistServe~\cite{zhong2024distserve} decouples the prefill phase (processing the input prompt) from the decode phase (generating tokens one at a time) onto separate GPUs, avoiding resource contention between the two.
 Sarathi-Serve~\cite{agrawal2024sarathi} further refines the throughput--latency trade-off.
+Disaggregated serving architectures push this prefill/decode decoupling to cluster scale: Splitwise~\cite{patel2024splitwise} and Mooncake~\cite{qin2024mooncake} separate the two phases across dedicated GPU pools and treat the KV cache as a global, transferable resource, realizing the ``KV cache as a hardware-managed cache'' analogy at hyperscale.
 A unifying theme across these systems is the adaptation of classical operating systems techniques (paging, batch scheduling, resource isolation) to LLM inference engines.
 
 \subsubsection{Memory Layer: Reconciling Finite Windows with Persistent State}

@@ -3,7 +3,7 @@
 
 Each generational leap in agent frameworks, from first-generation tool chains to fifth-generation autonomous agents, has exposed new systemic problems that neither the model itself nor ad hoc engineering workarounds can fully resolve.
 This section examines five cross-cutting design challenges through a uniform lens: (1)~we describe a concrete scenario that illustrates the problem; (2)~we analyze the root cause; (3)~we survey current solutions; and (4)~we draw an explicit analogy to a well-studied problem in classical computer architecture.
-Throughout, we trace each challenge back to the ICA layers (Section~\ref{sec:icam}) and the quantitative laws (Section~\ref{sec:laws}), arguing that the dual-plane architecture introduced in Section~\ref{sec:framework} is not merely an organizational convenience but a \emph{necessary} structural response to these challenges.
+Throughout, we trace each challenge back to the ICA layers (Section~\ref{sec:icam}) and the design heuristics (Section~\ref{sec:laws}), showing how the dual-plane architecture introduced in Section~\ref{sec:framework} serves as a \emph{unifying organizational lens} for these challenges.
 
 
 %% ---------- Latency, Throughput, Cost ----------
@@ -52,7 +52,7 @@ The architectural response, including multi-level caches (L1/L2/L3), hardware pr
 The familiar response-time--throughput trade-off in time-sharing operating systems is also analogous: interactive tasks demand low response time (low latency) while batch tasks demand high throughput (large batches), and the scheduler must balance both~\cite{ostep_2023}.
 
 Within ICA, this trilemma primarily spans L1 (physical execution) and L2 (inference serving).
-Law~I (Section~\ref{sec:law1}) quantifies the cache-side of this trade-off: the KV cache hit rate $H$ directly determines the achievable speedup, and any scheduling or memory management optimization can be understood as an attempt to maximize $H$ under the trilemma's constraints.
+Heuristic~I (Section~\ref{sec:law1}) characterizes the cache-side of this trade-off: the KV cache hit rate $H$ directly governs the achievable speedup, and any scheduling or memory management optimization can be understood as an attempt to maximize $H$ under the trilemma's constraints.
 
 
 %% ---------- State Management ----------
@@ -108,7 +108,7 @@ Critically, the time horizon of agent execution is expanding from minutes to hou
 Recent industrial practice shows that agents can autonomously run for over seven hours to complete complex tasks~\cite{anthropic2026agenticreport}.
 Such cross-hour and cross-day execution introduces additional temporal decay challenges: the attention decay function $\beta(L)$ is no longer solely a function of context position but also depends on session duration and cross-step state accumulation.
 This means the three-way state classification above acquires a time dimension: cross-hour execution requires session-persistent KV caches (L2), context window management must support working-set restoration across checkpoints (L3), and the governance layer must define periodic checkpointing and human-recovery protocols (L5).
-Law~II (Section~\ref{sec:law2}), as currently formulated, does not capture this temporal dimension, an important direction for future work.
+Heuristic~II (Section~\ref{sec:law2}), as currently formulated, does not capture this temporal dimension, an important direction for future work.
 
 \subsubsection{Analogy to Classical Architecture}
 These challenges map directly onto \emph{virtual memory and distributed consistency} in classical systems.

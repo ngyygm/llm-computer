@@ -8,7 +8,7 @@
             inner sep=2pt,
         },
         rowlabel/.style={
-            % 【修复点】：将过宽的宽度大幅缩小至 2.8cm，彻底解决边框太宽和重叠问题
+            % row-label width narrowed to 2.8cm to fix frame overflow and overlap
             minimum width=2.8cm, minimum height=1.0cm,
             text width=2.5cm, align=left, font=\small\bfseries,
             inner sep=4pt,
@@ -74,7 +74,7 @@
     }
     
     % Row label header
-    % 【修复点】：X坐标整体向左平移至 1.3，与右侧列（起点 2.7）完美断开
+    % x-position shifted to 1.3 to separate from the column block (starts at 3.9)
     \node[rowlabel, draw=gray!30, fill=gray!10, minimum height=0.9cm]
         at (1.3, 0.5) {Generation};
     
@@ -128,7 +128,7 @@
     \drawcell{3}{4}{3} \drawcell{4}{4}{3} \drawcell{5}{4}{3}
     
     % ── Legend (centred under table) ─────────────────────────────────────────────
-    % 【修复点】：整体微调图例的坐标，使其严格居中对齐整个表格
+    % legend coordinates nudged to centre under the table
     \node[font=\scriptsize, text=gray!60, anchor=east] at (5.7, -5.65) {Maturity:};
     \foreach \v/\lbl in {0/None, 1/Low, 2/Medium, 3/High} {
         \ifnum\v=0\def\fc{white}\def\tc{gray!40}\fi
@@ -143,6 +143,6 @@
     
     \end{tikzpicture}
     }% end resizebox
-    \caption{Capability maturity matrix across the five generations of agent framework evolution. Each cell reflects the maturity level of a key architectural dimension: \textit{None} (---) through \textit{High}. The progressive darkening from Generation~I to Generation~V illustrates the systematic increase in both the parallelisable fraction~$F$ and the orchestration efficiency~$E$ captured by Law~III.}
+    \caption{Capability maturity matrix across the five generations of agent framework evolution. Each cell reflects the maturity level of a key architectural dimension: \textit{None} (---) through \textit{High}. The progressive darkening from Generation~I to Generation~V illustrates the systematic increase in both the parallelisable fraction~$F$ and the orchestration efficiency~$E$ captured by Heuristic~III.}
     \label{fig_gen_matrix}
     \end{figure}

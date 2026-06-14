@@ -18,6 +18,7 @@
 \@writefile{toc}{\contentsline {section}{\numberline {1}引言：模型原生计算需要体系结构}{1}{section.1}\protected@file@percent }
 \newlabel{sec:intro}{{1}{1}{引言：模型原生计算需要体系结构}{section.1}{}}
 \citation{anthropic2026agenticreport}
+\citation{anthropic2026agenticreport}
 \citation{kwon2023pagedattention}
 \citation{memgpt2023}
 \citation{openai_codex_overview_2026}
@@ -26,7 +27,7 @@
 \citation{mcp_intro_2026}
 \citation{google_a2a_2025}
 \citation{agentprotocols2025}
-\citation{karpathy2023llmos}
+\citation{karpathy2023lmos}
 \citation{mei2024aios}
 \citation{memgpt2023}
 \citation{mi2025llmagentscomputersystems}
@@ -42,20 +43,21 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.1}一个直接的类比}{2}{subsection.1.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.2}从直觉到问题}{2}{subsection.1.2}\protected@file@percent }
 \citation{anthropic2026agenticreport}
+\citation{dohmke2023seachange}
+\citation{klemmer2024aiassistants}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces 计算机体系结构与模型原生计算系统之间的类比映射总览}}{3}{figure.caption.2}\protected@file@percent }
 \newlabel{fig_analogy_map}{{1}{3}{计算机体系结构与模型原生计算系统之间的类比映射总览}{figure.caption.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.3}本文的贡献}{3}{subsection.1.3}\protected@file@percent }
 \citation{hennessy2017quantitative}
 \citation{intel_sdm_2026}
 \citation{riscv_spec_2026}
-\citation{drepper2007memory}
 \@writefile{toc}{\contentsline {section}{\numberline {2}背景：经典计算栈与模型原生系统栈}{4}{section.2}\protected@file@percent }
 \newlabel{sec:background}{{2}{4}{背景：经典计算栈与模型原生系统栈}{section.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}经典计算机体系结构的分层逻辑}{4}{subsection.2.1}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces The classical computing stack as a six-layer abstraction hierarchy, with corresponding ICA layer mappings on the left and the governing design principle on the right. Each layer depends only on the interface of the layer below, enabling independent evolution. The ICA architecture (Section~\ref {sec:icam}) transplants this layered discipline into the model-native computing domain.}}{4}{figure.caption.3}\protected@file@percent }
 \newlabel{fig:classical_stack}{{2}{4}{The classical computing stack as a six-layer abstraction hierarchy, with corresponding ICA layer mappings on the left and the governing design principle on the right. Each layer depends only on the interface of the layer below, enabling independent evolution. The ICA architecture (Section~\ref {sec:icam}) transplants this layered discipline into the model-native computing domain}{figure.caption.3}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.1}指令集架构（ISA）：软硬件之间的契约}{4}{subsubsection.2.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.2}微架构：同一契约下的不同实现}{4}{subsubsection.2.1.2}\protected@file@percent }
+\citation{drepper2007memory}
 \citation{ostep_2023}
 \citation{linux_cfs_2026}
 \citation{ostep_2023}
@@ -64,13 +66,12 @@
 \citation{raft2014}
 \citation{spanner2012}
 \citation{cap2002}
-\citation{malekar2024amdahlllm}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.2}微架构：同一契约下的不同实现}{5}{subsubsection.2.1.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.3}缓存层次：利用局部性加速数据访问}{5}{subsubsection.2.1.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.4}虚拟内存：有限的物理资源，无限的地址幻觉}{5}{subsubsection.2.1.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.5}操作系统：调度、保护与资源管理}{5}{subsubsection.2.1.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.6}分布式系统：从单节点到多节点的扩展}{5}{subsubsection.2.1.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.7}可计算的设计原则}{5}{subsubsection.2.1.7}\protected@file@percent }
-\newlabel{eq:amdahl}{{1}{5}{可计算的设计原则}{equation.2.1}{}}
+\citation{malekar2024amdahlllm}
 \citation{hennessy2017quantitative}
 \citation{yuan2024llminference}
 \citation{drepper2007memory}
@@ -87,6 +88,13 @@
 \citation{orca2022}
 \citation{zhong2024distserve}
 \citation{agrawal2024sarathi}
+\citation{patel2024splitwise}
+\citation{qin2024mooncake}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.7}可计算的设计原则}{6}{subsubsection.2.1.7}\protected@file@percent }
+\newlabel{eq:amdahl}{{1}{6}{可计算的设计原则}{equation.2.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}大模型系统的分层雏形}{6}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}模型层：推理核心的演进}{6}{subsubsection.2.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}推理层：系统化的服务优化}{6}{subsubsection.2.2.2}\protected@file@percent }
 \citation{gemini2024}
 \citation{yarn2024}
 \citation{lewis2020rag}
@@ -98,17 +106,12 @@
 \citation{memos2025}
 \citation{memoryos2025}
 \citation{contextengineer_survey2025}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}大模型系统的分层雏形}{6}{subsection.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}模型层：推理核心的演进}{6}{subsubsection.2.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}推理层：系统化的服务优化}{6}{subsubsection.2.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.3}记忆层：有限窗口与持久状态的协同}{6}{subsubsection.2.2.3}\protected@file@percent }
 \citation{yao2023react}
 \citation{schick2023toolformer}
 \citation{sweagent2024}
 \citation{openhands_paper_2025}
 \citation{openai_codex_overview_2026}
 \citation{anthropic_claudecode_overview_2026}
-\citation{openai_codex_subagents_2026}
 \citation{anthropic_claudecode_subagents_2026}
 \citation{openai_codex_sandbox_2026}
 \citation{anthropic_claudecode_sandbox_2026}
@@ -116,35 +119,37 @@
 \citation{anthropic_claudecode_security_2026}
 \citation{wu2023autogen}
 \citation{metagpt2023}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.3}记忆层：有限窗口与持久状态的协同}{7}{subsubsection.2.2.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.4}Agent层：从单轮推理到复杂运行时}{7}{subsubsection.2.2.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3}缺少统一的系统语言}{7}{subsection.2.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Layer comparison between the classical computing stack and the model-native computing stack. L1--L3 form the probabilistic execution plane; L4--L5 form the deterministic control plane.}}{7}{figure.caption.4}\protected@file@percent }
-\newlabel{fig_dual_stack}{{3}{7}{Layer comparison between the classical computing stack and the model-native computing stack. L1--L3 form the probabilistic execution plane; L4--L5 form the deterministic control plane}{figure.caption.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}相关工作}{7}{section.3}\protected@file@percent }
+\newlabel{sec:related}{{3}{7}{相关工作}{section.3}{}}
+\citation{mi2025llmagentscomputersystems}
 \citation{ge2023llmos}
-\citation{karpathy2023llmos}
 \citation{mei2024aios}
 \citation{agentos2025}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Layer comparison between the classical computing stack and the model-native computing stack. L1--L3 form the probabilistic execution plane; L4--L5 form the deterministic control plane.}}{8}{figure.caption.4}\protected@file@percent }
+\newlabel{fig_dual_stack}{{3}{8}{Layer comparison between the classical computing stack and the model-native computing stack. L1--L3 form the probabilistic execution plane; L4--L5 form the deterministic control plane}{figure.caption.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}文献检索方法}{8}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:related-method}{{3.1}{8}{文献检索方法}{subsection.3.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}LLM-as-OS / Agent Kernel：将大语言模型视为操作系统内核}{8}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:related-llmos}{{3.2}{8}{LLM-as-OS / Agent Kernel：将大语言模型视为操作系统内核}{subsection.3.2}{}}
 \citation{ufo2_2025}
 \citation{aura2025}
 \citation{gemini2024}
 \citation{memgpt2023}
 \citation{lewis2020rag}
-\@writefile{toc}{\contentsline {section}{\numberline {3}相关工作}{8}{section.3}\protected@file@percent }
-\newlabel{sec:related}{{3}{8}{相关工作}{section.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}LLM-as-OS / Agent Kernel：将大语言模型视为操作系统内核}{8}{subsection.3.1}\protected@file@percent }
-\newlabel{sec:related-llmos}{{3.1}{8}{LLM-as-OS / Agent Kernel：将大语言模型视为操作系统内核}{subsection.3.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}记忆层级与虚拟上下文管理}{8}{subsection.3.2}\protected@file@percent }
-\newlabel{sec:related-memory}{{3.2}{8}{记忆层级与虚拟上下文管理}{subsection.3.2}{}}
 \citation{memos2025}
 \citation{memoryos2025}
 \citation{hiagent2024}
 \citation{amem2025}
 \citation{longmemeval2024}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}记忆层级与虚拟上下文管理}{9}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:related-memory}{{3.3}{9}{记忆层级与虚拟上下文管理}{subsection.3.3}{}}
 \citation{yao2023react}
 \citation{schick2023toolformer}
 \citation{openai_codex_overview_2026}
 \citation{openai_codex_sandbox_2026}
-\citation{openai_codex_subagents_2026}
 \citation{openai_codex_agents_md_2026}
 \citation{openai_codex_skills_2026}
 \citation{anthropic_claudecode_overview_2026}
@@ -152,9 +157,8 @@
 \citation{anthropic_claudecode_subagents_2026}
 \citation{anthropic_claudecode_skills_2026}
 \citation{anthropic_claudecode_memory_2026}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Agent框架与运行时}{9}{subsection.3.3}\protected@file@percent }
-\newlabel{sec:related-agent-framework}{{3.3}{9}{Agent框架与运行时}{subsection.3.3}{}}
 \citation{anthropic2026agenticreport}
+\citation{openhands_paper_2025}
 \citation{openhands_paper_2025}
 \citation{swebench2023}
 \citation{sweagent2024}
@@ -162,40 +166,47 @@
 \citation{patil2024gorilla}
 \citation{mcp_intro_2026}
 \citation{anthropic_claudecode_mcp_2026}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Agent框架与运行时}{10}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:related-agent-framework}{{3.4}{10}{Agent框架与运行时}{subsection.3.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}工具调用与I/O协议}{10}{subsection.3.5}\protected@file@percent }
+\newlabel{sec:related-io}{{3.5}{10}{工具调用与I/O协议}{subsection.3.5}{}}
 \citation{google_a2a_2025}
 \citation{wu2023autogen}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}工具调用与I/O协议}{10}{subsection.3.4}\protected@file@percent }
-\newlabel{sec:related-io}{{3.4}{10}{工具调用与I/O协议}{subsection.3.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}多Agent协作与分布式视角}{10}{subsection.3.5}\protected@file@percent }
-\newlabel{sec:related-multiagent}{{3.5}{10}{多Agent协作与分布式视角}{subsection.3.5}{}}
 \citation{metagpt2023}
 \citation{anthropic2026agenticreport}
 \citation{wu2023autogen}
 \citation{metagpt2023}
 \citation{ioa2024}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}多Agent协作与分布式视角}{11}{subsection.3.6}\protected@file@percent }
+\newlabel{sec:related-multiagent}{{3.6}{11}{多Agent协作与分布式视角}{subsection.3.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}认知架构与安全治理}{11}{subsection.3.7}\protected@file@percent }
+\newlabel{sec:related-cognition-security}{{3.7}{11}{认知架构与安全治理}{subsection.3.7}{}}
 \citation{sumers2024coala}
 \citation{holt2024l2mac}
 \citation{mi2025llmagentscomputersystems}
 \citation{arbiteros2025}
 \citation{debenedetti2025camel}
 \citation{ironclaw2025}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}认知架构与安全治理}{11}{subsection.3.6}\protected@file@percent }
-\newlabel{sec:related-cognition-security}{{3.6}{11}{认知架构与安全治理}{subsection.3.6}{}}
 \citation{ge2023llmos}
 \citation{mei2024aios}
 \citation{arbiteros2025}
 \citation{agentos2025}
+\citation{hennessy2017quantitative}
 \citation{holt2024l2mac}
 \citation{mi2025llmagentscomputersystems}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}现有工作的共同边界与未解决问题}{12}{subsection.3.7}\protected@file@percent }
-\newlabel{sec:related-gap}{{3.7}{12}{现有工作的共同边界与未解决问题}{subsection.3.7}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Coverage of ICA layers by existing works. The bottom row identifies the specific gap in each layer that no single work has addressed. The rightmost bars show per-system coverage (proportion of layers addressed). L6 Security (marked $\downarrow $) is the least-covered layer overall.}}{12}{figure.caption.5}\protected@file@percent }
-\newlabel{fig:coverage_map}{{4}{12}{Coverage of ICA layers by existing works. The bottom row identifies the specific gap in each layer that no single work has addressed. The rightmost bars show per-system coverage (proportion of layers addressed). L6 Security (marked $\downarrow $) is the least-covered layer overall}{figure.caption.5}{}}
-\newlabel{fig_coverage_map}{{4}{12}{Coverage of ICA layers by existing works. The bottom row identifies the specific gap in each layer that no single work has addressed. The rightmost bars show per-system coverage (proportion of layers addressed). L6 Security (marked $\downarrow $) is the least-covered layer overall}{figure.caption.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8}现有工作的共同边界与未解决问题}{12}{subsection.3.8}\protected@file@percent }
+\newlabel{sec:related-gap}{{3.8}{12}{现有工作的共同边界与未解决问题}{subsection.3.8}{}}
 \citation{arbiteros2025}
 \citation{debenedetti2025camel}
 \citation{ironclaw2025}
+\citation{mi2025llmagentscomputersystems}
+\citation{arbiteros2025}
 \citation{anthropic2026agenticreport}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Coverage of ICA layers by existing works. Scoring is the authors' qualitative assessment and is intended to be illustrative rather than exhaustive: \emph  {Focused} denotes a central, primary contribution of the work; \emph  {Touched} denotes a layer addressed but not central; \emph  {Not addressed} denotes a layer outside the work's scope. The bottom row identifies the specific gap in each layer that no single work has addressed. The rightmost bars show per-system coverage, computed as $(2\times \text  {Focused} + \text  {Touched})/12$ out of a maximum of~12 (Focused counts as a full unit, Touched as half). L6 Security (marked $\downarrow $) is the least-covered layer overall.}}{13}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:coverage_map}{{4}{13}{Coverage of ICA layers by existing works. Scoring is the authors' qualitative assessment and is intended to be illustrative rather than exhaustive: \emph {Focused} denotes a central, primary contribution of the work; \emph {Touched} denotes a layer addressed but not central; \emph {Not addressed} denotes a layer outside the work's scope. The bottom row identifies the specific gap in each layer that no single work has addressed. The rightmost bars show per-system coverage, computed as $(2\times \text {Focused} + \text {Touched})/12$ out of a maximum of~12 (Focused counts as a full unit, Touched as half). L6 Security (marked $\downarrow $) is the least-covered layer overall}{figure.caption.5}{}}
+\newlabel{fig_coverage_map}{{4}{13}{Coverage of ICA layers by existing works. Scoring is the authors' qualitative assessment and is intended to be illustrative rather than exhaustive: \emph {Focused} denotes a central, primary contribution of the work; \emph {Touched} denotes a layer addressed but not central; \emph {Not addressed} denotes a layer outside the work's scope. The bottom row identifies the specific gap in each layer that no single work has addressed. The rightmost bars show per-system coverage, computed as $(2\times \text {Focused} + \text {Touched})/12$ out of a maximum of~12 (Focused counts as a full unit, Touched as half). L6 Security (marked $\downarrow $) is the least-covered layer overall}{figure.caption.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces 区分ICA与既有工作的体系结构产物。每一行列出一项产物、最接近的既有方法以及ICA的贡献；没有任何单一既有工作能同时具备全部五项。}}{13}{table.caption.6}\protected@file@percent }
+\newlabel{tab:artifact-comparison}{{2}{13}{区分ICA与既有工作的体系结构产物。每一行列出一项产物、最接近的既有方法以及ICA的贡献；没有任何单一既有工作能同时具备全部五项。}{table.caption.6}{}}
 \citation{drepper2007memory}
 \citation{kwon2023pagedattention}
 \citation{kwon2023pagedattention}
@@ -212,52 +223,54 @@
 \citation{openai_codex_sandbox_2026}
 \citation{mcp_intro_2026}
 \citation{lewis2020rag}
-\citation{openai_codex_subagents_2026}
 \gdef \LT@i {\LT@entry 
     {1}{66.35393pt}\LT@entry 
     {1}{66.35393pt}\LT@entry 
     {1}{116.18068pt}\LT@entry 
     {1}{116.18068pt}\LT@entry 
     {1}{102.5922pt}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}类比框架：把智能系统看作一台分层计算机}{13}{section.4}\protected@file@percent }
-\newlabel{sec:framework}{{4}{13}{类比框架：把智能系统看作一台分层计算机}{section.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}类比的基本原则}{13}{subsection.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{原则一：类比必须对应真实的工程机制。}{13}{section*.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{原则二：类比必须承认边界。}{13}{section*.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{原则三：类比的目标是生成研究问题。}{13}{section*.8}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces 计算机体系结构与大模型模型原生系统栈的类比映射。}}{13}{table.2}\protected@file@percent }
-\newlabel{tab:mapping}{{2}{13}{计算机体系结构与大模型模型原生系统栈的类比映射。}{table.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}类比框架：把智能系统看作一台分层计算机}{14}{section.4}\protected@file@percent }
+\newlabel{sec:framework}{{4}{14}{类比框架：把智能系统看作一台分层计算机}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}类比的基本原则}{14}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{原则一：类比必须对应真实的工程机制。}{14}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{原则二：类比必须承认边界。}{14}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{原则三：类比的目标是生成研究问题。}{14}{section*.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces 计算机体系结构与大模型模型原生系统栈的类比映射。}}{14}{table.3}\protected@file@percent }
+\newlabel{tab:mapping}{{3}{14}{计算机体系结构与大模型模型原生系统栈的类比映射。}{table.3}{}}
 \citation{ge2023llmos}
 \citation{mei2024aios}
 \citation{agentos2025}
 \citation{arbiteros2025}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}隐喻冲突与双平面架构}{14}{subsection.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}概率执行平面（Probabilistic Execution Plane）}{14}{subsubsection.4.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}隐喻冲突与双平面架构}{15}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}概率执行平面（Probabilistic Execution Plane）}{15}{subsubsection.4.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{具体例子。}{15}{section*.10}\protected@file@percent }
 \citation{anthropic_claudecode_security_2026}
 \citation{openai_codex_approvals_2026}
 \citation{anthropic_claudecode_security_2026}
 \citation{debenedetti2025camel}
 \citation{praetorian2025deterministic}
+\citation{arbiteros2025}
 \citation{towardsai2025deterministicshell}
 \citation{blueprintfirst2025}
 \citation{anthropic2026agenticreport}
 \citation{ostep_2023}
-\@writefile{toc}{\contentsline {paragraph}{具体例子。}{15}{section*.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.2}确定性控制平面（Deterministic Control Plane）}{15}{subsubsection.4.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{具体例子。}{15}{section*.10}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.3}为什么需要分开？}{15}{subsubsection.4.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.2}确定性控制平面（Deterministic Control Plane）}{16}{subsubsection.4.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{具体例子。}{16}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.3}为什么需要分开？}{16}{subsubsection.4.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{隐喻冲突因此消解。}{16}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{一个派生结论。}{16}{section*.13}\protected@file@percent }
 \citation{riscv_spec_2026}
 \citation{vaswani2017attention}
 \citation{brown2020gpt3}
 \citation{llama2023}
-\@writefile{toc}{\contentsline {paragraph}{隐喻冲突因此消解。}{16}{section*.11}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Dual-plane architecture: probabilistic execution plane (blue, L1--L3) and deterministic control plane (orange, L4--L5)}}{16}{figure.caption.12}\protected@file@percent }
-\newlabel{fig_dual_plane}{{5}{16}{Dual-plane architecture: probabilistic execution plane (blue, L1--L3) and deterministic control plane (orange, L4--L5)}{figure.caption.12}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}关键组件详析}{16}{section.5}\protected@file@percent }
-\newlabel{sec:components}{{5}{16}{关键组件详析}{section.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}基础模型：概率式模型计算核}{16}{subsection.5.1}\protected@file@percent }
-\newlabel{sec:model}{{5.1}{16}{基础模型：概率式模型计算核}{subsection.5.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.1}经典计算机中的CPU}{16}{subsubsection.5.1.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Dual-plane architecture. The probabilistic execution plane (orange) is weighted toward L1--L3 and the deterministic control plane (blue) toward L4--L5; the dashed line marks the primary-weighting crossover around L3--L4 (with L4 as a transition layer), a graded interface rather than a hard partition (Section~\ref {sec:dual-plane-icam}).}}{17}{figure.caption.14}\protected@file@percent }
+\newlabel{fig_dual_plane}{{5}{17}{Dual-plane architecture. The probabilistic execution plane (orange) is weighted toward L1--L3 and the deterministic control plane (blue) toward L4--L5; the dashed line marks the primary-weighting crossover around L3--L4 (with L4 as a transition layer), a graded interface rather than a hard partition (Section~\ref {sec:dual-plane-icam})}{figure.caption.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}关键组件详析}{17}{section.5}\protected@file@percent }
+\newlabel{sec:components}{{5}{17}{关键组件详析}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}基础模型：概率式模型计算核}{17}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:model}{{5.1}{17}{基础模型：概率式模型计算核}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.1}经典计算机中的CPU}{17}{subsubsection.5.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.2}大模型系统中的对应物}{17}{subsubsection.5.1.2}\protected@file@percent }
 \citation{openai_codex_agents_md_2026}
 \citation{openai_codex_skills_2026}
 \citation{anthropic_claudecode_memory_2026}
@@ -269,12 +282,11 @@
 \citation{drepper2007memory}
 \citation{drepper2007memory}
 \citation{kwon2023pagedattention}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.2}大模型系统中的对应物}{17}{subsubsection.5.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.3}为什么相似}{17}{subsubsection.5.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.4}本质差异}{17}{subsubsection.5.1.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}KV缓存：智能系统的缓存层次}{17}{subsection.5.2}\protected@file@percent }
-\newlabel{sec:kv}{{5.2}{17}{KV缓存：智能系统的缓存层次}{subsection.5.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}经典计算机中的缓存层次}{17}{subsubsection.5.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.3}为什么相似}{18}{subsubsection.5.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.4}本质差异}{18}{subsubsection.5.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}KV缓存：智能系统的缓存层次}{18}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:kv}{{5.2}{18}{KV缓存：智能系统的缓存层次}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}经典计算机中的缓存层次}{18}{subsubsection.5.2.1}\protected@file@percent }
 \citation{vllm_prefix_2026}
 \citation{sglang_docs_2026}
 \citation{gim2024promptcache}
@@ -288,9 +300,9 @@
 \citation{liu2024kivi}
 \citation{lpc2025}
 \citation{multilevelcache2025}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.2}大模型系统中的对应物}{18}{subsubsection.5.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.3}为什么相似}{18}{subsubsection.5.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.4}本质差异}{18}{subsubsection.5.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.2}大模型系统中的对应物}{19}{subsubsection.5.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.3}为什么相似}{19}{subsubsection.5.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.4}本质差异}{19}{subsubsection.5.2.4}\protected@file@percent }
 \citation{ostep_2023}
 \citation{gemini2024}
 \citation{liu2024ringattention}
@@ -307,34 +319,34 @@
 \citation{memos2025}
 \citation{hiagent2024}
 \citation{amem2025}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Structural correspondence between the classical CPU cache hierarchy and the emerging LLM KV cache hierarchy. Both exploit locality and reuse at multiple granularities, with capacity increasing and latency worsening at each lower tier.}}{19}{figure.caption.13}\protected@file@percent }
-\newlabel{fig_kv_hierarchy}{{6}{19}{Structural correspondence between the classical CPU cache hierarchy and the emerging LLM KV cache hierarchy. Both exploit locality and reuse at multiple granularities, with capacity increasing and latency worsening at each lower tier}{figure.caption.13}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}上下文管理：语义版虚拟内存}{19}{subsection.5.3}\protected@file@percent }
-\newlabel{sec:memory}{{5.3}{19}{上下文管理：语义版虚拟内存}{subsection.5.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1}经典计算机中的虚拟内存}{19}{subsubsection.5.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.2}大模型系统中的对应物}{19}{subsubsection.5.3.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Structural correspondence between the classical CPU cache hierarchy and the emerging LLM KV cache hierarchy. Both exploit locality and reuse at multiple granularities, with capacity increasing and latency worsening at each lower tier.}}{20}{figure.caption.15}\protected@file@percent }
+\newlabel{fig_kv_hierarchy}{{6}{20}{Structural correspondence between the classical CPU cache hierarchy and the emerging LLM KV cache hierarchy. Both exploit locality and reuse at multiple granularities, with capacity increasing and latency worsening at each lower tier}{figure.caption.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}上下文管理：语义版虚拟内存}{20}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:memory}{{5.3}{20}{上下文管理：语义版虚拟内存}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1}经典计算机中的虚拟内存}{20}{subsubsection.5.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.2}大模型系统中的对应物}{20}{subsubsection.5.3.2}\protected@file@percent }
 \citation{contextcompiler2025}
 \citation{jetbrains2025context}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces The hot/warm/cold tiered context management hierarchy (left) and its classical virtual-memory analogy (right). Both exploit temporal locality and demand-loading to give consumers the illusion of abundant capacity. The critical distinction is that context management is lossy: summaries and semantic retrieval introduce irreversible information loss absent in classical paging.}}{20}{figure.caption.14}\protected@file@percent }
-\newlabel{fig:context_tiers}{{7}{20}{The hot/warm/cold tiered context management hierarchy (left) and its classical virtual-memory analogy (right). Both exploit temporal locality and demand-loading to give consumers the illusion of abundant capacity. The critical distinction is that context management is lossy: summaries and semantic retrieval introduce irreversible information loss absent in classical paging}{figure.caption.14}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.3}为什么相似}{20}{subsubsection.5.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.4}本质差异}{20}{subsubsection.5.3.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces The hot/warm/cold tiered context management hierarchy (left) and its classical virtual-memory analogy (right). Both exploit temporal locality and demand-loading to give consumers the illusion of abundant capacity. The critical distinction is that context management is lossy: summaries and semantic retrieval introduce irreversible information loss absent in classical paging.}}{21}{figure.caption.16}\protected@file@percent }
+\newlabel{fig:context_tiers}{{7}{21}{The hot/warm/cold tiered context management hierarchy (left) and its classical virtual-memory analogy (right). Both exploit temporal locality and demand-loading to give consumers the illusion of abundant capacity. The critical distinction is that context management is lossy: summaries and semantic retrieval introduce irreversible information loss absent in classical paging}{figure.caption.16}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.3}为什么相似}{21}{subsubsection.5.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.4}本质差异}{21}{subsubsection.5.3.4}\protected@file@percent }
 \citation{ostep_2023}
 \citation{ge2023llmos}
 \citation{mei2024aios}
 \citation{mi2025llmagentscomputersystems}
-\citation{karpathy2023llmos}
+\citation{karpathy2023lmos}
 \citation{anthropic2026agenticreport}
 \citation{openai_codex_overview_2026}
 \citation{anthropic_claudecode_overview_2026}
 \citation{ostep_2023}
 \citation{openai_codex_sandbox_2026}
 \citation{anthropic_claudecode_sandbox_2026}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Agent运行时：智能操作系统}{21}{subsection.5.4}\protected@file@percent }
-\newlabel{sec:agent}{{5.4}{21}{Agent运行时：智能操作系统}{subsection.5.4}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.1}经典计算机中的操作系统}{21}{subsubsection.5.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.2}大模型系统中的对应物}{21}{subsubsection.5.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.3}为什么相似}{21}{subsubsection.5.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Agent运行时：智能操作系统}{22}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:agent}{{5.4}{22}{Agent运行时：智能操作系统}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.1}经典计算机中的操作系统}{22}{subsubsection.5.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.2}大模型系统中的对应物}{22}{subsubsection.5.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.3}为什么相似}{22}{subsubsection.5.4.3}\protected@file@percent }
 \citation{mcp_intro_2026}
 \citation{wu2023autogen}
 \citation{mcp_intro_2026}
@@ -349,44 +361,43 @@
 \citation{patil2024gorilla}
 \citation{mcp_intro_2026}
 \citation{google_a2a_2025}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.4}本质差异}{22}{subsubsection.5.4.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}工具总线与Agent互联}{22}{subsection.5.5}\protected@file@percent }
-\newlabel{sec:io}{{5.5}{22}{工具总线与Agent互联}{subsection.5.5}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.1}经典计算机中的I/O系统}{22}{subsubsection.5.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.2}大模型系统中的对应物}{22}{subsubsection.5.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.4}本质差异}{23}{subsubsection.5.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}工具总线与Agent互联}{23}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:io}{{5.5}{23}{工具总线与Agent互联}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.1}经典计算机中的I/O系统}{23}{subsubsection.5.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.2}大模型系统中的对应物}{23}{subsubsection.5.5.2}\protected@file@percent }
 \citation{agentprotocols2025}
 \citation{hennessy2017quantitative}
 \citation{wu2023autogen}
 \citation{metagpt2023}
 \citation{ioa2024}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.3}为什么相似}{23}{subsubsection.5.5.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.4}本质差异}{23}{subsubsection.5.5.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}多Agent协作：语义版分布式系统}{23}{subsection.5.6}\protected@file@percent }
-\newlabel{sec:distributed}{{5.6}{23}{多Agent协作：语义版分布式系统}{subsection.5.6}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.1}经典计算机中的分布式系统}{23}{subsubsection.5.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.2}大模型系统中的对应物}{23}{subsubsection.5.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.3}为什么相似}{24}{subsubsection.5.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.4}本质差异}{24}{subsubsection.5.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}多Agent协作：语义版分布式系统}{24}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:distributed}{{5.6}{24}{多Agent协作：语义版分布式系统}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.1}经典计算机中的分布式系统}{24}{subsubsection.5.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.2}大模型系统中的对应物}{24}{subsubsection.5.6.2}\protected@file@percent }
 \citation{wu2023autogen}
 \citation{anthropic2026agenticreport}
 \citation{raft2014}
 \citation{cap2002}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.3}为什么相似}{24}{subsubsection.5.6.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.4}本质差异}{24}{subsubsection.5.6.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6}智能计算体系结构：ICA}{24}{section.6}\protected@file@percent }
-\newlabel{sec:icam}{{6}{24}{智能计算体系结构：ICA}{section.6}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces ICA layered architecture for model-native computing. \textbf  {Top to bottom:} L6 Application, L5 Orchestration, L4 Semantic Interface (Deterministic Control Plane, orange), dashed L3--L4 interface boundary, L3 Context Management, L2 Inference Serving (Model Core + Session KV + Prefix/Shared KV), L1 Physical Execution (Probabilistic Execution Plane, blue), and Distributed Substrate. Thick orange bypass arrows show the Deterministic Control Plane reaching through the interface boundary to directly manage KV caches (L2) and hardware execution (L1).}}{25}{figure.caption.15}\protected@file@percent }
-\newlabel{fig:arch}{{8}{25}{ICA layered architecture for model-native computing. \textbf {Top to bottom:} L6 Application, L5 Orchestration, L4 Semantic Interface (Deterministic Control Plane, orange), dashed L3--L4 interface boundary, L3 Context Management, L2 Inference Serving (Model Core + Session KV + Prefix/Shared KV), L1 Physical Execution (Probabilistic Execution Plane, blue), and Distributed Substrate. Thick orange bypass arrows show the Deterministic Control Plane reaching through the interface boundary to directly manage KV caches (L2) and hardware execution (L1)}{figure.caption.15}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.3}为什么相似}{25}{subsubsection.5.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.4}本质差异}{25}{subsubsection.5.6.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}智能计算体系结构：ICA}{25}{section.6}\protected@file@percent }
+\newlabel{sec:icam}{{6}{25}{智能计算体系结构：ICA}{section.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces ICA layered architecture for model-native computing. \textbf  {Top to bottom:} L6 Application, L5 Orchestration, L4 Semantic Interface (Deterministic Control Plane, orange), dashed L3--L4 interface boundary, L3 Context Management, L2 Inference Serving (Model Core + Session KV + Prefix/Shared KV), L1 Physical Execution (Probabilistic Execution Plane, blue), and Distributed Substrate. Thick orange bypass arrows show the Deterministic Control Plane reaching through the interface boundary to directly manage KV caches (L2) and hardware execution (L1).}}{26}{figure.caption.17}\protected@file@percent }
+\newlabel{fig:arch}{{8}{26}{ICA layered architecture for model-native computing. \textbf {Top to bottom:} L6 Application, L5 Orchestration, L4 Semantic Interface (Deterministic Control Plane, orange), dashed L3--L4 interface boundary, L3 Context Management, L2 Inference Serving (Model Core + Session KV + Prefix/Shared KV), L1 Physical Execution (Probabilistic Execution Plane, blue), and Distributed Substrate. Thick orange bypass arrows show the Deterministic Control Plane reaching through the interface boundary to directly manage KV caches (L2) and hardware execution (L1)}{figure.caption.17}{}}
 \citation{kwon2023pagedattention}
 \citation{sglang2024}
 \citation{memgpt2023}
 \citation{memoryos2025}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Request flow through the model-native computing architecture as a dual-plane swim-lane diagram. Blue nodes belong to the probabilistic execution plane; orange nodes belong to the deterministic control plane. The split-coloured diamond represents the control-plane decision that gates both paths. Grey boxes span both planes.}}{26}{figure.caption.16}\protected@file@percent }
-\newlabel{fig:flow}{{9}{26}{Request flow through the model-native computing architecture as a dual-plane swim-lane diagram. Blue nodes belong to the probabilistic execution plane; orange nodes belong to the deterministic control plane. The split-coloured diamond represents the control-plane decision that gates both paths. Grey boxes span both planes}{figure.caption.16}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}ICA六层定义}{26}{subsection.6.1}\protected@file@percent }
-\newlabel{sec:icam-layers}{{6.1}{26}{ICA六层定义}{subsection.6.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Request flow through the model-native computing architecture as a dual-plane swim-lane diagram. Blue nodes belong to the probabilistic execution plane; orange nodes belong to the deterministic control plane. The split-coloured diamond represents the control-plane decision that gates both paths. Grey boxes span both planes.}}{27}{figure.caption.18}\protected@file@percent }
+\newlabel{fig:flow}{{9}{27}{Request flow through the model-native computing architecture as a dual-plane swim-lane diagram. Blue nodes belong to the probabilistic execution plane; orange nodes belong to the deterministic control plane. The split-coloured diamond represents the control-plane decision that gates both paths. Grey boxes span both planes}{figure.caption.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}ICA六层定义}{27}{subsection.6.1}\protected@file@percent }
+\newlabel{sec:icam-layers}{{6.1}{27}{ICA六层定义}{subsection.6.1}{}}
 \citation{mcp_intro_2026}
 \citation{agentprotocols2025}
 \citation{openai_codex_overview_2026}
-\citation{openai_codex_subagents_2026}
 \citation{anthropic_claudecode_overview_2026}
 \citation{anthropic_claudecode_skills_2026}
 \citation{sweagent2024}
@@ -403,38 +414,38 @@
 \citation{anthropic_claudecode_overview_2026}
 \citation{sweagent2024}
 \citation{openhands_paper_2025}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces ICA各层与经典计算机体系结构的对应关系}}{27}{table.caption.17}\protected@file@percent }
-\newlabel{tab:icam}{{3}{27}{ICA各层与经典计算机体系结构的对应关系}{table.caption.17}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}层间接口契约}{27}{subsection.6.2}\protected@file@percent }
-\newlabel{sec:icam-interfaces}{{6.2}{27}{层间接口契约}{subsection.6.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces ICA inter-layer interface contracts. Each grey band specifies the operations, invariant, and key metric for the corresponding layer boundary. Labels above each band identify the interface name. The left brackets mark the dual-plane division: the model-native plane (L1--L2) hosts probabilistic execution, while the classical control plane (L3--L6) hosts deterministic orchestration.}}{28}{figure.caption.18}\protected@file@percent }
-\newlabel{fig:interface_contracts}{{10}{28}{ICA inter-layer interface contracts. Each grey band specifies the operations, invariant, and key metric for the corresponding layer boundary. Labels above each band identify the interface name. The left brackets mark the dual-plane division: the model-native plane (L1--L2) hosts probabilistic execution, while the classical control plane (L3--L6) hosts deterministic orchestration}{figure.caption.18}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.1}L1--L2接口：张量运算契约}{28}{subsubsection.6.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.2}L2--L3接口：KV块管理契约}{28}{subsubsection.6.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.3}L3--L4接口：上下文装载契约}{28}{subsubsection.6.2.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces ICA各层与经典计算机体系结构的对应关系}}{28}{table.caption.19}\protected@file@percent }
+\newlabel{tab:icam}{{4}{28}{ICA各层与经典计算机体系结构的对应关系}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}层间接口契约}{28}{subsection.6.2}\protected@file@percent }
+\newlabel{sec:icam-interfaces}{{6.2}{28}{层间接口契约}{subsection.6.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces ICA inter-layer interface contracts. Each grey band specifies the operations, invariant, and key metric for the corresponding layer boundary. Labels above each band identify the interface name. The left brackets mark the dual-plane division: the model-native plane (L1--L2) hosts probabilistic execution, while the classical control plane (L3--L6) hosts deterministic orchestration.}}{29}{figure.caption.20}\protected@file@percent }
+\newlabel{fig:interface_contracts}{{10}{29}{ICA inter-layer interface contracts. Each grey band specifies the operations, invariant, and key metric for the corresponding layer boundary. Labels above each band identify the interface name. The left brackets mark the dual-plane division: the model-native plane (L1--L2) hosts probabilistic execution, while the classical control plane (L3--L6) hosts deterministic orchestration}{figure.caption.20}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.1}L1--L2接口：张量运算契约}{29}{subsubsection.6.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.2}L2--L3接口：KV块管理契约}{29}{subsubsection.6.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.3}L3--L4接口：上下文装载契约}{29}{subsubsection.6.2.3}\protected@file@percent }
 \citation{debenedetti2025camel}
 \citation{anthropic2026agenticreport}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.4}L4--L5接口：能力调用契约}{29}{subsubsection.6.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.5}L5--L6接口：任务提交契约}{29}{subsubsection.6.2.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}双平面与ICA的交叉映射}{29}{subsection.6.3}\protected@file@percent }
-\newlabel{sec:dual-plane-icam}{{6.3}{29}{双平面与ICA的交叉映射}{subsection.6.3}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces 双平面与ICA的交叉映射}}{29}{table.caption.20}\protected@file@percent }
-\newlabel{tab:dual-plane-icam}{{4}{29}{双平面与ICA的交叉映射}{table.caption.20}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.4}L4--L5接口：能力调用契约}{30}{subsubsection.6.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.5}L5--L6接口：任务提交契约}{30}{subsubsection.6.2.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}双平面与ICA的交叉映射}{30}{subsection.6.3}\protected@file@percent }
+\newlabel{sec:dual-plane-icam}{{6.3}{30}{双平面与ICA的交叉映射}{subsection.6.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces 双平面与ICA的交叉映射}}{30}{table.caption.22}\protected@file@percent }
+\newlabel{tab:dual-plane-icam}{{5}{30}{双平面与ICA的交叉映射}{table.caption.22}{}}
 \citation{kwon2023pagedattention}
 \citation{zhou2024efficientinference}
 \citation{openai_codex_overview_2026}
 \citation{anthropic_claudecode_overview_2026}
 \citation{memgpt2023}
 \citation{memoryos2025}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Cross-mapping of ICA layers against the dual-plane architecture}}{31}{figure.caption.21}\protected@file@percent }
+\newlabel{fig:icam_crossmap}{{11}{31}{Cross-mapping of ICA layers against the dual-plane architecture}{figure.caption.21}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}设计公理体系}{31}{subsection.6.4}\protected@file@percent }
+\newlabel{sec:icam-axioms}{{6.4}{31}{设计公理体系}{subsection.6.4}{}}
 \citation{drepper2007memory}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Cross-mapping of ICA layers against the dual-plane architecture}}{30}{figure.caption.19}\protected@file@percent }
-\newlabel{fig:icam_crossmap}{{11}{30}{Cross-mapping of ICA layers against the dual-plane architecture}{figure.caption.19}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}设计公理体系}{30}{subsection.6.4}\protected@file@percent }
-\newlabel{sec:icam-axioms}{{6.4}{30}{设计公理体系}{subsection.6.4}{}}
 \citation{hennessy2017quantitative}
 \citation{ostep_2023}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Applicability heatmap of the six ICA design axioms across the six architecture layers. \textcolor {axHigh!80!black}{\textbf  {Primary}} indicates the axiom directly governs design decisions at that layer; \textcolor {axMed!80!black}{\textbf  {secondary}} indicates significant but indirect applicability; \textcolor {axLow!80!black}{\textbf  {tertiary}} indicates contextual relevance. A1~(Locality) is most critical at the inference and KV-cache layers; A5~(Least Privilege) and A6~(Observability) dominate the interface and orchestration layers.}}{31}{figure.caption.21}\protected@file@percent }
-\newlabel{fig:axioms_overview}{{12}{31}{Applicability heatmap of the six ICA design axioms across the six architecture layers. \textcolor {axHigh!80!black}{\textbf {Primary}} indicates the axiom directly governs design decisions at that layer; \textcolor {axMed!80!black}{\textbf {secondary}} indicates significant but indirect applicability; \textcolor {axLow!80!black}{\textbf {tertiary}} indicates contextual relevance. A1~(Locality) is most critical at the inference and KV-cache layers; A5~(Least Privilege) and A6~(Observability) dominate the interface and orchestration layers}{figure.caption.21}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Applicability heatmap of the six ICA design axioms across the six architecture layers. \textcolor {axHigh!80!black}{\textbf  {Primary}} indicates the axiom directly governs design decisions at that layer; \textcolor {axMed!80!black}{\textbf  {secondary}} indicates significant but indirect applicability; \textcolor {axLow!80!black}{\textbf  {tertiary}} indicates contextual relevance. A1~(Locality) is most critical at the inference and KV-cache layers; A5~(Least Privilege) and A6~(Observability) dominate the interface and orchestration layers.}}{32}{figure.caption.23}\protected@file@percent }
+\newlabel{fig:axioms_overview}{{12}{32}{Applicability heatmap of the six ICA design axioms across the six architecture layers. \textcolor {axHigh!80!black}{\textbf {Primary}} indicates the axiom directly governs design decisions at that layer; \textcolor {axMed!80!black}{\textbf {secondary}} indicates significant but indirect applicability; \textcolor {axLow!80!black}{\textbf {tertiary}} indicates contextual relevance. A1~(Locality) is most critical at the inference and KV-cache layers; A5~(Least Privilege) and A6~(Observability) dominate the interface and orchestration layers}{figure.caption.23}{}}
 \citation{ostep_2023}
 \citation{memgpt2023}
 \citation{kwon2023pagedattention}
@@ -447,60 +458,59 @@
 \citation{agenticsecurity2025}
 \citation{hennessy2017quantitative}
 \citation{hennessy2017quantitative}
-\@writefile{toc}{\contentsline {section}{\numberline {7}量化定律}{33}{section.7}\protected@file@percent }
-\newlabel{sec:laws}{{7}{33}{量化定律}{section.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}定律I：语义局部性定律}{33}{subsection.7.1}\protected@file@percent }
-\newlabel{sec:law1}{{7.1}{33}{定律I：语义局部性定律}{subsection.7.1}{}}
-\newlabel{eq:locality}{{2}{33}{语义局部性定律}{equation.7.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.1}参数的直观含义}{33}{subsubsection.7.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.2}完整推导}{33}{subsubsection.7.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}模型原生系统的设计启发式}{34}{section.7}\protected@file@percent }
+\newlabel{sec:laws}{{7}{34}{模型原生系统的设计启发式}{section.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}启发式I：语义局部性}{34}{subsection.7.1}\protected@file@percent }
+\newlabel{sec:law1}{{7.1}{34}{启发式I：语义局部性}{subsection.7.1}{}}
+\newlabel{eq:locality}{{2}{34}{语义局部性}{equation.7.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.1}参数的直观含义}{34}{subsubsection.7.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.2}完整推导}{34}{subsubsection.7.1.2}\protected@file@percent }
 \citation{gim2024promptcache}
 \citation{kwon2023pagedattention}
 \citation{hooper2024kvquant}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.3}极限行为与直觉}{35}{subsubsection.7.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.4}数值示例}{35}{subsubsection.7.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.5}与Amdahl定律的对应}{35}{subsubsection.7.1.5}\protected@file@percent }
 \citation{kwon2023pagedattention}
 \citation{gim2024promptcache}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.3}极限行为与直觉}{34}{subsubsection.7.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.4}数值示例}{34}{subsubsection.7.1.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.5}与Amdahl定律的对应}{34}{subsubsection.7.1.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.6}实证验证}{34}{subsubsection.7.1.6}\protected@file@percent }
 \citation{liu2023lostmiddle}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.6}示例说明，而非验证}{36}{subsubsection.7.1.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}启发式II：上下文预算}{36}{subsection.7.2}\protected@file@percent }
+\newlabel{sec:law2}{{7.2}{36}{启发式II：上下文预算}{subsection.7.2}{}}
+\newlabel{eq:context}{{8}{36}{上下文预算}{equation.7.8}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2.1}参数的直观含义}{36}{subsubsection.7.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2.2}为什么$\beta (L)$会衰减——"中间丢失"现象}{36}{subsubsection.7.2.2}\protected@file@percent }
 \citation{ruler2024}
 \citation{longbenchv2_2024}
 \citation{loft2024}
 \citation{liu2023lostmiddle}
 \citation{liu2023lostmiddle}
+\citation{liu2023lostmiddle}
 \citation{ruler2024}
 \citation{denning1968thrashing}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}定律II：上下文预算定律}{35}{subsection.7.2}\protected@file@percent }
-\newlabel{sec:law2}{{7.2}{35}{定律II：上下文预算定律}{subsection.7.2}{}}
-\newlabel{eq:context}{{8}{35}{上下文预算定律}{equation.7.8}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2.1}参数的直观含义}{35}{subsubsection.7.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2.2}为什么$\beta (L)$会衰减——"中间丢失"现象}{35}{subsubsection.7.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2.3}为什么使用指数衰减模型}{35}{subsubsection.7.2.3}\protected@file@percent }
 \citation{denning1968thrashing}
 \citation{denning2020workingset}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Two perspectives on the attention retention rate $\beta (L)$. \textbf  {Left:} Empirically observed U-shaped curve (Liu et al.~\cite  {liu2023lostmiddle}): information at the beginning and end of the context is recalled well, while the middle region suffers a sharp drop in retention. \textbf  {Right:} Exponential decay model $\beta (L)\approx \beta _0 e^{-\lambda L/C}$ adopted in Heuristic~II for analytical tractability; the shaded area represents the effective working set $W_{\mathrm  {eff}}=C\cdot \bar  {\beta }$.}}{37}{figure.caption.24}\protected@file@percent }
+\newlabel{fig_beta_decay}{{13}{37}{Two perspectives on the attention retention rate $\beta (L)$. \textbf {Left:} Empirically observed U-shaped curve (Liu et al.~\cite {liu2023lostmiddle}): information at the beginning and end of the context is recalled well, while the middle region suffers a sharp drop in retention. \textbf {Right:} Exponential decay model $\beta (L)\approx \beta _0 e^{-\lambda L/C}$ adopted in Heuristic~II for analytical tractability; the shaded area represents the effective working set $W_{\mathrm {eff}}=C\cdot \bar {\beta }$}{figure.caption.24}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2.3}$\beta (L)$的函数形式：U形，而非单调衰减}{37}{subsubsection.7.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2.4}与经典"工作集理论"的对应}{37}{subsubsection.7.2.4}\protected@file@percent }
 \citation{memgpt2023}
 \citation{memoryos2025}
 \citation{ruler2024}
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Two perspectives on the attention retention rate $\beta (L)$. \textbf  {Left:} Empirically observed U-shaped curve (Liu et al.~\cite  {liu2023lostmiddle}): information at the beginning and end of the context is recalled well, while the middle region suffers a sharp drop in retention. \textbf  {Right:} Exponential decay model $\beta (L)\approx \beta _0 e^{-\lambda L/C}$ adopted in Law~II for analytical tractability; the shaded area represents the effective working set $W_{\mathrm  {eff}}=C\cdot \bar  {\beta }$.}}{36}{figure.caption.22}\protected@file@percent }
-\newlabel{fig_beta_decay}{{13}{36}{Two perspectives on the attention retention rate $\beta (L)$. \textbf {Left:} Empirically observed U-shaped curve (Liu et al.~\cite {liu2023lostmiddle}): information at the beginning and end of the context is recalled well, while the middle region suffers a sharp drop in retention. \textbf {Right:} Exponential decay model $\beta (L)\approx \beta _0 e^{-\lambda L/C}$ adopted in Law~II for analytical tractability; the shaded area represents the effective working set $W_{\mathrm {eff}}=C\cdot \bar {\beta }$}{figure.caption.22}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2.4}与经典"工作集理论"的对应}{36}{subsubsection.7.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2.5}设计含义}{36}{subsubsection.7.2.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2.6}实证验证}{36}{subsubsection.7.2.6}\protected@file@percent }
 \citation{longbenchv2_2024}
-\citation{openai_codex_subagents_2026}
 \citation{anthropic_claudecode_subagents_2026}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}定律III：Agent加速比定律}{37}{subsection.7.3}\protected@file@percent }
-\newlabel{sec:law3}{{7.3}{37}{定律III：Agent加速比定律}{subsection.7.3}{}}
-\newlabel{eq:agent}{{10}{37}{Agent加速比定律}{equation.7.10}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.1}参数的直观含义}{37}{subsubsection.7.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.2}完整推导}{37}{subsubsection.7.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.3}极限行为与直觉}{37}{subsubsection.7.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2.5}设计含义}{38}{subsubsection.7.2.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2.6}示例说明}{38}{subsubsection.7.2.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}启发式III：Agent加速比}{38}{subsection.7.3}\protected@file@percent }
+\newlabel{sec:law3}{{7.3}{38}{启发式III：Agent加速比}{subsection.7.3}{}}
+\newlabel{eq:agent}{{9}{38}{Agent加速比}{equation.7.9}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.1}参数的直观含义}{38}{subsubsection.7.3.1}\protected@file@percent }
 \citation{anthropic2026agenticreport}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.2}完整推导}{39}{subsubsection.7.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.3}极限行为与直觉}{39}{subsubsection.7.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.4}数值示例}{39}{subsubsection.7.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{一个定性的工业信号：Fountain系统。}{39}{section*.25}\protected@file@percent }
 \citation{agentprotocols2025}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.4}数值示例}{38}{subsubsection.7.3.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.5}与经典Amdahl定律的对比}{38}{subsubsection.7.3.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.6}设计含义}{38}{subsubsection.7.3.6}\protected@file@percent }
 \citation{wu2023autogen}
 \citation{gta2_2025}
 \citation{langmodelteams2026}
@@ -510,37 +520,41 @@
 \citation{longbenchv2_2024}
 \citation{wu2023autogen}
 \citation{gta2_2025}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.7}实证验证}{39}{subsubsection.7.3.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}三条定律的统一视角}{39}{subsection.7.4}\protected@file@percent }
-\newlabel{sec:laws-summary}{{7.4}{39}{三条定律的统一视角}{subsection.7.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Characteristic curves of three quantitative laws. (a) Semantic Locality Law: $S=1/((1-H)+H/\alpha )$. (b) Context Budget Law: $W_{\mathrm  {eff}}=C\cdot e^{-\lambda C_0/C}$. (c) Agent Speedup Law: $S=1/((1-F)+F/(NE))$ with $F=0.8$. Shaded areas indicate typical operating ranges.}}{39}{figure.caption.23}\protected@file@percent }
-\newlabel{fig_law_curves}{{14}{39}{Characteristic curves of three quantitative laws. (a) Semantic Locality Law: $S=1/((1-H)+H/\alpha )$. (b) Context Budget Law: $W_{\mathrm {eff}}=C\cdot e^{-\lambda C_0/C}$. (c) Agent Speedup Law: $S=1/((1-F)+F/(NE))$ with $F=0.8$. Shaded areas indicate typical operating ranges}{figure.caption.23}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces 三条量化定律的实证数据汇总}}{39}{table.caption.24}\protected@file@percent }
-\newlabel{tab:empirical}{{5}{39}{三条量化定律的实证数据汇总}{table.caption.24}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.5}与经典Amdahl定律的对比}{40}{subsubsection.7.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.6}设计含义}{40}{subsubsection.7.3.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.7}示例说明}{40}{subsubsection.7.3.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}统一视角}{41}{subsection.7.4}\protected@file@percent }
+\newlabel{sec:laws-summary}{{7.4}{41}{统一视角}{subsection.7.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces 三条设计启发式的示意参数区间与支持数据}}{41}{table.caption.26}\protected@file@percent }
+\newlabel{tab:empirical}{{6}{41}{三条设计启发式的示意参数区间与支持数据}{table.caption.26}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Characteristic curves of three design heuristics. (a) Semantic Locality: $S=1/((1-H)+H/\alpha )$. (b) Context Budget: $W_{\mathrm  {eff}}=C\cdot \bar  {\beta }$ (representative exponential-decay envelope shown). (c) Agent Speedup: $S=1/((1-F)+F/(NE))$ with $F=0.8$. Shaded areas indicate typical operating ranges.}}{41}{figure.caption.27}\protected@file@percent }
+\newlabel{fig_law_curves}{{14}{41}{Characteristic curves of three design heuristics. (a) Semantic Locality: $S=1/((1-H)+H/\alpha )$. (b) Context Budget: $W_{\mathrm {eff}}=C\cdot \bar {\beta }$ (representative exponential-decay envelope shown). (c) Agent Speedup: $S=1/((1-F)+F/(NE))$ with $F=0.8$. Shaded areas indicate typical operating ranges}{figure.caption.27}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Agent框架演进：从ReAct到智能操作系统}{41}{section.8}\protected@file@percent }
+\newlabel{sec:agentevolution}{{8}{41}{Agent框架演进：从ReAct到智能操作系统}{section.8}{}}
 \citation{yao2023react}
 \citation{schick2023toolformer}
-\@writefile{toc}{\contentsline {section}{\numberline {8}Agent框架演进：从ReAct到智能操作系统}{40}{section.8}\protected@file@percent }
-\newlabel{sec:agentevolution}{{8}{40}{Agent框架演进：从ReAct到智能操作系统}{section.8}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Agent framework evolution from single-turn reasoning to model-native operating systems. \textbf  {Top:} representative frameworks with analogous OS milestones. \textbf  {Bottom:} quantitative trajectory of parallelizable fraction ($F$), orchestration efficiency ($E$), and agent speedup ($S_{\mathrm  {agent}}$) per Law~III; green band marks the target regime ($F{>}0.8,\tmspace  +\thickmuskip {.2777em}E{>}0.8$).}}{40}{figure.caption.25}\protected@file@percent }
-\newlabel{fig_agent_timeline}{{15}{40}{Agent framework evolution from single-turn reasoning to model-native operating systems. \textbf {Top:} representative frameworks with analogous OS milestones. \textbf {Bottom:} quantitative trajectory of parallelizable fraction ($F$), orchestration efficiency ($E$), and agent speedup ($S_{\mathrm {agent}}$) per Law~III; green band marks the target regime ($F{>}0.8,\;E{>}0.8$)}{figure.caption.25}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}第一代：执行范式确立（2022--2023）}{40}{subsection.8.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{核心特征。}{40}{section*.26}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{代表工作。}{40}{section*.27}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{与OS演进的对应。}{40}{section*.28}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Agent framework evolution from single-turn reasoning to model-native operating systems. \textbf  {Top:} representative frameworks with analogous OS milestones. \textbf  {Bottom:} quantitative trajectory of parallelizable fraction ($F$), orchestration efficiency ($E$), and agent speedup ($S_{\mathrm  {agent}}$) per Heuristic~III; green band marks the target regime ($F{>}0.8,\tmspace  +\thickmuskip {.2777em}E{>}0.8$).}}{42}{figure.caption.28}\protected@file@percent }
+\newlabel{fig_agent_timeline}{{15}{42}{Agent framework evolution from single-turn reasoning to model-native operating systems. \textbf {Top:} representative frameworks with analogous OS milestones. \textbf {Bottom:} quantitative trajectory of parallelizable fraction ($F$), orchestration efficiency ($E$), and agent speedup ($S_{\mathrm {agent}}$) per Heuristic~III; green band marks the target regime ($F{>}0.8,\;E{>}0.8$)}{figure.caption.28}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}第一代：执行范式确立（2022--2023）}{42}{subsection.8.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{核心特征。}{42}{section*.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{代表工作。}{42}{section*.30}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{与OS演进的对应。}{42}{section*.31}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}第二代：持续多步代理（2023）}{42}{subsection.8.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{核心特征。}{42}{section*.32}\protected@file@percent }
 \citation{autogpt_repo_2026}
 \citation{wang2023voyager}
 \citation{mei2024aios}
 \citation{openai_codex_agentsdk_2026}
 \citation{wu2023autogen}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}第二代：持续多步代理（2023）}{41}{subsection.8.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{核心特征。}{41}{section*.29}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{代表工作。}{41}{section*.30}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{与OS演进的对应。}{41}{section*.31}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.3}第三代：通用运行时（2023--2024）}{41}{subsection.8.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{核心特征。}{41}{section*.32}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{代表工作。}{41}{section*.33}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{代表工作。}{43}{section*.33}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{与OS演进的对应。}{43}{section*.34}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3}第三代：通用运行时（2023--2024）}{43}{subsection.8.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{核心特征。}{43}{section*.35}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{代表工作。}{43}{section*.36}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{与OS演进的对应。}{43}{section*.37}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.4}第四代：工程化操作系统（2024--2025）}{43}{subsection.8.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{核心特征。}{43}{section*.38}\protected@file@percent }
 \citation{openai_codex_overview_2026}
-\citation{openai_codex_subagents_2026}
 \citation{openai_codex_skills_2026}
 \citation{openai_codex_agents_md_2026}
 \citation{anthropic_claudecode_overview_2026}
@@ -553,42 +567,41 @@
 \citation{linux_cfs_2026}
 \citation{ostep_2023}
 \citation{arbiteros2025}
-\@writefile{toc}{\contentsline {paragraph}{与OS演进的对应。}{42}{section*.34}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.4}第四代：工程化操作系统（2024--2025）}{42}{subsection.8.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{核心特征。}{42}{section*.35}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{代表工作。}{42}{section*.36}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{与OS演进的对应。}{42}{section*.37}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.5}第五代：治理化操作系统（2025--至今）}{42}{subsection.8.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{核心特征。}{42}{section*.38}\protected@file@percent }
 \citation{agentos2025}
 \citation{ufo2_2025}
+\@writefile{toc}{\contentsline {paragraph}{代表工作。}{44}{section*.39}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{与OS演进的对应。}{44}{section*.40}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.5}第五代：治理化操作系统（2025--至今）}{44}{subsection.8.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{核心特征。}{44}{section*.41}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{代表工作。}{44}{section*.42}\protected@file@percent }
 \citation{aura2025}
 \citation{debenedetti2025camel}
 \citation{ironclaw2025}
 \citation{owasp_agentic2026}
 \citation{ostep_2023}
-\@writefile{toc}{\contentsline {paragraph}{代表工作。}{43}{section*.39}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{与OS演进的对应。}{43}{section*.40}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.6}从定律III看五代演进}{43}{subsection.8.6}\protected@file@percent }
-\newlabel{eq:agent_law_review}{{14}{43}{从定律III看五代演进}{equation.8.14}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Capability maturity matrix across the five generations of agent framework evolution. Each cell reflects the maturity level of a key architectural dimension: \textit  {None} (---) through \textit  {High}. The progressive darkening from Generation~I to Generation~V illustrates the systematic increase in both the parallelisable fraction~$F$ and the orchestration efficiency~$E$ captured by Law~III.}}{44}{figure.caption.41}\protected@file@percent }
-\newlabel{fig_gen_matrix}{{16}{44}{Capability maturity matrix across the five generations of agent framework evolution. Each cell reflects the maturity level of a key architectural dimension: \textit {None} (---) through \textit {High}. The progressive darkening from Generation~I to Generation~V illustrates the systematic increase in both the parallelisable fraction~$F$ and the orchestration efficiency~$E$ captured by Law~III}{figure.caption.41}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Quantitative trajectory of agent framework parameters across five generations, estimated from Law~III ($S_{\mathrm  {agent}} = 1/((1-F)+F/(N{\cdot }E))$ with representative $N$ values per generation). (a)~Parallelizable fraction $F$ grows from near zero (Gen~I serial loop) to ${\approx }0.72$ (Gen~V governed OS). (b)~Orchestration efficiency $E$ initially near~1 (trivial single-agent overhead) but dips in Gen~IV due to sandbox isolation and approval overhead, then recovers in Gen~V with governance-first design. (c)~Resulting speedup $S_{\mathrm  {agent}}$ rises from $1.0\times $ to ${\approx }2.1\times $, still well below the target $3.3\times $ that requires $F>0.8$ and $E>0.8$ simultaneously. Dashed red lines mark the target thresholds.}}{44}{figure.caption.42}\protected@file@percent }
-\newlabel{fig:gen_trajectory}{{17}{44}{Quantitative trajectory of agent framework parameters across five generations, estimated from Law~III ($S_{\mathrm {agent}} = 1/((1-F)+F/(N{\cdot }E))$ with representative $N$ values per generation). (a)~Parallelizable fraction $F$ grows from near zero (Gen~I serial loop) to ${\approx }0.72$ (Gen~V governed OS). (b)~Orchestration efficiency $E$ initially near~1 (trivial single-agent overhead) but dips in Gen~IV due to sandbox isolation and approval overhead, then recovers in Gen~V with governance-first design. (c)~Resulting speedup $S_{\mathrm {agent}}$ rises from $1.0\times $ to ${\approx }2.1\times $, still well below the target $3.3\times $ that requires $F>0.8$ and $E>0.8$ simultaneously. Dashed red lines mark the target thresholds}{figure.caption.42}{}}
+\@writefile{toc}{\contentsline {paragraph}{与OS演进的对应。}{45}{section*.43}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Capability maturity matrix across the five generations of agent framework evolution. Each cell reflects the maturity level of a key architectural dimension: \textit  {None} (---) through \textit  {High}. The progressive darkening from Generation~I to Generation~V illustrates the systematic increase in both the parallelisable fraction~$F$ and the orchestration efficiency~$E$ captured by Heuristic~III.}}{45}{figure.caption.44}\protected@file@percent }
+\newlabel{fig_gen_matrix}{{16}{45}{Capability maturity matrix across the five generations of agent framework evolution. Each cell reflects the maturity level of a key architectural dimension: \textit {None} (---) through \textit {High}. The progressive darkening from Generation~I to Generation~V illustrates the systematic increase in both the parallelisable fraction~$F$ and the orchestration efficiency~$E$ captured by Heuristic~III}{figure.caption.44}{}}
 \citation{anthropic2026agenticreport}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.6}从启发式III看五代演进}{46}{subsection.8.6}\protected@file@percent }
+\newlabel{eq:agent_law_review}{{15}{46}{从启发式III看五代演进}{equation.8.15}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Illustrative quantitative trajectory of agent framework parameters across five generations, estimated from Heuristic~III ($S_{\mathrm  {agent}} = 1/((1-F)+F/(N{\cdot }E))$ with representative $N$ values per generation). (a)~Parallelizable fraction $F$ grows from near zero (Gen~I serial loop) to ${\approx }0.72$ (Gen~V governed OS). (b)~Orchestration efficiency $E$ initially near~1 (trivial single-agent overhead) but dips in Gen~IV due to sandbox isolation and approval overhead, then recovers in Gen~V with governance-first design. (c)~Resulting speedup $S_{\mathrm  {agent}}$ rises from $1.0\times $ to ${\approx }2.1\times $, still well below the target $3.3\times $ that requires $F>0.8$ and $E>0.8$ simultaneously. Dashed red lines mark the target thresholds.}}{46}{figure.caption.45}\protected@file@percent }
+\newlabel{fig:gen_trajectory}{{17}{46}{Illustrative quantitative trajectory of agent framework parameters across five generations, estimated from Heuristic~III ($S_{\mathrm {agent}} = 1/((1-F)+F/(N{\cdot }E))$ with representative $N$ values per generation). (a)~Parallelizable fraction $F$ grows from near zero (Gen~I serial loop) to ${\approx }0.72$ (Gen~V governed OS). (b)~Orchestration efficiency $E$ initially near~1 (trivial single-agent overhead) but dips in Gen~IV due to sandbox isolation and approval overhead, then recovers in Gen~V with governance-first design. (c)~Resulting speedup $S_{\mathrm {agent}}$ rises from $1.0\times $ to ${\approx }2.1\times $, still well below the target $3.3\times $ that requires $F>0.8$ and $E>0.8$ simultaneously. Dashed red lines mark the target thresholds}{figure.caption.45}{}}
 \citation{gaia2023}
 \citation{taubench2024}
 \citation{swebench2023}
 \citation{gholami2024memorywall}
 \citation{gholami2024memorywall}
-\@writefile{toc}{\contentsline {section}{\numberline {9}设计挑战：性能、状态、一致性与安全}{45}{section.9}\protected@file@percent }
-\newlabel{sec:challenges}{{9}{45}{设计挑战：性能、状态、一致性与安全}{section.9}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.1}延迟、吞吐与成本的三元约束}{45}{subsection.9.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.1.1}场景}{45}{subsubsection.9.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.1.2}根因}{45}{subsubsection.9.1.2}\protected@file@percent }
 \citation{orca2022}
 \citation{zhong2024distserve}
 \citation{agrawal2024sarathi}
+\@writefile{toc}{\contentsline {section}{\numberline {9}设计挑战：性能、状态、一致性与安全}{47}{section.9}\protected@file@percent }
+\newlabel{sec:challenges}{{9}{47}{设计挑战：性能、状态、一致性与安全}{section.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.1}延迟、吞吐与成本的三元约束}{47}{subsection.9.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.1.1}场景}{47}{subsubsection.9.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.1.2}根因}{47}{subsubsection.9.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.1.3}当前方案}{47}{subsubsection.9.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{调度层优化。}{47}{section*.46}\protected@file@percent }
 \citation{kwon2023pagedattention}
 \citation{vllm_docs_2026}
 \citation{sglang2024}
@@ -598,12 +611,12 @@
 \citation{prabhu2024vattention}
 \citation{hennessy2017quantitative}
 \citation{ostep_2023}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.1.3}当前方案}{46}{subsubsection.9.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{调度层优化。}{46}{section*.43}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{内存管理优化。}{46}{section*.44}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces The latency--throughput--cost trilemma in LLM serving. Any two objectives can be jointly optimised, but improving all three simultaneously is structurally infeasible given the compute-bound prefill / bandwidth-bound decode asymmetry. Representative system designs are plotted as points inside the triangle.}}{46}{figure.caption.45}\protected@file@percent }
-\newlabel{fig_trilemma}{{18}{46}{The latency--throughput--cost trilemma in LLM serving. Any two objectives can be jointly optimised, but improving all three simultaneously is structurally infeasible given the compute-bound prefill / bandwidth-bound decode asymmetry. Representative system designs are plotted as points inside the triangle}{figure.caption.45}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.1.4}经典类比}{46}{subsubsection.9.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{内存管理优化。}{48}{section*.47}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces The latency--throughput--cost trilemma in LLM serving. Any two objectives can be jointly optimised, but improving all three simultaneously is structurally infeasible given the compute-bound prefill / bandwidth-bound decode asymmetry. Representative system designs are plotted as points inside the triangle.}}{48}{figure.caption.48}\protected@file@percent }
+\newlabel{fig_trilemma}{{18}{48}{The latency--throughput--cost trilemma in LLM serving. Any two objectives can be jointly optimised, but improving all three simultaneously is structurally infeasible given the compute-bound prefill / bandwidth-bound decode asymmetry. Representative system designs are plotted as points inside the triangle}{figure.caption.48}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.1.4}经典类比}{48}{subsubsection.9.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.2}状态管理与跨会话一致性}{48}{subsection.9.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.2.1}场景}{48}{subsubsection.9.2.1}\protected@file@percent }
 \citation{longmemeval2024}
 \citation{memgpt2023}
 \citation{memoryos2025}
@@ -614,19 +627,20 @@
 \citation{cap2002}
 \citation{raft2014}
 \citation{spanner2012}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.2}状态管理与跨会话一致性}{47}{subsection.9.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.2.1}场景}{47}{subsubsection.9.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.2.2}根因}{47}{subsubsection.9.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.2.3}当前方案}{47}{subsubsection.9.2.3}\protected@file@percent }
 \citation{anthropic2026agenticreport}
 \citation{spanner2012}
 \citation{raft2014}
 \citation{cap2002}
-\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Three-tier agent state lifecycle. \textbf  {Ephemeral state} (left) lives only within a single inference step and requires no persistence, analogous to CPU registers. \textbf  {Session state} (centre) spans an agent task chain and requires causal consistency guarantees, analogous to distributed message passing. \textbf  {Committed state} (right) constitutes permanent, auditable side effects and requires full rollback support, analogous to a database transaction commit. Arrows indicate promotion on task boundaries and rollback paths on failure.}}{48}{figure.caption.46}\protected@file@percent }
-\newlabel{fig:state_lifecycle}{{19}{48}{Three-tier agent state lifecycle. \textbf {Ephemeral state} (left) lives only within a single inference step and requires no persistence, analogous to CPU registers. \textbf {Session state} (centre) spans an agent task chain and requires causal consistency guarantees, analogous to distributed message passing. \textbf {Committed state} (right) constitutes permanent, auditable side effects and requires full rollback support, analogous to a database transaction commit. Arrows indicate promotion on task boundaries and rollback paths on failure}{figure.caption.46}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.2.4}长时运行Agent的时序衰减}{48}{subsubsection.9.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.2.5}经典类比}{48}{subsubsection.9.2.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.2.2}根因}{49}{subsubsection.9.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.2.3}当前方案}{49}{subsubsection.9.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.2.4}长时运行Agent的时序衰减}{49}{subsubsection.9.2.4}\protected@file@percent }
 \citation{ostep_2023}
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Three-tier agent state lifecycle. \textbf  {Ephemeral state} (left) lives only within a single inference step and requires no persistence, analogous to CPU registers. \textbf  {Session state} (centre) spans an agent task chain and requires causal consistency guarantees, analogous to distributed message passing. \textbf  {Committed state} (right) constitutes permanent, auditable side effects and requires full rollback support, analogous to a database transaction commit. Arrows indicate promotion on task boundaries and rollback paths on failure.}}{50}{figure.caption.49}\protected@file@percent }
+\newlabel{fig:state_lifecycle}{{19}{50}{Three-tier agent state lifecycle. \textbf {Ephemeral state} (left) lives only within a single inference step and requires no persistence, analogous to CPU registers. \textbf {Session state} (centre) spans an agent task chain and requires causal consistency guarantees, analogous to distributed message passing. \textbf {Committed state} (right) constitutes permanent, auditable side effects and requires full rollback support, analogous to a database transaction commit. Arrows indicate promotion on task boundaries and rollback paths on failure}{figure.caption.49}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.2.5}经典类比}{50}{subsubsection.9.2.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3}接口漂移与版本兼容}{50}{subsection.9.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.3.1}场景}{50}{subsubsection.9.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.3.2}根因}{50}{subsubsection.9.3.2}\protected@file@percent }
 \citation{mcp_intro_2026}
 \citation{agentprotocols2025}
 \citation{google_a2a_2025}
@@ -636,13 +650,13 @@
 \citation{mcp_intro_2026}
 \citation{google_a2a_2025}
 \citation{google_a2a_2025}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.3}接口漂移与版本兼容}{49}{subsection.9.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.3.1}场景}{49}{subsubsection.9.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.3.2}根因}{49}{subsubsection.9.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.3.3}当前方案}{49}{subsubsection.9.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.3.4}经典类比}{49}{subsubsection.9.3.4}\protected@file@percent }
 \citation{debenedetti2025camel}
 \citation{owasp_agentic2026}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.3.3}当前方案}{51}{subsubsection.9.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.3.4}经典类比}{51}{subsubsection.9.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.4}安全、隐私与最小权限}{51}{subsection.9.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.4.1}场景}{51}{subsubsection.9.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.4.2}根因}{51}{subsubsection.9.4.2}\protected@file@percent }
 \citation{aura2025}
 \citation{openai_codex_sandbox_2026}
 \citation{anthropic_claudecode_security_2026}
@@ -653,25 +667,23 @@
 \citation{ironclaw2025}
 \citation{agenticsecurity2025}
 \citation{ostep_2023}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.4}安全、隐私与最小权限}{50}{subsection.9.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.4.1}场景}{50}{subsubsection.9.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.4.2}根因}{50}{subsubsection.9.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.4.3}当前方案}{50}{subsubsection.9.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{沙箱隔离。}{50}{section*.47}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{能力安全模型。}{50}{section*.48}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{审批与审计。}{50}{section*.49}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{安全形式化。}{50}{section*.50}\protected@file@percent }
 \citation{anthropic2026agenticreport}
 \citation{anthropic2026agenticreport}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.4.3}当前方案}{52}{subsubsection.9.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{沙箱隔离。}{52}{section*.50}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{能力安全模型。}{52}{section*.51}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{审批与审计。}{52}{section*.52}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{安全形式化。}{52}{section*.53}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.4.4}经典类比}{52}{subsubsection.9.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.4.5}双重用途的安全关切}{52}{subsubsection.9.4.5}\protected@file@percent }
 \citation{arbiteros2025}
 \citation{aura2025}
 \citation{ostep_2023}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.4.4}经典类比}{51}{subsubsection.9.4.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.4.5}双重用途的安全关切}{51}{subsubsection.9.4.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.5}治理：体系结构的第一性重点}{51}{subsection.9.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.5.1}核心问题}{51}{subsubsection.9.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.5.2}治理不是补丁}{51}{subsubsection.9.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.5.3}ICA逐层治理}{51}{subsubsection.9.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.5}治理：体系结构的第一性重点}{53}{subsection.9.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.5.1}核心问题}{53}{subsubsection.9.5.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Challenge-to-ICA-layer impact heatmap. Each cell indicates the severity of a given challenge at the corresponding ICA layer: \textcolor {red!50}{\textbf  {primary}} (direct, critical impact), \textcolor {orange!40}{\textbf  {secondary}} (significant but indirect), \textcolor {yellow!50!black}{\textbf  {tertiary}} (moderate, contextual), or \textcolor {gray!40}{not applicable}. The thick dashed line marks the graded crossover between probabilistic-execution layers (L1--L3) and deterministic-control layers (L4--L6). The right-margin column identifies the most relevant design heuristic for each challenge row.}}{53}{figure.caption.54}\protected@file@percent }
+\newlabel{fig:challenge_heatmap}{{20}{53}{Challenge-to-ICA-layer impact heatmap. Each cell indicates the severity of a given challenge at the corresponding ICA layer: \textcolor {red!50}{\textbf {primary}} (direct, critical impact), \textcolor {orange!40}{\textbf {secondary}} (significant but indirect), \textcolor {yellow!50!black}{\textbf {tertiary}} (moderate, contextual), or \textcolor {gray!40}{not applicable}. The thick dashed line marks the graded crossover between probabilistic-execution layers (L1--L3) and deterministic-control layers (L4--L6). The right-margin column identifies the most relevant design heuristic for each challenge row}{figure.caption.54}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.5.2}治理不是补丁}{53}{subsubsection.9.5.2}\protected@file@percent }
 \citation{mcp_intro_2026}
 \citation{debenedetti2025camel}
 \citation{openai_codex_approvals_2026}
@@ -679,132 +691,105 @@
 \citation{ostep_2023}
 \citation{arbiteros2025}
 \citation{ironclaw2025}
-\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Challenge-to-ICA-layer impact heatmap. Each cell indicates the severity of a given challenge at the corresponding ICA layer: \textcolor {red!50}{\textbf  {primary}} (direct, critical impact), \textcolor {orange!40}{\textbf  {secondary}} (significant but indirect), \textcolor {yellow!50!black}{\textbf  {tertiary}} (moderate, contextual), or \textcolor {gray!40}{not applicable}. The thick dashed line marks the dual-plane boundary between model-native layers (L1--L2) and classical layers (L3--L6). The right-margin column identifies the most relevant quantitative law for each challenge row.}}{52}{figure.caption.51}\protected@file@percent }
-\newlabel{fig:challenge_heatmap}{{20}{52}{Challenge-to-ICA-layer impact heatmap. Each cell indicates the severity of a given challenge at the corresponding ICA layer: \textcolor {red!50}{\textbf {primary}} (direct, critical impact), \textcolor {orange!40}{\textbf {secondary}} (significant but indirect), \textcolor {yellow!50!black}{\textbf {tertiary}} (moderate, contextual), or \textcolor {gray!40}{not applicable}. The thick dashed line marks the dual-plane boundary between model-native layers (L1--L2) and classical layers (L3--L6). The right-margin column identifies the most relevant quantitative law for each challenge row}{figure.caption.51}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.5.4}双平面架构中的治理}{52}{subsubsection.9.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.5.3}ICA逐层治理}{54}{subsubsection.9.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.5.4}双平面架构中的治理}{54}{subsubsection.9.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.5.5}形式化挑战}{54}{subsubsection.9.5.5}\protected@file@percent }
 \citation{patterson_hennessy_2017}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.5.5}形式化挑战}{53}{subsubsection.9.5.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {10}范式讨论}{53}{section.10}\protected@file@percent }
-\newlabel{sec:paradigm}{{10}{53}{范式讨论}{section.10}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.1}智能计算核心：从硅到基底}{53}{subsection.10.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces Structural parallels between CPU and LLM system evolution. Curved arrows connect milestones that share the same architectural driver: Dennard scaling collapse and the inference energy wall both arise from a \emph  {Power Wall}; the multi-core and MoE transitions reflect a \emph  {Parallelism Shift}; big.LITTLE and heterogeneous model orchestration embody \emph  {Heterogeneity}; x86 ISA and the token/tool interface represent \emph  {ISA Abstraction}; and domain accelerators and specialized small models pursue \emph  {Specialization}.}}{53}{figure.caption.52}\protected@file@percent }
-\newlabel{fig:paradigm_timeline}{{21}{53}{Structural parallels between CPU and LLM system evolution. Curved arrows connect milestones that share the same architectural driver: Dennard scaling collapse and the inference energy wall both arise from a \emph {Power Wall}; the multi-core and MoE transitions reflect a \emph {Parallelism Shift}; big.LITTLE and heterogeneous model orchestration embody \emph {Heterogeneity}; x86 ISA and the token/tool interface represent \emph {ISA Abstraction}; and domain accelerators and specialized small models pursue \emph {Specialization}}{figure.caption.52}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.1.1}LLM作为处理器：计算核心为何不需要记忆}{53}{subsubsection.10.1.1}\protected@file@percent }
 \citation{patterson_hennessy_2017}
 \citation{ritchie_thompson_1974}
 \citation{hennessy_patterson_2019}
+\@writefile{toc}{\contentsline {section}{\numberline {10}范式讨论}{55}{section.10}\protected@file@percent }
+\newlabel{sec:paradigm}{{10}{55}{范式讨论}{section.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.1}智能计算核心：从硅到基底}{55}{subsection.10.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces Structural parallels between CPU and LLM system evolution. Curved arrows connect milestones that share the same architectural driver: Dennard scaling collapse and the inference energy wall both arise from a \emph  {Power Wall}; the multi-core and MoE transitions reflect a \emph  {Parallelism Shift}; big.LITTLE and heterogeneous model orchestration embody \emph  {Heterogeneity}; x86 ISA and the token/tool interface represent \emph  {ISA Abstraction}; and domain accelerators and specialized small models pursue \emph  {Specialization}.}}{55}{figure.caption.55}\protected@file@percent }
+\newlabel{fig:paradigm_timeline}{{21}{55}{Structural parallels between CPU and LLM system evolution. Curved arrows connect milestones that share the same architectural driver: Dennard scaling collapse and the inference energy wall both arise from a \emph {Power Wall}; the multi-core and MoE transitions reflect a \emph {Parallelism Shift}; big.LITTLE and heterogeneous model orchestration embody \emph {Heterogeneity}; x86 ISA and the token/tool interface represent \emph {ISA Abstraction}; and domain accelerators and specialized small models pursue \emph {Specialization}}{figure.caption.55}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.1.1}LLM作为处理器：计算核心为何不需要记忆}{55}{subsubsection.10.1.1}\protected@file@percent }
 \citation{dennard_1974}
 \citation{esmaeilzadeh_2011}
 \citation{moore_1965}
 \citation{amdahl_1967}
 \citation{biglittle_arm_2012}
 \citation{eas_linux_2019}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.1.2}频率扩展与思考模式：功耗墙的重演}{54}{subsubsection.10.1.2}\protected@file@percent }
 \citation{kumar_2003_singleISA}
 \citation{saez_2022_thread_director}
-\citation{liu_2025_claude_code}
-\citation{cognition_2025_multiagent}
 \citation{li_2024_eagle}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.1.2}频率扩展与思考模式：功耗墙的重演}{56}{subsubsection.10.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.1.3}big.LITTLE智能：异构模型编排}{56}{subsubsection.10.1.3}\protected@file@percent }
 \citation{deepseek_2024_moe}
 \citation{wang_2024_hmoe}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.1.3}big.LITTLE智能：异构模型编排}{55}{subsubsection.10.1.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces Three-stage evolution of heterogeneous scheduling, mapped between classical ARM big.LITTLE (top half of each panel) and LLM model orchestration (bottom half). Stage~1 (cluster migration / single model) activates only one resource type at a time. Stage~2 (HMP / plan-execute routing) runs both simultaneously with coarse-grained task assignment. Stage~3 (EAS / cost-capability routing) uses real-time telemetry to route each subtask to the cost-optimal compute substrate, the pattern already deployed in Claude Code and Codex.}}{55}{figure.caption.53}\protected@file@percent }
-\newlabel{fig:biglittle}{{22}{55}{Three-stage evolution of heterogeneous scheduling, mapped between classical ARM big.LITTLE (top half of each panel) and LLM model orchestration (bottom half). Stage~1 (cluster migration / single model) activates only one resource type at a time. Stage~2 (HMP / plan-execute routing) runs both simultaneously with coarse-grained task assignment. Stage~3 (EAS / cost-capability routing) uses real-time telemetry to route each subtask to the cost-optimal compute substrate, the pattern already deployed in Claude Code and Codex}{figure.caption.53}{}}
 \citation{harmbench_2024}
 \citation{airbench_2024}
 \citation{slm_edge_2025}
 \citation{llama32_2024}
 \citation{phi3_2024}
+\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces Three-stage evolution of heterogeneous scheduling, mapped between classical ARM big.LITTLE (top half of each panel) and LLM model orchestration (bottom half). Stage~1 (cluster migration / single model) activates only one resource type at a time. Stage~2 (HMP / plan-execute routing) runs both simultaneously with coarse-grained task assignment. Stage~3 (EAS / cost-capability routing) uses real-time telemetry to route each subtask to the cost-optimal compute substrate, the pattern already deployed in Claude Code and Codex.}}{57}{figure.caption.56}\protected@file@percent }
+\newlabel{fig:biglittle}{{22}{57}{Three-stage evolution of heterogeneous scheduling, mapped between classical ARM big.LITTLE (top half of each panel) and LLM model orchestration (bottom half). Stage~1 (cluster migration / single model) activates only one resource type at a time. Stage~2 (HMP / plan-execute routing) runs both simultaneously with coarse-grained task assignment. Stage~3 (EAS / cost-capability routing) uses real-time telemetry to route each subtask to the cost-optimal compute substrate, the pattern already deployed in Claude Code and Codex}{figure.caption.56}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.1.4}专用协处理器：小型专用模型的崛起}{57}{subsubsection.10.1.4}\protected@file@percent }
 \citation{apple_m1_2020}
 \citation{hennessy_patterson_2019}
 \citation{hala_point_2024}
 \citation{spinnaker2_2024}
 \citation{abreu_2025_loihi2_llm}
 \citation{cortical_2025_cl1}
-\citation{3dmind_2025}
 \citation{flywire_2024}
 \citation{hartung_2023_oi}
-\citation{leroux_2025_cim}
 \citation{taalas_2026_hc1}
 \citation{khatri_2024_quixer}
 \citation{guo_2024_quantum_transformer}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.1.4}专用协处理器：小型专用模型的崛起}{56}{subsubsection.10.1.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.1.5}超越硅：类脑、生物与量子基底}{56}{subsubsection.10.1.5}\protected@file@percent }
 \citation{spec_benchmark}
 \citation{fodor_2025_benchmarks}
-\citation{benchmark_pitfalls_2025}
 \citation{zhong_2024_weakest_link}
-\citation{worst_at_k_2025}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.1.5}超越硅：类脑、生物与量子基底}{58}{subsubsection.10.1.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.1.6}基准测试核心：木桶原理与最坏情况评估}{58}{subsubsection.10.1.6}\protected@file@percent }
 \citation{harmbench_2024}
 \citation{airbench_2024}
 \citation{ritchie_thompson_1974}
 \citation{corbato_1962_ctss}
 \citation{corbato_1965_multics}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.1.6}基准测试核心：木桶原理与最坏情况评估}{57}{subsubsection.10.1.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.2}智能操作系统：从代码到世界}{57}{subsection.10.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.2.1}历史弧线：从任务专用系统到通用操作系统}{57}{subsubsection.10.2.1}\protected@file@percent }
 \citation{patterson_hennessy_2017}
 \citation{hennessy_patterson_2019}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.2}智能操作系统：从代码到世界}{59}{subsection.10.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.2.1}历史弧线：从任务专用系统到通用操作系统}{59}{subsubsection.10.2.1}\protected@file@percent }
 \citation{patterson_hennessy_2017}
 \citation{hennessy_patterson_2019}
 \citation{cortical_2025_cl1}
 \citation{zhong_2024_weakest_link}
-\citation{blem_2013_microarchitecture}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.2.2}计算基底无关性：ISA解耦原则的推广}{58}{subsubsection.10.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.2.3}智能评分作为ISA合规机制}{58}{subsubsection.10.2.3}\protected@file@percent }
 \citation{eas_linux_2019}
-\citation{intel_thread_director_2021}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.2.2}计算基底无关性：ISA解耦原则的推广}{60}{subsubsection.10.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.2.3}智能评分作为ISA合规机制}{60}{subsubsection.10.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.2.4}OS级异构调度：从能耗模型到能力-代价模型}{60}{subsubsection.10.2.4}\protected@file@percent }
 \citation{flywire_2024}
 \citation{eon_systems_2025_virtual_fly}
-\citation{allen_riken_2025_mouse_fugaku}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.2.4}OS级异构调度：从能耗模型到能力-代价模型}{59}{subsubsection.10.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.2.5}物理世界接口：从纯代码到具身智能}{59}{subsubsection.10.2.5}\protected@file@percent }
 \citation{kagan_2022_pong_bioneurons}
-\citation{generativevalue2024semiconductor}
-\citation{quartr2024tsmc}
-\citation{eetimes2025asic}
-\citation{benevans2025fullstack}
-\citation{industryanalysis2026aivaluechain}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.2.5}物理世界接口：从纯代码到具身智能}{61}{subsubsection.10.2.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {11}社会技术启示：智能计算的产业结构}{61}{section.11}\protected@file@percent }
+\newlabel{sec:sociotechnical}{{11}{61}{社会技术启示：智能计算的产业结构}{section.11}{}}
 \citation{stanfordhai2025index}
 \citation{gartner2026trends}
-\citation{investingcom2026tokenpricing}
-\@writefile{toc}{\contentsline {section}{\numberline {11}社会技术启示：智能计算的产业结构}{60}{section.11}\protected@file@percent }
-\newlabel{sec:sociotechnical}{{11}{60}{社会技术启示：智能计算的产业结构}{section.11}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {11.1}从IDM到Fabless：半导体类比与AI栈解耦}{60}{subsection.11.1}\protected@file@percent }
-\newlabel{sec:idm-fabless}{{11.1}{60}{从IDM到Fabless：半导体类比与AI栈解耦}{subsection.11.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {11.2}模型权重即软件：可复制性问题与闭源战略应对}{60}{subsection.11.2}\protected@file@percent }
-\newlabel{sec:copyability}{{11.2}{60}{模型权重即软件：可复制性问题与闭源战略应对}{subsection.11.2}{}}
 \citation{thirdbridge2025deepseek}
 \citation{mckinsey2025aisurvey}
 \citation{brookings2025aicustomers}
 \citation{rand2024weightplaybook}
-\citation{corvex2026secureweights}
-\citation{wu2025physicalunclonable}
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.1}从IDM到Fabless：半导体类比与AI栈解耦}{62}{subsection.11.1}\protected@file@percent }
+\newlabel{sec:idm-fabless}{{11.1}{62}{从IDM到Fabless：半导体类比与AI栈解耦}{subsection.11.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.2}模型权重即软件：可复制性问题与闭源战略应对}{62}{subsection.11.2}\protected@file@percent }
+\newlabel{sec:copyability}{{11.2}{62}{模型权重即软件：可复制性问题与闭源战略应对}{subsection.11.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.3}硬件绑定与权重保护：重建物理护城河}{62}{subsection.11.3}\protected@file@percent }
+\newlabel{sec:hardware-binding}{{11.3}{62}{硬件绑定与权重保护：重建物理护城河}{subsection.11.3}{}}
 \citation{taalas_2026_hc1}
 \citation{licendi2024mslicensing}
-\citation{strategyzer2024msbusinessmodel}
 \citation{ceibs2025aiagents}
 \citation{wikipedia2024msopensource}
 \citation{ccia2025competition}
-\citation{microchipusa2024amdhistory}
-\@writefile{toc}{\contentsline {subsection}{\numberline {11.3}硬件绑定与权重保护：重建物理护城河}{61}{subsection.11.3}\protected@file@percent }
-\newlabel{sec:hardware-binding}{{11.3}{61}{硬件绑定与权重保护：重建物理护城河}{subsection.11.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {11.4}OS层作为流量网关：AI时代的平台战略}{61}{subsection.11.4}\protected@file@percent }
-\newlabel{sec:os-gateway}{{11.4}{61}{OS层作为流量网关：AI时代的平台战略}{subsection.11.4}{}}
-\citation{gartner2026spending}
 \citation{mckinsey2025aisurvey}
 \citation{taalas_2026_hc1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.4}OS层作为流量网关：AI时代的平台战略}{63}{subsection.11.4}\protected@file@percent }
+\newlabel{sec:os-gateway}{{11.4}{63}{OS层作为流量网关：AI时代的平台战略}{subsection.11.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.5}收敛情景：当训练趋于稳定，大脑成为物理产品}{63}{subsection.11.5}\protected@file@percent }
+\newlabel{sec:convergence}{{11.5}{63}{收敛情景：当训练趋于稳定，大脑成为物理产品}{subsection.11.5}{}}
 \citation{kwon2023pagedattention}
 \citation{vllm_docs_2026}
 \citation{vllm_prefix_2026}
-\@writefile{toc}{\contentsline {subsection}{\numberline {11.5}收敛情景：当训练趋于稳定，大脑成为物理产品}{62}{subsection.11.5}\protected@file@percent }
-\newlabel{sec:convergence}{{11.5}{62}{收敛情景：当训练趋于稳定，大脑成为物理产品}{subsection.11.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {12}开源实现与工程实践}{62}{section.12}\protected@file@percent }
-\newlabel{sec:implementation}{{12}{62}{开源实现与工程实践}{section.12}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {23}{\ignorespaces Open-source ecosystem mapped to the six-layer ICA architecture.}}{62}{figure.caption.54}\protected@file@percent }
-\newlabel{fig:impl_map}{{23}{62}{Open-source ecosystem mapped to the six-layer ICA architecture}{figure.caption.54}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.1}服务层（L2）：推理服务与KV缓存管理}{62}{subsection.12.1}\protected@file@percent }
-\newlabel{sec:impl-serving}{{12.1}{62}{服务层（L2）：推理服务与KV缓存管理}{subsection.12.1}{}}
 \citation{sglang2024}
 \citation{sglang_docs_2026}
 \citation{sglang2024}
@@ -814,12 +799,20 @@
 \citation{sweagent2024}
 \citation{autogpt_platform_2026}
 \citation{letta_stateful_2026}
+\@writefile{toc}{\contentsline {section}{\numberline {12}开源实现与工程实践}{64}{section.12}\protected@file@percent }
+\newlabel{sec:implementation}{{12}{64}{开源实现与工程实践}{section.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {23}{\ignorespaces Open-source ecosystem mapped to the six-layer ICA architecture.}}{64}{figure.caption.57}\protected@file@percent }
+\newlabel{fig:impl_map}{{23}{64}{Open-source ecosystem mapped to the six-layer ICA architecture}{figure.caption.57}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.1}服务层（L2）：推理服务与KV缓存管理}{64}{subsection.12.1}\protected@file@percent }
+\newlabel{sec:impl-serving}{{12.1}{64}{服务层（L2）：推理服务与KV缓存管理}{subsection.12.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.2}Agent层（L5）：Agent运行时与操作系统}{64}{subsection.12.2}\protected@file@percent }
+\newlabel{sec:impl-agent}{{12.2}{64}{Agent层（L5）：Agent运行时与操作系统}{subsection.12.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.2.1}通用Agent}{64}{subsubsection.12.2.1}\protected@file@percent }
 \citation{arbiteros2025}
 \citation{agentos2025}
 \citation{ufo2_2025}
 \citation{aura2025}
 \citation{openai_codex_overview_2026}
-\citation{openai_codex_subagents_2026}
 \citation{openai_codex_skills_2026}
 \citation{openai_codex_sandbox_2026}
 \citation{openai_codex_approvals_2026}
@@ -827,13 +820,6 @@
 \citation{anthropic_claudecode_security_2026}
 \citation{mcp_intro_2026}
 \citation{mcpadoption2026}
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.2}Agent层（L5）：Agent运行时与操作系统}{63}{subsection.12.2}\protected@file@percent }
-\newlabel{sec:impl-agent}{{12.2}{63}{Agent层（L5）：Agent运行时与操作系统}{subsection.12.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.2.1}通用Agent}{63}{subsubsection.12.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.2.2}Agent操作系统}{63}{subsubsection.12.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.2.3}工业Agent系统}{63}{subsubsection.12.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.3}协议层（L4）：标准化工具连接与Agent互联}{63}{subsection.12.3}\protected@file@percent }
-\newlabel{sec:impl-protocol}{{12.3}{63}{协议层（L4）：标准化工具连接与Agent互联}{subsection.12.3}{}}
 \citation{google_a2a_2025}
 \citation{agentprotocols2025}
 \citation{a2alinux2025}
@@ -841,14 +827,18 @@
 \citation{anthropic_claudecode_security_2026}
 \citation{memgpt2023}
 \citation{anthropic2026agenticreport}
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.4}五条实现建议}{64}{subsection.12.4}\protected@file@percent }
-\newlabel{sec:impl-recommendations}{{12.4}{64}{五条实现建议}{subsection.12.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {24}{\ignorespaces Mapping of the five implementation recommendations (R1--R5) onto ICA layers (L1--L6) and their governing design axioms. \textbf  {Key} cells indicate the primary ICA layer at which the recommendation must be enforced; \textbf  {Partial} cells indicate supporting roles. R1 (control/data plane separation) targets L4--L5; R2 (context tiering) targets L3; R3 (versioning) targets L4; R4 (resource quotas) and R5 (failure recovery) both center on L5 with support from adjacent layers.}}{64}{figure.caption.55}\protected@file@percent }
-\newlabel{fig:impl_recommendations}{{24}{64}{Mapping of the five implementation recommendations (R1--R5) onto ICA layers (L1--L6) and their governing design axioms. \textbf {Key} cells indicate the primary ICA layer at which the recommendation must be enforced; \textbf {Partial} cells indicate supporting roles. R1 (control/data plane separation) targets L4--L5; R2 (context tiering) targets L3; R3 (versioning) targets L4; R4 (resource quotas) and R5 (failure recovery) both center on L5 with support from adjacent layers}{figure.caption.55}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.1}控制面与数据面分离}{64}{subsubsection.12.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.2}短期上下文与长期记忆分离}{64}{subsubsection.12.4.2}\protected@file@percent }
 \citation{mcp_intro_2026}
 \citation{agentprotocols2025}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.2.2}Agent操作系统}{65}{subsubsection.12.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.2.3}工业Agent系统}{65}{subsubsection.12.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.3}协议层（L4）：标准化工具连接与Agent互联}{65}{subsection.12.3}\protected@file@percent }
+\newlabel{sec:impl-protocol}{{12.3}{65}{协议层（L4）：标准化工具连接与Agent互联}{subsection.12.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.4}五条实现建议}{65}{subsection.12.4}\protected@file@percent }
+\newlabel{sec:impl-recommendations}{{12.4}{65}{五条实现建议}{subsection.12.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.1}控制面与数据面分离}{65}{subsubsection.12.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.2}短期上下文与长期记忆分离}{65}{subsubsection.12.4.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {24}{\ignorespaces Mapping of the five implementation recommendations (R1--R5) onto ICA layers (L1--L6) and their governing design axioms. \textbf  {Key} cells indicate the primary ICA layer at which the recommendation must be enforced; \textbf  {Partial} cells indicate supporting roles. R1 (control/data plane separation) targets L4--L5; R2 (context tiering) targets L3; R3 (versioning) targets L4; R4 (resource quotas) and R5 (failure recovery) both center on L5 with support from adjacent layers.}}{66}{figure.caption.58}\protected@file@percent }
+\newlabel{fig:impl_recommendations}{{24}{66}{Mapping of the five implementation recommendations (R1--R5) onto ICA layers (L1--L6) and their governing design axioms. \textbf {Key} cells indicate the primary ICA layer at which the recommendation must be enforced; \textbf {Partial} cells indicate supporting roles. R1 (control/data plane separation) targets L4--L5; R2 (context tiering) targets L3; R3 (versioning) targets L4; R4 (resource quotas) and R5 (failure recovery) both center on L5 with support from adjacent layers}{figure.caption.58}{}}
 \citation{linux_cgroup_2026}
 \citation{raft2014}
 \citation{spanner2012}
@@ -860,25 +850,25 @@
     {1}{125.24197pt}\LT@entry 
     {1}{93.5309pt}\LT@entry 
     {1}{75.41522pt}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.3}所有可影响行为的对象都要版本化}{65}{subsubsection.12.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.4}像OS一样实施资源配额}{65}{subsubsection.12.4.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.5}像分布式系统一样设计故障恢复}{65}{subsubsection.12.4.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {13}研究路线图}{65}{section.13}\protected@file@percent }
-\newlabel{sec:roadmap}{{13}{65}{研究路线图}{section.13}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces 基于ICA的研究议题清单}}{65}{table.6}\protected@file@percent }
-\newlabel{tab:roadmap}{{6}{65}{基于ICA的研究议题清单}{table.6}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.3}所有可影响行为的对象都要版本化}{67}{subsubsection.12.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.4}像OS一样实施资源配额}{67}{subsubsection.12.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.5}像分布式系统一样设计故障恢复}{67}{subsubsection.12.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {13}研究路线图}{67}{section.13}\protected@file@percent }
+\newlabel{sec:roadmap}{{13}{67}{研究路线图}{section.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces 基于ICA的研究议题清单}}{67}{table.7}\protected@file@percent }
+\newlabel{tab:roadmap}{{7}{67}{基于ICA的研究议题清单}{table.7}{}}
 \citation{gholami2024memorywall}
 \citation{h2o2023}
 \citation{hooper2024kvquant}
 \citation{liu2024kivi}
 \citation{kwon2023pagedattention}
 \citation{sglang2024}
-\@writefile{lof}{\contentsline {figure}{\numberline {25}{\ignorespaces Research roadmap organized by ICA layer and time horizon. Horizontal lanes correspond to ICA layers L1--L6; columns represent short-term (1--2\,yr), mid-term (2--4\,yr), and long-term (4--8\,yr) research phases. Bar colors indicate which law or axiom each topic validates: {\color  {lawI}Law~I} (Semantic Locality, blue), {\color  {lawII}Law~II} (Context Budget, orange), {\color  {lawIII}Law~III} (Agent Speedup, red), and {\color  {axiom}Axiom} (architectural principles, gray). Arrows denote key dependencies between research topics.}}{66}{figure.caption.56}\protected@file@percent }
-\newlabel{fig:roadmap_swimlane}{{25}{66}{Research roadmap organized by ICA layer and time horizon. Horizontal lanes correspond to ICA layers L1--L6; columns represent short-term (1--2\,yr), mid-term (2--4\,yr), and long-term (4--8\,yr) research phases. Bar colors indicate which law or axiom each topic validates: {\color {lawI}Law~I} (Semantic Locality, blue), {\color {lawII}Law~II} (Context Budget, orange), {\color {lawIII}Law~III} (Agent Speedup, red), and {\color {axiom}Axiom} (architectural principles, gray). Arrows denote key dependencies between research topics}{figure.caption.56}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {13.1}短期议题}{66}{subsection.13.1}\protected@file@percent }
 \citation{memgpt2023}
 \citation{letta_stateful_2026}
 \citation{hiagent2024}
+\@writefile{lof}{\contentsline {figure}{\numberline {25}{\ignorespaces Research roadmap organized by ICA layer and time horizon. Horizontal lanes correspond to ICA layers L1--L6; columns represent short-term (1--2\,yr), mid-term (2--4\,yr), and long-term (4--8\,yr) research phases. Bar colors indicate which heuristic or axiom each topic targets: {\color  {lawI}Heur.~I} (Semantic Locality, blue), {\color  {lawII}Heur.~II} (Context Budget, orange), {\color  {lawIII}Heur.~III} (Agent Speedup, red), and {\color  {axiom}Axiom} (architectural principles, gray). Arrows denote key dependencies between research topics.}}{68}{figure.caption.59}\protected@file@percent }
+\newlabel{fig:roadmap_swimlane}{{25}{68}{Research roadmap organized by ICA layer and time horizon. Horizontal lanes correspond to ICA layers L1--L6; columns represent short-term (1--2\,yr), mid-term (2--4\,yr), and long-term (4--8\,yr) research phases. Bar colors indicate which heuristic or axiom each topic targets: {\color {lawI}Heur.~I} (Semantic Locality, blue), {\color {lawII}Heur.~II} (Context Budget, orange), {\color {lawIII}Heur.~III} (Agent Speedup, red), and {\color {axiom}Axiom} (architectural principles, gray). Arrows denote key dependencies between research topics}{figure.caption.59}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {13.1}短期议题}{68}{subsection.13.1}\protected@file@percent }
 \citation{mcp_intro_2026}
 \citation{agentprotocols2025}
 \citation{swebench2023}
@@ -891,15 +881,15 @@
 \citation{debenedetti2025camel}
 \citation{ironclaw2025}
 \citation{agenticsecurity2025}
-\@writefile{toc}{\contentsline {subsection}{\numberline {13.2}中期议题}{67}{subsection.13.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {13.3}长期议题}{67}{subsection.13.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {13.2}中期议题}{69}{subsection.13.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {13.3}长期议题}{69}{subsection.13.3}\protected@file@percent }
 \citation{amem2025}
 \citation{agentmemorysurvey2025}
 \citation{spanner2012}
 \citation{raft2014}
 \citation{arbiteros2025}
 \citation{ironclaw2025}
-\@writefile{toc}{\contentsline {subsection}{\numberline {13.4}与模型能力进步的解耦}{68}{subsection.13.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {13.4}与模型能力进步的解耦}{70}{subsection.13.4}\protected@file@percent }
 \citation{openai_codex_approvals_2026}
 \citation{openai_codex_sandbox_2026}
 \citation{anthropic_claudecode_security_2026}
@@ -915,16 +905,16 @@
 \citation{gdpr_righttoforget}
 \citation{longmemeval2024}
 \citation{navaie2025privacy}
-\@writefile{toc}{\contentsline {section}{\numberline {14}伦理、安全与可解释性}{69}{section.14}\protected@file@percent }
-\newlabel{sec:ethics}{{14}{69}{伦理、安全与可解释性}{section.14}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {14.1}权限与隔离（对应L5编排层）}{69}{subsection.14.1}\protected@file@percent }
-\newlabel{sec:ethics-permission}{{14.1}{69}{权限与隔离（对应L5编排层）}{subsection.14.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {14.2}隐私与记忆治理（对应L3记忆层）}{69}{subsection.14.2}\protected@file@percent }
-\newlabel{sec:ethics-privacy}{{14.2}{69}{隐私与记忆治理（对应L3记忆层）}{subsection.14.2}{}}
-\@writefile{toc}{\contentsline {paragraph}{什么应保存？}{69}{section*.57}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{保存多久？}{69}{section*.58}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{谁有权删除？}{69}{section*.59}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{摘要能否反推出原始敏感信息？}{69}{section*.60}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {14}伦理、安全与可解释性}{71}{section.14}\protected@file@percent }
+\newlabel{sec:ethics}{{14}{71}{伦理、安全与可解释性}{section.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.1}权限与隔离（对应L5编排层）}{71}{subsection.14.1}\protected@file@percent }
+\newlabel{sec:ethics-permission}{{14.1}{71}{权限与隔离（对应L5编排层）}{subsection.14.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.2}隐私与记忆治理（对应L3记忆层）}{71}{subsection.14.2}\protected@file@percent }
+\newlabel{sec:ethics-privacy}{{14.2}{71}{隐私与记忆治理（对应L3记忆层）}{subsection.14.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{什么应保存？}{71}{section*.60}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{保存多久？}{71}{section*.61}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{谁有权删除？}{71}{section*.62}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{摘要能否反推出原始敏感信息？}{71}{section*.63}\protected@file@percent }
 \citation{linux_cgroup_2026}
 \citation{mei2024aios}
 \citation{memgpt2023}
@@ -933,29 +923,30 @@
 \citation{arbiteros2025}
 \citation{mei2024aios}
 \citation{agentos2025}
-\@writefile{toc}{\contentsline {subsection}{\numberline {14.3}可解释性：从"解释模型"到"解释系统"（对应全栈）}{70}{subsection.14.3}\protected@file@percent }
-\newlabel{sec:ethics-explainability}{{14.3}{70}{可解释性：从"解释模型"到"解释系统"（对应全栈）}{subsection.14.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {14.4}公平性与资源分配（对应L2推理服务层与L5编排层）}{70}{subsection.14.4}\protected@file@percent }
-\newlabel{sec:ethics-fairness}{{14.4}{70}{公平性与资源分配（对应L2推理服务层与L5编排层）}{subsection.14.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {15}结论与展望}{70}{section.15}\protected@file@percent }
-\newlabel{sec:conclusion}{{15}{70}{结论与展望}{section.15}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {15.1}核心贡献}{70}{subsection.15.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{统一框架：ICA六层模型。}{70}{section*.61}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.3}可解释性：从"解释模型"到"解释系统"（对应全栈）}{72}{subsection.14.3}\protected@file@percent }
+\newlabel{sec:ethics-explainability}{{14.3}{72}{可解释性：从"解释模型"到"解释系统"（对应全栈）}{subsection.14.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.4}公平性与资源分配（对应L2推理服务层与L5编排层）}{72}{subsection.14.4}\protected@file@percent }
+\newlabel{sec:ethics-fairness}{{14.4}{72}{公平性与资源分配（对应L2推理服务层与L5编排层）}{subsection.14.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {15}结论与展望}{72}{section.15}\protected@file@percent }
+\newlabel{sec:conclusion}{{15}{72}{结论与展望}{section.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {15.1}核心贡献}{72}{subsection.15.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{统一框架：ICA六层模型。}{72}{section*.64}\protected@file@percent }
 \citation{ge2023llmos}
 \citation{holt2024l2mac}
 \citation{mi2025llmagentscomputersystems}
 \citation{memgpt2023}
 \citation{memos2025}
+\citation{mi2025llmagentscomputersystems}
+\citation{arbiteros2025}
 \citation{anthropic2026agenticreport}
-\@writefile{toc}{\contentsline {paragraph}{架构解法：双平面架构。}{71}{section*.62}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{可计算原则：三条量化定律。}{71}{section*.63}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{范式映射：从硅到基底的智能计算演进。}{71}{section*.64}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{社会技术分析：智能计算的产业结构。}{71}{section*.65}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {15.2}定位与边界}{71}{subsection.15.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{类比不是同构。}{71}{section*.66}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{增量贡献，而非开创性。}{71}{section*.67}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{技术畅想，而非最终方案。}{71}{section*.68}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{协作悖论尚未被建模。}{71}{section*.69}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{架构解法：双平面架构。}{73}{section*.65}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{组织性启发式：三条Amdahl式设计模型。}{73}{section*.66}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{范式映射：从硅到基底的智能计算演进。}{73}{section*.67}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{社会技术分析：智能计算的产业结构。}{73}{section*.68}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {15.2}定位与边界}{73}{subsection.15.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{类比不是同构。}{73}{section*.69}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{增量贡献，而非开创性。}{73}{section*.70}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{技术畅想，而非最终方案。}{73}{section*.71}\protected@file@percent }
 \citation{anthropic2026agenticreport}
 \bibstyle{unsrturl}
 \bibdata{refs}
@@ -963,9 +954,10 @@
 \bibcite{llama2023}{2}
 \bibcite{schick2023toolformer}{3}
 \bibcite{lewis2020rag}{4}
+\@writefile{toc}{\contentsline {paragraph}{协作悖论尚未被建模。}{74}{section*.72}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {15.3}未来方向}{74}{subsection.15.3}\protected@file@percent }
 \bibcite{yao2023react}{5}
 \bibcite{openhands_paper_2025}{6}
-\@writefile{toc}{\contentsline {subsection}{\numberline {15.3}未来方向}{72}{subsection.15.3}\protected@file@percent }
 \bibcite{sweagent2024}{7}
 \bibcite{anthropic2026agenticreport}{8}
 \bibcite{gholami2024memorywall}{9}
@@ -978,160 +970,165 @@
 \bibcite{mcp_intro_2026}{16}
 \bibcite{google_a2a_2025}{17}
 \bibcite{agentprotocols2025}{18}
-\bibcite{mei2024aios}{19}
-\bibcite{mi2025llmagentscomputersystems}{20}
-\bibcite{ge2023llmos}{21}
-\bibcite{holt2024l2mac}{22}
-\bibcite{arbiteros2025}{23}
-\bibcite{agentos2025}{24}
-\bibcite{memos2025}{25}
-\bibcite{contextengineer_survey2025}{26}
-\bibcite{hennessy2017quantitative}{27}
-\bibcite{intel_sdm_2026}{28}
-\bibcite{riscv_spec_2026}{29}
-\bibcite{drepper2007memory}{30}
-\bibcite{ostep_2023}{31}
-\bibcite{linux_cfs_2026}{32}
-\bibcite{xv6_2022}{33}
-\bibcite{cap2002}{34}
-\bibcite{raft2014}{35}
-\bibcite{spanner2012}{36}
-\bibcite{malekar2024amdahlllm}{37}
-\bibcite{yuan2024llminference}{38}
-\bibcite{vaswani2017attention}{39}
-\bibcite{su2021roformer}{40}
-\bibcite{switch2022}{41}
-\bibcite{mixtral2024}{42}
-\bibcite{yarn2024}{43}
-\bibcite{longrope2024}{44}
-\bibcite{gu2024mamba}{45}
-\bibcite{dao2022flashattention}{46}
-\bibcite{dao2023flashattention2}{47}
-\bibcite{zhong2024distserve}{48}
-\bibcite{agrawal2024sarathi}{49}
-\bibcite{gemini2024}{50}
-\bibcite{longmem2023}{51}
-\bibcite{park2023generativeagents}{52}
-\bibcite{longmemeval2024}{53}
-\bibcite{letta_stateful_2026}{54}
-\bibcite{memoryos2025}{55}
-\bibcite{anthropic_claudecode_subagents_2026}{56}
-\bibcite{openai_codex_sandbox_2026}{57}
-\bibcite{anthropic_claudecode_sandbox_2026}{58}
-\bibcite{openai_codex_approvals_2026}{59}
-\bibcite{anthropic_claudecode_security_2026}{60}
-\bibcite{wu2023autogen}{61}
-\bibcite{metagpt2023}{62}
-\bibcite{ufo2_2025}{63}
-\bibcite{aura2025}{64}
-\bibcite{hiagent2024}{65}
-\bibcite{amem2025}{66}
-\bibcite{openai_codex_agents_md_2026}{67}
-\bibcite{openai_codex_skills_2026}{68}
-\bibcite{dive_claudecode_2026}{69}
-\bibcite{anthropic_claudecode_skills_2026}{70}
-\bibcite{anthropic_claudecode_memory_2026}{71}
-\bibcite{swebench2023}{72}
-\bibcite{hugginggpt2023}{73}
-\bibcite{patil2024gorilla}{74}
-\bibcite{anthropic_claudecode_mcp_2026}{75}
-\bibcite{ioa2024}{76}
-\bibcite{sumers2024coala}{77}
-\bibcite{debenedetti2025camel}{78}
-\bibcite{leviathan2023speculative}{79}
-\bibcite{vllm_prefix_2026}{80}
-\bibcite{linux_cgroup_2026}{81}
-\bibcite{praetorian2025deterministic}{82}
-\bibcite{towardsai2025deterministicshell}{83}
-\bibcite{blueprintfirst2025}{84}
-\bibcite{sglang2024}{85}
-\bibcite{sglang_docs_2026}{86}
-\bibcite{gim2024promptcache}{87}
-\bibcite{h2o2023}{88}
-\bibcite{xiao2024streamingllm}{89}
-\bibcite{likvcache2024survey}{90}
-\bibcite{hooper2024kvquant}{91}
-\bibcite{liu2024kivi}{92}
-\bibcite{lpc2025}{93}
-\bibcite{multilevelcache2025}{94}
-\bibcite{liu2024ringattention}{95}
-\bibcite{ruler2024}{96}
-\bibcite{longbenchv2_2024}{97}
-\bibcite{loft2024}{98}
-\bibcite{contextcompiler2025}{99}
-\bibcite{jetbrains2025context}{100}
-\bibcite{agenticsecurity2025}{101}
-\bibcite{wolters2024computeinmemory}{102}
-\bibcite{zhou2024efficientinference}{103}
-\bibcite{openai_codex_security_2026}{104}
-\bibcite{openai_codex_agentsdk_2026}{105}
-\bibcite{liu2023lostmiddle}{106}
-\bibcite{denning1968thrashing}{107}
-\bibcite{denning2020workingset}{108}
-\bibcite{gta2_2025}{109}
-\bibcite{langmodelteams2026}{110}
-\bibcite{autogpt_repo_2026}{111}
-\bibcite{wang2023voyager}{112}
-\bibcite{osworld2024}{113}
-\bibcite{devin2024cognition}{114}
-\bibcite{owasp_agentic2026}{115}
-\bibcite{gaia2023}{116}
-\bibcite{taubench2024}{117}
-\bibcite{vllm_docs_2026}{118}
-\bibcite{tgi_docs_2026}{119}
-\bibcite{tensorrtllm_docs_2026}{120}
-\bibcite{prabhu2024vattention}{121}
-\bibcite{patterson_hennessy_2017}{122}
-\bibcite{ritchie_thompson_1974}{123}
-\bibcite{hennessy_patterson_2019}{124}
-\bibcite{dennard_1974}{125}
-\bibcite{esmaeilzadeh_2011}{126}
-\bibcite{moore_1965}{127}
-\bibcite{amdahl_1967}{128}
-\bibcite{biglittle_arm_2012}{129}
-\bibcite{eas_linux_2019}{130}
-\bibcite{kumar_2003_singleISA}{131}
-\bibcite{saez_2022_thread_director}{132}
-\bibcite{li_2024_eagle}{133}
-\bibcite{deepseek_2024_moe}{134}
-\bibcite{wang_2024_hmoe}{135}
-\bibcite{harmbench_2024}{136}
-\bibcite{airbench_2024}{137}
-\bibcite{slm_edge_2025}{138}
-\bibcite{llama32_2024}{139}
-\bibcite{phi3_2024}{140}
-\bibcite{apple_m1_2020}{141}
-\bibcite{hala_point_2024}{142}
-\bibcite{spinnaker2_2024}{143}
-\bibcite{abreu_2025_loihi2_llm}{144}
-\bibcite{cortical_2025_cl1}{145}
-\bibcite{flywire_2024}{146}
-\bibcite{hartung_2023_oi}{147}
-\bibcite{taalas_2026_hc1}{148}
-\bibcite{khatri_2024_quixer}{149}
-\bibcite{guo_2024_quantum_transformer}{150}
-\bibcite{spec_benchmark}{151}
-\bibcite{fodor_2025_benchmarks}{152}
-\bibcite{zhong_2024_weakest_link}{153}
-\bibcite{corbato_1962_ctss}{154}
-\bibcite{corbato_1965_multics}{155}
-\bibcite{eon_systems_2025_virtual_fly}{156}
-\bibcite{kagan_2022_pong_bioneurons}{157}
-\bibcite{stanfordhai2025index}{158}
-\bibcite{gartner2026trends}{159}
-\bibcite{thirdbridge2025deepseek}{160}
-\bibcite{mckinsey2025aisurvey}{161}
-\bibcite{brookings2025aicustomers}{162}
-\bibcite{rand2024weightplaybook}{163}
-\bibcite{licendi2024mslicensing}{164}
-\bibcite{ceibs2025aiagents}{165}
-\bibcite{wikipedia2024msopensource}{166}
-\bibcite{ccia2025competition}{167}
-\bibcite{autogpt_platform_2026}{168}
-\bibcite{mcpadoption2026}{169}
-\bibcite{a2alinux2025}{170}
-\bibcite{agentmemorysurvey2025}{171}
-\bibcite{euaiact2026}{172}
-\bibcite{gdpr_righttoforget}{173}
-\bibcite{navaie2025privacy}{174}
-\gdef \@abspage@last{85}
+\bibcite{karpathy2023lmos}{19}
+\bibcite{mei2024aios}{20}
+\bibcite{mi2025llmagentscomputersystems}{21}
+\bibcite{ge2023llmos}{22}
+\bibcite{holt2024l2mac}{23}
+\bibcite{arbiteros2025}{24}
+\bibcite{agentos2025}{25}
+\bibcite{memos2025}{26}
+\bibcite{contextengineer_survey2025}{27}
+\bibcite{dohmke2023seachange}{28}
+\bibcite{klemmer2024aiassistants}{29}
+\bibcite{hennessy2017quantitative}{30}
+\bibcite{intel_sdm_2026}{31}
+\bibcite{riscv_spec_2026}{32}
+\bibcite{drepper2007memory}{33}
+\bibcite{ostep_2023}{34}
+\bibcite{linux_cfs_2026}{35}
+\bibcite{xv6_2022}{36}
+\bibcite{cap2002}{37}
+\bibcite{raft2014}{38}
+\bibcite{spanner2012}{39}
+\bibcite{malekar2024amdahlllm}{40}
+\bibcite{yuan2024llminference}{41}
+\bibcite{vaswani2017attention}{42}
+\bibcite{su2021roformer}{43}
+\bibcite{switch2022}{44}
+\bibcite{mixtral2024}{45}
+\bibcite{yarn2024}{46}
+\bibcite{longrope2024}{47}
+\bibcite{gu2024mamba}{48}
+\bibcite{dao2022flashattention}{49}
+\bibcite{dao2023flashattention2}{50}
+\bibcite{zhong2024distserve}{51}
+\bibcite{agrawal2024sarathi}{52}
+\bibcite{patel2024splitwise}{53}
+\bibcite{qin2024mooncake}{54}
+\bibcite{gemini2024}{55}
+\bibcite{longmem2023}{56}
+\bibcite{park2023generativeagents}{57}
+\bibcite{longmemeval2024}{58}
+\bibcite{letta_stateful_2026}{59}
+\bibcite{memoryos2025}{60}
+\bibcite{anthropic_claudecode_subagents_2026}{61}
+\bibcite{openai_codex_sandbox_2026}{62}
+\bibcite{anthropic_claudecode_sandbox_2026}{63}
+\bibcite{openai_codex_approvals_2026}{64}
+\bibcite{anthropic_claudecode_security_2026}{65}
+\bibcite{wu2023autogen}{66}
+\bibcite{metagpt2023}{67}
+\bibcite{ufo2_2025}{68}
+\bibcite{aura2025}{69}
+\bibcite{hiagent2024}{70}
+\bibcite{amem2025}{71}
+\bibcite{openai_codex_agents_md_2026}{72}
+\bibcite{openai_codex_skills_2026}{73}
+\bibcite{dive_claudecode_2026}{74}
+\bibcite{anthropic_claudecode_skills_2026}{75}
+\bibcite{anthropic_claudecode_memory_2026}{76}
+\bibcite{swebench2023}{77}
+\bibcite{hugginggpt2023}{78}
+\bibcite{patil2024gorilla}{79}
+\bibcite{anthropic_claudecode_mcp_2026}{80}
+\bibcite{ioa2024}{81}
+\bibcite{sumers2024coala}{82}
+\bibcite{debenedetti2025camel}{83}
+\bibcite{leviathan2023speculative}{84}
+\bibcite{vllm_prefix_2026}{85}
+\bibcite{linux_cgroup_2026}{86}
+\bibcite{praetorian2025deterministic}{87}
+\bibcite{towardsai2025deterministicshell}{88}
+\bibcite{blueprintfirst2025}{89}
+\bibcite{sglang2024}{90}
+\bibcite{sglang_docs_2026}{91}
+\bibcite{gim2024promptcache}{92}
+\bibcite{h2o2023}{93}
+\bibcite{xiao2024streamingllm}{94}
+\bibcite{likvcache2024survey}{95}
+\bibcite{hooper2024kvquant}{96}
+\bibcite{liu2024kivi}{97}
+\bibcite{lpc2025}{98}
+\bibcite{multilevelcache2025}{99}
+\bibcite{liu2024ringattention}{100}
+\bibcite{ruler2024}{101}
+\bibcite{longbenchv2_2024}{102}
+\bibcite{loft2024}{103}
+\bibcite{contextcompiler2025}{104}
+\bibcite{jetbrains2025context}{105}
+\bibcite{agenticsecurity2025}{106}
+\bibcite{wolters2024computeinmemory}{107}
+\bibcite{zhou2024efficientinference}{108}
+\bibcite{openai_codex_security_2026}{109}
+\bibcite{openai_codex_agentsdk_2026}{110}
+\bibcite{liu2023lostmiddle}{111}
+\bibcite{denning1968thrashing}{112}
+\bibcite{denning2020workingset}{113}
+\bibcite{gta2_2025}{114}
+\bibcite{langmodelteams2026}{115}
+\bibcite{autogpt_repo_2026}{116}
+\bibcite{wang2023voyager}{117}
+\bibcite{osworld2024}{118}
+\bibcite{devin2024cognition}{119}
+\bibcite{owasp_agentic2026}{120}
+\bibcite{gaia2023}{121}
+\bibcite{taubench2024}{122}
+\bibcite{vllm_docs_2026}{123}
+\bibcite{tgi_docs_2026}{124}
+\bibcite{tensorrtllm_docs_2026}{125}
+\bibcite{prabhu2024vattention}{126}
+\bibcite{patterson_hennessy_2017}{127}
+\bibcite{ritchie_thompson_1974}{128}
+\bibcite{hennessy_patterson_2019}{129}
+\bibcite{dennard_1974}{130}
+\bibcite{esmaeilzadeh_2011}{131}
+\bibcite{moore_1965}{132}
+\bibcite{amdahl_1967}{133}
+\bibcite{biglittle_arm_2012}{134}
+\bibcite{eas_linux_2019}{135}
+\bibcite{kumar_2003_singleISA}{136}
+\bibcite{saez_2022_thread_director}{137}
+\bibcite{li_2024_eagle}{138}
+\bibcite{deepseek_2024_moe}{139}
+\bibcite{wang_2024_hmoe}{140}
+\bibcite{harmbench_2024}{141}
+\bibcite{airbench_2024}{142}
+\bibcite{slm_edge_2025}{143}
+\bibcite{llama32_2024}{144}
+\bibcite{phi3_2024}{145}
+\bibcite{apple_m1_2020}{146}
+\bibcite{hala_point_2024}{147}
+\bibcite{spinnaker2_2024}{148}
+\bibcite{abreu_2025_loihi2_llm}{149}
+\bibcite{cortical_2025_cl1}{150}
+\bibcite{flywire_2024}{151}
+\bibcite{hartung_2023_oi}{152}
+\bibcite{taalas_2026_hc1}{153}
+\bibcite{khatri_2024_quixer}{154}
+\bibcite{guo_2024_quantum_transformer}{155}
+\bibcite{spec_benchmark}{156}
+\bibcite{fodor_2025_benchmarks}{157}
+\bibcite{zhong_2024_weakest_link}{158}
+\bibcite{corbato_1962_ctss}{159}
+\bibcite{corbato_1965_multics}{160}
+\bibcite{eon_systems_2025_virtual_fly}{161}
+\bibcite{kagan_2022_pong_bioneurons}{162}
+\bibcite{stanfordhai2025index}{163}
+\bibcite{gartner2026trends}{164}
+\bibcite{thirdbridge2025deepseek}{165}
+\bibcite{mckinsey2025aisurvey}{166}
+\bibcite{brookings2025aicustomers}{167}
+\bibcite{rand2024weightplaybook}{168}
+\bibcite{licendi2024mslicensing}{169}
+\bibcite{ceibs2025aiagents}{170}
+\bibcite{wikipedia2024msopensource}{171}
+\bibcite{ccia2025competition}{172}
+\bibcite{autogpt_platform_2026}{173}
+\bibcite{mcpadoption2026}{174}
+\bibcite{a2alinux2025}{175}
+\bibcite{agentmemorysurvey2025}{176}
+\bibcite{euaiact2026}{177}
+\bibcite{gdpr_righttoforget}{178}
+\bibcite{navaie2025privacy}{179}
+\gdef \@abspage@last{87}

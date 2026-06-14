@@ -39,8 +39,8 @@
 \setlength{\captionmargin}{15pt}
 \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
 \usepackage[most]{tcolorbox}
-\newtheorem{law}{定律}
-\renewcommand{\thelaw}{\Roman{law}}
+\newtheorem{heuristic}{启发式}
+\renewcommand{\theheuristic}{\Roman{heuristic}}
 \newtheorem{definition}{定义}[section]
 \newtcolorbox{axiombox}[1]{
   colback=blue!4, colframe=blue!50!black,
@@ -79,13 +79,14 @@ $^{*}$Corresponding author: \texttt{zheng.haitao@sz.tsinghua.edu.cn}
 为填补这一空白，本文提出\textbf{智能计算体系结构（ICA）}，将模型原生计算系统划分为从硬件执行到用户应用的六个功能层，每层都有明确的接口契约和设计公理。
 同时，我们揭示了现有文献中一个核心分歧---大模型到底更像CPU还是操作系统---并提出\textbf{双平面架构}作为统一解答：模型原生计算系统实际上同时包含一个概率执行平面（负责"能做什么"）和一个确定性控制平面（负责"应该做什么"），不同文献看到的只是不同平面的不同切面。
 
-在量化层面，本文提出三条设计定律：语义局部性定律揭示KV缓存命中率与推理加速的关系；上下文预算定律指出有效工作集受窗口容量和注意力衰减的双重约束；Agent加速比定律说明多Agent协作的收益递减规律。
-三条定律均用已发表系统数据进行了实证检验。
+在量化层面，本文提出三条Amdahl式设计启发式：语义局部性启发式揭示KV缓存命中率与推理加速的关系；上下文预算启发式刻画有效工作集受窗口容量与注意力衰减的双重约束；Agent加速比启发式说明多Agent协作的收益递减规律。
+我们明确指出，这些是组织性的量级估算模型而非经验证过的scaling law：我们用已发表的系统级数据示例说明其参数区间，并将系统性的"先预测、后测量"验证列为主要开放任务。
+来自Anthropic 2026年Agentic实践报告的最新经验证据进一步凸显了一种明显的张力：尽管多Agent配置呈现边际收益递减，其聚合经济影响却十分可观——各机构报告节省了数十万小时，工程交付显著提速。
 最后，本文总结类比的适用边界与本质差异，给出面向未来的研究路线图。
 全文为综述与概念性分析，不包含新实验。
 \end{abstract}
 
-\textbf{关键词：} 大模型系统；计算机体系结构；智能计算体系结构框架；量化定律；KV缓存；上下文工程；Agents
+\textbf{关键词：} 大模型系统；计算机体系结构；智能计算体系结构框架；Amdahl式设计启发式；KV缓存；上下文工程；Agent运行时；双平面架构
 
 %% ============================================================
 %% Sections
@@ -109,7 +110,7 @@ $^{*}$Corresponding author: \texttt{zheng.haitao@sz.tsinghua.edu.cn}
 %% === ICA ===
 \input{cn_sections/section_icam.tex}
 
-%% === 量化定律 ===
+%% === 设计启发式 ===
 \input{cn_sections/section_laws.tex}
 
 %% === Agent框架演进 ===

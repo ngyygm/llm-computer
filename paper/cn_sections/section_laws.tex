@@ -1,28 +1,26 @@
-\section{量化定律}
+\section{模型原生系统的设计启发式}
 \label{sec:laws}
 %% ============================================================
 
-经典计算机体系结构的力量在于它有\textbf{可计算的原则}。
+经典计算机体系结构经久不衰的力量在于它有\textbf{可计算的原则}。
 Amdahl定律告诉我们：如果程序中串行部分占比例为$(1-f)$，即使把并行部分加速$p$倍，总体加速比也不会超过$1/(1-f)$——这为并行计算设定了理论上界\cite{hennessy2017quantitative}。
 Roofline模型告诉我们：每个计算核心的性能上限由其计算强度（Arithmetic Intensity）和内存带宽共同决定——这帮助工程师快速判断瓶颈在计算还是在访存\cite{hennessy2017quantitative}。
 这些定律的价值不在于它们的数学复杂度，而在于它们提供了\textbf{统一的量化语言}，使得工程师可以做出基于数据的决策。
 
-本节为模型原生计算提出三条量化定律。在形式上，它们与Amdahl定律同构；但在语义上，它们刻画了模型原生计算特有的性能约束。
-本文明确承认：定律I和定律III在数学形式上并非全新的发现，而是将Amdahl定律的分析框架\textbf{有意识地迁移}到模型原生计算场景，并用场景特有参数重新解释。
-这种迁移的价值不在于数学创新，而在于：为原本缺乏量化语言的设计空间提供可计算的决策依据，使得"该优先优化什么"从直觉判断变为定量分析。
+本节为模型原生计算提出三条\emph{Amdahl式设计启发式}。在形式上，启发式I和启发式III与Amdahl定律同构；但在语义上，它们刻画了模型原生计算特有的性能约束。本文从一开始就明确承认：这些\textbf{不是}全新的数学发现，也不是经验证过的scaling law，而是将Amdahl定律的分析框架\textbf{有意识地迁移}到模型原生计算场景，并用场景特有参数重新解释。它们的价值在于为原本缺乏量化语言的设计空间提供量级估算的直觉——把"该优先优化什么"从纯粹的猜测变成量级层面的推理。我们刻意将它们定位为\emph{启发式}而非\emph{定律}：定律意味着经过验证、可证伪的定量约束，而这一年轻领域的现有数据尚不足以支撑。下文凡引用已发表结果，都是用来\emph{示例说明}合理的参数区间，而非检验预测能力；我们将系统性的"先预测、后测量"验证视为未来工作的核心开放任务。
 
 % ---------------------------------------------------------
-\subsection{定律I：语义局部性定律}
+\subsection{启发式I：语义局部性}
 \label{sec:law1}
 % ---------------------------------------------------------
 
-\begin{law}[语义局部性定律]
+\begin{heuristic}[语义局部性]
 在自回归推理中，推理加速比$S$由KV缓存命中率$H$和KV复用加速比$\alpha$决定：
 \begin{equation}
 \label{eq:locality}
 S = \frac{1}{(1-H) + H \cdot \alpha^{-1}}
 \end{equation}
-\end{law}
+\end{heuristic}
 
 \subsubsection{参数的直观含义}
 
@@ -30,7 +28,7 @@ S = \frac{1}{(1-H) + H \cdot \alpha^{-1}}
 
 \begin{itemize}[nosep]
 \item $H$（KV缓存命中率）：\textbf{有多少比例的KV可以直接复用而不需要重算}。想象一个客服系统，如果用户连续5轮对话都围绕同一主题，前4轮生成的KV缓存可以被第5轮直接复用，那么$H$就接近1。反之，如果每次对话都是全新话题，之前的KV缓存毫无用处，$H$就接近0。$H$的值域为$[0, 1]$。
-\item $\alpha$（KV复用加速比）：\textbf{命中比未命中快多少倍}。当KV缓存命中时，系统只需从内存中读取已有的KV向量（时间复杂度$O(1)$）；当未命中时，系统必须从头计算全部注意力（时间复杂度$O(n^2)$）。$\alpha$量化了这一差距。在典型场景下，$\alpha$的值在$10$到$100$之间。
+\item $\alpha$（KV复用加速比）：\textbf{命中比未命中快多少倍}。当KV缓存命中时，系统只需从内存中读取已有的KV向量（时间复杂度$O(1)$）；当未命中时，系统必须从头计算全部注意力（时间复杂度$O(n^2)$）。$\alpha$量化了这一差距。在典型部署中，$\alpha$的值在$10$到$100$之间。
 \end{itemize}
 
 \subsubsection{完整推导}
@@ -92,35 +90,35 @@ S_{\mathrm{Amdahl}} = \frac{1}{(1-f) + f/p}
 
 \textbf{设计含义}：提升推理性能有两条路径——提高$H$（通过更好的缓存策略、前缀共享、语义缓存\cite{gim2024promptcache}）和提高$\alpha$（通过KV加载优化、PagedAttention\cite{kwon2023pagedattention}、KV量化\cite{hooper2024kvquant}）。根据公式，这两条路径具有\textbf{互补性}：当$H$已经很高时，进一步提升$H$的边际收益大；当$H$较低时，提高$\alpha$的效果有限，应先解决缓存策略问题。
 
-\subsubsection{实证验证}
+\subsubsection{示例说明，而非验证}
 
-\textbf{数据来源}：定律I的验证需要两组数据——系统报告的加速比和可以反推出的$H$值。
+我们要强调一个适用于三条启发式的方法论告诫。公式~(\ref{eq:locality})关联了三个量——$S$、$H$和$\alpha$——但一个已部署系统通常只报告$S$。单个观测、两个未知量，我们无法\emph{验证}该模型：假设一个$\alpha$值再反解$H$属于参数恢复，构造上不可证伪（任何报告的$S$都能被某个合适的$(H,\alpha)$组合吸收）。因此下文的例子只是\emph{示例说明}已发表的加速比与合理的参数区间相容，并不检验预测能力。真正的验证需要独立测量$\alpha$和$H$，\emph{预测}$S$，再进行比较——这种"先预测、后测量"的协议我们留待未来工作。
 
 \begin{enumerate}[nosep]
-\item \textbf{vLLM/PagedAttention}：Kwon等人报告vLLM相比基线推理系统实现2--4$\times$的吞吐提升\cite{kwon2023pagedattention}。取$\alpha \approx 10$（KV加载比重新计算快约10倍，这是一个保守估计），代入公式可得$H \approx 0.56$--$0.83$。这意味着vLLM的PagedAttention机制使得56\%--83\%的KV缓存可以被复用，而非每次从头计算。
+\item \textbf{vLLM/PagedAttention}：Kwon等人报告vLLM相比基线实现$2$--$4\times$的吞吐提升\cite{kwon2023pagedattention}。我们要提醒，这一收益主要来自消除KV内存碎片和启用连续批处理（continuous batching），\emph{而非}来自本启发式中$H$这一维度上的KV复用；PagedAttention本身并不实现前缀复用。因此它是更广义局部性原理（内存管理确有回报）的示例，而非公式~(\ref{eq:locality})的干净实例。
 
-\item \textbf{Prompt Cache}：Gim等人报告TTFT（首token延迟）降低至原来的$1/8$至$1/60$\cite{gim2024promptcache}，即$S$从8到60。取$\alpha \approx 60$（Prompt Cache的语义缓存允许直接跳过大量计算），对应$H$从$0.89$到接近$1.00$——这表明Prompt Cache在理想场景下几乎实现了完美的缓存命中。这说明对于高度结构化的prompt（如system prompt + 用户模板），缓存命中率可以非常高。
+\item \textbf{Prompt Cache}：Gim等人报告通过prompt级前缀缓存，TTFT（首token延迟）降低$8\times$至$60\times$\cite{gim2024promptcache}。这里的复用机制\emph{确实}对应$H$：取$\alpha \approx 60$（缓存的前缀注意力被跳过而非重算），可推得$H$从$0.89$到接近$1.00$，与对固定system-prompt前缀近乎完美的复用相一致。这是更干净的示例，但它仍是反解$H$，而非独立测量。
 \end{enumerate}
 
 % ---------------------------------------------------------
-\subsection{定律II：上下文预算定律}
+\subsection{启发式II：上下文预算}
 \label{sec:law2}
 % ---------------------------------------------------------
 
-\begin{law}[上下文预算定律]
-模型的有效工作集$W_{\mathrm{eff}}$受上下文窗口大小$C$和注意力保持率$\beta(L)$的联合约束：
+\begin{heuristic}[上下文预算]
+模型的有效工作集$W_{\mathrm{eff}}$是注意力保持率$\beta(L)$在名义上下文窗口$C$上的积分：
 \begin{equation}
 \label{eq:context}
-W_{\mathrm{eff}} \leq C \cdot \beta(L)
+W_{\mathrm{eff}} = \int_0^C \beta(L)\,dL = C \cdot \bar{\beta} \leq C, \qquad \bar{\beta} = \frac{1}{C}\int_0^C \beta(L)\,dL
 \end{equation}
-其中$C$是模型声称的上下文窗口大小（如128K、1M token），$L$为信息在窗口中的位置距离，$\beta(L) \in [0,1]$衡量位置$L$处信息被有效利用的概率。
-\end{law}
+其中$C$是模型的名义上下文窗口大小（如128K、1M token），$L$为信息在窗口中的位置距离，$\beta(L) \in [0,1]$衡量位置$L$处信息被有效利用的概率，$\bar{\beta} \in (0,1]$是全窗口的平均保持率。不等式$W_{\mathrm{eff}} \leq C$直接由$\beta(L) \leq 1$得出，仅当每个token都被完美利用时取等。
+\end{heuristic}
 
 \subsubsection{参数的直观含义}
 
 \begin{itemize}[nosep]
 \item $C$（上下文窗口大小）：这是模型的"物理内存容量"。例如GPT-4-Turbo的$C = 128\mathrm{K}$，Gemini 1.5 Pro的$C = 1\mathrm{M}$。$C$决定了模型一次性能"看到"多少token。
-\item $\beta(L)$（注意力保持率）：这是定律II的核心创新。它衡量的是：\textbf{放在上下文窗口中位置$L$处的信息，模型真正能用到多少}。$\beta(L) = 1$表示该位置的信息被完美利用，$\beta(L) = 0$表示该位置的信息被完全忽略。
+\item $\beta(L)$（注意力保持率）：这是启发式II的核心创新。它衡量的是：\textbf{放在上下文窗口中位置$L$处的信息，模型真正能用到多少}。$\beta(L) = 1$表示该位置的信息被完美利用，$\beta(L) = 0$表示该位置的信息被完全忽略。
 \item $W_{\mathrm{eff}}$（有效工作集）：模型的"真正可用记忆容量"。即使$C = 1\mathrm{M}$，如果$\beta(L)$在某些位置很低，那么$W_{\mathrm{eff}}$可能远小于$C$——就像买了一台1TB硬盘但只能稳定使用100GB。
 \end{itemize}
 
@@ -132,34 +130,28 @@ Liu等人的开创性工作系统地研究了这一问题\cite{liu2023lostmiddle
 
 后续研究进一步量化了这一衰减：RULER基准表明，上下文从4K增长到128K时，检索准确率从$>$95\%降至$<$70\%\cite{ruler2024}；LongBench v2确认深度推理任务的衰减更为严重\cite{longbenchv2_2024}；LOFT的研究表明即使模型支持超长上下文，在实际利用效率上也存在显著不足\cite{loft2024}。近期的研究指出LLM实际有效利用的上下文长度可能仅为声称窗口的10\%--20\%。
 
-图~\ref{fig_beta_decay}可视化了经验观察到的U形曲线和定律II采用的指数衰减模型。
+图~\ref{fig_beta_decay}可视化了经验观察到的U形保持曲线，以及用于近似其平均值的单调衰减包络。
 \input{figures/fig_beta_decay.tex}
 
-\subsubsection{为什么使用指数衰减模型}
+\subsubsection{$\beta(L)$的函数形式：U形，而非单调衰减}
 
-本文采用指数衰减形式来建模$\beta(L)$：
-\begin{equation}
-\beta(L) \approx \beta_0 \cdot e^{-\lambda L / C}
-\end{equation}
+对$\beta(L)$必须做一个建模选择。经验上占主导的模式是"中间丢失"的\textbf{U形}\cite{liu2023lostmiddle}：保持率在窗口开头（primacy）和末尾（recency）较高，在中间最低。纯粹的单调衰减——例如指数形式$\beta(L) \approx \beta_0 \cdot e^{-\lambda L / C}$——\emph{无法}表示这一U形，且会系统性地过度惩罚靠后窗口（recency）的信息。因此我们\emph{不}把指数形式当作$\beta(L)$的"标准模型"；它只在需要闭式工作集估计时，作为平均衰减$\bar{\beta}$的一个解析上方便的包络，而任何单调递减形式（线性、幂律、指数）都给出同样的定性结论$W_{\mathrm{eff}} < C$。
 
-选择指数衰减有三个理由：
-\textbf{第一}，它是最简单的单调衰减函数，参数$\lambda$有直观的物理含义——$\lambda$越大，衰减越快，有效上下文越短。
-\textbf{第二}，注意力权重本身是softmax的输出，天然具有指数形式，因此用指数函数建模其衰减在结构上是合理的。
-\textbf{第三}，RULER等基准的实验数据在log尺度上近似线性\cite{ruler2024}，与指数衰减模型一致。
+不过有三点观察仍值得记录。\textbf{第一}，RULER式的检索准确率在log尺度上随长度近似线性下降\cite{ruler2024}，这与——但并非唯一选择——指数包络对曲线主体相容。\textbf{第二}，primacy/recency的峰值意味着真实的$\beta(L)$是非单调的，因此忠实建模至少需要两个区段；在RULER/LongBench上对$C \in \{4\mathrm{K}\dots128\mathrm{K}\}$拟合，并比较函数形式（指数 vs. 幂律 vs. U形，用AIC/BIC）是一个具体的开放任务。\textbf{第三}，由于$\bar{\beta} = \tfrac{1}{C}\int_0^C \beta(L)\,dL$，工作集定义$W_{\mathrm{eff}} = C\bar{\beta}$对函数形式的选择是稳健的：无论$\beta(L)$是何形状，实质性的断言只是$W_{\mathrm{eff}} < C$。
 
-需要强调的是：$\lambda$的精确值取决于具体模型和任务类型，本文暂不对其做参数拟合。定律II的价值在于提供了一个\textbf{思考框架}——它告诉我们$W_{\mathrm{eff}} < C$，而这个差距有多大、如何缩小，是后续研究的问题。
+我们强调启发式II的价值是概念性的：它确立了有效工作集严格小于名义窗口这一事实，并把这一差距的大小——以及缩小它的策略（L3的分层记忆）——框定为经验问题，而非既定的常数。
 
 \subsubsection{与经典"工作集理论"的对应}
 
-定律II与Denning的工作集模型有深刻的对应关系\cite{denning1968thrashing}。
+启发式II与Denning的工作集模型有深刻的对应关系\cite{denning1968thrashing}。
 
 1968年，Peter Denning提出了工作集模型：进程在时间窗口$\tau$内访问的内存页面的集合构成\textbf{工作集}$W(\tau)$。Denning的核心洞察是：如果物理内存小于$W(\tau)$，系统就会发生\textbf{thrashing}（颠簸）——CPU大部分时间在等待页面换入换出，而不是在做有用的工作\cite{denning1968thrashing,denning2020workingset}。
 
-公式~(\ref{eq:context})是工作集模型的语义版本：$C$对应物理内存大小，$W_{\mathrm{eff}}$对应进程的真正工作集。关键差异在于：经典工作集模型中，页面的"有用性"是二值的（进程要么访问该页面，要么不访问）；而在定律II中，$\beta(L)$是连续的——模型对上下文中不同位置的信息利用程度是一个渐变的谱。
+公式~(\ref{eq:context})是工作集模型的语义版本：$C$对应物理内存大小，$W_{\mathrm{eff}}$对应进程的真正工作集。关键差异在于：经典工作集模型中，页面的"有用性"是二值的（进程要么访问该页面，要么不访问）；而在启发式II中，$\beta(L)$是连续的——模型对上下文中不同位置的信息利用程度是一个渐变的谱。
 
 \subsubsection{设计含义}
 
-定律II有三条直接的设计含义：
+启发式II有三条直接的设计含义：
 
 \textbf{（1）单纯增大$C$的边际收益递减}增大上下文窗口（如从128K扩展到1M）确实增大了$C$，但如果$\beta(L)$随$L$快速衰减，那么$W_{\mathrm{eff}}$的增长远小于$C$的增长。这意味着单纯追求更大的上下文窗口不是解决"记忆不够用"的根本方案。
 
@@ -167,42 +159,42 @@ Liu等人的开创性工作系统地研究了这一问题\cite{liu2023lostmiddle
 
 \textbf{（3）这为分层记忆（L3）提供了定量依据}当$C$固定时，只能通过语义虚拟内存（L3的职责）来突破$W_{\mathrm{eff}}$的限制——将不活跃的上下文"换出"到外部存储，将活跃的上下文"换入"到$\beta$值高的位置。MemGPT的虚拟上下文管理\cite{memgpt2023}和MemoryOS的分层记忆\cite{memoryos2025}正是这一思路的体现。
 
-\subsubsection{实证验证}
+\subsubsection{示例说明}
 
-\textbf{数据来源}：定律II的验证依赖于"模型声称的上下文窗口$C$"与"实际可用的有效上下文$W_{\mathrm{eff}}$"之间的差距。
+示例说明启发式II需要测量"模型声称的上下文窗口$C$"与"实际可用的有效上下文$W_{\mathrm{eff}}$"之间的差距。
 
 \begin{enumerate}[nosep]
-\item \textbf{RULER基准}：Hsieh等人设计了RULER基准，通过在不同长度的上下文中放置needle-in-a-haystack式检索任务来测试模型的有效上下文\cite{ruler2024}。结果表明，即使模型声称支持128K上下文，在复杂检索任务上的准确率从4K时的$>$95\%下降到128K时的$<$70\%。这意味着$W_{\mathrm{eff}} \approx 0.7 \times 128\mathrm{K} \approx 90\mathrm{K}$，远小于声称的$C$。
+\item \textbf{RULER基准}：Hsieh等人设计了RULER基准，通过在不同长度的上下文中放置needle-in-a-haystack式检索任务来测试模型的有效上下文\cite{ruler2024}。结果表明，即使模型声称支持128K上下文，在复杂检索任务上的准确率从4K时的$>$95\%下降到128K时的$<$70\%。这种检索准确率随$C$增长的单调下降与$\bar{\beta}$递减相一致，说明$W_{\mathrm{eff}} = C \cdot \bar{\beta}$的增长远慢于$C$，且远低于名义窗口大小。
 
-\item \textbf{LongBench v2}：Bai等人发现深度推理任务（如数学证明、多步逻辑）的衰减速度远快于简单检索任务\cite{longbenchv2_2024}。这说明$\lambda$（衰减系数）不是模型的固定属性，而是与任务类型相关的。
+\item \textbf{LongBench v2}：Bai等人发现深度推理任务（如数学证明、多步逻辑）的衰减速度远快于简单检索任务\cite{longbenchv2_2024}。这说明$\lambda$（衰减系数）随任务类型变化，而非模型的固定属性。
 \end{enumerate}
 
 % ---------------------------------------------------------
-\subsection{定律III：Agent加速比定律}
+\subsection{启发式III：Agent加速比}
 \label{sec:law3}
 % ---------------------------------------------------------
 
-\begin{law}[Agent加速比定律]
+\begin{heuristic}[Agent加速比]
 多Agent并行处理时，加速比$S_{\mathrm{agent}}$受可并行化比例$F$、子Agent数量$N$和编排效率$E$约束：
 \begin{equation}
 \label{eq:agent}
 S_{\mathrm{agent}} = \frac{1}{(1-F) + \frac{F}{N \cdot E}}
 \end{equation}
-\end{law}
+\end{heuristic}
 
 \subsubsection{参数的直观含义}
 
 \begin{itemize}[nosep]
 \item $F$（可并行化比例）：\textbf{任务中有多少比例可以分给多个Agent同时执行}。例如，一个"对比三篇论文"的任务，三篇论文的摘要可以分别由三个Agent同时提取（$F$较高）；而"按照严格的先后顺序编译、测试、部署"的任务，大部分步骤必须串行执行（$F$较低）。$F$的值域为$[0, 1]$。
 
-\item $N$（子Agent数量）：系统中可同时调度的Agent数量。类似于分布式系统中的处理器数量。例如，Codex支持为复杂任务创建多个子Agent\cite{openai_codex_subagents_2026}，Claude Code支持通过sub-agent机制并行处理子任务\cite{anthropic_claudecode_subagents_2026}。
+\item $N$（子Agent数量）：系统中可同时调度的Agent数量。类似于分布式系统中的处理器数量。例如，Codex支持为复杂任务创建多个子Agent，Claude Code支持通过sub-agent机制并行处理子任务\cite{anthropic_claudecode_subagents_2026}。
 
 \item $E$（编排效率）：\textbf{协调多个Agent的开销因子}，$E \in (0, 1]$。$E$反映了Agent编排的额外成本：上下文同步（Agent之间需要共享中间结果）、结果合并（多个Agent的输出需要被整合）、冲突检测（多个Agent可能修改同一资源）和权限协调（每个Agent的权限需要独立审批）。$E = 1$表示无编排开销，$E < 1$表示存在开销。
 \end{itemize}
 
 \subsubsection{完整推导}
 
-推导过程与定律I类似，但引入了编排效率的概念。
+推导过程与启发式I类似，但引入了编排效率的概念。
 
 \textbf{第一步：定义时间分解}
 设任务在单个Agent上的执行时间为$T_{\mathrm{total}}$。任务分为可并行部分（比例$F$）和串行部分（比例$1-F$）。
@@ -233,80 +225,85 @@ S_{\mathrm{agent}} = \frac{T_{\mathrm{total}}}{T} = \frac{1}{(1-F) + \frac{F}{N 
 
 \subsubsection{数值示例}
 
-假设一个代码审查任务，$F = 0.6$（60\%的审查工作可以分配给多个Agent），$E = 0.7$（编排效率70\%，有30\%的开销用于协调）：
+假设一个代码审查任务，$F = 0.8$（80\%的审查工作可以分配给多个Agent），$E = 0.8$（编排效率80\%，有20\%的开销用于协调）。这些值对应图~\ref{fig_law_curves}(c)中绘制的$E=0.8$曲线：
 
 \begin{itemize}[nosep]
-\item $N = 2$：$S = 1/(0.4 + 0.6/(2 \times 0.7)) = 1/(0.4 + 0.43) = 1.20$倍
-\item $N = 4$：$S = 1/(0.4 + 0.6/(4 \times 0.7)) = 1/(0.4 + 0.21) = 1.64$倍
-\item $N = 8$：$S = 1/(0.4 + 0.6/(8 \times 0.7)) = 1/(0.4 + 0.11) = 1.96$倍
-\item $N = 16$：$S = 1/(0.4 + 0.6/(16 \times 0.7)) = 1/(0.4 + 0.054) = 2.20$倍
+\item $N = 2$：$S = 1/(0.2 + 0.8/(2 \times 0.8)) = 1/(0.2 + 0.50) = 1.43$倍
+\item $N = 4$：$S = 1/(0.2 + 0.8/(4 \times 0.8)) = 1/(0.2 + 0.25) = 2.22$倍
+\item $N = 8$：$S = 1/(0.2 + 0.8/(8 \times 0.8)) = 1/(0.2 + 0.125) = 3.08$倍
+\item $N = 16$：$S = 1/(0.2 + 0.8/(16 \times 0.8)) = 1/(0.2 + 0.0625) = 3.81$倍
 \end{itemize}
 
-可见，Agent数量从2增加到4带来约37\%的额外加速，而从8增加到16仅带来约12\%的额外加速——\textbf{收益逐渐收窄}，这正是Amdahl定律的核心特征。
+可见，Agent数量从2增加到4带来约55\%的额外加速（$2.22/1.43$），而从8增加到16仅带来约24\%的额外加速（$3.81/3.08$）——\textbf{收益逐渐收窄}，这正是Amdahl式scaling的标志。
 
-\textbf{工业实证校验}
-以Fountain的Copilot系统为例\cite{anthropic2026agenticreport}：其中心编排Agent协调候选人筛选、文档生成和情感分析三个专业子Agent，但实际执行中子任务之间形成流水线并行，有效并行度远大于Agent数量。
-如果基线流程需要168小时完成招聘中心的全面配置，而实际在72小时内完成，则$S_{\mathrm{agent}} = 168/72 = 2.33$。
-代入公式反推，取$F \approx 0.7$、$E \approx 0.65$，则需有效并行度$N \approx 8$——这与三个Agent以流水线方式处理多个子任务的实际情况一致。注意此处的$N$代表\textbf{有效并行度}（可并行子任务数），而非Agent数量。
-这一实证校验表明定律III的参数空间可以由工业数据进行标定，同时揭示了$N$（有效并行度）与Agent数量的区别：流水线化使少量Agent即可实现较高的有效并行度。
+\paragraph{一个定性的工业信号：Fountain系统。}
+Anthropic报告的Fountain Copilot系统使用一个中心编排Agent协调候选人筛选、文档生成和情感分析三个专业子Agent，把一个完整的招聘中心配置从一周以上压缩到72小时以内\cite{anthropic2026agenticreport}。我们仅把它作为多Agent流水线确实带来真实聚合加速的\emph{定性}信号来引用，\emph{而非}对启发式的标定：三个自由参数（$F$、$N$、$E$）对应单个观测到的端到端比值，模型不可识别，反解某个三元组属于不可证伪的故事。真正的标定需要在受控负载上独立测量$F$和$E$。
 
 \subsubsection{与经典Amdahl定律的对比}
 
-定律III与Amdahl定律的区别在于引入了编排效率$E$：
+启发式III与Amdahl定律的区别在于引入了编排效率$E$：
 \begin{equation}
 S_{\mathrm{Amdahl}} = \frac{1}{(1-F) + F/N} \quad \text{vs.} \quad S_{\mathrm{agent}} = \frac{1}{(1-F) + F/(NE)}
 \end{equation}
 
-$E$的存在使得Agent系统的加速比\textbf{总是低于}经典Amdahl定律的预测。这是因为：在经典并行计算中，处理器间的通信开销通常可以通过硬件（如高速互联网络）和算法（如减少通信的算法设计）来控制；但在Agent系统中，编排开销不仅包含通信成本，还包含\textbf{LLM推理本身的概率性}——Agent之间需要用自然语言协调，而自然语言通信天生比二进制协议低效且容易产生误解。
+$E$的存在使得Agent系统的加速比\textbf{总是严格低于}经典Amdahl定律的预测（当$E < 1$时）。这是因为：在经典并行计算中，处理器间的通信开销通常可以通过硬件（如高速互联网络）和算法（如减少通信的算法设计）来控制；但在Agent系统中，编排开销不仅包含通信成本，还包含\textbf{LLM推理本身的概率性}——Agent之间需要用自然语言协调，而自然语言通信天生比二进制协议低效且容易产生误解。
 
 \subsubsection{设计含义}
 
-定律III有三条直接的设计含义：
+启发式III有三条直接的设计含义：
 
 \textbf{（1）盲目增加Agent数量不一定提升效率}根据公式，当$E$较低时（编排开销大），增加$N$的收益很小。这解释了为什么简单的"堆Agent"策略往往不如预期有效。
 
 \textbf{（2）应优先提高$F$和$E$}提高$F$（更好的任务分解，将更多串行步骤转化为可并行的子任务）和提高$E$（更低的编排开销，通过标准化的Agent间通信协议如A2A\cite{agentprotocols2025}来减少协调成本）的投入回报率远高于单纯增加$N$。
 
-\textbf{（3）存在最优的Agent数量}对于给定的$F$和$E$，存在一个$N^*$使得增加更多Agent的边际收益低于其边际成本（每个Agent都需要消耗LLM推理资源）。$N^*$的估计可以从公式导出：当$\partial S / \partial N$低于某个阈值时，不应再增加Agent。
+\textbf{（3）存在由成本定义的Agent数量拐点}虽然$S_{\mathrm{agent}}$关于$N$单调递增，但\emph{边际}加速比为
+\begin{equation}
+\frac{\partial S_{\mathrm{agent}}}{\partial N} = \frac{F}{E\,N^{2}\,g(N)^{2}}, \qquad g(N) = (1-F) + \frac{F}{EN},
+\end{equation}
+对于大$N$（此时$g(N)\to 1-F$）它以$1/N^{2}$衰减。若每个新增Agent以边际成本$c$消耗推理资源，且加速比--成本兑换率为$\rho$，则净效用$U(N) = S_{\mathrm{agent}} - \rho c N$在满足$\partial S/\partial N = \rho c$的$N^*$处取最大，即近似
+\begin{equation}
+N^{*} \approx \sqrt{\frac{F}{E\,\rho c\,(1-F)^{2}}}。
+\end{equation}
+这用显式的（尽管是理想化的）闭式解取代了此前含糊的断言：拐点随$\sqrt{F}$增长，随$\sqrt{E}$、$\rho c$以及串行比例$(1-F)$减小——正好对应这样的直觉：高度串行、昂贵或已编排良好的系统更早进入边际递减。作为示例，取上面代码审查场景（$F=0.8$，$E=0.8$）并设单位加速比--成本兑换率（$\rho c = 1$），可得$N^{*} \approx \sqrt{0.8/(0.8 \cdot 1 \cdot 0.04)} = \sqrt{25} = 5$；若把每个Agent的成本提高到四倍（$\rho c = 4$），拐点则减半至$N^{*} \approx 2.5$。这些只是"增加Agent到何处不再划算"的量级指引，而非预测。
 
-\subsubsection{实证验证}
+\subsubsection{示例说明}
 
-\textbf{数据来源}：定律III的验证需要多Agent系统的实际性能数据。
+示例说明启发式III需要多Agent系统的真实性能数据。
 
 \begin{enumerate}[nosep]
-\item \textbf{AutoGen}：Wu等人报告了多Agent系统的实验数据，Agent数量从2增加到8时，任务完成时间的减少幅度逐渐收窄\cite{wu2023autogen}——这与定律III的预测一致：随着$N$增加，$S_{\mathrm{agent}}$的增长率递减。
+\item \textbf{AutoGen}：Wu等人报告了多Agent系统的实验数据，Agent数量从2增加到8时，任务完成时间的减少幅度逐渐收窄\cite{wu2023autogen}——这与启发式III的预测一致：随着$N$增加，$S_{\mathrm{agent}}$的增长率递减。
 
 \item \textbf{GTA-2基准}：Wang等人报告开放工作流基准GTA-2的测试结果，顶尖模型的开放工作流成功率仅14.39\%\cite{gta2_2025}。这暗示当前系统的$F$和$E$都较低：任务分解能力不足导致$F$小（大部分工作仍是串行的），Agent间协调效率低导致$E$小。
 
-\item \textbf{Language Model Teams}：近期的arXiv论文将多Agent LLM团队类比为分布式系统，并直接用Amdahl定律框架分析其加速比\cite{langmodelteams2026}，发现高度可并行化的任务（如独立文档摘要）能获得接近线性的加速，而强依赖型任务（如多步推理）的加速比接近1——这与定律III中$F$的作用完全一致。
+\item \textbf{Language Model Teams}：近期的arXiv论文将多Agent LLM团队类比为分布式系统，并直接用Amdahl定律框架分析其加速比\cite{langmodelteams2026}，发现高度可并行化的任务（如独立文档摘要）能获得接近线性的加速，而强依赖型任务（如多步推理）的加速比接近1——这与启发式III中$F$的作用完全一致。
 \end{enumerate}
 
 % ---------------------------------------------------------
-\subsection{三条定律的统一视角}
+\subsection{统一视角}
 \label{sec:laws-summary}
 % ---------------------------------------------------------
 
-表~\ref{tab:empirical}汇总了三条定律的核心公式、支持数据和待验证问题。
-
-图~\ref{fig_law_curves}绘制了三条量化定律的特征曲线。
-\input{/home/linkco/exa/llm-computer/paper/figures/fig_law_curves.tex}
+表~\ref{tab:empirical}汇总了三条启发式各自的核心公式、支持数据和待验证问题。
 
 \begin{table}[htbp]
 \centering
 \footnotesize
-\caption{三条量化定律的实证数据汇总}
+\caption{三条设计启发式的示意参数区间与支持数据}
 \label{tab:empirical}
 \begin{tabularx}{\textwidth}{lY Y Y}
 \toprule
-& 定律I（语义局部性） & 定律II（上下文预算） & 定律III（Agent加速比） \\
+& 启发式I（语义局部性） & 启发式II（上下文预算） & 启发式III（Agent加速比） \\
 \midrule
-核心公式 & $S = 1/((1-H)+H/\alpha)$ & $W_{\mathrm{eff}} \leq C \cdot \beta(L)$ & $S = 1/((1-F)+F/(NE))$ \\
+核心公式 & $S = 1/((1-H)+H/\alpha)$ & $W_{\mathrm{eff}} = C\cdot\bar{\beta} \leq C$ & $S = 1/((1-F)+F/(NE))$ \\
 经典对应 & Amdahl定律（$f \leftrightarrow H$, $p \leftrightarrow \alpha$） & Denning工作集模型（$W(\tau) \leftrightarrow W_{\mathrm{eff}}$） & Amdahl定律 + 编排开销（$E < 1$） \\
-支持数据 & vLLM：2--4$\times$提升（$H \approx 0.56$--$0.83$）\cite{kwon2023pagedattention}；Prompt Cache：8--60$\times$ TTFT降低（$H \approx 0.75$--$0.98$）\cite{gim2024promptcache} & RULER：4K$\to$128K时准确率从$>$95\%降至$<$70\%\cite{ruler2024}；LongBench v2：深度推理衰减更快\cite{longbenchv2_2024} & AutoGen：Agent 2$\to$8时时间减少收窄\cite{wu2023autogen}；GTA-2：开放工作流仅14.39\%\cite{gta2_2025} \\
+支持数据 & vLLM：2--4$\times$吞吐提升（内存碎片消除与连续批处理，非$H$维复用）\cite{kwon2023pagedattention}；Prompt Cache：8--60$\times$ TTFT降低（$H \approx 0.89$--$\approx 1.00$）\cite{gim2024promptcache} & RULER：4K$\to$128K时准确率从$>$95\%降至$<$70\%\cite{ruler2024}；LongBench v2：深度推理衰减更快\cite{longbenchv2_2024} & AutoGen：Agent 2$\to$8时时间减少收窄\cite{wu2023autogen}；GTA-2：开放工作流仅14.39\%\cite{gta2_2025} \\
 待验证 & 语义缓存的$H$分布 & $\beta(L)$的精确函数形式 & $E$与任务复杂度的定量关系 \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-三条定律的共同特征是：它们都揭示了模型原生计算系统中的\textbf{性能上界}，并指出了突破上界的方向。定律I告诉我们KV缓存策略的理论极限；定律II告诉我们扩大上下文窗口的实际收益；定律III告诉我们增加Agent数量的有效边界。这三条定律共同构成了ICA模型的\textbf{量化骨架}，将第~\ref{sec:icam}节的定性设计原则转化为可计算的工程指标。
+图~\ref{fig_law_curves}绘制了三条启发式的特征曲线。
+\input{figures/fig_law_curves.tex}
+
+三条启发式的共同主题是：它们各自勾勒了模型原生计算中的一条\textbf{性能上界}，并指向逼近它的策略。启发式I刻画了KV缓存复用的极限。启发式II解释了为何单纯扩大上下文窗口只能换来有效工作集的次线性增长。启发式III划定了扩大Agent数量的边际递减边界。三者共同构成ICA模型的\emph{组织性直觉}——不是经过验证的定量骨架，而是一种共享的量级估算语言，把第~\ref{sec:icam}节的定性设计原则转化为有待系统经验标定的量级工程目标。
 %% ============================================================

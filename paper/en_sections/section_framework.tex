@@ -116,9 +116,9 @@ Codex's approval policies~\cite{openai_codex_approvals_2026}, Claude Code's read
 
 \subsubsection{Why the Separation Is Necessary}
 
-Industrial practice has already validated the necessity of this separation.
-Praetorian's development platform embeds LLMs within a deterministic orchestration layer, substantially improving agent reliability in autonomous software development~\cite{praetorian2025deterministic}.
-The ``deterministic shell, probabilistic core'' pattern is emerging as the de facto standard architecture for agent systems~\cite{towardsai2025deterministicshell}.
+Industrial practice strongly suggests the necessity of this separation (the accounts below are practitioner and vendor reports rather than peer-reviewed validation).
+Praetorian's development platform embeds LLMs within a deterministic orchestration layer, reporting improved agent reliability in autonomous software development~\cite{praetorian2025deterministic}.
+The ``deterministic shell, probabilistic core'' pattern---formally articulated by ArbiterOS~\cite{arbiteros2025} and echoed in practitioner discussions~\cite{towardsai2025deterministicshell}---is becoming a widely adopted architectural pattern for agent systems.
 The ``Blueprint First, Model Second'' framework encodes operational logic as deterministic source-code blueprints, constraining the LLM to operate within well-defined boundaries~\cite{blueprintfirst2025}.
 
 
@@ -129,9 +129,8 @@ The core rationale for separation is a clean division of responsibilities:
 \item The probabilistic plane should \textit{not} directly execute side-effectful operations (writing files, calling external APIs); instead, such actions must be mediated through the deterministic plane's approval and audit channels.
 \end{itemize}
 
-This separation finds strong support in recent empirical evidence.
-Anthropic's internal study reveals that engineers use AI for approximately 60\% of their work tasks yet feel comfortable fully delegating only 0--20\%~\cite{anthropic2026agenticreport}.
-This \textbf{collaboration paradox} is not a temporary artifact of insufficient model capability; it is a structural property of dual-plane systems.
+This separation finds strong support in the \textbf{collaboration paradox} introduced in Section~\ref{sec:intro}: engineers use AI heavily yet fully delegate only a small fraction of tasks~\cite{anthropic2026agenticreport}.
+This is not a temporary artifact of insufficient model capability; it is a structural property of dual-plane systems.
 The deterministic control plane, including human judgment transmitted through permission policies and approval workflows, naturally constrains the action space of the probabilistic plane.
 Engineers tend to delegate tasks that are ``easy to verify or low-risk'' while retaining tasks that are ``conceptually difficult or depend on design decisions.''
 This is precisely the behavior of a deterministic plane acting as a gate for the probabilistic plane.
@@ -146,6 +145,9 @@ When ArbiterOS calls the LLM a ``Probabilistic CPU,'' it is describing the proba
 When AIOS incorporates the LLM into a ``kernel,'' it is observing a mixture of the probabilistic plane and partial control logic.
 When AgentOS proposes a ``reasoning kernel,'' it is attempting to impose the structure of the control plane onto the probabilistic plane.
 These positions are not contradictory; they are complementary descriptions of the same dual-plane system, viewed from different vantage points.
+
+\paragraph{A derived consequence.}
+Because every irreversible, side-effecting operation must pass through the deterministic control plane (Axioms~5--6), the dual-plane structure concentrates accountability at a single, well-defined choke point: the full record of what an agent did---and could be held responsible for---is reconstructable from the deterministic-plane log alone (developed in Section~\ref{sec:challenges}). This is a concrete consequence of the separation, not merely a relabeling.
 
 Figure~\ref{fig_dual_plane} illustrates the dual-plane architecture and its mapping onto the ICA layers.
 \input{figures/fig_dual_plane.tex}

@@ -37,7 +37,7 @@
     ymin=0, ymax=22,
     xtick={0,0.2,0.4,0.6,0.8,1.0},
     title style={font=\small\bfseries, at={(0.5,1.08)}},
-    title={(a) Semantic Locality Law},
+    title={(a) Semantic Locality},
 ]
 % Shaded practical range FIRST so curves draw on top
 \addplot[blue!10, fill=blue!10, fill opacity=0.35, draw=none, forget plot]
@@ -62,7 +62,7 @@
     xtick={0,32,64,96,128},
     ytick={0,20,40,60,80},
     title style={font=\small\bfseries, at={(0.5,1.08)}},
-    title={(b) Context Budget Law},
+    title={(b) Context Budget},
 ]
 % Shaded practical range FIRST — full height to ymax=90
 \addplot[orange!10, fill=orange!10, fill opacity=0.40, draw=none, forget plot]
@@ -87,7 +87,7 @@
     ymin=0, ymax=5,
     xtick={0,2,4,6,8,10,12,14,16},
     title style={font=\small\bfseries, at={(0.5,1.08)}},
-    title={(c) Agent Speedup Law},
+    title={(c) Agent Speedup},
 ]
 % Start from N=2 to avoid S<1 at N=1 with low E
 \addplot[blue!80!black, domain=2:16, samples=60]
@@ -106,6 +106,6 @@
 
 \end{groupplot}
 \end{tikzpicture}}%
-\caption{Characteristic curves of three quantitative laws. (a) Semantic Locality Law: $S=1/((1-H)+H/\alpha)$. (b) Context Budget Law: $W_{\mathrm{eff}}=C\cdot e^{-\lambda C_0/C}$. (c) Agent Speedup Law: $S=1/((1-F)+F/(NE))$ with $F=0.8$. Shaded areas indicate typical operating ranges.}
+\caption{Characteristic curves of three design heuristics. (a) Semantic Locality: $S=1/((1-H)+H/\alpha)$. (b) Context Budget: $W_{\mathrm{eff}}=C\cdot\bar{\beta}$ (representative exponential-decay envelope shown). (c) Agent Speedup: $S=1/((1-F)+F/(NE))$ with $F=0.8$. Shaded areas indicate typical operating ranges.}
 \label{fig_law_curves}
 \end{figure}

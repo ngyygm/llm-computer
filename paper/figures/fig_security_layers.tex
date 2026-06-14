@@ -36,7 +36,7 @@
 \pgfmathsetmacro{\cx}{\xstart + 1*(\cellw+\colsep) + \cellw/2}
 \node[colhead, text=orange!70!black] at (\cx, \ystart + 0.45) {L2\\Inference};
 \pgfmathsetmacro{\cx}{\xstart + 2*(\cellw+\colsep) + \cellw/2}
-\node[colhead, text=blue!60!black] at (\cx, \ystart + 0.45) {L3\\Context};
+\node[colhead, text=orange!70!black] at (\cx, \ystart + 0.45) {L3\\Context};
 \pgfmathsetmacro{\cx}{\xstart + 3*(\cellw+\colsep) + \cellw/2}
 \node[colhead, text=blue!60!black] at (\cx, \ystart + 0.45) {L4\\Semantic};
 \pgfmathsetmacro{\cx}{\xstart + 4*(\cellw+\colsep) + \cellw/2}
@@ -45,10 +45,10 @@
 \node[colhead, text=blue!60!black] at (\cx, \ystart + 0.45) {L6\\Application};
 
 % === column sub-headers: plane labels (raised slightly) ===
-\pgfmathsetmacro{\modelnativex}{\xstart + \cellw + \colsep/2}
-\node[font=\tiny\itshape, orange!70!black, anchor=south] at (\modelnativex, \ystart + 1.25) {Model-Native};
+\pgfmathsetmacro{\modelnativex}{\xstart + 1.5*\cellw + \colsep}
+\node[font=\tiny\itshape, orange!70!black, anchor=south] at (\modelnativex, \ystart + 1.25) {Probabilistic};
 \pgfmathsetmacro{\classicalx}{\xstart + 3*(\cellw+\colsep) + 1.5*\cellw + 1.5*\colsep}
-\node[font=\tiny\itshape, blue!60!black, anchor=south] at (\classicalx, \ystart + 1.25) {Classical};
+\node[font=\tiny\itshape, blue!60!black, anchor=south] at (\classicalx, \ystart + 1.25) {Deterministic};
 
 % === row headers (5 challenges) ===
 \pgfmathsetmacro{\rx}{\xstart - 0.3}
@@ -141,32 +141,32 @@
 \node[font=\tiny\itshape, black!55, rotate=90, anchor=south] at (\bndx + 0.25, \bndmid)
     {Dual-Plane Boundary};
 
-% === Right-margin annotation: quantitative law relevance ===
+% === Right-margin annotation: design-heuristic relevance ===
 \pgfmathsetmacro{\lawx}{\xstart + 6*(\cellw+\colsep) + 0.35}
 
 % Row 0: Latency/Cost -> Law I (Energy/Performance scaling)
 \pgfmathsetmacro{\ry}{\ystart - 0*(\cellh+\rowsep) - \cellh/2}
-\node[lawlabel, red!70!black] at (\lawx, \ry) {Law~I};
+\node[lawlabel, red!70!black] at (\lawx, \ry) {Heur.~I};
 
 % Row 1: State Mgmt -> Law II (Memory/State consistency)
 \pgfmathsetmacro{\ry}{\ystart - 1*(\cellh+\rowsep) - \cellh/2}
-\node[lawlabel, red!70!black] at (\lawx, \ry) {Law~II};
+\node[lawlabel, red!70!black] at (\lawx, \ry) {Heur.~II};
 
 % Row 2: Interface Drift -> Law III (Interface stability)
 \pgfmathsetmacro{\ry}{\ystart - 2*(\cellh+\rowsep) - \cellh/2}
-\node[lawlabel, red!70!black] at (\lawx, \ry) {Law~III};
+\node[lawlabel, red!70!black] at (\lawx, \ry) {Heur.~III};
 
 % Row 3: Security & Privacy -> Law III + II
 \pgfmathsetmacro{\ry}{\ystart - 3*(\cellh+\rowsep) - \cellh/2}
-\node[lawlabel, red!70!black] at (\lawx, \ry) {Law~II,\,III};
+\node[lawlabel, red!70!black] at (\lawx, \ry) {Heur.~II,\,III};
 
 % Row 4: Governance -> Law III
 \pgfmathsetmacro{\ry}{\ystart - 4*(\cellh+\rowsep) - \cellh/2}
-\node[lawlabel, red!70!black] at (\lawx, \ry) {Law~III};
+\node[lawlabel, red!70!black] at (\lawx, \ry) {Heur.~III};
 
 % Right-margin column header
 \node[font=\scriptsize\bfseries, red!70!black, anchor=west] at (\lawx, \ystart + 0.45)
-    {Relevant Law};
+    {Relevant Heuristic};
 
 % === Axis labels ===
 \pgfmathsetmacro{\axleft}{\xstart - 3.6}
@@ -238,6 +238,6 @@
     (\classleft, \bracetop + 0.15) -- (\classright, \bracetop + 0.15);
 
 \end{tikzpicture}
-\caption{Challenge-to-ICA-layer impact heatmap. Each cell indicates the severity of a given challenge at the corresponding ICA layer: \textcolor{red!50}{\textbf{primary}} (direct, critical impact), \textcolor{orange!40}{\textbf{secondary}} (significant but indirect), \textcolor{yellow!50!black}{\textbf{tertiary}} (moderate, contextual), or \textcolor{gray!40}{not applicable}. The thick dashed line marks the dual-plane boundary between model-native layers (L1--L2) and classical layers (L3--L6). The right-margin column identifies the most relevant quantitative law for each challenge row.}
+\caption{Challenge-to-ICA-layer impact heatmap. Each cell indicates the severity of a given challenge at the corresponding ICA layer: \textcolor{red!50}{\textbf{primary}} (direct, critical impact), \textcolor{orange!40}{\textbf{secondary}} (significant but indirect), \textcolor{yellow!50!black}{\textbf{tertiary}} (moderate, contextual), or \textcolor{gray!40}{not applicable}. The thick dashed line marks the graded crossover between probabilistic-execution layers (L1--L3) and deterministic-control layers (L4--L6). The right-margin column identifies the most relevant design heuristic for each challenge row.}
 \label{fig:challenge_heatmap}
 \end{figure}

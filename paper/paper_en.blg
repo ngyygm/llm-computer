@@ -1,49 +1,46 @@
-This is BibTeX, Version 0.99e (TeX Live 2026)
+This is BibTeX, Version 0.99d (TeX Live 2023/Debian)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: paper_en.aux
 The style file: plain.bst
 Database file #1: refs.bib
-Warning--empty journal in phi3_2024
-Warning--empty journal in memgpt2023
-You've used 173 entries,
+You've used 178 entries,
             2118 wiz_defined-function locations,
-            1218 strings with 38095 characters,
-and the built_in function-call counts, 69025 in all, are:
-= -- 6158
-> -- 5140
+            1238 strings with 39213 characters,
+and the built_in function-call counts, 70545 in all, are:
+= -- 6296
+> -- 5254
 < -- 34
-+ -- 2060
-- -- 1874
-* -- 5161
-:= -- 11877
-add.period$ -- 533
-call.type$ -- 173
-change.case$ -- 1424
++ -- 2105
+- -- 1914
+* -- 5263
+:= -- 12162
+add.period$ -- 549
+call.type$ -- 178
+change.case$ -- 1459
 chr.to.int$ -- 0
-cite$ -- 175
-duplicate$ -- 1979
-empty$ -- 4301
-format.name$ -- 1874
-if$ -- 13796
+cite$ -- 178
+duplicate$ -- 2026
+empty$ -- 4391
+format.name$ -- 1914
+if$ -- 14093
 int.to.chr$ -- 0
-int.to.str$ -- 173
-missing$ -- 115
-newline$ -- 880
-num.names$ -- 346
-pop$ -- 1749
+int.to.str$ -- 178
+missing$ -- 119
+newline$ -- 906
+num.names$ -- 356
+pop$ -- 1784
 preamble$ -- 1
-purify$ -- 1251
+purify$ -- 1281
 quote$ -- 0
-skip$ -- 1628
+skip$ -- 1662
 stack$ -- 0
-substring$ -- 2654
-swap$ -- 475
+substring$ -- 2679
+swap$ -- 482
 text.length$ -- 34
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 688
-warning$ -- 2
-while$ -- 471
-width$ -- 176
-write$ -- 1823
-(There were 2 warnings)
+type$ -- 708
+warning$ -- 0
+while$ -- 481
+width$ -- 181
+write$ -- 1877

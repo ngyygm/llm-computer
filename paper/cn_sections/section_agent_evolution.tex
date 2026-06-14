@@ -81,7 +81,7 @@ Agents SDK的tracing机制则对应OS的\texttt{strace}/\texttt{auditd}系统调
 
 \paragraph{代表工作。}
 OpenAI Codex\cite{openai_codex_overview_2026}是一个运行在隔离沙箱中的云端代码Agent：它在独立的容器中checkout代码仓库，执行读写和运行命令，完成后提交差异（diff）供人类审查。
-Codex引入了子Agent机制（subagents）\cite{openai_codex_subagents_2026}：主Agent可以将子任务分派给专门的子Agent执行，子Agent在独立的沙箱中运行，结果经审批后合并---类似于Unix的\texttt{fork()}创建子进程。
+Codex引入了子Agent机制（subagents）：主Agent可以将子任务分派给专门的子Agent执行，子Agent在独立的沙箱中运行，结果经审批后合并---类似于Unix的\texttt{fork()}创建子进程。
 Codex还支持技能包（skills）\cite{openai_codex_skills_2026}和项目级指令文件（AGENTS.md）\cite{openai_codex_agents_md_2026}，实现了跨项目的可复用配置。
 
 Claude Code\cite{anthropic_claudecode_overview_2026}采取了互补的设计哲学：它运行在开发者本地终端，通过MCP协议\cite{mcp_intro_2026}连接外部工具，默认只读（除非用户显式授权写入），并支持自定义hooks来拦截和审计每一次工具调用\cite{anthropic_claudecode_security_2026}。
@@ -138,11 +138,11 @@ OWASP在2025年底发布的\textbf{Agentic Applications Top 10}\cite{owasp_agent
 图~\ref{fig_gen_matrix}总结了五代框架在六个体系结构维度上的能力成熟度。
 \input{figures/fig_gen_matrix.tex}
 
-\subsection{从定律III看五代演进}
+\subsection{从启发式III看五代演进}
 
-从第~\ref{sec:laws}节提出的Agent加速比定律（定律III）的视角看，五代演进对应着$F$（可分解比例）和$E$（编排效率）的逐步提升。
+从第~\ref{sec:laws}节提出的Agent加速比启发式（启发式III）的视角看，五代演进对应着$F$（可分解比例）和$E$（编排效率）的逐步提升。
 
-回顾定律III的形式：
+回顾启发式III的形式：
 \begin{equation}
 \label{eq:agent_law_review}
 S_{\mathrm{agent}} = \frac{1}{(1-F) + \dfrac{F}{N \cdot E}}

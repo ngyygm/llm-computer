@@ -3,7 +3,7 @@
 
 The analogy framework developed in the preceding four sections provides valuable intuition, but intuition alone cannot discipline engineering design. The enduring strength of classical computer architecture rests on its possession of \textbf{formal models}: from the hardware--software contract embodied in the instruction set architecture (ISA), to the locality theory governing memory hierarchies, to the quantitative analysis framework of Amdahl's Law. These models give architects a shared, precise vocabulary for reasoning about trade-offs.
 
-This section \textbf{formalizes} the analogies above into the \textit{Intelligent Computing Architecture} (ICA), comprising a six-layer functional hierarchy, inter-layer interface contracts, and six design axioms. Together, they provide the conceptual foundation for the quantitative laws developed in Section~\ref{sec:laws}.
+This section \textbf{formalizes} the analogies above into the \textit{Intelligent Computing Architecture} (ICA), comprising a six-layer functional hierarchy, inter-layer interface contracts, and six design axioms. Together, they provide the conceptual foundation for the design heuristics developed in Section~\ref{sec:laws}.
 
 % ---------------------------------------------------------
 \subsection{Six-Layer Hierarchy}
@@ -37,7 +37,7 @@ User tasks, agent applications, and workflow automation. This layer parallels th
 \end{enumerate}
 \end{definition}
 
-The ICA layering is not an arbitrary decomposition. It obeys a single organizing principle: each layer provides services to the layer above and depends solely on the interface of the layer below, precisely the philosophy underlying network protocol stacks and operating-system hierarchies. The resulting benefit is \textbf{separation of concerns}: an L2 engineer optimizing KV cache policies need not understand agent orchestration logic, and an L5 developer designing task schedulers need not comprehend the hardware details of attention computation.
+The ICA layering is a deliberate, pragmatic mapping rather than a uniquely forced one: each of the six layers corresponds one-to-one to a distinct classical stratum (Table~\ref{tab:icam}) and is characterized by a distinct ``core difference'' from its classical analog, with each boundary independently checkable through the interface contract of Section~\ref{sec:icam-interfaces}. The organizing principle is the same as in network protocol stacks and operating-system hierarchies---each layer serves the layer above and depends only on the interface of the layer below---and the resulting benefit is \textbf{separation of concerns}: an L2 engineer optimizing KV cache policies need not understand agent orchestration logic, and an L5 developer designing task schedulers need not comprehend the hardware details of attention computation. We present this decomposition as an organizing proposal; the precise boundaries will almost certainly be refined as the field matures (Section~\ref{sec:conclusion}).
 
 Table~\ref{tab:icam} maps each ICA layer to its classical counterpart, summarizes its responsibilities, highlights the core difference, and lists representative implementations.
 
@@ -96,7 +96,7 @@ Allocate a new KV block, load an existing block by prefix hash, and reclaim inac
 \item \textbf{Invariants.}
 KV blocks required by the current inference step must not be lost, analogous to the operating-system guarantee that a memory page actively referenced by a process will not be swapped out.
 \item \textbf{Metrics.}
-KV hit rate $H$ (the core parameter in Law~I, Section~\ref{sec:law1}), peak GPU memory usage, and page-replacement count.
+KV hit rate $H$ (the core parameter in Heuristic~I, Section~\ref{sec:law1}), peak GPU memory usage, and page-replacement count.
 \end{itemize}
 
 \subsubsection{L3--L4 Interface: Context Loading Contract}
@@ -108,7 +108,7 @@ L4 requests context loading from L3. This interface resembles an application mem
 \texttt{read(query)}, \texttt{prefetch(hint)}, \texttt{compact}, \texttt{evict}.
 Retrieve context by query, prefetch based on a hint, compress context, and evict inactive context.
 \item \textbf{Invariants.}
-Returned content must carry provenance tracking and freshness annotations, analogous to a file system guaranteeing that reads return the most recent committed version.
+Every returned context item carries a monotonic version stamp and a retrieval timestamp, analogous to a file system guaranteeing that reads return the most recent committed version (test: re-issuing the same read within the item's time-to-live returns an identical version stamp).
 \item \textbf{Metrics.}
 Retrieval recall, context compression ratio, and loading latency.
 \end{itemize}
@@ -136,7 +136,7 @@ L6 submits tasks to L5. This interface resembles a user launching a program from
 \texttt{submit(task\_spec)}, \texttt{poll}, \texttt{cancel}.
 Submit a task specification, poll for status, and cancel a running task.
 \item \textbf{Invariants.}
-Task execution produces a traceable audit trail; on failure, side effects are rolled back, analogous to database transaction atomicity.
+Task execution produces a traceable audit trail, and side-effecting operations are compensable: each is paired with a logged compensating action, so that a failure triggers compensating replay (test: no uncompensated side-effecting operation remains in the trace after a failed task), analogous to database transaction atomicity.
 \item \textbf{Metrics.}
 Task completion rate and human-takeover rate.
 \end{itemize}
@@ -171,7 +171,7 @@ ICA Layer & Probabilistic Execution Plane & Deterministic Control Plane \\
 L1 & Matrix operations, attention computation (probabilistic output) & Precision verification, hardware error detection \\
 L2 & Semantic KV-cache matching, prefix sharing & Cache capacity management, eviction policy \\
 L3 & Semantic retrieval, context compilation, summarization & Memory retention policy, version stamps, state persistence \\
-L4 & Semantic understanding of tool results & Tool schemas, protocol specifications, permission enforcement, auditing \\
+L4 & Semantic understanding of tool results & Tool schemas, protocol specifications, capability annotations, auditing \\
 L5 & Agent reasoning and decision-making (probabilistic) & Task scheduling, access control, failure recovery, trace logging \\
 L6 & \multicolumn{2}{c}{Consumer of both planes: users receive intelligent output \textit{and} an auditable trace} \\
 \bottomrule
@@ -184,9 +184,9 @@ Two structural features emerge from this mapping.
 It primarily spans L1 (physical execution) and L2 (inference serving) and permeates into L3 (semantic retrieval and context compilation). This is unsurprising: the core capabilities of LLMs, namely language understanding and generation, are concentrated in these layers.
 
 \paragraph{The deterministic plane is weighted toward the top.}
-It primarily covers L5 (orchestration) and the interface-contract portions of L4 (permission enforcement, auditing, capability annotations), extending into the state-management portions of L3 (memory retention policies, version stamps). System-level requirements for safety, reliability, and auditability demand deterministic guarantees.
+It primarily covers L5 (orchestration) and the interface-contract portions of L4 (auditing, capability annotations), extending into the state-management portions of L3 (memory retention policies, version stamps). System-level requirements for safety, reliability, and auditability demand deterministic guarantees.
 
-L4 occupies a distinctive role as a \textit{transition layer}: tool schemas and protocol specifications belong to the deterministic plane (they are formalized interface definitions), while the semantic interpretation of tool results belongs to the probabilistic plane (the LLM must understand natural-language return values). L6 (application layer) is a consumer of both planes: end users simultaneously receive intelligent output from the probabilistic plane and an auditable trace from the deterministic plane.
+L4 occupies a distinctive role as a \textit{transition layer}: tool schemas and protocol specifications belong to the deterministic plane (they are formalized interface definitions), while the semantic interpretation of tool results belongs to the probabilistic plane (the LLM must understand natural-language return values). L6 (application layer) is a consumer of both planes: end users simultaneously receive intelligent output from the probabilistic plane and an auditable trace from the deterministic plane. Accordingly, the plane boundary should be read as a \textit{graded interface} centered around L3--L4, not a single hard layer cut; the $6\times 2$ matrix in Table~\ref{tab:dual-plane-icam} is the authoritative mapping.
 
 This cross-mapping resolves an apparent contradiction in the literature. Researchers focused on inference optimization regard the LLM as a compute engine at L1--L2~\cite{kwon2023pagedattention,zhou2024efficientinference}; those focused on agent systems see it as an intelligent kernel at L5--L6~\cite{openai_codex_overview_2026,anthropic_claudecode_overview_2026}; those focused on context management treat it as a memory processor at L3~\cite{memgpt2023,memoryos2025}. These perspectives are not mutually contradictory; they are observing different layers of the same ICA stack through different planes.
 
@@ -207,7 +207,7 @@ Model-native computation exhibits both \textbf{temporal locality} (recently acce
 \item[Intuition.] Just as running programs tend to revisit the same set of memory pages (motivating LRU cache replacement), LLMs in multi-turn conversations tend to re-reference the same context fragments. A user who first asks ``how do Python decorators work?'' will typically follow up with questions on the same topic. This is semantic locality in action.
 \item[Classical source.] The theoretical foundations of cache design~\cite{drepper2007memory}.
 \item[ICA embodiment.] KV cache reuse at L2 (identical prefixes share KV cache entries), prefix caching at L2 (multiple requests share the KV cache of a common system prompt), and semantic caching at L3 (semantically similar queries reuse previously generated results).
-\item[Design implication.] Every ICA layer should employ locality-aware caching and prefetching. Law~I (Section~\ref{sec:law1}) quantifies this axiom into a computable formula.
+\item[Design implication.] Every ICA layer should employ locality-aware caching and prefetching. Heuristic~I (Section~\ref{sec:law1}) offers a back-of-envelope formula for this axiom.
 \end{description}
 
 \refstepcounter{axiom}

@@ -230,8 +230,7 @@ Agent运行时要做的事情包括：
 Ge等人提出``LLM as OS, Agents as Apps''的愿景\cite{ge2023llmos}。
 Mei等人提出AIOS，构建了完整的LLM Agent操作系统内核架构\cite{mei2024aios}。
 Mi等人系统地将计算机体系结构的演进经验应用于Agent系统设计\cite{mi2025llmagentscomputersystems}。
-Karpathy在2023年指出``LLM不是聊天机器人，而是新操作系统的内核进程''%
-\cite{karpathy2023llmos}——文件系统变成向量数据库，浏览器变成互联网搜索。
+Karpathy在2023年指出``LLM不是聊天机器人，而是新操作系统的内核进程''，文件系统变成向量数据库，浏览器变成互联网搜索\cite{karpathy2023lmos}。
 这一愿景正在成为经济现实：一家Augment Code的企业客户将其CTO预估需要4--8个月的项目在2周内完成\cite{anthropic2026agenticreport}，证明了有效的L3上下文管理与L5编排相结合可以将开发者入职和项目交付周期从周级别压缩到天级别。
 
 工业实践也在朝这个方向演化：
@@ -365,10 +364,10 @@ Internet of Agents从``互联网''而非单机系统来想象agent生态\cite{io
 \subsubsection{为什么相似}
 
 \textbf{第一，都面临``通信开销 vs.\ 并行收益''的权衡}
-分布式系统中，Amdahl定律告诉我们并行加速比受限于串行部分；多Agent系统中，定律III（Agent加速比定律）预测类似的行为——当编排效率$E$不够高时，单纯增加Agent数量收益递减。
-AutoGen的多Agent实验验证了这一预测：Agent数量从2增加到8时，任务完成时间的减少幅度逐渐收窄\cite{wu2023autogen}。
-工业案例进一步表明，协调拓扑对$E$有显著影响：Fountain采用``中心辐射''拓扑（一个中心Copilot协调筛选、文档生成、情感分析三个子Agent）实现了50\%更快的候选人筛选速度和72小时内的全面配置\cite{anthropic2026agenticreport}；MetaGPT采用流水线拓扑（SOP驱动的顺序协作）；AutoGen采用对等拓扑（对话式协调）。
-不同的拓扑在不同的任务场景下产生不同的$E$值，这暗示定律III中的$E$不是固定的标量，而是与协调结构相关的设计变量。
+分布式系统中，Amdahl定律告诉我们并行加速比受限于串行部分；多Agent系统中，启发式III（Agent加速比启发式）描述了类似的行为——当编排效率$E$不够高时，单纯增加Agent数量收益递减。
+AutoGen的多Agent实验与这一描述相一致：Agent数量从2增加到8时，任务完成时间的减少幅度逐渐收窄\cite{wu2023autogen}。
+工业案例从定性层面说明，协调拓扑本身就是一个设计变量：Fountain采用``中心辐射''拓扑（一个中心Copilot协调筛选、文档生成、情感分析三个子Agent）\cite{anthropic2026agenticreport}；MetaGPT采用流水线拓扑（SOP驱动的顺序协作）；AutoGen采用对等拓扑（对话式协调）。我们把这些视为拓扑多样性的定性例证，而非对$E$的定量标定——尤其是Fountain的数字，系厂商报告且不可复现，详见第\ref{sec:law3}节。
+不同的拓扑在不同的任务场景下产生不同的$E$值，这暗示启发式III中的$E$不是固定的标量，而是与协调结构相关的设计变量。
 
 \textbf{第二，都需要协调机制}
 分布式系统用共识协议（如Raft\cite{raft2014}）让多个节点就决策达成一致；多Agent系统需要``辩论''``投票''或``层级裁决''等机制让多个Agent就结论达成一致。

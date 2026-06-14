@@ -16,6 +16,7 @@
 \citation{orca2022}
 \citation{ironclaw2025}
 \citation{anthropic2026agenticreport}
+\citation{anthropic2026agenticreport}
 \citation{kwon2023pagedattention}
 \citation{memgpt2023}
 \citation{openai_codex_overview_2026}
@@ -30,6 +31,7 @@
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Core analogy mapping between classical computing and model-native computing.}}{2}{table.caption.1}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{tab:analogy-mapping}{{1}{2}{Core analogy mapping between classical computing and model-native computing}{table.caption.1}{}}
+\citation{karpathy2023lmos}
 \citation{mei2024aios}
 \citation{memgpt2023}
 \citation{mi2025llmagentscomputersystems}
@@ -43,34 +45,41 @@
 \newlabel{fig_analogy_map}{{1}{3}{Overview analogy mapping between computer architecture and model-native computing systems}{figure.caption.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.2}From Intuition to Problem}{3}{subsection.1.2}\protected@file@percent }
 \citation{anthropic2026agenticreport}
-\citation{hennessy2017quantitative}
+\citation{dohmke2023seachange}
+\citation{klemmer2024aiassistants}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Contributions}{4}{subsection.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2}Background: The Classical Computing Stack and the Model-Native System Stack}{4}{section.2}\protected@file@percent }
-\newlabel{sec:background}{{2}{4}{Background: The Classical Computing Stack and the Model-Native System Stack}{section.2}{}}
+\citation{hennessy2017quantitative}
 \citation{intel_sdm_2026}
 \citation{riscv_spec_2026}
-\citation{drepper2007memory}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background: The Classical Computing Stack and the Model-Native System Stack}{5}{section.2}\protected@file@percent }
+\newlabel{sec:background}{{2}{5}{Background: The Classical Computing Stack and the Model-Native System Stack}{section.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Layered Abstractions in Classical Computer Architecture}{5}{subsection.2.1}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces The classical computing stack as a six-layer abstraction hierarchy, with corresponding ICA layer mappings on the left and the governing design principle on the right. Each layer depends only on the interface of the layer below, enabling independent evolution. The ICA architecture (Section~\ref {sec:icam}) transplants this layered discipline into the model-native computing domain.}}{5}{figure.caption.3}\protected@file@percent }
 \newlabel{fig:classical_stack}{{2}{5}{The classical computing stack as a six-layer abstraction hierarchy, with corresponding ICA layer mappings on the left and the governing design principle on the right. Each layer depends only on the interface of the layer below, enabling independent evolution. The ICA architecture (Section~\ref {sec:icam}) transplants this layered discipline into the model-native computing domain}{figure.caption.3}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.1}Instruction Set Architecture (ISA): The Contract Between Hardware and Software}{5}{subsubsection.2.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.2}Microarchitecture: Multiple Implementations Under One Contract}{5}{subsubsection.2.1.2}\protected@file@percent }
+\citation{drepper2007memory}
 \citation{ostep_2023}
 \citation{linux_cfs_2026}
 \citation{ostep_2023}
 \citation{xv6_2022}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.2}Microarchitecture: Multiple Implementations Under One Contract}{6}{subsubsection.2.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.3}Cache Hierarchy: Exploiting Locality to Bridge the Processor--Memory Gap}{6}{subsubsection.2.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.4}Virtual Memory: The Illusion of Infinite Address Space}{6}{subsubsection.2.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.5}Operating System: Scheduling, Protection, and Resource Management}{6}{subsubsection.2.1.5}\protected@file@percent }
 \citation{cap2002}
 \citation{raft2014}
 \citation{spanner2012}
 \citation{cap2002}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.3}Cache Hierarchy: Exploiting Locality to Bridge the Processor--Memory Gap}{6}{subsubsection.2.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.4}Virtual Memory: The Illusion of Infinite Address Space}{6}{subsubsection.2.1.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.5}Operating System: Scheduling, Protection, and Resource Management}{6}{subsubsection.2.1.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.6}Distributed Systems: Scaling Beyond a Single Node}{6}{subsubsection.2.1.6}\protected@file@percent }
 \citation{malekar2024amdahlllm}
 \citation{hennessy2017quantitative}
 \citation{yuan2024llminference}
 \citation{drepper2007memory}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.6}Distributed Systems: Scaling Beyond a Single Node}{7}{subsubsection.2.1.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.7}Quantitative Design Principles}{7}{subsubsection.2.1.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Amdahl's Law.}{7}{section*.4}\protected@file@percent }
+\newlabel{eq:amdahl}{{1}{7}{Amdahl's Law}{equation.2.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{The Roofline Model.}{7}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Locality Principle.}{7}{section*.6}\protected@file@percent }
 \citation{vaswani2017attention}
 \citation{su2021roformer}
 \citation{switch2022}
@@ -78,19 +87,14 @@
 \citation{yarn2024}
 \citation{longrope2024}
 \citation{gu2024mamba}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.7}Quantitative Design Principles}{7}{subsubsection.2.1.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Amdahl's Law.}{7}{section*.4}\protected@file@percent }
-\newlabel{eq:amdahl}{{1}{7}{Amdahl's Law}{equation.2.1}{}}
-\@writefile{toc}{\contentsline {paragraph}{The Roofline Model.}{7}{section*.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Locality Principle.}{7}{section*.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Emerging Layers of the LLM System Stack}{7}{subsection.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Model Layer: Evolution of the Inference Core}{7}{subsubsection.2.2.1}\protected@file@percent }
 \citation{dao2022flashattention}
 \citation{dao2023flashattention2}
 \citation{kwon2023pagedattention}
 \citation{orca2022}
 \citation{zhong2024distserve}
 \citation{agrawal2024sarathi}
+\citation{patel2024splitwise}
+\citation{qin2024mooncake}
 \citation{gemini2024}
 \citation{yarn2024}
 \citation{lewis2020rag}
@@ -102,6 +106,10 @@
 \citation{memos2025}
 \citation{memoryos2025}
 \citation{contextengineer_survey2025}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Emerging Layers of the LLM System Stack}{8}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Model Layer: Evolution of the Inference Core}{8}{subsubsection.2.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}Inference Layer: Systematic Serving Optimizations}{8}{subsubsection.2.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.3}Memory Layer: Reconciling Finite Windows with Persistent State}{8}{subsubsection.2.2.3}\protected@file@percent }
 \citation{yao2023react}
 \citation{schick2023toolformer}
 \citation{sweagent2024}
@@ -116,33 +124,33 @@
 \citation{anthropic_claudecode_security_2026}
 \citation{wu2023autogen}
 \citation{metagpt2023}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}Inference Layer: Systematic Serving Optimizations}{8}{subsubsection.2.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.3}Memory Layer: Reconciling Finite Windows with Persistent State}{8}{subsubsection.2.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.4}Agent Layer: From Single-Turn Inference to Complex Runtimes}{8}{subsubsection.2.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.4}Agent Layer: From Single-Turn Inference to Complex Runtimes}{9}{subsubsection.2.2.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3}The Gap: No Unified System Language}{9}{subsection.2.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Layer comparison between the classical computing stack and the model-native computing stack. L1--L3 form the probabilistic execution plane; L4--L5 form the deterministic control plane.}}{9}{figure.caption.7}\protected@file@percent }
-\newlabel{fig_dual_stack}{{3}{9}{Layer comparison between the classical computing stack and the model-native computing stack. L1--L3 form the probabilistic execution plane; L4--L5 form the deterministic control plane}{figure.caption.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Related Work}{9}{section.3}\protected@file@percent }
+\newlabel{sec:related}{{3}{9}{Related Work}{section.3}{}}
+\citation{mi2025llmagentscomputersystems}
 \citation{ge2023llmos}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Layer comparison between the classical computing stack and the model-native computing stack. L1--L3 form the probabilistic execution plane; L4--L5 form the deterministic control plane.}}{10}{figure.caption.7}\protected@file@percent }
+\newlabel{fig_dual_stack}{{3}{10}{Layer comparison between the classical computing stack and the model-native computing stack. L1--L3 form the probabilistic execution plane; L4--L5 form the deterministic control plane}{figure.caption.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Literature Search Methodology}{10}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:related-method}{{3.1}{10}{Literature Search Methodology}{subsection.3.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}LLM-as-OS / Agent Kernel}{10}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:related-llmos}{{3.2}{10}{LLM-as-OS / Agent Kernel}{subsection.3.2}{}}
 \citation{mei2024aios}
 \citation{agentos2025}
 \citation{ufo2_2025}
 \citation{aura2025}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Related Work}{10}{section.3}\protected@file@percent }
-\newlabel{sec:related}{{3}{10}{Related Work}{section.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}LLM-as-OS / Agent Kernel}{10}{subsection.3.1}\protected@file@percent }
-\newlabel{sec:related-llmos}{{3.1}{10}{LLM-as-OS / Agent Kernel}{subsection.3.1}{}}
 \citation{gemini2024}
 \citation{memgpt2023}
 \citation{lewis2020rag}
+\@writefile{toc}{\contentsline {paragraph}{Relationship to this paper.}{11}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Memory Hierarchy and Virtual Context Management}{11}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:related-memory}{{3.3}{11}{Memory Hierarchy and Virtual Context Management}{subsection.3.3}{}}
 \citation{memos2025}
 \citation{memoryos2025}
 \citation{hiagent2024}
 \citation{amem2025}
 \citation{longmemeval2024}
-\@writefile{toc}{\contentsline {paragraph}{Relationship to this paper.}{11}{section*.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Memory Hierarchy and Virtual Context Management}{11}{subsection.3.2}\protected@file@percent }
-\newlabel{sec:related-memory}{{3.2}{11}{Memory Hierarchy and Virtual Context Management}{subsection.3.2}{}}
-\@writefile{toc}{\contentsline {paragraph}{Relationship to this paper.}{11}{section*.9}\protected@file@percent }
 \citation{yao2023react}
 \citation{schick2023toolformer}
 \citation{openai_codex_overview_2026}
@@ -150,6 +158,10 @@
 \citation{openai_codex_overview_2026}
 \citation{openai_codex_agents_md_2026}
 \citation{openai_codex_skills_2026}
+\@writefile{toc}{\contentsline {paragraph}{Relationship to this paper.}{12}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Agent Frameworks and Runtimes}{12}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:related-agent-framework}{{3.4}{12}{Agent Frameworks and Runtimes}{subsection.3.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Foundational capabilities: interleaving reasoning and action.}{12}{section*.10}\protected@file@percent }
 \citation{anthropic_claudecode_overview_2026}
 \citation{dive_claudecode_2026}
 \citation{anthropic_claudecode_subagents_2026}
@@ -157,62 +169,64 @@
 \citation{anthropic_claudecode_memory_2026}
 \citation{anthropic2026agenticreport}
 \citation{openhands_paper_2025}
+\citation{openhands_paper_2025}
 \citation{swebench2023}
 \citation{sweagent2024}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Agent Frameworks and Runtimes}{12}{subsection.3.3}\protected@file@percent }
-\newlabel{sec:related-agent-framework}{{3.3}{12}{Agent Frameworks and Runtimes}{subsection.3.3}{}}
-\@writefile{toc}{\contentsline {paragraph}{Foundational capabilities: interleaving reasoning and action.}{12}{section*.10}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{The rise of coding agents.}{12}{section*.11}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Relationship to this paper.}{12}{section*.12}\protected@file@percent }
 \citation{hugginggpt2023}
 \citation{patil2024gorilla}
 \citation{mcp_intro_2026}
 \citation{anthropic_claudecode_mcp_2026}
+\@writefile{toc}{\contentsline {paragraph}{The rise of coding agents.}{13}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Relationship to this paper.}{13}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Tool Calling and I/O Protocols}{13}{subsection.3.5}\protected@file@percent }
+\newlabel{sec:related-io}{{3.5}{13}{Tool Calling and I/O Protocols}{subsection.3.5}{}}
 \citation{google_a2a_2025}
 \citation{a2alinux2025}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Tool Calling and I/O Protocols}{13}{subsection.3.4}\protected@file@percent }
-\newlabel{sec:related-io}{{3.4}{13}{Tool Calling and I/O Protocols}{subsection.3.4}{}}
-\@writefile{toc}{\contentsline {paragraph}{MCP: the model-to-system I/O bus.}{13}{section*.13}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{A2A: the agent-to-agent interconnect protocol.}{13}{section*.14}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Relationship to this paper.}{13}{section*.15}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Multi-Agent Collaboration and Distributed Systems}{13}{subsection.3.5}\protected@file@percent }
-\newlabel{sec:related-multiagent}{{3.5}{13}{Multi-Agent Collaboration and Distributed Systems}{subsection.3.5}{}}
 \citation{wu2023autogen}
 \citation{metagpt2023}
 \citation{anthropic2026agenticreport}
 \citation{wu2023autogen}
 \citation{metagpt2023}
+\@writefile{toc}{\contentsline {paragraph}{MCP: the model-to-system I/O bus.}{14}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{A2A: the agent-to-agent interconnect protocol.}{14}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Relationship to this paper.}{14}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Multi-Agent Collaboration and Distributed Systems}{14}{subsection.3.6}\protected@file@percent }
+\newlabel{sec:related-multiagent}{{3.6}{14}{Multi-Agent Collaboration and Distributed Systems}{subsection.3.6}{}}
 \citation{ioa2024}
 \citation{sumers2024coala}
 \citation{holt2024l2mac}
 \citation{mi2025llmagentscomputersystems}
-\@writefile{toc}{\contentsline {paragraph}{Relationship to this paper.}{14}{section*.16}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Cognitive Architectures and Security Governance}{14}{subsection.3.6}\protected@file@percent }
-\newlabel{sec:related-cognition-security}{{3.6}{14}{Cognitive Architectures and Security Governance}{subsection.3.6}{}}
-\@writefile{toc}{\contentsline {paragraph}{Cognitive architectures.}{14}{section*.17}\protected@file@percent }
 \citation{arbiteros2025}
+\@writefile{toc}{\contentsline {paragraph}{Relationship to this paper.}{15}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Cognitive Architectures and Security Governance}{15}{subsection.3.7}\protected@file@percent }
+\newlabel{sec:related-cognition-security}{{3.7}{15}{Cognitive Architectures and Security Governance}{subsection.3.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cognitive architectures.}{15}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Security governance.}{15}{section*.18}\protected@file@percent }
 \citation{debenedetti2025camel}
 \citation{ironclaw2025}
 \citation{ge2023llmos}
 \citation{mei2024aios}
 \citation{arbiteros2025}
 \citation{agentos2025}
-\@writefile{toc}{\contentsline {paragraph}{Security governance.}{15}{section*.18}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Relationship to this paper.}{15}{section*.19}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Common Boundaries and Unsolved Problems}{15}{subsection.3.7}\protected@file@percent }
-\newlabel{sec:related-gap}{{3.7}{15}{Common Boundaries and Unsolved Problems}{subsection.3.7}{}}
-\@writefile{toc}{\contentsline {paragraph}{Problem 1: What role does the LLM actually play?}{15}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Relationship to this paper.}{16}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8}Common Boundaries and Unsolved Problems}{16}{subsection.3.8}\protected@file@percent }
+\newlabel{sec:related-gap}{{3.8}{16}{Common Boundaries and Unsolved Problems}{subsection.3.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Coverage of ICA layers by existing works. Scoring is the authors' qualitative assessment and is intended to be illustrative rather than exhaustive: \emph  {Focused} denotes a central, primary contribution of the work; \emph  {Touched} denotes a layer addressed but not central; \emph  {Not addressed} denotes a layer outside the work's scope. The bottom row identifies the specific gap in each layer that no single work has addressed. The rightmost bars show per-system coverage, computed as $(2\times \text  {Focused} + \text  {Touched})/12$ out of a maximum of~12 (Focused counts as a full unit, Touched as half). L6 Security (marked $\downarrow $) is the least-covered layer overall.}}{16}{figure.caption.20}\protected@file@percent }
+\newlabel{fig:coverage_map}{{4}{16}{Coverage of ICA layers by existing works. Scoring is the authors' qualitative assessment and is intended to be illustrative rather than exhaustive: \emph {Focused} denotes a central, primary contribution of the work; \emph {Touched} denotes a layer addressed but not central; \emph {Not addressed} denotes a layer outside the work's scope. The bottom row identifies the specific gap in each layer that no single work has addressed. The rightmost bars show per-system coverage, computed as $(2\times \text {Focused} + \text {Touched})/12$ out of a maximum of~12 (Focused counts as a full unit, Touched as half). L6 Security (marked $\downarrow $) is the least-covered layer overall}{figure.caption.20}{}}
+\newlabel{fig_coverage_map}{{4}{16}{Coverage of ICA layers by existing works. Scoring is the authors' qualitative assessment and is intended to be illustrative rather than exhaustive: \emph {Focused} denotes a central, primary contribution of the work; \emph {Touched} denotes a layer addressed but not central; \emph {Not addressed} denotes a layer outside the work's scope. The bottom row identifies the specific gap in each layer that no single work has addressed. The rightmost bars show per-system coverage, computed as $(2\times \text {Focused} + \text {Touched})/12$ out of a maximum of~12 (Focused counts as a full unit, Touched as half). L6 Security (marked $\downarrow $) is the least-covered layer overall}{figure.caption.20}{}}
+\citation{hennessy2017quantitative}
 \citation{holt2024l2mac}
 \citation{mi2025llmagentscomputersystems}
 \citation{arbiteros2025}
 \citation{debenedetti2025camel}
 \citation{ironclaw2025}
 \citation{anthropic2026agenticreport}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Coverage of ICA layers by existing works. The bottom row identifies the specific gap in each layer that no single work has addressed. The rightmost bars show per-system coverage (proportion of layers addressed). L6 Security (marked $\downarrow $) is the least-covered layer overall.}}{16}{figure.caption.20}\protected@file@percent }
-\newlabel{fig:coverage_map}{{4}{16}{Coverage of ICA layers by existing works. The bottom row identifies the specific gap in each layer that no single work has addressed. The rightmost bars show per-system coverage (proportion of layers addressed). L6 Security (marked $\downarrow $) is the least-covered layer overall}{figure.caption.20}{}}
-\newlabel{fig_coverage_map}{{4}{16}{Coverage of ICA layers by existing works. The bottom row identifies the specific gap in each layer that no single work has addressed. The rightmost bars show per-system coverage (proportion of layers addressed). L6 Security (marked $\downarrow $) is the least-covered layer overall}{figure.caption.20}{}}
-\@writefile{toc}{\contentsline {paragraph}{Problem 2: No full-stack layered model exists.}{16}{section*.22}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Problem 3: The probabilistic--deterministic tension has not been codified architecturally.}{16}{section*.23}\protected@file@percent }
+\citation{mi2025llmagentscomputersystems}
+\citation{arbiteros2025}
+\@writefile{toc}{\contentsline {paragraph}{Problem 1: What role does the LLM actually play?}{17}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Problem 2: No full-stack layered model exists.}{17}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Problem 3: The probabilistic--deterministic tension has not been codified architecturally.}{17}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Problem 4: Structural constraints of human--agent collaboration have not been modeled.}{17}{section*.24}\protected@file@percent }
 \citation{drepper2007memory}
 \citation{kwon2023pagedattention}
 \citation{kwon2023pagedattention}
@@ -230,45 +244,46 @@
 \citation{mcp_intro_2026}
 \citation{lewis2020rag}
 \citation{openai_codex_overview_2026}
-\@writefile{toc}{\contentsline {paragraph}{Problem 4: Structural constraints of human--agent collaboration have not been modeled.}{17}{section*.24}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}Analogy Framework: Intelligent Systems as Layered Computers}{17}{section.4}\protected@file@percent }
-\newlabel{sec:framework}{{4}{17}{Analogy Framework: Intelligent Systems as Layered Computers}{section.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Principles of Analogy}{17}{subsection.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Principle 1: The analogy must correspond to genuine engineering mechanisms.}{17}{section*.25}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Principle 2: The analogy must acknowledge its boundaries.}{17}{section*.26}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Principle 3: The goal of the analogy is to generate research questions.}{17}{section*.27}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Architectural artifacts distinguishing ICA from prior work. Each row lists an artifact, the closest prior approach, and ICA's contribution; no single prior work combines all five.}}{18}{table.caption.25}\protected@file@percent }
+\newlabel{tab:artifact-comparison}{{2}{18}{Architectural artifacts distinguishing ICA from prior work. Each row lists an artifact, the closest prior approach, and ICA's contribution; no single prior work combines all five}{table.caption.25}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Analogy Framework: Intelligent Systems as Layered Computers}{18}{section.4}\protected@file@percent }
+\newlabel{sec:framework}{{4}{18}{Analogy Framework: Intelligent Systems as Layered Computers}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Principles of Analogy}{18}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Principle 1: The analogy must correspond to genuine engineering mechanisms.}{18}{section*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Principle 2: The analogy must acknowledge its boundaries.}{18}{section*.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Principle 3: The goal of the analogy is to generate research questions.}{18}{section*.28}\protected@file@percent }
 \gdef \LT@i {\LT@entry 
     {1}{61.82674pt}\LT@entry 
     {1}{70.88803pt}\LT@entry 
     {1}{116.18068pt}\LT@entry 
     {1}{116.18068pt}\LT@entry 
     {1}{102.5922pt}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Analogy mapping between classical computer architecture and the model-native system stack. Each row pairs a classical concept with its model-native counterpart, along with the core similarity, fundamental difference, and resulting engineering implication.}}{18}{table.2}\protected@file@percent }
-\newlabel{tab:mapping}{{2}{18}{Analogy mapping between classical computer architecture and the model-native system stack. Each row pairs a classical concept with its model-native counterpart, along with the core similarity, fundamental difference, and resulting engineering implication}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Analogy mapping between classical computer architecture and the model-native system stack. Each row pairs a classical concept with its model-native counterpart, along with the core similarity, fundamental difference, and resulting engineering implication.}}{19}{table.3}\protected@file@percent }
+\newlabel{tab:mapping}{{3}{19}{Analogy mapping between classical computer architecture and the model-native system stack. Each row pairs a classical concept with its model-native counterpart, along with the core similarity, fundamental difference, and resulting engineering implication}{table.3}{}}
 \citation{ge2023llmos}
 \citation{mei2024aios}
 \citation{agentos2025}
 \citation{arbiteros2025}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Metaphor Conflict and the Dual-Plane Architecture}{19}{subsection.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}The Probabilistic Execution Plane}{19}{subsubsection.4.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Concrete example.}{19}{section*.28}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Metaphor Conflict and the Dual-Plane Architecture}{20}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}The Probabilistic Execution Plane}{20}{subsubsection.4.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Concrete example.}{20}{section*.29}\protected@file@percent }
 \citation{anthropic_claudecode_security_2026}
 \citation{openai_codex_approvals_2026}
 \citation{anthropic_claudecode_security_2026}
 \citation{debenedetti2025camel}
 \citation{praetorian2025deterministic}
+\citation{arbiteros2025}
 \citation{towardsai2025deterministicshell}
 \citation{blueprintfirst2025}
 \citation{anthropic2026agenticreport}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.2}The Deterministic Control Plane}{20}{subsubsection.4.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Concrete example.}{20}{section*.29}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.3}Why the Separation Is Necessary}{20}{subsubsection.4.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.2}The Deterministic Control Plane}{21}{subsubsection.4.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Concrete example.}{21}{section*.30}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.3}Why the Separation Is Necessary}{21}{subsubsection.4.2.3}\protected@file@percent }
 \citation{ostep_2023}
-\@writefile{toc}{\contentsline {paragraph}{The metaphor conflict is thereby resolved.}{21}{section*.30}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Dual-plane architecture: probabilistic execution plane (blue, L1--L3) and deterministic control plane (orange, L4--L5)}}{21}{figure.caption.31}\protected@file@percent }
-\newlabel{fig_dual_plane}{{5}{21}{Dual-plane architecture: probabilistic execution plane (blue, L1--L3) and deterministic control plane (orange, L4--L5)}{figure.caption.31}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Key Component Analysis}{21}{section.5}\protected@file@percent }
-\newlabel{sec:components}{{5}{21}{Key Component Analysis}{section.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{The metaphor conflict is thereby resolved.}{22}{section*.31}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{A derived consequence.}{22}{section*.32}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Dual-plane architecture. The probabilistic execution plane (orange) is weighted toward L1--L3 and the deterministic control plane (blue) toward L4--L5; the dashed line marks the primary-weighting crossover around L3--L4 (with L4 as a transition layer), a graded interface rather than a hard partition (Section~\ref {sec:dual-plane-icam}).}}{22}{figure.caption.33}\protected@file@percent }
+\newlabel{fig_dual_plane}{{5}{22}{Dual-plane architecture. The probabilistic execution plane (orange) is weighted toward L1--L3 and the deterministic control plane (blue) toward L4--L5; the dashed line marks the primary-weighting crossover around L3--L4 (with L4 as a transition layer), a graded interface rather than a hard partition (Section~\ref {sec:dual-plane-icam})}{figure.caption.33}{}}
 \citation{riscv_spec_2026}
 \citation{vaswani2017attention}
 \citation{brown2020gpt3}
@@ -278,29 +293,30 @@
 \citation{anthropic_claudecode_memory_2026}
 \citation{sglang2024}
 \citation{sglang_docs_2026}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Key Component Analysis}{23}{section.5}\protected@file@percent }
+\newlabel{sec:components}{{5}{23}{Key Component Analysis}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Foundation Model: Probabilistic Computing Core}{23}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:model}{{5.1}{23}{Foundation Model: Probabilistic Computing Core}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.1}The CPU in Classical Computer Architecture}{23}{subsubsection.5.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.2}The Counterpart in LLM-Based Systems}{23}{subsubsection.5.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.3}Why the Analogy Holds}{23}{subsubsection.5.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{First, generality.}{23}{section*.34}\protected@file@percent }
 \citation{dao2022flashattention}
 \citation{leviathan2023speculative}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Foundation Model: Probabilistic Computing Core}{22}{subsection.5.1}\protected@file@percent }
-\newlabel{sec:model}{{5.1}{22}{Foundation Model: Probabilistic Computing Core}{subsection.5.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.1}The CPU in Classical Computer Architecture}{22}{subsubsection.5.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.2}The Counterpart in LLM-Based Systems}{22}{subsubsection.5.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.3}Why the Analogy Holds}{22}{subsubsection.5.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{First, generality.}{22}{section*.32}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Second, interface abstraction.}{22}{section*.33}\protected@file@percent }
 \citation{mi2025llmagentscomputersystems}
 \citation{drepper2007memory}
 \citation{drepper2007memory}
 \citation{kwon2023pagedattention}
+\@writefile{toc}{\contentsline {paragraph}{Second, interface abstraction.}{24}{section*.35}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Third, microarchitectural optimization space.}{24}{section*.36}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.4}Essential Differences}{24}{subsubsection.5.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}KV Cache: Cache Hierarchy for Intelligent Systems}{24}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:kv}{{5.2}{24}{KV Cache: Cache Hierarchy for Intelligent Systems}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}The Cache Hierarchy in Classical Computers}{24}{subsubsection.5.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.2}The Counterpart in LLM-Based Systems}{24}{subsubsection.5.2.2}\protected@file@percent }
 \citation{vllm_prefix_2026}
 \citation{sglang_docs_2026}
 \citation{gim2024promptcache}
-\@writefile{toc}{\contentsline {paragraph}{Third, microarchitectural optimization space.}{23}{section*.34}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.4}Essential Differences}{23}{subsubsection.5.1.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}KV Cache: Cache Hierarchy for Intelligent Systems}{23}{subsection.5.2}\protected@file@percent }
-\newlabel{sec:kv}{{5.2}{23}{KV Cache: Cache Hierarchy for Intelligent Systems}{subsection.5.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}The Cache Hierarchy in Classical Computers}{23}{subsubsection.5.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.2}The Counterpart in LLM-Based Systems}{23}{subsubsection.5.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{A KV cache hierarchy is emerging:}{23}{section*.35}\protected@file@percent }
 \citation{kwon2023pagedattention}
 \citation{h2o2023}
 \citation{xiao2024streamingllm}
@@ -309,29 +325,29 @@
 \citation{likvcache2024survey}
 \citation{hooper2024kvquant}
 \citation{liu2024kivi}
+\@writefile{toc}{\contentsline {paragraph}{A KV cache hierarchy is emerging:}{25}{section*.37}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.3}Why the Analogy Holds}{25}{subsubsection.5.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{First, both exploit temporal locality.}{25}{section*.38}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Second, both face capacity pressure and replacement decisions.}{25}{section*.39}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Third, both encounter bandwidth bottlenecks.}{25}{section*.40}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Fourth, compression is a shared optimization direction.}{25}{section*.41}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.4}Essential Differences}{25}{subsubsection.5.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{First, hit criteria differ fundamentally.}{25}{section*.42}\protected@file@percent }
 \citation{lpc2025}
 \citation{multilevelcache2025}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.3}Why the Analogy Holds}{24}{subsubsection.5.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{First, both exploit temporal locality.}{24}{section*.36}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Second, both face capacity pressure and replacement decisions.}{24}{section*.37}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Third, both encounter bandwidth bottlenecks.}{24}{section*.38}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Fourth, compression is a shared optimization direction.}{24}{section*.39}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.4}Essential Differences}{24}{subsubsection.5.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{First, hit criteria differ fundamentally.}{24}{section*.40}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Second, invalidation mechanisms differ.}{24}{section*.41}\protected@file@percent }
 \citation{ostep_2023}
+\@writefile{toc}{\contentsline {paragraph}{Second, invalidation mechanisms differ.}{26}{section*.43}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Third, the capacity--latency trade-off is more severe.}{26}{section*.44}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Structural correspondence between the classical CPU cache hierarchy and the emerging LLM KV cache hierarchy. Both exploit locality and reuse at multiple granularities, with capacity increasing and latency worsening at each lower tier.}}{26}{figure.caption.45}\protected@file@percent }
+\newlabel{fig_kv_hierarchy}{{6}{26}{Structural correspondence between the classical CPU cache hierarchy and the emerging LLM KV cache hierarchy. Both exploit locality and reuse at multiple granularities, with capacity increasing and latency worsening at each lower tier}{figure.caption.45}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Context Management: Virtual Memory with Semantics}{26}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:memory}{{5.3}{26}{Context Management: Virtual Memory with Semantics}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1}Virtual Memory in Classical Computers}{26}{subsubsection.5.3.1}\protected@file@percent }
 \citation{gemini2024}
 \citation{liu2024ringattention}
 \citation{su2021roformer}
 \citation{yarn2024}
 \citation{longrope2024}
-\@writefile{toc}{\contentsline {paragraph}{Third, the capacity--latency trade-off is more severe.}{25}{section*.42}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Structural correspondence between the classical CPU cache hierarchy and the emerging LLM KV cache hierarchy. Both exploit locality and reuse at multiple granularities, with capacity increasing and latency worsening at each lower tier.}}{25}{figure.caption.43}\protected@file@percent }
-\newlabel{fig_kv_hierarchy}{{6}{25}{Structural correspondence between the classical CPU cache hierarchy and the emerging LLM KV cache hierarchy. Both exploit locality and reuse at multiple granularities, with capacity increasing and latency worsening at each lower tier}{figure.caption.43}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Context Management: Virtual Memory with Semantics}{25}{subsection.5.3}\protected@file@percent }
-\newlabel{sec:memory}{{5.3}{25}{Context Management: Virtual Memory with Semantics}{subsection.5.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1}Virtual Memory in Classical Computers}{25}{subsubsection.5.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.2}The Counterpart in LLM-Based Systems}{25}{subsubsection.5.3.2}\protected@file@percent }
 \citation{ruler2024}
 \citation{longbenchv2_2024}
 \citation{loft2024}
@@ -342,29 +358,30 @@
 \citation{memos2025}
 \citation{hiagent2024}
 \citation{amem2025}
-\@writefile{toc}{\contentsline {paragraph}{An emerging tiered scheme:}{26}{section*.44}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces The hot/warm/cold tiered context management hierarchy (left) and its classical virtual-memory analogy (right). Both exploit temporal locality and demand-loading to give consumers the illusion of abundant capacity. The critical distinction is that context management is lossy: summaries and semantic retrieval introduce irreversible information loss absent in classical paging.}}{26}{figure.caption.45}\protected@file@percent }
-\newlabel{fig:context_tiers}{{7}{26}{The hot/warm/cold tiered context management hierarchy (left) and its classical virtual-memory analogy (right). Both exploit temporal locality and demand-loading to give consumers the illusion of abundant capacity. The critical distinction is that context management is lossy: summaries and semantic retrieval introduce irreversible information loss absent in classical paging}{figure.caption.45}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.2}The Counterpart in LLM-Based Systems}{27}{subsubsection.5.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{An emerging tiered scheme:}{27}{section*.46}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces The hot/warm/cold tiered context management hierarchy (left) and its classical virtual-memory analogy (right). Both exploit temporal locality and demand-loading to give consumers the illusion of abundant capacity. The critical distinction is that context management is lossy: summaries and semantic retrieval introduce irreversible information loss absent in classical paging.}}{27}{figure.caption.47}\protected@file@percent }
+\newlabel{fig:context_tiers}{{7}{27}{The hot/warm/cold tiered context management hierarchy (left) and its classical virtual-memory analogy (right). Both exploit temporal locality and demand-loading to give consumers the illusion of abundant capacity. The critical distinction is that context management is lossy: summaries and semantic retrieval introduce irreversible information loss absent in classical paging}{figure.caption.47}{}}
 \citation{contextcompiler2025}
 \citation{jetbrains2025context}
 \citation{ostep_2023}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.3}Why the Analogy Holds}{27}{subsubsection.5.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{First, both create the illusion of abundant space.}{27}{section*.46}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Second, both face an ``address translation'' problem.}{27}{section*.47}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Third, both require ``paging policies.''}{27}{section*.48}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.4}Essential Differences}{27}{subsubsection.5.3.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{The key distinction: virtual memory is lossless; context management is lossy.}{27}{section*.49}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Agent Runtime: The Intelligent Operating System}{27}{subsection.5.4}\protected@file@percent }
-\newlabel{sec:agent}{{5.4}{27}{Agent Runtime: The Intelligent Operating System}{subsection.5.4}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.1}The Operating System in Classical Computers}{27}{subsubsection.5.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.3}Why the Analogy Holds}{28}{subsubsection.5.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{First, both create the illusion of abundant space.}{28}{section*.48}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Second, both face an ``address translation'' problem.}{28}{section*.49}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Third, both require ``paging policies.''}{28}{section*.50}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.4}Essential Differences}{28}{subsubsection.5.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The key distinction: virtual memory is lossless; context management is lossy.}{28}{section*.51}\protected@file@percent }
 \citation{ge2023llmos}
 \citation{mei2024aios}
 \citation{mi2025llmagentscomputersystems}
+\citation{karpathy2023lmos}
 \citation{anthropic2026agenticreport}
 \citation{openai_codex_overview_2026}
 \citation{anthropic_claudecode_overview_2026}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.2}The Counterpart in LLM-Based Systems}{28}{subsubsection.5.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.3}Why the Analogy Holds}{28}{subsubsection.5.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Agent Runtime: The Intelligent Operating System}{29}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:agent}{{5.4}{29}{Agent Runtime: The Intelligent Operating System}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.1}The Operating System in Classical Computers}{29}{subsubsection.5.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.2}The Counterpart in LLM-Based Systems}{29}{subsubsection.5.4.2}\protected@file@percent }
 \citation{ostep_2023}
 \citation{openai_codex_sandbox_2026}
 \citation{anthropic_claudecode_sandbox_2026}
@@ -376,14 +393,14 @@
 \citation{debenedetti2025camel}
 \citation{ironclaw2025}
 \citation{agenticsecurity2025}
-\@writefile{toc}{\contentsline {paragraph}{First, both are resource managers.}{29}{section*.50}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Second, both provide isolation and security.}{29}{section*.51}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Third, both define standard interfaces.}{29}{section*.52}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.4}Essential Differences}{29}{subsubsection.5.4.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{First, agent ``process'' behavior is unpredictable.}{29}{section*.53}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Second, shared state is far more fragile.}{29}{section*.54}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Third, interface specifications are not rigorous.}{29}{section*.55}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Security: a particularly compelling analogy.}{29}{section*.56}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.3}Why the Analogy Holds}{30}{subsubsection.5.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{First, both are resource managers.}{30}{section*.52}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Second, both provide isolation and security.}{30}{section*.53}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Third, both define standard interfaces.}{30}{section*.54}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.4}Essential Differences}{30}{subsubsection.5.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{First, agent ``process'' behavior is unpredictable.}{30}{section*.55}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Second, shared state is far more fragile.}{30}{section*.56}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Third, interface specifications are not rigorous.}{30}{section*.57}\protected@file@percent }
 \citation{yao2023react}
 \citation{schick2023toolformer}
 \citation{hugginggpt2023}
@@ -391,47 +408,48 @@
 \citation{mcp_intro_2026}
 \citation{google_a2a_2025}
 \citation{agentprotocols2025}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Tool Bus and Agent Interconnection}{30}{subsection.5.5}\protected@file@percent }
-\newlabel{sec:io}{{5.5}{30}{Tool Bus and Agent Interconnection}{subsection.5.5}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.1}The I/O System in Classical Computers}{30}{subsubsection.5.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.2}The Counterpart in LLM-Based Systems}{30}{subsubsection.5.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Early phase (method-level):}{30}{section*.57}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Standardization phase (protocol-level):}{30}{section*.58}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.3}Why the Analogy Holds}{30}{subsubsection.5.5.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{First, both solve the ``interface diversity'' problem.}{30}{section*.59}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Security: a particularly compelling analogy.}{31}{section*.58}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Tool Bus and Agent Interconnection}{31}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:io}{{5.5}{31}{Tool Bus and Agent Interconnection}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.1}The I/O System in Classical Computers}{31}{subsubsection.5.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.2}The Counterpart in LLM-Based Systems}{31}{subsubsection.5.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Early phase (method-level):}{31}{section*.59}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Standardization phase (protocol-level):}{31}{section*.60}\protected@file@percent }
 \citation{hennessy2017quantitative}
 \citation{wu2023autogen}
 \citation{metagpt2023}
 \citation{ioa2024}
-\@writefile{toc}{\contentsline {paragraph}{Second, both exhibit a layered protocol stack.}{31}{section*.60}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Third, both face discovery and negotiation challenges.}{31}{section*.61}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.4}Essential Differences}{31}{subsubsection.5.5.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{First, invocation determinacy differs.}{31}{section*.62}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Second, error handling is far more complex.}{31}{section*.63}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Multi-Agent Collaboration: Distributed Systems with Semantics}{31}{subsection.5.6}\protected@file@percent }
-\newlabel{sec:distributed}{{5.6}{31}{Multi-Agent Collaboration: Distributed Systems with Semantics}{subsection.5.6}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.1}Distributed Systems in Classical Computing}{31}{subsubsection.5.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.2}The Counterpart in LLM-Based Systems}{31}{subsubsection.5.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.3}Why the Analogy Holds}{32}{subsubsection.5.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{First, both solve the ``interface diversity'' problem.}{32}{section*.61}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Second, both exhibit a layered protocol stack.}{32}{section*.62}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Third, both face discovery and negotiation challenges.}{32}{section*.63}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.4}Essential Differences}{32}{subsubsection.5.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{First, invocation determinacy differs.}{32}{section*.64}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Second, error handling is far more complex.}{32}{section*.65}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Multi-Agent Collaboration: Distributed Systems with Semantics}{32}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:distributed}{{5.6}{32}{Multi-Agent Collaboration: Distributed Systems with Semantics}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.1}Distributed Systems in Classical Computing}{32}{subsubsection.5.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.2}The Counterpart in LLM-Based Systems}{32}{subsubsection.5.6.2}\protected@file@percent }
 \citation{wu2023autogen}
 \citation{anthropic2026agenticreport}
 \citation{raft2014}
 \citation{cap2002}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.3}Why the Analogy Holds}{32}{subsubsection.5.6.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{First, both face the ``communication overhead versus parallelism benefit'' trade-off.}{32}{section*.64}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Second, both require coordination mechanisms.}{32}{section*.65}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Third, both face a consistency--availability tension.}{32}{section*.66}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.4}Essential Differences}{32}{subsubsection.5.6.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{First, communication bandwidth and precision differ fundamentally.}{32}{section*.67}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Second, failure modes differ.}{32}{section*.68}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Third, combinatorial emergence introduces uncertainty.}{32}{section*.69}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces ICA layered architecture for model-native computing. \textbf  {Top to bottom:} L6 Application, L5 Orchestration, L4 Semantic Interface (Deterministic Control Plane, orange), dashed L3--L4 interface boundary, L3 Context Management, L2 Inference Serving (Model Core + Session KV + Prefix/Shared KV), L1 Physical Execution (Probabilistic Execution Plane, blue), and Distributed Substrate. Thick orange bypass arrows show the Deterministic Control Plane reaching through the interface boundary to directly manage KV caches (L2) and hardware execution (L1).}}{33}{figure.caption.70}\protected@file@percent }
-\newlabel{fig:arch}{{8}{33}{ICA layered architecture for model-native computing. \textbf {Top to bottom:} L6 Application, L5 Orchestration, L4 Semantic Interface (Deterministic Control Plane, orange), dashed L3--L4 interface boundary, L3 Context Management, L2 Inference Serving (Model Core + Session KV + Prefix/Shared KV), L1 Physical Execution (Probabilistic Execution Plane, blue), and Distributed Substrate. Thick orange bypass arrows show the Deterministic Control Plane reaching through the interface boundary to directly manage KV caches (L2) and hardware execution (L1)}{figure.caption.70}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}The Intelligent Computing Architecture (ICA)}{33}{section.6}\protected@file@percent }
-\newlabel{sec:icam}{{6}{33}{The Intelligent Computing Architecture (ICA)}{section.6}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Request flow through the model-native computing architecture as a dual-plane swim-lane diagram. Blue nodes belong to the probabilistic execution plane; orange nodes belong to the deterministic control plane. The split-coloured diamond represents the control-plane decision that gates both paths. Grey boxes span both planes.}}{34}{figure.caption.71}\protected@file@percent }
-\newlabel{fig:flow}{{9}{34}{Request flow through the model-native computing architecture as a dual-plane swim-lane diagram. Blue nodes belong to the probabilistic execution plane; orange nodes belong to the deterministic control plane. The split-coloured diamond represents the control-plane decision that gates both paths. Grey boxes span both planes}{figure.caption.71}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Six-Layer Hierarchy}{34}{subsection.6.1}\protected@file@percent }
-\newlabel{sec:icam-layers}{{6.1}{34}{Six-Layer Hierarchy}{subsection.6.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.3}Why the Analogy Holds}{33}{subsubsection.5.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{First, both face the ``communication overhead versus parallelism benefit'' trade-off.}{33}{section*.66}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Second, both require coordination mechanisms.}{33}{section*.67}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Third, both face a consistency--availability tension.}{33}{section*.68}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.4}Essential Differences}{33}{subsubsection.5.6.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{First, communication bandwidth and precision differ fundamentally.}{33}{section*.69}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Second, failure modes differ.}{34}{section*.70}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Third, combinatorial emergence introduces uncertainty.}{34}{section*.71}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces ICA layered architecture for model-native computing. \textbf  {Top to bottom:} L6 Application, L5 Orchestration, L4 Semantic Interface (Deterministic Control Plane, orange), dashed L3--L4 interface boundary, L3 Context Management, L2 Inference Serving (Model Core + Session KV + Prefix/Shared KV), L1 Physical Execution (Probabilistic Execution Plane, blue), and Distributed Substrate. Thick orange bypass arrows show the Deterministic Control Plane reaching through the interface boundary to directly manage KV caches (L2) and hardware execution (L1).}}{34}{figure.caption.72}\protected@file@percent }
+\newlabel{fig:arch}{{8}{34}{ICA layered architecture for model-native computing. \textbf {Top to bottom:} L6 Application, L5 Orchestration, L4 Semantic Interface (Deterministic Control Plane, orange), dashed L3--L4 interface boundary, L3 Context Management, L2 Inference Serving (Model Core + Session KV + Prefix/Shared KV), L1 Physical Execution (Probabilistic Execution Plane, blue), and Distributed Substrate. Thick orange bypass arrows show the Deterministic Control Plane reaching through the interface boundary to directly manage KV caches (L2) and hardware execution (L1)}{figure.caption.72}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Request flow through the model-native computing architecture as a dual-plane swim-lane diagram. Blue nodes belong to the probabilistic execution plane; orange nodes belong to the deterministic control plane. The split-coloured diamond represents the control-plane decision that gates both paths. Grey boxes span both planes.}}{35}{figure.caption.73}\protected@file@percent }
+\newlabel{fig:flow}{{9}{35}{Request flow through the model-native computing architecture as a dual-plane swim-lane diagram. Blue nodes belong to the probabilistic execution plane; orange nodes belong to the deterministic control plane. The split-coloured diamond represents the control-plane decision that gates both paths. Grey boxes span both planes}{figure.caption.73}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}The Intelligent Computing Architecture (ICA)}{35}{section.6}\protected@file@percent }
+\newlabel{sec:icam}{{6}{35}{The Intelligent Computing Architecture (ICA)}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Six-Layer Hierarchy}{35}{subsection.6.1}\protected@file@percent }
+\newlabel{sec:icam-layers}{{6.1}{35}{Six-Layer Hierarchy}{subsection.6.1}{}}
 \citation{wolters2024computeinmemory}
 \citation{kwon2023pagedattention}
 \citation{sglang2024}
@@ -456,39 +474,39 @@
 \citation{anthropic_claudecode_overview_2026}
 \citation{sweagent2024}
 \citation{openhands_paper_2025}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces ICA layers mapped to classical computer architecture.}}{36}{table.caption.72}\protected@file@percent }
-\newlabel{tab:icam}{{3}{36}{ICA layers mapped to classical computer architecture}{table.caption.72}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Inter-Layer Interface Contracts}{36}{subsection.6.2}\protected@file@percent }
-\newlabel{sec:icam-interfaces}{{6.2}{36}{Inter-Layer Interface Contracts}{subsection.6.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.1}L1--L2 Interface: Tensor Operation Contract}{36}{subsubsection.6.2.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces ICA inter-layer interface contracts. Each grey band specifies the operations, invariant, and key metric for the corresponding layer boundary. Labels above each band identify the interface name. The left brackets mark the dual-plane division: the model-native plane (L1--L2) hosts probabilistic execution, while the classical control plane (L3--L6) hosts deterministic orchestration.}}{37}{figure.caption.73}\protected@file@percent }
-\newlabel{fig:interface_contracts}{{10}{37}{ICA inter-layer interface contracts. Each grey band specifies the operations, invariant, and key metric for the corresponding layer boundary. Labels above each band identify the interface name. The left brackets mark the dual-plane division: the model-native plane (L1--L2) hosts probabilistic execution, while the classical control plane (L3--L6) hosts deterministic orchestration}{figure.caption.73}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.2}L2--L3 Interface: KV Block Management Contract}{37}{subsubsection.6.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.3}L3--L4 Interface: Context Loading Contract}{37}{subsubsection.6.2.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces ICA layers mapped to classical computer architecture.}}{37}{table.caption.74}\protected@file@percent }
+\newlabel{tab:icam}{{4}{37}{ICA layers mapped to classical computer architecture}{table.caption.74}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Inter-Layer Interface Contracts}{37}{subsection.6.2}\protected@file@percent }
+\newlabel{sec:icam-interfaces}{{6.2}{37}{Inter-Layer Interface Contracts}{subsection.6.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces ICA inter-layer interface contracts. Each grey band specifies the operations, invariant, and key metric for the corresponding layer boundary. Labels above each band identify the interface name. The left brackets mark the dual-plane division: the model-native plane (L1--L2) hosts probabilistic execution, while the classical control plane (L3--L6) hosts deterministic orchestration.}}{38}{figure.caption.75}\protected@file@percent }
+\newlabel{fig:interface_contracts}{{10}{38}{ICA inter-layer interface contracts. Each grey band specifies the operations, invariant, and key metric for the corresponding layer boundary. Labels above each band identify the interface name. The left brackets mark the dual-plane division: the model-native plane (L1--L2) hosts probabilistic execution, while the classical control plane (L3--L6) hosts deterministic orchestration}{figure.caption.75}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.1}L1--L2 Interface: Tensor Operation Contract}{38}{subsubsection.6.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.2}L2--L3 Interface: KV Block Management Contract}{38}{subsubsection.6.2.2}\protected@file@percent }
 \citation{debenedetti2025camel}
 \citation{anthropic2026agenticreport}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.4}L4--L5 Interface: Capability Invocation Contract}{38}{subsubsection.6.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.5}L5--L6 Interface: Task Submission Contract}{38}{subsubsection.6.2.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{An empirical constraint worth noting.}{38}{section*.74}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Dual-Plane Cross-Mapping with ICA}{38}{subsection.6.3}\protected@file@percent }
-\newlabel{sec:dual-plane-icam}{{6.3}{38}{Dual-Plane Cross-Mapping with ICA}{subsection.6.3}{}}
-\@writefile{toc}{\contentsline {paragraph}{The probabilistic plane is weighted toward the bottom.}{38}{section*.77}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.3}L3--L4 Interface: Context Loading Contract}{39}{subsubsection.6.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.4}L4--L5 Interface: Capability Invocation Contract}{39}{subsubsection.6.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.5}L5--L6 Interface: Task Submission Contract}{39}{subsubsection.6.2.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{An empirical constraint worth noting.}{39}{section*.76}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Dual-Plane Cross-Mapping with ICA}{40}{subsection.6.3}\protected@file@percent }
+\newlabel{sec:dual-plane-icam}{{6.3}{40}{Dual-Plane Cross-Mapping with ICA}{subsection.6.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Cross-mapping of ICA layers against the dual-plane architecture}}{40}{figure.caption.77}\protected@file@percent }
+\newlabel{fig:icam_crossmap}{{11}{40}{Cross-mapping of ICA layers against the dual-plane architecture}{figure.caption.77}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Cross-mapping of the dual-plane architecture onto ICA layers.}}{40}{table.caption.78}\protected@file@percent }
+\newlabel{tab:dual-plane-icam}{{5}{40}{Cross-mapping of the dual-plane architecture onto ICA layers}{table.caption.78}{}}
+\@writefile{toc}{\contentsline {paragraph}{The probabilistic plane is weighted toward the bottom.}{40}{section*.79}\protected@file@percent }
 \citation{kwon2023pagedattention}
 \citation{zhou2024efficientinference}
 \citation{openai_codex_overview_2026}
 \citation{anthropic_claudecode_overview_2026}
 \citation{memgpt2023}
 \citation{memoryos2025}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Cross-mapping of ICA layers against the dual-plane architecture}}{39}{figure.caption.75}\protected@file@percent }
-\newlabel{fig:icam_crossmap}{{11}{39}{Cross-mapping of ICA layers against the dual-plane architecture}{figure.caption.75}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Cross-mapping of the dual-plane architecture onto ICA layers.}}{39}{table.caption.76}\protected@file@percent }
-\newlabel{tab:dual-plane-icam}{{4}{39}{Cross-mapping of the dual-plane architecture onto ICA layers}{table.caption.76}{}}
-\@writefile{toc}{\contentsline {paragraph}{The deterministic plane is weighted toward the top.}{39}{section*.78}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The deterministic plane is weighted toward the top.}{41}{section*.80}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Design Axioms}{41}{subsection.6.4}\protected@file@percent }
+\newlabel{sec:icam-axioms}{{6.4}{41}{Design Axioms}{subsection.6.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Applicability heatmap of the six ICA design axioms across the six architecture layers. \textcolor {axHigh!80!black}{\textbf  {Primary}} indicates the axiom directly governs design decisions at that layer; \textcolor {axMed!80!black}{\textbf  {secondary}} indicates significant but indirect applicability; \textcolor {axLow!80!black}{\textbf  {tertiary}} indicates contextual relevance. A1~(Locality) is most critical at the inference and KV-cache layers; A5~(Least Privilege) and A6~(Observability) dominate the interface and orchestration layers.}}{41}{figure.caption.81}\protected@file@percent }
+\newlabel{fig:axioms_overview}{{12}{41}{Applicability heatmap of the six ICA design axioms across the six architecture layers. \textcolor {axHigh!80!black}{\textbf {Primary}} indicates the axiom directly governs design decisions at that layer; \textcolor {axMed!80!black}{\textbf {secondary}} indicates significant but indirect applicability; \textcolor {axLow!80!black}{\textbf {tertiary}} indicates contextual relevance. A1~(Locality) is most critical at the inference and KV-cache layers; A5~(Least Privilege) and A6~(Observability) dominate the interface and orchestration layers}{figure.caption.81}{}}
 \citation{drepper2007memory}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Design Axioms}{40}{subsection.6.4}\protected@file@percent }
-\newlabel{sec:icam-axioms}{{6.4}{40}{Design Axioms}{subsection.6.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Applicability heatmap of the six ICA design axioms across the six architecture layers. \textcolor {axHigh!80!black}{\textbf  {Primary}} indicates the axiom directly governs design decisions at that layer; \textcolor {axMed!80!black}{\textbf  {secondary}} indicates significant but indirect applicability; \textcolor {axLow!80!black}{\textbf  {tertiary}} indicates contextual relevance. A1~(Locality) is most critical at the inference and KV-cache layers; A5~(Least Privilege) and A6~(Observability) dominate the interface and orchestration layers.}}{40}{figure.caption.79}\protected@file@percent }
-\newlabel{fig:axioms_overview}{{12}{40}{Applicability heatmap of the six ICA design axioms across the six architecture layers. \textcolor {axHigh!80!black}{\textbf {Primary}} indicates the axiom directly governs design decisions at that layer; \textcolor {axMed!80!black}{\textbf {secondary}} indicates significant but indirect applicability; \textcolor {axLow!80!black}{\textbf {tertiary}} indicates contextual relevance. A1~(Locality) is most critical at the inference and KV-cache layers; A5~(Least Privilege) and A6~(Observability) dominate the interface and orchestration layers}{figure.caption.79}{}}
 \citation{hennessy2017quantitative}
 \citation{ostep_2023}
 \citation{ostep_2023}
@@ -503,66 +521,69 @@
 \citation{agenticsecurity2025}
 \citation{hennessy2017quantitative}
 \citation{hennessy2017quantitative}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Quantitative Laws}{43}{section.7}\protected@file@percent }
-\newlabel{sec:laws}{{7}{43}{Quantitative Laws}{section.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Law~I: The Law of Semantic Locality}{43}{subsection.7.1}\protected@file@percent }
-\newlabel{sec:law1}{{7.1}{43}{Law~I: The Law of Semantic Locality}{subsection.7.1}{}}
-\newlabel{eq:locality}{{2}{43}{Law of Semantic Locality}{equation.7.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.1}Intuitive Parameter Semantics}{43}{subsubsection.7.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.2}Derivation}{44}{subsubsection.7.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Step~1: Decompose execution time.}{44}{section*.80}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Step~2: Express each component in terms of the hit rate.}{44}{section*.81}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Step~3: Define the speedup.}{44}{section*.82}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.3}Limit Behavior}{44}{subsubsection.7.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.4}Numerical Example}{44}{subsubsection.7.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Design Heuristics for Model-Native Systems}{44}{section.7}\protected@file@percent }
+\newlabel{sec:laws}{{7}{44}{Design Heuristics for Model-Native Systems}{section.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Heuristic~I: Semantic Locality}{45}{subsection.7.1}\protected@file@percent }
+\newlabel{sec:law1}{{7.1}{45}{Heuristic~I: Semantic Locality}{subsection.7.1}{}}
+\newlabel{eq:locality}{{2}{45}{Semantic Locality}{equation.7.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.1}Intuitive Parameter Semantics}{45}{subsubsection.7.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.2}Derivation}{45}{subsubsection.7.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Step~1: Decompose execution time.}{45}{section*.82}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Step~2: Express each component in terms of the hit rate.}{45}{section*.83}\protected@file@percent }
 \citation{gim2024promptcache}
 \citation{kwon2023pagedattention}
 \citation{hooper2024kvquant}
+\@writefile{toc}{\contentsline {paragraph}{Step~3: Define the speedup.}{46}{section*.84}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.3}Limit Behavior}{46}{subsubsection.7.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.4}Numerical Example}{46}{subsubsection.7.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.5}Correspondence to Amdahl's Law}{46}{subsubsection.7.1.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Design implication.}{46}{section*.85}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.6}Illustration, Not Validation}{46}{subsubsection.7.1.6}\protected@file@percent }
 \citation{kwon2023pagedattention}
 \citation{gim2024promptcache}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.5}Correspondence to Amdahl's Law}{45}{subsubsection.7.1.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Design implication.}{45}{section*.83}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.6}Empirical Validation}{45}{subsubsection.7.1.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Law~II: The Context Budget Law}{45}{subsection.7.2}\protected@file@percent }
-\newlabel{sec:law2}{{7.2}{45}{Law~II: The Context Budget Law}{subsection.7.2}{}}
-\newlabel{eq:context}{{8}{45}{Context Budget Law}{equation.7.8}{}}
 \citation{liu2023lostmiddle}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Heuristic~II: Context Budget}{47}{subsection.7.2}\protected@file@percent }
+\newlabel{sec:law2}{{7.2}{47}{Heuristic~II: Context Budget}{subsection.7.2}{}}
+\newlabel{eq:context}{{8}{47}{Context Budget}{equation.7.8}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2.1}Intuitive Parameter Semantics}{47}{subsubsection.7.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2.2}Why $\beta (L)$ Decays: the ``Lost in the Middle'' Phenomenon}{47}{subsubsection.7.2.2}\protected@file@percent }
 \citation{ruler2024}
 \citation{longbenchv2_2024}
 \citation{loft2024}
 \citation{liu2023lostmiddle}
 \citation{liu2023lostmiddle}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2.1}Intuitive Parameter Semantics}{46}{subsubsection.7.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2.2}Why $\beta (L)$ Decays: the ``Lost in the Middle'' Phenomenon}{46}{subsubsection.7.2.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Two perspectives on the attention retention rate $\beta (L)$. \textbf  {Left:} Empirically observed U-shaped curve (Liu et al.~\cite  {liu2023lostmiddle}): information at the beginning and end of the context is recalled well, while the middle region suffers a sharp drop in retention. \textbf  {Right:} Exponential decay model $\beta (L)\approx \beta _0 e^{-\lambda L/C}$ adopted in Law~II for analytical tractability; the shaded area represents the effective working set $W_{\mathrm  {eff}}=C\cdot \bar  {\beta }$.}}{46}{figure.caption.84}\protected@file@percent }
-\newlabel{fig_beta_decay}{{13}{46}{Two perspectives on the attention retention rate $\beta (L)$. \textbf {Left:} Empirically observed U-shaped curve (Liu et al.~\cite {liu2023lostmiddle}): information at the beginning and end of the context is recalled well, while the middle region suffers a sharp drop in retention. \textbf {Right:} Exponential decay model $\beta (L)\approx \beta _0 e^{-\lambda L/C}$ adopted in Law~II for analytical tractability; the shaded area represents the effective working set $W_{\mathrm {eff}}=C\cdot \bar {\beta }$}{figure.caption.84}{}}
+\citation{liu2023lostmiddle}
 \citation{ruler2024}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Two perspectives on the attention retention rate $\beta (L)$. \textbf  {Left:} Empirically observed U-shaped curve (Liu et al.~\cite  {liu2023lostmiddle}): information at the beginning and end of the context is recalled well, while the middle region suffers a sharp drop in retention. \textbf  {Right:} Exponential decay model $\beta (L)\approx \beta _0 e^{-\lambda L/C}$ adopted in Heuristic~II for analytical tractability; the shaded area represents the effective working set $W_{\mathrm  {eff}}=C\cdot \bar  {\beta }$.}}{48}{figure.caption.86}\protected@file@percent }
+\newlabel{fig_beta_decay}{{13}{48}{Two perspectives on the attention retention rate $\beta (L)$. \textbf {Left:} Empirically observed U-shaped curve (Liu et al.~\cite {liu2023lostmiddle}): information at the beginning and end of the context is recalled well, while the middle region suffers a sharp drop in retention. \textbf {Right:} Exponential decay model $\beta (L)\approx \beta _0 e^{-\lambda L/C}$ adopted in Heuristic~II for analytical tractability; the shaded area represents the effective working set $W_{\mathrm {eff}}=C\cdot \bar {\beta }$}{figure.caption.86}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2.3}The Functional Form of $\beta (L)$: U-Shape, Not Monotone Decay}{48}{subsubsection.7.2.3}\protected@file@percent }
 \citation{denning1968thrashing}
 \citation{denning1968thrashing}
 \citation{denning2020workingset}
 \citation{memgpt2023}
 \citation{memoryos2025}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2.3}Why an Exponential Decay Model}{47}{subsubsection.7.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2.4}Correspondence to Classical Working-Set Theory}{47}{subsubsection.7.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2.5}Design Implications}{47}{subsubsection.7.2.5}\protected@file@percent }
 \citation{ruler2024}
 \citation{longbenchv2_2024}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2.4}Correspondence to Classical Working-Set Theory}{49}{subsubsection.7.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2.5}Design Implications}{49}{subsubsection.7.2.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2.6}Illustration}{49}{subsubsection.7.2.6}\protected@file@percent }
 \citation{openai_codex_overview_2026}
 \citation{anthropic_claudecode_subagents_2026}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2.6}Empirical Validation}{48}{subsubsection.7.2.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Law~III: The Agent Speedup Law}{48}{subsection.7.3}\protected@file@percent }
-\newlabel{sec:law3}{{7.3}{48}{Law~III: The Agent Speedup Law}{subsection.7.3}{}}
-\newlabel{eq:agent}{{10}{48}{Agent Speedup Law}{equation.7.10}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.1}Intuitive Parameter Semantics}{48}{subsubsection.7.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.2}Derivation}{48}{subsubsection.7.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Step~1: Decompose execution time.}{48}{section*.85}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Step~2: Compute the time for each component.}{48}{section*.86}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Heuristic~III: Agent Speedup}{50}{subsection.7.3}\protected@file@percent }
+\newlabel{sec:law3}{{7.3}{50}{Heuristic~III: Agent Speedup}{subsection.7.3}{}}
+\newlabel{eq:agent}{{9}{50}{Agent Speedup}{equation.7.9}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.1}Intuitive Parameter Semantics}{50}{subsubsection.7.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.2}Derivation}{50}{subsubsection.7.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Step~1: Decompose execution time.}{50}{section*.87}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Step~2: Compute the time for each component.}{50}{section*.88}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Step~3: Aggregate and compute the speedup.}{50}{section*.89}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Step~4: Verify degeneration.}{50}{section*.90}\protected@file@percent }
 \citation{anthropic2026agenticreport}
-\@writefile{toc}{\contentsline {paragraph}{Step~3: Aggregate and compute the speedup.}{49}{section*.87}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Step~4: Verify degeneration.}{49}{section*.88}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.3}Limit Behavior}{49}{subsubsection.7.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.4}Numerical Example}{49}{subsubsection.7.3.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Industrial calibration with the Fountain system.}{49}{section*.89}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.3}Limit Behavior}{51}{subsubsection.7.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.4}Numerical Example}{51}{subsubsection.7.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{A qualitative industry signal: the Fountain system.}{51}{section*.91}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.5}Comparison with Classical Amdahl's Law}{51}{subsubsection.7.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.6}Design Implications}{51}{subsubsection.7.3.6}\protected@file@percent }
 \citation{agentprotocols2025}
 \citation{wu2023autogen}
 \citation{gta2_2025}
@@ -573,37 +594,34 @@
 \citation{longbenchv2_2024}
 \citation{wu2023autogen}
 \citation{gta2_2025}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.5}Comparison with Classical Amdahl's Law}{50}{subsubsection.7.3.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.6}Design Implications}{50}{subsubsection.7.3.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.7}Empirical Validation}{50}{subsubsection.7.3.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}A Unifying Perspective}{50}{subsection.7.4}\protected@file@percent }
-\newlabel{sec:laws-summary}{{7.4}{50}{A Unifying Perspective}{subsection.7.4}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Empirical evidence for the three quantitative laws.}}{51}{table.caption.90}\protected@file@percent }
-\newlabel{tab:empirical}{{5}{51}{Empirical evidence for the three quantitative laws}{table.caption.90}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Characteristic curves of three quantitative laws. (a) Semantic Locality Law: $S=1/((1-H)+H/\alpha )$. (b) Context Budget Law: $W_{\mathrm  {eff}}=C\cdot e^{-\lambda C_0/C}$. (c) Agent Speedup Law: $S=1/((1-F)+F/(NE))$ with $F=0.8$. Shaded areas indicate typical operating ranges.}}{51}{figure.caption.91}\protected@file@percent }
-\newlabel{fig_law_curves}{{14}{51}{Characteristic curves of three quantitative laws. (a) Semantic Locality Law: $S=1/((1-H)+H/\alpha )$. (b) Context Budget Law: $W_{\mathrm {eff}}=C\cdot e^{-\lambda C_0/C}$. (c) Agent Speedup Law: $S=1/((1-F)+F/(NE))$ with $F=0.8$. Shaded areas indicate typical operating ranges}{figure.caption.91}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {8}Agent Framework Evolution: From ReAct to the Model-Native OS}{51}{section.8}\protected@file@percent }
-\newlabel{sec:agentevolution}{{8}{51}{Agent Framework Evolution: From ReAct to the Model-Native OS}{section.8}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.7}Illustration}{52}{subsubsection.7.3.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}A Unifying Perspective}{52}{subsection.7.4}\protected@file@percent }
+\newlabel{sec:laws-summary}{{7.4}{52}{A Unifying Perspective}{subsection.7.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Illustrative parameter ranges and supporting data for the three design heuristics.}}{53}{table.caption.92}\protected@file@percent }
+\newlabel{tab:empirical}{{6}{53}{Illustrative parameter ranges and supporting data for the three design heuristics}{table.caption.92}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Characteristic curves of three design heuristics. (a) Semantic Locality: $S=1/((1-H)+H/\alpha )$. (b) Context Budget: $W_{\mathrm  {eff}}=C\cdot \bar  {\beta }$ (representative exponential-decay envelope shown). (c) Agent Speedup: $S=1/((1-F)+F/(NE))$ with $F=0.8$. Shaded areas indicate typical operating ranges.}}{53}{figure.caption.93}\protected@file@percent }
+\newlabel{fig_law_curves}{{14}{53}{Characteristic curves of three design heuristics. (a) Semantic Locality: $S=1/((1-H)+H/\alpha )$. (b) Context Budget: $W_{\mathrm {eff}}=C\cdot \bar {\beta }$ (representative exponential-decay envelope shown). (c) Agent Speedup: $S=1/((1-F)+F/(NE))$ with $F=0.8$. Shaded areas indicate typical operating ranges}{figure.caption.93}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Agent Framework Evolution: From ReAct to the Model-Native OS}{53}{section.8}\protected@file@percent }
+\newlabel{sec:agentevolution}{{8}{53}{Agent Framework Evolution: From ReAct to the Model-Native OS}{section.8}{}}
 \citation{yao2023react}
 \citation{schick2023toolformer}
 \citation{ostep_2023}
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Agent framework evolution from single-turn reasoning to model-native operating systems. \textbf  {Top:} representative frameworks with analogous OS milestones. \textbf  {Bottom:} quantitative trajectory of parallelizable fraction ($F$), orchestration efficiency ($E$), and agent speedup ($S_{\mathrm  {agent}}$) per Law~III; green band marks the target regime ($F{>}0.8,\tmspace  +\thickmuskip {.2777em}E{>}0.8$).}}{52}{figure.caption.92}\protected@file@percent }
-\newlabel{fig_agent_timeline}{{15}{52}{Agent framework evolution from single-turn reasoning to model-native operating systems. \textbf {Top:} representative frameworks with analogous OS milestones. \textbf {Bottom:} quantitative trajectory of parallelizable fraction ($F$), orchestration efficiency ($E$), and agent speedup ($S_{\mathrm {agent}}$) per Law~III; green band marks the target regime ($F{>}0.8,\;E{>}0.8$)}{figure.caption.92}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Generation I: Establishing the Execution Paradigm (2022--2023)}{52}{subsection.8.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Core contribution.}{52}{section*.93}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Representative systems.}{52}{section*.94}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{OS analogy.}{52}{section*.95}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Agent framework evolution from single-turn reasoning to model-native operating systems. \textbf  {Top:} representative frameworks with analogous OS milestones. \textbf  {Bottom:} quantitative trajectory of parallelizable fraction ($F$), orchestration efficiency ($E$), and agent speedup ($S_{\mathrm  {agent}}$) per Heuristic~III; green band marks the target regime ($F{>}0.8,\tmspace  +\thickmuskip {.2777em}E{>}0.8$).}}{54}{figure.caption.94}\protected@file@percent }
+\newlabel{fig_agent_timeline}{{15}{54}{Agent framework evolution from single-turn reasoning to model-native operating systems. \textbf {Top:} representative frameworks with analogous OS milestones. \textbf {Bottom:} quantitative trajectory of parallelizable fraction ($F$), orchestration efficiency ($E$), and agent speedup ($S_{\mathrm {agent}}$) per Heuristic~III; green band marks the target regime ($F{>}0.8,\;E{>}0.8$)}{figure.caption.94}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Generation I: Establishing the Execution Paradigm (2022--2023)}{54}{subsection.8.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Core contribution.}{54}{section*.95}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Representative systems.}{54}{section*.96}\protected@file@percent }
 \citation{autogpt_repo_2026}
 \citation{wang2023voyager}
 \citation{ostep_2023}
 \citation{mei2024aios}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Generation II: Persistent Multi-Step Agents (2023)}{53}{subsection.8.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Core contribution.}{53}{section*.96}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Representative systems.}{53}{section*.97}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{OS analogy.}{53}{section*.98}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.3}Generation III: General-Purpose Runtimes (2023--2024)}{53}{subsection.8.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Core contribution.}{53}{section*.99}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Representative systems.}{53}{section*.100}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{OS analogy.}{55}{section*.97}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Generation II: Persistent Multi-Step Agents (2023)}{55}{subsection.8.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Core contribution.}{55}{section*.98}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Representative systems.}{55}{section*.99}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{OS analogy.}{55}{section*.100}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3}Generation III: General-Purpose Runtimes (2023--2024)}{55}{subsection.8.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Core contribution.}{55}{section*.101}\protected@file@percent }
 \citation{openai_codex_agentsdk_2026}
 \citation{wu2023autogen}
 \citation{ostep_2023}
@@ -618,10 +636,11 @@
 \citation{openhands_paper_2025}
 \citation{osworld2024}
 \citation{devin2024cognition}
-\@writefile{toc}{\contentsline {paragraph}{OS analogy.}{54}{section*.101}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.4}Generation IV: Engineering-Grade Operating Systems (2024--2025)}{54}{subsection.8.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Core contribution.}{54}{section*.102}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Representative systems.}{54}{section*.103}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Representative systems.}{56}{section*.102}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{OS analogy.}{56}{section*.103}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.4}Generation IV: Engineering-Grade Operating Systems (2024--2025)}{56}{subsection.8.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Core contribution.}{56}{section*.104}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Representative systems.}{56}{section*.105}\protected@file@percent }
 \citation{ostep_2023}
 \citation{linux_cfs_2026}
 \citation{ostep_2023}
@@ -629,29 +648,29 @@
 \citation{agentos2025}
 \citation{ufo2_2025}
 \citation{aura2025}
-\@writefile{toc}{\contentsline {paragraph}{OS analogy.}{55}{section*.104}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.5}Generation V: Governed Operating Systems (2025--Present)}{55}{subsection.8.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Core contribution.}{55}{section*.105}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Representative systems.}{55}{section*.106}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{OS analogy.}{57}{section*.106}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.5}Generation V: Governed Operating Systems (2025--Present)}{57}{subsection.8.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Core contribution.}{57}{section*.107}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Representative systems.}{57}{section*.108}\protected@file@percent }
 \citation{debenedetti2025camel}
 \citation{ironclaw2025}
 \citation{owasp_agentic2026}
 \citation{ostep_2023}
-\@writefile{toc}{\contentsline {paragraph}{OS analogy.}{56}{section*.107}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.6}The Five Generations Through the Lens of Law~III}{56}{subsection.8.6}\protected@file@percent }
-\newlabel{eq:agent_law_review}{{14}{56}{The Five Generations Through the Lens of Law~III}{equation.8.14}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Capability maturity matrix across the five generations of agent framework evolution. Each cell reflects the maturity level of a key architectural dimension: \textit  {None} (---) through \textit  {High}. The progressive darkening from Generation~I to Generation~V illustrates the systematic increase in both the parallelisable fraction~$F$ and the orchestration efficiency~$E$ captured by Law~III.}}{57}{figure.caption.108}\protected@file@percent }
-\newlabel{fig_gen_matrix}{{16}{57}{Capability maturity matrix across the five generations of agent framework evolution. Each cell reflects the maturity level of a key architectural dimension: \textit {None} (---) through \textit {High}. The progressive darkening from Generation~I to Generation~V illustrates the systematic increase in both the parallelisable fraction~$F$ and the orchestration efficiency~$E$ captured by Law~III}{figure.caption.108}{}}
-\@writefile{toc}{\contentsline {paragraph}{Quantitative trajectory across generations.}{57}{section*.109}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Quantitative trajectory of agent framework parameters across five generations, estimated from Law~III ($S_{\mathrm  {agent}} = 1/((1-F)+F/(N{\cdot }E))$ with representative $N$ values per generation). (a)~Parallelizable fraction $F$ grows from near zero (Gen~I serial loop) to ${\approx }0.72$ (Gen~V governed OS). (b)~Orchestration efficiency $E$ initially near~1 (trivial single-agent overhead) but dips in Gen~IV due to sandbox isolation and approval overhead, then recovers in Gen~V with governance-first design. (c)~Resulting speedup $S_{\mathrm  {agent}}$ rises from $1.0\times $ to ${\approx }2.1\times $, still well below the target $3.3\times $ that requires $F>0.8$ and $E>0.8$ simultaneously. Dashed red lines mark the target thresholds.}}{57}{figure.caption.110}\protected@file@percent }
-\newlabel{fig:gen_trajectory}{{17}{57}{Quantitative trajectory of agent framework parameters across five generations, estimated from Law~III ($S_{\mathrm {agent}} = 1/((1-F)+F/(N{\cdot }E))$ with representative $N$ values per generation). (a)~Parallelizable fraction $F$ grows from near zero (Gen~I serial loop) to ${\approx }0.72$ (Gen~V governed OS). (b)~Orchestration efficiency $E$ initially near~1 (trivial single-agent overhead) but dips in Gen~IV due to sandbox isolation and approval overhead, then recovers in Gen~V with governance-first design. (c)~Resulting speedup $S_{\mathrm {agent}}$ rises from $1.0\times $ to ${\approx }2.1\times $, still well below the target $3.3\times $ that requires $F>0.8$ and $E>0.8$ simultaneously. Dashed red lines mark the target thresholds}{figure.caption.110}{}}
+\@writefile{toc}{\contentsline {paragraph}{OS analogy.}{58}{section*.109}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.6}The Five Generations Through the Lens of Heuristic~III}{58}{subsection.8.6}\protected@file@percent }
+\newlabel{eq:agent_law_review}{{15}{58}{The Five Generations Through the Lens of Heuristic~III}{equation.8.15}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Capability maturity matrix across the five generations of agent framework evolution. Each cell reflects the maturity level of a key architectural dimension: \textit  {None} (---) through \textit  {High}. The progressive darkening from Generation~I to Generation~V illustrates the systematic increase in both the parallelisable fraction~$F$ and the orchestration efficiency~$E$ captured by Heuristic~III.}}{59}{figure.caption.110}\protected@file@percent }
+\newlabel{fig_gen_matrix}{{16}{59}{Capability maturity matrix across the five generations of agent framework evolution. Each cell reflects the maturity level of a key architectural dimension: \textit {None} (---) through \textit {High}. The progressive darkening from Generation~I to Generation~V illustrates the systematic increase in both the parallelisable fraction~$F$ and the orchestration efficiency~$E$ captured by Heuristic~III}{figure.caption.110}{}}
+\@writefile{toc}{\contentsline {paragraph}{Quantitative trajectory across generations.}{59}{section*.111}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Illustrative quantitative trajectory of agent framework parameters across five generations, estimated from Heuristic~III ($S_{\mathrm  {agent}} = 1/((1-F)+F/(N{\cdot }E))$ with representative $N$ values per generation). (a)~Parallelizable fraction $F$ grows from near zero (Gen~I serial loop) to ${\approx }0.72$ (Gen~V governed OS). (b)~Orchestration efficiency $E$ initially near~1 (trivial single-agent overhead) but dips in Gen~IV due to sandbox isolation and approval overhead, then recovers in Gen~V with governance-first design. (c)~Resulting speedup $S_{\mathrm  {agent}}$ rises from $1.0\times $ to ${\approx }2.1\times $, still well below the target $3.3\times $ that requires $F>0.8$ and $E>0.8$ simultaneously. Dashed red lines mark the target thresholds.}}{59}{figure.caption.112}\protected@file@percent }
+\newlabel{fig:gen_trajectory}{{17}{59}{Illustrative quantitative trajectory of agent framework parameters across five generations, estimated from Heuristic~III ($S_{\mathrm {agent}} = 1/((1-F)+F/(N{\cdot }E))$ with representative $N$ values per generation). (a)~Parallelizable fraction $F$ grows from near zero (Gen~I serial loop) to ${\approx }0.72$ (Gen~V governed OS). (b)~Orchestration efficiency $E$ initially near~1 (trivial single-agent overhead) but dips in Gen~IV due to sandbox isolation and approval overhead, then recovers in Gen~V with governance-first design. (c)~Resulting speedup $S_{\mathrm {agent}}$ rises from $1.0\times $ to ${\approx }2.1\times $, still well below the target $3.3\times $ that requires $F>0.8$ and $E>0.8$ simultaneously. Dashed red lines mark the target thresholds}{figure.caption.112}{}}
 \citation{anthropic2026agenticreport}
 \citation{gaia2023}
 \citation{taubench2024}
 \citation{swebench2023}
-\@writefile{toc}{\contentsline {paragraph}{The target: a true model-native OS.}{58}{section*.111}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {9}Design Challenges: Performance, State, Consistency, and Security}{58}{section.9}\protected@file@percent }
-\newlabel{sec:challenges}{{9}{58}{Design Challenges: Performance, State, Consistency, and Security}{section.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{The target: a true model-native OS.}{60}{section*.113}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9}Design Challenges: Performance, State, Consistency, and Security}{60}{section.9}\protected@file@percent }
+\newlabel{sec:challenges}{{9}{60}{Design Challenges: Performance, State, Consistency, and Security}{section.9}{}}
 \citation{gholami2024memorywall}
 \citation{gholami2024memorywall}
 \citation{orca2022}
@@ -664,19 +683,19 @@
 \citation{tgi_docs_2026}
 \citation{tensorrtllm_docs_2026}
 \citation{prabhu2024vattention}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.1}The Latency--Throughput--Cost Trilemma}{59}{subsection.9.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.1.1}Scenario}{59}{subsubsection.9.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.1.2}Root Cause}{59}{subsubsection.9.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.1.3}Current Solutions}{59}{subsubsection.9.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Scheduling-level optimizations.}{59}{section*.112}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Memory management optimizations.}{59}{section*.113}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.1}The Latency--Throughput--Cost Trilemma}{61}{subsection.9.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.1.1}Scenario}{61}{subsubsection.9.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.1.2}Root Cause}{61}{subsubsection.9.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.1.3}Current Solutions}{61}{subsubsection.9.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scheduling-level optimizations.}{61}{section*.114}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Memory management optimizations.}{61}{section*.115}\protected@file@percent }
 \citation{hennessy2017quantitative}
 \citation{ostep_2023}
-\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces The latency--throughput--cost trilemma in LLM serving. Any two objectives can be jointly optimised, but improving all three simultaneously is structurally infeasible given the compute-bound prefill / bandwidth-bound decode asymmetry. Representative system designs are plotted as points inside the triangle.}}{60}{figure.caption.114}\protected@file@percent }
-\newlabel{fig_trilemma}{{18}{60}{The latency--throughput--cost trilemma in LLM serving. Any two objectives can be jointly optimised, but improving all three simultaneously is structurally infeasible given the compute-bound prefill / bandwidth-bound decode asymmetry. Representative system designs are plotted as points inside the triangle}{figure.caption.114}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.1.4}Analogy to Classical Architecture}{60}{subsubsection.9.1.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.2}State Management and Cross-Session Consistency}{60}{subsection.9.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.2.1}Scenario}{60}{subsubsection.9.2.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces The latency--throughput--cost trilemma in LLM serving. Any two objectives can be jointly optimised, but improving all three simultaneously is structurally infeasible given the compute-bound prefill / bandwidth-bound decode asymmetry. Representative system designs are plotted as points inside the triangle.}}{62}{figure.caption.116}\protected@file@percent }
+\newlabel{fig_trilemma}{{18}{62}{The latency--throughput--cost trilemma in LLM serving. Any two objectives can be jointly optimised, but improving all three simultaneously is structurally infeasible given the compute-bound prefill / bandwidth-bound decode asymmetry. Representative system designs are plotted as points inside the triangle}{figure.caption.116}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.1.4}Analogy to Classical Architecture}{62}{subsubsection.9.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.2}State Management and Cross-Session Consistency}{62}{subsection.9.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.2.1}Scenario}{62}{subsubsection.9.2.1}\protected@file@percent }
 \citation{longmemeval2024}
 \citation{memgpt2023}
 \citation{memoryos2025}
@@ -687,16 +706,16 @@
 \citation{cap2002}
 \citation{raft2014}
 \citation{spanner2012}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.2.2}Root Cause}{61}{subsubsection.9.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.2.3}Current Solutions}{61}{subsubsection.9.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.2.2}Root Cause}{63}{subsubsection.9.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.2.3}Current Solutions}{63}{subsubsection.9.2.3}\protected@file@percent }
 \citation{anthropic2026agenticreport}
 \citation{spanner2012}
 \citation{raft2014}
 \citation{cap2002}
-\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Three-tier agent state lifecycle. \textbf  {Ephemeral state} (left) lives only within a single inference step and requires no persistence, analogous to CPU registers. \textbf  {Session state} (centre) spans an agent task chain and requires causal consistency guarantees, analogous to distributed message passing. \textbf  {Committed state} (right) constitutes permanent, auditable side effects and requires full rollback support, analogous to a database transaction commit. Arrows indicate promotion on task boundaries and rollback paths on failure.}}{62}{figure.caption.115}\protected@file@percent }
-\newlabel{fig:state_lifecycle}{{19}{62}{Three-tier agent state lifecycle. \textbf {Ephemeral state} (left) lives only within a single inference step and requires no persistence, analogous to CPU registers. \textbf {Session state} (centre) spans an agent task chain and requires causal consistency guarantees, analogous to distributed message passing. \textbf {Committed state} (right) constitutes permanent, auditable side effects and requires full rollback support, analogous to a database transaction commit. Arrows indicate promotion on task boundaries and rollback paths on failure}{figure.caption.115}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.2.4}Temporal Decay in Long-Running Agents}{62}{subsubsection.9.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.2.5}Analogy to Classical Architecture}{62}{subsubsection.9.2.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Three-tier agent state lifecycle. \textbf  {Ephemeral state} (left) lives only within a single inference step and requires no persistence, analogous to CPU registers. \textbf  {Session state} (centre) spans an agent task chain and requires causal consistency guarantees, analogous to distributed message passing. \textbf  {Committed state} (right) constitutes permanent, auditable side effects and requires full rollback support, analogous to a database transaction commit. Arrows indicate promotion on task boundaries and rollback paths on failure.}}{64}{figure.caption.117}\protected@file@percent }
+\newlabel{fig:state_lifecycle}{{19}{64}{Three-tier agent state lifecycle. \textbf {Ephemeral state} (left) lives only within a single inference step and requires no persistence, analogous to CPU registers. \textbf {Session state} (centre) spans an agent task chain and requires causal consistency guarantees, analogous to distributed message passing. \textbf {Committed state} (right) constitutes permanent, auditable side effects and requires full rollback support, analogous to a database transaction commit. Arrows indicate promotion on task boundaries and rollback paths on failure}{figure.caption.117}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.2.4}Temporal Decay in Long-Running Agents}{64}{subsubsection.9.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.2.5}Analogy to Classical Architecture}{64}{subsubsection.9.2.5}\protected@file@percent }
 \citation{ostep_2023}
 \citation{mcp_intro_2026}
 \citation{agentprotocols2025}
@@ -707,21 +726,21 @@
 \citation{mcp_intro_2026}
 \citation{google_a2a_2025}
 \citation{google_a2a_2025}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.3}Interface Drift and Version Compatibility}{63}{subsection.9.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.3.1}Scenario}{63}{subsubsection.9.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.3.2}Root Cause}{63}{subsubsection.9.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.3.3}Current Solutions}{63}{subsubsection.9.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3}Interface Drift and Version Compatibility}{65}{subsection.9.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.3.1}Scenario}{65}{subsubsection.9.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.3.2}Root Cause}{65}{subsubsection.9.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.3.3}Current Solutions}{65}{subsubsection.9.3.3}\protected@file@percent }
 \citation{debenedetti2025camel}
 \citation{owasp_agentic2026}
 \citation{aura2025}
 \citation{openai_codex_sandbox_2026}
 \citation{anthropic_claudecode_security_2026}
 \citation{aura2025}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.3.4}Analogy to Classical Architecture}{64}{subsubsection.9.3.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.4}Security, Privacy, and Least Privilege}{64}{subsection.9.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.4.1}Scenario}{64}{subsubsection.9.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.4.2}Root Cause}{64}{subsubsection.9.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.4.3}Current Solutions}{64}{subsubsection.9.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.3.4}Analogy to Classical Architecture}{66}{subsubsection.9.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.4}Security, Privacy, and Least Privilege}{66}{subsection.9.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.4.1}Scenario}{66}{subsubsection.9.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.4.2}Root Cause}{66}{subsubsection.9.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.4.3}Current Solutions}{66}{subsubsection.9.4.3}\protected@file@percent }
 \citation{debenedetti2025camel}
 \citation{openai_codex_approvals_2026}
 \citation{openai_codex_agentsdk_2026}
@@ -730,20 +749,20 @@
 \citation{ostep_2023}
 \citation{anthropic2026agenticreport}
 \citation{anthropic2026agenticreport}
-\@writefile{toc}{\contentsline {paragraph}{Sandboxing.}{65}{section*.116}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Capability-based security models.}{65}{section*.117}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Approval and audit.}{65}{section*.118}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Formal security.}{65}{section*.119}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.4.4}Analogy to Classical Architecture}{65}{subsubsection.9.4.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.4.5}Dual-Use Security Concerns}{65}{subsubsection.9.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sandboxing.}{67}{section*.118}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Capability-based security models.}{67}{section*.119}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Approval and audit.}{67}{section*.120}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Formal security.}{67}{section*.121}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.4.4}Analogy to Classical Architecture}{67}{subsubsection.9.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.4.5}Dual-Use Security Concerns}{67}{subsubsection.9.4.5}\protected@file@percent }
 \citation{arbiteros2025}
 \citation{aura2025}
 \citation{ostep_2023}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.5}Governance as a First-Class Architectural Concern}{66}{subsection.9.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.5.1}The Core Problem}{66}{subsubsection.9.5.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Challenge-to-ICA-layer impact heatmap. Each cell indicates the severity of a given challenge at the corresponding ICA layer: \textcolor {red!50}{\textbf  {primary}} (direct, critical impact), \textcolor {orange!40}{\textbf  {secondary}} (significant but indirect), \textcolor {yellow!50!black}{\textbf  {tertiary}} (moderate, contextual), or \textcolor {gray!40}{not applicable}. The thick dashed line marks the dual-plane boundary between model-native layers (L1--L2) and classical layers (L3--L6). The right-margin column identifies the most relevant quantitative law for each challenge row.}}{66}{figure.caption.120}\protected@file@percent }
-\newlabel{fig:challenge_heatmap}{{20}{66}{Challenge-to-ICA-layer impact heatmap. Each cell indicates the severity of a given challenge at the corresponding ICA layer: \textcolor {red!50}{\textbf {primary}} (direct, critical impact), \textcolor {orange!40}{\textbf {secondary}} (significant but indirect), \textcolor {yellow!50!black}{\textbf {tertiary}} (moderate, contextual), or \textcolor {gray!40}{not applicable}. The thick dashed line marks the dual-plane boundary between model-native layers (L1--L2) and classical layers (L3--L6). The right-margin column identifies the most relevant quantitative law for each challenge row}{figure.caption.120}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.5.2}Governance Is Not a Retrofit}{66}{subsubsection.9.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.5}Governance as a First-Class Architectural Concern}{68}{subsection.9.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.5.1}The Core Problem}{68}{subsubsection.9.5.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Challenge-to-ICA-layer impact heatmap. Each cell indicates the severity of a given challenge at the corresponding ICA layer: \textcolor {red!50}{\textbf  {primary}} (direct, critical impact), \textcolor {orange!40}{\textbf  {secondary}} (significant but indirect), \textcolor {yellow!50!black}{\textbf  {tertiary}} (moderate, contextual), or \textcolor {gray!40}{not applicable}. The thick dashed line marks the graded crossover between probabilistic-execution layers (L1--L3) and deterministic-control layers (L4--L6). The right-margin column identifies the most relevant design heuristic for each challenge row.}}{68}{figure.caption.122}\protected@file@percent }
+\newlabel{fig:challenge_heatmap}{{20}{68}{Challenge-to-ICA-layer impact heatmap. Each cell indicates the severity of a given challenge at the corresponding ICA layer: \textcolor {red!50}{\textbf {primary}} (direct, critical impact), \textcolor {orange!40}{\textbf {secondary}} (significant but indirect), \textcolor {yellow!50!black}{\textbf {tertiary}} (moderate, contextual), or \textcolor {gray!40}{not applicable}. The thick dashed line marks the graded crossover between probabilistic-execution layers (L1--L3) and deterministic-control layers (L4--L6). The right-margin column identifies the most relevant design heuristic for each challenge row}{figure.caption.122}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.5.2}Governance Is Not a Retrofit}{68}{subsubsection.9.5.2}\protected@file@percent }
 \citation{mcp_intro_2026}
 \citation{debenedetti2025camel}
 \citation{openai_codex_approvals_2026}
@@ -751,22 +770,22 @@
 \citation{ostep_2023}
 \citation{arbiteros2025}
 \citation{ironclaw2025}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.5.3}Per-Layer Governance in ICA}{67}{subsubsection.9.5.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.5.4}Governance in the Dual-Plane Architecture}{67}{subsubsection.9.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.5.3}Per-Layer Governance in ICA}{69}{subsubsection.9.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.5.4}Governance in the Dual-Plane Architecture}{69}{subsubsection.9.5.4}\protected@file@percent }
 \citation{patterson_hennessy_2017}
 \citation{patterson_hennessy_2017}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.5.5}The Formalization Challenge}{68}{subsubsection.9.5.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {10}Paradigm Discussion}{68}{section.10}\protected@file@percent }
-\newlabel{sec:paradigm}{{10}{68}{Paradigm Discussion}{section.10}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.1}The Intelligent Compute Core: From Silicon to Substrate}{68}{subsection.10.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.1.1}The LLM as Processor: Why the Compute Core Need Not Remember}{68}{subsubsection.10.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.5.5}The Formalization Challenge}{70}{subsubsection.9.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {10}Paradigm Discussion}{70}{section.10}\protected@file@percent }
+\newlabel{sec:paradigm}{{10}{70}{Paradigm Discussion}{section.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.1}The Intelligent Compute Core: From Silicon to Substrate}{70}{subsection.10.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.1.1}The LLM as Processor: Why the Compute Core Need Not Remember}{70}{subsubsection.10.1.1}\protected@file@percent }
 \citation{ritchie_thompson_1974}
 \citation{hennessy_patterson_2019}
 \citation{dennard_1974}
 \citation{esmaeilzadeh_2011}
-\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces Structural parallels between CPU and LLM system evolution. Curved arrows connect milestones that share the same architectural driver: Dennard scaling collapse and the inference energy wall both arise from a \emph  {Power Wall}; the multi-core and MoE transitions reflect a \emph  {Parallelism Shift}; big.LITTLE and heterogeneous model orchestration embody \emph  {Heterogeneity}; x86 ISA and the token/tool interface represent \emph  {ISA Abstraction}; and domain accelerators and specialized small models pursue \emph  {Specialization}.}}{69}{figure.caption.121}\protected@file@percent }
-\newlabel{fig:paradigm_timeline}{{21}{69}{Structural parallels between CPU and LLM system evolution. Curved arrows connect milestones that share the same architectural driver: Dennard scaling collapse and the inference energy wall both arise from a \emph {Power Wall}; the multi-core and MoE transitions reflect a \emph {Parallelism Shift}; big.LITTLE and heterogeneous model orchestration embody \emph {Heterogeneity}; x86 ISA and the token/tool interface represent \emph {ISA Abstraction}; and domain accelerators and specialized small models pursue \emph {Specialization}}{figure.caption.121}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.1.2}Frequency Scaling and Thinking Modes: The Power Wall Revisited}{69}{subsubsection.10.1.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces Structural parallels between CPU and LLM system evolution. Curved arrows connect milestones that share the same architectural driver: Dennard scaling collapse and the inference energy wall both arise from a \emph  {Power Wall}; the multi-core and MoE transitions reflect a \emph  {Parallelism Shift}; big.LITTLE and heterogeneous model orchestration embody \emph  {Heterogeneity}; x86 ISA and the token/tool interface represent \emph  {ISA Abstraction}; and domain accelerators and specialized small models pursue \emph  {Specialization}.}}{71}{figure.caption.123}\protected@file@percent }
+\newlabel{fig:paradigm_timeline}{{21}{71}{Structural parallels between CPU and LLM system evolution. Curved arrows connect milestones that share the same architectural driver: Dennard scaling collapse and the inference energy wall both arise from a \emph {Power Wall}; the multi-core and MoE transitions reflect a \emph {Parallelism Shift}; big.LITTLE and heterogeneous model orchestration embody \emph {Heterogeneity}; x86 ISA and the token/tool interface represent \emph {ISA Abstraction}; and domain accelerators and specialized small models pursue \emph {Specialization}}{figure.caption.123}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.1.2}Frequency Scaling and Thinking Modes: The Power Wall Revisited}{71}{subsubsection.10.1.2}\protected@file@percent }
 \citation{moore_1965}
 \citation{amdahl_1967}
 \citation{biglittle_arm_2012}
@@ -777,15 +796,15 @@
 \citation{li_2024_eagle}
 \citation{deepseek_2024_moe}
 \citation{wang_2024_hmoe}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.1.3}big.LITTLE Intelligence: Heterogeneous Model Orchestration}{70}{subsubsection.10.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.1.3}big.LITTLE Intelligence: Heterogeneous Model Orchestration}{72}{subsubsection.10.1.3}\protected@file@percent }
 \citation{harmbench_2024}
 \citation{airbench_2024}
 \citation{slm_edge_2025}
 \citation{llama32_2024}
 \citation{phi3_2024}
-\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces Three-stage evolution of heterogeneous scheduling, mapped between classical ARM big.LITTLE (top half of each panel) and LLM model orchestration (bottom half). Stage~1 (cluster migration / single model) activates only one resource type at a time. Stage~2 (HMP / plan-execute routing) runs both simultaneously with coarse-grained task assignment. Stage~3 (EAS / cost-capability routing) uses real-time telemetry to route each subtask to the cost-optimal compute substrate, the pattern already deployed in Claude Code and Codex.}}{71}{figure.caption.122}\protected@file@percent }
-\newlabel{fig:biglittle}{{22}{71}{Three-stage evolution of heterogeneous scheduling, mapped between classical ARM big.LITTLE (top half of each panel) and LLM model orchestration (bottom half). Stage~1 (cluster migration / single model) activates only one resource type at a time. Stage~2 (HMP / plan-execute routing) runs both simultaneously with coarse-grained task assignment. Stage~3 (EAS / cost-capability routing) uses real-time telemetry to route each subtask to the cost-optimal compute substrate, the pattern already deployed in Claude Code and Codex}{figure.caption.122}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.1.4}Specialized Coprocessors: The Rise of Small Special-Purpose Models}{71}{subsubsection.10.1.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces Three-stage evolution of heterogeneous scheduling, mapped between classical ARM big.LITTLE (top half of each panel) and LLM model orchestration (bottom half). Stage~1 (cluster migration / single model) activates only one resource type at a time. Stage~2 (HMP / plan-execute routing) runs both simultaneously with coarse-grained task assignment. Stage~3 (EAS / cost-capability routing) uses real-time telemetry to route each subtask to the cost-optimal compute substrate, the pattern already deployed in Claude Code and Codex.}}{73}{figure.caption.124}\protected@file@percent }
+\newlabel{fig:biglittle}{{22}{73}{Three-stage evolution of heterogeneous scheduling, mapped between classical ARM big.LITTLE (top half of each panel) and LLM model orchestration (bottom half). Stage~1 (cluster migration / single model) activates only one resource type at a time. Stage~2 (HMP / plan-execute routing) runs both simultaneously with coarse-grained task assignment. Stage~3 (EAS / cost-capability routing) uses real-time telemetry to route each subtask to the cost-optimal compute substrate, the pattern already deployed in Claude Code and Codex}{figure.caption.124}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.1.4}Specialized Coprocessors: The Rise of Small Special-Purpose Models}{73}{subsubsection.10.1.4}\protected@file@percent }
 \citation{apple_m1_2020}
 \citation{hennessy_patterson_2019}
 \citation{hala_point_2024}
@@ -799,14 +818,14 @@
 \citation{khatri_2024_quixer}
 \citation{guo_2024_quantum_transformer}
 \citation{spec_benchmark}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.1.5}Beyond Silicon: Neuromorphic, Biological, and Quantum Substrates}{72}{subsubsection.10.1.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.1.5}Beyond Silicon: Neuromorphic, Biological, and Quantum Substrates}{74}{subsubsection.10.1.5}\protected@file@percent }
 \citation{fodor_2025_benchmarks}
 \citation{zhong_2024_weakest_link}
 \citation{harmbench_2024}
 \citation{airbench_2024}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.1.6}Benchmarking the Core: The Bucket Principle and Worst-Case Evaluation}{73}{subsubsection.10.1.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.2}The Intelligent Operating System: From Code to World}{73}{subsection.10.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.2.1}The Historical Arc: From Task-Specific Systems to General Operating Systems}{73}{subsubsection.10.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.1.6}Benchmarking the Core: The Bucket Principle and Worst-Case Evaluation}{75}{subsubsection.10.1.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.2}The Intelligent Operating System: From Code to World}{75}{subsection.10.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.2.1}The Historical Arc: From Task-Specific Systems to General Operating Systems}{75}{subsubsection.10.2.1}\protected@file@percent }
 \citation{ritchie_thompson_1974}
 \citation{corbato_1962_ctss}
 \citation{corbato_1965_multics}
@@ -815,42 +834,42 @@
 \citation{patterson_hennessy_2017}
 \citation{hennessy_patterson_2019}
 \citation{cortical_2025_cl1}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.2.2}Compute-Substrate Agnosticism: The ISA Decoupling Principle Generalized}{74}{subsubsection.10.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.2.2}Compute-Substrate Agnosticism: The ISA Decoupling Principle Generalized}{76}{subsubsection.10.2.2}\protected@file@percent }
 \citation{zhong_2024_weakest_link}
 \citation{eas_linux_2019}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.2.3}Intelligence Scoring as ISA Compliance}{75}{subsubsection.10.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.2.4}OS-Level Heterogeneous Scheduling: From Energy Models to Capability-Cost Models}{75}{subsubsection.10.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Overutilization fallback.}{75}{section*.123}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Real-time telemetry and dynamic routing.}{75}{section*.124}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.2.3}Intelligence Scoring as ISA Compliance}{77}{subsubsection.10.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.2.4}OS-Level Heterogeneous Scheduling: From Energy Models to Capability-Cost Models}{77}{subsubsection.10.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Overutilization fallback.}{77}{section*.125}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Real-time telemetry and dynamic routing.}{77}{section*.126}\protected@file@percent }
 \citation{flywire_2024}
 \citation{kagan_2022_pong_bioneurons}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.2.5}The Physical World Interface: From Code-Only to Embodied Intelligence}{76}{subsubsection.10.2.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.2.5}The Physical World Interface: From Code-Only to Embodied Intelligence}{78}{subsubsection.10.2.5}\protected@file@percent }
 \citation{stanfordhai2025index}
 \citation{gartner2026trends}
-\@writefile{toc}{\contentsline {section}{\numberline {11}Socio-Technical Implications: The Industry Structure of Intelligent Computing}{77}{section.11}\protected@file@percent }
-\newlabel{sec:sociotechnical}{{11}{77}{Socio-Technical Implications: The Industry Structure of Intelligent Computing}{section.11}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {11.1}From IDM to Fabless: The Semiconductor Analogy and AI Stack Disaggregation}{77}{subsection.11.1}\protected@file@percent }
-\newlabel{sec:idm-fabless}{{11.1}{77}{From IDM to Fabless: The Semiconductor Analogy and AI Stack Disaggregation}{subsection.11.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {11.2}Model Weights as Software: The Copyability Problem and the Closed-Source Strategic Response}{77}{subsection.11.2}\protected@file@percent }
-\newlabel{sec:copyability}{{11.2}{77}{Model Weights as Software: The Copyability Problem and the Closed-Source Strategic Response}{subsection.11.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {11}Socio-Technical Implications: The Industry Structure of Intelligent Computing}{79}{section.11}\protected@file@percent }
+\newlabel{sec:sociotechnical}{{11}{79}{Socio-Technical Implications: The Industry Structure of Intelligent Computing}{section.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.1}From IDM to Fabless: The Semiconductor Analogy and AI Stack Disaggregation}{79}{subsection.11.1}\protected@file@percent }
+\newlabel{sec:idm-fabless}{{11.1}{79}{From IDM to Fabless: The Semiconductor Analogy and AI Stack Disaggregation}{subsection.11.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.2}Model Weights as Software: The Copyability Problem and the Closed-Source Strategic Response}{79}{subsection.11.2}\protected@file@percent }
+\newlabel{sec:copyability}{{11.2}{79}{Model Weights as Software: The Copyability Problem and the Closed-Source Strategic Response}{subsection.11.2}{}}
 \citation{thirdbridge2025deepseek}
 \citation{mckinsey2025aisurvey}
 \citation{brookings2025aicustomers}
 \citation{rand2024weightplaybook}
 \citation{taalas_2026_hc1}
 \citation{licendi2024mslicensing}
-\@writefile{toc}{\contentsline {subsection}{\numberline {11.3}Hardware Binding and Weight Protection: Rebuilding the Physical Moat}{78}{subsection.11.3}\protected@file@percent }
-\newlabel{sec:hardware-binding}{{11.3}{78}{Hardware Binding and Weight Protection: Rebuilding the Physical Moat}{subsection.11.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {11.4}The OS Layer as Traffic Gateway: Platform Strategy in the AI Era}{78}{subsection.11.4}\protected@file@percent }
-\newlabel{sec:os-gateway}{{11.4}{78}{The OS Layer as Traffic Gateway: Platform Strategy in the AI Era}{subsection.11.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.3}Hardware Binding and Weight Protection: Rebuilding the Physical Moat}{80}{subsection.11.3}\protected@file@percent }
+\newlabel{sec:hardware-binding}{{11.3}{80}{Hardware Binding and Weight Protection: Rebuilding the Physical Moat}{subsection.11.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.4}The OS Layer as Traffic Gateway: Platform Strategy in the AI Era}{80}{subsection.11.4}\protected@file@percent }
+\newlabel{sec:os-gateway}{{11.4}{80}{The OS Layer as Traffic Gateway: Platform Strategy in the AI Era}{subsection.11.4}{}}
 \citation{ceibs2025aiagents}
 \citation{wikipedia2024msopensource}
 \citation{ccia2025competition}
 \citation{gartner2026trends}
 \citation{mckinsey2025aisurvey}
 \citation{taalas_2026_hc1}
-\@writefile{toc}{\contentsline {subsection}{\numberline {11.5}Convergence Scenarios: When Training Stabilizes and Brains Become Physical Products}{79}{subsection.11.5}\protected@file@percent }
-\newlabel{sec:convergence}{{11.5}{79}{Convergence Scenarios: When Training Stabilizes and Brains Become Physical Products}{subsection.11.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.5}Convergence Scenarios: When Training Stabilizes and Brains Become Physical Products}{81}{subsection.11.5}\protected@file@percent }
+\newlabel{sec:convergence}{{11.5}{81}{Convergence Scenarios: When Training Stabilizes and Brains Become Physical Products}{subsection.11.5}{}}
 \citation{kwon2023pagedattention}
 \citation{vllm_docs_2026}
 \citation{vllm_prefix_2026}
@@ -859,12 +878,12 @@
 \citation{sglang2024}
 \citation{tgi_docs_2026}
 \citation{tensorrtllm_docs_2026}
-\@writefile{toc}{\contentsline {section}{\numberline {12}Open-Source Implementation and Engineering Practice}{80}{section.12}\protected@file@percent }
-\newlabel{sec:implementation}{{12}{80}{Open-Source Implementation and Engineering Practice}{section.12}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {23}{\ignorespaces Open-source ecosystem mapped to the six-layer ICA architecture.}}{80}{figure.caption.125}\protected@file@percent }
-\newlabel{fig:impl_map}{{23}{80}{Open-source ecosystem mapped to the six-layer ICA architecture}{figure.caption.125}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.1}Serving Layer (L2): Inference Serving and KV Cache Management}{80}{subsection.12.1}\protected@file@percent }
-\newlabel{sec:impl-serving}{{12.1}{80}{Serving Layer (L2): Inference Serving and KV Cache Management}{subsection.12.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {12}Open-Source Implementation and Engineering Practice}{82}{section.12}\protected@file@percent }
+\newlabel{sec:implementation}{{12}{82}{Open-Source Implementation and Engineering Practice}{section.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {23}{\ignorespaces Open-source ecosystem mapped to the six-layer ICA architecture.}}{82}{figure.caption.127}\protected@file@percent }
+\newlabel{fig:impl_map}{{23}{82}{Open-source ecosystem mapped to the six-layer ICA architecture}{figure.caption.127}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.1}Serving Layer (L2): Inference Serving and KV Cache Management}{82}{subsection.12.1}\protected@file@percent }
+\newlabel{sec:impl-serving}{{12.1}{82}{Serving Layer (L2): Inference Serving and KV Cache Management}{subsection.12.1}{}}
 \citation{openhands_paper_2025}
 \citation{sweagent2024}
 \citation{autogpt_platform_2026}
@@ -884,23 +903,23 @@
 \citation{google_a2a_2025}
 \citation{agentprotocols2025}
 \citation{a2alinux2025}
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.2}Agent Layer (L5): Agent Runtimes and Operating Systems}{81}{subsection.12.2}\protected@file@percent }
-\newlabel{sec:impl-agent}{{12.2}{81}{Agent Layer (L5): Agent Runtimes and Operating Systems}{subsection.12.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.2.1}General-Purpose Agents}{81}{subsubsection.12.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.2.2}Agent Operating Systems}{81}{subsubsection.12.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.2.3}Industrial Agent Systems}{81}{subsubsection.12.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.3}Protocol Layer (L4): Standardized Tool Connection and Agent Interconnection}{81}{subsection.12.3}\protected@file@percent }
-\newlabel{sec:impl-protocol}{{12.3}{81}{Protocol Layer (L4): Standardized Tool Connection and Agent Interconnection}{subsection.12.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.2}Agent Layer (L5): Agent Runtimes and Operating Systems}{83}{subsection.12.2}\protected@file@percent }
+\newlabel{sec:impl-agent}{{12.2}{83}{Agent Layer (L5): Agent Runtimes and Operating Systems}{subsection.12.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.2.1}General-Purpose Agents}{83}{subsubsection.12.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.2.2}Agent Operating Systems}{83}{subsubsection.12.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.2.3}Industrial Agent Systems}{83}{subsubsection.12.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.3}Protocol Layer (L4): Standardized Tool Connection and Agent Interconnection}{83}{subsection.12.3}\protected@file@percent }
+\newlabel{sec:impl-protocol}{{12.3}{83}{Protocol Layer (L4): Standardized Tool Connection and Agent Interconnection}{subsection.12.3}{}}
 \citation{openai_codex_approvals_2026}
 \citation{anthropic_claudecode_security_2026}
 \citation{memgpt2023}
 \citation{anthropic2026agenticreport}
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.4}Five Implementation Recommendations}{82}{subsection.12.4}\protected@file@percent }
-\newlabel{sec:impl-recommendations}{{12.4}{82}{Five Implementation Recommendations}{subsection.12.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {24}{\ignorespaces Mapping of the five implementation recommendations (R1--R5) onto ICA layers (L1--L6) and their governing design axioms. \textbf  {Key} cells indicate the primary ICA layer at which the recommendation must be enforced; \textbf  {Partial} cells indicate supporting roles. R1 (control/data plane separation) targets L4--L5; R2 (context tiering) targets L3; R3 (versioning) targets L4; R4 (resource quotas) and R5 (failure recovery) both center on L5 with support from adjacent layers.}}{82}{figure.caption.126}\protected@file@percent }
-\newlabel{fig:impl_recommendations}{{24}{82}{Mapping of the five implementation recommendations (R1--R5) onto ICA layers (L1--L6) and their governing design axioms. \textbf {Key} cells indicate the primary ICA layer at which the recommendation must be enforced; \textbf {Partial} cells indicate supporting roles. R1 (control/data plane separation) targets L4--L5; R2 (context tiering) targets L3; R3 (versioning) targets L4; R4 (resource quotas) and R5 (failure recovery) both center on L5 with support from adjacent layers}{figure.caption.126}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.1}Separate the Control Plane from the Data Plane}{82}{subsubsection.12.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.2}Separate Short-Term Context from Long-Term Memory}{82}{subsubsection.12.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.4}Five Implementation Recommendations}{84}{subsection.12.4}\protected@file@percent }
+\newlabel{sec:impl-recommendations}{{12.4}{84}{Five Implementation Recommendations}{subsection.12.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {24}{\ignorespaces Mapping of the five implementation recommendations (R1--R5) onto ICA layers (L1--L6) and their governing design axioms. \textbf  {Key} cells indicate the primary ICA layer at which the recommendation must be enforced; \textbf  {Partial} cells indicate supporting roles. R1 (control/data plane separation) targets L4--L5; R2 (context tiering) targets L3; R3 (versioning) targets L4; R4 (resource quotas) and R5 (failure recovery) both center on L5 with support from adjacent layers.}}{84}{figure.caption.128}\protected@file@percent }
+\newlabel{fig:impl_recommendations}{{24}{84}{Mapping of the five implementation recommendations (R1--R5) onto ICA layers (L1--L6) and their governing design axioms. \textbf {Key} cells indicate the primary ICA layer at which the recommendation must be enforced; \textbf {Partial} cells indicate supporting roles. R1 (control/data plane separation) targets L4--L5; R2 (context tiering) targets L3; R3 (versioning) targets L4; R4 (resource quotas) and R5 (failure recovery) both center on L5 with support from adjacent layers}{figure.caption.128}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.1}Separate the Control Plane from the Data Plane}{84}{subsubsection.12.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.2}Separate Short-Term Context from Long-Term Memory}{84}{subsubsection.12.4.2}\protected@file@percent }
 \citation{mcp_intro_2026}
 \citation{agentprotocols2025}
 \citation{linux_cgroup_2026}
@@ -914,30 +933,30 @@
     {1}{125.24197pt}\LT@entry 
     {1}{93.5309pt}\LT@entry 
     {1}{75.41522pt}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.3}Version Every Behavior-Affecting Object}{83}{subsubsection.12.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.4}Enforce Resource Quotas Like an Operating System}{83}{subsubsection.12.4.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.5}Design Failure Recovery Like a Distributed System}{83}{subsubsection.12.4.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {13}Research Roadmap}{83}{section.13}\protected@file@percent }
-\newlabel{sec:roadmap}{{13}{83}{Research Roadmap}{section.13}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Research agenda organized by ICA layer, phase, and associated law or axiom.}}{83}{table.6}\protected@file@percent }
-\newlabel{tab:roadmap}{{6}{83}{Research agenda organized by ICA layer, phase, and associated law or axiom}{table.6}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.3}Version Every Behavior-Affecting Object}{85}{subsubsection.12.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.4}Enforce Resource Quotas Like an Operating System}{85}{subsubsection.12.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.5}Design Failure Recovery Like a Distributed System}{85}{subsubsection.12.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {13}Research Roadmap}{85}{section.13}\protected@file@percent }
+\newlabel{sec:roadmap}{{13}{85}{Research Roadmap}{section.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Research agenda organized by ICA layer, phase, and associated heuristic or axiom.}}{85}{table.7}\protected@file@percent }
+\newlabel{tab:roadmap}{{7}{85}{Research agenda organized by ICA layer, phase, and associated heuristic or axiom}{table.7}{}}
 \citation{gholami2024memorywall}
 \citation{h2o2023}
 \citation{hooper2024kvquant}
 \citation{liu2024kivi}
 \citation{kwon2023pagedattention}
 \citation{sglang2024}
-\@writefile{toc}{\contentsline {subsection}{\numberline {13.1}Short-Term Research Topics}{84}{subsection.13.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {13.1}Short-Term Research Topics}{86}{subsection.13.1}\protected@file@percent }
 \citation{memgpt2023}
 \citation{letta_stateful_2026}
 \citation{hiagent2024}
 \citation{mcp_intro_2026}
 \citation{agentprotocols2025}
-\@writefile{lof}{\contentsline {figure}{\numberline {25}{\ignorespaces Research roadmap organized by ICA layer and time horizon. Horizontal lanes correspond to ICA layers L1--L6; columns represent short-term (1--2\,yr), mid-term (2--4\,yr), and long-term (4--8\,yr) research phases. Bar colors indicate which law or axiom each topic validates: {\color  {lawI}Law~I} (Semantic Locality, blue), {\color  {lawII}Law~II} (Context Budget, orange), {\color  {lawIII}Law~III} (Agent Speedup, red), and {\color  {axiom}Axiom} (architectural principles, gray). Arrows denote key dependencies between research topics.}}{85}{figure.caption.127}\protected@file@percent }
-\newlabel{fig:roadmap_swimlane}{{25}{85}{Research roadmap organized by ICA layer and time horizon. Horizontal lanes correspond to ICA layers L1--L6; columns represent short-term (1--2\,yr), mid-term (2--4\,yr), and long-term (4--8\,yr) research phases. Bar colors indicate which law or axiom each topic validates: {\color {lawI}Law~I} (Semantic Locality, blue), {\color {lawII}Law~II} (Context Budget, orange), {\color {lawIII}Law~III} (Agent Speedup, red), and {\color {axiom}Axiom} (architectural principles, gray). Arrows denote key dependencies between research topics}{figure.caption.127}{}}
-\@writefile{toc}{\contentsline {paragraph}{KV cache hit-rate optimization (L2).}{85}{section*.128}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Unified context compiler (L3).}{85}{section*.129}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Tool ABI standardization (L4).}{85}{section*.130}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {25}{\ignorespaces Research roadmap organized by ICA layer and time horizon. Horizontal lanes correspond to ICA layers L1--L6; columns represent short-term (1--2\,yr), mid-term (2--4\,yr), and long-term (4--8\,yr) research phases. Bar colors indicate which heuristic or axiom each topic targets: {\color  {lawI}Heur.~I} (Semantic Locality, blue), {\color  {lawII}Heur.~II} (Context Budget, orange), {\color  {lawIII}Heur.~III} (Agent Speedup, red), and {\color  {axiom}Axiom} (architectural principles, gray). Arrows denote key dependencies between research topics.}}{87}{figure.caption.129}\protected@file@percent }
+\newlabel{fig:roadmap_swimlane}{{25}{87}{Research roadmap organized by ICA layer and time horizon. Horizontal lanes correspond to ICA layers L1--L6; columns represent short-term (1--2\,yr), mid-term (2--4\,yr), and long-term (4--8\,yr) research phases. Bar colors indicate which heuristic or axiom each topic targets: {\color {lawI}Heur.~I} (Semantic Locality, blue), {\color {lawII}Heur.~II} (Context Budget, orange), {\color {lawIII}Heur.~III} (Agent Speedup, red), and {\color {axiom}Axiom} (architectural principles, gray). Arrows denote key dependencies between research topics}{figure.caption.129}{}}
+\@writefile{toc}{\contentsline {paragraph}{KV cache hit-rate optimization (L2).}{87}{section*.130}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Unified context compiler (L3).}{87}{section*.131}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Tool ABI standardization (L4).}{87}{section*.132}\protected@file@percent }
 \citation{swebench2023}
 \citation{sweagent2024}
 \citation{raft2014}
@@ -948,27 +967,27 @@
 \citation{debenedetti2025camel}
 \citation{ironclaw2025}
 \citation{agenticsecurity2025}
-\@writefile{toc}{\contentsline {paragraph}{Software engineering agent kernel (L5).}{86}{section*.131}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {13.2}Mid-Term Research Topics}{86}{subsection.13.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Semantic page replacement (L3).}{86}{section*.132}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Consistency-controlled shared memory (L5).}{86}{section*.133}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Heterogeneous model collaboration (L2).}{86}{section*.134}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Agent security architecture (L4).}{86}{section*.135}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Software engineering agent kernel (L5).}{88}{section*.133}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {13.2}Mid-Term Research Topics}{88}{subsection.13.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Semantic page replacement (L3).}{88}{section*.134}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Consistency-controlled shared memory (L5).}{88}{section*.135}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Heterogeneous model collaboration (L2).}{88}{section*.136}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Agent security architecture (L4).}{88}{section*.137}\protected@file@percent }
 \citation{amem2025}
 \citation{agentmemorysurvey2025}
 \citation{spanner2012}
 \citation{raft2014}
-\@writefile{toc}{\contentsline {paragraph}{Weakest-link evaluation framework (full stack).}{87}{section*.136}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {13.3}Long-Term Research Topics}{87}{subsection.13.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Intelligent ISA and programmable skill layer (L1--L6).}{87}{section*.137}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Stateful individual agents (L3--L5).}{87}{section*.138}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Distributed model-native compute fabric (L1--L6).}{87}{section*.139}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Weakest-link evaluation framework (full stack).}{89}{section*.138}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {13.3}Long-Term Research Topics}{89}{subsection.13.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Intelligent ISA and programmable skill layer (L1--L6).}{89}{section*.139}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Stateful individual agents (L3--L5).}{89}{section*.140}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Distributed model-native compute fabric (L1--L6).}{89}{section*.141}\protected@file@percent }
 \citation{arbiteros2025}
 \citation{ironclaw2025}
-\@writefile{toc}{\contentsline {paragraph}{Governance-layer primitives (L5).}{88}{section*.140}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Substrate-independent intelligent compute stack (L1--L2).}{88}{section*.141}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Physical-world interface drivers (L4--L5).}{88}{section*.142}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {13.4}A Note on Decoupling from Model Advances}{88}{subsection.13.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Governance-layer primitives (L5).}{90}{section*.142}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Substrate-independent intelligent compute stack (L1--L2).}{90}{section*.143}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Physical-world interface drivers (L4--L5).}{90}{section*.144}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {13.4}A Note on Decoupling from Model Advances}{90}{subsection.13.4}\protected@file@percent }
 \citation{openai_codex_approvals_2026}
 \citation{openai_codex_sandbox_2026}
 \citation{anthropic_claudecode_security_2026}
@@ -982,21 +1001,21 @@
 \citation{ironclaw2025}
 \citation{euaiact2026}
 \citation{gdpr_righttoforget}
-\@writefile{toc}{\contentsline {section}{\numberline {14}Ethics, Safety, and Explainability}{89}{section.14}\protected@file@percent }
-\newlabel{sec:ethics}{{14}{89}{Ethics, Safety, and Explainability}{section.14}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {14.1}Permissions and Isolation (L5 Orchestration Layer)}{89}{subsection.14.1}\protected@file@percent }
-\newlabel{sec:ethics-permission}{{14.1}{89}{Permissions and Isolation (L5 Orchestration Layer)}{subsection.14.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {14.2}Privacy and Memory Governance (L3 Memory Layer)}{89}{subsection.14.2}\protected@file@percent }
-\newlabel{sec:ethics-privacy}{{14.2}{89}{Privacy and Memory Governance (L3 Memory Layer)}{subsection.14.2}{}}
-\@writefile{toc}{\contentsline {paragraph}{What should be persisted?}{89}{section*.143}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {14}Ethics, Safety, and Explainability}{91}{section.14}\protected@file@percent }
+\newlabel{sec:ethics}{{14}{91}{Ethics, Safety, and Explainability}{section.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.1}Permissions and Isolation (L5 Orchestration Layer)}{91}{subsection.14.1}\protected@file@percent }
+\newlabel{sec:ethics-permission}{{14.1}{91}{Permissions and Isolation (L5 Orchestration Layer)}{subsection.14.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.2}Privacy and Memory Governance (L3 Memory Layer)}{91}{subsection.14.2}\protected@file@percent }
+\newlabel{sec:ethics-privacy}{{14.2}{91}{Privacy and Memory Governance (L3 Memory Layer)}{subsection.14.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{What should be persisted?}{91}{section*.145}\protected@file@percent }
 \citation{longmemeval2024}
 \citation{navaie2025privacy}
 \citation{linux_cgroup_2026}
-\@writefile{toc}{\contentsline {paragraph}{For how long?}{90}{section*.144}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Who has the right to delete?}{90}{section*.145}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Can summaries be reverse-engineered to reveal sensitive information?}{90}{section*.146}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {14.3}Explainability: From Explaining Models to Explaining Systems (Full-Stack)}{90}{subsection.14.3}\protected@file@percent }
-\newlabel{sec:ethics-explainability}{{14.3}{90}{Explainability: From Explaining Models to Explaining Systems (Full-Stack)}{subsection.14.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{For how long?}{92}{section*.146}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Who has the right to delete?}{92}{section*.147}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Can summaries be reverse-engineered to reveal sensitive information?}{92}{section*.148}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.3}Explainability: From Explaining Models to Explaining Systems (Full-Stack)}{92}{subsection.14.3}\protected@file@percent }
+\newlabel{sec:ethics-explainability}{{14.3}{92}{Explainability: From Explaining Models to Explaining Systems (Full-Stack)}{subsection.14.3}{}}
 \citation{mei2024aios}
 \citation{memgpt2023}
 \citation{mcp_intro_2026}
@@ -1004,32 +1023,34 @@
 \citation{arbiteros2025}
 \citation{mei2024aios}
 \citation{agentos2025}
-\@writefile{toc}{\contentsline {subsection}{\numberline {14.4}Fairness and Resource Allocation (L2 Inference Layer and L5 Orchestration Layer)}{91}{subsection.14.4}\protected@file@percent }
-\newlabel{sec:ethics-fairness}{{14.4}{91}{Fairness and Resource Allocation (L2 Inference Layer and L5 Orchestration Layer)}{subsection.14.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {15}Conclusion and Outlook}{91}{section.15}\protected@file@percent }
-\newlabel{sec:conclusion}{{15}{91}{Conclusion and Outlook}{section.15}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {15.1}Core Contributions}{91}{subsection.15.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Unified framework: the ICA six-layer model.}{91}{section*.147}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Architectural resolution: the dual-plane architecture.}{91}{section*.148}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Computable principles: three quantitative laws.}{91}{section*.149}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.4}Fairness and Resource Allocation (L2 Inference Layer and L5 Orchestration Layer)}{93}{subsection.14.4}\protected@file@percent }
+\newlabel{sec:ethics-fairness}{{14.4}{93}{Fairness and Resource Allocation (L2 Inference Layer and L5 Orchestration Layer)}{subsection.14.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {15}Conclusion and Outlook}{93}{section.15}\protected@file@percent }
+\newlabel{sec:conclusion}{{15}{93}{Conclusion and Outlook}{section.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {15.1}Core Contributions}{93}{subsection.15.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Unified framework: the ICA six-layer model.}{93}{section*.149}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Architectural resolution: the dual-plane architecture.}{93}{section*.150}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Organizing heuristics: three Amdahl-style design models.}{93}{section*.151}\protected@file@percent }
 \citation{ge2023llmos}
 \citation{holt2024l2mac}
 \citation{mi2025llmagentscomputersystems}
 \citation{memgpt2023}
 \citation{memos2025}
+\citation{mi2025llmagentscomputersystems}
+\citation{arbiteros2025}
+\@writefile{toc}{\contentsline {paragraph}{Paradigm mapping: from silicon to substrate.}{94}{section*.152}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Socio-technical analysis: the industry structure of intelligent computing.}{94}{section*.153}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {15.2}Positioning and Boundaries}{94}{subsection.15.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Analogies are not isomorphisms.}{94}{section*.154}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Incremental, not inaugural.}{94}{section*.155}\protected@file@percent }
 \citation{anthropic2026agenticreport}
-\@writefile{toc}{\contentsline {paragraph}{Paradigm mapping: from silicon to substrate.}{92}{section*.150}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Socio-technical analysis: the industry structure of intelligent computing.}{92}{section*.151}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {15.2}Positioning and Boundaries}{92}{subsection.15.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Analogies are not isomorphisms.}{92}{section*.152}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Incremental, not inaugural.}{92}{section*.153}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Visionary survey, not final answer.}{92}{section*.154}\protected@file@percent }
 \citation{anthropic2026agenticreport}
+\@writefile{toc}{\contentsline {paragraph}{Visionary survey, not final answer.}{95}{section*.156}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The collaboration paradox remains uncaptured.}{95}{section*.157}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {15.3}Future Directions}{95}{subsection.15.3}\protected@file@percent }
 \bibstyle{plain}
 \bibdata{refs}
 \bibcite{phi3_2024}{1}
-\@writefile{toc}{\contentsline {paragraph}{The collaboration paradox remains uncaptured.}{93}{section*.155}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {15.3}Future Directions}{93}{subsection.15.3}\protected@file@percent }
 \bibcite{abreu_2025_loihi2_llm}{2}
 \bibcite{agrawal2024sarathi}{3}
 \bibcite{amdahl_1967}{4}
@@ -1068,138 +1089,143 @@
 \bibcite{denning2020workingset}{37}
 \bibcite{mcpadoption2026}{38}
 \bibcite{longrope2024}{39}
-\bibcite{flywire_2024}{40}
-\bibcite{drepper2007memory}{41}
-\bibcite{agentmemorysurvey2025}{42}
-\bibcite{agentprotocols2025}{43}
-\bibcite{esmaeilzadeh_2011}{44}
-\bibcite{euaiact2026}{45}
-\bibcite{switch2022}{46}
-\bibcite{fodor_2025_benchmarks}{47}
-\bibcite{gartner2026trends}{48}
-\bibcite{ge2023llmos}{49}
-\bibcite{gholami2024memorywall}{50}
-\bibcite{cap2002}{51}
-\bibcite{gim2024promptcache}{52}
-\bibcite{spinnaker2_2024}{53}
-\bibcite{google_a2a_2025}{54}
-\bibcite{a2alinux2025}{55}
-\bibcite{gu2024mamba}{56}
-\bibcite{hennessy2017quantitative}{57}
-\bibcite{hennessy_patterson_2019}{58}
-\bibcite{holt2024l2mac}{59}
-\bibcite{metagpt2023}{60}
-\bibcite{hooper2024kvquant}{61}
-\bibcite{ruler2024}{62}
-\bibcite{hiagent2024}{63}
-\bibcite{tgi_docs_2026}{64}
-\bibcite{saez_2022_thread_director}{65}
-\bibcite{hala_point_2024}{66}
-\bibcite{intel_sdm_2026}{67}
-\bibcite{jetbrains2025context}{68}
-\bibcite{mixtral2024}{69}
-\bibcite{swebench2023}{70}
-\bibcite{kagan_2022_pong_bioneurons}{71}
-\bibcite{memoryos2025}{72}
-\bibcite{khatri_2024_quixer}{73}
-\bibcite{kumar_2003_singleISA}{74}
-\bibcite{kwon2023pagedattention}{75}
-\bibcite{loft2024}{76}
-\bibcite{letta_stateful_2026}{77}
-\bibcite{leviathan2023speculative}{78}
-\bibcite{lewis2020rag}{79}
-\bibcite{agentos2025}{80}
-\bibcite{likvcache2024survey}{81}
-\bibcite{li_2024_eagle}{82}
-\bibcite{memos2025}{83}
-\bibcite{licendi2024mslicensing}{84}
-\bibcite{eas_linux_2019}{85}
-\bibcite{linux_cfs_2026}{86}
-\bibcite{linux_cgroup_2026}{87}
-\bibcite{liu2024ringattention}{88}
-\bibcite{dive_claudecode_2026}{89}
-\bibcite{liu2023lostmiddle}{90}
-\bibcite{liu2024kivi}{91}
-\bibcite{malekar2024amdahlllm}{92}
-\bibcite{harmbench_2024}{93}
-\bibcite{mckinsey2025aisurvey}{94}
-\bibcite{mei2024aios}{95}
-\bibcite{contextengineer_survey2025}{96}
-\bibcite{llama32_2024}{97}
-\bibcite{mi2025llmagentscomputersystems}{98}
-\bibcite{gaia2023}{99}
-\bibcite{langmodelteams2026}{100}
-\bibcite{mcp_intro_2026}{101}
-\bibcite{moore_1965}{102}
-\bibcite{navaie2025privacy}{103}
-\bibcite{rand2024weightplaybook}{104}
-\bibcite{tensorrtllm_docs_2026}{105}
-\bibcite{raft2014}{106}
-\bibcite{openai_codex_approvals_2026}{107}
-\bibcite{openai_codex_skills_2026}{108}
-\bibcite{openai_codex_overview_2026}{109}
-\bibcite{openai_codex_security_2026}{110}
-\bibcite{openai_codex_agents_md_2026}{111}
-\bibcite{openai_codex_sandbox_2026}{112}
-\bibcite{openai_codex_agentsdk_2026}{113}
-\bibcite{owasp_agentic2026}{114}
-\bibcite{memgpt2023}{115}
-\bibcite{park2023generativeagents}{116}
-\bibcite{patil2024gorilla}{117}
-\bibcite{patterson_hennessy_2017}{118}
-\bibcite{yarn2024}{119}
-\bibcite{ironclaw2025}{120}
-\bibcite{prabhu2024vattention}{121}
-\bibcite{praetorian2025deterministic}{122}
-\bibcite{blueprintfirst2025}{123}
-\bibcite{brookings2025aicustomers}{124}
-\bibcite{riscv_spec_2026}{125}
-\bibcite{ritchie_thompson_1974}{126}
-\bibcite{schick2023toolformer}{127}
-\bibcite{sglang_docs_2026}{128}
-\bibcite{hugginggpt2023}{129}
-\bibcite{autogpt_repo_2026}{130}
-\bibcite{hartung_2023_oi}{131}
-\bibcite{spec_benchmark}{132}
-\bibcite{stanfordhai2025index}{133}
-\bibcite{su2021roformer}{134}
-\bibcite{sumers2024coala}{135}
-\bibcite{taalas_2026_hc1}{136}
-\bibcite{contextcompiler2025}{137}
-\bibcite{gemini2024}{138}
-\bibcite{thirdbridge2025deepseek}{139}
-\bibcite{llama2023}{140}
-\bibcite{towardsai2025deterministicshell}{141}
-\bibcite{vaswani2017attention}{142}
-\bibcite{vllm_prefix_2026}{143}
-\bibcite{vllm_docs_2026}{144}
-\bibcite{wang_2024_hmoe}{145}
-\bibcite{slm_edge_2025}{146}
-\bibcite{wang2023voyager}{147}
-\bibcite{gta2_2025}{148}
-\bibcite{longmem2023}{149}
-\bibcite{openhands_paper_2025}{150}
-\bibcite{wikipedia2024msopensource}{151}
-\bibcite{wolters2024computeinmemory}{152}
-\bibcite{longmemeval2024}{153}
-\bibcite{wu2023autogen}{154}
-\bibcite{xiao2024streamingllm}{155}
-\bibcite{osworld2024}{156}
-\bibcite{arbiteros2025}{157}
-\bibcite{amem2025}{158}
-\bibcite{lpc2025}{159}
-\bibcite{sweagent2024}{160}
-\bibcite{taubench2024}{161}
-\bibcite{yao2023react}{162}
-\bibcite{orca2022}{163}
-\bibcite{yuan2024llminference}{164}
-\bibcite{airbench_2024}{165}
-\bibcite{ufo2_2025}{166}
-\bibcite{guo_2024_quantum_transformer}{167}
-\bibcite{h2o2023}{168}
-\bibcite{sglang2024}{169}
-\bibcite{zhong_2024_weakest_link}{170}
-\bibcite{zhong2024distserve}{171}
-\bibcite{zhou2024efficientinference}{172}
-\bibcite{aura2025}{173}
-\gdef \@abspage@last{105}
+\bibcite{dohmke2023seachange}{40}
+\bibcite{flywire_2024}{41}
+\bibcite{drepper2007memory}{42}
+\bibcite{agentmemorysurvey2025}{43}
+\bibcite{agentprotocols2025}{44}
+\bibcite{esmaeilzadeh_2011}{45}
+\bibcite{euaiact2026}{46}
+\bibcite{switch2022}{47}
+\bibcite{fodor_2025_benchmarks}{48}
+\bibcite{gartner2026trends}{49}
+\bibcite{ge2023llmos}{50}
+\bibcite{gholami2024memorywall}{51}
+\bibcite{cap2002}{52}
+\bibcite{gim2024promptcache}{53}
+\bibcite{spinnaker2_2024}{54}
+\bibcite{google_a2a_2025}{55}
+\bibcite{a2alinux2025}{56}
+\bibcite{gu2024mamba}{57}
+\bibcite{hennessy2017quantitative}{58}
+\bibcite{hennessy_patterson_2019}{59}
+\bibcite{holt2024l2mac}{60}
+\bibcite{metagpt2023}{61}
+\bibcite{hooper2024kvquant}{62}
+\bibcite{ruler2024}{63}
+\bibcite{hiagent2024}{64}
+\bibcite{tgi_docs_2026}{65}
+\bibcite{saez_2022_thread_director}{66}
+\bibcite{hala_point_2024}{67}
+\bibcite{intel_sdm_2026}{68}
+\bibcite{jetbrains2025context}{69}
+\bibcite{mixtral2024}{70}
+\bibcite{swebench2023}{71}
+\bibcite{kagan_2022_pong_bioneurons}{72}
+\bibcite{memoryos2025}{73}
+\bibcite{karpathy2023lmos}{74}
+\bibcite{khatri_2024_quixer}{75}
+\bibcite{klemmer2024aiassistants}{76}
+\bibcite{kumar_2003_singleISA}{77}
+\bibcite{kwon2023pagedattention}{78}
+\bibcite{loft2024}{79}
+\bibcite{letta_stateful_2026}{80}
+\bibcite{leviathan2023speculative}{81}
+\bibcite{lewis2020rag}{82}
+\bibcite{agentos2025}{83}
+\bibcite{likvcache2024survey}{84}
+\bibcite{li_2024_eagle}{85}
+\bibcite{memos2025}{86}
+\bibcite{licendi2024mslicensing}{87}
+\bibcite{eas_linux_2019}{88}
+\bibcite{linux_cfs_2026}{89}
+\bibcite{linux_cgroup_2026}{90}
+\bibcite{liu2024ringattention}{91}
+\bibcite{dive_claudecode_2026}{92}
+\bibcite{liu2023lostmiddle}{93}
+\bibcite{liu2024kivi}{94}
+\bibcite{malekar2024amdahlllm}{95}
+\bibcite{harmbench_2024}{96}
+\bibcite{mckinsey2025aisurvey}{97}
+\bibcite{mei2024aios}{98}
+\bibcite{contextengineer_survey2025}{99}
+\bibcite{llama32_2024}{100}
+\bibcite{mi2025llmagentscomputersystems}{101}
+\bibcite{gaia2023}{102}
+\bibcite{langmodelteams2026}{103}
+\bibcite{mcp_intro_2026}{104}
+\bibcite{moore_1965}{105}
+\bibcite{navaie2025privacy}{106}
+\bibcite{rand2024weightplaybook}{107}
+\bibcite{tensorrtllm_docs_2026}{108}
+\bibcite{raft2014}{109}
+\bibcite{openai_codex_approvals_2026}{110}
+\bibcite{openai_codex_skills_2026}{111}
+\bibcite{openai_codex_overview_2026}{112}
+\bibcite{openai_codex_security_2026}{113}
+\bibcite{openai_codex_agents_md_2026}{114}
+\bibcite{openai_codex_sandbox_2026}{115}
+\bibcite{openai_codex_agentsdk_2026}{116}
+\bibcite{owasp_agentic2026}{117}
+\bibcite{memgpt2023}{118}
+\bibcite{park2023generativeagents}{119}
+\bibcite{patel2024splitwise}{120}
+\bibcite{patil2024gorilla}{121}
+\bibcite{patterson_hennessy_2017}{122}
+\bibcite{yarn2024}{123}
+\bibcite{ironclaw2025}{124}
+\bibcite{prabhu2024vattention}{125}
+\bibcite{praetorian2025deterministic}{126}
+\bibcite{qin2024mooncake}{127}
+\bibcite{blueprintfirst2025}{128}
+\bibcite{brookings2025aicustomers}{129}
+\bibcite{riscv_spec_2026}{130}
+\bibcite{ritchie_thompson_1974}{131}
+\bibcite{schick2023toolformer}{132}
+\bibcite{sglang_docs_2026}{133}
+\bibcite{hugginggpt2023}{134}
+\bibcite{autogpt_repo_2026}{135}
+\bibcite{hartung_2023_oi}{136}
+\bibcite{spec_benchmark}{137}
+\bibcite{stanfordhai2025index}{138}
+\bibcite{su2021roformer}{139}
+\bibcite{sumers2024coala}{140}
+\bibcite{taalas_2026_hc1}{141}
+\bibcite{contextcompiler2025}{142}
+\bibcite{gemini2024}{143}
+\bibcite{thirdbridge2025deepseek}{144}
+\bibcite{llama2023}{145}
+\bibcite{towardsai2025deterministicshell}{146}
+\bibcite{vaswani2017attention}{147}
+\bibcite{vllm_prefix_2026}{148}
+\bibcite{vllm_docs_2026}{149}
+\bibcite{wang_2024_hmoe}{150}
+\bibcite{slm_edge_2025}{151}
+\bibcite{wang2023voyager}{152}
+\bibcite{gta2_2025}{153}
+\bibcite{longmem2023}{154}
+\bibcite{openhands_paper_2025}{155}
+\bibcite{wikipedia2024msopensource}{156}
+\bibcite{wolters2024computeinmemory}{157}
+\bibcite{longmemeval2024}{158}
+\bibcite{wu2023autogen}{159}
+\bibcite{xiao2024streamingllm}{160}
+\bibcite{osworld2024}{161}
+\bibcite{arbiteros2025}{162}
+\bibcite{amem2025}{163}
+\bibcite{lpc2025}{164}
+\bibcite{sweagent2024}{165}
+\bibcite{taubench2024}{166}
+\bibcite{yao2023react}{167}
+\bibcite{orca2022}{168}
+\bibcite{yuan2024llminference}{169}
+\bibcite{airbench_2024}{170}
+\bibcite{ufo2_2025}{171}
+\bibcite{guo_2024_quantum_transformer}{172}
+\bibcite{h2o2023}{173}
+\bibcite{sglang2024}{174}
+\bibcite{zhong_2024_weakest_link}{175}
+\bibcite{zhong2024distserve}{176}
+\bibcite{zhou2024efficientinference}{177}
+\bibcite{aura2025}{178}
+\gdef \@abspage@last{107}

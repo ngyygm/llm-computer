@@ -31,7 +31,7 @@
             minimum width=3.2cm, minimum height=1.0cm,
             inner sep=4pt, line width=0.8pt
         },
-        % 优化芯片标签样式，使用小号字体防止溢出
+        % 
         chiplab/.style={
             draw=gray!50, rounded corners=3pt,
             fill=gray!15, font=\tiny\bfseries,
@@ -111,7 +111,7 @@
     % R1: both A2A and Codex point to R1
     \draw[darrow] (a2a.east)   to[out=0, in=180] (R1.west);
     \draw[darrow] (codex.east) to[out=0, in=180] (R1.west);
-    % R2: 折线绕过 arbiter 框右侧，在 x=14.8 处走垂直通道
+    % R2:  arbiter  x=14.8 
     \draw[darrow, rounded corners=6pt] (L3.east) -- (14.8, \yLb) -- (14.8, 4.5) -- (R2.west);
     \draw[darrow] (arbiter.east) to[out=0, in=180] (R3.west);
     \draw[darrow, rounded corners=6pt] (L5.east) -- (10.1, \yLd) -- (10.1, 1.7) -- (R4.west);

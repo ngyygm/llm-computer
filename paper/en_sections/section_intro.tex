@@ -11,7 +11,7 @@ Yet many of the bottlenecks that now dominate practice (memory bandwidth walls~\
 They are, at their core, \emph{systems problems}.
 
 The impact is already measurable in production.
-Engineers at Rakuten used Claude Code to autonomously extract activation vectors from the vLLM codebase (12.5 million lines of code) in seven hours, achieving 99.9\% numerical accuracy.
+Engineers at Rakuten have run Claude Code autonomously for hours over a 12.5-million-line codebase~\cite{anthropic2026agenticreport}.
 An Augment Code enterprise customer delivered a project that their CTO had estimated at four to eight months in just two weeks~\cite{anthropic2026agenticreport}.
 These are not laboratory demonstrations; they are evidence that the challenges of model-native computing have moved from theoretical possibility to engineering reality.
 
@@ -51,7 +51,7 @@ MemGPT~\cite{memgpt2023} formalizes this as \emph{virtual context management}, d
 (5)~MCP (Model Context Protocol)~\cite{mcp_intro_2026} defines a standardized interface between agents and external tools, while A2A (Agent-to-Agent Protocol)~\cite{google_a2a_2025} specifies interoperability contracts among agents.
 Together they play the role of I/O buses: MCP functions as a vertical bus (analogous to PCIe, connecting an agent to its tools), while A2A functions as a horizontal interconnect (analogous to a network fabric, connecting agents to one another)~\cite{agentprotocols2025}.
 
-In 2023, Andrej Karpathy captured this intuition in a single sentence: ``LLMs are not chatbots, they are the kernel process of a new Operating System''.
+In 2023, Andrej Karpathy captured this intuition in a single sentence: ``LLMs are not chatbots, they are the kernel process of a new Operating System''~\cite{karpathy2023lmos}.
 The observation resonated widely precisely because it named something already happening: the engineering problems accumulating around large models look increasingly like classical computer systems problems.
 
 \begin{figure}[h]
@@ -83,7 +83,7 @@ Yet they suffer from a fundamental \emph{metaphor conflict}: is the model a CPU,
 More critically, they lack a unified layered model, well-defined inter-layer interfaces, and quantifiable design principles.
 Moreover, nearly all of them treat the human as a boundary condition of the system rather than as a core component of the interaction loop.
 The latest industrial evidence, however, tells a different story: the collaboration pattern between human judgment and agent execution, not the agent's standalone capability, is the primary determinant of system effectiveness.
-Engineers report using AI for approximately 60\% of their work, yet they can \emph{fully delegate} only 0--20\% of tasks~\cite{anthropic2026agenticreport}.
+Engineers report using AI for approximately 60\% of their work, yet they can \emph{fully delegate} only 0--20\% of tasks~\cite{anthropic2026agenticreport}; this high-use/low-delegation pattern is corroborated by independent studies, which find that developers accept only about 30\% of AI code suggestions on average~\cite{dohmke2023seachange} and report using AI assistants despite deep mistrust in their output~\cite{klemmer2024aiassistants}.
 This is the collaboration paradox: AI is embedded deeply into the workflow, but meaningful autonomous delegation remains elusive.
 
 The situation echoes the early days of computer architecture.
@@ -92,7 +92,7 @@ Without an analogous contract for model-native computing, each new system must b
 
 \subsection{Contributions}
 
-Accordingly, this paper makes five contributions.
+Accordingly, this paper makes five contributions. \emph{The central thesis} is that the enduring ``Is an LLM a CPU or an OS?'' conflict dissolves once one recognizes two orthogonal planes---a probabilistic execution plane and a deterministic control plane---and that instantiating this dual-plane view as the six-layer ICA is what no prior work has integrated.
 
 \begin{enumerate}
 \item We return to the foundational abstractions of computer architecture, operating systems, and distributed systems to distill an analogy framework suited to the model-native system stack, explicitly delineating where the analogy holds and where it breaks down.
@@ -101,7 +101,7 @@ Accordingly, this paper makes five contributions.
 
 \item Building on this foundation, we introduce the \textbf{Intelligent Computing Architecture (ICA)}: a six-layer framework with inter-layer interface contracts and six design axioms.
 
-\item We propose three \textbf{quantitative laws} for model-native computing, aiming to serve the same foundational role that Amdahl's Law and the Roofline model play in classical computer architecture, and we validate them against published data.
+\item We propose three \textbf{Amdahl-style design heuristics} for model-native computing---the Semantic Locality, Context Budget, and Agent Speedup heuristics---and \emph{illustrate} their parameter ranges with published system data. We are explicit that these are organizing back-of-envelope intuition rather than validated scaling laws: they transplant Amdahl's analytical form into the model-native regime to give a previously qualitative design space computable intuition, and we identify systematic predictive validation---rather than the back-solved parameter recovery that pervades this literature---as the key open task.
 
 \item We survey current open-source implementations and industrial practice, and we chart a research roadmap for the field.
 \end{enumerate}

@@ -290,20 +290,20 @@
     (\legColL, \legYA) rectangle ++(\legBoxW, \legBoxH);
 \node[font=\small, anchor=west, text=black!70]
     at (\legColL+\legBoxW+0.15, \legYA+\legBoxH/2)
-    {Law~I (Semantic Locality)};
+    {Heur.~I (Semantic Locality)};
 
 \fill[lawII!22, draw=lawII!60!black, rounded corners=3pt, line width=0.3pt]
     (\legColR, \legYA) rectangle ++(\legBoxW, \legBoxH);
 \node[font=\small, anchor=west, text=black!70]
     at (\legColR+\legBoxW+0.15, \legYA+\legBoxH/2)
-    {Law~II (Context Budget)};
+    {Heur.~II (Context Budget)};
 
 % --- Row B (bottom row): Law III  +  Axiom ---
 \fill[lawIII!22, draw=lawIII!60!black, rounded corners=3pt, line width=0.3pt]
     (\legColL, \legYB) rectangle ++(\legBoxW, \legBoxH);
 \node[font=\small, anchor=west, text=black!70]
     at (\legColL+\legBoxW+0.15, \legYB+\legBoxH/2)
-    {Law~III (Agent Speedup)};
+    {Heur.~III (Agent Speedup)};
 
 \fill[axiom!22, draw=axiom!60!black, rounded corners=3pt, line width=0.3pt]
     (\legColR, \legYB) rectangle ++(\legBoxW, \legBoxH);
@@ -315,10 +315,10 @@
 \caption{Research roadmap organized by ICA layer and time horizon.
   Horizontal lanes correspond to ICA layers L1--L6; columns represent
   short-term (1--2\,yr), mid-term (2--4\,yr), and long-term (4--8\,yr)
-  research phases.  Bar colors indicate which law or axiom each topic
-  validates: {\color{lawI}Law~I} (Semantic Locality, blue),
-  {\color{lawII}Law~II} (Context Budget, orange),
-  {\color{lawIII}Law~III} (Agent Speedup, red), and
+  research phases.  Bar colors indicate which heuristic or axiom each topic
+  targets: {\color{lawI}Heur.~I} (Semantic Locality, blue),
+  {\color{lawII}Heur.~II} (Context Budget, orange),
+  {\color{lawIII}Heur.~III} (Agent Speedup, red), and
   {\color{axiom}Axiom} (architectural principles, gray).
   Arrows denote key dependencies between research topics.}
 \label{fig:roadmap_swimlane}

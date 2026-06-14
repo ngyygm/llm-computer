@@ -86,7 +86,8 @@ Woosuk Kwon, Zhuohan Li, Siyuan Zhuang, Ying Sheng, Lianmin Zheng, Cody~Hao Yu,
 Charles Packer, Vivian Fang, Shishir\_G Patil, Kevin Lin, Sarah Wooders, and
   Joseph\_E Gonzalez.
 \newblock Memgpt: towards llms as operating systems.
-\newblock 2023.
+\newblock {\em arXiv preprint}, 2023.
+\newblock \href {https://arxiv.org/abs/2310.08560} {\path{arXiv:2310.08560}}.
 
 \bibitem{orca2022}
 Gyeong-In Yu, Joo~Seong Jeong, Gunho Kim, Sukmin Kim, and Byung-Gon Chun.
@@ -133,6 +134,13 @@ Abul Ehtesham, Aditi Singh, Gaurav~Kumar Gupta, and Saket Kumar.
   (mcp), agent communication protocol (acp), agent-to-agent protocol (a2a), and
   agent network protocol (anp).
 \newblock {\em arXiv preprint arXiv:2505.02279}, 2025.
+
+\bibitem{karpathy2023lmos}
+Andrej Karpathy.
+\newblock {LLMs} are the kernel process of a new operating system.
+\newblock Public remark, UC Berkeley {BAIR} colloquium and social media,
+  October 2023, 2023.
+\newblock Widely circulated articulation of the ``LLM as OS'' analogy.
 
 \bibitem{mei2024aios}
 Kai Mei, Xi~Zhu, Wujiang Xu, Wenyue Hua, Mingyu Jin, Zelong Li, Shuyuan Xu,
@@ -185,6 +193,20 @@ Lingrui Mei, Jiayu Yao, Yuyao Ge, Yiwei Wang, Baolong Bi, Yujun Cai, Jiazhi
 \newblock A survey of context engineering for large language models.
 \newblock {\em arXiv preprint arXiv:2507.13334}, 2025.
 \newblock URL: \url{https://arxiv.org/abs/2507.13334}.
+
+\bibitem{dohmke2023seachange}
+Thomas Dohmke, Marco Iansiti, and Greg Richards.
+\newblock Sea change in software development: Economic and productivity
+  analysis of the {AI}-powered developer lifecycle.
+\newblock {\em arXiv preprint arXiv:2306.15033}, 2023.
+\newblock \href {https://arxiv.org/abs/2306.15033} {\path{arXiv:2306.15033}}.
+
+\bibitem{klemmer2024aiassistants}
+Jan~H. Klemmer, Stefan~Albert Horstmann, and Nikhil Patnaik.
+\newblock Using {AI} assistants in software development: A qualitative study on
+  security practices and concerns.
+\newblock {\em arXiv preprint arXiv:2405.06371}, 2024.
+\newblock \href {https://arxiv.org/abs/2405.06371} {\path{arXiv:2405.06371}}.
 
 \bibitem{hennessy2017quantitative}
 John~L. Hennessy and David~A. Patterson.
@@ -350,6 +372,21 @@ Anshuman Agrawal, Vivek Kedia, Jayashree Panwar, Aayush Mohanty, Aviral
   Implementation}, 2024.
 \newblock URL: \url{https://arxiv.org/abs/2403.02310}.
 
+\bibitem{patel2024splitwise}
+Pratyush Patel, Esha Choukse, Chaojie Zhang, Aashaka Shah, {\'I}{\~n}igo Goiri,
+  Saeed Maleki, and Ricardo Bianchini.
+\newblock Splitwise: Efficient generative {LLM} inference using phase
+  splitting.
+\newblock {\em arXiv preprint arXiv:2311.18677}, 2024.
+\newblock \href {https://arxiv.org/abs/2311.18677} {\path{arXiv:2311.18677}}.
+
+\bibitem{qin2024mooncake}
+Ruoyu Qin, Zheming Li, Weiran He, Mingxing Zhang, Yongwei Wu, and Weimin Zheng.
+\newblock {Mooncake}: A {KVCache}-centric disaggregated architecture for {LLM}
+  serving.
+\newblock {\em arXiv preprint arXiv:2407.00079}, 2024.
+\newblock \href {https://arxiv.org/abs/2407.00079} {\path{arXiv:2407.00079}}.
+
 \bibitem{gemini2024}
 Gemini Team, Petko Georgiev, Ving~Ian Lei, Ryan Burnell, Libin Bai, Anmol
   Gulati, Garrett Tanzer, Damien Vincent, Zhufeng Pan, Shibo Wang, et~al.
@@ -465,7 +502,7 @@ Mengkang Hu, Tianxing Chen, Qiguang Chen, Yao Mu, Wenqi Shao, and Ping Luo.
 Wujiang Xu, Zujie Liang, Kai Mei, Hang Gao, Juntao Tan, and Yongfeng Zhang.
 \newblock A-mem: Agentic memory for llm agents.
 \newblock {\em Advances in Neural Information Processing Systems},
-  38:17577--17604, 2026.
+  38:17577--17604, 2025.
 
 \bibitem{openai_codex_agents_md_2026}
 {OpenAI}.
@@ -1005,7 +1042,7 @@ Marah Abdin, Jyoti Aneja, Hany Awadalla, Ahmed Awadallah, Ammar~Ahmad Awan,
   Zhang, Yi~Zhang, Yue Zhang, Yunan Zhang, and Xiren Zhou.
 \newblock Phi-3 technical report: A highly capable language model locally on
   your phone.
-\newblock 2024.
+\newblock {\em arXiv preprint}, 2024.
 \newblock URL: \url{https://arxiv.org/abs/2404.14219}, \href
   {https://arxiv.org/abs/2404.14219} {\path{arXiv:2404.14219}}.
 

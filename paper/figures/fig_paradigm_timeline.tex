@@ -57,7 +57,7 @@
     % ==============================================================
     %  PHASE BACKGROUND BANDS
     % ==============================================================
-    % 【修改點】：藍色背景底部向下延伸至 \cpuY-1.15，避免貼住 CPU 的年份
+    %  \cpuY-1.15 CPU 
     \fill[phaseBand=classical]
         (-1.4, \cpuY+1.1) rectangle (4.4, \cpuY-1.15);
     \fill[phaseBand=classical]
@@ -65,7 +65,7 @@
     \fill[phaseBand=classical]
         (13.6, \cpuY+1.1) rectangle (19.4, \cpuY-1.15);
     
-    % 【修改點】：橙色背景頂部向上延伸至 \llmY+1.15，避免貼住 LLM 的年份
+    %  \llmY+1.15 LLM 
     \fill[phaseBand=modelnative]
         (1.1, \llmY+1.15) rectangle (3.9, \llmY-0.95);
     \fill[phaseBand=modelnative]

@@ -25,24 +25,24 @@
     % ============================================================
     %  GEOMETRY & GRID SYSTEM (Absolute Y-coordinates)
     % ============================================================
-    % 【修改点】：进一步向两侧推开中心点，并加大半宽，让色块横向极致舒展
+    % 
     \pgfmathsetmacro{\cxL}{-4.5}   % left-lane centre x 
     \pgfmathsetmacro{\cxR}{+4.5}   % right-lane centre x 
     \pgfmathsetmacro{\halfW}{4.4}  % half-width of each lane band 
     
-    \def\yTop{1.8}    % 背景框顶部边界
-    \def\yBot{-8.3}   % 背景框底部边界
+    \def\yTop{1.8}    % 
+    \def\yBot{-8.3}   % 
     
-    \def\yReq{2.8}    % 顶部 User Request 框
-    \def\ySplit{2.1}  % 顶部线段分流点
+    \def\yReq{2.8}    %  User Request 
+    \def\ySplit{2.1}  % 
     
     \def\yRowA{0.0}   % Row A: plan / policy
     \def\yRowB{-1.8}  % Row B: perm / tool
     \def\yRowC{-4.4}  % Row C: prefill / syscall 
     \def\yRowD{-7.2}  % Row D: gen / commit
     
-    \def\yMerge{-9.1} % 底部 Merge 汇合点
-    \def\yResp{-10.1} % 底部 Output 框
+    \def\yMerge{-9.1} %  Merge 
+    \def\yResp{-10.1} %  Output 
     
     % ============================================================
     %  SWIM-LANE BACKGROUNDS
@@ -63,7 +63,7 @@
     % ============================================================
     %  INPUT
     % ============================================================
-    % 【修改点】：同步拉宽灰色的输入框，使其与变宽的底层色块对齐 (17.5cm)
+    %  (17.5cm)
     \node[procN, minimum width=17.5cm]
         (req) at (0, \yReq)
         {User request arrives: goal, constraints, environment handle};
@@ -111,7 +111,7 @@
     % ============================================================
     %  CONVERGENCE / OUTPUT
     % ============================================================
-    % 【修改点】：同步拉宽灰色的输出框
+    % 
     \node[procN, minimum width=17.5cm]
         (resp) at (0, \yResp)
         {Output response or produce committable artifact};

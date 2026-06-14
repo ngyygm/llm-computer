@@ -5,6 +5,10 @@ The central thesis of this paper is that the conceptual framework of \textit{com
 This thesis did not emerge in a vacuum: by 2025, a substantial body of work had independently arrived at key insights such as ``LLM systems require OS-level abstractions,'' ``agents need memory management,'' and ``tool invocation demands standardized protocols.''
 This section surveys the most relevant literature along functional themes, progressively revealing the contributions and limitations of each line of work and ultimately positioning the distinctive contribution of this paper.
 
+\subsection{Literature Search Methodology}
+\label{sec:related-method}
+To ensure systematic coverage, we searched five sources---arXiv, DBLP, IEEE Xplore, the ACM Digital Library, and Semantic Scholar---over a January~2022 to May~2026 window, complemented by backward and forward citation snowballing from seed surveys (e.g., Mi et al.~\cite{mi2025llmagentscomputersystems}). Query strings combined an architecture/systems term (\emph{operating system}, \emph{computer architecture}, \emph{virtual memory}, \emph{instruction set}, \emph{cache}) with an LLM term (\emph{LLM}, \emph{agent}, \emph{KV cache}, \emph{inference serving}, \emph{tool use}, \emph{multi-agent}). From approximately 450 deduplicated records we retained 188 that (i)~introduce a system-level abstraction or mechanism for model-native computing, or (ii)~provide empirical evidence directly informing a design heuristic. We organize the retained set by functional theme rather than chronology, and acknowledge that a young, fast-moving field makes any snapshot provisional; the accompanying coverage map (Figure~\ref{fig_coverage_map}) makes the scope and its gaps explicit.
+
 \subsection{LLM-as-OS / Agent Kernel}
 \label{sec:related-llmos}
 
@@ -34,7 +38,7 @@ Its design philosophy is ``security first'': inter-agent communication must be m
 
 \paragraph{Relationship to this paper.}
 The works above each define a role for the LLM within the system (OS kernel, reasoning kernel, or Agent Kernel) but they have not converged on a unified layered model.
-The ICA model proposed in Section~\ref{sec:icam} consolidates these disparate ``kernel'' concepts into a six-layer architecture and explicitly positions the LLM as the core of the \textbf{probabilistic execution plane} (spanning the physical execution layer and the inference service layer), while the Agent OS occupies the \textbf{deterministic control plane} as an orchestration layer; the two belong to distinct planes and should not be conflated.
+The ICA model proposed in Section~\ref{sec:icam} consolidates these disparate ``kernel'' concepts into a six-layer architecture and explicitly positions the LLM as the core of the \textbf{probabilistic execution plane} (weighted toward the physical execution and inference service layers, L1--L2, and permeating the context management layer, L3), while the Agent OS occupies the \textbf{deterministic control plane} as an orchestration layer; the two planes form a graded crossover around L3--L4 rather than a hard partition.
 
 \subsection{Memory Hierarchy and Virtual Context Management}
 \label{sec:related-memory}
@@ -95,11 +99,10 @@ An independent research study systematically analyzed Claude Code's system archi
 Claude Code likewise supports subagents~\cite{anthropic_claudecode_subagents_2026} and Skills-based extensions~\cite{anthropic_claudecode_skills_2026}, and provides project-level memory through CLAUDE.md files~\cite{anthropic_claudecode_memory_2026}.
 
 Notably, the temporal span of agent execution is expanding from minutes to hours or even days.
-Rakuten engineers tested Claude Code on the vLLM project (12.5~million lines of code) to perform activation vector extraction; the agent ran autonomously for 7~hours and achieved 99.9\% numerical accuracy~\cite{anthropic2026agenticreport}.
-This trend implies that agent runtimes must handle state persistence, checkpoint recovery, and cross-step resource management at a scale far beyond what current interactive sessions demand.
+Agent runtimes now sustain multi-hour autonomous execution over massive codebases~\cite{anthropic2026agenticreport} (Section~\ref{sec:agentevolution}), implying that they must handle state persistence, checkpoint recovery, and cross-step resource management at a scale far beyond what current interactive sessions demand.
 
 OpenHands~\cite{openhands_paper_2025} (formerly OpenDevin) is an open-source general-purpose agent platform published at ICLR~2025.
-It achieves approximately 70--74\% issue-resolution rates on the SWE-bench Verified benchmark~\cite{swebench2023} and supports multiple LLM backends.
+It reports approximately 53\% issue resolution on the SWE-bench Verified benchmark~\cite{openhands_paper_2025,swebench2023} and supports multiple LLM backends.
 SWE-agent~\cite{sweagent2024} focuses specifically on software engineering tasks, achieving comparable performance with a more streamlined Agent-Computer Interface (ACI) design.
 
 \paragraph{Relationship to this paper.}
@@ -208,11 +211,11 @@ Ge et al.\ and AIOS place the LLM at the core of the OS~\cite{ge2023llmos,mei202
 ArbiterOS demotes it to a ``Probabilistic CPU'' governed by the kernel~\cite{arbiteros2025}, treating the LLM as a managed processor;
 AgentOS defines it as a reasoning kernel constrained by structured OS logic~\cite{agentos2025}, regarding the LLM as a controlled reasoning core.
 These three positions lead to fundamentally different system designs.
-The ICA model proposed in this paper offers a unified answer: the LLM is the core of the \textbf{probabilistic execution plane} (analogous to the CPU, spanning the physical execution layer and the inference service layer), and the Agent OS is the orchestration layer within the \textbf{deterministic control plane} (analogous to the OS kernel); the two belong to distinct planes and should not be conflated.
+The ICA model proposed in this paper offers a unified answer: the LLM is the core of the \textbf{probabilistic execution plane} (analogous to the CPU, weighted toward L1--L2 and permeating L3), and the Agent OS is the orchestration layer within the \textbf{deterministic control plane} (analogous to the OS kernel); the two planes form a graded crossover around L3--L4 rather than a hard partition.
 The LLM provides compute capability, while the Agent OS provides management and scheduling, just as the CPU and the OS kernel are two independent yet tightly cooperating layers in classical computer architecture.
 
 \paragraph{Problem 2: No full-stack layered model exists.}
-No mainstream work simultaneously addresses the probabilistic compute core, semantic memory hierarchy, tool and peripheral bus, Agent OS/kernel, interconnect protocols, governance and security layer, programming model and instruction semantics, and evaluation metrics within a single architectural framework.
+Measured against the standards that make a classical architecture a \emph{discipline}---a stable hardware/software interface contract (the ISA), a clear boundary between probabilistic execution and deterministic control, and quantitative design laws (Amdahl, Roofline)~\cite{hennessy2017quantitative}---no mainstream model-native work simultaneously provides all three.
 L2MAC~\cite{holt2024l2mac} focuses on the stored-program computer model; Mi et al.~\cite{mi2025llmagentscomputersystems} provide a von Neumann-inspired survey framework, but each covers only one facet of the architecture.
 Memory management work does not discuss I/O protocols; agent frameworks do not discuss KV cache; security governance does not discuss multi-agent collaboration; each line of work makes genuine contributions, but their boundaries are clearly delineated.
 
@@ -225,5 +228,25 @@ This paper \textit{codifies this tension architecturally} through the dual-plane
 Existing work treats the human as a boundary condition of the system (Layer~6 user), but recent industrial evidence reveals a ``collaboration paradox'': engineers use AI for approximately 60\% of their work, yet can fully delegate only 0--20\% of their tasks~\cite{anthropic2026agenticreport}.
 Engineers tend to delegate tasks that are ``easy to verify or low-risk'' while retaining those that are ``conceptually difficult or depend on design decisions.''
 This structural constraint suggests that the human--agent interaction loop should become an explicit component of the architecture, rather than an external assumption.
+
+Table~\ref{tab:artifact-comparison} consolidates the distinction: across the five architectural artifacts that distinguish a \emph{discipline} from a collection of metaphors, no single prior work combines more than one, whereas ICA integrates all five.
+
+\begin{table}[h]
+\centering
+\footnotesize
+\caption{Architectural artifacts distinguishing ICA from prior work. Each row lists an artifact, the closest prior approach, and ICA's contribution; no single prior work combines all five.}
+\label{tab:artifact-comparison}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.24\textwidth}>{\raggedright\arraybackslash}p{0.42\textwidth}>{\raggedright\arraybackslash}p{0.26\textwidth}}
+\toprule
+\textbf{Architectural artifact} & \textbf{Closest prior approach} & \textbf{ICA (this paper)} \\
+\midrule
+Full-stack layered model & Mi et al.~\cite{mi2025llmagentscomputersystems}: modular map, no inter-layer contracts & Six-layer L1--L6 with interface contracts \\
+Dual-plane separation & ArbiterOS~\cite{arbiteros2025}: a governance layer over a ``probabilistic CPU'' & Dual-plane (probabilistic execution + deterministic control) \\
+Interface contracts & None; layers described informally & Five formal inter-layer contracts \\
+Design axioms & None & Six transplanted axioms (locality, abstraction, probabilistic execution, \ldots) \\
+Quantitative heuristics & None & Three Amdahl-style heuristics \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
 These four unsolved problems define the contribution space of this paper: providing a unified, layered, dual-plane architectural model that integrates all six threads within a single coherent framework.

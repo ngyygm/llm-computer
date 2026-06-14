@@ -22,7 +22,7 @@
     % ============================================================
     % Background: Deterministic Control Plane  (L4--L5)
     % ============================================================
-    % 进一步加宽背景框 (-6.8 到 6.8)，极致舒展
+    %  (-6.8  6.8)
     \fill[modelnative!10, rounded corners=8pt]
         (-6.8, 1.4) rectangle (6.8, 5.8);
     \node[font=\small\bfseries, text=modelnative!80!black, anchor=west]
@@ -32,7 +32,7 @@
     % ============================================================
     % Background: Probabilistic Execution Plane  (L1--L3)
     % ============================================================
-    % 同步极致加宽背景框
+    % 
     \fill[classical!10, rounded corners=8pt]
         (-6.8, -5.3) rectangle (6.8, 0.8);
     \node[font=\small\bfseries, text=classical!80!black, anchor=west]
@@ -63,7 +63,7 @@
           MCP / A2A protocols}};
     
     % ---- Dashed interface line at L3/L4 boundary ----
-    % 虚线长度同步适配到更宽的背景
+    % 
     \draw[dashed, thick, black!35, line width=0.9pt]
         (-6.8,1.15) -- (6.8,1.15);
     
@@ -125,15 +125,15 @@
     \draw[arrow] (L2core.south)   -- (L1.north -| L2core.south);
     \draw[arrow] (L1)   -- (L0);
     
-    % L2 内部水平指针
+    % L2 
     \draw[arrow] (L2sess.west)  -- (L2core.east |- L2sess.west);
     \draw[arrow] (L2pref.west)  -- (L2core.east |- L2pref.west);
     
     % ============================================================
-    % BYPASS ARROWS (彻底放弃 |-，使用严格三段点对点坐标连线)
+    % BYPASS ARROWS ( |-)
     % ============================================================
     
-    % LEFT bypass: L5 到 L2 Core (向左偏置增加到 -2.4，绕开新背景)
+    % LEFT bypass: L5  L2 Core ( -2.4)
     \draw[bypass]
         (L5.west) -- ++(-2.4,0) coordinate (bl1) -- (bl1 |- L2core.west) -- (L2core.west);
     \path (L5.west) -- ++(-2.4,0) coordinate (bl1) -- (bl1 |- L2core.west)
@@ -141,11 +141,11 @@
              rotate=90, anchor=south, yshift=1mm]
         {Direct KV cache control};
     
-    % RIGHT bypass 1: L4 到 L3 【修改点】：向右拉宽了线 (1.6)，并强制最后一段为水平向左
+    % RIGHT bypass 1: L4  L3  (1.6)
     \draw[bypass]
         (L4.east) -- ++(1.6,0) coordinate (br1) -- (br1 |- L3.east) -- (L3.east);
     
-    % RIGHT bypass 2: L5 到 L1 (向右偏置增加到 2.4，绕开新背景)
+    % RIGHT bypass 2: L5  L1 ( 2.4)
     \draw[bypass]
         (L5.east) -- ++(2.4,0) coordinate (br3) -- (br3 |- L1.east) -- (L1.east);
     \path (L5.east) -- ++(2.4,0) coordinate (br3) -- (br3 |- L1.east)

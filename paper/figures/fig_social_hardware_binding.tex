@@ -1,0 +1,12 @@
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.88\textwidth]{figures/generated/fig_social_hardware_binding}
+  \caption{Three strategies for protecting model weights from copyability, arranged along a physicalization spectrum.
+  TEE encryption (NVIDIA H100 Confidential Computing) decrypts weights only inside a hardware-verified enclave.
+  PUF-based compute-in-memory binds correct inference to a device-specific silicon fingerprint.
+  Silicon burning (Taalas HC1) permanently embeds weights into Mask ROM, creating an inseparable model--hardware unit
+  with 17,000 tokens/sec and a true manufacturing moat.
+  Each step trades flexibility for IP protection, mirroring the semiconductor industry's progression
+  from licensed IP (ARM) to manufactured chips (Intel) to dedicated ASICs.}
+  \label{fig:social:hardware_binding}
+\end{figure}

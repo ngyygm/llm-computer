@@ -8,8 +8,6 @@ This section first reviews the layered logic of classical computer architecture 
 The layered organization of a classical computing system is not an ad hoc design choice but a general engineering strategy for managing complexity~\cite{hennessy2017quantitative}.
 The central idea is that each layer depends only on the \emph{interface} exposed by the layer below, never on its \emph{implementation}.
 This separation allows any layer to be independently optimized (or even replaced) without disrupting the rest of the stack.
-Figure~\ref{fig:classical_stack} provides an overview of the six-layer classical stack and its correspondence to ICA layers.
-\input{figures/fig_classical_stack}
 We now review the core concepts of each layer in turn.
 
 \subsubsection{Instruction Set Architecture (ISA): The Contract Between Hardware and Software}
@@ -17,7 +15,8 @@ We now review the core concepts of each layer in turn.
 The \textit{Instruction Set Architecture} (ISA) specifies the machine behavior visible to software: the available instructions (arithmetic, memory access, branching, jumping), the register file, how exceptions are raised and handled, and how the address space is organized.
 The ISA serves as a stable contract: as long as the processor honors this contract, software above it runs correctly, regardless of the microarchitectural details hidden below.
 Intel x86, ARM, and RISC-V embody three distinct design philosophies~\cite{intel_sdm_2026,riscv_spec_2026}: x86 prioritizes backward compatibility (code written four decades ago still executes), ARM optimizes for energy efficiency (a decisive advantage in mobile devices), and RISC-V embraces openness and modularity (users may define custom instruction extensions).
-Despite their differences, all three serve the same purpose: providing a stable programming target for the software stack.
+Despite their differences, all three serve the same purpose: providing a stable programming target for the software stack (Figure~\ref{fig:bg21:isa}).
+\input{figures/fig_bg_21_isa}
 
 \subsubsection{Microarchitecture: Multiple Implementations Under One Contract}
 
@@ -26,7 +25,8 @@ It answers questions such as: how many clock cycles does an instruction require?
 Concretely, a \emph{pipeline} decomposes instruction execution into stages (fetch, decode, execute, memory access, write-back) so that different instructions can overlap across stages.
 A \emph{superscalar} design dispatches multiple instructions per cycle to independent execution units.
 A \emph{branch predictor} uses historical patterns to speculate on the outcome of conditional branches, thereby avoiding pipeline bubbles.
-Both Intel's Core microarchitecture and AMD's Zen microarchitecture implement the same x86 ISA yet deliver different performance characteristics, and this difference is entirely transparent to software.
+Both Intel's Core microarchitecture and AMD's Zen microarchitecture implement the same x86 ISA yet deliver different performance characteristics, and this difference is entirely transparent to software (Figure~\ref{fig:bg21:microarch}).
+\input{figures/fig_bg_21_microarch}
 
 \subsubsection{Cache Hierarchy: Exploiting Locality to Bridge the Processor--Memory Gap}
 
@@ -35,7 +35,8 @@ A modern CPU core can complete an operation in roughly one nanosecond, whereas a
 Caches exploit the \emph{principle of locality}: \emph{temporal locality} holds that data accessed recently is likely to be accessed again soon, while \emph{spatial locality} holds that data at nearby addresses will likely be accessed in the near future~\cite{drepper2007memory}.
 Accordingly, caches store recently and nearby accessed data in faster but smaller SRAM: the L1 cache (typically 32--64\,KB, $\sim$4-cycle latency) sits closest to the core, the L2 cache (256\,KB--1\,MB, $\sim$10 cycles) acts as a second-level buffer, and the L3 cache (several to tens of megabytes, $\sim$40 cycles) is shared among multiple cores.
 On a cache miss, data must be fetched from DRAM at a cost of roughly 200 cycles.
-This tiered design trades capacity for speed at each level, using SRAM's low latency for hot data and DRAM's density for the working set at large.
+This tiered design trades capacity for speed at each level, using SRAM's low latency for hot data and DRAM's density for the working set at large (Figure~\ref{fig:bg21:cache}).
+\input{figures/fig_bg_21_cache}
 
 \subsubsection{Virtual Memory: The Illusion of Infinite Address Space}
 
@@ -43,7 +44,8 @@ This tiered design trades capacity for speed at each level, using SRAM's low lat
 The core mechanism is \emph{paging}: the virtual address space is divided into fixed-size \emph{pages} (typically 4\,KB), physical memory into equally sized \emph{page frames}, and a page table records the mapping from virtual page numbers to physical frame numbers.
 When a process accesses a virtual page not yet resident in physical memory, a \emph{page fault} is raised; the operating system loads the page from disk into a free frame, updates the mapping, and resumes the process~\cite{ostep_2023}.
 Every process thus believes it possesses a complete, private address space, while the operating system transparently manages allocation and reclamation of the underlying physical resource.
-Virtual memory also enforces isolation: each process maintains its own page table and cannot address another process's memory.
+Virtual memory also enforces isolation: each process maintains its own page table and cannot address another process's memory (Figure~\ref{fig:bg21:vm}).
+\input{figures/fig_bg_21_virtualmem}
 
 \subsubsection{Operating System: Scheduling, Protection, and Resource Management}
 
@@ -51,7 +53,8 @@ The \textit{operating system} (OS) is the first software layer above hardware.
 It manages compute resources and provides uniform abstractions to applications.
 Its core responsibilities include: process scheduling (deciding which process runs next, e.g., Linux's Completely Fair Scheduler~\cite{linux_cfs_2026}), memory management (allocating and reclaiming physical page frames), I/O management (providing uniform file and device interfaces), access control (ensuring processes access only authorized resources), and concurrency support (semaphores, locks, condition variables)~\cite{ostep_2023,xv6_2022}.
 The OS design principle is simple: expose clean abstractions upward (processes, files, sockets) while managing complex hardware downward (CPU cores, memory modules, disks, network interfaces).
-Applications invoke system calls such as \texttt{open()}, \texttt{read()}, and \texttt{fork()} without needing to know whether the storage device is an SSD or an HDD, or whether the network link runs at 1\,GbE or 10\,GbE.
+Applications invoke system calls such as \texttt{open()}, \texttt{read()}, and \texttt{fork()} without needing to know whether the storage device is an SSD or an HDD, or whether the network link runs at 1\,GbE or 10\,GbE (Figure~\ref{fig:bg21:os}).
+\input{figures/fig_bg_21_os}
 
 \subsubsection{Distributed Systems: Scaling Beyond a Single Node}
 
@@ -59,7 +62,8 @@ Applications invoke system calls such as \texttt{open()}, \texttt{read()}, and \
 The fundamental challenge is maintaining correctness and availability when individual nodes may fail, network latencies are variable, and data must be replicated~\cite{cap2002}.
 The Raft consensus algorithm~\cite{raft2014} enables a cluster of nodes to agree on the next command to append to a shared log, tolerating crashes of a minority of participants.
 Google Spanner~\cite{spanner2012} provides a globally consistent, distributed database service across multiple data centers worldwide.
-The CAP theorem~\cite{cap2002} formalizes an inherent trade-off: during a network partition, a system cannot simultaneously guarantee both consistency (C) and availability (A); a design choice must be made.
+The CAP theorem~\cite{cap2002} formalizes an inherent trade-off: during a network partition, a system cannot simultaneously guarantee both consistency (C) and availability (A); a design choice must be made (Figure~\ref{fig:bg21:dist}).
+\input{figures/fig_bg_21_distributed}
 
 \subsubsection{Quantitative Design Principles}
 
@@ -99,7 +103,8 @@ We survey each layer from bottom to top, highlighting key developments and the s
 On the modeling front, the Transformer architecture~\cite{vaswani2017attention} remains the dominant backbone.
 Its self-attention mechanism captures long-range dependencies by computing pairwise interactions across all positions in a sequence.
 Open-weight models continue to evolve along several axes: RoPE (Rotary Position Embedding)~\cite{su2021roformer} improves positional representations, enabling models to handle longer sequences more effectively; Mixture-of-Experts (MoE)~\cite{switch2022,mixtral2024} scales model capacity through sparse activation (activating only a subset of parameters per inference), avoiding a proportional increase in computation; long-context extensions~\cite{yarn2024,longrope2024} push the effective context window from thousands of tokens to hundreds of thousands or even millions.
-In parallel, selective state-space models such as Mamba~\cite{gu2024mamba} open a linear-complexity sequence modeling paradigm that no longer relies on self-attention.
+In parallel, selective state-space models such as Mamba~\cite{gu2024mamba} open a linear-complexity sequence modeling paradigm that no longer relies on self-attention (Figure~\ref{fig:bg22:model}).
+\input{figures/fig_bg_22_model}
 
 \subsubsection{Inference Layer: Systematic Serving Optimizations}
 
@@ -110,7 +115,8 @@ ORCA~\cite{orca2022} introduces continuous batching at the iteration level, allo
 DistServe~\cite{zhong2024distserve} decouples the prefill phase (processing the input prompt) from the decode phase (generating tokens one at a time) onto separate GPUs, avoiding resource contention between the two.
 Sarathi-Serve~\cite{agrawal2024sarathi} further refines the throughput--latency trade-off.
 Disaggregated serving architectures push this prefill/decode decoupling to cluster scale: Splitwise~\cite{patel2024splitwise} and Mooncake~\cite{qin2024mooncake} separate the two phases across dedicated GPU pools and treat the KV cache as a global, transferable resource, realizing the ``KV cache as a hardware-managed cache'' analogy at hyperscale.
-A unifying theme across these systems is the adaptation of classical operating systems techniques (paging, batch scheduling, resource isolation) to LLM inference engines.
+A unifying theme across these systems is the adaptation of classical operating systems techniques (paging, batch scheduling, resource isolation) to LLM inference engines (Figure~\ref{fig:bg22:inference}).
+\input{figures/fig_bg_22_inference}
 
 \subsubsection{Memory Layer: Reconciling Finite Windows with Persistent State}
 
@@ -125,7 +131,8 @@ Letta~\cite{letta_stateful_2026} places stateful agents at the center of its des
 MemOS~\cite{memos2025} goes further by treating memory as a first-class operating-system-level resource, unifying management of textual memory, activation memory, and other representational forms.
 MemoryOS~\cite{memoryos2025}, presented at EMNLP 2025, proposes a memory operating system tailored to AI agents.
 \emph{Context engineering}~\cite{contextengineer_survey2025} has emerged as a nascent discipline that systematizes this space.
-It is defined as the engineering practice of systematically designing, selecting, and optimizing all information presented to an LLM, encompassing retrieval augmentation, memory management, tool-use scaffolding, and multi-turn dialogue optimization.
+It is defined as the engineering practice of systematically designing, selecting, and optimizing all information presented to an LLM, encompassing retrieval augmentation, memory management, tool-use scaffolding, and multi-turn dialogue optimization (Figure~\ref{fig:bg22:memory}).
+\input{figures/fig_bg_22_memory}
 
 \subsubsection{Agent Layer: From Single-Turn Inference to Complex Runtimes}
 
@@ -134,7 +141,8 @@ ReAct~\cite{yao2023react} interleaves reasoning with acting, enabling a model to
 Toolformer~\cite{schick2023toolformer} teaches models to invoke external tools (calculators, search engines) autonomously.
 SWE-agent~\cite{sweagent2024} and OpenHands~\cite{openhands_paper_2025} are autonomous agents for software engineering that can navigate code repositories, write patches, and run test suites.
 Codex~\cite{openai_codex_overview_2026} and Claude Code~\cite{anthropic_claudecode_overview_2026} are production-grade coding agents equipped with OS-kernel-like capabilities: sub-agent scheduling~\cite{openai_codex_overview_2026,anthropic_claudecode_subagents_2026}, sandbox isolation~\cite{openai_codex_sandbox_2026,anthropic_claudecode_sandbox_2026}, and permission control~\cite{openai_codex_approvals_2026,anthropic_claudecode_security_2026}.
-Multi-agent collaboration frameworks such as AutoGen~\cite{wu2023autogen} and MetaGPT~\cite{metagpt2023} further organize ensembles of specialized agents into cooperative networks.
+Multi-agent collaboration frameworks such as AutoGen~\cite{wu2023autogen} and MetaGPT~\cite{metagpt2023} further organize ensembles of specialized agents into cooperative networks (Figure~\ref{fig:bg22:agent}).
+\input{figures/fig_bg_22_agent}
 
 \subsection{The Gap: No Unified System Language}
 
@@ -147,6 +155,4 @@ This observation motivates the architectural analogy that runs through this pape
 The analogy does not claim that LLM systems and classical systems are ``fundamentally the same.''
 Rather, it places independently developed engineering techniques back into a larger, unified design space, making it possible to compose, predict, and systematically design cross-layer optimizations.
 
-Figure~\ref{fig_dual_stack} illustrates the structural correspondence between the two stacks.
-\input{figures/fig_dual_stack.tex}
 

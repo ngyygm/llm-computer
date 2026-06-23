@@ -1,0 +1,6 @@
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.80\textwidth]{figures/generated/fig_bg_22_inference}
+  \caption{Inference layer: PagedAttention organizes the KV cache into demand-allocated pages and enables sharing of prefix pages across requests; continuous batching allows new requests to join in-flight batches at each decoding step; FlashAttention tiles attention computation to reduce HBM traffic.}
+  \label{fig:bg22:inference}
+\end{figure}

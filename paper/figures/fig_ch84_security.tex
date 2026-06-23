@@ -1,0 +1,14 @@
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.90\textwidth]{figures/generated/fig_ch84_security}
+  \caption{Security threats and defenses in AI agent systems.
+  Three attack surfaces (left): prompt injection embeds malicious instructions in tool-returned data,
+  exploiting the model's inability to distinguish user commands from data-embedded commands;
+  privilege over-provisioning grants agents far broader permissions than their tasks require;
+  memory taint propagation allows a successful injection to write persistent backdoors into long-term memory.
+  Three-layer defense (right): OS-enforced sandbox isolation (Codex, Claude Code),
+  capability-based security (CaMeL's one-time-use capability tokens),
+  and approval-gate auditing (human confirmation for high-risk operations).
+  Within ICA, security concentrates at L4 (capability annotations) and L5 (permission approval, audit).}
+  \label{fig:ch84:security}
+\end{figure}

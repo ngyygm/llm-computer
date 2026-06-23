@@ -1,0 +1,41 @@
+% ============================================================
+% Figure: LLM System Stack — 4 subfigures (2×2 grid)
+% Placed at the end of \subsection{Emerging Layers...}
+% ============================================================
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}[t]{0.46\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/generated/fig_bg_22_model}
+    \subcaption{Model layer: Transformer backbone with MoE sparse routing}
+    \label{fig:bg22:model}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.46\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/generated/fig_bg_22_inference}
+    \subcaption{Inference layer: PagedAttention and continuous batching}
+    \label{fig:bg22:inference}
+  \end{minipage}
+
+  \vspace{0.8em}
+
+  \begin{minipage}[t]{0.46\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/generated/fig_bg_22_memory}
+    \subcaption{Memory layer: tiered context and RAG retrieval}
+    \label{fig:bg22:memory}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.46\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/generated/fig_bg_22_agent}
+    \subcaption{Agent layer: ReAct loop with tool use and sub-agent coordination}
+    \label{fig:bg22:agent}
+  \end{minipage}
+
+  \caption{The four emerging layers of the LLM system stack.
+  (a)~The model layer: the Transformer's self-attention mechanism serves as the general-purpose inference core; Mixture-of-Experts (MoE) introduces sparse routing for parameter-efficient scaling.
+  (b)~The inference layer: PagedAttention organizes KV cache into demand-allocated pages; continuous batching allows new requests to join in-flight batches at each decoding step.
+  (c)~The memory layer: a tiered architecture spanning the bounded context window, warm external retrieval (RAG), and cold archival storage; MemGPT automates swap-in and swap-out across tiers.
+  (d)~The agent layer: the ReAct loop interleaves reasoning with tool invocations inside a sandboxed runtime; sub-agents execute concurrently under permission control.}
+  \label{fig:bg22:llm_stack}
+\end{figure}

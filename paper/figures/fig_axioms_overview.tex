@@ -10,7 +10,7 @@
 \providecolor{axNone}{HTML}{F0F0F0}
 \providecolor{hdrBlue}{HTML}{4A78A8}
 %
-\resizebox{0.96\textwidth}{!}{%
+\resizebox{0.8\textwidth}{!}{%
 \begin{tikzpicture}[
     font=\small,
     >=Latex,
@@ -19,7 +19,7 @@
     cellL/.style={fill=axLow!80,  draw=axLow!60!black,  rounded corners=1pt, line width=0.4pt},
     cellN/.style={fill=axNone,    draw=gray!30,          rounded corners=1pt, line width=0.4pt},
     colhdr/.style={font=\small\bfseries, align=center, text=hdrBlue!80!black},
-    rowhdr/.style={font=\small\bfseries, align=right, anchor=east, text width=3.0cm},
+    rowhdr/.style={font=\small\bfseries, align=center, anchor=east},
     celltxt/.style={font=\scriptsize, align=center, text=black!70},
 ]
 
@@ -71,12 +71,12 @@
 \node[colhdr] at (\xF,  0.3) {L6};
 
 % ---- Row headers ----
-\node[rowhdr] at (-1.1, \yAc) {A1 Locality};
-\node[rowhdr] at (-1.1, \yBc) {A2 Layered\\Abstraction};
-\node[rowhdr] at (-1.1, \yCc) {A3 Probabilistic\\Execution};
-\node[font=\small\bfseries, anchor=east] at (-1.1, \yDc) {A4 Virtualization};
-\node[rowhdr] at (-1.1, \yEc) {A5 Least Privilege};
-\node[rowhdr] at (-1.1, \yFc) {A6 Observability};
+\node[rowhdr] at (-1.20, \yAc) {A1};
+\node[rowhdr] at (-1.20, \yBc) {A2};
+\node[rowhdr] at (-1.20, \yCc) {A3};
+\node[rowhdr] at (-1.20, \yDc) {A4};
+\node[rowhdr] at (-1.20, \yEc) {A5};
+\node[rowhdr] at (-1.20, \yFc) {A6};
 
 % ---- Row A1: Locality ----
 \draw[cellH] (\xAl,\yAb) rectangle +(\cw,\ch); \node[celltxt] at (\xA,\yAc) {Primary};

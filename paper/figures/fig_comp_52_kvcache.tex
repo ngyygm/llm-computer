@@ -1,0 +1,11 @@
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.88\textwidth]{figures/generated/fig_comp_52_kvcache}
+  \caption{KV cache as intelligent cache hierarchy (§\ref{sec:kv}).
+  Both hierarchies trade capacity for latency at each tier and exploit locality
+  to avoid expensive recomputation.
+  The critical difference is the hit criterion: CPU cache hits are a Boolean
+  address match, whereas KV semantic cache hits are a continuous similarity
+  score---requiring new eviction and invalidation policies tuned to semantic staleness.}
+  \label{fig:comp52:kvcache}
+\end{figure}

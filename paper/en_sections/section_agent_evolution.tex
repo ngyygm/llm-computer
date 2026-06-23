@@ -28,6 +28,8 @@ Generation~I frameworks correspond to the \textbf{single-task batch-processing s
 The system handles one task at a time, to completion, before starting the next; there is no concurrency, no interrupts, and no persistent state across tasks.
 The ReAct loop is the simplest possible ``fetch--decode--execute'' pipeline, with each iteration analogous to a single instruction cycle.
 There is no resource management whatsoever: no task scheduler (only one task exists), no memory management (the context window \textit{is} the entire ``memory''), and no I/O abstraction (tool calls are hard-coded).
+Figure~\ref{fig:ae:gen1} illustrates this structural correspondence.
+\input{figures/fig_ae_gen1}
 
 %% ---------- Generation 2 ----------
 \subsection{Generation II: Persistent Multi-Step Agents (2023)}
@@ -52,6 +54,8 @@ BabyAGI implemented a cleaner task-queue manager: maintaining a prioritized to-d
 Generation~II corresponds to \textbf{multiprogramming} in the 1960s~\cite{ostep_2023}: the system begins to manage complex multi-step state, and tasks can share and pass information.
 AutoGPT's task queue is a primitive ``job scheduler''; Voyager's skill library resembles an ``executable program library''; BabyAGI's priority ordering parallels early ``job scheduling policies.''
 Compared with mature operating systems, however, Generation~II lacks three critical mechanisms: \textbf{isolation} (different tasks may interfere with one another), \textbf{preemptive scheduling} (a stalled task blocks the entire system), and \textbf{protection} (a failed task can corrupt the state of other tasks).
+Figure~\ref{fig:ae:gen2} illustrates this correspondence.
+\input{figures/fig_ae_gen2}
 
 %% ---------- Generation 3 ----------
 \subsection{Generation III: General-Purpose Runtimes (2023--2024)}
@@ -75,6 +79,8 @@ Generation~III corresponds to the \textbf{time-sharing operating systems} of the
 The core breakthrough of time-sharing OSes was providing each user (process) with an independent address space and fair CPU time slices, enabling multiple users to safely share a single computer.
 AIOS's Agent Scheduler corresponds to the process scheduler of a time-sharing OS; its Context Manager maps to the address isolation provided by the memory management unit (MMU); and the Tool Manager's permission controls parallel Unix's file permission system.
 The Agents SDK's tracing mechanism mirrors OS-level system-call auditing via \texttt{strace} or \texttt{auditd}.
+Figure~\ref{fig:ae:gen3} illustrates this structural correspondence.
+\input{figures/fig_ae_gen3}
 
 %% ---------- Generation 4 ----------
 \subsection{Generation IV: Engineering-Grade Operating Systems (2024--2025)}
@@ -100,6 +106,8 @@ Devin~\cite{devin2024cognition} further exemplified Generation~IV's engineering 
 Generation~IV corresponds to the \textbf{modern operating systems} of the 1980s--90s, such as Unix System~V, early Linux, and Windows~NT~\cite{ostep_2023}.
 The defining characteristic of modern OSes is their ability to handle real-world complexity: multitasking schedulers (e.g., the Completely Fair Scheduler~\cite{linux_cfs_2026}), virtual memory with demand paging, network protocol stacks, device driver frameworks, and security auditing.
 Codex's sandbox maps to OS-level process isolation (each sub-agent runs in an independent container, akin to \texttt{chroot} or container technology); Claude Code's hooks parallel Linux Security Modules (LSM) security hooks; Codex's approval mechanism corresponds to Unix's \texttt{sudo} privilege escalation; and OpenHands's multi-model backend serves the role of a hardware abstraction layer (HAL).
+Figure~\ref{fig:ae:gen4} illustrates this structural correspondence.
+\input{figures/fig_ae_gen4}
 
 %% ---------- Generation 5 ----------
 \subsection{Generation V: Governed Operating Systems (2025--Present)}
@@ -139,6 +147,8 @@ Generation~V corresponds to the inflection point at which operating systems tran
 In classical OS history, Unix~V6 (1975) was a functional but insecure system: it lacked memory protection (any process could read or write any memory address) and privilege separation (the root user held unrestricted power).
 As networking and multi-user environments developed, security evolved from an ``optional feature'' to a ``foundational requirement,'' giving rise to Multics ring protection, SELinux mandatory access control, and formal verification of modern microkernels such as seL4~\cite{ostep_2023}.
 Generation~V agent frameworks are undergoing the same transition: security is no longer merely ``add a sandbox,'' but requires a top-to-bottom redesign of the agent's permission model, audit mechanisms, and failure-recovery strategies at the architectural level.
+Figure~\ref{fig:ae:gen5} illustrates this structural correspondence.
+\input{figures/fig_ae_gen5}
 
 %% ---------- Quantitative perspective ----------
 Figure~\ref{fig_gen_matrix} summarises the capability maturity of each generation across six architectural dimensions.

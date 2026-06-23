@@ -86,7 +86,8 @@ Worst-case metrics are emerging to address this. Safety benchmarks like HarmBenc
 For the intelligent compute core specifically, benchmarking must evaluate the processor's \textit{faithfulness to its ISA contract}. Does the LLM core reliably execute the agent's instructions? Does it follow specified output formats? Does it respect tool-use protocols? These questions measure processor reliability, not encyclopedic knowledge. A core that scores 70\% on MMLU but faithfully executes 99.9\% of structured instructions is a better processor than one that scores 90\% on MMLU but frequently deviates from its programming. The ICA framework makes this distinction explicit: knowledge evaluation belongs to the memory and retrieval layers; execution reliability belongs to the compute core.
 
 The historical trajectory of CPU benchmarking, from megahertz to SPEC to workload-specific profiling, suggests that LLM evaluation will follow the same path: from aggregate scores to per-capability profiling to workload-specific benchmarks tied to real agent tasks. The bucket principle accelerates this transition by proving what practitioners already sensed: average-case metrics are insufficient for systems where a single failure mode can be catastrophic.
-
+Figure~\ref{fig:paradigm:bucket} illustrates the bucket metaphor: the water level (system capability) is set by the shortest stave, not the average stave height.
+\input{figures/fig_paradigm_bucket}
 
 \subsection{The Intelligent Operating System: From Code to World}
 
@@ -133,6 +134,8 @@ When the system is overloaded, EAS falls back to conventional SMP load balancing
 Intel's Thread Director (Alder Lake, 2021) provides the OS scheduler with real-time hardware telemetry about thread behavior. The intelligent OS analog is a \textbf{Task Director} that monitors subtask characteristics in real time, including reasoning depth, safety sensitivity, and latency tolerance, and dynamically re-routes to the optimal compute substrate mid-execution.
 
 The introduction of biological and neuromorphic substrates makes the scheduling challenge qualitatively harder. A biological core may have fundamentally different latency profiles, failure modes, and capability signatures than a silicon GPU. The intelligent OS scheduler must accommodate not merely ``fast versus slow'' but ``probabilistic versus deterministic,'' ``high-bandwidth versus low-latency,'' and ``silicon versus biological.'' This is heterogeneous scheduling at a level of complexity that classical OS designers never confronted, yet the architectural patterns (Energy Models, overutilization fallbacks, and real-time telemetry) are directly inherited from the big.LITTLE playbook.
+Figure~\ref{fig:paradigm:scheduling} places the two scheduling architectures side by side.
+\input{figures/fig_paradigm_scheduling}
 
 \subsubsection{The Physical World Interface: From Code-Only to Embodied Intelligence}
 

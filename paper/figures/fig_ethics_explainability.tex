@@ -1,0 +1,13 @@
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.88\textwidth]{figures/generated/fig_ethics_explainability}
+  \caption{System-level behavioral-trace explainability decomposed by ICA layer.
+  L5 (Orchestration) logs privilege requests, approval decisions, and state commits.
+  L4 (Semantic Interface) logs tool invocations, arguments, results, and permission denials.
+  L3 (Context Management) logs context-compilation decisions, summary provenance, and eviction events.
+  L2 (Inference Serving) logs cache hits, misses, and the eviction policy applied to each block.
+  Together these four tiers form a complete, replayable behavioral trace---
+  the core output of the deterministic control plane---without requiring any
+  access to the model's internal representations.}
+  \label{fig:ethics:explainability}
+\end{figure}

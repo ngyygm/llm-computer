@@ -39,6 +39,9 @@ As Mi et al.\ have argued, drawing on the evolution of computer architecture to 
 
 Consequently, the future ``intelligent ISA'' should not be understood as hard-coding prompts as fixed instructions. Rather, the research agenda should prioritize developing more stable interface layers: tool schemas, constrained output formats, reusable skill packages, task-specific DSLs, and explicit context declarations.
 From an architectural perspective, this means the community should evaluate models not only by parameter count but also by \textbf{model programmability}, namely the degree to which upper layers can reliably and predictably control model behavior.
+Figure~\ref{fig:comp51:model} illustrates the structural parallel between the CPU--ISA contract and the foundation model's prompt-and-tool-schema interface.
+
+\input{figures/fig_comp_51_model}
 
 %% ---------- KV Cache: Cache Hierarchy ----------
 \subsection{KV Cache: Cache Hierarchy for Intelligent Systems}
@@ -165,6 +168,9 @@ Agent context management, by contrast, involves \textbf{semantic compression}: s
 Semantic virtual memory can therefore never be a lossless paged system.
 It is better understood as ``paged memory augmented with semantic summarization and evidence backfill'': information may be distorted after compression, but provenance chains enable verification against original data.
 Research from JetBrains suggests that effective context management depends not on ``cramming in more tokens'' but on ``reducing noise and preserving signal''~\cite{jetbrains2025context}, further validating the necessity of lossy compression in this regime.
+Figure~\ref{fig:comp53:context} compares the virtual-memory and context-management hierarchies side by side, highlighting the lossless-versus-lossy distinction as the fundamental divergence.
+
+\input{figures/fig_comp_53_context}
 
 %% ---------- Agent Runtime: Operating System ----------
 \subsection{Agent Runtime: The Intelligent Operating System}
@@ -242,6 +248,9 @@ CaMeL applies operating system capability-security principles to LLM agents, cre
 IronClaw argues for protecting AI agents the way an operating system protects its processes~\cite{ironclaw2025}.
 Systems security researchers have begun using the term ``agentic computing'' to define the foundational problems of agent security~\cite{agenticsecurity2025}.
 These efforts underscore a critical insight: \textbf{security boundaries are primarily a ``runtime structure'' problem and only secondarily a ``prompt'' problem}, just as OS security depends first on the permission model and isolation mechanisms, and only then on application code quality.
+Figure~\ref{fig:comp54:agent} maps the OS kernel's responsibilities onto the agent runtime, showing how classical primitives (fork, system call, sandbox, audit log) find direct counterparts in modern agent frameworks.
+
+\input{figures/fig_comp_54_agent}
 
 %% ---------- Tool Bus: I/O System ----------
 \subsection{Tool Bus and Agent Interconnection}
@@ -287,6 +296,9 @@ Tool invocations, by contrast, may be non-deterministic (search engine results c
 \paragraph{Far more complex error handling.}
 PCIe devices either respond correctly or return a well-defined error code; MCP tools may return semantically ambiguous errors (``the result is uncertain'') or---worse---results that appear correct but are in fact wrong.
 This compels the agent I/O layer to introduce \textbf{verification and redundancy} mechanisms: critical operations require result validation, analogous to quorum reads in distributed systems.
+Figure~\ref{fig:comp55:toolbus} traces the parallel standardization trajectory from bespoke drivers to PCIe/USB and TCP/IP on the classical side, and from hand-coded adapters to MCP and A2A on the agent side.
+
+\input{figures/fig_comp_55_toolbus}
 
 %% ---------- Multi-Agent: Distributed System ----------
 \subsection{Multi-Agent Collaboration: Distributed Systems with Semantics}
@@ -335,6 +347,9 @@ Detecting ``whether an agent is executing the task correctly'' is far harder tha
 \paragraph{Emergence, not deterministic composition.}
 The behavior of a distributed system is the deterministic composition of its nodes' behaviors; multi-agent systems may produce \textbf{emergent effects}, where each agent executes correctly in isolation, yet the collective outcome is unpredictable.
 This places new demands on system debuggability and accountability.
+Figure~\ref{fig:comp56:multiagent} summarizes the structural correspondence between distributed computing and multi-agent collaboration across coordination topologies, consensus mechanisms, and the consistency--availability tradeoff.
+
+\input{figures/fig_comp_56_multiagent}
 
 %% ---------- Architecture Diagram and Control Flow ----------
 

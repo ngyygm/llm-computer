@@ -1,0 +1,14 @@
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.90\textwidth]{figures/generated/fig_drift_to_security}
+  \caption{Interface drift as a security attack surface: four causal pathways from §\ref{sec:drift} to §\ref{sec:security}.
+  Model version drift creates prompt-injection risk when parsers receive unexpected output formats;
+  tool schema drift triggers unintended side effects through stale endpoint calls;
+  protocol drift causes capability misconfiguration and privilege over-provisioning;
+  skill-pack drift enables behavior hijacking by exploiting version-gap assumptions.
+  The key architectural implication is that stabilizing L4 interface contracts
+  (the deterministic control plane's responsibility) is a prerequisite for enforcing
+  L5 security guarantees---interface instability is not merely an engineering inconvenience
+  but a persistent security attack surface.}
+  \label{fig:drift_to_security}
+\end{figure}

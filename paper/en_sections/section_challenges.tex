@@ -118,7 +118,9 @@ The CAP theorem~\cite{cap2002} states that consistency, availability, and partit
 
 Within ICA, this challenge primarily spans L3 (context management) and L5 (orchestration).
 The dual-plane architecture naturally separates the problem: the probabilistic execution plane manages the working context (what to remember and what to forget), while the deterministic control plane enforces consistency guarantees and conflict-resolution protocols.
+Figure~\ref{fig:ch82:state} illustrates the three-day scenario, the three state categories, and the concurrent conflict pattern.
 
+\input{figures/fig_ch82_state}
 
 %% ---------- Interface Drift ----------
 \subsection{Interface Drift and Version Compatibility}
@@ -158,7 +160,6 @@ Model-native computing architectures must develop their own ``version control di
 
 Within ICA, interface drift primarily affects L4 (semantic interface layer) and the L4--L5 boundary.
 The deterministic control plane must maintain version-aware interface contracts that insulate the probabilistic execution plane from upstream changes, precisely the role that ABI stability plays in shielding application software from hardware evolution.
-
 
 %% ---------- Security, Privacy, Least Privilege ----------
 \subsection{Security, Privacy, and Least Privilege}
@@ -220,7 +221,6 @@ Anthropic's 2026 agentic security report predicts that ``agentic cyber defense s
 Within ICA, security spans all six layers but concentrates at L4 (tool capability annotations and call audits) and L5 (permission approval and failure recovery).
 The dual-plane architecture is essential here: the probabilistic plane handles the reasoning needed to interpret user intent, while the deterministic plane enforces the non-negotiable security invariants.
 
-
 %% ---------- Governance ----------
 \subsection{Governance as a First-Class Architectural Concern}
 
@@ -277,6 +277,9 @@ CaMeL's capability manager~\cite{debenedetti2025camel}, Codex's approval policie
 This division of labor mirrors a classic design philosophy in operating systems: ``the kernel does not compute on behalf of user programs, but ensures that their computation does not exceed its bounds''~\cite{ostep_2023}.
 The kernel does not sort your array, but it ensures your program cannot read another process's memory.
 Similarly, the governance layer does not perform reasoning on behalf of the agent, but it ensures that the agent's reasoning outputs do not lead to unauthorized operations, data exfiltration, or unrecoverable failures.
+Figure~\ref{fig:ch85:governance} illustrates this division of labor between the probabilistic and deterministic planes.
+
+\input{figures/fig_ch85_governance}
 
 \subsubsection{The Formalization Challenge}
 Embedding governance into the architecture still faces a fundamental formalization challenge: how do we define ``security boundaries'' for probabilistic behavior?

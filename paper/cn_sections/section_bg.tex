@@ -8,10 +8,7 @@
 传统计算机体系结构的分层并非偶然的设计选择，而是处理复杂性的通用工程方法\cite{hennessy2017quantitative}。
 其核心思想是：每一层只依赖其下层的\emph{接口}（interface），而不依赖其\emph{实现}（implementation）。
 这使得任何一层可以在不改变接口的前提下独立优化，而无需通知其他层。
-图~\ref{fig:classical_stack}展示了六层经典计算栈及其与ICA层的对应关系。
 以下逐一介绍各层的核心概念。
-
-\input{figures/fig_classical_stack}
 
 \subsubsection{指令集架构（ISA）：软硬件之间的契约}
 

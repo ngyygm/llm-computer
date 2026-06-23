@@ -18,6 +18,8 @@ Concretely, the governance mechanisms at ICA's L5 layer must address four questi
 \end{itemize}
 
 Viewed through the lens of the \emph{dual-plane architecture}, these permission controls fall squarely within the remit of the \emph{deterministic control plane}: the \emph{probabilistic execution plane} determines what the model \emph{can} do (reasoning and generation), while the deterministic control plane determines what it \emph{is permitted} to do (approval and isolation).
+Figure~\ref{fig:ethics:permissions} maps the four governance questions onto their classical OS counterparts.
+\input{figures/fig_ethics_permissions}
 
 \subsection{Privacy and Memory Governance (L3 Memory Layer)}
 \label{sec:ethics-privacy}
@@ -35,6 +37,8 @@ In a multi-agent setting with shared memory, a memory block written by one agent
 
 \paragraph{Can summaries be reverse-engineered to reveal sensitive information?}
 L3's context compiler routinely compresses raw inputs into summaries to conserve context-window capacity.  However, summaries may retain enough semantic signal that sensitive attributes, such as personal identities and financial data, can be inferred.  This demands that L3's semantic address contracts enforce four properties: \emph{minimal retention} (store only task-essential information), \emph{cascading deletion} (when raw data is removed, all derived summaries are purged together), \emph{access isolation} (memory belonging to different users must not be cross-accessible), and \emph{encrypted storage}~\cite{longmemeval2024,navaie2025privacy}.
+Figure~\ref{fig:ethics:privacy} illustrates the four governance gates applied to every memory block entering L3.
+\input{figures/fig_ethics_privacy}
 
 \subsection{Explainability: From Explaining Models to Explaining Systems (Full-Stack)}
 \label{sec:ethics-explainability}
@@ -51,6 +55,8 @@ ICA accordingly decomposes explainability into the following actionable tiers, e
 \end{itemize}
 
 This notion of \emph{system-level behavioral-trace explainability} is more directly useful than model-internal explainability.  It does not require prying open the model's black box; instead, it demands a faithful record of what the system did at every step, why it did so, and what the outcome was.  Viewed through the dual-plane architecture, this is precisely the core output of the deterministic control plane: an auditable, replayable event stream.
+Figure~\ref{fig:ethics:explainability} shows what each ICA layer contributes to this trace.
+\input{figures/fig_ethics_explainability}
 
 \subsection{Fairness and Resource Allocation (L2 Inference Layer and L5 Orchestration Layer)}
 \label{sec:ethics-fairness}

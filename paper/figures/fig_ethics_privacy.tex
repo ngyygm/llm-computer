@@ -1,0 +1,13 @@
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.88\textwidth]{figures/generated/fig_ethics_privacy}
+  \caption{Four sequential governance gates applied to every memory block entering the L3 context layer.
+  Gate~1 decides whether information should be persisted or scoped to the current session.
+  Gate~2 assigns a Time-To-Live annotation balancing EU AI Act retention requirements
+  against GDPR's Right to Be Forgotten.
+  Gate~3 enforces reference-counted deletion: physical removal requires all referencing agents to consent.
+  Gate~4 tests whether summaries could leak sensitive attributes, triggering cascading deletion,
+  access isolation, and encrypted storage if necessary.
+  These four gates are the semantic analog of OS page-protection bits.}
+  \label{fig:ethics:privacy}
+\end{figure}

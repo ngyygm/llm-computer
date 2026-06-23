@@ -67,6 +67,8 @@ SWE-bench and SWE-agent have demonstrated that current code agents still achieve
 A key bottleneck is the lack of a unified Agent-Computer Interface (ACI) standard: different frameworks adopt inconsistent sub-agent delegation strategies.
 We propose standardizing the ACI specification and designing specialized sub-agents (a code-search agent, an edit agent, and a test agent) whose orchestration efficiency $E$ can be characterized through the Agent Speedup heuristic (Heuristic~III).
 The target is to increase task completion rates on SWE-bench-class benchmarks while raising $E$ from the current 0.3--0.5 range to above 0.6.
+Figure~\ref{fig:roadmap:metrics} summarizes the current state and target for each short-term metric.
+\input{figures/fig_roadmap_metrics}
 
 \subsection{Mid-Term Research Topics}
 
@@ -145,3 +147,5 @@ Model-native computing systems stand in need of precisely the same kind of syste
 From an industry perspective, the analysis in Section~\ref{sec:sociotechnical} suggests that these systems-level standardization and decoupling efforts are co-evolving with structural changes in the industry itself.
 Protocol standardization (MCP, A2A, Tool ABI) reduces inter-layer coupling, creating the technical conditions for the fabless AI industry structure predicted in Section~\ref{sec:sociotechnical}; conversely, growing industry specialization accelerates independent optimization at each layer.
 This co-evolution of technology and industry structure recapitulates the central narrative of the semiconductor and personal computer industries over the past four decades.
+Figure~\ref{fig:roadmap:dependency} maps the enabling dependencies across all three research phases.
+\input{figures/fig_roadmap_dependency}

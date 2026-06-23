@@ -1,0 +1,13 @@
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.88\textwidth]{figures/generated/fig_ethics_permissions}
+  \caption{Agent permission model (right) mapped onto the classical OS process permission model (left).
+  The four governance questions---who may create agents, what resources they may access,
+  how permissions are scoped per operation, and how misbehaving agents are terminated---
+  have direct OS analogs in process-creation privileges, file permission bits,
+  POSIX capabilities, and sandbox/signal-based termination.
+  Under the dual-plane architecture, these controls fall squarely within the
+  deterministic control plane: it governs what agents \emph{are permitted} to do,
+  while the probabilistic plane determines what they \emph{can} do.}
+  \label{fig:ethics:permissions}
+\end{figure}

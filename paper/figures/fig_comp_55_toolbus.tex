@@ -1,0 +1,13 @@
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/generated/fig_comp_55_toolbus}
+  \caption{Tool bus and agent interconnection as I/O system (§\ref{sec:io}).
+  Classical I/O evolved from per-device bespoke drivers through standardized buses
+  (PCIe, USB) to a unified network stack (TCP/IP); agent I/O is undergoing
+  the same transition, from hand-coded API adapters to MCP (vertical agent-to-tool bus)
+  and A2A (horizontal agent-to-agent interconnect).
+  The critical difference is side-effect semantics: \texttt{read(fd)} is idempotent
+  and deterministic, whereas a tool call may be non-deterministic, asynchronous,
+  and irreversible.}
+  \label{fig:comp55:toolbus}
+\end{figure}

@@ -11,6 +11,8 @@ The semiconductor industry evolved through four structural stages. Before the 19
 The AI industry today resembles the IDM phase. NVIDIA dominates as a vertically integrated platform, owning both the hardware (GPUs) and the software stack (CUDA), much as IBM controlled mainframe hardware, operating systems, and applications before the PC era's disaggregation. The central structural question is: will AI follow the PC-era pattern of disaggregation into separate chip, platform/OS, model, and application layers, or will it remain vertically integrated under dominant players?
 
 The first wave of disaggregation is already visible. Cloud giants building custom silicon, such as Google TPUs, Amazon Trainium, and Microsoft Maia, signal the separation of hardware provision from the software and model layers, analogous to how the foundry model separated fabrication from design. Stanford HAI's 2025 data showing a 280-fold drop in reasoning costs, combined with surging small-model performance, creates commoditization pressure on foundation model providers~\cite{stanfordhai2025index}, accelerating the structural parallel to how commodity x86 CPUs enabled the PC disaggregation. Gartner's forecast of major consolidation in agentic AI due to oversupply mirrors the semiconductor industry's consolidation cycles~\cite{gartner2026trends}, suggesting that only a few foundation model providers will survive to become the ``Intel/AMD'' of AI.
+Figure~\ref{fig:social:idm_fabless} places the two disaggregation trajectories side by side.
+\input{figures/fig_social_idm_fabless}
 
 \subsection{Model Weights as Software: The Copyability Problem and the Closed-Source Strategic Response}
 \label{sec:copyability}
@@ -31,6 +33,8 @@ The first approach treats weights as copyable but renders them useless without a
 The second approach embeds hardware-level identity into the inference process, integrating Physical Unclonable Functions (PUFs) with compute-in-memory architectures to create a device-specific fingerprint that ties weight execution to a particular piece of silicon. This is an intermediate strategy: weights remain digitally distributed, but correct execution requires the matching hardware.
 
 The third and most radical approach permanently burns model weights into silicon transistors. Taalas (2026) produces dedicated inference chips with a one-to-one chip-to-model binding, achieving approximately 17,000 tokens per second per user (roughly ten times GPU performance)~\cite{taalas_2026_hc1}. The model becomes inseparable from the hardware: the ``model is the computer.'' This creates a true physical moat analogous to Intel's chip fabrication, where the intellectual property is embodied in the manufacturing process itself. These three approaches (TEE encryption, PUF-based compute-in-memory, and permanent silicon burning) represent increasing degrees of ``physicalization,'' each trading flexibility for IP protection, directly paralleling the semiconductor industry's progression from licensed IP (ARM) to manufactured chips (Intel) to dedicated ASICs.
+Figure~\ref{fig:social:hardware_binding} illustrates the three strategies as a physicalization spectrum.
+\input{figures/fig_social_hardware_binding}
 
 \subsection{The OS Layer as Traffic Gateway: Platform Strategy in the AI Era}
 \label{sec:os-gateway}
@@ -51,6 +55,8 @@ Several signals suggest the industry is approaching a ``training stabilization''
 When model architectures stabilize, the ``selling brains as physical devices'' model becomes viable. Dedicated inference chips with burned-in weights, such as the Taalas HC1 achieving tenfold GPU performance~\cite{taalas_2026_hc1}, could commoditize the model layer while creating a new hardware product category: the AI appliance. This would parallel the transition from mainframe time-sharing to personal computers, where computing ceased to be a shared service and became a personal possession.
 
 The convergence of three trends (hardware binding technologies maturing, inference costs dropping 280-fold, and custom silicon proliferating) creates the conditions for a ``fabless AI'' industry structure. Model companies would design ``brains'' (architectures and weights), foundries (TSMC, Samsung) would manufacture them as dedicated chips, and platform companies would distribute them through OS-level gateways. The most likely end-state is a three-layer industry structure: fabless model designers (the future Intels and AMDs of AI), AI foundries manufacturing dedicated inference and training chips, and AI OS platforms controlling user relationships through interface and gateway services. This mirrors the semiconductor and PC disaggregation that created today's Intel, TSMC, and Microsoft, the very firms whose history has served as this section's predictive lens.
+Figure~\ref{fig:social:fabless_ai} maps the predicted three-layer AI industry structure onto its semiconductor analog.
+\input{figures/fig_social_fabless_ai}
 
 \subsection{Layer-by-Layer: Mapping the Industry Stack onto ICA}
 \label{sec:social-layers}

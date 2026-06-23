@@ -1,0 +1,13 @@
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.90\textwidth]{figures/generated/fig_ch82_state}
+  \caption{Cross-session state management in an AI agent system.
+  A three-day project illustrates the three categories of persistent state:
+  \emph{ephemeral state} (current inference step only, like CPU registers),
+  \emph{session state with causal ordering} (task history requiring causal consistency),
+  and \emph{committed state} (permanent changes to files or databases, requiring full audit and rollback support).
+  The Day~2 concurrent scenario highlights the race-condition and conflict-resolution
+  challenges that arise when multiple agents share mutable state.
+  Within ICA, this challenge primarily spans L3 (context management) and L5 (orchestration).}
+  \label{fig:ch82:state}
+\end{figure}

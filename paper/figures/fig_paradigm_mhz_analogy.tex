@@ -1,0 +1,15 @@
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.88\textwidth]{figures/generated/fig_paradigm_mhz_analogy}
+  \caption{The megahertz myth (left) and its LLM analog (right).
+  In the 1990s, CPU clock speed was marketed as the definitive performance metric,
+  yet SPEC benchmarks revealed that real-workload performance depended on pipeline depth,
+  cache size, and IPC---not clock rate alone.
+  LLM evaluation faces the same maturation: MMLU leaderboard averages are the ``megahertz''
+  of intelligent systems~\cite{fodor_2025_benchmarks}, obscuring the fact that
+  a model scoring 90\% on standard tests may score only 2\% on novel unseen problems.
+  Per-capability worst-case profiling (HarmBench, AIR-Bench) is the emerging SPEC equivalent:
+  a system scoring 95th percentile on code generation but 20th percentile on safety compliance
+  has a system intelligence of the 20th percentile~\cite{zhong_2024_weakest_link}.}
+  \label{fig:paradigm:mhz_analogy}
+\end{figure}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.6.5)  23 JUN 2026 18:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.6.5)  23 JUN 2026 19:23
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1709,32 +1709,32 @@ File: figures/generated/fig_ch85_governance.png Graphic file (type png)
 <use figures/generated/fig_ch85_governance.png>
 Package pdftex.def Info: figures/generated/fig_ch85_governance.png  used on input line 3.
 (pdftex.def)             Requested size: 407.66833pt x 227.51349pt.
-) [76]) (./en_sections/section_paradigm.tex (./figures/fig_paradigm_timeline.tex [77 <./figures/generated/fig_ch85_governance.png (PNG copy)>]) [78] [79] (./figures/fig_biglittle.tex) [80] [81] (./figures/fig_paradigm_bucket.tex
-<figures/generated/fig_paradigm_bucket.png, id=2136, 2762.32pt x 1541.76pt>
-File: figures/generated/fig_paradigm_bucket.png Graphic file (type png)
-<use figures/generated/fig_paradigm_bucket.png>
-Package pdftex.def Info: figures/generated/fig_paradigm_bucket.png  used on input line 3.
-(pdftex.def)             Requested size: 362.37569pt x 202.24728pt.
-) [82] [83 <./figures/generated/fig_paradigm_bucket.png (PNG copy)>] [84] (./figures/fig_paradigm_scheduling.tex
-<figures/generated/fig_paradigm_scheduling.png, id=2169, 2762.32pt x 1541.76pt>
+) [76]) (./en_sections/section_paradigm.tex (./figures/fig_paradigm_timeline.tex [77 <./figures/generated/fig_ch85_governance.png (PNG copy)>]) [78] [79] (./figures/fig_biglittle.tex) [80] [81] (./figures/fig_paradigm_mhz_analogy.tex
+<figures/generated/fig_paradigm_mhz_analogy.png, id=2136, 2762.32pt x 1541.76pt>
+File: figures/generated/fig_paradigm_mhz_analogy.png Graphic file (type png)
+<use figures/generated/fig_paradigm_mhz_analogy.png>
+Package pdftex.def Info: figures/generated/fig_paradigm_mhz_analogy.png  used on input line 3.
+(pdftex.def)             Requested size: 398.61395pt x 222.47906pt.
+) [82] [83 <./figures/generated/fig_paradigm_mhz_analogy.png (PNG copy)>] [84] (./figures/fig_paradigm_scheduling.tex
+<figures/generated/fig_paradigm_scheduling.png, id=2173, 2762.32pt x 1541.76pt>
 File: figures/generated/fig_paradigm_scheduling.png Graphic file (type png)
 <use figures/generated/fig_paradigm_scheduling.png>
 Package pdftex.def Info: figures/generated/fig_paradigm_scheduling.png  used on input line 3.
 (pdftex.def)             Requested size: 398.61395pt x 222.47906pt.
 ) [85] [86 <./figures/generated/fig_paradigm_scheduling.png (PNG copy)>]) (./en_sections/section_social.tex (./figures/fig_social_idm_fabless.tex
-<figures/generated/fig_social_idm_fabless.png, id=2187, 2762.32pt x 1541.76pt>
+<figures/generated/fig_social_idm_fabless.png, id=2191, 2762.32pt x 1541.76pt>
 File: figures/generated/fig_social_idm_fabless.png Graphic file (type png)
 <use figures/generated/fig_social_idm_fabless.png>
 Package pdftex.def Info: figures/generated/fig_social_idm_fabless.png  used on input line 3.
 (pdftex.def)             Requested size: 398.61395pt x 222.47906pt.
 ) [87] [88 <./figures/generated/fig_social_idm_fabless.png (PNG copy)>] (./figures/fig_social_hardware_binding.tex
-<figures/generated/fig_social_hardware_binding.png, id=2209, 2762.32pt x 1541.76pt>
+<figures/generated/fig_social_hardware_binding.png, id=2211, 2762.32pt x 1541.76pt>
 File: figures/generated/fig_social_hardware_binding.png Graphic file (type png)
 <use figures/generated/fig_social_hardware_binding.png>
 Package pdftex.def Info: figures/generated/fig_social_hardware_binding.png  used on input line 3.
 (pdftex.def)             Requested size: 398.61395pt x 222.47906pt.
 ) [89] [90 <./figures/generated/fig_social_hardware_binding.png (PNG copy)>] (./figures/fig_social_fabless_ai.tex
-<figures/generated/fig_social_fabless_ai.png, id=2232, 2762.32pt x 1541.76pt>
+<figures/generated/fig_social_fabless_ai.png, id=2236, 2762.32pt x 1541.76pt>
 File: figures/generated/fig_social_fabless_ai.png Graphic file (type png)
 <use figures/generated/fig_social_fabless_ai.png>
 Package pdftex.def Info: figures/generated/fig_social_fabless_ai.png  used on input line 3.
@@ -2129,31 +2129,31 @@ Underfull \hbox (badness 10000) in paragraph at lines 34--34
 
 
 ignored: Infinite glue shrinkage found in box being split [96] (./figures/fig_roadmap_swimlane.tex) [97] (./figures/fig_roadmap_metrics.tex
-<figures/generated/fig_roadmap_metrics.png, id=2333, 2762.32pt x 1541.76pt>
+<figures/generated/fig_roadmap_metrics.png, id=2337, 2762.32pt x 1541.76pt>
 File: figures/generated/fig_roadmap_metrics.png Graphic file (type png)
 <use figures/generated/fig_roadmap_metrics.png>
 Package pdftex.def Info: figures/generated/fig_roadmap_metrics.png  used on input line 3.
 (pdftex.def)             Requested size: 385.02547pt x 214.88039pt.
-) [98] [99 <./figures/generated/fig_roadmap_metrics.png (PNG copy)>] [100] (./figures/fig_roadmap_dependency.tex
-<figures/generated/fig_roadmap_dependency.png, id=2380, 2762.32pt x 1541.76pt>
+) [98] [99 <./figures/generated/fig_roadmap_metrics.png (PNG copy)>] [100] [101] (./figures/fig_roadmap_dependency.tex
+<figures/generated/fig_roadmap_dependency.png, id=2392, 2762.32pt x 1541.76pt>
 File: figures/generated/fig_roadmap_dependency.png Graphic file (type png)
 <use figures/generated/fig_roadmap_dependency.png>
 Package pdftex.def Info: figures/generated/fig_roadmap_dependency.png  used on input line 3.
 (pdftex.def)             Requested size: 385.02547pt x 214.88039pt.
-)) (./en_sections/section_ethics.tex [101] [102 <./figures/generated/fig_roadmap_dependency.png (PNG copy)>] (./figures/fig_ethics_permissions.tex
-<figures/generated/fig_ethics_permissions.png, id=2407, 2762.32pt x 1541.76pt>
+)) (./en_sections/section_ethics.tex [102 <./figures/generated/fig_roadmap_dependency.png (PNG copy)>] (./figures/fig_ethics_permissions.tex
+<figures/generated/fig_ethics_permissions.png, id=2411, 2762.32pt x 1541.76pt>
 File: figures/generated/fig_ethics_permissions.png Graphic file (type png)
 <use figures/generated/fig_ethics_permissions.png>
 Package pdftex.def Info: figures/generated/fig_ethics_permissions.png  used on input line 3.
 (pdftex.def)             Requested size: 398.61395pt x 222.47906pt.
 ) [103 <./figures/generated/fig_ethics_permissions.png (PNG copy)>] (./figures/fig_ethics_privacy.tex
-<figures/generated/fig_ethics_privacy.png, id=2420, 2762.32pt x 1541.76pt>
+<figures/generated/fig_ethics_privacy.png, id=2424, 2762.32pt x 1541.76pt>
 File: figures/generated/fig_ethics_privacy.png Graphic file (type png)
 <use figures/generated/fig_ethics_privacy.png>
 Package pdftex.def Info: figures/generated/fig_ethics_privacy.png  used on input line 3.
 (pdftex.def)             Requested size: 398.61395pt x 222.47906pt.
 ) [104] (./figures/fig_ethics_explainability.tex
-<figures/generated/fig_ethics_explainability.png, id=2435, 2762.32pt x 1541.76pt>
+<figures/generated/fig_ethics_explainability.png, id=2439, 2762.32pt x 1541.76pt>
 File: figures/generated/fig_ethics_explainability.png Graphic file (type png)
 <use figures/generated/fig_ethics_explainability.png>
 Package pdftex.def Info: figures/generated/fig_ethics_explainability.png  used on input line 3.
@@ -2178,17 +2178,17 @@ Package rerunfilecheck Info: File `paper_en.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  46164 strings out of 467525
- 1083002 string characters out of 5418983
- 1682532 words of memory out of 5000000
+ 1083102 string characters out of 5418983
+ 1682791 words of memory out of 5000000
  73486 multiletter control sequences out of 15000+600000
  658134 words of font info for 110 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,22n,104p,1424b,2668s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfbi1095.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfbx0600.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfbx0800.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfbx0900.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfti0600.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfti0800.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfti0900.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfxc0800.pfb>
-Output written on paper_en.pdf (120 pages, 155068765 bytes).
+Output written on paper_en.pdf (120 pages, 154675905 bytes).
 PDF statistics:
- 2881 PDF objects out of 2984 (max. 8388607)
- 2540 compressed objects within 26 object streams
+ 2885 PDF objects out of 2984 (max. 8388607)
+ 2542 compressed objects within 26 object streams
  719 named destinations out of 1000 (max. 500000)
  1753 words of extra memory for PDF output out of 10000 (max. 10000000)
 

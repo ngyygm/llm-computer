@@ -86,8 +86,8 @@ Worst-case metrics are emerging to address this. Safety benchmarks like HarmBenc
 For the intelligent compute core specifically, benchmarking must evaluate the processor's \textit{faithfulness to its ISA contract}. Does the LLM core reliably execute the agent's instructions? Does it follow specified output formats? Does it respect tool-use protocols? These questions measure processor reliability, not encyclopedic knowledge. A core that scores 70\% on MMLU but faithfully executes 99.9\% of structured instructions is a better processor than one that scores 90\% on MMLU but frequently deviates from its programming. The ICA framework makes this distinction explicit: knowledge evaluation belongs to the memory and retrieval layers; execution reliability belongs to the compute core.
 
 The historical trajectory of CPU benchmarking, from megahertz to SPEC to workload-specific profiling, suggests that LLM evaluation will follow the same path: from aggregate scores to per-capability profiling to workload-specific benchmarks tied to real agent tasks. The bucket principle accelerates this transition by proving what practitioners already sensed: average-case metrics are insufficient for systems where a single failure mode can be catastrophic.
-Figure~\ref{fig:paradigm:bucket} illustrates the bucket metaphor: the water level (system capability) is set by the shortest stave, not the average stave height.
-\input{figures/fig_paradigm_bucket}
+Figure~\ref{fig:paradigm:mhz_analogy} illustrates this parallel: just as the megahertz myth was corrected by holistic SPEC benchmarks, MMLU leaderboard averages must give way to per-capability worst-case profiling.
+\input{figures/fig_paradigm_mhz_analogy}
 
 \subsection{The Intelligent Operating System: From Code to World}
 

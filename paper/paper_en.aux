@@ -852,12 +852,16 @@
 \citation{zhong_2024_weakest_link}
 \citation{harmbench_2024}
 \citation{airbench_2024}
+\citation{fodor_2025_benchmarks}
+\citation{zhong_2024_weakest_link}
+\citation{fodor_2025_benchmarks}
+\citation{zhong_2024_weakest_link}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {10.1.6}Benchmarking the Core: The Bucket Principle and Worst-Case Evaluation}{82}{subsubsection.10.1.6}\protected@file@percent }
 \citation{ritchie_thompson_1974}
 \citation{corbato_1962_ctss}
 \citation{corbato_1965_multics}
-\@writefile{lof}{\contentsline {figure}{\numberline {42}{\ignorespaces The Bucket Principle (Law of the Weakest Link) applied to intelligent system evaluation. A system's capability is constrained by its weakest dimension, not its average. A model scoring 95th percentile on code generation but 20th percentile on safety has a system intelligence of the 20th percentile---the water level is set by the shortest stave. Average-case metrics (e.g., MMLU score) are as misleading as MHz marketing was for CPUs; worst-case, per-dimension evaluation is the correct analog of SPEC benchmarks.}}{83}{figure.caption.141}\protected@file@percent }
-\newlabel{fig:paradigm:bucket}{{42}{83}{The Bucket Principle (Law of the Weakest Link) applied to intelligent system evaluation. A system's capability is constrained by its weakest dimension, not its average. A model scoring 95th percentile on code generation but 20th percentile on safety has a system intelligence of the 20th percentile---the water level is set by the shortest stave. Average-case metrics (e.g., MMLU score) are as misleading as MHz marketing was for CPUs; worst-case, per-dimension evaluation is the correct analog of SPEC benchmarks}{figure.caption.141}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {42}{\ignorespaces The megahertz myth (left) and its LLM analog (right). In the 1990s, CPU clock speed was marketed as the definitive performance metric, yet SPEC benchmarks revealed that real-workload performance depended on pipeline depth, cache size, and IPC---not clock rate alone. LLM evaluation faces the same maturation: MMLU leaderboard averages are the ``megahertz'' of intelligent systems~\cite  {fodor_2025_benchmarks}, obscuring the fact that a model scoring 90\% on standard tests may score only 2\% on novel unseen problems. Per-capability worst-case profiling (HarmBench, AIR-Bench) is the emerging SPEC equivalent: a system scoring 95th percentile on code generation but 20th percentile on safety compliance has a system intelligence of the 20th percentile~\cite  {zhong_2024_weakest_link}.}}{83}{figure.caption.141}\protected@file@percent }
+\newlabel{fig:paradigm:mhz_analogy}{{42}{83}{The megahertz myth (left) and its LLM analog (right). In the 1990s, CPU clock speed was marketed as the definitive performance metric, yet SPEC benchmarks revealed that real-workload performance depended on pipeline depth, cache size, and IPC---not clock rate alone. LLM evaluation faces the same maturation: MMLU leaderboard averages are the ``megahertz'' of intelligent systems~\cite {fodor_2025_benchmarks}, obscuring the fact that a model scoring 90\% on standard tests may score only 2\% on novel unseen problems. Per-capability worst-case profiling (HarmBench, AIR-Bench) is the emerging SPEC equivalent: a system scoring 95th percentile on code generation but 20th percentile on safety compliance has a system intelligence of the 20th percentile~\cite {zhong_2024_weakest_link}}{figure.caption.141}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {10.2}The Intelligent Operating System: From Code to World}{83}{subsection.10.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {10.2.1}The Historical Arc: From Task-Specific Systems to General Operating Systems}{83}{subsubsection.10.2.1}\protected@file@percent }
 \citation{patterson_hennessy_2017}
@@ -911,15 +915,15 @@
 \newlabel{fig:social:fabless_ai}{{46}{91}{Predicted three-layer Fabless-AI industry structure (right) and its semiconductor analog (left). Fabless model designers (the future ARM/Qualcomm of AI) design architectures and weights without owning compute. AI foundries (TSMC/Samsung plus hyperscale cloud) manufacture dedicated inference chips and provide large-scale training. OS-layer gateways (ChatGPT, Claude, Gemini) control the user interface and capture disproportionate value--- replaying the Microsoft-versus-Intel dynamic of the PC era, where the OS gateway captured more value than the chip manufacturer. The fundamental driver: copyability of weights eliminates the physical moat at the model layer, pushing value to the silicon (L1) and the gateway (L5)}{figure.caption.147}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {11.6}Layer-by-Layer: Mapping the Industry Stack onto ICA}{91}{subsection.11.6}\protected@file@percent }
 \newlabel{sec:social-layers}{{11.6}{91}{Layer-by-Layer: Mapping the Industry Stack onto ICA}{subsection.11.6}{}}
-\citation{kwon2023pagedattention}
-\citation{vllm_docs_2026}
-\citation{vllm_prefix_2026}
 \@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Mapping the emerging AI industry stack onto the ICA layers, with the classical industry analog and value-capture prospect for each.}}{92}{table.caption.148}\protected@file@percent }
 \newlabel{tab:industry-layers}{{7}{92}{Mapping the emerging AI industry stack onto the ICA layers, with the classical industry analog and value-capture prospect for each}{table.caption.148}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {12}Open-Source Implementation and Engineering Practice}{92}{section.12}\protected@file@percent }
 \newlabel{sec:implementation}{{12}{92}{Open-Source Implementation and Engineering Practice}{section.12}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {12.1}Serving Layer (L2): Inference Serving and KV Cache Management}{92}{subsection.12.1}\protected@file@percent }
 \newlabel{sec:impl-serving}{{12.1}{92}{Serving Layer (L2): Inference Serving and KV Cache Management}{subsection.12.1}{}}
+\citation{kwon2023pagedattention}
+\citation{vllm_docs_2026}
+\citation{vllm_prefix_2026}
 \citation{sglang2024}
 \citation{sglang_docs_2026}
 \citation{sglang2024}
@@ -929,15 +933,15 @@
 \citation{sweagent2024}
 \citation{autogpt_platform_2026}
 \citation{letta_stateful_2026}
-\citation{arbiteros2025}
-\citation{agentos2025}
-\citation{ufo2_2025}
-\citation{aura2025}
 \@writefile{lof}{\contentsline {figure}{\numberline {47}{\ignorespaces Open-source ecosystem mapped to the six-layer ICA architecture.}}{93}{figure.caption.149}\protected@file@percent }
 \newlabel{fig:impl_map}{{47}{93}{Open-source ecosystem mapped to the six-layer ICA architecture}{figure.caption.149}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {12.2}Agent Layer (L5): Agent Runtimes and Operating Systems}{93}{subsection.12.2}\protected@file@percent }
 \newlabel{sec:impl-agent}{{12.2}{93}{Agent Layer (L5): Agent Runtimes and Operating Systems}{subsection.12.2}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {12.2.1}General-Purpose Agents}{93}{subsubsection.12.2.1}\protected@file@percent }
+\citation{arbiteros2025}
+\citation{agentos2025}
+\citation{ufo2_2025}
+\citation{aura2025}
 \citation{openai_codex_overview_2026}
 \citation{openai_codex_skills_2026}
 \citation{openai_codex_sandbox_2026}
@@ -961,12 +965,11 @@
 \citation{anthropic2026agenticreport}
 \citation{mcp_intro_2026}
 \citation{agentprotocols2025}
-\citation{linux_cgroup_2026}
 \@writefile{lof}{\contentsline {figure}{\numberline {48}{\ignorespaces Mapping of the five implementation recommendations (R1--R5) onto ICA layers (L1--L6) and their governing design axioms. \textbf  {Key} cells indicate the primary ICA layer at which the recommendation must be enforced; \textbf  {Partial} cells indicate supporting roles. R1 (control/data plane separation) targets L4--L5; R2 (context tiering) targets L3; R3 (versioning) targets L4; R4 (resource quotas) and R5 (failure recovery) both center on L5 with support from adjacent layers.}}{95}{figure.caption.150}\protected@file@percent }
 \newlabel{fig:impl_recommendations}{{48}{95}{Mapping of the five implementation recommendations (R1--R5) onto ICA layers (L1--L6) and their governing design axioms. \textbf {Key} cells indicate the primary ICA layer at which the recommendation must be enforced; \textbf {Partial} cells indicate supporting roles. R1 (control/data plane separation) targets L4--L5; R2 (context tiering) targets L3; R3 (versioning) targets L4; R4 (resource quotas) and R5 (failure recovery) both center on L5 with support from adjacent layers}{figure.caption.150}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.1}Separate the Control Plane from the Data Plane}{95}{subsubsection.12.4.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.2}Separate Short-Term Context from Long-Term Memory}{95}{subsubsection.12.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.3}Version Every Behavior-Affecting Object}{95}{subsubsection.12.4.3}\protected@file@percent }
+\citation{linux_cgroup_2026}
 \citation{raft2014}
 \citation{spanner2012}
 \citation{anthropic2026agenticreport}
@@ -977,6 +980,7 @@
     {1}{125.24197pt}\LT@entry 
     {1}{93.5309pt}\LT@entry 
     {1}{75.41522pt}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.3}Version Every Behavior-Affecting Object}{96}{subsubsection.12.4.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.4}Enforce Resource Quotas Like an Operating System}{96}{subsubsection.12.4.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.5}Design Failure Recovery Like a Distributed System}{96}{subsubsection.12.4.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {13}Research Roadmap}{96}{section.13}\protected@file@percent }
@@ -989,11 +993,11 @@
 \citation{liu2024kivi}
 \citation{kwon2023pagedattention}
 \citation{sglang2024}
+\@writefile{toc}{\contentsline {subsection}{\numberline {13.1}Short-Term Research Topics}{97}{subsection.13.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{KV cache hit-rate optimization (L2).}{97}{section*.152}\protected@file@percent }
 \citation{memgpt2023}
 \citation{letta_stateful_2026}
 \citation{hiagent2024}
-\@writefile{toc}{\contentsline {subsection}{\numberline {13.1}Short-Term Research Topics}{97}{subsection.13.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{KV cache hit-rate optimization (L2).}{97}{section*.152}\protected@file@percent }
 \citation{mcp_intro_2026}
 \citation{agentprotocols2025}
 \citation{swebench2023}
@@ -1002,17 +1006,17 @@
 \newlabel{fig:roadmap_swimlane}{{49}{98}{Research roadmap organized by ICA layer and time horizon. Horizontal lanes correspond to ICA layers L1--L6; columns represent short-term (1--2\,yr), mid-term (2--4\,yr), and long-term (4--8\,yr) research phases. Bar colors indicate which heuristic or axiom each topic targets: {\color {lawI}Heur.~I} (Semantic Locality, blue), {\color {lawII}Heur.~II} (Context Budget, orange), {\color {lawIII}Heur.~III} (Agent Speedup, red), and {\color {axiom}Axiom} (architectural principles, gray). Arrows denote key dependencies between research topics}{figure.caption.151}{}}
 \@writefile{toc}{\contentsline {paragraph}{Unified context compiler (L3).}{98}{section*.153}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Tool ABI standardization (L4).}{98}{section*.154}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Software engineering agent kernel (L5).}{98}{section*.155}\protected@file@percent }
 \citation{raft2014}
 \citation{cap2002}
-\citation{leviathan2023speculative}
-\citation{switch2022}
-\citation{mixtral2024}
+\@writefile{toc}{\contentsline {paragraph}{Software engineering agent kernel (L5).}{99}{section*.155}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {50}{\ignorespaces Short-term research targets: current state versus goal for the four key metrics. KV cache hit rate $H$ must rise from the current 0.50--0.70 range to above 0.85 to realize the 5--10$\times $ speedup predicted by Heuristic~I (Semantic Locality). Context utilization $W_{\mathrm  {eff}}/C$ must improve by at least 50\% through the unified context compiler. Orchestration efficiency $E$ must exceed 0.60 to yield meaningful agent speedup under Heuristic~III. Audit coverage must reach 100\% to operationalize Axioms~5 and~6 across all ICA layers.}}{99}{figure.caption.156}\protected@file@percent }
 \newlabel{fig:roadmap:metrics}{{50}{99}{Short-term research targets: current state versus goal for the four key metrics. KV cache hit rate $H$ must rise from the current 0.50--0.70 range to above 0.85 to realize the 5--10$\times $ speedup predicted by Heuristic~I (Semantic Locality). Context utilization $W_{\mathrm {eff}}/C$ must improve by at least 50\% through the unified context compiler. Orchestration efficiency $E$ must exceed 0.60 to yield meaningful agent speedup under Heuristic~III. Audit coverage must reach 100\% to operationalize Axioms~5 and~6 across all ICA layers}{figure.caption.156}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {13.2}Mid-Term Research Topics}{99}{subsection.13.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Semantic page replacement (L3).}{99}{section*.157}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Consistency-controlled shared memory (L5).}{99}{section*.158}\protected@file@percent }
+\citation{leviathan2023speculative}
+\citation{switch2022}
+\citation{mixtral2024}
 \citation{debenedetti2025camel}
 \citation{ironclaw2025}
 \citation{agenticsecurity2025}
@@ -1023,11 +1027,11 @@
 \@writefile{toc}{\contentsline {paragraph}{Weakest-link evaluation framework (full stack).}{100}{section*.161}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {13.3}Long-Term Research Topics}{100}{subsection.13.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Intelligent ISA and programmable skill layer (L1--L6).}{100}{section*.162}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Stateful individual agents (L3--L5).}{100}{section*.163}\protected@file@percent }
 \citation{spanner2012}
 \citation{raft2014}
 \citation{arbiteros2025}
 \citation{ironclaw2025}
+\@writefile{toc}{\contentsline {paragraph}{Stateful individual agents (L3--L5).}{101}{section*.163}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Distributed model-native compute fabric (L1--L6).}{101}{section*.164}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Governance-layer primitives (L5).}{101}{section*.165}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Substrate-independent intelligent compute stack (L1--L2).}{101}{section*.166}\protected@file@percent }
@@ -1039,25 +1043,25 @@
 \citation{anthropic_claudecode_sandbox_2026}
 \citation{debenedetti2025camel}
 \citation{ironclaw2025}
-\citation{openai_codex_agents_md_2026}
 \@writefile{lof}{\contentsline {figure}{\numberline {51}{\ignorespaces Research enabling dependencies across the three roadmap phases. Short-term items produce validated metrics ($H$, $W_{\mathrm  {eff}}$, $E$) and interface contracts that mid-term work extends into cross-layer co-design. Mid-term results create the architectural substrate (semantic memory, shared-state consistency, security primitives) on which long-term innovations (Intelligent ISA, stateful agents, distributed fabric, physical-world drivers) depend. The graph makes explicit that long-term goals are not independent moonshots but cumulative extensions of near-term engineering progress.}}{102}{figure.caption.168}\protected@file@percent }
 \newlabel{fig:roadmap:dependency}{{51}{102}{Research enabling dependencies across the three roadmap phases. Short-term items produce validated metrics ($H$, $W_{\mathrm {eff}}$, $E$) and interface contracts that mid-term work extends into cross-layer co-design. Mid-term results create the architectural substrate (semantic memory, shared-state consistency, security primitives) on which long-term innovations (Intelligent ISA, stateful agents, distributed fabric, physical-world drivers) depend. The graph makes explicit that long-term goals are not independent moonshots but cumulative extensions of near-term engineering progress}{figure.caption.168}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {14}Ethics, Safety, and Explainability}{102}{section.14}\protected@file@percent }
 \newlabel{sec:ethics}{{14}{102}{Ethics, Safety, and Explainability}{section.14}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {14.1}Permissions and Isolation (L5 Orchestration Layer)}{102}{subsection.14.1}\protected@file@percent }
-\newlabel{sec:ethics-permission}{{14.1}{102}{Permissions and Isolation (L5 Orchestration Layer)}{subsection.14.1}{}}
+\citation{openai_codex_agents_md_2026}
 \citation{anthropic_claudecode_security_2026}
 \citation{debenedetti2025camel}
 \citation{openai_codex_sandbox_2026}
 \citation{ironclaw2025}
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.1}Permissions and Isolation (L5 Orchestration Layer)}{103}{subsection.14.1}\protected@file@percent }
+\newlabel{sec:ethics-permission}{{14.1}{103}{Permissions and Isolation (L5 Orchestration Layer)}{subsection.14.1}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {52}{\ignorespaces Agent permission model (right) mapped onto the classical OS process permission model (left). The four governance questions---who may create agents, what resources they may access, how permissions are scoped per operation, and how misbehaving agents are terminated--- have direct OS analogs in process-creation privileges, file permission bits, POSIX capabilities, and sandbox/signal-based termination. Under the dual-plane architecture, these controls fall squarely within the deterministic control plane: it governs what agents \emph  {are permitted} to do, while the probabilistic plane determines what they \emph  {can} do.}}{103}{figure.caption.169}\protected@file@percent }
 \newlabel{fig:ethics:permissions}{{52}{103}{Agent permission model (right) mapped onto the classical OS process permission model (left). The four governance questions---who may create agents, what resources they may access, how permissions are scoped per operation, and how misbehaving agents are terminated--- have direct OS analogs in process-creation privileges, file permission bits, POSIX capabilities, and sandbox/signal-based termination. Under the dual-plane architecture, these controls fall squarely within the deterministic control plane: it governs what agents \emph {are permitted} to do, while the probabilistic plane determines what they \emph {can} do}{figure.caption.169}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {14.2}Privacy and Memory Governance (L3 Memory Layer)}{103}{subsection.14.2}\protected@file@percent }
-\newlabel{sec:ethics-privacy}{{14.2}{103}{Privacy and Memory Governance (L3 Memory Layer)}{subsection.14.2}{}}
 \citation{euaiact2026}
 \citation{gdpr_righttoforget}
 \citation{longmemeval2024}
 \citation{navaie2025privacy}
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.2}Privacy and Memory Governance (L3 Memory Layer)}{104}{subsection.14.2}\protected@file@percent }
+\newlabel{sec:ethics-privacy}{{14.2}{104}{Privacy and Memory Governance (L3 Memory Layer)}{subsection.14.2}{}}
 \@writefile{toc}{\contentsline {paragraph}{What should be persisted?}{104}{section*.170}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{For how long?}{104}{section*.171}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Who has the right to delete?}{104}{section*.172}\protected@file@percent }
@@ -1073,16 +1077,21 @@
 \citation{memgpt2023}
 \citation{mcp_intro_2026}
 \citation{kwon2023pagedattention}
-\citation{arbiteros2025}
-\citation{mei2024aios}
-\citation{agentos2025}
 \@writefile{lof}{\contentsline {figure}{\numberline {54}{\ignorespaces System-level behavioral-trace explainability decomposed by ICA layer. L5 (Orchestration) logs privilege requests, approval decisions, and state commits. L4 (Semantic Interface) logs tool invocations, arguments, results, and permission denials. L3 (Context Management) logs context-compilation decisions, summary provenance, and eviction events. L2 (Inference Serving) logs cache hits, misses, and the eviction policy applied to each block. Together these four tiers form a complete, replayable behavioral trace--- the core output of the deterministic control plane---without requiring any access to the model's internal representations.}}{106}{figure.caption.175}\protected@file@percent }
 \newlabel{fig:ethics:explainability}{{54}{106}{System-level behavioral-trace explainability decomposed by ICA layer. L5 (Orchestration) logs privilege requests, approval decisions, and state commits. L4 (Semantic Interface) logs tool invocations, arguments, results, and permission denials. L3 (Context Management) logs context-compilation decisions, summary provenance, and eviction events. L2 (Inference Serving) logs cache hits, misses, and the eviction policy applied to each block. Together these four tiers form a complete, replayable behavioral trace--- the core output of the deterministic control plane---without requiring any access to the model's internal representations}{figure.caption.175}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {15}Conclusion and Outlook}{106}{section.15}\protected@file@percent }
 \newlabel{sec:conclusion}{{15}{106}{Conclusion and Outlook}{section.15}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {15.1}Core Contributions}{106}{subsection.15.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Unified framework: the ICA six-layer model.}{106}{section*.176}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Architectural resolution: the dual-plane architecture.}{106}{section*.177}\protected@file@percent }
+\citation{arbiteros2025}
+\citation{mei2024aios}
+\citation{agentos2025}
+\@writefile{toc}{\contentsline {paragraph}{Architectural resolution: the dual-plane architecture.}{107}{section*.177}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Organizing heuristics: three Amdahl-style design models.}{107}{section*.178}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Paradigm mapping: from silicon to substrate.}{107}{section*.179}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Socio-technical analysis: the industry structure of intelligent computing.}{107}{section*.180}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {15.2}Positioning and Boundaries}{107}{subsection.15.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Analogies are not isomorphisms.}{107}{section*.181}\protected@file@percent }
 \citation{ge2023llmos}
 \citation{holt2024l2mac}
 \citation{mi2025llmagentscomputersystems}
@@ -1090,14 +1099,9 @@
 \citation{memos2025}
 \citation{mi2025llmagentscomputersystems}
 \citation{arbiteros2025}
-\@writefile{toc}{\contentsline {paragraph}{Organizing heuristics: three Amdahl-style design models.}{107}{section*.178}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Paradigm mapping: from silicon to substrate.}{107}{section*.179}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Socio-technical analysis: the industry structure of intelligent computing.}{107}{section*.180}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {15.2}Positioning and Boundaries}{107}{subsection.15.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Analogies are not isomorphisms.}{107}{section*.181}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Incremental, not inaugural.}{107}{section*.182}\protected@file@percent }
 \citation{anthropic2026agenticreport}
 \citation{anthropic2026agenticreport}
+\@writefile{toc}{\contentsline {paragraph}{Incremental, not inaugural.}{108}{section*.182}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Visionary survey, not final answer.}{108}{section*.183}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{The collaboration paradox remains uncaptured.}{108}{section*.184}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {15.3}Future Directions}{108}{subsection.15.3}\protected@file@percent }

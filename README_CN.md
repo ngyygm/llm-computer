@@ -7,7 +7,7 @@
 > [English](https://github.com/ngyygm/llm-computer/raw/master/paper/paper_en_compressed.pdf) ·
 > [中文](https://github.com/ngyygm/llm-computer/raw/master/paper/paper_zh_compressed.pdf)
 
-**[English README](README.md)** · ✍️ 林 / 包 / 詹 / 郑海涛（清华大学深圳国际研究生院 / 鹏城实验室）
+**[English README](README.md)** · ✍️ 
 
 ---
 

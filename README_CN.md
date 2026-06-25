@@ -1,20 +1,31 @@
 # 模型原生计算体系结构
+#### 借计算机体系结构之镜，展望未来系统架构
 
-**[English](README.md)**
+> 📄 **arXiv：** <https://arxiv.org/abs/2606.00288>
+>
+> 📖 **在线阅读（PDF）：**
+> [English](https://github.com/ngyygm/llm-computer/raw/master/paper/paper_en_compressed.pdf) ·
+> [中文](https://github.com/ngyygm/llm-computer/raw/master/paper/paper_zh_compressed.pdf)
 
-> 面向模型原生计算系统的分层架构框架——在经典计算机体系结构与新兴 AI/LLM 生态之间建立系统性类比。
+**[English README](README.md)**
+
+> 面向模型原生计算系统的分层架构框架——在八十年经典计算机体系结构与新兴 AI/LLM 生态之间建立系统性类比。
+
+---
 
 ## 概述
 
-大语言模型（LLM）正在从一种"模型技术"演变为一种"系统技术"。本文提出了**智能计算体系结构（ICA）**——一个六层模型，为将智能组织成稳定、可扩展、可审计的系统提供架构基础。
+大语言模型正在从一种"模型技术"演变为一种"系统技术"。当开发者用 Codex 写代码、用 Claude Code 管理项目时，浮现出的工程挑战——缓存复用、上下文容量、Agent 调度、权限控制——与经典计算机系统的问题惊人地相似。这引出一个自然的问题：如果把 LLM 当作 CPU、KV 缓存当作处理器缓存、上下文窗口当作主存、Agent 框架当作操作系统，那么八十年计算机体系结构的智慧，能否用来指导下一代模型原生计算系统的构建？
+
+本文以**技术畅想型综述**的方式展开这一类比，提出**智能计算体系结构（ICA）**——一个统一的分层框架，为模型原生系统提供共享词汇、明确的接口契约、设计公理，以及量级估算式的设计启发式。
 
 ### 核心贡献
 
-1. **ICA 六层模型** — 统一框架（L1–L6），每层有明确的接口契约、设计公理和度量指标
-2. **双平面架构** — 将概率式执行（模型推理）与确定性控制（Agent 运行时治理）分离
-3. **三条量化定律** — 语义局部性定律、上下文预算定律、Agent 加速比定律，类比传统体系结构中的 Amdahl 定律
-4. **范式映射** — 将 CPU 五十年演进的经典教训系统性映射到 LLM/Agent 系统的演进路径
-5. **社会技术分析** — 通过半导体和 PC 产业的解耦历史分析 AI 栈的产业结构
+1. **类比框架** —— 经典计算机体系结构与模型原生栈之间的系统性映射，明确界定类比在何处成立、在何处失效。
+2. **双平面架构** —— 解决"LLM 究竟是 CPU 还是操作系统"这一长期争论：将*概率执行平面*（系统"能做什么"）与*确定性控制平面*（系统"应该做什么"）分离。
+3. **ICA 六层模型** —— L1–L6，每层有明确的层间接口契约与六条设计公理。
+4. **三条 Amdahl 式设计启发式** —— 语义局部性、上下文预算、Agent 加速比，把 Amdahl 定律的分析形式移植到模型原生场景，为以往只能定性描述的设计空间提供可计算的量级直觉（明确声明为启发式，而非已验证的标度律）。
+5. **综述、范式映射与路线图** —— 将 CPU 五十年演进的教训映射到 LLM/Agent 的轨迹，分析新兴的"无晶圆厂 AI"产业结构，并给出十年尺度的研究路线图。
 
 ## 架构
 
@@ -26,27 +37,31 @@
 | L5 | Agent 编排 | 操作系统 |
 | L4 | 工具与协议接口 | 系统调用 / ABI |
 | L3 | 上下文与记忆管理 | 虚拟内存 |
-| L2 | 推理与 KV 缓存服务 | 指令流水线 |
+| L2 | 推理与 KV 缓存服务 | 指令流水线 / 缓存 |
 | L1 | 模型权重与硬件 | CPU / 硅片 |
 
 ### 双平面架构
 
-框架将系统分解为两个正交平面：
+框架将系统分解为两个正交平面，二者在 **L3–L4 附近形成渐变交叉**，而非硬性切分：
 
-- **概率执行平面**（L1–L3）：模型推理、KV 缓存、上下文管理——系统"能做什么"
-- **确定性控制平面**（L4–L5）：工具协议、Agent 编排、治理——系统"应该做什么"
+- **概率执行平面**（侧重 L1–L3）：模型推理、KV 缓存、上下文管理——系统"能做什么"
+- **确定性控制平面**（侧重 L4–L5）：工具协议、Agent 编排、治理——系统"应该做什么"
 
-### 三条量化定律
+这一划分调和了以往的单平面提法（ArbiterOS 的"概率 CPU"、AIOS 的"内核"、AgentOS 的"推理内核"）——它们并非相互矛盾，而是同一双平面系统的不同视角。
 
-| 定律 | 公式 | 类比 |
+### 三条设计启发式
+
+这些被刻意定义为量级估算式的*启发式*（组织性模型），而非已验证的标度律：
+
+| 启发式 | 公式 | 经典类比 |
 |------|------|------|
-| **定律一：语义局部性** | $S = \frac{1}{(1-H) + H \cdot \alpha^{-1}}$ | 缓存命中率版本的 Amdahl 定律 |
-| **定律二：上下文预算** | $W_{\text{eff}} \leq C \cdot \beta(L)$ | 工作集估计 |
-| **定律三：Agent 加速比** | $S_{\text{agent}} = \frac{1}{(1-F) + \frac{F}{N \cdot E}}$ | 多 Agent 版本的 Amdahl 定律 |
+| **一、语义局部性** | $S = \dfrac{1}{(1-H) + H \cdot \alpha^{-1}}$ | 缓存命中率版本的 Amdahl 定律 |
+| **二、上下文预算** | $W_{\text{eff}} = C \cdot \bar{\beta} \le C$ | 工作集估计 |
+| **三、Agent 加速比** | $S_{\text{agent}} = \dfrac{1}{(1-F) + \dfrac{F}{N \cdot E}}$ | 多 Agent 版本的 Amdahl 定律 |
 
 ## 图表
 
-论文包含 27 幅 TikZ 生成的图表。核心图表如下：
+论文配有大量 TikZ 生成的图表。核心图表如下：
 
 ### 核心架构
 
@@ -67,11 +82,6 @@
   <br><em>Agent 框架演进时间线（第一代 → 第五代）</em>
 </p>
 
-<p align="center">
-  <img src="paper/figures/fig_impl_map_gemini.png" width="90%" alt="开源生态系统映射到 ICA 六层架构">
-  <br><em>开源生态系统映射到 ICA 六层架构</em>
-</p>
-
 ### 其他关键图表（LaTeX/TikZ 生成）
 
 | 图表 | 说明 |
@@ -79,12 +89,12 @@
 | `fig_arch` | ICA 六层架构图 |
 | `fig_dual_plane` | 双平面架构：概率执行平面 vs 确定性控制平面 |
 | `fig_icam_crossmap` | ICA 各层与双平面架构的交叉映射 |
-| `fig_law_curves` | 三条量化定律的特征曲线 |
+| `fig_law_curves` | 三条设计启发式的特征曲线 |
 | `fig_gen_matrix` | 五代 Agent 框架的能力成熟度矩阵 |
-| `fig_gen_trajectory` | 五代框架中 $F$、$E$、$S_{\text{agent}}$ 的量化轨迹 |
+| `fig_gen_trajectory` | 五代框架中 $F$、$E$、$S_{\text{agent}}$ 的轨迹 |
 | `fig_trilemma` | LLM 服务中的延迟–吞吐量–成本三难困境 |
-| `fig_beta_decay` | 注意力保持率 $\beta(L)$：经验 U 形曲线 vs 指数衰减模型 |
-| `fig_biglittle` | 三阶段演进：ARM big.LITTLE ↔ LLM 模型编排 |
+| `fig_beta_decay` | 注意力保持率 $\beta(L)$：经验 U 形曲线 vs 指数衰减包络 |
+| `fig_biglittle` | ARM big.LITTLE ↔ LLM 模型编排 |
 | `fig_paradigm_timeline` | 从硅基到基底无关计算的范式时间线 |
 | `fig_interface_contracts` | ICA 层间接口契约 |
 | `fig_axioms_overview` | 六条设计公理在各层的适用性热力图 |
@@ -102,34 +112,17 @@
 
 ```
 paper/
-├── paper.tex              # 中文版
-├── paper_en.tex           # 英文版
-├── paper.pdf              # 编译后的中文 PDF
-├── paper_en.pdf           # 编译后的英文 PDF
-├── refs.bib               # 共享参考文献
-├── cn_sections/           # 中文章节（15 个文件）
-│   ├── section_intro.tex
-│   ├── section_bg.tex
-│   ├── section_framework.tex
-│   ├── section_components.tex
-│   ├── section_icam.tex
-│   ├── section_laws.tex
-│   ├── section_agent_evolution.tex
-│   ├── section_challenges.tex
-│   ├── section_paradigm.tex
-│   ├── section_implementation.tex
-│   ├── section_roadmap.tex
-│   ├── section_ethics.tex
-│   ├── section_social.tex
-│   ├── section_related.tex
-│   └── section_conclusion.tex
-├── en_sections/           # 英文章节（15 个文件，平行结构）
-│   └── ...
-└── figures/               # TikZ 图表源文件 + 渲染后的 PNG
-    ├── fig_arch.tex
-    ├── fig_dual_plane.tex
-    ├── ...
-    └── *.png              # 预渲染图表
+├── paper_en.tex                 # 英文版（主文件）
+├── paper.tex                    # 中文版（主文件）
+├── paper_en.pdf / paper.pdf     # 编译后的全分辨率 PDF（英文版经 Git LFS 存储）
+├── paper_en_compressed.pdf      # 英文压缩版 PDF（约 12 MB，打印质量）
+├── paper_zh_compressed.pdf      # 中文压缩版 PDF（约 6 MB）
+├── refs.bib                     # 共享参考文献
+├── en_sections/  cn_sections/   # 分章节源文件（平行结构，各 15 个）
+└── figures/                     # TikZ 图表源文件 + 渲染图
+    ├── fig_*.tex                # TikZ 源文件
+    ├── *.png                    # 预渲染栅格图
+    └── generated/               # 生成的插图 PNG（Git LFS 存储）
 ```
 
 ## 编译
@@ -137,22 +130,26 @@ paper/
 ```bash
 cd paper
 
-# 中文版
-pdflatex paper.tex && bibtex paper && pdflatex paper.tex && pdflatex paper.tex
-
 # 英文版
 pdflatex paper_en.tex && bibtex paper_en && pdflatex paper_en.tex && pdflatex paper_en.tex
+
+# 中文版
+pdflatex paper.tex && bibtex paper && pdflatex paper.tex && pdflatex paper.tex
 ```
 
-> **说明：** 图表通过 TikZ 在编译时渲染。部分复杂布局的图表使用 `\includegraphics` 引入预渲染的 PNG 文件。
+> **说明：** 图表通过 TikZ 在编译时渲染。`figures/generated/` 下的栅格插图经 Git LFS 存储，克隆后若缺失请运行 `git lfs pull`。
 
 ## 引用
 
 ```bibtex
-@article{ica2026modelnative,
-  title={模型原生计算体系结构：面向智能计算系统的分层框架},
-  author={林, 詹, 郑},
-  year={2026}
+@article{lin2026modelnative,
+  title   = {Model-Native Computing Architecture: Envisioning Future System Architecture
+             Through the Lens of Computer Architecture},
+  author  = {Lin, Hai and Pao, Hoilam and Zhan, Shaoxiong and Zheng, Hai-Tao},
+  year    = {2026},
+  eprint  = {2606.00288},
+  archivePrefix = {arXiv},
+  url     = {https://arxiv.org/abs/2606.00288}
 }
 ```
 
